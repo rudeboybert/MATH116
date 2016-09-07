@@ -1,0 +1,10 @@
+---
+title: "MATH 116"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Course Webpage for Middlebury College MATH 116 Introduction to Statistical and Data Sciences.
