@@ -14,10 +14,6 @@ In reverse chronological order:
 
 <!-- ### b) RStudio-->
 
-
-
-### a) R
-
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %-d" %}
