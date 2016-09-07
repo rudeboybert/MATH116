@@ -1,0 +1,118 @@
+Grammar in R
+========================================================
+autosize: true
+incremental: true
+
+
+The essential sentence
+========================================================
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+library(oilabs)
+```
+
+A general format:
+
+```{r, eval=FALSE}
+function(argument1, argument2, ...)
+```
+
+Telling R what you want it to do (the *function*) and how it should do it / what
+it should do it to (the *arguments*).
+
+```{r, eval=FALSE}
+a <- function(argument1, argument2, ...)
+```
+
+You can save the output by *assigning* it to a new object; otherwise it's printed
+to the console.
+
+
+Example
+========================================================
+
+```{r}
+x <- c(4, 7, 7, 8, 9)
+sum(x)
+a <- sum(x)
+a
+```
+
+
+Will this work?
+========================================================
+type: prompt
+
+example: 
+
+```{r, eval=FALSE}
+sum(x
+```
+
+No! Parentheses must be balanced (quotation marks too).
+
+
+Will this work?
+========================================================
+type: prompt
+
+example: 
+
+```{r}
+sum(      x    )
+```
+
+Yes! Spaces generally do not matter.
+
+A sentence involving a dataframe
+========================================================
+
+Length returns the length of a vector (column or row)
+
+```{r}
+length(arbuthnot$year)
+```
+
+Here we pull out the `year` column from the `arbuthnot` data frame using the
+`$`.
+
+
+An alternative sentence involving a dataframe
+========================================================
+
+For a graphic...
+
+```{r, eval=FALSE}
+qplot(x = year,y =girls, data = arbuthnot, geom="line")
+```
+
+Here, the function knows which in data frame to find `year` and `girls`, so 
+there is no need for the `$`.
+
+```{r, eval=TRUE}
+p <- qplot(x = year,y =girls, data = arbuthnot, geom="line")
+p
+```
+
+
+Will this work?
+========================================================
+type: prompt
+
+example:
+
+```{r}
+qplot(year,y =girls, data = arbuthnot, geom="line")
+```
+
+Yes! If you don't name your arguments, R will guess based on their order.
+
+Even so, it's a good idea to name your arguments.
+
+
+The pipe
+========================================================
+
+![pipe](pipe.png)

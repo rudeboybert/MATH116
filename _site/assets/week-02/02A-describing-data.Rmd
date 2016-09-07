@@ -1,0 +1,229 @@
+```{r setup, include=FALSE}
+library(knitr)
+options(digits=2)
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+## Describing Distributions {.build}
+
+- **Shape**: modality, skewness
+- **Center**: mean, median, mode
+- **Spread**: variance, sd, range, IQR
+- **Unusual observations**: outliers
+
+
+## Shape {.build}
+
+**Modality**
+
+<img src="../figs/modality.png" alt="modality" width="750">
+
+**Skewness**
+
+<img src="../figs/skewness.png" alt="skewness" width="750">
+
+
+## Shape Q
+
+Which of these variables do you expect to be uniformly distributed?
+
+1. weights of adult females
+2. salaries of a random sample of people from Oregon
+3. house prices
+4. birthdays of classmates (day of the month)
+
+
+## Center: mean {.build}
+
+```{r}
+X <- c(8, 11, 7, 7, 8, 11, 9, 6, 10, 7, 9)
+```
+
+
+
+\[ \frac{8 + 11 + 7 + 7 + 8 + 11 + 9 + 6 + 10 + 7 + 9}{11} = \frac{93}{11} = 8.45 \\
+  \\
+\]
+
+**Sample mean**: the arithmetic mean of the data (vs *pop mean*)
+
+\[ \bar{x} = \frac{x_1 + x_2 + \ldots + x_n}{n} \quad \quad \textrm{vs.} \quad \quad \mu\]
+
+```{r}
+mean(X)
+```
+
+
+## Center: median {.build}
+
+**Median**: the middle value of a sorted data set.
+
+```{r}
+sort(X)
+median(X)
+```
+
+Break ties by averaging middle two if necessary.
+
+
+## Center: mode {.build}
+
+**Mode**: the most frequently observed value in the data set.
+
+```{r}
+table(X)
+```
+
+
+## The Typical Human
+
+(https://www.youtube.com/watch?v=4B2xOvKFFz4)
+
+Keep note of the measures of "typical" that are reported - they come quick!
+
+
+## Spread: variance {.build}
+
+**Sample variance**: roughly, the mean squared deviation from the mean.
+
+\[ s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n - 1}\]
+
+Compare to the *population variance*, $\sigma^2$, which divides by $n$.
+
+
+## Spread: variance {.build}
+
+```{r}
+X - mean(X)
+(X - mean(X))^2
+sum((X - mean(X))^2) / (length(X) - 1)
+var(X)
+```
+
+
+## Spread: standard deviation {.build}
+
+**Sample standard deviation**: the square root of the variance. Used because
+units are the same as the data.
+
+\[ s = \sqrt(s^2) \]
+
+```{r}
+sqrt(var(X))
+sd(X)
+```
+
+Compared to the *population standard deviation*, $\sigma$.
+
+
+## Spread: IQR {.build}
+
+**Inner Quartile Range**: the range of the middle 50% of the data.
+
+\[ IQR = Q3 - Q1 \]
+
+```{r}
+sort(X)
+IQR(X)
+```
+
+
+## Spread: range {.build}
+
+**Range**: the range of the full data set.
+
+\[ range = max - min \]
+
+```{r}
+max(X) - min(X)
+range(X)
+```
+
+
+## Spread Q
+
+Which measure(s) of spread would be sensitive to the presence of outliers?
+
+1. variance
+2. standard deviation
+3. IQR
+4. Range
+
+
+## Spread Q {.build}
+
+```{r, echo=FALSE}
+Y <- X
+Y[1] <- 37
+```
+
+
+```{r}
+X
+Y
+var(X)
+var(Y)
+```
+
+
+## Spread Q {.build}
+
+```{r}
+IQR(X)
+IQR(Y)
+range(X)
+range(Y)
+```
+
+
+## Spread Q
+
+Which measure(s) of spread would be sensitive to the presence of outliers?
+
+1. **variance**
+2. **standard deviation**
+3. IQR
+4. **Range**
+
+
+## Center Q
+
+Which measure(s) of center would be sensitive to the presence of outliers?
+
+1. mean
+2. median
+3. mode
+
+
+## Center Q
+
+Which measure(s) of center would be sensitive to the presence of outliers?
+
+1. **mean**
+2. median
+3. mode
+
+
+## Mean vs median {.build}
+
+<img src="../figs/skew-sym.png" alt="skewsym" width="750">
+
+The mean (red line) is sensitive to extreme values, so it gets pulled towards 
+the tail. The median (dashed line) is less sensitive.
+
+For symmetric dists, use *mean* and *sd*.
+
+For skewed dists, use *median* and *iqr*.
+
+```{r echo = FALSE, eval = FALSE}
+x <- c(rgamma(50, 2, 3),
+       5 - rgamma(50, 2, 3),
+       rnorm(50))
+y <- factor(rep(c("ls", "rs", "sym"), each = 50))
+df <- data.frame(x, y)
+ggplot(df, aes(x = x, groups = y)) + geom_density()
+```
+
+

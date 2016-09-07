@@ -1,0 +1,12 @@
+# Site settings
+title: Intro to Statistical and Data Sciences
+email: albert.ys.kim@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  You come at the king, you best not miss.
+baseurl: /MATH116
+url: https://rudeboybert.github.io
+urllabel: "Albert Y. Kim's Webpage"
+
+# Build settings
+markdown: kramdown
+github_username: rudeboybert

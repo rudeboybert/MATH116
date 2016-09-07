@@ -1,0 +1,67 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fancyhdr,url,hyperref}
+
+\oddsidemargin 0in  %0.5in
+\topmargin     0in
+\leftmargin    0in
+\rightmargin   0in
+\textheight    9in
+\textwidth     6in %6in
+
+\pagestyle{fancy}
+
+\lhead{\textsc{MATH 141}}
+\chead{\textsc{Practice}}
+\lfoot{}
+\cfoot{}
+%\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\newcommand{\ans}{\vspace{0.25in}}
+\newcommand{\R}{{\sf R}\xspace}
+\newcommand{\cmd}[1]{\texttt{#1}}
+
+\title{MATH 141:\\Intro to Probability and Statistics}
+\author{Prof. Bray}
+\date{Spring 2016}
+
+\rhead{\textsc{September 2, 2016}}
+
+
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\paragraph{Experimental Design}
+
+\begin{enumerate}
+  \item What is the best way to answer each of the questions below: an experiment, a sample survey, or an observational study that is not a sample survey? Explain your choices.
+  \begin{enumerate}
+    \itemsep0.25in
+    \item Are people generally satisfied with how things are going in the country right now?
+    \item Do college students learn basic accounting better in a classroom or using an online course?
+    \item How long do your teachers wait on average after they ask their class a question?
+    \ans
+  \end{enumerate}
+  
+  \item Students sign up to be subjects in a psychology experiment. When they arrive, they are told that interviews are running late and are taken to a waiting room. The experimenters then stage a theft of a valuable object left in the waiting room. Some subjects are alone with the thief, and others are in pairs - these are the treatments being compared. Will the subject report the theft? The students had agreed to take part in an unspecified study, and the true nature of the experiment is explained to them afterward. Do you think this study is ethically OK?
+
+\ans
+\ans
+
+\item For each of the following pairs of variables, a statistically significant positive relationship has been observed. Identify a third variable that might cause the spurious correlation.
+\begin{enumerate}
+  \itemsep0.5in
+  \item The amount of ice cream sold in New England and the number of deaths by drowning
+  \item The size of a hospital (measured by its number of beds) and the median number of days that patients remain in the hospital
+  \item The salary of U.S. ministers and the price of vodka
+  \item The number of doctors in a region and the number of crimes committed in that region
+  \item The number of storks sighted and the population of Oldenburg, Germany, over a six-year period
+  \item The amount of coffee consumed and the prevalence of lung cancer
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
