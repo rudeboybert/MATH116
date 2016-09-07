@@ -6,4 +6,4 @@ date:   2016-09-14 10:10:45
 categories: jekyll update
 ---
 
-* <a href = "{{ site.baseurl }}/assets/1-Tools/intro_to_R.html" target = "_blank">Slides</a>
+* <a href = "{{ site.baseurl }}/assets/1-Intro_and_Tools/R_and_RStudio.html" target = "_blank">Slides</a>

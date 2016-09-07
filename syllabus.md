@@ -42,7 +42,7 @@ Roughtly speaking, the course will cover the following topics (for a more
 precise breakdown of topics, click
 [here](https://docs.google.com/spreadsheets/d/1qy21hHMbjYfv65IL5DwxID0nEltXgOD6h52hBVwWa_s/edit#gid=0)):
 
-1. Tools: R, RStudio, and R Markdown
+1. Introduction and Tools (R, RStudio, and R Markdown)
 1. Data:
     * Data formatting
     * Data visualization

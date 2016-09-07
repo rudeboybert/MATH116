@@ -1,5 +1,5 @@
 ---
-title: "Intro to R"
+title: "Intro to R and RStudio"
 author: "Albert Y. Kim"
 date: "Wed Sep 14, 2016"
 output: ioslides_presentation
