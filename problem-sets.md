@@ -4,10 +4,25 @@ title: Problem Sets
 permalink: /problem-sets/
 ---
 
+While I encourage you to discuss homeworks with your peers, you must submit your
+own answers and not simple rewordings of another's work. Furthermore, all
+collaborations must be explicitly acknowledged at the top of your submissions.
+
+## Problem Set I
+
+* Assigned Fri 9/16
+* Due Fri 9/23
+
+
+
+
+
+
+<!--
 Weekly problem sets to reinforce the concepts from the reading as
 well as the material that we address in class. You're encouraged to work on the problem sets with fellow students, though you'll both need to turn in your own work. Problem sets are due every **Monday** at the beginning of class.
 
-<!--
+
 **PS11**: Please work through problems 1, 2, 3, 7, 9, 11, 14, and 16 in the Exercises at the end of Chapter 6. (Due April 25)
 
 **PS10**: Please work through problems 1, 5, 6, 17, 21, 23, 30, 31, and 33 in the Exercises at the end of Chapter 5. (Due April 18)
@@ -25,11 +40,9 @@ well as the material that we address in class. You're encouraged to work on the 
 **PS4**: Please work through the exercises in probability found [here]({{ site.baseurl }}/problem-sets/ps4/).  A PDF version of the problems is [here]({{ site.baseurl }}/problem-sets/ps4.pdf).
 
 **PS3**: Please work through number 1 - 7 and 11 [here]({{ site.baseurl }}/problem-sets/ps3/).  A PDF version of the problems is [here]({{ site.baseurl }}/problem-sets/ps3.pdf). The remaining problems will be with PS4.
--->
-
-
-
 
 **PS1**: Please work through problems 1, 4, 6, 8, 10, 11, 15, 16, 17, 19, and 22 in the Exercises at the end of Chapter 1 (the first one is labeled 1.1 on page 43).
 
 **PS2**: Please work through problems 24, 26, 33, 36, 37, 40, 42, 47, and 50 in the Exercises at the end of Chapter 1.
+
+-->

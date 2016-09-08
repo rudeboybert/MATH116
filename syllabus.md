@@ -24,6 +24,35 @@ permalink: /syllabus/
 
 ## Course Description and Objectives
 
+#### Description
+
+A practical introduction to statistical methods and computational tools needed 
+to make sense of data. This course is an evolution of many traditional
+introductory statistics courses in that computing plays a more central role in
+learning than mathematics and a higher emphasis is placed on ``thinking with
+data.'' Topics include data visualization, data wrangling, confidence intervals,
+hypothesis testing, and regression. The course has no formal mathematics or
+computer science prerequisites, and is especially suited to students in the
+physical, social, environmental, and life sciences who seek an applied
+orientation to data analysis.
+
+#### Objectives
+
+* Replicate the data analysis research process as faithfully as possible at a
+level [suitable for novices](http://arxiv.org/abs/1507.05346).
+* Foster a conceptual understanding of statistical topics and methods with
+[simulation/resampling](https://www.amstat.org/education/pdfs/ResamplingUndergradCurriculum.pdf) and data, rather than mathematical formulae.
+* Blur the traditional lecture/lab dichotomy of introductory statistics courses 
+by incorporating more [computational and algorithmic thinking](http://www.stat.berkeley.edu/~statcur/Preprints/ComputingCurric3.pdf).
+* Introduce best practices for [reproducible
+research](http://www.nature.com/news/reproducibility-1.17552) and collaboration.
+* Develop [statistical
+literacy](https://en.wikipedia.org/wiki/Statistical_literacy) by tying in the
+curriculum to current events, demonstrating the importance statistics plays in 
+society.
+
+<!-- Prior to 2016-09
+
 This is an introductory probability and statistics class where a conceptual understanding of the material will be stressed.  Goals of this course include:
 
 * Expose students to statistical concepts, including sampling, data visualizations, confidence intervals, hypothesis tests, and regression.
@@ -31,6 +60,7 @@ This is an introductory probability and statistics class where a conceptual unde
 * Introduce the theory underlying statistics, including probability, distributions, the central limit theorem, etc.
 * Develop statistical literacy.
 * Tie in the curriculum to current events, demonstrating the importance statistics plays in society.
+-->
 
 
 
@@ -64,23 +94,26 @@ precise breakdown of topics, click
 
 #### 1) Textbooks
 
-* Intro Stat with Randomization and Simulation 1st edition by Diez, Barr, and Cetinkaya-Rundel.  This
-textbook is available
+* An Introduction to Statistical and Data Sciences by Kim and Ismay available   [online](https://rudeboybert.github.io/IntroStatDataSciences/).
+* Intro Stat with Randomization and Simulation 1st edition by Diez, Barr, and
+Cetinkaya-Rundel available
     + Online at the [OpenIntro
     webpage](https://www.openintro.org/stat/textbook.php?stat_book=isrs) in both
-    standard  and tablet friendly PDF formats
+    standard and tablet friendly PDF formats.
     + In print at the Middlebury bookstore and 
-    [Amazon](https://www.amazon.com/Introductory-Statistics-Randomization-Simulation-David/dp/1500576697)
-
+    [Amazon](https://www.amazon.com/Introductory-Statistics-Randomization-Simulation-David/dp/1500576697).
 
 #### 2) Computing and Software
 
-* Instead of using a desktop version of the RStudio integrated development 
-environment (IDE) for R, we will be using the cloud-based RStudio Server 
-interface, which you can access via 
-[`go/rstudio`](https://rstudio.middlebury.edu/). Note if you are off-campus you 
+* Instead of using the desktop version of the RStudio interface to R, we will be
+using the cloud-based RStudio Server, which you can access in your browser via 
+[go/rstudio](https://rstudio.middlebury.edu/). Note if you are off-campus you 
 must first log into the [Middlebury 
 VPN](http://mediawiki.middlebury.edu/wiki/LIS/Off-campus_Access).
+* Just like your
+[middfiles](http://www.middlebury.edu/offices/technology/help/technology/servers/middfiles)
+file server, you can access the files on the RStudio file server by logging onto
+[cifs://rstudio.middlebury.edu](cifs://rstudio.middlebury.edu)
 
 
 
@@ -91,55 +124,64 @@ VPN](http://mediawiki.middlebury.edu/wiki/LIS/Off-campus_Access).
 There are four components to your final grade: problem sets, engagement,
 midterms, and the final project.
 
-
 #### 1) Problem Sets 10%
 
 Each problem is worth only a nominal portion of the final grade. As such, 
 instead of viewing them as evaluative tools used by the instructor to assign 
-grades, they should be viewed as low-stakes opportunities to develop one's
-statistics and data science toolboxes and receive feedback on the progress of
+grades, they should be viewed as low-stakes opportunities to develop flex one's 
+statistics and data science muscles and receive feedback on the progress of 
 one's learning.
 
 While I encourage you to discuss homeworks with your peers, you must submit your
-own answers and not simple rewordings of another's work.  Furthermore, all
-collaborations must be explicitly acknowledged on your submissions.
+own answers and not simple rewordings of another's work. Furthermore, **all
+collaborations must be explicitly acknowledged at the top of your submissions**.
 
+* Assigned/due on Fridays.
+* Lowest two scores dropped.
 * No email submissions will be accepted; ask a classmate to print it for you.
-* Homeworks are due at the beginning of lecture/lab.
-* Unstapled homeworks and homeworks without names/section numbers will be penalized 25%.
-* Late (defined as after lecture ending) submissions will be accepted up to 2 days after the due date at a 25% penalty per day. If you submit late, your graded homeworks might be returned late as well.
-* You need to show all work to receive full credit.
+* Unstapled homeworks and homeworks without names will not be accepted.
+* No extensions.
+* Late (defined as after lecture ending) submissions will be accepted up to 2
+days after the due date at a 25% penalty per day. They might be returned late as well.
 
 #### 2) Engagement 10%
 
-It is difficult to explicity codify what constitutes "an engaged student", so 
+It is difficult to explicity codify what constitutes "an engaged student," so 
 instead I present the following rough principle I will follow: **you'll only get
 out of this class as much as you put in**. Some examples of behavior counter to this
 principle:
 
-* Merely attending lectures and not participating in discussions.
-* Leveraging previous experience in other settings to coast through this course.
+* Not participating in in-class exercises.
 * Not coming to office hours when the situation warrants it. 
 * Submitting homework that has code or content that is copied from (or only
 slightly modified versions of) your peers' work, going against the philosophy of
 the homeworks being opportunities for practice and feedback, rather than as items 
 to be graded on.
 
-#### 3) Midterms
+#### 3) Three Midterms 45%
 
-* Midterms:
-* All midterms are cummulative and require a scientific calculator (smartphones are not allowed).
-* No extra-credit work to improve midterm scores after the fact.
-* There will be no make-up nor rescheduled midterm, except in the following cases:
+* Midterm dates: Wed 10/5 (in-class), Wed 10/26 7:30pm, and Wed 11/16 7:30pm.
+* All midterms are cummulative and require a scientific calculator (no
+smartphones).
+* There is no extra-credit work to improve midterm scores after the fact.
+* There will be no make-up nor rescheduled midterms, except in the following cases:
     + serious illness or death in the family only if documentation is provided.
     + athletic commitments or religious obligations only if documentation is
     provided and prior notice is given. In such cases, rescheduled exams must be
     taken **before** the rest of the class.
 
-#### 4) Final Project
+#### 4) Final Project 35%
 
-* Group project in groups of three where I will be assigning groups.
-    
+Rather than a final exam, there will be a final capstone group project. This
+is an opportunity for you to perform you own start-to-finish data analysis 
+project incorporating the tools from this class. The project will center around you finding a dataset, performing an analysis
+using the tools we have covered in this class, and writing a report.
+
+* Due Sun 12/18 at noon.
+* Groups of no more than three will be assigned by me.
+* A system will be put in place to hold your group peers accountable for their work.
+* Complete details will be given on Wed 11/2.
+
 
 
 
