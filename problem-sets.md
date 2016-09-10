@@ -4,7 +4,7 @@ title: Problem Sets
 permalink: /problem-sets/
 ---
 
-While I encourage you to discuss homeworks with your peers, you must submit your
+While I encourage you to discuss problem sets with your peers, you must submit your
 own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
