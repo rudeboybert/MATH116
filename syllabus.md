@@ -146,7 +146,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * Assigned/due on Fridays.
 * Lowest two scores dropped.
 * No email submissions will be accepted; ask a classmate to print it for you.
-* No extensions for any homeworks will be granted. 
+* No extensions for any problem sets will be granted. 
 
 #### 2) Engagement 10%
 
