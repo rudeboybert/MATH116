@@ -2,34 +2,228 @@
 title: "Syllabus Discussion"
 author: "Albert Y. Kim"
 date: "Mon Sep 12, 2016"
-output: ioslides_presentation
+output: 
+  ioslides_presentation: 
+    incremental: false
+    smaller: false
 ---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Course Title
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+> * In catalog: Introduction to Statistical Sciences
+> * New: Introduction to Statistical **and Data** Sciences
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Slide with Bullets
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+## What is Data Science?
 
-## Slide with R Output
+![](../figure/data_science_1.png)
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
 
-## Slide with Plot
 
-```{r pressure}
-plot(pressure)
-```
+## Data Science
+
+> * Example domains: biology, economics, physics, sociology, etc.
+> * So why the title switch?
+
+
+## Dialogue with Student
+
+<!--
+Hi professor, I really liked your intro stats class. Can I ask you a stats question on a bio project I'm working on?
+I have gene expression data in this excel file. How would I run some of the methods we learned in class on it?
+http://www.ios7text.com/em78xa
+-->
+
+> ![](../figure/dialogue_1.png)
+
+
+
+## Course Objective #1
+
+Have students engage in the data/science research pipeline in as faithful a
+manner as possible while maintaining a level [suitable for
+novices](http://arxiv.org/abs/1507.05346).  
+
+> * Cobb: Minimizing prerequisites to research
+> * Not necessarily publishing in top journals, but **answering scientific questions with data**.
+> * Difficult to do research without understanding stats, however
+
+
+## Data/Science Research Pipeline
+
+We will, as best we can, perform all this:
+
+> ![](../figure/pipeline.png)
+
+
+## Data/Science Research Pipeline
+
+And not just this, as in many previous intro stats courses:
+
+![](../figure/pipeline2.png)
+
+
+
+## Course Objective #2
+
+Foster a conceptual understanding of statistical topics and methods using 
+[simulation/resampling](https://www.amstat.org/education/pdfs/ResamplingUndergradCurriculum.pdf)
+and real data whenever possible, rather than mathematical formulae.
+
+> * Whenever we can, use real data
+
+
+## Real Data
+
+Classroom data are like teddy bears and real data are like a grizzly bear with salmon blood dripping out its mouth
+
+
+
+## Course Objective #2
+
+Foster a conceptual understanding of statistical topics and methods using 
+[simulation/resampling](https://www.amstat.org/education/pdfs/ResamplingUndergradCurriculum.pdf)
+and real data whenever possible, rather than mathematical formulae.
+
+> * There are two "engines" that can make statistics "work"
+>     + Mathematics: formulas, approximations, etc
+>     + Computers: simulations, random number generation 
+
+
+
+## The "Engine" of Statistics
+
+In this course, computers and not math will be the "engine". What does this mean?
+
+> * Less of this:  
+> <img src="../figure/formulas.png" alt="Drawing" style="width: 300px;"/> 
+> * But more of this:  
+> <img src="../figure/coding.jpg" alt="Drawing" style="width: 300px;"/> 
+
+
+
+## Programming/Coding
+
+> * Previous programming/coding experience **is not a prerequisite to this course**
+> * This course is **NOT** a course on programming, coding, nor computer science
+> * You will however be exposed to basic **computational and algorithmic** thinking
+
+
+
+
+
+## Course Objective #3
+
+Blur the traditional lecture/lab dichotomy of introductory statistics courses 
+by incorporating more [computational and algorithmic
+thinking](http://www.stat.berkeley.edu/~statcur/Preprints/ComputingCurric3.pdf) 
+into the syllabus.
+
+> * Completely separate lecture and labs is a legacy of a time before  
+> <img src="../figure/laptop.png" alt="Drawing" style="width: 300px;"/> 
+
+
+
+
+
+## RStudio Server
+
+> * Not all laptops are created equal: operating system, processing power, age
+> * Cloud-based version: all processing is done on Middlebury servers
+> * [go/rstudio](https://rstudio.middlebury.edu/) (on campus or via VPN)
+
+
+
+
+## Thursday Lab Time
+
+**Undirected** time to
+
+
+> * Different backgrounds
+> * Set aside to help get up to speed on computing
+> * It is like learning a language. Some people learn faster, some people
+remember better over the long run. But you know what? You all speak english
+fine.
+> * Learn from each other. Empathy.
+> * Can also work on problem sets (due on Fridays)
+
+
+## Course Objective #5
+
+Develop [statistical 
+literacy](https://en.wikipedia.org/wiki/Statistical_literacy) by, among other
+ways, tying in the curriculum to current events, demonstrating the importance
+statistics plays in society.
+
+> * H.G. Wells (paraphrased): "Statistical thinking will one day be as necessary for efficient citizenship as the ability to read and write."
+> * Me: "Sure, it's easy to lie with statistics. But it's also hard to tell the truth without them."
+
+
+
+
+## Topics
+
+Now vs then:
+
+* Drop probability
+* Boost data: representation, visualization, manipulation
+
+
+
+
+## Data Visualization and EDA
+
+> - **"Data visualization is a gateway drug to statistics."**
+> - Prez from Season 4 of "The Wire":
+> - <center><img src="../figure/Prez.png" height="300px"/></center>
+
+
+
+
+
+## Final Project
+
+* ~~Final exam~~
+* Capstone
+* Align this class with how research and learning is done in practice
+* Baby's first data analysis
+* Collaborative, with people you may like, but also people you may not like.
+* Interpersonal skills. No textbook on that!
+
+
+
+
+## Other Principles
+
+* Open source software: accessible, worldwide community of contributors, cutting edge
+* Teaching you concepts, not just R
+* Choice of textbook: 
+
+
+
+
+
+
+
+
 

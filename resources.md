@@ -29,6 +29,7 @@ feet wet.
 
 ## Data Science
 
+* [The Elements of Data Analytic Style](https://leanpub.com/datastyle) by Leek
 * [R for Data Science](http://r4ds.had.co.nz/) by Grolemund and Wickham.
 
 

@@ -43,19 +43,19 @@ analysis.
 
 #### Objectives
 
-* Have students engage in the data analysis research process in as faithful a
+1. Have students engage in the data/science research pipeline in as faithful a
 manner as possible while maintaining a level [suitable for
 novices](http://arxiv.org/abs/1507.05346).
-* Foster a conceptual understanding of statistical topics and methods using 
+1. Foster a conceptual understanding of statistical topics and methods using 
 [simulation/resampling](https://www.amstat.org/education/pdfs/ResamplingUndergradCurriculum.pdf)
-and data whenever possible, rather than mathematical formulae.
-* Blur the traditional lecture/lab dichotomy of introductory statistics courses 
+and real data whenever possible, rather than mathematical formulae.
+1. Blur the traditional lecture/lab dichotomy of introductory statistics courses 
 by incorporating more [computational and algorithmic
 thinking](http://www.stat.berkeley.edu/~statcur/Preprints/ComputingCurric3.pdf) 
 into the syllabus.
-* Introduce best practices for [reproducible 
+1. Introduce best practices for [reproducible 
 research](http://www.nature.com/news/reproducibility-1.17552) and collaboration.
-* Develop [statistical 
+1. Develop [statistical 
 literacy](https://en.wikipedia.org/wiki/Statistical_literacy) by, among other
 ways, tying in the curriculum to current events, demonstrating the importance
 statistics plays in society.
