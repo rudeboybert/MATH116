@@ -4,10 +4,15 @@ layout: default
 
 # Fall 2016 Topic List
 
-In reverse chronological order:
+In reverse chronological order (a more detailed outline can be found [here](https://docs.google.com/spreadsheets/d/1qy21hHMbjYfv65IL5DwxID0nEltXgOD6h52hBVwWa_s/edit#gid=0)):
 
+## 4. Regression
 
-### 1. Introduction & Tools
+## 3. Statistical Inference
+
+## 2. Data
+
+## 1. Introduction & Tools
 
 <ul>
   {% for post in site.posts %}
