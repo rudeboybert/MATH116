@@ -6,7 +6,7 @@ permalink: /syllabus/
 
 ## MATH 116: Fall 2016
 
-* **Instructor:** [Albert Y. Kim](http://community.middlebury.edu/~aykim/) -
+* **Instructor:** [Albert Y. Kim](https://rudeboybert.github.io/) -
 Assistant Professor of Statistics
 * **Email:** [aykim@middlebury.edu](aykim@middlebury.edu)
     + I will respond to emails within 24h, but not during weekends.
