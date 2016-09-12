@@ -133,11 +133,12 @@ midterms, and the final project.
 
 #### 1) Weekly Problem Sets 10%
 
-Each problem set is worth only a nominal portion of the final grade. As such, 
-instead of viewing them as evaluative tools used by the instructor to assign 
-grades, they should be viewed as low-stakes opportunities to develop one's 
-statistics and data science muscles and receive feedback on the progress of 
-one's learning.
+
+The problem sets in this class should be viewed as low-stakes opportunitiesto
+develop one's statistics and data science muscles and receive feedback on the
+progress of one's learning, instead of viewing them as evaluative tools used by
+the instructor to assign grades. To reinforce this thinking, each problem set is
+worth only a nominal portion of the final grade.
 
 While I encourage you to discuss problem sets with your peers, you must submit
 your own answers and not simple rewordings of another's work. Furthermore, **all
