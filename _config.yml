@@ -10,3 +10,5 @@ urllabel: "Albert Y. Kim's Webpage"
 # Build settings
 markdown: kramdown
 github_username: rudeboybert
+future: true
+timezone: UTC+4
