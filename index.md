@@ -25,7 +25,7 @@ In reverse chronological order (a more detailed outline can be found [here](http
     {% if "09 12" <= current_date and current_date <= "09 15" %}
     <li>
       {{ post.date | date: "%a %b %-d" }} -  
-      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>.
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:
       {{ post.subtitle }}
     </li>
     {% endif %}
