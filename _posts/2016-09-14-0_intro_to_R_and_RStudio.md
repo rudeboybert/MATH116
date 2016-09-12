@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Intro to R & RStudio"
-subtitle: "Statistical computing as a car: R (the engine) and RStudio (the dashboard)."
+title:  "More R & RStudio"
+subtitle: ""
 date:   2016-09-14 10:10:45
 categories: jekyll update
 ---
