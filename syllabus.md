@@ -14,7 +14,7 @@ Assistant Professor of Statistics
     addressing more substantive questions in person.
 * **Class Location/Time:**
     + MWF 11:15–12:05 in Warner 506 and R 11:00-12:15 in Sunderland 202. 
-    + You do not need to inform me of absenses. Please consult your peers for
+    + You do not need to inform me of absences. Please consult your peers for
     what you missed.
 * **Office Hours:** Warner 310 or the math lounge just outside. Feel free to
 come to the [MATH 216](https://rudeboybert.github.io/MATH216/) office hours as
@@ -134,7 +134,7 @@ midterms, and the final project.
 #### 1) Weekly Problem Sets 10%
 
 
-The problem sets in this class should be viewed as low-stakes opportunitiesto
+The problem sets in this class should be viewed as low-stakes opportunities to
 develop one's statistics and data science muscles and receive feedback on the
 progress of one's learning, instead of viewing them as evaluative tools used by
 the instructor to assign grades. To reinforce this thinking, each problem set is
@@ -151,7 +151,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### 2) Engagement 10%
 
-It is difficult to explicity codify what constitutes "an engaged student," so 
+It is difficult to explicit codify what constitutes "an engaged student," so 
 instead I present the following rough principle I will follow: **you'll only get
 out of this class as much as you put in**. Some examples of behavior counter to
 this principle:
@@ -167,7 +167,7 @@ items to be graded on.
 #### 3) Three Midterms 45%
 
 * Midterm dates: Wed 10/5 (in-class), Wed 10/26 7:30pm, and Wed 11/16 7:30pm.
-* All midterms are cummulative and may require a scientific calculator, so
+* All midterms are cumulative and may require a scientific calculator, so
 please have access to one (no smartphones).
 * There is no extra-credit work to improve midterm scores after the fact.
 * There will be no make-up nor rescheduled midterms, except in the following
@@ -183,7 +183,7 @@ Rather than a final exam, there will be a final capstone group project. This is
 an opportunity for you to flex your statistics and data science muscles 
 developed during the problem sets and perform your own start-to-finish data 
 analysis project. The project will involving you addressing a scientific
-question by choosing a dataset, performing an analysis using the concepts and
+question by choosing a data set, performing an analysis using the concepts and
 tools we have covered in this course, and writing a report.
 
 * Due Sun 12/18 at noon.

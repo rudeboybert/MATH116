@@ -80,23 +80,13 @@ Foster a conceptual understanding of statistical topics and methods using
 and real data whenever possible, rather than mathematical formulae.
 
 > * Whenever we can, use real data
-
-
-## Real Data
-
-Classroom data are like teddy bears and real data are like a grizzly bear with salmon blood dripping out its mouth
-
-
-
-## Course Objective #2
-
-Foster a conceptual understanding of statistical topics and methods using 
-[simulation/resampling](https://www.amstat.org/education/pdfs/ResamplingUndergradCurriculum.pdf)
-and real data whenever possible, rather than mathematical formulae.
-
+> * "Classroom data are like teddy bears and real data are like a grizzly bear with salmon blood dripping out its mouth."
+> * Example data set: [nycflights](https://github.com/hadley/nycflights13)
 > * There are two "engines" that can make statistics "work"
 >     + Mathematics: formulas, approximations, etc
 >     + Computers: simulations, random number generation 
+
+
 
 
 
@@ -138,7 +128,7 @@ into the syllabus.
 ## RStudio Server
 
 > * Not all laptops are created equal: operating system, processing power, age
-> * Cloud-based version: all processing is done on Middlebury servers
+> * RStudio Server: cloud-based version of RStudio where all processing is done on Middlebury servers
 > * [go/rstudio](https://rstudio.middlebury.edu/) (on campus or via VPN)
 
 
@@ -148,14 +138,10 @@ into the syllabus.
 
 **Undirected** time to
 
-
-> * Different backgrounds
-> * Set aside to help get up to speed on computing
-> * It is like learning a language. Some people learn faster, some people
-remember better over the long run. But you know what? You all speak english
-fine.
-> * Learn from each other. Empathy.
-> * Can also work on problem sets (due on Fridays)
+> * Set aside to help people get up to speed with computing
+> * It is like learning a language.
+> * Learn from each other.
+> * Collaborate on problem sets (due on Fridays)
 
 
 ## Course Objective #5
@@ -171,18 +157,9 @@ statistics plays in society.
 
 
 
-## Topics
-
-Now vs then:
-
-* Drop probability
-* Boost data: representation, visualization, manipulation
-
-
-
-
 ## Data Visualization and EDA
 
+> - EDA = Exploratory data analysis
 > - **"Data visualization is a gateway drug to statistics."**
 > - Prez from Season 4 of "The Wire":
 > - <center><img src="../figure/Prez.png" height="300px"/></center>
@@ -193,21 +170,9 @@ Now vs then:
 
 ## Final Project
 
-* ~~Final exam~~
-* Capstone
-* Align this class with how research and learning is done in practice
-* Baby's first data analysis
-* Collaborative, with people you may like, but also people you may not like.
-* Interpersonal skills. No textbook on that!
-
-
-
-
-## Other Principles
-
-* Open source software: accessible, worldwide community of contributors, cutting edge
-* Teaching you concepts, not just R
-* Choice of textbook: 
+> - ~~Final exam~~
+> - Capstone experience to align this topics and principles of this course with how research and learning is done in practice.
+> - Work on interpersonal and collaborative skills. No textbook on that!
 
 
 
