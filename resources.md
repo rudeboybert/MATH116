@@ -6,7 +6,7 @@ permalink: /resources/
 
 Your first stop for any help related to computing with data should be the book:
 [Getting used to R, RStudio, and R
-Markdown](https://ismayc.github.io/rbasics-book/).
+Markdown](https://rudeboybert.github.io/rbasics-book/index.html).
 
 
 ## R
