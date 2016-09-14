@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Intro to R"
+title:  "Lec02 Intro to R"
 subtitle: "Getting familiar with the command line and learning the basics of R."
 date:   2016-09-14 10:10:45
 categories: jekyll update
