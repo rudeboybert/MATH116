@@ -11,9 +11,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## First Thing to Know about Computers
 
-Computers are dumb! You need to:
+**Computers are dumb!** You need to:
 
-* Tell it **exactly** and **everything** it needs to do
+* Tell it exactly and everything it needs to do
 * Everything needs to be perfect:
     + Parentheses need to match
     + There is no spell check!
@@ -23,12 +23,12 @@ Computers are dumb! You need to:
     
 ## Today
 
-* We are **introducing** some of the basics and concepts of programming in R.
+* We are introducing some of the basics and concepts of programming in R.
 * A nice side benefit is many of the concepts translate to almost all programming languages: python, javascript, etc.
-* Do not expect a complete understanding today nor do you need to memorize
-anything.
-* The best way is to learn is to learn by doing, which we'll slowly be
-doing as the semester progresses.
+* **Non-linear learning**
+    + Do not expect a complete understanding today. So don't freak!
+    + You will be revisiting this lesson and iterating.
+    + The best way is to learn coding is to learn by doing and not out of a textbook.
     
     
 
