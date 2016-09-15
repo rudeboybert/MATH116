@@ -1,0 +1,73 @@
+---
+title: "Babynames"
+author: "Albert Y. Kim"
+date: "September 15, 2016"
+output:
+  html_document:
+    collapsed: yes
+    smooth_scroll: no
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: no
+---
+
+## Introduction
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r, message=FALSE, echo=FALSE}
+# RUN THIS SECTION IN THE CONSOLE ONLY ONCE
+# YOU DO NOT NEED TO UNDERSTAND IT AT THE MOMENT
+
+# Load package for data visualization
+library(ggplot2)
+# Load package for data manipulation
+library(dplyr)
+# Load package of babynames from 1880-2014
+library(babynames)
+
+# Compute counts/proporations for "Other" names
+other <- babynames %>% 
+  group_by(year, sex) %>% 
+  summarise(sum_n=sum(n), sum_prop=sum(prop)) %>% 
+  mutate(
+    total = sum_n/sum_prop,
+    name = "Other",
+    prop = 1-sum_prop,
+    n = prop * total
+    ) %>% 
+  select(year, sex, name, n, prop)
+
+# Add "Other" to babynames
+babynames <- babynames %>% 
+  bind_rows(other) %>% 
+  arrange(year, sex, desc(n))
+```
+
+
+
+
+
+## Trend
+
+```{r, echo=FALSE}
+baby_name <- "Claire"
+baby_sex <- "F"
+
+# Do not edit this below
+single_name <- babynames %>% 
+  filter(name==baby_name & sex==baby_sex)
+
+ggplot(data=single_name, mapping = aes(x=year, y=prop)) + 
+  geom_line() +
+  xlim(c(1880, 2014)) +
+  ylim(c(0, NA)) +
+  xlab("Year") +
+  ylab(paste("Prop. of ", baby_sex, " born with name ", baby_name, sep=""))
+```
+
+
+

@@ -91,7 +91,68 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Next Tool</h2></hgroup><article  id="next-tool"></article></slide>
+<slide class=''><hgroup><h2>Exercise</h2></hgroup><article  id="exercise">
+
+<p>As a team, take 3 minutes to come up with</p>
+
+<ol>
+<li>A couple of male and female names that are &quot;modern&quot;</li>
+<li>A couple of male and female names that are &quot;old-fashioned&quot;</li>
+</ol>
+
+<p>More difficult:</p>
+
+<ol>
+<li>One male and one female name that are &quot;back in vogue&quot;</li>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>Two Ways to Save R Commands</h2></hgroup><article  id="two-ways-to-save-r-commands">
+
+<p>You can save all commands in either a</p>
+
+<ul>
+<li><code>.R</code> file, called a <em>script</em> file</li>
+<li><code>.Rmd</code> file, called an <em>R Markdown</em> file</li>
+</ul>
+
+<p>The former bare-bones, the latter is more powerful.</p>
+
+</article></slide><slide class=''><hgroup><h2>What are R Packages?</h2></hgroup><article  id="what-are-r-packages">
+
+<ul>
+<li><strong>Base R</strong>, i.e. R straight out of the box, is fairly limited in power and functionality.</li>
+<li><strong>R Packages</strong> are extensions to R contributed by a world-wide community of R users that extend base R&#39;s functionality and are downloadable over the internet from RStudio.</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Installing/Loading Packages</h2></hgroup><article  id="installingloading-packages">
+
+<p>Today we are going to install 3 packages:</p>
+
+<ul>
+<li><code>dplyr</code>: a package for data manipulation</li>
+<li><code>ggplot2</code>: a package for data visualization</li>
+<li><code>babynames</code>: a package of baby name data</li>
+</ul>
+
+<p>Go to Files Panel -&gt; Packages -&gt; Install -&gt; Type in <code>dplyr ggplot2 babynames</code> to install all 3 at once.</p>
+
+</article></slide><slide class=''><hgroup><h2>Installing/Loading Packages</h2></hgroup><article  id="installingloading-packages-1">
+
+<ul>
+<li>You only need to install packages once, but its a good idea to periodically update your package by clicking &quot;Update&quot;</li>
+<li>However, each time you use a package you need to <strong>load</strong> it first by typing <code>library(PACKAGENAME)</code> each time you start R</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>babynames Package</h2></hgroup><article  id="babynames-package">
+
+<p>We will be using the <a href='https://github.com/hadley/babynames' title=''><code>babynames</code></a> R package which contains for each year from 1880 to 2013, the number of children born of each sex given each name in the United States (source: SSA).</p>
+
+<p>Note:</p>
+
+<ul>
+<li>All names with more than 5 uses are given</li>
+<li>If a name occured less than 5 times in a given year for a given sex, it is lumped into <code>&quot;Other&quot;</code></li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>

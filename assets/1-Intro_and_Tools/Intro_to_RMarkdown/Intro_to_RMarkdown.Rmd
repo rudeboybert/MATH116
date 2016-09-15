@@ -1,0 +1,91 @@
+---
+title: "Intro to R Markdown"
+author: "Albert Y. Kim"
+date: "Fri Sep 16, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+## Exercise
+
+As a team, take 3 minutes to come up with
+
+1. A couple of male and female names that are "modern"
+1. A couple of male and female names that are "old-fashioned"
+
+More difficult:
+
+1. One male and one female name that are "back in vogue"
+
+
+
+## Two Ways to Save R Commands
+
+You can save all commands in either a
+
+* `.R` file, called a *script* file
+* `.Rmd` file, called an *R Markdown* file
+
+The former bare-bones, the latter is more powerful.
+
+
+
+
+
+
+
+
+
+## What are R Packages?
+
+* **Base R**, i.e. R straight out of the box, is fairly limited in power and functionality.
+* **R Packages** are extensions to R contributed by a world-wide community of R users that
+extend base R's functionality and are downloadable over the internet from RStudio.
+
+
+
+## Installing/Loading Packages
+
+Today we are going to install 3 packages:
+
+* `dplyr`: a package for data manipulation
+* `ggplot2`: a package for data visualization
+* `babynames`: a package of baby name data
+
+Go to Files Panel -> Packages -> Install -> Type in `dplyr ggplot2 babynames` to install all 3 at once.
+
+
+
+## Installing/Loading Packages
+
+* You only need to install packages once, but its a good idea to periodically
+update your package by clicking "Update"
+* However, each time you use a package you need to **load** it first by typing
+`library(PACKAGENAME)` each time you start R
+
+
+
+
+
+
+
+
+
+
+## babynames Package
+
+The [`babynames`](https://github.com/hadley/babynames) package contains for each
+year from 1880 to 2013, the number of children born of each sex given each name
+in the United States (source: SSA).
+
+Note:
+
+* All names with more than 5 uses are given
+* If a name occured less than 5 times in a given year for a given sex, it is
+lumped into `"Other"`
+

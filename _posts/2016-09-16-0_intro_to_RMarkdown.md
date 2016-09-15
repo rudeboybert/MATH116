@@ -13,13 +13,15 @@ categories: jekyll update
 
 ### Announcements
 
-* 
+* How to transfer files from/to your computer to/from RStudio Server
+    + Upload to server: Files panel -> Upload
+    + Download from server: Files panel -> click on file you want to download -> More -> Export...
+
 
 ### In-Class
 
-* <a href = "{{ site.baseurl }}/assets/1-Intro_and_Tools/Intro_to_RMarkdown.html" target = "_blank">Slides</a>.
-* 
-
+* <a href = "{{ site.baseurl }}/assets/1-Intro_and_Tools/Intro_to_RMarkdown/Intro_to_RMarkdown.html" target = "_blank">Slides</a>
+* Download this file to your computer, then upload it to the RStudio Server as described above: <a href="{{ site.baseurl }}/assets/1-Intro_and_Tools/Intro_to_RMarkdown/babynames.Rmd" target="_blank">`babynames.Rmd`</a>
 
 ### After-Class Updates
 

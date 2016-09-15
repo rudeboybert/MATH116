@@ -17,7 +17,7 @@ below.
 
 ### In-Class
 
-* <a href = "{{ site.baseurl }}/assets/1-Intro_and_Tools/Intro_to_R.html" target = "_blank">Slides</a>.
+* <a href = "{{ site.baseurl }}/assets/1-Intro_and_Tools/Intro_to_R.html" target = "_blank">Slides</a>
 * Exercise for today (and continuing into tomorrow's lab): <a target="_blank" class="page-link" href="https://rudeboybert.github.io/rbasics-book/4-rmdanal.html">Chapter 4</a> from "Getting used to R, RStudio, and R Markdown"
     + Run all code highlighted in grey code blocks in your Console.
     + Please give feedback!
