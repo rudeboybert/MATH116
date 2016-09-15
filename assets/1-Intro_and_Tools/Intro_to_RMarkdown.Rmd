@@ -1,0 +1,12 @@
+---
+title: "Intro to R Markdown"
+author: "Albert Y. Kim"
+date: "Fri Sep 16, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Next Tool
