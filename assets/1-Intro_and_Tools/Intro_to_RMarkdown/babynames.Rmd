@@ -1,6 +1,7 @@
+
 ---
-title: "Babynames"
-author: "Albert Y. Kim"
+title: "Baby Name Trends"
+author: ""
 date: "September 15, 2016"
 output:
   html_document:
@@ -12,21 +13,24 @@ output:
     toc: no
 ---
 
-## Introduction
+## Load Packages & Data
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Run the block of code below only once. Notes:
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+* Hashtags in R are comment lines that are ignored by the console. This is a
+great way to document your code for others, but most importantly yourself in the
+future!
+* You do not need to understand the code below for now; we'll be learning these
+packages in the upcoming weeks.
+* In case you are curious however, after loading the packages, we need to adjust
+for the fact that names that occurred less than 5 times for any sex for any
+given year were excluded from the data set. We create a new category `other` to
+reflect this.
 
-```{r, message=FALSE, echo=FALSE}
-# RUN THIS SECTION IN THE CONSOLE ONLY ONCE
-# YOU DO NOT NEED TO UNDERSTAND IT AT THE MOMENT
-
-# Load package for data visualization
+```{r, message=FALSE}
+# Load packages
 library(ggplot2)
-# Load package for data manipulation
 library(dplyr)
-# Load package of babynames from 1880-2014
 library(babynames)
 
 # Compute counts/proporations for "Other" names
@@ -41,7 +45,7 @@ other <- babynames %>%
     ) %>% 
   select(year, sex, name, n, prop)
 
-# Add "Other" to babynames
+# Add "Other" names to babynames
 babynames <- babynames %>% 
   bind_rows(other) %>% 
   arrange(year, sex, desc(n))
@@ -50,12 +54,30 @@ babynames <- babynames %>%
 
 
 
+## Explore Data Set
 
-## Trend
+Play around with the `babynames` dataset in the RStudio viewer by running the 
+following in the console.
 
-```{r, echo=FALSE}
-baby_name <- "Claire"
-baby_sex <- "F"
+```{r, eval=FALSE}
+View(babynames)
+```
+
+In particular, click on the **Filter** button and click in the white boxes under
+the variable names and
+
+* Play with any sliders for numerical variables: year, n, prop
+* Enter in values to view subsets of rows: sex, name
+
+## Name Trends
+
+The code below shows the popularity trend for the name "Michael" amongst males. 
+Switch the name/sex variable values that get assigned and explore the popularity
+of different names.
+
+```{r, message=FALSE}
+baby_name <- "Jeffrey"
+baby_sex <- "M"
 
 # Do not edit this below
 single_name <- babynames %>% 

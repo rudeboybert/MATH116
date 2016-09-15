@@ -1,14 +1,10 @@
 ---
 layout: post
 title:  "Lec03 Intro to R Markdown"
-subtitle: "Seamlessly combine R code, R output, plots, and text into a single document, thereby fostering reproducible research."
+subtitle: "Seamlessly combine R code, R output, plots, and text into a single document with R Markdown, thereby fostering reproducible research."
 date:   2016-09-16 10:10:45
 categories: jekyll update
 ---
-
-
-
-### THIS IS STILL A WORK IN PROGRESS
 
 
 ### Announcements
@@ -16,7 +12,7 @@ categories: jekyll update
 * How to transfer files from/to your computer to/from RStudio Server
     + Upload to server: Files panel -> Upload
     + Download from server: Files panel -> click on file you want to download -> More -> Export...
-
+* In today's slides we also cover how to install R packages
 
 ### In-Class
 
