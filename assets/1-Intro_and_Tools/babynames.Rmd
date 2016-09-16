@@ -20,8 +20,8 @@ Run the block of code below only once. Notes:
 * Hashtags in R are comment lines that are ignored by the console. This is a
 great way to document your code for others, but most importantly yourself in the
 future!
-* You do not need to understand the code below for now; we'll be learning these
-packages in the upcoming weeks.
+* You do not need to completely understand the code below for now; we'll be
+learning these packages in the upcoming weeks.
 * In case you are curious however, after loading the packages, we need to adjust
 for the fact that names that occurred less than 5 times for any sex for any
 given year were excluded from the data set. We create a new category `other` to
@@ -69,6 +69,8 @@ the variable names and
 * Play with any sliders for numerical variables: year, n, prop
 * Enter in values to view subsets of rows: sex, name
 
+
+
 ## Name Trends
 
 The code below shows the popularity trend for the name "Michael" amongst males. 
@@ -79,7 +81,6 @@ of different names.
 baby_name <- "Jeffrey"
 baby_sex <- "M"
 
-# Do not edit this below
 single_name <- babynames %>% 
   filter(name==baby_name & sex==baby_sex)
 

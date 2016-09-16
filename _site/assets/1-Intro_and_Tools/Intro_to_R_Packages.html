@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Intro to R Markdown</title>
+  <title>R Packages</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,7 +25,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Intro to R Markdown',
+                title: 'R Packages',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -91,31 +91,15 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Exercise</h2></hgroup><article  id="exercise">
+<slide class=''><hgroup><h2>Activity</h2></hgroup><article  id="activity">
 
 <p>As a team, take 3 minutes to come up with</p>
 
 <ol>
 <li>A couple of male and female names that are &quot;modern&quot;</li>
 <li>A couple of male and female names that are &quot;old-fashioned&quot;</li>
+<li>More difficult: One male and one female name that are &quot;back in vogue&quot;</li>
 </ol>
-
-<p>More difficult:</p>
-
-<ol>
-<li>One male and one female name that are &quot;back in vogue&quot;</li>
-</ol>
-
-</article></slide><slide class=''><hgroup><h2>Two Ways to Save R Commands</h2></hgroup><article  id="two-ways-to-save-r-commands">
-
-<p>You can save all commands in either a</p>
-
-<ul>
-<li><code>.R</code> file, called a <em>script</em> file</li>
-<li><code>.Rmd</code> file, called an <em>R Markdown</em> file</li>
-</ul>
-
-<p>The former bare-bones, the latter is more powerful.</p>
 
 </article></slide><slide class=''><hgroup><h2>What are R Packages?</h2></hgroup><article  id="what-are-r-packages">
 
@@ -123,6 +107,8 @@
 <li><strong>Base R</strong>, i.e. R straight out of the box, is fairly limited in power and functionality.</li>
 <li><strong>R Packages</strong> are extensions to R contributed by a world-wide community of R users that extend base R&#39;s functionality and are downloadable over the internet from RStudio.</li>
 </ul>
+
+<p>Click <a href='https://cran.r-project.org/web/packages/available_packages_by_name.html' title=''>here</a> for a list.</p>
 
 </article></slide><slide class=''><hgroup><h2>Installing/Loading Packages</h2></hgroup><article  id="installingloading-packages">
 
@@ -140,12 +126,12 @@
 
 <ul>
 <li>You only need to install packages once, but its a good idea to periodically update your package by clicking &quot;Update&quot;</li>
-<li>However, each time you use a package you need to <strong>load</strong> it first by typing <code>library(PACKAGENAME)</code> each time you start R</li>
+<li>However, each time you use a package you need to <strong>load</strong> it first by running <code>library(PACKAGENAME)</code> in the console each time you start R</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>babynames Package</h2></hgroup><article  id="babynames-package">
 
-<p>We will be using the <a href='https://github.com/hadley/babynames' title=''><code>babynames</code></a> R package which contains for each year from 1880 to 2013, the number of children born of each sex given each name in the United States (source: SSA).</p>
+<p>The <a href='https://github.com/hadley/babynames' title=''><code>babynames</code></a> package contains for each year from 1880 to 2013, the number of children born of each sex given each name in the United States (source: SSA).</p>
 
 <p>Note:</p>
 
