@@ -8,8 +8,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 As a team, take 3 minutes to come up with
 
-1. A couple of male and female names that are "modern"
-1. A couple of male and female names that are "old-fashioned"
+1. A couple of male and female names that are "more modern"
+1. A couple of male and female names that are "more old-fashioned"
 1. More difficult: One male and one female name that are "back in vogue"
 
 

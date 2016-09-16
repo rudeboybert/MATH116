@@ -18,6 +18,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * This week's problem set doesn't involve much content, but rather is about
 familiarizing yourselves with the problem set workflow and submission format using R
 Markdown.
+* In particular, we'll go over how to share your analyses over the web with a couple of clicks of the mouse!
 * You'll start
     + seeing what I mean by "computers are stupid"
     + develop the skill of "debugging": identifying and removing errors from
@@ -33,5 +34,5 @@ beginning, but by the third assignment everyone is on board.
 
 #### Homework
 
-
-* Submit your homework using this [form](https://docs.google.com/forms/d/1n1HNo17MA21-DQ_boklchwCjfr6_qx7GrLY5ot7796g/edit)
+* Download this file to your computer, then upload it to the RStudio Server as described in Lec03: <a href="{{ site.baseurl }}/assets/PS/PS-01.Rmd" target="_blank">`PS-01.Rmd`</a>
+* Submit your homework using this [submission form](https://docs.google.com/forms/d/1n1HNo17MA21-DQ_boklchwCjfr6_qx7GrLY5ot7796g/edit)
