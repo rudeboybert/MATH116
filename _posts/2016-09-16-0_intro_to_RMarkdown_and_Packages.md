@@ -27,6 +27,7 @@ categories: jekyll update
     + Quick tour
     + <a href = "https://prezi.com/cqicx3j0i6kt/reproducible/" target = "_blank">Slides</a> introducing R Markdown
 * Download this file to your computer, then upload it to the RStudio Server as described above: <a href="{{ site.baseurl }}/assets/1-Intro_and_Tools/babynames.Rmd" target="_blank">`babynames.Rmd`</a>
+* Investigate your guesses from the in-class activity!
 
 
 ### After-Class Updates

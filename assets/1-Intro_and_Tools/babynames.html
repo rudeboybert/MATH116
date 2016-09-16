@@ -223,9 +223,13 @@ div.tocify {
 <h2>Load Packages &amp; Data</h2>
 <p>Run the block of code below only once. Notes:</p>
 <ul>
-<li>Hashtags in R are comment lines that are ignored by the console. This is a great way to document your code for others, but most importantly yourself in the future!</li>
-<li>You do not need to understand the code below for now; we’ll be learning these packages in the upcoming weeks.</li>
-<li>In case you are curious however, after loading the packages, we need to adjust for the fact that names that occurred less than 5 times for any sex for any given year were excluded from the data set. We create a new category <code>other</code> to reflect this.</li>
+<li>Hashtags in R are comment lines that are ignored by the console. This is a great way to document your code
+<ul>
+<li>For others, but more importantly</li>
+<li>Future you! Hadley Wickham quote: “In every project you have at least one other collaborator; future-you. You don’t want future-you to curse past-you”</li>
+</ul></li>
+<li>You do not need to completely understand the code below for now; we’ll be learning these packages in the upcoming weeks.</li>
+<li>In case you are curious however, after loading the packages, we need to adjust for the fact that names that occurred less than 5 times for any sex for any given year were excluded from the data set. We create a new category <code>Other</code> to reflect this.</li>
 </ul>
 <pre class="r"><code># Load packages
 library(ggplot2)
@@ -261,11 +265,10 @@ babynames &lt;- babynames %&gt;%
 </div>
 <div id="name-trends" class="section level2">
 <h2>Name Trends</h2>
-<p>The code below shows the popularity trend for the name “Michael” amongst males. Switch the name/sex around and explore the popularity of different names.</p>
+<p>The code below shows the popularity trend for the name “Jeffrey” amongst males. Switch the name/sex variable values that get assigned and explore the popularity of different names.</p>
 <pre class="r"><code>baby_name &lt;- &quot;Jeffrey&quot;
 baby_sex &lt;- &quot;M&quot;
 
-# Do not edit this below
 single_name &lt;- babynames %&gt;% 
   filter(name==baby_name &amp; sex==baby_sex)
 

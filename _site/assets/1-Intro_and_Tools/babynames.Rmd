@@ -18,13 +18,14 @@ output:
 Run the block of code below only once. Notes:
 
 * Hashtags in R are comment lines that are ignored by the console. This is a
-great way to document your code for others, but most importantly yourself in the
-future!
+great way to document your code
+    + For others, but more importantly
+    + Future you! Hadley Wickham quote: "In every project you have at least one other collaborator; future-you. You don’t want future-you to curse past-you"
 * You do not need to completely understand the code below for now; we'll be
 learning these packages in the upcoming weeks.
 * In case you are curious however, after loading the packages, we need to adjust
 for the fact that names that occurred less than 5 times for any sex for any
-given year were excluded from the data set. We create a new category `other` to
+given year were excluded from the data set. We create a new category `Other` to
 reflect this.
 
 ```{r, message=FALSE}
@@ -73,7 +74,7 @@ the variable names and
 
 ## Name Trends
 
-The code below shows the popularity trend for the name "Michael" amongst males. 
+The code below shows the popularity trend for the name "Jeffrey" amongst males. 
 Switch the name/sex variable values that get assigned and explore the popularity
 of different names.
 
