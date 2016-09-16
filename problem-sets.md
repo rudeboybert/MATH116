@@ -16,12 +16,22 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 #### Learning Goals
 
 * This week's problem set doesn't involve much content, but rather is about
-familiarizing yourselves with the problem set format and workflow using R
+familiarizing yourselves with the problem set workflow and submission format using R
 Markdown.
 * You'll start
     + seeing what I mean by "computers are stupid"
-    + develop the skill of "debugging": identifying and removing errors from code. In our case,
-    if your R Markdown file won't load/compile/render, follow the steps in [R Markdown Debugging](https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/edit?usp=sharing).
-    This usually solves about 85% of problems. If you're still stuck after this, speak to your peers or me.  
-* In my experience, there are always a few hiccups with R Markdown, but by the
-third assignmnt everything is clear.
+    + develop the skill of "debugging": identifying and removing errors from
+    code. In our case, if your R Markdown file won't knit AKA load AKA compile 
+    AKA render, follow the steps in [R Markdown 
+    debugging](https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/edit?usp=sharing)
+    (also posted on the Resources page). This usually solves about 85% of
+    problems; if you're still stuck after going through the steps, speak to your
+    peers or me.
+* In my experience, there are always a few hiccups with R Markdown at the
+beginning, but by the third assignment everyone is on board.
+
+
+#### Homework
+
+
+* Submit your homework using this [form](https://docs.google.com/forms/d/1n1HNo17MA21-DQ_boklchwCjfr6_qx7GrLY5ot7796g/edit)

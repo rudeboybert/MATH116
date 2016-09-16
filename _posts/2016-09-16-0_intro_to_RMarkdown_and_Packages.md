@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec03 R Packages and Intro to R Markdown"
-subtitle: "Learning about R packages from the web and introducing R Markdown for reproducible research."
+subtitle: "Learning about R packages and introducing R Markdown for reproducible research."
 date:   2016-09-16 10:10:45
 categories: jekyll update
 ---
