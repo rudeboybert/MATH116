@@ -1,0 +1,106 @@
+---
+title: "Grammar of Graphics"
+author: "Albert Y. Kim"
+date: "Wed Sep 21, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(nycflights13)
+library(knitr)
+```
+
+
+
+## What is a statistical graphic?
+
+Today we kick off Topic 2.b) **Data Visualization** by asking ourselves
+
+What is a statistical graphic?
+
+But a brief lesson from military history first:
+
+
+
+## Napoleon's March on Russia in 1812
+
+In 1812, Napoleon led a French invasion of Russia, marching on [Moscow](https://goo.gl/maps/geRyXH3rJcK2).  
+
+<img src="../figure/napoleon.jpg" alt="Drawing" style="height: 400px;"/>
+
+
+
+## Napoleon's March on Russia in 1812
+
+It was one of the biggest [military
+disasters](http://www.history.com/news/napoleons-disastrous-invasion-of-russia-200-years-ago)
+ever, in particular b/c of the Russian winter.
+
+<img src="../figure/retreat.jpg" alt="Drawing" style="height: 400px;"/>
+
+
+
+## Minard's Illustration of the March
+
+Famous graphical illustration of Napolean's march to/from Moscow
+
+<img src="../figure/Minard.png" alt="Drawing" style="width: 800px;"/>
+
+
+
+## Minard's Illustration of the March
+
+This was considered a revolution in statistical graphics because between
+
+* the map on top
+* the line graph on the bottom
+
+there are 6 dimensions of information (i.e. variables) being displayed on a 2D page.
+
+
+
+## Minard's Illustration of the March
+
+Where? | **`data`** | **`aes()`**  | **`geom_`**
+------------- | ------------- | ------------- | -------------
+top map | longitude | **`x`** | **`point`** 
+" | latitude | **`y`** | **`point`** 
+" | army size | **`size`** | **`path`**
+" | army direction (forward vs retreat) | **`color`** | **`path`**
+bottom graph | date | **`x, y`** | **`text`**
+" | temperature | **`x, y`** | **`line`**
+
+
+
+## Grammar of Graphics
+
+Wilkinson (2005) laid out the proposed "Grammar of Graphics"
+
+<center>
+<img src="../figure/graphics.jpg" height="400px"/>
+</center>
+
+
+
+## Grammar of Graphics
+
+Wickham implemented the grammar in R in `ggplot2` package
+
+<center>
+<img src="../figure/ggplot2.jpg" height="400px"/>
+</center>
+
+
+
+## Edward Tufte
+
+Another seminal book (which isn't as high level) is Tufte's "The Visual Display of Quantitative Information"
+
+<center>
+<img src="../figure/tufte.jpg" height="400px"/>
+</center>
