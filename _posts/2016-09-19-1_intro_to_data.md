@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec04 Tidy Data"
-subtitle: "Rows of observations, columns of variables, and tables of matching observation types."
+subtitle: "Rows of observations, columns of variables, and tables of matching observational units."
 date:   2016-09-19 10:10:45
 categories: jekyll update
 ---
