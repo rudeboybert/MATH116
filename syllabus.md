@@ -101,7 +101,7 @@ Roughly speaking we will cover the following topics (a more detailed outline can
 
 #### 1) Textbooks
 
-* An Introduction to Statistical and Data Sciences by Kim and Ismay available   [online](https://rudeboybert.github.io/IntroStatDataSciences/).
+* An Introduction to Statistical and Data Sciences by Kim and Ismay available [online](https://rudeboybert.github.io/IntroStatDataSciences/).
 * Intro Stat with Randomization and Simulation 1st edition by Diez, Barr, and
 Cetinkaya-Rundel available
     + Online at the [OpenIntro
