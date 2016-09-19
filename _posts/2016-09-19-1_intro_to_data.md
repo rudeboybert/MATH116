@@ -29,4 +29,4 @@ revisit them the following lecture.
 
 ### After-Class Updates
 
-* Chapter 3 <a href = "{{ site.baseurl }}/assets/LC/tidy_data.html" target = "_blank">learning check discussion</a>.
+* <!-- Chapter 3 <a href = "{{ site.baseurl }}/assets/LC/tidy_data.html" target = "_blank">learning check discussion</a>.-->
