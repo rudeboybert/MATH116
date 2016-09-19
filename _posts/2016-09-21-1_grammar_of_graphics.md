@@ -17,6 +17,8 @@ categories: jekyll update
 
 ### Announcements
 
+* I will post a Learning Check discussion under "After-Class Updates" before the next lecture.  
+For example, the discussion for the Learning Checks from Lec04 are posted on that page.
 * Refresher: What is tidy data?
   1. Each variable forms a column.
   2. Each observation forms a row.

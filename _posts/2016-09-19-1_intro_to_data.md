@@ -29,4 +29,4 @@ revisit them the following lecture.
 
 ### After-Class Updates
 
-* 
+* <a href = "{{ site.baseurl }}/assets/LC/tidy_data.html" target = "_blank">Learning check discussion</a>.

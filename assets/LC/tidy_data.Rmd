@@ -1,0 +1,184 @@
+---
+title: "Chapter 3 Tidy Data Learning Checks"
+author: "Albert Y. Kim"
+date: "September 21, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(76)
+library(dplyr)
+library(tidyr)
+library(nycflights13)
+data(flights)
+```
+
+
+
+
+
+## 3.1
+
+#### Learning Check
+
+Consider the following data of the price of three stocks (with names `x`, `y`, `z`) 
+over 5 days. This data is not in tidy data format. How would you re-format it so that it is?
+
+```{r, echo=FALSE, message=FALSE}
+stocks <- data.frame(
+  date = as.Date('2009-01-01') + 0:4,
+  x = round(rnorm(5, 0, 1), 3),
+  y = round(rnorm(5, 0, 2), 3),
+  z = round(rnorm(5, 0, 4), 3)
+)
+knitr::kable(stocks)
+```
+
+#### Solution
+
+We want
+
+* Each row to represent one value, in this case one stock price
+* Each column to represent one variable of information. In our case, we have three: date, price, and the **name of the stock**
+
+"Tidy data" format is also known as **long format**, unlike the original data which was in **wide format**.
+
+```{r, echo=FALSE, message=FALSE}
+stocks %>% 
+  gather(stock_name, price, -date) %>% 
+  knitr::kable()
+```
+
+
+
+
+
+## 3.2
+
+#### Learning Check
+
+What among the following choices does any *ONE* row in this `flights` dataset refer to? 
+
+* A. Data on an airline 
+* B. Data on a flight
+* C. Data on an airport
+* D. Data on multiple flights
+
+
+#### Solution
+
+Run the following in your console to `View()` the `flights` data set again:
+
+```{r, eval=FALSE}
+library(nycflights13)
+data(flights)
+View(flights)
+```
+
+Each row represents data on one **flight**.
+
+
+
+
+
+## 3.3-3.7
+
+#### Learning Check
+
+* How many different columns are in this dataset?
+* How many different rows are in this dataset?
+* What are some other examples in this dataset of **numerical** variables? 
+* What are some other examples in this dataset of **categorical** variables? 
+What makes them different than **quantitative** variables?
+* What do you think `int`, `dbl`, `chr`, and `dttm` mean in the output above?
+
+#### Solution
+
+This is where the `glimpse()` function within the `dplyr` pacage for data
+manipulation is handy. Remember, to use this function you need to load the
+`dplyr` package first.
+
+```{r}
+library(dplyr)
+glimpse(flights)
+```
+
+* There are `r ncol(flights)` columns (i.e. variables) and `r nrow(flights)`
+rows (i.e. observations, which in this case are individual flights).
+* Numerical variables include: any variables of type
+    + `<int>`: integer AKA whole numbers like 1, 2, 3. Used for **counting discrete** quantities. Ex: `year`, `day`, etc.
+    + `<dbl>`: double AKA decimal numbers like 1.0, 2.0, 3.1. Used for
+    **measuring continuous** quantities, like height, weight, time. Other
+    programming languages refer to this as "floats". Ex: `air_time`,
+    `dep_delay`.
+* Categorial variables include (in this case) any variables of type `<chr>`:
+character AKA text data. Ex: `carrier`, `tailnum`,  and `dest`. Categorical
+variables separate groups i.e. categories.
+* `<dttm>` is a special kind of "date/time" variable. We won't go in depth with these in this class, but leave it to a more advanced class.
+
+**Note** This dataset is sloppily coded:
+
+1. `flight` is coded as `<int>`, but it is **not a numerical variable but rather
+a categorial variable where the labels are numbers**. Ex: a flight numbered
+"400" is not "twice as much" as a flight numbered "200".
+1. Some of the time-related variables are coded as `<int>` and others as `<dbl>`. R treats them the
+same when doing math, so its not a big deal, but to be thorough, we should treat anything
+time related as `<dbl>` i.e. you measure time, not count time.
+
+
+
+
+
+## 3.8-3.9
+
+#### Learning Check
+
+* For each of the datasets `weather`, `planes`, `airports`, and `airlines`, load
+them using the `data()` function and then `View()` them. Identify what the
+observational unit is.
+* Say you wanted to see if weather patterns are associated with delays. Sketch
+out how would you use the `flights` and `weather` data frames to test this?
+
+
+
+#### Solution
+
+Let's pull up spreadsheets for all the data sets. Run the following code:
+
+```{r, eval=FALSE}
+data(weather)
+View(weather)
+data(planes)
+View(planes)
+data(airports)
+View(airports)
+data(airlines)
+View(airlines)
+```
+
+The observational units are:
+
+* `weather`: year/month/day/hour **for one of the three NYC airports**
+* `planes`: a physical aircraft
+* `airports`: an airport
+* `airlines`: a carrier
+
+If you want to see which weather patterns are associated with delays, you need to **join** (AKA **merge**) the `flights` data set with the `weather` data set.
+We leave specifics until later, but for now, we need to **key** the join by the following variables to match the two data sets:
+
+```{r, eval=FALSE}
+View(flights)
+View(weather)
+```
+
+
+* In `flights`: `year`, `month`, `day`, `hour`, `origin`
+* In `weather`: `year`, `month`, `day`, `hour`, `origin`
+
+
