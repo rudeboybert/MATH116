@@ -10,9 +10,14 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(dplyr)
-library(nycflights13)
+library(tidyverse)
+library(lubridate)
 library(knitr)
+
+library(nycflights13)
+library(ggplot2movies)
+library(okcupiddata)
+library(babynames)
 ```
 
 
@@ -104,3 +109,61 @@ Another seminal book (which isn't as high level) is Tufte's "The Visual Display 
 <center>
 <img src="../figure/tufte.jpg" height="400px"/>
 </center>
+
+
+
+## Types of Graphs
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+flights %>% 
+  mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
+  filter(month==1) %>% 
+  group_by(date) %>% 
+  tally() %>% 
+  ggplot(data=., aes(x=date, y=n)) + 
+  labs(x="Date", y="Number of Flights", title="Number of Daily Flights in 2013") +
+  geom_line()
+```
+
+
+
+
+
+## Types of Graphs
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+movies %>% 
+  ggplot(data=., aes(x=budget, y=rating)) +
+  geom_point() +
+  labs(x="Movie Budget", y="IMDB Rating", "IMDB Rating vs Budget")
+```
+
+
+
+
+## Types of Graphs
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram() +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+
+
+
+## Types of Graphs
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+babynames %>% 
+  mutate(decade = round(year / 10) * 10) %>% 
+  filter(name=="Hayden") %>% 
+  group_by(decade, sex) %>% 
+  summarize(prop=sum(prop)) %>% 
+  ggplot(data=., aes(x=decade, y=prop, fill=sex)) +
+  geom_bar(stat = "identity", position = "dodge")
+```
+
+
+
