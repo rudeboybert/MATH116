@@ -8,12 +8,6 @@ categories: jekyll update
 
 
 
-### STILL A WORK IN PROGRESS
-
-
-
-
-
 
 ### Announcements
 
