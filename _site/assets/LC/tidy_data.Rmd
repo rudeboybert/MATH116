@@ -137,18 +137,6 @@ out how would you use the `flights` and `weather` data frames to test this?
 
 #### Solution
 
-Let's pull up spreadsheets for all the data sets. Run the following code:
-
-```{r, eval=FALSE}
-data(weather)
-View(weather)
-data(planes)
-View(planes)
-data(airports)
-View(airports)
-data(airlines)
-View(airlines)
-```
 
 The observational units are:
 
