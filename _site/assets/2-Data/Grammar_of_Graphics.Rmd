@@ -84,8 +84,8 @@ top map | longitude | **`x`** | **`point`**
 " | latitude | **`y`** | **`point`** 
 " | army size | **`size`** | **`path`**
 " | army direction (forward vs retreat) | **`color`** | **`path`**
-bottom graph | date | **`x, y`** | **`text`**
-" | temperature | **`x, y`** | **`line`**
+bottom graph | date | **`x`** | **`line`** & **`text`**
+" | temperature | **`y`** | **`line`** & **`text`**
 
 
 
@@ -111,7 +111,7 @@ Wickham implemented the grammar in R in `ggplot2` package
 
 ## Edward Tufte
 
-Another seminal book (which isn't as high level) is Tufte's "The Visual Display of Quantitative Information"
+Another seminal book is Tufte's "The Visual Display of Quantitative Information"
 
 <center>
 <img src="../figure/tufte.jpg" height="400px"/>
