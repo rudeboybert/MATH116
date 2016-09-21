@@ -76,6 +76,13 @@ there are 6 dimensions of information (i.e. variables) being displayed on a 2D p
 
 
 
+## The Grammar of Graphics
+
+A statistical graphic is a mapping of `data` variables to `aes()`thetic
+attributes of `geom_`etric objects.
+
+
+
 ## Minard's Illustration of the March
 
 Where? | **`data`** | **`aes()`**  | **`geom_`**
