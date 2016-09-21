@@ -1,3 +1,15 @@
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -11,6 +23,8 @@ library(nycflights13)
 library(ggplot2movies)
 library(okcupiddata)
 library(babynames)
+library(fueleconomy)
+library(stringr)
 ```
 
 
@@ -107,14 +121,17 @@ Another seminal book (which isn't as high level) is Tufte's "The Visual Display 
 
 ## Types of Graphs
 
+From `nycflights13` package, the `flights` data set:
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Line graph
 flights %>% 
   mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
   filter(month==1) %>% 
   group_by(date) %>% 
   tally() %>% 
   ggplot(data=., aes(x=date, y=n)) + 
-  labs(x="Date", y="Number of Flights", title="Number of Daily Flights in 2013") +
+  labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
   geom_line()
 ```
 
@@ -124,11 +141,14 @@ flights %>%
 
 ## Types of Graphs
 
+From `ggplot2movies` package, the `movies` data set:
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Scatterplot i.e. bivariate plot
 movies %>% 
   ggplot(data=., aes(x=budget, y=rating)) +
   geom_point() +
-  labs(x="Movie Budget", y="IMDB Rating", "IMDB Rating vs Budget")
+  labs(x="Movie Budget", y="IMDB Rating", title="IMDB Rating vs Budget")
 ```
 
 
@@ -136,7 +156,10 @@ movies %>%
 
 ## Types of Graphs
 
+From `okcupiddata` package, the `profiles` data set:
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Histogram
 profiles %>% 
   ggplot(data=., aes(x=height)) +
   geom_histogram() +
@@ -148,14 +171,37 @@ profiles %>%
 
 ## Types of Graphs
 
+From `babynames` package, the `babynames` data set:
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Bar Chart
 babynames %>% 
   mutate(decade = round(year / 10) * 10) %>% 
-  filter(name=="Hayden") %>% 
-  group_by(decade, sex) %>% 
-  summarize(prop=sum(prop)) %>% 
-  ggplot(data=., aes(x=decade, y=prop, fill=sex)) +
-  geom_bar(stat = "identity", position = "dodge")
+  filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
+  filter(decade >= 1990) %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  ggplot(data=., aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
+```
+
+
+
+
+## Types of Graphs
+
+From `fueleconomy` package, the `vehicles` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Boxplot
+vehicles %>% 
+  mutate(trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic")) %>% 
+  ggplot(data=., aes(x=trans2, y=hwy)) +
+  geom_boxplot() +
+  labs(y="Highway Mileage (miles/gallon)", x="Transmission Type",
+       title="Highway Mileage of all Car Models 1984-2015") +
+  coord_cartesian(ylim=c(5, 45))
 ```
 
 
