@@ -36,4 +36,4 @@ For example, the discussion for the Learning Checks from Lec04 are posted on tha
 
 ### After-Class Updates
 
-* 
+* <!--Lec05 <a href = "{{ site.baseurl }}/assets/LC/tidy_data.html" target = "_blank">learning check discussion</a>.-->
