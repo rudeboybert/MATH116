@@ -128,21 +128,7 @@ Another seminal book (which isn't as high level) is Tufte's "The Visual Display 
 
 ## Types of Graphs
 
-From `nycflights13` package, the `flights` data set:
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Line graph
-flights %>% 
-  mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
-  filter(month==1) %>% 
-  group_by(date) %>% 
-  tally() %>% 
-  ggplot(data=., aes(x=date, y=n)) + 
-  labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
-  geom_line()
-```
-
-
+Name this graph type!
 
 
 
@@ -160,19 +146,38 @@ movies %>%
 
 
 
+## Types of Graphs
+
+From `nycflights13` package, the `flights` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Line graph
+flights %>% 
+  mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
+  filter(month==1) %>% 
+  group_by(date) %>% 
+  tally() %>% 
+  ggplot(data=., aes(x=date, y=n)) + 
+  labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
+  geom_line()
+```
+
+
 
 ## Types of Graphs
 
-From `okcupiddata` package, the `profiles` data set:
+From `fueleconomy` package, the `vehicles` data set:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Histogram
-profiles %>% 
-  ggplot(data=., aes(x=height)) +
-  geom_histogram() +
-  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+# Boxplot
+vehicles %>% 
+  mutate(trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic")) %>% 
+  ggplot(data=., aes(x=trans2, y=hwy)) +
+  geom_boxplot() +
+  labs(y="Highway Mileage (miles/gallon)", x="Transmission Type",
+       title="Highway Mileage of all Car Models 1984-2015") +
+  coord_cartesian(ylim=c(5, 45))
 ```
-
 
 
 
@@ -195,21 +200,27 @@ babynames %>%
 
 
 
-
 ## Types of Graphs
 
-From `fueleconomy` package, the `vehicles` data set:
+From `okcupiddata` package, the `profiles` data set:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Boxplot
-vehicles %>% 
-  mutate(trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic")) %>% 
-  ggplot(data=., aes(x=trans2, y=hwy)) +
-  geom_boxplot() +
-  labs(y="Highway Mileage (miles/gallon)", x="Transmission Type",
-       title="Highway Mileage of all Car Models 1984-2015") +
-  coord_cartesian(ylim=c(5, 45))
+# Histogram
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram() +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
 ```
 
 
+
+## 5NG
+
+Say hello to the 5NG: the **five named graphs**
+
+1. Scatterplot AKA bivariate plot
+1. Line-graph
+1. Boxplot
+1. Barplot AKA Barchart AKA bargraph
+1. Histogram
 
