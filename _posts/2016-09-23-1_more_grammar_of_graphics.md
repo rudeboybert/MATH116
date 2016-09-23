@@ -11,7 +11,7 @@ categories: jekyll update
 ### Announcements
 
 * There are now Center for Teaching, Learning, and Research (CTLR) tutors specifically for this course. Visit the [CTLR](http://www.middlebury.edu/academics/resources/ctlr/students) tutoring page for more information.
-* New Problem Set submission process. In-class demo, then see the bottom of Problem Sets page.
+* New Problem Set submission process: In-class demo, then see the bottom of Problem Sets page.
 * **Refresher**: A statistical graphic is a mapping of `data` variables to `aes()`thetic
 attributes of `geom_`etric objects.
 
