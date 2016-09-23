@@ -12,11 +12,25 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 ## Problem Set II
 
 * Assigned Fri 9/23
-* Due Fri 9/30
+* Due Fri 9/30 11am
 
 #### Learning Goals
 
+* Taking your first baby steps using the `ggplot2` package for data visualization: an R-based
+implementation of the "Grammar of Graphics"
+
+
 #### Homework
+
+* In RStudio, on the top right of the screen, next to the cube with "R" on it, if it says
+    + `problem_sets`: click on it and select "Close Project"
+    + `Project: (None)`: do nothing
+* Download this file to your computer: <a href="{{ site.baseurl }}/assets/PS/PS-02.Rmd" target="_blank">`PS-02.Rmd`</a>
+* Upload it to RStudio server into the `problem_sets` folder
+* Open it and work on it from there
+* Don't forget to answer the questions in the "Please Indicate" section
+
+
 
 
 
@@ -47,11 +61,13 @@ Markdown.
 * In my experience, there are always a few hiccups with R Markdown at the
 beginning, but by the third assignment everyone is on board.
 
-
 #### Homework
 
 * Download this file to your computer, then upload it to the RStudio Server as described in Lec03: <a href="{{ site.baseurl }}/assets/PS/PS-01.Rmd" target="_blank">`PS-01.Rmd`</a>
 * ~~Submit your homework using this [submission form](https://docs.google.com/forms/d/1n1HNo17MA21-DQ_boklchwCjfr6_qx7GrLY5ot7796g/edit)~~. See below.
+
+
+
 
 
 
