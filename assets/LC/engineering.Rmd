@@ -1,0 +1,127 @@
+---
+title: "Engineering Graphics Learning Checks"
+author: "Albert Y. Kim"
+date: "September 23, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Data
+
+Run the following first in your console to create the data example:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# Create data frame
+simple_ex <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("a", "a", "b", "b")
+  )
+```
+
+
+Let's view the data frame, which is in tidy format:
+
+```{r, echo=TRUE, eval=FALSE}
+View(simple_ex)
+```
+
+```{r, echo=FALSE}
+simple_ex %>% knitr::kable()
+```
+
+
+
+## Recall
+
+* A statistical graphic is a mapping of `data` variables to `aes()`thetic
+attributes of `geom_`etric objects.
+* A scatterplot has `point`s as the `geom_`etric object
+* A linegraph has `line`s as the `geom_`etric object
+
+
+
+## 1. Basic Scatterplot
+
+* the `geom_`etric objects are `point`s
+* the aesthetic attributes are:
+    + `x`-axis is variable `A`
+    + `y`-axis is variable `B`
+
+```{r, fig.width=8, fig.height=4.5, echo=TRUE}
+ggplot(data=simple_ex, aes(x=A, y=B)) + 
+  geom_point()
+```
+
+
+
+## 2. Scatterplot with Color
+
+* the `geom_`etric objects are `point`s
+* the aesthetic attributes are:
+    + `x`-axis is variable `A`
+    + `y`-axis is variable `B`
+    + `color` is variable `D`
+
+```{r, fig.width=8, fig.height=4.5, echo=TRUE}
+ggplot(data=simple_ex, aes(x=A, y=B, color=D)) + 
+  geom_point()
+```
+
+
+
+## 3. Scatterplot with Sizes
+
+* the `geom_`etric objects are `point`s
+* the aesthetic attributes are:
+    + `x`-axis is variable `A`
+    + `y`-axis is variable `B`
+    + `size` is variable `C`
+
+```{r, fig.width=8, fig.height=4.5, echo=TRUE}
+ggplot(data=simple_ex, aes(x=A, y=B, size=C)) + 
+  geom_point()
+```
+
+
+
+## 4. Line Graph
+
+* the `geom_`etric objects are `line`s
+* the aesthetic attributes are:
+    + `x`-axis is variable `A`
+    + `y`-axis is variable `B`
+
+```{r, fig.width=8, fig.height=4.5, echo=TRUE}
+ggplot(data=simple_ex, aes(x=A, y=B)) + 
+  geom_line()
+```
+
+
+## 5. Line Graph with Color
+
+* the `geom_`etric objects are `line`s
+* the aesthetic attributes are:
+    + `x`-axis is variable `A`
+    + `y`-axis is variable `B`
+    + `color` is variable `D`
+
+```{r, fig.width=8, fig.height=4.5, echo=TRUE}
+ggplot(data=simple_ex, aes(x=A, y=B, color=D)) + 
+  geom_line()
+```
