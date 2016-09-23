@@ -29,4 +29,4 @@ Problem Sets page.
 
 ### After-Class Updates
 
-* <!--Lec06 <a href = "{{ site.baseurl }}/assets/LC/engineering.html" target = "_blank">learning check discussion</a>.-->
+* Lec06 <a href = "{{ site.baseurl }}/assets/LC/engineering.html" target = "_blank">learning check discussion</a>.
