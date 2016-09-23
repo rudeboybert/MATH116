@@ -12,7 +12,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-set.seed(76)
+set.seed(79)
 library(tidyverse)
 library(lubridate)
 library(knitr)
@@ -42,7 +42,7 @@ ggplot(data=movies, aes(x=budget, y=rating)) +
 
 ### Solution
 
-Let's look at a random sample of 5 of the movies. Both variables are numerical.
+Let's look at a random sample of 5 of the movies:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
 # Scatterplot i.e. bivariate plot
@@ -52,7 +52,7 @@ movies %>%
   kable()
 ```
 
-Here are the components of the Grammar of Graphics:
+**Both variables are numerical**. Here are the components of the Grammar of Graphics:
 
 `data` variable | `aes()`thetic attribute  | `geom_`etric object
 ------------- | ------------- | -------------
@@ -90,7 +90,7 @@ ggplot(data=flights, aes(x=date, y=n)) +
 
 ### Solution
 
-Let's look at a random sample of 5 of the dates. Both variables are numerical (dates are technically numerical).
+Let's look at a random sample of 5 of the dates:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
 # Scatterplot i.e. bivariate plot
@@ -99,7 +99,7 @@ flights %>%
   kable()
 ```
 
-Here are the components of the Grammar of Graphics:
+**Both variables are numerical (dates are technically numerical)**. Here are the components of the Grammar of Graphics:
 
 `data` variable | `aes()`thetic attribute  | `geom_`etric object
 ------------- | ------------- | -------------
@@ -143,7 +143,7 @@ ggplot(data=vehicles, aes(x=trans, y=hwy)) +
 
 ### Solution
 
-Let's look at a random sample of 5 of the car year/make/model. Transmission type is **categorical**.
+Let's look at a random sample of 5 of the car year/make/model matchings:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
 # Scatterplot i.e. bivariate plot
@@ -152,21 +152,18 @@ vehicles %>%
   kable()
 ```
 
-Here are the components of the Grammar of Graphics:
+**`trans` type is categorical, whereas `hwy` is numerical**. Here are the components of the Grammar of Graphics:
 
 `data` variable | `aes()`thetic attribute  | `geom_`etric object
 ------------- | ------------- | -------------
 `trans` | `x` | `boxplot` 
 `hwy` | `y` | `boxplot` 
 
-**Note**: Why did we use `line` as the `geom_`etric object? Because lines suggest sequence/relationship, and points don't.
+
 
 ### Question
 
 About what proportion of manual car models sold between 1984 and 2015 got 20 mpg or worse mileage?
-
-
-
 
 
 
@@ -194,7 +191,7 @@ ggplot(data=babynames, aes(x=name, y=n)) +
 
 ### Solution
 
-Let's look at all the data. Name is categorical.
+Let's look at all the data:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
 # Scatterplot i.e. bivariate plot
@@ -202,13 +199,12 @@ babynames %>%
   kable()
 ```
 
-Here are the components of the Grammar of Graphics:
+**Name is categorical**. Here are the components of the Grammar of Graphics:
 
 `data` variable | `aes()`thetic attribute  | `geom_`etric object
 ------------- | ------------- | -------------
 `name` | `x` | `bar` 
-
-**Note**
+`n` | `y` | `bar` 
 
 ### Question
 
@@ -239,8 +235,7 @@ ggplot(data=profiles, aes(x=height)) +
 
 ### Solution
 
-Let's look at a random sample of 5 of the users. Height is **numerical**.
-
+Let's look at a random sample of 5 of the users:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
 # Scatterplot i.e. bivariate plot
@@ -249,14 +244,15 @@ profiles %>%
   kable(row.names=FALSE)
 ```
 
-Here are the components of the Grammar of Graphics:
+**Height is numerical**. Here are the components of the Grammar of Graphics:
 
 `data` variable | `aes()`thetic attribute  | `geom_`etric object
 ------------- | ------------- | -------------
 `height` | `x` | `histogram` 
 
-**Note**: the key difference between a bar plot and a histogram is that the former has a
-categorical variable mapped to the `x` `aes()`thetic, whereas histograms have a numerical variable.
+
+**Note**: We'll see later there is no `y` aesthetic here, because there is
+no explicit variable that maps to it, but rather it is computed internally.
 
 ### Question
 
