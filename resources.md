@@ -8,7 +8,6 @@ Your first stop for any help related to computing with data should be the book:
 [Getting used to R, RStudio, and R
 Markdown](https://rudeboybert.github.io/rbasics-book/index.html).
 
-
 ## R
 
 * [Datacamp: Intro to R Course](https://www.datacamp.com/courses/free-introduction-to-r): 
@@ -28,6 +27,9 @@ for learning R.
 * [R for Data Science](http://r4ds.had.co.nz/) by Grolemund and Wickham
 * [The Elements of Data Analytic Style](https://leanpub.com/datastyle) by Leek
 
+## CTLR Tutoring
+
+* Visit the [CTLR](http://www.middlebury.edu/academics/resources/ctlr/students) tutoring page for more information.
 
 <!--
 [How to Get RStudio Set Up on Your Own Machine (Mac)](http://www.reed.edu/data-at-reed/software/R/r_studio.html)

@@ -4,3 +4,4 @@
 .Ruserdata
 *.Rproj
 .sass-cache/*
+_site/*
