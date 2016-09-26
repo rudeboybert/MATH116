@@ -84,8 +84,18 @@ simple_ex <-
 A statistical graphic is a mapping of `data` variables to `aes()`thetic
 attributes of `geom_`etric objects.
 
-```{r, echo=TRUE, fig.height=3}
+```{r, echo=FALSE, fig.height=3}
 ggplot(data=simple_ex, aes(x=A, y=B, color=D)) + 
   geom_point()
 ```
+
+
+## Today
+
+* Drill down on `geom_point()`
+* Introduce two techniques for **over-plotting**. See saw this phenomenon in the [Lec05 Learning Check](https://rudeboybert.github.io/MATH116/assets/LC/5NG.html) Discussion:
+    + `alpha` to control **transparency**
+    + `geom_jitter()`: a kind of `geom_point()` where we add a little **jitter** (i.e. random noise) to the points to break log-jams
+
+
 

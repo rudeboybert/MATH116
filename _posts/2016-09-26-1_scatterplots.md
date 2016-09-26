@@ -14,7 +14,7 @@ categories: jekyll update
 * Sandboxing
 * Over the next 5 lectures we'll
     + slowly go over the 5NG through the lens of the "Grammar of Graphics" and the `ggplot2` package for data visualization
-    + start introducing basic data manipulation ideas from the `dplyr` package, which we cover in Chapter 5 Data Manipulation of the textbook
+    + start introducing basic data manipulation ideas from the `dplyr` package, which we cover extensively in [Chapter 5 Data Manipulation](https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html) of the textbook
 
 
 
