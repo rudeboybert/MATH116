@@ -12,8 +12,13 @@ categories: jekyll update
 
 * Problem Set 02 is posted. This is another light one; we'll start ramping up in Problem Set 03.
 * Over the next 5 lectures we'll
-    + slowly go over the 5NG through the lens of the "Grammar of Graphics" and the `ggplot2` package for data visualization
-    + start introducing basic data manipulation ideas from the `dplyr` package, which we cover extensively in [Chapter 5 Data Manipulation](https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html) of the textbook
+    + deconstruct the 5NG through the lens of the "Grammar of Graphics" 
+    + construct the 5NG via the `ggplot2` package for data visualization
+    + start introducing basic data manipulation ideas from the `dplyr` package,
+    which we will cover extensively later in [Chapter 5 Data
+    Manipulation](https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html)
+    of the textbook
+* Today: 1stNG **scatterplots**
 
 
 

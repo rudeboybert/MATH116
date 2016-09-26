@@ -93,7 +93,7 @@ ggplot(data=simple_ex, aes(x=A, y=B, color=D)) +
 ## Today
 
 * Drill down on `geom_point()`
-* Introduce two techniques for **over-plotting**. See saw this phenomenon in the [Lec05 Learning Check](https://rudeboybert.github.io/MATH116/assets/LC/5NG.html) Discussion:
+* Introduce two techniques for **over-plotting**. See saw this phenomenon in the [Lec05 Learning Check](https://rudeboybert.github.io/MATH116/assets/LC/5NG.html) discussion.
     + `alpha` to control **transparency**
     + `geom_jitter()`: a kind of `geom_point()` where we add a little **jitter** (i.e. random noise) to the points to break log-jams
 
