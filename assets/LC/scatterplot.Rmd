@@ -18,16 +18,11 @@ library(lubridate)
 library(knitr)
 
 library(nycflights13)
-library(ggplot2movies)
-library(okcupiddata)
-library(babynames)
-library(fueleconomy)
-library(stringr)
 ```
 
 
 
-## Scatterplot
+## LC 4.1-4.3
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
 
@@ -37,9 +32,25 @@ library(stringr)
 
 
 
-### Question
+
+## LC 4.4-4.5
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+
+```
+
+### Solution
 
 
+
+
+## LC 4.6
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+
+```
+
+### Solution
 
 
 
