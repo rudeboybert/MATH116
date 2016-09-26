@@ -25,9 +25,9 @@ categories: jekyll update
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/2-Data/scatterplot.html" target = "_blank">Slides</a> on scatterplots.
-* <a href = "https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#scatterplots" target = "_blank">Chapter 4.3</a> of textbook.
+* <a href = "https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#necessary-packages" target = "_blank">Chapters 4.2-4.3</a> of textbook.
 
 
 ### After-Class Updates
 
-* <!--Lec07 <a href = "{{ site.baseurl }}/assets/LC/scatterplot.html" target = "_blank">learning check discussion</a>.-->
+* Lec07 <a href = "{{ site.baseurl }}/assets/LC/scatterplot.html" target = "_blank">learning check discussion</a>.
