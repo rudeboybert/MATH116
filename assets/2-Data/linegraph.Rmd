@@ -1,0 +1,101 @@
+---
+title: "Linegraph"
+author: "Albert Y. Kim"
+date: "Wed Sep 28, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+```
+
+
+
+## 5NG
+
+Today:
+
+1. Scatterplot AKA bivariate plot
+1. **Linegraph**
+1. Boxplot
+1. Barplot AKA Barchart AKA bargraph
+1. Histogram
+
+
+
+
+## Example
+
+Let's re-run our example from last time:
+
+```{r, eval=FALSE, echo=TRUE}
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# Create data frame
+simple_ex <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("a", "a", "b", "b")
+  )
+
+simple_ex
+```
+
+```{r, eval=TRUE, echo=FALSE}
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# Create data frame
+simple_ex <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("a", "a", "b", "b")
+  )
+```
+
+
+## Example 
+
+A statistical graphic is a mapping of `data` variables to `aes()`thetic
+attributes of `geom_`etric objects.
+
+```{r, echo=FALSE, fig.height=3}
+ggplot(data=simple_ex, aes(x=A, y=B, color=D)) + 
+  geom_point()
+```
+
+
+## Today
+
+* Drill down on `geom_point()`
+* Introduce two techniques for **over-plotting**. See saw this phenomenon in the [Lec05 Learning Check](https://rudeboybert.github.io/MATH116/assets/LC/5NG.html) discussion.
+    + `alpha` to control **transparency**
+    + `geom_jitter()`: a kind of `geom_point()` where we add a little **jitter** (i.e. random noise) to the points to break log-jams
+
+
+
