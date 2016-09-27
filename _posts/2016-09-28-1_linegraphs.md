@@ -10,6 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
+* [Unscientific Polls](http://www.vox.com/policy-and-politics/2016/9/27/13072668/debate-trump-clinton-polls)
 * Problem Set 1 Discussion
 * Today: 2ndNG **linegraph**
 
@@ -18,9 +19,9 @@ categories: jekyll update
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/2-Data/linegraph.html" target = "_blank">Slides</a> on linegraphs.
-* <a href = "https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#line-graphs" target = "_blank">Chapters 4.4</a> of textbook.
+* <a href = "https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#line-graphs" target = "_blank">Chapter 4.4</a> of textbook.
 
 
 ### After-Class Updates
 
-* Lec08 <a href = "{{ site.baseurl }}/assets/LC/linegraph.html" target = "_blank">learning check discussion</a>.
+* Lec08 <a href = "{{ site.baseurl }}/assets/LC/linegraph.html" target = "_blank">learning check discussion</a>
