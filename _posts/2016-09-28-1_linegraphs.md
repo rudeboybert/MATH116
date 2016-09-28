@@ -10,7 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
-* [Unscientific Polls](http://www.vox.com/policy-and-politics/2016/9/27/13072668/debate-trump-clinton-polls)
+* [Unscientific Polls](http://www.nytimes.com/2016/09/29/us/politics/why-you-shouldnt-believe-most-online-polls.html?action=click&contentCollection=Politics&module=RelatedCoverage&region=Marginalia&pgtype=article)
 * Problem set 01 discussion
 * Lec07 <a href = "{{ site.baseurl }}/assets/LC/scatterplot.html" target = "_blank">learning check discussion</a>
 * Today: 2ndNG **linegraph**
