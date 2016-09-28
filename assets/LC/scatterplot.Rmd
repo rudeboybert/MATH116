@@ -22,36 +22,91 @@ library(nycflights13)
 
 
 
+
+## Load Necessary Data and Packages
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+library(dplyr)
+library(ggplot2)
+library(nycflights13)
+alaska_flights <- filter(flights, carrier == "AS")
+```
+
+
+
+
+
 ## LC 4.1-4.3
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
-
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
 ```
 
+1. What are some practical reasons why `dep_delay` and `arr_delay` have a positive relationship?
+1. What does (0, 0) correspond to from the point of view of a passenger on an Alaskan flight?  Why do you believe there is a cluster of points near (0, 0)? 
+1. Create a similar plot, but one showing the relationship between departure time and departure delay. What hypotheses do you have about the patterns you see?
+
+
 ### Solution
+
+1. The later a plane departs, typically the later it will arrive.
+1. The point (0,0) means no delay in departure and arrival. From the passenger's point of view, this means the flight was on time. It seems most flights are at least close to being on time.
+1. We now put `dep_time` as the `x`-aesthetic and `dep_delay` as the `y`-aesthetic. 
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data=alaska_flights, aes(x = dep_time, y = dep_delay)) + 
+  geom_point()
+```
+
+**Hint:** Look at Alaska Airlines' route map:
+
+![alt text](../figure/alaska_airlines_map.png)
+
 
 
 
 
 ## LC 4.4-4.5
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
-
+```{r alpha, warning=FALSE}
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point(alpha = 0.2)
 ```
 
+
+1. Why is setting the `alpha` argument value useful with scatter-plots? 
+1. After viewing the above plot, give a range of arrival delays and departure delays that occur most frequently?  How has that region changed compared to when you observed the same plot without the `alpha = 0.2` set in lower plot?
+
+
 ### Solution
+
+1. It thins out the points so we address over-plotting. But more importantly it hints at the (statistical) **density** and **distribution** of the points: where are the points concentrated, where do they occur. We will see more about densities and distributions in Chapter 6 when we switch gears to statistical topics.
+1. The lower plot suggests that most Alaska flights from NYC
+    + depart between 12 minutes early and on time
+    + arrive between 50 minutes early and on time
+    
+Question: 50 minutes early? Why so much?
 
 
 
 
 ## LC 4.6
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+1. Compare the "transparency" vs "jitter" approach to dealing with over-plotting above. In this case, which do you prefer?
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point(alpha = 0.2)
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_jitter(width = 30, height = 30)
 ```
 
 ### Solution
 
-
+There is no right answer! It's your call. 
 
 
