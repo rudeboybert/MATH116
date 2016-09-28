@@ -11,8 +11,8 @@ categories: jekyll update
 ### Announcements
 
 * [Unscientific Polls](http://www.vox.com/policy-and-politics/2016/9/27/13072668/debate-trump-clinton-polls)
-* Workflow
-* Problem Set 1 Discussion
+* Lec07 <a href = "{{ site.baseurl }}/assets/LC/scatterplot.html" target = "_blank">learning check discussion</a>
+* 
 * Today: 2ndNG **linegraph**
 
 
