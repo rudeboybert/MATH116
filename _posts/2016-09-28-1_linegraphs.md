@@ -11,9 +11,12 @@ categories: jekyll update
 ### Announcements
 
 * [Unscientific Polls](http://www.vox.com/policy-and-politics/2016/9/27/13072668/debate-trump-clinton-polls)
+* Problem set 01 discussion
 * Lec07 <a href = "{{ site.baseurl }}/assets/LC/scatterplot.html" target = "_blank">learning check discussion</a>
-* 
 * Today: 2ndNG **linegraph**
+* Suggested Workflow:
+    + Go to RStudio Menu Bar -> File -> New File -> R Script
+    + Type your commands there and run them in the console by highlighting them and pressing CMD+Enter (Macs) or CTRL+Enter (Windows)
 
 
 
