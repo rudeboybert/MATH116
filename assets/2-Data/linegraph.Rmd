@@ -99,7 +99,9 @@ ggplot(data=simple_ex, aes(x=A, y=B)) +
     + Linear regression
     
     
+    
 
+## Advanced: How do Smoothers Work?
 
-
+By doing a local regression within a **sliding window**: [GIF](http://simplystatistics.org/2014/02/13/loess-explained-in-a-gif/)
 
