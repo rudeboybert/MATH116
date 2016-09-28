@@ -14,7 +14,7 @@ categories: jekyll update
 * Problem set 01 discussion
 * Lec07 <a href = "{{ site.baseurl }}/assets/LC/scatterplot.html" target = "_blank">learning check discussion</a>
 * Today: 2ndNG **linegraph**
-* Suggested Workflow:
+* Suggested workflow for in-class coding exercises:
     + Go to RStudio Menu Bar -> File -> New File -> R Script
     + Type your commands there and run them in the console by highlighting them and pressing CMD+Enter (Macs) or CTRL+Enter (Windows)
 
