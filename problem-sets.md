@@ -9,7 +9,38 @@ own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
-## Problem Set II
+
+
+  
+
+## Problem Set 03
+
+* Assigned Fri 9/30
+* Due Fri 10/7 11am
+
+#### Learning Goals
+
+* 
+
+
+#### Homework
+
+* 
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
+
+
+## Problem Set 02
 
 * Assigned Fri 9/23
 * Due Fri 9/30 11am
@@ -34,11 +65,17 @@ implementation of the "Grammar of Graphics"
 
 
 
+<br>
+
+***
+
+<br>
 
 
 
 
-## Problem Set I
+
+## Problem Set 01
 
 * Assigned Fri 9/16
 * Due Fri 9/23
@@ -70,6 +107,11 @@ beginning, but by the third assignment everyone is on board.
 
 
 
+<br>
+
+***
+
+<br>
 
 
 
