@@ -76,3 +76,12 @@ You can compare **distributions** of values in different groups with a single li
 
 Look at the chart in this [Planet Money](http://www.npr.org/sections/money/2015/03/19/394057221/how-much-or-little-the-middle-class-makes-in-30-u-s-cities) article. In this case,
 you can compare cities with a single vertical line.
+
+
+    
+## Today
+
+Before we lay out boxplots however, we have two digressions:
+
+* Facets: spliting a plot on a categorical variable
+* Summary statistics
