@@ -1,0 +1,32 @@
+---
+title: "Boxplots Learning Checks"
+author: "Albert Y. Kim"
+date: "Fri Sep 30, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(79)
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(nycflights13)
+```
+
+
+
+## LC
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+
+```
+
+### Solution
+
+

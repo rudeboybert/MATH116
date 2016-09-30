@@ -1,0 +1,67 @@
+
+---
+title: "Problem Set 03"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, October 7, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+
+```{r, echo=FALSE, message=FALSE}
+# Do not edit this section
+library(ggplot2)
+library(dplyr)
+library(ggplot2movies)
+library(babynames)
+set.seed(76)
+```
+
+
+## Please Indicate
+
+* Who you collaborated with:
+* Approximately how much time did you spend on this problem set:
+* What, if anything, gave you the most trouble:
+
+
+
+
+
+## Tips
+
+* Look and explore your data with the `View()` command
+* To get a quick idea of what kind of variables you have in a data frame, use
+the `glimpse()` function from the `dplyr` package
+* Help files are your friend. Many (but not all) R functions and datasets have
+help files. For example, you can access the help file for the `movies` data set
+below by typing `?movies`
+
+
+
+
+## Question 1: Movie Ratings
+
+
+```{r}
+
+```
+
+#### a)
+
+
+```{r}
+# Write your code here:
+
+```
+
+#### b)
+
+
+
+
+
