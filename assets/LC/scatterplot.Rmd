@@ -13,11 +13,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 set.seed(79)
-library(tidyverse)
-library(lubridate)
-library(knitr)
-
-library(nycflights13)
 ```
 
 

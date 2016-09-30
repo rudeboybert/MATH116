@@ -13,20 +13,84 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 set.seed(79)
-library(tidyverse)
-library(lubridate)
-library(knitr)
-library(nycflights13)
 ```
 
 
 
-## LC
+
+## Load Necessary Data and Packages
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
-
+library(dplyr)
+library(ggplot2)
+library(babynames)
 ```
+
+
+
+## LC 4.7-4.8
+
+* Why should line graphs be avoided when there is not a clear ordering of the horizontal axis?
+* Why are line graphs frequently used when time is the explanatory variable?
 
 ### Solution
 
+* Because line suggest connectedness and **correlation**. More on this later.
 
+
+
+
+
+## LC 4.9
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+female_audreys <- filter(babynames, name=="Audrey" & sex=="F")
+ggplot(data=female_audreys, aes(x=year, y=prop)) + 
+  geom_line() +
+  geom_smooth(se=FALSE, span=0.1)
+```
+
+* Set `span=10` in the last code block above. Does this appear to be a good smoother?
+
+### Solution
+
+In my opinion, `span=10` is a bit too coarse:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data=female_audreys, aes(x=year, y=prop)) + 
+  geom_line() +
+  geom_smooth(se=FALSE, span=10)
+```
+
+But maybe `span=0.1` is TOO refined, i.e. not enough smoothing is happening. What about
+`span=1`:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data=female_audreys, aes(x=year, y=prop)) + 
+  geom_line() +
+  geom_smooth(se=FALSE, span=1)
+```
+
+
+
+
+
+## LC 4.10
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data=female_audreys, aes(x=year, y=prop)) + 
+  geom_line() +
+  geom_smooth(se=FALSE)
+ggplot(data=female_audreys, aes(x=year, y=prop)) + 
+  geom_line() +
+  geom_smooth(method="lm", se=FALSE)
+```
+
+Do you think the earlier smoother or the regression line is a better way to pick out the "signal" (i.e. the trend) from the "noise" in the previous plot? Using this evidence, what do you think is a condition for a regression line to have "valid" interpretability?
+
+### Solution
+
+Hard to say.
+
+* The regression line seems to suggest that the **overall** trend seems to be up, but doesn't fit the curve very well
+* The curved smoother only picks out **recent** trends, for example the dip in the 1970's
