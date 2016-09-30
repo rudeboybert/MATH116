@@ -41,5 +41,38 @@ Today:
 
 
 
-
 ## Example
+
+If I know your name, I can guess your [age](http://fivethirtyeight.com/features/how-to-tell-someones-age-when-all-you-know-is-her-name/).
+
+
+
+## Statistics Terminology
+
+* All the plots with either blue/yellow bars red dots are **boxplots** (without whiskers) that indicate the 3 **quartiles**
+    + 1st quartile i.e. 25th percentile
+    + 2nd quartile i.e. 50th percentile
+    + 3rd quartile i.e. 75th percentile
+
+
+
+## Statistics Terminology
+
+> * The 2nd quartile is also called the **median**. It is a measure of **center**
+> * The width of the bars (3rd quartile - 1st quartile) is the **interquartile range (IQR)**
+> * The IQR contains the middle 50% of observations. It is a measure of **spread**
+    
+
+
+## Boxplots
+
+[Breakdown](http://www.datavizcatalogue.com/methods/images/anatomy/box_plot.png) of components.
+
+
+    
+## Why Boxplots?
+
+You can compare **distributions** of values in different groups with a single line.
+
+Look at the chart in this [Planet Money](http://www.npr.org/sections/money/2015/03/19/394057221/how-much-or-little-the-middle-class-makes-in-30-u-s-cities) article. In this case,
+you can compare cities with a single vertical line.
