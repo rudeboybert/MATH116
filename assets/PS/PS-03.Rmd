@@ -16,8 +16,7 @@ output:
 # Do not edit this section
 library(ggplot2)
 library(dplyr)
-library(ggplot2movies)
-library(babynames)
+library(Quandl)
 set.seed(76)
 ```
 
@@ -27,8 +26,6 @@ set.seed(76)
 * Who you collaborated with:
 * Approximately how much time did you spend on this problem set:
 * What, if anything, gave you the most trouble:
-
-
 
 
 
