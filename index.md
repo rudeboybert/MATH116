@@ -17,6 +17,8 @@ In reverse chronological order (a more detailed outline can be found
 
 ## 2. Data
 
+### c) Manipulation/Wrangling
+
 ### b) Visualization
 
 <ul>

@@ -20,14 +20,20 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Learning Goals
 
-* 
+* Ramping up the use of the `ggplot2` package for data visualization
+* Exploring real **time series** data
+* Using Google as a research tool
 
 
 #### Homework
 
-* 
-
-
+* As described in Lec03, before tackling the problem set, install the following packages
+    + `Quandl`: a package makes it amazingly easy to get financial and economic data from [quandl.com](https://www.quandl.com/)
+    + `lubridate`: a package with consistent and memorable syntax that makes working with dates easy
+* Download this file to your computer: <a href="{{ site.baseurl }}/assets/PS/PS-03.Rmd" target="_blank">`PS-03.Rmd`</a>
+* Upload it to RStudio server into the `problem_sets` folder:
+    + In the Files panel, navigate to your `problem_sets` folder
+    + Then click "Upload"
 
 
 <br>
