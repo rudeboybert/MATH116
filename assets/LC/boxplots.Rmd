@@ -14,19 +14,168 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 set.seed(79)
 library(tidyverse)
-library(lubridate)
 library(knitr)
-library(babynames)
+library(nycflights13)
 ```
 
 
 
-## LC 
+## Load Packages and Data
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+library(nycflights13)
+
+# Load weather data set in nycflights
+data(weather)
 ```
 
 
 
+## LC 4.17
+
+What kind of variable is on the x-axis in this plot:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data = weather, mapping = aes(x = factor(month), y = temp)) +
+  geom_boxplot()
+```
+
 ### Solution
+
+* `month` by itself was originally coded as a **numerical variable** whose
+values were `1` through `12`
+* But by using `factor(month)` we are converting it to a **categorical
+variable** whose "labels" are 1 through 12
+* Note: we could've changed the `month` variable to a categorical one in the
+data set `weather` itself, but we don't have the data manipulation tools to do
+that yet!
+
+
+
+
+## LC 4.18
+
+What does the dot at the bottom of the plot for May correspond to? Explain what might have occurred in May to produce this point.
+
+### Solution
+
+It appears to be an outlier. Let's revisit the use of the `filter` command to hone in on it. We want all data points
+where the `month` is 5 and `temp<25`
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE, fig.width=8, fig.height=4.5}
+filter(weather, month==5 & temp < 25)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+filter(weather, month==5 & temp < 25) %>% kable()
+```
+
+There appears to be only one hour and only at JFK that recorded 13.1 F (-10.5 C) in the month of May. This is probably a data entry mistake!
+Why wasn't the weather at least similar at EWR (Newark) and LGA (La Guardia)?
+
+
+
+## LC 4.19
+
+Which months tend to have the highest temperature? What reasons do you think this is?
+
+### Solution
+
+The solid black lines inside each box indicate **medians** (not the means!!!),
+which is a measure of center. For example, over half of August data points are
+about 73 F or higher. I hate heat and humidity! Blech!
+
+As is fairly obvious, the summer months of June, July, and August are the
+hottest months.
+
+
+
+
+## LC 4.20
+
+Which months tend to have the highest **variability** in temperature? What
+reasons do you think this is?
+
+### Solution
+
+We are now interested in the **spread** of the data. One measure some of you may
+have seen previously is the standard deviation. But in this plot we can read off
+the Interquartile Range (IQR):
+
+* The distance from the 1st to the 3rd quartiles i.e. the length of the boxes
+* You can also think of this as the spread of the **middle 50%** of the data
+
+Just from eyeballing it, it seems
+
+* November has the biggest IQR, i.e. the widest box, so has the most variation in temperature
+* August has the smallest IQR, i.e. the narrowest box, so is the most consistent temperature-wise
+
+Here's how we compute the exact IQR values for each month (we'll see this more in depth Chapter 5 of the text):
+
+1. `group` the observations by `month` then
+1. for each `group`, i.e. `month`, `summarise` it by applying the summary statistic function `IQR()`, while making sure to skip over missing data via `na.rm=TRUE` then
+1. `arrange` the table in `desc`ending order of `IQR`
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, eval=FALSE, fig.width=8, fig.height=4.5}
+group_by(weather, month) %>% 
+  summarise(IQR = IQR(temp, na.rm=TRUE)) %>% 
+  arrange(desc(IQR))
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.width=8, fig.height=4.5}
+group_by(weather, month) %>% 
+  summarise(IQR = IQR(temp, na.rm=TRUE)) %>% 
+  arrange(desc(IQR)) %>% 
+  kable()
+```
+
+
+
+
+## LC 4.21
+
+Create a similar boxplot as above but for `wind_speed`. What do you observe and
+does this make sense?
+
+### Solution
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
+  geom_boxplot()
+```
+
+There is clearly an outlier in February. What are the units of wind speed?  Look
+at the help file of the `weather` data set by typing `?weather` in your console,
+you'll see that they are in mph.
+
+But does a wind speed of 1000 mph even make sense? Google the following: "fastest wind speed
+ever recorded". Mount Washington in New Hampshire had the record of 231 mph
+(recorded in 1934) up until 1996, when it was eclipsed by Barrow Island in
+Australia in 1996 with a speed of 253 miles per hour (see
+[here](https://www.mountwashington.org/about-us/history/world-record-wind.aspx))
+during Typhoon Olivia. Not even close to 1000 mph
+
+This is clearly a data entry mistake. What can we do to deal with this? We can either:  
+
+**Change the range on the y-axis** using the `ylim()` command
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
+  geom_boxplot() +
+  ylim(0, 45)
+```
+
+or
+
+**Delete that observation entirely** using, again, the `filter()` command. We create a new
+cleaned weather data set called `weather_cleaned` which keeps all rows with `wind_speed` less than 500 mph:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+weather_cleaned <- filter(weather, wind_speed < 500)
+ggplot(data = weather_cleaned, mapping = aes(x = factor(month), y = wind_speed)) +
+  geom_boxplot()
+```
 
