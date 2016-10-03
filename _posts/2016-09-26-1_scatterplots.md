@@ -18,6 +18,7 @@ categories: jekyll update
     which we will cover extensively later in [Chapter 5 Data
     Manipulation](https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html)
     of the textbook
+* Lec06 <a href = "{{ site.baseurl }}/assets/LC/engineering.html" target = "_blank">learning check discussion</a>.
 * Today: 1stNG **scatterplots**
 
 

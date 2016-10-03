@@ -18,6 +18,7 @@ page for more information.
 Problem Sets page.
 * **Refresher**: A statistical graphic is a mapping of `data` variables to
 `aes()`thetic attributes of `geom_`etric objects.
+* Lec05 <a href = "{{ site.baseurl }}/assets/LC/5NG.html" target = "_blank">learning check discussion</a>.
 
 
 

@@ -17,7 +17,7 @@ For example, the discussion for the Learning Checks from Lec04 are posted on tha
   2. Each observation forms a row.
   3. Each type of observational unit forms a table.
   <img src="http://garrettgman.github.io/images/tidy-1.png" alt="Drawing" style="width: 800px;"/>
-
+* Lec04 <a href = "{{ site.baseurl }}/assets/LC/tidy_data.html" target = "_blank">learning check discussion</a>.
 
 
 ### In-Class
