@@ -10,7 +10,6 @@ categories: jekyll update
 
 ### Announcements
 
-<!--* Today in <a href = "{{ site.baseurl }}/assets/figure/graphic.pdf" target = "_blank">bad graphics</a>-->
 * Lec09 <a href = "{{ site.baseurl }}/assets/LC/facets.html" target = "_blank">learning check discussion</a>
 
 

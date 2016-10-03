@@ -46,6 +46,7 @@ library(dplyr)
 library(Quandl)
 library(lubridate)
 set.seed(76)
+Quandl.api_key("izVwTt9m5VoEe7TsEzdr")
 ```
 
 
