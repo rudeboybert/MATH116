@@ -31,3 +31,31 @@ library(knitr)
 
 ## Format
 
+* In-class Wed Oct 5. Midterms II & III will be evening midterms.
+* Closed book, no calculators
+* More conceptual in nature
+* You won't need to write explicit R code, but you may need to understand it
+
+
+
+## Sources
+
+* Lectures 01 through 09 inclusive
+    + Slides from each lecture
+    + Corresponding textbook material
+    + Learning check discussions!
+* Nothing on RStudio, R Markdown, nor R packages
+
+
+
+## Major Topics
+
+* Tidy data. What are the components?
+* What is the grammar of graphics?
+* What are the Five Named Graphs (5NG)? What are their distinguishing features
+* Explicitly tie the grammar of graphics to scatterplots and line graphs (no boxplots)
+
+
+
+
+
