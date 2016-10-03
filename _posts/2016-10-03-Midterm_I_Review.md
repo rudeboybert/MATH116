@@ -10,7 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
-* Lec09 <a href = "{{ site.baseurl }}/assets/LC/boxplots.html" target = "_blank">learning check discussion</a>
+* Lec09 <a href = "{{ site.baseurl }}/assets/LC/facets.html" target = "_blank">learning check discussion</a>
 
 ### In-Class
 
@@ -20,4 +20,4 @@ categories: jekyll update
 
 ### After-Class Updates
 
-* Lec10 <a href = "{{ site.baseurl }}/assets/LC/boxplots2.html" target = "_blank">learning check discussion</a>
+* Lec10 <a href = "{{ site.baseurl }}/assets/LC/boxplots.html" target = "_blank">learning check discussion</a>

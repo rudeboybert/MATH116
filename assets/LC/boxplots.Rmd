@@ -1,7 +1,7 @@
 ---
 title: "Boxplots Learning Checks"
 author: "Albert Y. Kim"
-date: "Fri Sep 30, 2016"
+date: "Mon Oct 3, 2016"
 output:
   html_document:
     toc: true
@@ -21,39 +21,12 @@ library(babynames)
 
 
 
-## LC 4.11
+## LC 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
-# Load Packages
-library(dplyr)
-library(ggplot2)
-library(babynames)
-
-# Load babynames data set
-data(babynames)
-
-# Get all babies named Audrey or Jerry
-all_audreys_and_jerrys <- filter(babynames, name=="Audrey" | name=="Jerry")
-
-# Plot using facets
-ggplot(data=all_audreys_and_jerrys, aes(x=year, y=prop, col=sex)) + 
-  geom_line() + 
-  facet_wrap(~name)
 ```
 
-Flip the `facet_` and `color` variables. i.e. show a similar plot with colors representing the name and faceted by sex. Which do you think is preferable?
 
 
 ### Solution
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
-ggplot(data=all_audreys_and_jerrys, aes(x=year, y=prop, col=name)) + 
-  geom_line() + 
-  facet_wrap(~sex)
-```
-
-Neither plot is "right" or "wrong" in any absolute sense of the word: it depends
-on what comparison you want to emphasize. The only comparison I find interesting
-is that while Audrey is almost exclusively female, Jerry was not exclusively
-male: there was a brief period in the 1940's where some females were named
-Jerry. IMO the earlier plot emphasizes this better.
