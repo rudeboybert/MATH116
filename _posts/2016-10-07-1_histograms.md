@@ -10,6 +10,8 @@ categories: jekyll update
 
 ### Announcements
 
+<!--* Discuss Midterm I-->
+* Discuss Problem Set 03
 * Lec10 <a href = "{{ site.baseurl }}/assets/LC/boxplots.html" target = "_blank">learning check discussion</a>
 
 
@@ -17,6 +19,7 @@ categories: jekyll update
 
 * <a href = "{{ site.baseurl }}/assets/2-Data/histograms.html" target = "_blank">Slides</a> on histograms
 * <a href = "https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#histograms" target = "_blank">Sections 4.6</a> of textbook
+
 
 
 ### After-Class Updates
