@@ -47,6 +47,17 @@ There are many ways to organize data. Today we learn one way: the "tidy data" fo
 The third point means we don't mix apples and oranges, keep apples together with apples.
 
 
+## What is Tidy Data?
+
+This slide added on Tue 10/4:
+
+1. Each observation forms a row. In other words, each row corresponds to a single **observational unit**
+1. Each variable forms a column:
+    + Some of the variables may be used to identify the **observational units**. For organizational purposes, it's generally better to put these in the left-hand columns
+    + Some of the variables may be **observed values** associated with each observational unit
+1. Each type of observational unit forms a table.
+
+
 
 ## What is Tidy Data?
 
