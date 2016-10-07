@@ -25,6 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(lubridate)
 library(knitr)
+library(okcupiddata)
 ```
 
 
@@ -41,18 +42,41 @@ Today:
 
 
 
-## Recall from Midterm
+## Histograms
 
-> * Histograms have a continuous/numerical variable as the `x` aesthetic
+> * Midterm: Histograms display information about a single continuous/numerical variable as the `x` aesthetic
 > * The y-axis displays notions of **relative frequency** i.e. which values occur more than 
-others. ggplot computes these values for you
+others. This is not a variable in the data set, but rather is computed internally.
 > * Yoooooooge definition: they are a visualization of the **statistical distribution**.
 
 
 
-## Recall from Lec05
+## Recall from Lec05 Slide 11
 
-Slide 11:
+From `okcupiddata` package, the `profiles` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Histogram
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+
+
+## Recall from Lec05 Slide 11
+
+Cleaned up to only have heights between 55 (5'5'') and 80 (6'8'') inches:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Histogram
+profiles %>% 
+  filter(between(height, 55, 80)) %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
 
 
 
