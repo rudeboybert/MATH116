@@ -50,6 +50,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * Assigned Fri 9/23
 * Due Fri 9/30 11am
+* <a href = "{{ site.baseurl }}/assets/PS/PS-02_solutions.html" target = "_blank">solutions</a>
 
 #### Learning Goals
 
