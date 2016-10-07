@@ -41,4 +41,27 @@ Today:
 
 
 
-## Example
+## Recall from Midterm
+
+> * Histograms have a continuous/numerical variable as the `x` aesthetic
+> * The y-axis displays notions of **relative frequency** i.e. which values occur more than 
+others. ggplot computes these values for you
+> * Yoooooooge definition: they are a visualization of the **statistical distribution**.
+
+
+
+## Recall from Lec05
+
+Slide 11:
+
+
+
+
+
+
+
+
+
+
+
+
