@@ -9,7 +9,7 @@ layout: default
 # Fall 2016 Topic List
 
 In reverse chronological order (a more detailed outline can be found
-[here](https://docs.google.com/spreadsheets/d/1qy21hHMbjYfv65IL5DwxID0nEltXgOD6h52hBVwWa_s/edit#gid=0)):
+[here](https://docs.google.com/spreadsheets/d/1qy21hHMbjYfv65IL5DwxID0nEltXgOD6h52hBVwWa_s/edit#gid=0)).
 
 ## 4. Regression
 
