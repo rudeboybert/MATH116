@@ -13,6 +13,45 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
   
 
+## Problem Set 04
+
+* Problem set 04 will be posted latest by Saturday at noon.
+
+<!--
+* Assigned Fri 10/7
+* Due Fri 10/14 11am
+-->
+
+
+#### Learning Goals
+
+* 
+
+
+#### Homework
+
+
+<!--
+* As described in Lec03, before tackling the problem set, install the following packages
+    + `Quandl`: a package makes it amazingly easy to get financial and economic data from [quandl.com](https://www.quandl.com/)
+    + `lubridate`: a package with consistent and memorable syntax that makes working with dates easy
+* Download this file to your computer: <a href="{{ site.baseurl }}/assets/PS/PS-04.Rmd" target="_blank">`PS-04.Rmd`</a>
+* Upload it to RStudio server into the `problem_sets` folder:
+    + In the Files panel, navigate to your `problem_sets` folder
+    + Then click "Upload"
+-->
+
+<br>
+
+***
+
+<br>
+
+
+
+
+  
+
 ## Problem Set 03
 
 * Assigned Fri 9/30
