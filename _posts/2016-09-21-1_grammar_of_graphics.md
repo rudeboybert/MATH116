@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec05 Grammar of Graphics"
-subtitle: "Constructing statistical graphics in a 'grammatical' fashion and introducing the 5NG: 5 Named Graphs."
+subtitle: "Constructing statistical graphics in a 'grammatical' fashion and introducing the Five Named Graphs (5NG)."
 date:   2016-09-21 10:10:45
 categories: jekyll update
 ---

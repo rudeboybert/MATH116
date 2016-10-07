@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lec10 Boxplots"
+title:  "Lec10 Boxplots Part 2"
 subtitle: "Finishing boxplots. Also Midterm I review."
 date:   2016-10-03 10:10:45
 categories: jekyll update

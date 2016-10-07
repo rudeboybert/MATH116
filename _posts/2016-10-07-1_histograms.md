@@ -10,6 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
+* Office hours today: 12:15-1:00pm
 * Discuss Midterm I
 * Discuss Problem Set 02 <a href = "{{ site.baseurl }}/assets/PS/PS-02_solutions.html" target = "_blank">solutions</a>
 * Lec10 <a href = "{{ site.baseurl }}/assets/LC/boxplots.html" target = "_blank">learning check discussion</a>
