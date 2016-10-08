@@ -5,3 +5,5 @@
 *.Rproj
 .sass-cache/*
 _site/*
+*_cache/
+*_files/

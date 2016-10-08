@@ -15,31 +15,34 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ## Problem Set 04
 
-* Problem set 04 will be posted latest by Saturday at noon.
-
-<!--
-* Assigned Fri 10/7
+* Assigned Sat 10/8
 * Due Fri 10/14 11am
--->
 
 
 #### Learning Goals
 
-* 
+* This problem set assumes you are now further comfortable with the R, RStudio, 
+and R Markdown workflow, and thus the complexity of the questions asked is
+increased.
+* Using more of the 5NG tools for data visualization to answer meaningful
+questions using real data.
+* Slowly introducting notions of data manipulation/wrangling.
+* Putting statistical and data sciences in a greater social context via Hans 
+Rosling's 20 minute TED Talk on <a target="_blank" class="page-link"
+href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en#t-801073">The
+best stats you've ever seen</a> (**bold** title, I know) on international
+development data.
 
 
 #### Homework
 
-
-<!--
-* As described in Lec03, before tackling the problem set, install the following packages
-    + `Quandl`: a package makes it amazingly easy to get financial and economic data from [quandl.com](https://www.quandl.com/)
-    + `lubridate`: a package with consistent and memorable syntax that makes working with dates easy
+* As described in Lec03, install the following packages
+    + The `okcupiddata` package containing the `profiles` data set: profile information for ~60K San Francisco OkCupid users in June 2012
+    + The `gapminder` package containing the `gapminder` data set: international development data 
 * Download this file to your computer: <a href="{{ site.baseurl }}/assets/PS/PS-04.Rmd" target="_blank">`PS-04.Rmd`</a>
 * Upload it to RStudio server into the `problem_sets` folder:
     + In the Files panel, navigate to your `problem_sets` folder
     + Then click "Upload"
--->
 
 <br>
 
@@ -67,8 +70,8 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 #### Homework
 
 * As described in Lec03, before tackling the problem set, install the following packages
-    + `Quandl`: a package makes it amazingly easy to get financial and economic data from [quandl.com](https://www.quandl.com/)
-    + `lubridate`: a package with consistent and memorable syntax that makes working with dates easy
+    + The `Quandl` package for making it amazingly easy to get financial and economic data from [quandl.com](https://www.quandl.com/)
+    + The `lubridate` package with consistent and memorable syntax that makes working with dates easier
 * Download this file to your computer: <a href="{{ site.baseurl }}/assets/PS/PS-03.Rmd" target="_blank">`PS-03.Rmd`</a>
 * Upload it to RStudio server into the `problem_sets` folder:
     + In the Files panel, navigate to your `problem_sets` folder
