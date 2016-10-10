@@ -48,20 +48,15 @@ Today:
 1. **Barplot AKA barchart AKA bargraph**
 
 
-
-
-
 ## Exercise
 
-Say we have the following piecharts represent the polling from a local election with five candidates (1-5) at three different time points A, B, an C:
+Today:
 
-<img src="../figure/piecharts.png" alt="Drawing" style="width: 550px;"/>
-
-
-Answer the following questions:
-
-* In the first race, is candidate 5 doing better than candidate 4?
-* Who did better between time A and time B, candidate 2 or candidate 4?
+1. Scatterplot AKA bivariate plot
+1. Linegraph
+1. Boxplot
+1. Histogram
+1. **Barplot AKA barchart AKA bargraph**
 
 
 
@@ -71,8 +66,7 @@ Answer the following questions:
 
 * Barplots display information about a single **categorical** variable as the `x` aesthetic.
 * The y-axis displays notions of **relative frequency** i.e. which values occur more than 
-others.
-* This is not an **explicit** variable in the data set, but rather is either
+others. This is not an **explicity** variable in the data set, but rather is either
     + Computed internally
     + Computed manually by yourself
 
@@ -83,65 +77,9 @@ others.
 ## Barplots
 
 > * `geom_bar()` is the trickiest of the 5NG in `ggplot2`, hence me presenting it last
-> * Correspondingly, we'll use it in limited capacity in this class and no need to open can of worms.
-> * If, however, you are feeling adventurous and want to open the can, feel free to ask me anyway!
-
-
-
-## Barplots
-
-Recall from Lec05 Slide 16, we displayed
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
-# Bar Chart
-babynames_counts %>% 
-  group_by(name) %>% 
-  summarise(n=sum(n)) %>% 
-  ggplot(data=., aes(x=name, y=n)) +
-  geom_bar(stat="identity") +
-  labs(x="Name", y="Count", title="Name Counts since 1990")
-```
-
-
-
-
-
-## Chief Difficulty with Barplots
-
-There are two different ways to input the data:
-
-> * Where the counts are **not** pre-computed (today)
-> * Where the counts are pre-computed
-
-
-
-
-
-## Example
-
-Counts **are not** pre-computed:
-
-```{r, echo=FALSE}
-x <- data_frame(`Row Number`=1:5, name=c("Albert", "Albert", "Albert", "Virginia", "Virginia"))
-kable(x)
-```
-
-
-
-
-
-## Example
-
-Counts **are** pre-computed in variable `n`. So `n` becomes a `y` aesthetic variable!
-
-```{r, echo=FALSE}
-x %>% 
-  count(name) %>% 
-  kable()
-```
-
-
-
+> * Correspondingly, we'll use it in limited capacity in this class
+> * Also take me at my word for certain commands.
+> * If, however, you are feeling adventurous, feel free to ask me anyway!
 
 
 
