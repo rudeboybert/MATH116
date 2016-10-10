@@ -109,8 +109,8 @@ babynames_counts %>%
 
 There are two different ways to input the data:
 
-> * Where the counts are **not** pre-computed (today)
-> * Where the counts are pre-computed
+> * Where the counts **are not** pre-computed (today)
+> * Where the counts **are** pre-computed
 
 
 
