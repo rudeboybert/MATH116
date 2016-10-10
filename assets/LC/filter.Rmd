@@ -1,0 +1,45 @@
+---
+title: "Filter Learning Checks"
+author: "Albert Y. Kim"
+date: "Wed Oct 12, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(79)
+library(tidyverse)
+library(knitr)
+library(nycflights13)
+```
+
+
+
+## Load Packages and Data
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+library(nycflights13)
+
+# Load weather data set in nycflights
+data(weather)
+```
+
+
+
+## LC 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+```
+
+
+
+### Solution
+
