@@ -23,9 +23,6 @@ In reverse chronological order (a more detailed outline can be found
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %d" %}
-    {% assign current_year = post.date | date: "%Y" %}
-    {% assign current_month = post.date | date: "%m" %}
-    {% assign current_day = post.date | date: "%d" %}
     {% if "10 11" <= current_date and current_date <= "10 13" %}
     <li>
       {{ post.date | date: "%a %b %-d" }} -  
@@ -43,9 +40,6 @@ In reverse chronological order (a more detailed outline can be found
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %d" %}
-    {% assign current_year = post.date | date: "%Y" %}
-    {% assign current_month = post.date | date: "%m" %}
-    {% assign current_day = post.date | date: "%d" %}
     {% if "09 20" <= current_date and current_date <= "10 10" %}
     <li>
       {{ post.date | date: "%a %b %-d" }} -  
