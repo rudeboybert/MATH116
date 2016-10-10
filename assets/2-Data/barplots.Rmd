@@ -1,0 +1,77 @@
+---
+title: "Barplots"
+author: "Albert Y. Kim"
+date: "Mon Oct 10, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(okcupiddata)
+```
+
+
+
+## 5NG
+
+Today:
+
+1. Scatterplot AKA bivariate plot
+1. Linegraph
+1. Boxplot
+1. Histogram
+1. **Barplot AKA Barchart AKA bargraph**
+
+
+
+## Histograms
+
+> * Midterm: Histograms display information about a single categorical variable as the `x` aesthetic
+> * The y-axis displays notions of **relative frequency** i.e. which values occur more than 
+others. This is not a variable in the data set, but rather is computed internally.
+
+
+
+## Recall 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+```
+
+
+
+## Recall
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
