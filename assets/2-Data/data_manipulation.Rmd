@@ -1,0 +1,94 @@
+---
+title: "Intro to Data Manipulation/Wrangling"
+author: "Albert Y. Kim"
+date: "Wed Oct 12, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+
+## 5MV
+
+Say hello to the 5MV: the **five main verbs**
+
+1. `filter()` rows matching criteria
+1. `select()` columns by variable name
+1. `mutate()` existing variables to create new ones
+1. `arrange()` rows
+1. `summarise()` numerical variables that are `group_by()` categorical variables
+
+
+
+## 5MV + Joins
+
+Also, we can `_join()` two data frames `by` corresponding variables
+
+
+
+
+## Important Concept: Piping
+
+Piping allows you to take the output of one function and **pipe** it as the input of
+the next function. You can string along several pipes to form a single **chain**.
+
+* R Command: `%>%`
+* Described as: "_then_". 
+
+
+
+## Important Concept: Piping
+
+Ex:  say you want to apply functions `h()` and `g()` and then `f()` on data `x`.  You can do
+
+* `f(g(h(x)))` OR
+* `x %>% h() %>% g() %>% f()`
+
+This
+
+> * saves you from confusing nested parentheses
+> * emphasizes the **sequential** breaking down of tasks, making it more readable
+> * i.e. Do this _then_ do this _then_ do this _then_ ...
+
+
+
+
+## Important Concept: Piping
+
+Pipes are always directed to the first argument of any function. The following three bits of R code
+do the same thing, extract all january flights:
+
+```{r,eval=FALSE, echo=TRUE}
+library(nycflights13)
+data(flights)
+
+# Bit 1: No piping
+filter(flights, month == 1)
+
+# Bit 2: Piping. Note no comma
+flights %>% filter(month == 1)
+
+# Bit 3: Piping across multiple lines (prefered)
+flights %>% 
+  filter(month==1)
+```
