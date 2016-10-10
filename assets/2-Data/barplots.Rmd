@@ -66,6 +66,14 @@ Answer the following questions:
 
 
 
+## Exercise
+
+<img src="../figure/barplots.png" alt="Drawing" style="width: 700px;"/>
+
+
+
+
+
 ## Barplots
 
 * Barplots display information about a single **categorical** variable as the `x` aesthetic.
