@@ -57,7 +57,6 @@ Say we have the following piecharts represent the polling from a local election 
 
 <img src="../figure/piecharts.png" alt="Drawing" style="width: 550px;"/>
 
-
 Answer the following questions:
 
 * In the first race, is candidate 5 doing better than candidate 4?
