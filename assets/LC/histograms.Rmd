@@ -34,12 +34,54 @@ data(weather)
 
 
 
-## LC 
+
+
+## LC 4.23-4.25
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data = weather, aes(x = temp)) +
+  geom_histogram(bins = 30)
+ggplot(data = weather, aes(x = temp)) +
+  geom_histogram(bins = 60)
 ```
 
+1. What does changing the number of bins from 30 to 60 tell us about the distribution of temperatures?
+1. Would you classify the distribution of temperatures as symmetric or skewed?
+1. What would you guess is the "center" value in this distribution?  Why did you make that choice?
 
 
 ### Solution
 
+1. The distribution doesn't change much. But by refining the bid width, we see
+that the temperature data has a high degree of accuracy. What do I mean by
+accuracy? Looking at the `temp` variabile by `View(weather)`, we see that the
+precision of each temperature recording is 2 decimal places.
+1. It is rather symmetric, i.e. there are no **long tails** on either side.
+1. The center is around 55&deg;F. By running the `summary()` command, we see
+that the mean and median are very similar. In fact, when the distribution is
+symmetric the mean equals the median.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+summary(weather$temp)
+```
+
+
+
+## LC 4.26
+
+1. Relative to Seattle, WA temperatures, is this data spread out greatly from the center or are they close? Use this [chart](http://dssni5kiwicxb.cloudfront.net/climate/Washington/Seattle%20Sea-Tac%20Airport/temp.png) as a reference for Seattle.
+
+### Solution
+
+While, it appears that Seattle weather has a similar center of 55&deg;F, its
+temperatures are almost entirely between 35&deg;F and 75&deg;F for a range of
+about 40&deg;F. Seattle temperatures are much less spread out than New York i.e.
+much more consistent over the year. New York on the other hand has much colder
+days in the winter and much hotter days in the summer.
+
+Expressed differently, the middle 50% of values, as delineated by the interquartile
+range is 30&deg;F:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+IQR(weather$temp, na.rm=TRUE)
+```

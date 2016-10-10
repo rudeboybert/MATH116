@@ -25,9 +25,16 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(lubridate)
 library(knitr)
-library(okcupiddata)
+library(babynames)
 ```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
+# Bar Chart
+babynames_counts <- babynames %>% 
+  mutate(decade = floor(year / 10) * 10) %>% 
+  filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
+  filter(decade >= 1990)
+```
 
 
 ## 5NG
@@ -38,40 +45,107 @@ Today:
 1. Linegraph
 1. Boxplot
 1. Histogram
-1. **Barplot AKA Barchart AKA bargraph**
+1. **Barplot AKA barchart AKA bargraph**
 
 
 
-## Histograms
 
-> * Midterm: Histograms display information about a single categorical variable as the `x` aesthetic
+
+## Barplots
+
+> * In theory: Barplots display information about a single **categorical** variable as the `x` aesthetic.
+> * In practice: We'll see shortly there is a twist.
 > * The y-axis displays notions of **relative frequency** i.e. which values occur more than 
-others. This is not a variable in the data set, but rather is computed internally.
+others. This is (in theory) not a variable in the data set, but rather is computed.
 
 
 
-## Recall 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
+## Barplots
+
+> * `geom_bar()` is the trickiest of the 5NG in `ggplot2`, hence me presenting it last
+> * Correspondingly, we'll use it in limited capacity in this class
+> * Also take me at my word for certain commands.
+> * If, however, you are feeling adventurous, feel free to ask me anyway!
+
+
+
+
+
+## Barplots
+
+Recall from Lec05 Slide 16, we displayed
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
+# Bar Chart
+babynames_counts %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  ggplot(data=., aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
 ```
 
 
 
-## Recall
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+## Input Data
 
+The input `data` to the `ggplot()` for `geom_bar()` has to be **pre-counted** per value of the categorical variable.
+
+
+
+
+
+
+## Input Data
+
+So while the raw `babynames` data looks like...
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
+babynames_counts %>% 
+  select(-prop, -decade) %>% 
+  kable()
 ```
 
 
 
 
+## Input Data
 
+The input data needs to be **pre-counted** for each name.  Let's call this data
+frame `babynames_counted`.
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
+babynames_counts %>% 
+  select(-prop, -decade) %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  kable()
+```
 
+  
 
+## ggplot Command
 
+* We assign the `y` `aes()`thetic to be the **pre-counted** variable `n`
+* The `stat="identity"` in `geom_bar()`:
+
+```{r, eval=FALSE, echo=TRUE}
+ggplot(data=babynames_counted, aes(x=name, y=n)) +
+  geom_bar(stat="identity")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=3}
+# Bar Chart
+babynames_counts %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  ggplot(data=., aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
+```
 
 
 
