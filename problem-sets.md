@@ -11,6 +11,42 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
+
+<br>
+
+***
+
+<br>
+
+  
+
+## Problem Set 05
+
+* Assigned Fri 10/14
+* Due Fri 10/21 11am
+
+
+#### Learning Goals
+
+* 
+
+
+#### Homework
+
+* Install the following packages
+    + 
+* Download this file to your computer and upload it to your `problem_sets` folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-05.Rmd" target="_blank">`PS-05.Rmd`</a>
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
   
 
 ## Problem Set 04
@@ -43,6 +79,10 @@ development data.
 * Upload it to RStudio server into the `problem_sets` folder:
     + In the Files panel, navigate to your `problem_sets` folder
     + Then click "Upload"
+    
+    
+    
+    
 
 <br>
 

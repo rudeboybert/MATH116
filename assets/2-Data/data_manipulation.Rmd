@@ -28,25 +28,101 @@ library(knitr)
 
 
 
+## Switching Gears
+
+With the internet, we are in a new age of data:
+
+![](../figure/DataDeluge.png)
+
+
+
+## Bridging the Gap
+
+> * Meet Jenny Bryan at UBC: <a target="_blank" class="page-link" href="https://github.com/jennybc">GitHub</a> profile
+> * She teaches a graduate level class <a target="_blank" class="page-link" href="http://stat545.com/">STAT 545</a> on **Data wrangling, exploration, and analysis with R**. Note the ordering.
+> * <img src="../figure/gap.png" alt="Drawing" style="width: 500px;"/>
+
+
+
+## Classroom vs Real Data
+
+Jenny Bryan said: *"Classroom data are like teddy bears and real data are like a grizzly bear with salmon blood dripping out its mouth."*
+
+Traditional Classroom Data            |  Real Data
+:-------------------------:|:-------------------------:
+<img src="../figure/teddy.jpg" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/grizzly.gif" alt="Drawing" style="width: 300px;"/>
+
+
+
+## Real Data
+
+Some attributes of real data:
+
+> * Often not in a format ready for analysis
+> * Messy and needs cleaning
+> * Typos, weird outliers
+> * Missing values
+> * Inconsistent formatting
+
+
+
+## Real Data
+
+Inconsistent formatting is a real pain:
+
+> * Dates: "2016/10/12" vs "2016-10-12" vs "10/12/16" vs "10/12/2016" vs "Oct 12, 2016"
+> * "DC" vs "D.C." vs "District of Columbia"
+> * "Beyonce" vs "Beyoncé"
+
+
+
+## dplyr Package
+
+To take this, we now officially introduce the `dplyr` package: a grammar of data manipulation
+
+<p align="center">
+<img src="../figure/dplyr.png" alt="Drawing" style="width: 300px;"/>
+</p>
+
+
+
+## Pedogical Note
+
+Were it not for this package, I probably wouldn't be taking a data-centric view to this course.   
+
+**Why do I have a `dplyr` sticker on my laptop? Why is `dplyr` so good IMO?**
+
+> * The **verb** describing the action you want to perform on your data **IS** the name of the `function()` you use.
+> * So you don't need extensive programming experience (indexing, for loops, etc) to be able to manipulate data.
+
+
+
+
 ## 5MV
 
 Say hello to the 5MV: the **five main verbs**
 
-1. `filter()` rows matching criteria
-1. `select()` columns by variable name
-1. `mutate()` existing variables to create new ones
-1. `arrange()` rows
-1. `summarise()` numerical variables that are `group_by()` categorical variables
-
-
-
-## 5MV + Joins
-
-Also, we can `_join()` two data frames `by` corresponding variables
+> 1. `select()` columns by variable name
+> 1. `filter()` rows matching criteria
+> 1. `mutate()` existing variables to create new ones
+> 1. `arrange()` rows
+> 1. `summarise()` numerical variables that are `group_by()` categorical variables
+> 1. Also, later `_join()` two separate data frames `by` corresponding variables
 
 
 
 
+## Today:
+
+1. `select()` columns by variable name: front of cheatsheet, bottom right
+1. `filter()` rows matching criteria: front of cheatsheet, bottom middle. We've already used this in Chapter 3 on Data Viz.
+
+Keep looking back and forth between book and cheatsheet!
+
+
+
+
+<!--
 ## Important Concept: Piping
 
 Piping allows you to take the output of one function and **pipe** it as the input of
@@ -88,7 +164,9 @@ filter(flights, month == 1)
 # Bit 2: Piping. Note no comma
 flights %>% filter(month == 1)
 
-# Bit 3: Piping across multiple lines (prefered)
+# Bit 3: Piping across multiple lines (preferred for legibility)
 flights %>% 
   filter(month==1)
 ```
+-->
+
