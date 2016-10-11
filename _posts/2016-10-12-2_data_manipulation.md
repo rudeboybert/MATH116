@@ -12,7 +12,7 @@ categories: jekyll update
 
 * Lec12 <a href = "{{ site.baseurl }}/assets/LC/barplots.html" target = "_blank">learning check discussion</a>
 * Switch gears to new part of data/science pipeline: **Tidy/Transform**
-<img src="{{ site.baseurl }}/assets/figure/pipeline.png" alt="Drawing" style="width: 500px;"/>
+<img src="{{ site.baseurl }}/assets/figure/pipeline.png" alt="Drawing" style="width: 500px;" border="1"/>
 
 <!--
 * `dplyr` cheatsheet:
