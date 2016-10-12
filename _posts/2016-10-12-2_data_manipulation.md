@@ -10,6 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
+* [What if men and women voted in separate elections?](http://fivethirtyeight.com/features/election-update-women-are-defeating-donald-trump/)
 * Lec12 <a href = "{{ site.baseurl }}/assets/LC/barplots.html" target = "_blank">learning check discussion</a>
 * Switch gears to new part of data/science pipeline: **Tidy/Transform**
 <img src="{{ site.baseurl }}/assets/figure/pipeline.png" alt="Drawing" style="width: 500px;" border="1"/>
