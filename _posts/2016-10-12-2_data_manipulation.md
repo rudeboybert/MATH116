@@ -28,5 +28,5 @@ categories: jekyll update
 
 ### After-Class Updates
 
-* Lec13 <a href = "{{ site.baseurl }}/assets/LC/filter.html" target = "_blank">learning check discussion</a>
+* Lec13 <a href = "{{ site.baseurl }}/assets/LC/data_manipulation.html" target = "_blank">learning check discussion</a>
 

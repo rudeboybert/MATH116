@@ -1,0 +1,170 @@
+---
+title: "More Data Manipulation"
+author: "Albert Y. Kim"
+date: "Fri Oct 14, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+
+
+
+## Last Time: 5MV
+
+1. `select()` columns by variable name: **front of cheatsheet, bottom right**
+1. `filter()` rows matching criteria: **front of cheatsheet, bottom middle.**
+1. ~~`summarise()` numerical variables that are `group_by()` categorical variables~~
+1. ~~`mutate()` existing variables to create new ones~~
+1. ~~`arrange()` rows~~
+
+
+
+
+## Important Concept: Piping
+
+Piping allows you to take the output of one function and **pipe** it as the input of
+the next function. You can string along several pipes to form a single **chain**.
+
+* R Command: `%>%`
+* Described as: "_then_". 
+
+**front of cheatsheet, bottom left**
+
+
+
+## Important Concept: Piping
+
+Ex:  say you want to apply functions `h()` and `g()` and then `f()` on data `x`.  You can do
+
+> * `f(g(h(x)))` OR
+> * `x %>% h() %>% g() %>% f()`
+
+
+
+
+## Important Concept: Piping
+
+This
+
+> * saves you from confusing nested parentheses
+> * emphasizes the **sequential** breaking down of tasks, making it more readable
+> * i.e. Do this _then_ do this _then_ do this _then_ ...
+
+
+
+
+## Important Concept: Piping
+
+Pipes are always directed to the first argument of any function. The following three bits of R code
+do the same thing: extract all january flights:
+
+```{r,eval=FALSE, echo=TRUE}
+library(dplyr)
+library(nycflights13)
+data(flights)
+
+# Bit 1: No piping
+filter(flights, month == 1)
+
+# Bit 2: Piping. Note no comma
+flights %>% filter(month == 1)
+
+# Bit 3: Piping across multiple lines (preferred for legibility)
+flights %>% 
+  filter(month==1)
+```
+
+
+
+
+
+
+## Today: 5MV
+
+1. ~~`select()` columns by variable name: front of cheatsheet, bottom right~~
+1. ~~`filter()` rows matching criteria: front of cheatsheet, bottom middle~~
+1. `summarise()` numerical variables that are `group_by()` categorical variables: **back of cheatsheet, left-hand column, top and bottom**
+1. ~~`mutate()` existing variables to create new ones~~
+1. ~~`arrange()` rows~~
+
+
+
+
+
+## Motto of the United States
+
+
+<img src="../figure/seal_US.png" alt="Drawing" style="width: 500px;"/>
+
+
+
+
+
+## Summary Functions
+
+**Summary statistics** are single numbers that summarise a **vector** (i.e. a sequence/list) of numerical values:
+
+<img src="../figure/summary.png" alt="Drawing" style="width: 700px;"/>
+
+
+
+
+
+## Example
+
+Load the following in you console
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+
+# Create data frame with two variables
+test_data <- data_frame(
+  name=c("Albert", "Albert", "Albert", "Virginia", "Virginia"),
+  value=c(1, 2, 3, 4, 5)
+)
+
+# See contents in console
+test_data
+```
+
+
+
+## Example
+
+Run each of these 3 bits separately in your console:
+
+```{r, eval=FALSE, echo=TRUE}
+# Bit 1: No group structure: overall sum
+test_data %>% summarise(total=sum(value))
+
+# Bit 2: Grouped by name: name-by-name sum "total"
+test_data %>% group_by(name) %>% summarise(total=sum(value))
+
+# Bit 3: Grouped by name: name-by-name sum "total" and mean "avg"
+test_data %>% group_by(name) %>% 
+  summarise(total=sum(value), avg=mean(value))
+```
+
+
+
