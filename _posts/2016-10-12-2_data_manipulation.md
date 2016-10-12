@@ -10,14 +10,14 @@ categories: jekyll update
 
 ### Announcements
 
-* [What if men and women voted in separate elections?](http://fivethirtyeight.com/features/election-update-women-are-defeating-donald-trump/)
 * Lec12 <a href = "{{ site.baseurl }}/assets/LC/barplots.html" target = "_blank">learning check discussion</a>
 * Switch gears to new part of data/science pipeline: **Tidy/Transform**
 <img src="{{ site.baseurl }}/assets/figure/pipeline.png" alt="Drawing" style="width: 500px;" border="1"/>
 * `dplyr` cheatsheet:
     + Handout in class
     + Also accessible from RStudio -> Menu Bar -> Help -> Cheatsheets -> Data Manipulation with `dplyr` and `tidyr`
-    
+* [What if men and women voted in separate elections?](http://fivethirtyeight.com/features/election-update-women-are-defeating-donald-trump/) Which states switched? [Code](https://gist.github.com/rudeboybert/1837a4d79bfae938246b662fc15629cd)
+
 
 ### In-Class
 
