@@ -1,5 +1,5 @@
 ---
-title: "Filter Learning Checks"
+title: "`select()` and `filter()` Learning Checks"
 author: "Albert Y. Kim"
 date: "Wed Oct 12, 2016"
 output:
@@ -28,18 +28,53 @@ library(ggplot2)
 library(dplyr)
 library(nycflights13)
 
-# Load weather data set in nycflights
-data(weather)
+# Load necessary data sets from nycflights
+data(flights)
 ```
 
 
 
-## LC 
+## LC 5.1, 5.3
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
-```
+* How many different ways are there to select all three of `dest`, `air_time`, and `distance` variables from `flights`?  Give the code showing how to do all of them you can think of.
+* Why might we want to use the `select()` function on a data frame?
 
 
 
 ### Solution
 
+We recall the variables we have by using the `names()` function:
+
+```{r}
+names(flights)
+```
+
+
+* We could either
+    + `select(flights, dest, air_time, distance)` i.e. select them directly
+    + `select(flights, dest:distance)` i.e. select a range of them, since they are sequential columns
+    + `select(flights, -year, -month, -day, ETC)` i.e. deselect all the other ones. Admitedly this is rather awkward.
+    + many more...
+* I would probably do the first one, b/c it doesn't assume that `dest`, `air_time`, and `distance` are sequentially columns.
+* `select()` would help pare down the number of columns so that we can easily `View()` them.
+
+
+
+## LC 5.4
+
+```{r}
+not_summer_flights <- filter(flights, !between(month, 6, 8))
+```
+
+Instead of using the `!` function, what is the other way we could filter only the rows that are not summer months (June, July, or August) in the `flights` data frame? Test it out.
+
+### Solution
+
+Lots of different ways! Try these out!
+
+```{r, eval=FALSE}
+filter(flights, 
+       month == 1 | month == 2 | month == 3 | month == 4 | month == 5 | month == 9 | month == 10 | month == 11 | month == 12)
+```
+
+This definitely not as efficient as using the `!` operator.
