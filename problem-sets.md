@@ -99,12 +99,18 @@ development data.
 
 * Assigned Fri 9/30
 * Due Fri 10/7 11am
+* <a href = "{{ site.baseurl }}/assets/PS/PS-03_discussion.html" target = "_blank">PS-03 Discussion</a>
+
+
+
 
 #### Learning Goals
 
 * Ramping up the use of the `ggplot2` package for data visualization
 * Exploring real **time series** data
 * Using Google as a research tool
+
+
 
 
 #### Homework
@@ -132,7 +138,7 @@ development data.
 
 * Assigned Fri 9/23
 * Due Fri 9/30 11am
-* <a href = "{{ site.baseurl }}/assets/PS/PS-02_solutions.html" target = "_blank">Solutions</a>
+* <a href = "{{ site.baseurl }}/assets/PS/PS-02_discussion.html" target = "_blank">Discussion)</a>
 
 #### Learning Goals
 
