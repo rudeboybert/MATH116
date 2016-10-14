@@ -91,13 +91,14 @@ currencies <- bind_rows(bitcoin, gold) %>%
 Your boss wants to know: "You took Intro to Statistical and Data Sciences right? Give me an
 executive summary of trends in these two forms of currency."
 
+
+**Solution**: Overall, gold seems to be trending down, while bitcoin has definitely not recovered from its peak value in late 2013.
+
 ```{r, fig.height=3, fig.width=5}
 # Write your code below:
 ggplot(data=currencies, aes(x=date, y=price, col=type)) + 
   geom_line()
 ```
-
-**Solution**: Overall, gold seems to be trending down, while bitcoin has definitely not recovered from its peak value in late 2013.
 
 
 #### b)
@@ -106,15 +107,15 @@ Your boss wants to know: "So we got an investor who has no stomach for
 volatility in currency prices; they like a nice stable currency to park their
 money in and not worry about it. What should they invest in?"
 
+**Solution**: the variable `percent_diff` really highlights this trend. It is
+clear that gold is wayyyyyy less volatile than bitcoin. i.e. invest in bitcoin
+only if you have the stomach for it.
+
 ```{r, warning=FALSE, fig.height=3, fig.width=5}
 # Write your code below:
 ggplot(data=currencies, aes(x=date, y=percent_diff, col=type)) + 
   geom_line()
 ```
-
-**Solution**: the variable `percent_diff` really highlights this trend. It is
-clear that gold is wayyyyyy less volatile than bitcoin. i.e. invest in bitcoin
-only if you have the stomach for it.
 
 `percent_diff` is computed as follows:
 
