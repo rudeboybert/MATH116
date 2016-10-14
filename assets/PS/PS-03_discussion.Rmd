@@ -131,6 +131,23 @@ i.e. you follow these steps:
 
 
 
+#### STOP
+
+And observe. It is now the end of week 5, and only now do we see our first formula.
+Recall the choice we took for this intro-level class:
+
+If we're going to remove this...            |  We need this to fill the void...
+:-------------------------:|:-------------------------:
+<img src="../figure/formulas.png" alt="Drawing" style="width: 300px;"/>   |  <img src="../figure/coding.jpg" alt="Drawing" style="width: 300px;"/> 
+
+This emphasizes another important point:
+
+* **statistics is not math**
+* **statistics uses math** as a tool to answer questions about the world using data, like in physics/econ/bio.
+
+
+
+
 
 #### c)
 
