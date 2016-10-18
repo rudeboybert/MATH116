@@ -31,66 +31,98 @@ console after loading the data.
 library(ggplot2)
 library(dplyr)
 
-# For working with dates:
-library(lubridate)
-# OkCupid Data:
+# Packages containing data sets for today
 library(okcupiddata)
-# Gapminder Data:
 library(gapminder)
-# For making pretty table outputs
-library(knitr)
 ```
 
 
 
 
 
+## Question 1: Drug Use Amongst OkCupid Users
 
+Let's revisit the 60,000 San Francisco OkCupid users in 2012 and consider the
+variable `drug` reflecting users' answers to a question on their drug use.
 
-## Question 1: OkCupid Profile Data
-
-We investigate a data set of about 60,000 San Francisco OkCupid users in 2012.
-
-```{r, cache=TRUE, echo=FALSE}
+```{r, echo=FALSE}
 # Do not modify any code in this block, however you still need to run it in your
 # console to load the profiles data set, which is in the okcupiddata R package.
 data(profiles)
+
+# Convert missing values in drugs to an actual category "N/A". You do not need
+# to understand this code right now.
+profiles <- profiles %>% 
+  mutate(drugs=ifelse(is.na(drugs), "N/A", drugs))
 ```
 
 
-#### a)
+#### a) 
 
-Use a `geom_histogram()` to compare male and female heights, for 
+Type in a series of commands that will output how many men and women there are.
 
-* A **reasonable range of heights**. For example, a self-referenced height of 30 
-inches is certainly someone joking around.
-* An appropriate binning structure given the units of the data
-
-```{r}
+```{r, echo=TRUE}
 # Write your code below:
 
 ```
 
 
+
 #### b)
 
-1. How tall is a typical male? 
-2. How tall is a typical female?
-3. While the centers of both **distributions** might be different, what about their spread?
+Create a visualization that shows the distribution of the different responses in 
+the variable `drugs`.
+
+```{r, echo=TRUE}
+# Write your code below:
+
+```
 
 
 #### c)
 
-Within the male histogram there should be two large spikes. At what height is the
-second spike occurring? What could be a sociological explanation for this phenomenon?
+Create a visualization that shows the same information as in part a), but for
+men and women separately. Who is more likely to never use drugs? Men or women?
+
+```{r, echo=TRUE}
+# Write your code below:
+
+```
 
 
 #### d)
 
-Create a boxplot comparing ages for males and females? What can you say about
-the age distribution of females on San Francisco when compared to the males'?
+In lines 54-55 above we made sure to convert all missing values, encoded in R
+as `NA`, to a specific response value "N/A"" i.e. not answered. Why do you think it was
+important to do so?
 
-```{r, warning=FALSE}
+
+
+
+
+
+
+## Question 2: Gapminder
+
+We consider the Gapminder data from Problem Set 04 again.
+
+```{r, echo=FALSE}
+# Do not modify any code in this block, however you still need to run it in your
+# console to load the gapminder data set, which is in the gapminder R package.
+data(gapminder)
+```
+
+
+
+#### a) 
+
+Output a table that allows you to answer the following two questions on the GDP of countries in the year 2007:
+
+1. What is the richest continent per capita in 2007?
+1. Which continent seems to have the most consistent GDP per capita across its constituent countries in 2007?
+
+
+```{r, echo=TRUE}
 # Write your code below:
 
 ```
@@ -101,116 +133,46 @@ the age distribution of females on San Francisco when compared to the males'?
 
 
 
-## Question 2: 
-
-(Preview of chapter on data manipulation/wrangling) Using the same San Francisco
-OkCupid data from Question 1, a research scientist produces the table 
-**cross-classifying** a user's self-identified sexual orientation and their sex
-below. The following code will:
-
-1. Take all users' `profiles` data **then**
-1. First `group` users' `_by` their self-identified sexual `orientation`, second `group` users' `_by` their `sex` **then**
-1. Within each group, `summarise` that group with a `count` of the `n()`umber of people **then**
-1. `mutate` existing variables to create new ones:
-    + the `proportion` for each group: `count/sum(count)`
-    + then `round()` the `proportion` variable to two `digits`.
 
 
-```{r}
-# Do not modify any code in this block.
-output_table <- profiles %>% 
-  group_by(orientation, sex) %>% 
-  summarise(count = n()) %>% 
-  mutate(
-    proportion = count/sum(count),
-    proportion = round(proportion, digits=2)
-    )
-# Print table in clean format:
-kable(output_table)
-```
+## Question 3: Titanic
 
-#### a) 
+Finally, we consider survivor data from the Titanic. This is a data set that comes
+with R by default, so we don't need to install any packages
 
-**Read the questions here**:
-
-1. What proportion of the 59799 SF OkCupid users are female? What are some explanations for this?
-2. What proportion of bisexual SF OkCupid users are female?
-3. What proportion of female SF OkCupid users are gay?
-4. If I randomly choose someone who self-identifies as straight, are they are more likely to be male or female?
-
-
-**Write your answers here** (Do not insert blank lines between your answers, kind of like how I wrote the questions above): 
-
-1. 
-2. 
-3. 
-4. 
-
-
-
-
-
-
-
-## Question 3: Gapminder
-
-Watch the following 20 minute [TED
-Talk](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en#t-801073)
-by Hans Rosling on "The best stats you've ever seen." The human and international development data seen in the video is accessible in the `gapminder` data set within the `gapminder` package.
-
-
-
-```{r, cache=TRUE, echo=FALSE}
+```{r, echo=TRUE}
 # Do not modify any code in this block, however you still need to run it in your
-# console to load the gapminder data set, which is in the gapminder R package.
+# console to load the gapminder data set, which is built into R by default.
+data(Titanic)
 
-# After loading the gapminder data set
-# -Filter the data set to only consider observations for two years: 1952 & 2007
-# -Rename the "pop" variable to "population"
-data(gapminder)
-gapminder <- 
-  filter(gapminder, year==1952 | year==2007) %>% 
-  rename(population=pop)
+# Convert the Titanic data to data frame format
+Titanic <- Titanic %>% 
+  as.data.frame()
 ```
 
 
-#### a) 
 
-Recreate the scatterplot of "Child Survival (%)" over "GDP per capita ($)" for 
-1980 seen in the video, but
+#### a)
 
-* Making a comparison between 1952 and 2007
-* Displaying "life expectancy" instead of "Child Survival"
-
-Copy the template code below:
-
-```{r, eval=FALSE}
-# Note this code will not work in your console, it merely serves as a template
-# that you will modify
-ggplot(data=DATASETNAME, aes(AES1=VAR1, AES2=VAR2, AES3=VAR3, AES4=VAR4)) +
-  geom_point() + 
-  facet_wrap(~VAR5) +
-  scale_x_log10() + 
-  labs(x="WRITE INFORMATIVE LABEL HERE", y="WRITE INFORMATIVE LABEL HERE", title="WRITE INFORMATIVE TITLE HERE")
-```
-
-then paste it in the code block below, then replace anything in CAPS with the
-appropriate terms:
-
-```{r}
-# Paste your code below and modify:
-
-```
+What demographic attributes can be used to describe each passenger before they boarded
+the ship?
 
 
 #### b)
 
-Describe two facts that would be of interest to international development
-organizations.
+Output tables that compare survivor counts
+
+1. between men and women
+1. between the different classes
+
+```{r, echo=TRUE}
+# Write your code below:
+
+```
 
 
 
+#### c)
 
-
-
+For each comparison in part b), indicate who was most likely to survive.
 

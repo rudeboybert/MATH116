@@ -138,149 +138,63 @@ $(document).ready(function () {
 <li>Always <code>View()</code> any data sets and read the help file first. For example the help file for the <code>profiles</code> data set below is accessible by typing <code>?profiles</code> in the console after loading the data.</li>
 </ul>
 </div>
-<div id="question-1-okcupid-profile-data" class="section level2">
-<h2>Question 1: OkCupid Profile Data</h2>
-<p>We investigate a data set of about 60,000 San Francisco OkCupid users in 2012.</p>
+<div id="question-1-drug-use-amongst-okcupid-users" class="section level2">
+<h2>Question 1: Drug Use Amongst OkCupid Users</h2>
+<p>Let’s revisit the 60,000 San Francisco OkCupid users in 2012 and consider the variable <code>drug</code> reflecting users’ answers to a question on their drug use.</p>
 <div id="a" class="section level4">
 <h4>a)</h4>
-<p>Use a <code>geom_histogram()</code> to compare male and female heights, for</p>
-<ul>
-<li>A <strong>reasonable range of heights</strong>. For example, a self-referenced height of 30 inches is certainly someone joking around.</li>
-<li>An appropriate binning structure given the units of the data</li>
-</ul>
+<p>Type in a series of commands that will output how many men and women there in this population.</p>
 <pre class="r"><code># Write your code below:</code></pre>
 </div>
 <div id="b" class="section level4">
 <h4>b)</h4>
-<ol style="list-style-type: decimal">
-<li>How tall is a typical male?</li>
-<li>How tall is a typical female?</li>
-<li>While the centers of both <strong>distributions</strong> might be different, what about their spread?</li>
-</ol>
+<p>Create a visualization that shows the distribution of the different responses of in variable <code>drugs</code>.</p>
+<pre class="r"><code># Write your code below:</code></pre>
 </div>
 <div id="c" class="section level4">
 <h4>c)</h4>
-<p>Within the male histogram there should be two large spikes. At what height is the second spike occurring? What could be a sociological explanation for this phenomenon?</p>
+<p>Create a visualization that shows the same information as in part a), but for men and women separately. Who is more likely to never use drugs? Men or women?</p>
+<pre class="r"><code># Write your code below:</code></pre>
 </div>
 <div id="d" class="section level4">
 <h4>d)</h4>
-<p>Create a boxplot comparing ages for males and females? What can you say about the age distribution of females on San Francisco when compared to the males’?</p>
+<p>In lines 54-55 above we made sure to convert all missing values, encoded in R as <code>NA</code>, to a specific response <code>N/A</code> i.e. not answered. Why do you think it was important to do so?</p>
+</div>
+</div>
+<div id="question-2-gapminder" class="section level2">
+<h2>Question 2: Gapminder</h2>
+<p>We consider the Gapminder data from Problem Set 04 again.</p>
+<div id="a-1" class="section level4">
+<h4>a)</h4>
+<p>Output a table that allows you to answer the following two questions on the GDP of all countries in the year 2007, but split by continent. Note: Your table should have 5 rows, one for each continent.</p>
+<ol style="list-style-type: decimal">
+<li>What is the richest continent per capita?</li>
+<li>Which continent seems to have the most consistent GDP per capita across its constituent countries?</li>
+</ol>
 <pre class="r"><code># Write your code below:</code></pre>
 </div>
 </div>
-<div id="question-2" class="section level2">
-<h2>Question 2:</h2>
-<p>(Preview of chapter on data manipulation/wrangling) Using the same San Francisco OkCupid data from Question 1, a research scientist produces the table <strong>cross-classifying</strong> a user’s self-identified sexual orientation and their sex below. The following code will:</p>
-<ol style="list-style-type: decimal">
-<li>Take all users’ <code>profiles</code> data <strong>then</strong></li>
-<li>First <code>group</code> users’ <code>_by</code> their self-identified sexual <code>orientation</code>, second <code>group</code> users’ <code>_by</code> their <code>sex</code> <strong>then</strong></li>
-<li>Within each group, <code>summarise</code> that group with a <code>count</code> of the <code>n()</code>umber of people <strong>then</strong></li>
-<li><code>mutate</code> existing variables to create new ones:
-<ul>
-<li>the <code>proportion</code> for each group: <code>count/sum(count)</code></li>
-<li>then <code>round()</code> the <code>proportion</code> variable to two <code>digits</code>.</li>
-</ul></li>
-</ol>
-<pre class="r"><code># Do not modify any code in this block.
-output_table &lt;- profiles %&gt;% 
-  group_by(orientation, sex) %&gt;% 
-  summarise(count = n()) %&gt;% 
-  mutate(
-    proportion = count/sum(count),
-    proportion = round(proportion, digits=2)
-    )
-# Print table in clean format:
-kable(output_table)</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">orientation</th>
-<th align="left">sex</th>
-<th align="right">count</th>
-<th align="right">proportion</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">bisexual</td>
-<td align="left">f</td>
-<td align="right">1996</td>
-<td align="right">0.72</td>
-</tr>
-<tr class="even">
-<td align="left">bisexual</td>
-<td align="left">m</td>
-<td align="right">771</td>
-<td align="right">0.28</td>
-</tr>
-<tr class="odd">
-<td align="left">gay</td>
-<td align="left">f</td>
-<td align="right">1588</td>
-<td align="right">0.28</td>
-</tr>
-<tr class="even">
-<td align="left">gay</td>
-<td align="left">m</td>
-<td align="right">3985</td>
-<td align="right">0.72</td>
-</tr>
-<tr class="odd">
-<td align="left">straight</td>
-<td align="left">f</td>
-<td align="right">20533</td>
-<td align="right">0.40</td>
-</tr>
-<tr class="even">
-<td align="left">straight</td>
-<td align="left">m</td>
-<td align="right">31073</td>
-<td align="right">0.60</td>
-</tr>
-</tbody>
-</table>
-<div id="a-1" class="section level4">
-<h4>a)</h4>
-<p><strong>Read the questions here</strong>:</p>
-<ol style="list-style-type: decimal">
-<li>What proportion of the 59799 SF OkCupid users are female? What are some explanations for this?</li>
-<li>What proportion of bisexual SF OkCupid users are female?</li>
-<li>What proportion of female SF OkCupid users are gay?</li>
-<li>If I randomly choose someone who self-identifies as straight, are they are more likely to be male or female?</li>
-</ol>
-<p><strong>Write your answers here</strong> (Do not insert blank lines between your answers, kind of like how I wrote the questions above):</p>
-<ol style="list-style-type: decimal">
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ol>
-</div>
-</div>
-<div id="question-3-gapminder" class="section level2">
-<h2>Question 3: Gapminder</h2>
-<p>Watch the following 20 minute <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en#t-801073">TED Talk</a> by Hans Rosling on “The best stats you’ve ever seen.” The human and international development data seen in the video is accessible in the <code>gapminder</code> data set within the <code>gapminder</code> package.</p>
+<div id="question-3-titanic" class="section level2">
+<h2>Question 3: Titanic</h2>
+<pre class="r"><code># Do not modify any code in this block, however you still need to run it in your
+# console to load the gapminder data set, which is built into R by default.
+data(Titanic)
+
+# Convert the Titanic data to data frame format
+Titanic &lt;- Titanic %&gt;% 
+  as.data.frame()</code></pre>
 <div id="a-2" class="section level4">
 <h4>a)</h4>
-<p>Recreate the scatterplot of “Child Survival (%)” over “GDP per capita ($)” for 1980 seen in the video, but</p>
-<ul>
-<li>Making a comparison between 1952 and 2007</li>
-<li>Displaying “life expectancy” instead of “Child Survival”</li>
-</ul>
-<p>Copy the template code below:</p>
-<pre class="r"><code># Note this code will not work in your console, it merely serves as a template
-# that you will modify
-ggplot(data=DATASETNAME, aes(AES1=VAR1, AES2=VAR2, AES3=VAR3, AES4=VAR4)) +
-  geom_point() + 
-  facet_wrap(~VAR5) +
-  scale_x_log10() + 
-  labs(x=&quot;WRITE INFORMATIVE LABEL HERE&quot;, y=&quot;WRITE INFORMATIVE LABEL HERE&quot;, title=&quot;WRITE INFORMATIVE TITLE HERE&quot;)</code></pre>
-<p>then paste it in the code block below, then replace anything in CAPS with the appropriate terms:</p>
-<pre class="r"><code># Paste your code below and modify:</code></pre>
+<p>Output tables that compares survivor counts</p>
+<ol style="list-style-type: decimal">
+<li>between men and women</li>
+<li>between the different classes</li>
+</ol>
+<pre class="r"><code># Write your code below:</code></pre>
 </div>
 <div id="b-1" class="section level4">
 <h4>b)</h4>
-<p>Describe two facts that would be of interest to international development organizations.</p>
+<p>For each comparison above, indicate who was most likely to survive.</p>
 </div>
 </div>
 

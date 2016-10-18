@@ -22,19 +22,19 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ## Problem Set 05
 
-* Assigned Fri 10/14
+* Assigned Tue 10/18
 * Due Fri 10/21 11am
 
 
 #### Learning Goals
 
-* 
+* Wrap up the Grammar of Graphics
+* Start wrangling data!
+* Start providing useful summaries.
 
 
 #### Homework
 
-* Install the following packages
-    + 
 * Download this file to your computer and upload it to your `problem_sets` folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-05.Rmd" target="_blank">`PS-05.Rmd`</a>
 
 
