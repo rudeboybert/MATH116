@@ -82,7 +82,7 @@ the variable `drugs`.
 #### c)
 
 Create a visualization that shows the same information as in part a), but for
-men and women separately. Who is more likely to never use drugs? Men or women?
+men and women separately. Is a man more likely to never use drugs? Or a woman?
 
 ```{r, echo=TRUE}
 # Write your code below:
@@ -93,7 +93,7 @@ men and women separately. Who is more likely to never use drugs? Men or women?
 #### d)
 
 In lines 54-55 above we made sure to convert all missing values, encoded in R
-as `NA`, to a specific response value "N/A"" i.e. not answered. Why do you think it was
+as `NA`, to a specific response value "N/A" i.e. not answered. Why do you think it was
 important to do so?
 
 
