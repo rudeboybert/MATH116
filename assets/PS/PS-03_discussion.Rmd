@@ -245,4 +245,4 @@ data_frame(
 |milk      | 90,699,000,000| 206,046,000,000|    115,347,000,000|   127.18%|
 |cheese    |   501,096,000|  11,450,117,000|     10,949,021,000|  2185.01%|
 
-Cheese wins by a landlide. 2100% increase.
+Cheese wins by a landslide. 2100% increase.
