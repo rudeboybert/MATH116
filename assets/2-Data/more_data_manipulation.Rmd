@@ -133,7 +133,7 @@ flights %>%
 
 ## Example
 
-Load the following in you console
+Load the following in your console
 
 ```{r, eval=FALSE, echo=TRUE}
 library(dplyr)

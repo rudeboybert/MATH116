@@ -1,0 +1,128 @@
+---
+title: "More of the 5MV"
+author: "Albert Y. Kim"
+date: "Wed Oct 19, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+
+
+
+## Last Time: 5MV
+
+1. ~~`select()` columns by variable name: **front of cheatsheet, bottom right**~~
+1. ~~`filter()` rows matching criteria: **front of cheatsheet, bottom middle.**~~
+1. `summarise()` numerical variables that are `group_by()` categorical variables
+1. ~~`mutate()` existing variables to create new ones~~
+1. ~~`arrange()` rows~~
+
+And piping `%>%` i.e. *then*
+
+
+
+
+
+## Keyboard Shortcut
+
+Everyone place your cursor in the console and type:
+
+* Mac users: COMMAND+SHIFT+M
+* Windows uers: CTRL+SHIFT+M
+
+
+
+
+## Today: 5MV
+
+1. ~~`select()` columns by variable name: front of cheatsheet, bottom right~~
+1. ~~`filter()` rows matching criteria: front of cheatsheet, bottom middle~~
+1. ~~`summarise()` numerical variables that are `group_by()` categorical variables~~
+1. `mutate()` existing variables to create new ones: **back of cheatsheet,
+center column** However in this class you probably won't use these often.
+1. ~~`arrange()` rows~~
+
+
+
+
+
+## mutate()
+
+Always of the form
+
+```{r, eval=FALSE, echo=TRUE}
+mutate(DATASET_NAME, NEW_VARIABLE_NAME = OLD_VARIABLE_NAMES)
+```
+
+or if using piping `%>%` (note no comma)
+
+```{r, eval=FALSE, echo=TRUE}
+DATASET_NAME %>% mutate(NEW_VARIABLE_NAME = OLD_VARIABLE_NAMES)
+```
+
+
+
+
+
+## Example
+
+Load the following in your console
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+
+# Create data frame with two variables
+test_data <- data_frame(
+  name=c("Kimmy", "Kimmy", "Kimmy", "Titus", "Titus"),
+  value=c(1, 2, 3, 4, 5)
+)
+
+# See contents in console
+test_data
+```
+
+
+
+
+
+## Mutate
+
+Test out the following bits individually in your console:
+
+```{r, eval=FALSE, echo=TRUE}
+# Bit1: Mutate the variable value by adding 200, overwrite value
+mutate(test_data, value = value+200)
+
+# Bit2: Same thing, but with piping. Note there is no comma now 
+# as the %>% by default # pipes to the first spot
+test_data %>% mutate(value = value+200)
+
+# Bit3: Mutate the variable value by adding 200, but now save
+# in a new variable called new_value
+test_data %>% mutate(new_value = value+200)
+```
+
+
+
+
