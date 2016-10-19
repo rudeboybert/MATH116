@@ -91,8 +91,11 @@ currencies <- bind_rows(bitcoin, gold) %>%
 Your boss wants to know: "You took Intro to Statistical and Data Sciences right? Give me an
 executive summary of trends in these two forms of currency."
 
-
-**Solution**: Overall, gold seems to be trending down, while bitcoin has definitely not recovered from its peak value in late 2013.
+**Solution**: Overall, while gold seems to be trending down, it is much more 
+stable and fluctuates less. Bitcoin has definitely not recovered from its peak 
+value in late 2013. In fact, on November 19, 2013, the value of a bitcoin on the
+Mt. Gox exchange soared after a United States Senate committee hearing was told
+by the FBI that virtual currencies are a legitimate financial service.
 
 ```{r, fig.height=3, fig.width=5}
 # Write your code below:
@@ -133,7 +136,7 @@ i.e. you follow these steps:
 
 #### STOP
 
-And observe. It is now the end of week 5, and only now do we see our first formula.
+And observe. It is now the start of week 6, and only now do we see our first formula.
 Recall the choice we took for this intro-level class:
 
 If we're going to remove this...            |  We need this to fill the void...
