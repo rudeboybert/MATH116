@@ -11,7 +11,6 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-<!--
 <br>
 
 ***
@@ -26,19 +25,21 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * Due Fri 10/28 11am
 
 
-* <a href = "{{ site.baseurl }}/assets/PS/PS-06_discussion.html" target = "_blank">PS-06 Discussion</a>
-* PS-06 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-06_discussion.Rmd" target = "_blank">`PS-06_discussion.Rmd`</a> 
 
 #### Learning Goals
 
-* 
+* You will answer your first complex question using data
+* Practice, practice, practice. Much like learning a language, the only way to
+get better is practice.
+
 
 
 #### Homework
 
-* Download this file to your computer and upload it to your `problem_sets` folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-06.Rmd" target="_blank">`PS-06.Rmd`</a>
+* Download this file to your computer and upload it to your `problem_sets`
+folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-06.Rmd"
+target="_blank">`PS-06.Rmd`</a>
 
--->
 
 
 
