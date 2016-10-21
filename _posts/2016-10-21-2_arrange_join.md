@@ -33,7 +33,7 @@ categories: jekyll update
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/2-Data/finishing_5MV.html" target = "_blank">Slides</a>: `arrange()` and `join`
-* <a href = "https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html#create-new-variableschange-old-variables-using-mutate" target = "_blank">Section 5.1.4</a> of textbook
+* <a href = "https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html#reorder-the-data-frame-using-arrange" target = "_blank">Section 5.1.5 and 5.3</a> of textbook
 
 
 

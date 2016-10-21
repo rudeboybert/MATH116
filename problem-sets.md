@@ -11,6 +11,42 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
+<!--
+<br>
+
+***
+
+<br>
+
+  
+
+## Problem Set 06
+
+* Assigned Fri 10/21
+* Due Fri 10/28 11am
+
+
+* <a href = "{{ site.baseurl }}/assets/PS/PS-06_discussion.html" target = "_blank">PS-06 Discussion</a>
+* PS-06 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-06_discussion.Rmd" target = "_blank">`PS-06_discussion.Rmd`</a> 
+
+#### Learning Goals
+
+* 
+
+
+#### Homework
+
+* Download this file to your computer and upload it to your `problem_sets` folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-06.Rmd" target="_blank">`PS-06.Rmd`</a>
+
+-->
+
+
+
+
+
+
+
+
 
 <br>
 
@@ -25,6 +61,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * Assigned Tue 10/18
 * Due Fri 10/21 11am
 
+<!--
+* <a href = "{{ site.baseurl }}/assets/PS/PS-05_discussion.html" target = "_blank">PS-05 Discussion</a>
+* PS-05 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-05_discussion.Rmd" target = "_blank">`PS-05_discussion.Rmd`</a> 
+-->
 
 #### Learning Goals
 
@@ -53,6 +93,8 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * Assigned Sat 10/8
 * Due Fri 10/14 11am
+* <a href = "{{ site.baseurl }}/assets/PS/PS-04_discussion.html" target = "_blank">PS-04 Discussion</a>
+* PS-04 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-04_discussion.Rmd" target = "_blank">`PS-04_discussion.Rmd`</a> 
 
 
 #### Learning Goals
@@ -100,6 +142,7 @@ development data.
 * Assigned Fri 9/30
 * Due Fri 10/7 11am
 * <a href = "{{ site.baseurl }}/assets/PS/PS-03_discussion.html" target = "_blank">PS-03 Discussion</a>
+* PS-03 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-03_discussion.Rmd" target = "_blank">`PS-03_discussion.Rmd`</a> 
 
 
 
@@ -138,7 +181,9 @@ development data.
 
 * Assigned Fri 9/23
 * Due Fri 9/30 11am
-* <a href = "{{ site.baseurl }}/assets/PS/PS-02_discussion.html" target = "_blank">Discussion)</a>
+* <a href = "{{ site.baseurl }}/assets/PS/PS-02_discussion.html" target = "_blank">Discussion</a>
+* PS-02 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-02_discussion.Rmd" target = "_blank">`PS-02_discussion.Rmd`</a> 
+
 
 #### Learning Goals
 

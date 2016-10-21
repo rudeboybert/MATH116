@@ -15,15 +15,7 @@ output:
 * What, if anything, gave you the most trouble: 
 
 
-## ~~Tips~~ Instructions:
-
-* Knit this file once first and read all the questions before doing any work.
-* Then in your console, run all the code contained in grey code blocks in a
-linear fashion from start to finish.
-* Always `View()` any data sets and read the help file first. For example the help
-file for the `profiles` data set below is accessible by typing `?profiles` in the
-console after loading the data.
-
+## Load all necessary packages
 
 ```{r, echo=FALSE, message=FALSE}
 # Do not modify any code in this block, however you still need to run it in your
@@ -31,8 +23,6 @@ console after loading the data.
 library(ggplot2)
 library(dplyr)
 
-# For working with dates:
-library(lubridate)
 # OkCupid Data:
 library(okcupiddata)
 # Gapminder Data:
@@ -42,7 +32,14 @@ library(knitr)
 ```
 
 
-
+```{r, eval=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(okcupiddata)
+library(gapminder)
+# For making pretty table outputs using kable()
+library(knitr)
+```
 
 
 
@@ -51,9 +48,8 @@ library(knitr)
 
 We investigate a data set of about 60,000 San Francisco OkCupid users in 2012.
 
-```{r, cache=TRUE, echo=FALSE}
-# Do not modify any code in this block, however you still need to run it in your
-# console to load the profiles data set, which is in the okcupiddata R package.
+
+```{r, cache=TRUE, echo=TRUE}
 data(profiles)
 ```
 
@@ -122,7 +118,18 @@ ggplot(data=profiles, aes(x=sex, y=age)) +
   geom_boxplot()
 ```
 
-There doesn't seem to 
+Let's ignore the female who is over 100:
+
+```{r, warning=FALSE}
+ggplot(data=profiles, aes(x=sex, y=age)) +
+  geom_boxplot() +
+  ylim(0,75)
+```
+
+
+There doesn't seem to any major differences in ages. Most men and women are between about 25 and 35.
+Also the **median, not mean** age is about 30 for both men and women.
+
 
 
 
@@ -145,7 +152,6 @@ below. The following code will:
 
 
 ```{r}
-# Do not modify any code in this block.
 output_table <- profiles %>% 
   group_by(orientation, sex) %>% 
   summarise(count = n()) %>% 
@@ -161,7 +167,7 @@ kable(output_table)
 
 **Read the questions here**:
 
-1. What proportion of the 59799 SF OkCupid users are female? What are some explanations for this?
+1. What proportion of the ~~59799~~ 59826 SF OkCupid users are female? What are some explanations for this?
 2. What proportion of bisexual SF OkCupid users are female?
 3. What proportion of female SF OkCupid users are gay?
 4. If I randomly choose someone who self-identifies as straight, are they are more likely to be male or female?
@@ -169,10 +175,15 @@ kable(output_table)
 
 **Write your answers here** (Do not insert blank lines between your answers, kind of like how I wrote the questions above): 
 
-1. 
-2. 
-3. 
-4. 
+1. We type `(1994+1586+20509)/59799` in the console to find that the population is only about 40.2% female. This could be due to the:
+    + Large gay male community
+    + The large tech sector in SF that unfortunately suffers from a huge gender gap
+2. 72%. Way more of the bisexuals are female. Note the table is presented such that the proportion **for each sexual orientation level** sums to 1. 
+3. It is not 28%. We can't read this off the table, because the proportions aren't normalized this way. We have to compute it for ourselves: 
+$$
+\frac{\mbox{Number of gay females}}{\mbox{Number of females}} = \frac{1586}{1994+1586+20509} = 0.065 = 6.5\%
+$$
+4. Because 60% of users who self-identify as straight are male, they are more likely to be male.
 
 
 
@@ -225,9 +236,27 @@ ggplot(data=DATASETNAME, aes(AES1=VAR1, AES2=VAR2, AES3=VAR3, AES4=VAR4)) +
 then paste it in the code block below, then replace anything in CAPS with the
 appropriate terms:
 
-```{r}
-# Paste your code below and modify:
 
+**Solution**: let's quickly see what variables we have at our disposal:
+
+```{r, eval=TRUE}
+names(gapminder)
+```
+
+We associate
+
+1. `gdpPercap` with `x`-values
+1. `lifeExp` with `y`-values
+1. `continent` with the `color` of the points
+1. `population` size with the `size` of the points
+1. `year` to the two `facet`
+
+```{r}
+ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, color=continent, size=population)) +
+  geom_point() + 
+  facet_wrap(~year) +
+  scale_x_log10() + 
+  labs(x="GDP per Capita (US$, log-scale)", y="Life Expectancy (years)", title="1952 vs 2007 Life Expectancy")
 ```
 
 
@@ -236,7 +265,11 @@ appropriate terms:
 Describe two facts that would be of interest to international development
 organizations.
 
+**Solution**: While many trends are apparent, the ones that stuck out for me are:
 
+1. Life expectancy for all countries as a whole increased drastically
+1. Asia saw huge improvements in both wealth and life expectancy (the green dots moved to the top right), but unfortunately Africa not as much.
+1. Two Asian countries exploded in population size.
 
 
 
