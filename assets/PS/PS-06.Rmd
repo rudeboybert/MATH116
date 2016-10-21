@@ -60,11 +60,11 @@ data(airports)
 ```
 
 You are a junior analyst in the airline industry, specifically working for 
-Virgin America. You are tasked with calculating Virgin America's [available seat
-miles](https://en.wikipedia.org/wiki/Available_seat_miles) for all flights 
-leaving each of the three New York Metropolitan area airports separately in 
-2013, and comparing these figures with those of ExpressJet Airlines Inc, a close
-rival to your company. Available seat miles are the fundamental units of
+Virgin America. You are tasked with calculating Virgin America's total
+[available seat miles](https://en.wikipedia.org/wiki/Available_seat_miles) for
+all flights leaving each of the three New York Metropolitan area airports
+separately, and comparing these figures with those of ExpressJet Airlines Inc, a
+close rival to your company. Available seat miles are the fundamental units of 
 production for a passenger-carrying airline and it is a measure of capacity. You
 are asked for two deliverables:
 
