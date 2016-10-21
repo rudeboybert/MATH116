@@ -1,0 +1,216 @@
+
+---
+title: "Problem Set 04"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, October 14, 2016"
+output:
+  html_document
+---
+
+
+## Please Indicate
+
+* Who you collaborated with. If no one, please indicate so: 
+* Approximately how much time did you spend on this problem set: 
+* What, if anything, gave you the most trouble: 
+
+
+## ~~Tips~~ Instructions:
+
+* Knit this file once first and read all the questions before doing any work.
+* Then in your console, run all the code contained in grey code blocks in a
+linear fashion from start to finish.
+* Always `View()` any data sets and read the help file first. For example the help
+file for the `profiles` data set below is accessible by typing `?profiles` in the
+console after loading the data.
+
+
+```{r, echo=FALSE, message=FALSE}
+# Do not modify any code in this block, however you still need to run it in your
+# console to load all the necessary packages.
+library(ggplot2)
+library(dplyr)
+
+# For working with dates:
+library(lubridate)
+# OkCupid Data:
+library(okcupiddata)
+# Gapminder Data:
+library(gapminder)
+# For making pretty table outputs
+library(knitr)
+```
+
+
+
+
+
+
+
+## Question 1: OkCupid Profile Data
+
+We investigate a data set of about 60,000 San Francisco OkCupid users in 2012.
+
+```{r, cache=TRUE, echo=FALSE}
+# Do not modify any code in this block, however you still need to run it in your
+# console to load the profiles data set, which is in the okcupiddata R package.
+data(profiles)
+```
+
+
+#### a)
+
+Use a `geom_histogram()` to compare male and female heights, for 
+
+* A **reasonable range of heights**. For example, a self-referenced height of 30 
+inches is certainly someone joking around.
+* An appropriate binning structure given the units of the data
+
+```{r}
+# Write your code below:
+
+```
+
+
+#### b)
+
+1. How tall is a typical male? 
+2. How tall is a typical female?
+3. While the centers of both **distributions** might be different, what about their spread?
+
+
+#### c)
+
+Within the male histogram there should be two large spikes. At what height is the
+second spike occurring? What could be a sociological explanation for this phenomenon?
+
+
+#### d)
+
+Create a boxplot comparing ages for males and females? What can you say about
+the age distribution of females on San Francisco when compared to the males'?
+
+```{r, warning=FALSE}
+# Write your code below:
+
+```
+
+
+
+
+
+
+
+## Question 2: 
+
+(Preview of chapter on data manipulation/wrangling) Using the same San Francisco
+OkCupid data from Question 1, a research scientist produces the table 
+**cross-classifying** a user's self-identified sexual orientation and their sex
+below. The following code will:
+
+1. Take all users' `profiles` data **then**
+1. First `group` users' `_by` their self-identified sexual `orientation`, second `group` users' `_by` their `sex` **then**
+1. Within each group, `summarise` that group with a `count` of the `n()`umber of people **then**
+1. `mutate` existing variables to create new ones:
+    + the `proportion` for each group: `count/sum(count)`
+    + then `round()` the `proportion` variable to two `digits`.
+
+
+```{r}
+# Do not modify any code in this block.
+output_table <- profiles %>% 
+  group_by(orientation, sex) %>% 
+  summarise(count = n()) %>% 
+  mutate(
+    proportion = count/sum(count),
+    proportion = round(proportion, digits=2)
+    )
+# Print table in clean format:
+kable(output_table)
+```
+
+#### a) 
+
+**Read the questions here**:
+
+1. What proportion of the 59799 SF OkCupid users are female? What are some explanations for this?
+2. What proportion of bisexual SF OkCupid users are female?
+3. What proportion of female SF OkCupid users are gay?
+4. If I randomly choose someone who self-identifies as straight, are they are more likely to be male or female?
+
+
+**Write your answers here** (Do not insert blank lines between your answers, kind of like how I wrote the questions above): 
+
+1. 
+2. 
+3. 
+4. 
+
+
+
+
+
+
+
+## Question 3: Gapminder
+
+Watch the following 20 minute [TED
+Talk](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en#t-801073)
+by Hans Rosling on "The best stats you've ever seen." The human and international development data seen in the video is accessible in the `gapminder` data set within the `gapminder` package.
+
+
+
+```{r, cache=TRUE, echo=FALSE}
+# Do not modify any code in this block, however you still need to run it in your
+# console to load the gapminder data set, which is in the gapminder R package.
+
+# After loading the gapminder data set
+# -Filter the data set to only consider observations for two years: 1952 & 2007
+# -Rename the "pop" variable to "population"
+data(gapminder)
+gapminder <- 
+  filter(gapminder, year==1952 | year==2007) %>% 
+  rename(population=pop)
+```
+
+
+#### a) 
+
+Recreate the scatterplot of "Child Survival (%)" over "GDP per capita ($)" for 
+1980 seen in the video, but
+
+* Making a comparison between 1952 and 2007
+* Displaying "life expectancy" instead of "Child Survival"
+
+Copy the template code below:
+
+```{r, eval=FALSE}
+# Note this code will not work in your console, it merely serves as a template
+# that you will modify
+ggplot(data=DATASETNAME, aes(AES1=VAR1, AES2=VAR2, AES3=VAR3, AES4=VAR4)) +
+  geom_point() + 
+  facet_wrap(~VAR5) +
+  scale_x_log10() + 
+  labs(x="WRITE INFORMATIVE LABEL HERE", y="WRITE INFORMATIVE LABEL HERE", title="WRITE INFORMATIVE TITLE HERE")
+```
+
+then paste it in the code block below, then replace anything in CAPS with the
+appropriate terms:
+
+```{r}
+# Paste your code below and modify:
+
+```
+
+
+#### b)
+
+Describe two facts that would be of interest to international development
+organizations.
+
+
+
+
+
+
+

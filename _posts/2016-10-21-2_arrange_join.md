@@ -11,7 +11,7 @@ categories: jekyll update
 ### Announcements
 
 * Difference between `filter()` and `group_by() %>% summarize()`
-* Lec15 <a href = "{{ site.baseurl }}/assets/LC/more_data_manipulation.html" target = "_blank">learning check discussion</a>
+* Lec15 <a href = "{{ site.baseurl }}/assets/LC/more_data_manipulation_2.html" target = "_blank">learning check discussion</a>
 
 
 
@@ -20,7 +20,7 @@ categories: jekyll update
 
 ### In-Class
 
-* <a href = "{{ site.baseurl }}/assets/2-Data/more_5MV.html" target = "_blank">Slides</a>: `mutate()` existing variables to create new ones
+* <a href = "{{ site.baseurl }}/assets/2-Data/finishing_5MV.html" target = "_blank">Slides</a>: `mutate()` existing variables to create new ones
 * <a href = "https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html#create-new-variableschange-old-variables-using-mutate" target = "_blank">Section 5.1.4</a> of textbook
 
 
