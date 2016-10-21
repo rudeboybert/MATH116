@@ -28,10 +28,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Learning Goals
 
-* You will answer your first complex question using data.
+* Tackling your first "real" analysis using your data toolbox.
 * Introducing what are in my opinion effective approaches to tackle problems of
 this type, instead of taking approaches that could lead to
-[this](http://giphy.com/gifs/filmlinc-nyff-michel-gondry-microbe-et-gasoil-xTiTnslZ0E5sqMbEac)
+[this](http://giphy.com/gifs/filmlinc-nyff-michel-gondry-microbe-et-gasoil-xTiTnslZ0E5sqMbEac).
 * Practice, practice, practice. Much like learning a language, the only way to
 get better is practice. 
 
