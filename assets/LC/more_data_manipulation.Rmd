@@ -15,7 +15,6 @@ knitr::opts_chunk$set(echo = TRUE)
 set.seed(79)
 library(tidyverse)
 library(knitr)
-library(nycflights13)
 ```
 
 
@@ -34,12 +33,139 @@ data(weather)
 
 
 
-## LC 
+
+
+
+
+## LC 5.5
+
+What does the standard deviation column in the `summary_temp_by_month` data frame tell us about temperatures in New York City throughout the year?
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+summary_temp_by_month <- weather %>% 
+  group_by(month) %>% 
+  summarize(
+          mean = mean(temp, na.rm = TRUE),
+          std_dev = sd(temp, na.rm = TRUE)
+          )
 ```
 
+```{r, eval=FALSE}
+summary_temp_by_month
+```
+```{r, echo=FALSE}
+kable(summary_temp_by_month)
+```
 
 
 ### Solution
 
+The standard deviation is a quantification of **spread** and **variability**. We
+see that the period in November, December, and January has the most variation in
+weather, so you can expect very different temperatures on different days.
+
+**Note**: both `mean(temp, na.rm = TRUE)` and `sd(temp, na.rm = TRUE)` have
+a `na.rm = TRUE` to ignore missing values. This should only be used when necessary 
+i.e. when there actually are missing values in the data set.
+
+
+
+
+
+
+
+## LC 5.6
+
+What code would be required to get the mean and standard deviation temperature for each airport in NYC? Do this with and without using the `%>%` operator.
+
+### Solution
+
+Just switch `month` above with `origin`. First with `%>%` piping and without. Recall
+`%>%` is pronounced "then":
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+summary_temp_by_airport <- weather %>% 
+  group_by(origin) %>% 
+  summarize(
+          mean = mean(temp, na.rm = TRUE),
+          std_dev = sd(temp, na.rm = TRUE)
+          )
+```
+
+
+And without. We this is a little more awkward, as we first need to create an intermediate 
+variable `weather_group_by_airport`. I would argue the above approach is much cleaner.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+weather_group_by_airport <- group_by(weather, origin) 
+summary_temp_by_airport <- 
+  summarize(weather_group_by_airport,
+          mean = mean(temp, na.rm = TRUE),
+          std_dev = sd(temp, na.rm = TRUE)
+          )
+```
+
+
+We output `summary_temp_by_airport`:
+
+```{r, eval=FALSE}
+summary_temp_by_airport
+```
+```{r, echo=FALSE}
+kable(summary_temp_by_airport)
+```
+
+Is JFK significantly colder than Newark or La Guardia? Is that difference meaningful?
+
+
+
+
+
+
+
+## LC 5.7
+
+How could we identify how many flights left each of the three airports in each of the months of 2013?
+
+### Solution
+
+We could summarize the count from each airport using the `n()` function, which *counts rows*.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+count_flights_by_airport <- weather %>% 
+  group_by(origin) %>% 
+  summarize(count=n())
+```
+
+```{r, eval=FALSE}
+count_flights_by_airport
+```
+```{r, echo=FALSE}
+kable(count_flights_by_airport)
+```
+
+All remarkably similar!
+
+**Note**: the `n()` function counts rows, whereas the `sum(VARIABLE_NAME)`
+funciton sums all values of a certain variable `VARIABLE_NAME`.
+
+
+
+
+
+
+
+## LC 5.8
+
+How could we identify the coldest temperature recorded at each airport without
+using the `View()` command?
+
+### Solution
+
+There are three airports: `EWR`, `JFK`, and `LGA`
+
+* Run `View(weather)`
+* Click on "Filter"
+* Under `origin` type in `EWR`
+* The click the arrow next to `temp` to get the coldest day. For example for `EWR` it was 10.94 degrees
+* Repeat for all remaining airports
