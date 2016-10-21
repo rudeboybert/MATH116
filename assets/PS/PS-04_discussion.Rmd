@@ -66,17 +66,35 @@ Use a `geom_histogram()` to compare male and female heights, for
 inches is certainly someone joking around.
 * An appropriate binning structure given the units of the data
 
-```{r}
-# Write your code below:
+Let's define "reasonable" as between 55 and 80 inches. i.e. people whose height is 
+greater than or equal to 55 **AND** less than or equal to 80. 
 
+```{r}
+profiles <- filter(profiles, height>=55 & height <= 80)
 ```
+
+Now let's plot the histogram. Note there are two ways to set the binning structure. By 
+changing:
+
+* The number of `bins` via `geom_histogram(bins=40)`
+* The `binwidth` via `geom_histogram(binwidth=1)`
+
+Since people's heights are in rounded inches (i.e. no decimal values), I argue setting
+the `binwidth=1` inch is most appropriate to this data.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(data=profiles, aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  facet_wrap(~sex)
+```
+
 
 
 #### b)
 
-1. How tall is a typical male? 
-2. How tall is a typical female?
-3. While the centers of both **distributions** might be different, what about their spread?
+1. How tall is a typical male?  **Around 70 inches, or 5'10''**
+2. How tall is a typical female? **Around 65 inches, or 5'5''**
+3. While the centers of both **distributions** might be different, what about their spread?  **Judging by the range of where the bulk of each histogram lies, it seems there is a little more variation in male heights**
 
 
 #### c)
@@ -84,17 +102,27 @@ inches is certainly someone joking around.
 Within the male histogram there should be two large spikes. At what height is the
 second spike occurring? What could be a sociological explanation for this phenomenon?
 
+**Solution**: A bunch of dudes who are just under 72 inches = 6 feet, are rounding up. Check out this and other [Big Lies People Tell In Online Dating](https://blog.okcupid.com/index.php/the-biggest-lies-in-online-dating/)
+
 
 #### d)
 
 Create a boxplot comparing ages for males and females? What can you say about
 the age distribution of females on San Francisco when compared to the males'?
 
-```{r, warning=FALSE}
-# Write your code below:
+**Solution**: Here we have
 
+* a categorical variable `sex`
+* a numerical variable `age`
+
+So a boxplot is most appropriate:
+
+```{r, warning=FALSE}
+ggplot(data=profiles, aes(x=sex, y=age)) +
+  geom_boxplot()
 ```
 
+There doesn't seem to 
 
 
 
