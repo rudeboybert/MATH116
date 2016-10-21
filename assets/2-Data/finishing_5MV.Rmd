@@ -42,7 +42,6 @@ library(knitr)
 
 
 
-
 ## Today: Finishing 5MV
 
 1. ~~`select()` columns by variable name: **front of cheatsheet, bottom right**~~
@@ -51,24 +50,139 @@ library(knitr)
 1. ~~`mutate()` existing variables to create new ones~~
 1. `arrange()` rows
 
-and `_join()`
+and `_join()`: backside of cheatsheet, right hand column, top.
+
+
+
+
+
+## Arrange
+
+Really simple. Either
+
+* `DATASET_NAME %>% arrange(VARIABLE_NAME)` or
+* `DATASET_NAME %>% arrange(desc(VARIABLE_NAME))`
+
+
+
+
+
+## Arrange Example
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+
+# Create data frame with two variables
+test_data <- data_frame(
+  name=c("Abbi", "Abbi ", "Ilana", "Ilana", "Ilana"),
+  value_1=c(0, 1, 0, 1, 0),
+  value_2=c(4, 6, 3, 2, 5)
+)
+
+# See contents in console
+test_data
+```
+
+
+
+## Arrange Example
+
+Run these bits of code. Notice the subtle diff between 2 and 3:
+
+```{r, eval=FALSE, echo=TRUE}
+# Bit1: Arrange in ascending order of value_1 (the default)
+test_data %>% arrange(value_1)
+
+# Bit2: Arrange in descending order of value_1
+test_data %>% arrange(desc(value_1))
+
+# Bit3: Arrange in decending order of value_1, and then within
+# value_1, arrange in ascending order of value_2
+test_data %>% arrange(desc(value_1), value_2)
+```
 
 
 
 
 
 
-## Today: Finishing 5MV
-
-1. ~~`select()` columns by variable name: **front of cheatsheet, bottom right**~~
-1. ~~`filter()` rows matching criteria: **front of cheatsheet, bottom middle.**~~
-1. ~~`summarise()` numerical variables that are `group_by()` categorical variables~~
-1. ~~`mutate()` existing variables to create new ones~~
-1. `arrange()` rows
-
-and `_join()`
 
 
+## Combining Data Sets via Joins
 
+Imagine we have two data frames `x` and `y`. Run the following:
+
+```{r, echo=FALSE}
+x <- data_frame(x1=c("A","B","C"), x2=c(1,2,3))
+y <- data_frame(x1=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
+x
+y
+```
+
+
+
+
+## Combining Data Sets via Joins
+
+Say we'd like to `_join` i.e. merge together the two into a single data frame.
+We join by `"x1"`. Note how it is in quotation marks.
+
+```{r, echo=TRUE}
+left_join(x, y, by = "x1")
+full_join(x, y, by = "x1")
+```
+
+
+
+
+
+
+
+
+## Combining Data Sets via Joins
+
+What the variable we want to join by has a different name in each data set:
+
+```{r, echo=FALSE}
+i <- data_frame(a=c("A","B","C"), x2=c(1,2,3))
+j <- data_frame(b=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
+i
+j
+```
+
+
+
+
+
+
+
+
+## Combining Data Sets via Joins
+
+We use the `c()` function.
+
+```{r, echo=FALSE}
+left_join(i, j, by = c("a" = "b"))
+```
+
+It is a bit confusing unfortunately. It's
+
+* `by = c("a"="b")` and not
+* `by = c("a"=="b")`
+
+
+
+
+
+
+## Types of Joins
+
+* There are many types of `_join` (right-hand column of back of cheatsheet)
+* To keep things simple, we'll only use
+    + `left_join`
+    + `full_join`
+* This
+[illustration](https://twitter.com/yutannihilation/status/551572539697143808)
+succinctly summarizes all of them.
 
 

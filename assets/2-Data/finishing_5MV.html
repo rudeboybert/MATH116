@@ -123,7 +123,134 @@ slides > slide.backdrop {
 <li><code>arrange()</code> rows</li>
 </ol>
 
-<p>and <code>_join()</code></p></article></slide>
+<p>and <code>_join()</code>: backside of cheatsheet, right hand column, top.</p>
+
+</article></slide><slide class=''><hgroup><h2>Arrange</h2></hgroup><article  id="arrange">
+
+<p>Really simple. Either</p>
+
+<ul>
+<li><code>DATASET_NAME %&gt;% arrange(VARIABLE_NAME)</code> or</li>
+<li><code>DATASET_NAME %&gt;% arrange(desc(VARIABLE_NAME))</code></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Arrange Example</h2></hgroup><article  id="arrange-example">
+
+<pre class = 'prettyprint lang-r'>library(dplyr)
+
+# Create data frame with two variables
+test_data &lt;- data_frame(
+  name=c(&quot;Abbi&quot;, &quot;Abbi &quot;, &quot;Ilana&quot;, &quot;Ilana&quot;, &quot;Ilana&quot;),
+  value_1=c(0, 1, 0, 1, 0),
+  value_2=c(4, 6, 3, 2, 5)
+)
+
+# See contents in console
+test_data</pre>
+
+</article></slide><slide class=''><hgroup><h2>Arrange Example</h2></hgroup><article  id="arrange-example-1">
+
+<p>Run these bits of code. Notice the subtle diff between 2 and 3:</p>
+
+<pre class = 'prettyprint lang-r'># Bit1: Arrange in ascending order of value_1 (the default)
+test_data %&gt;% arrange(value_1)
+
+# Bit2: Arrange in descending order of value_1
+test_data %&gt;% arrange(desc(value_1))
+
+# Bit3: Arrange in decending order of value_1, and then within
+# value_1, arrange in ascending order of value_2
+test_data %&gt;% arrange(desc(value_1), value_2)</pre>
+
+</article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins">
+
+<p>Imagine we have two data frames <code>x</code> and <code>y</code>. Run the following:</p>
+
+<pre >## # A tibble: 3 × 2
+##      x1    x2
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1     A     1
+## 2     B     2
+## 3     C     3</pre>
+
+<pre >## # A tibble: 3 × 2
+##      x1    x3
+##   &lt;chr&gt; &lt;lgl&gt;
+## 1     A  TRUE
+## 2     B FALSE
+## 3     D  TRUE</pre>
+
+</article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins-1">
+
+<p>Say we&#39;d like to <code>_join</code> i.e. merge together the two into a single data frame. We join by <code>&quot;x1&quot;</code>. Note how it is in quotation marks.</p>
+
+<pre class = 'prettyprint lang-r'>left_join(x, y, by = &quot;x1&quot;)</pre>
+
+<pre >## # A tibble: 3 × 3
+##      x1    x2    x3
+##   &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;
+## 1     A     1  TRUE
+## 2     B     2 FALSE
+## 3     C     3    NA</pre>
+
+<pre class = 'prettyprint lang-r'>full_join(x, y, by = &quot;x1&quot;)</pre>
+
+<pre >## # A tibble: 4 × 3
+##      x1    x2    x3
+##   &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;
+## 1     A     1  TRUE
+## 2     B     2 FALSE
+## 3     C     3    NA
+## 4     D    NA  TRUE</pre>
+
+</article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins-2">
+
+<p>What the variable we want to join by has a different name in each data set:</p>
+
+<pre >## # A tibble: 3 × 2
+##       a    x2
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1     A     1
+## 2     B     2
+## 3     C     3</pre>
+
+<pre >## # A tibble: 3 × 2
+##       b    x3
+##   &lt;chr&gt; &lt;lgl&gt;
+## 1     A  TRUE
+## 2     B FALSE
+## 3     D  TRUE</pre>
+
+</article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins-3">
+
+<p>We use the <code>c()</code> function.</p>
+
+<pre >## # A tibble: 3 × 3
+##       a    x2    x3
+##   &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;
+## 1     A     1  TRUE
+## 2     B     2 FALSE
+## 3     C     3    NA</pre>
+
+<p>It is a bit confusing unfortunately. It&#39;s</p>
+
+<ul>
+<li><code>by = c(&quot;a&quot;=&quot;b&quot;)</code> and not</li>
+<li><code>by = c(&quot;a&quot;==&quot;b&quot;)</code></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Types of Joins</h2></hgroup><article  id="types-of-joins">
+
+<ul>
+<li>There are many types of <code>_join</code> (right-hand column of back of cheatsheet)</li>
+<li>To keep things simple, we&#39;ll only use
+
+<ul>
+<li><code>left_join</code></li>
+<li><code>full_join</code></li>
+</ul></li>
+<li>This <a href='https://twitter.com/yutannihilation/status/551572539697143808' title=''>illustration</a> succinctly summarizes all of them.</li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
