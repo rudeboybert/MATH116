@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Midterm II Review"
-subtitle: "Everything up to including Lec16"
+subtitle: "Everything up to and including Lec16"
 date:   2016-10-24 10:10:45
 categories: jekyll update
 ---
