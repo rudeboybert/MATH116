@@ -75,6 +75,7 @@
   </style>
 
 
+
 </head>
 
 <body style="opacity: 0">
@@ -164,73 +165,38 @@ test_data %&gt;% arrange(desc(value_1), value_2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins">
 
-<p>Imagine we have two data frames <code>x</code> and <code>y</code>. Run the following:</p>
-
-<pre >## # A tibble: 3 × 2
-##      x1    x2
-##   &lt;chr&gt; &lt;dbl&gt;
-## 1     A     1
-## 2     B     2
-## 3     C     3</pre>
-
-<pre >## # A tibble: 3 × 2
-##      x1    x3
-##   &lt;chr&gt; &lt;lgl&gt;
-## 1     A  TRUE
-## 2     B FALSE
-## 3     D  TRUE</pre>
+<p>And now the last component of data manipulation, and the data portion of this class: <strong>joining/merging two data sets</strong>.</p>
 
 </article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins-1">
 
-<p>Say we&#39;d like to <code>_join</code> i.e. merge together the two into a single data frame. We join by <code>&quot;x1&quot;</code>. Note how it is in quotation marks.</p>
+<p>Imagine we have two data frames <code>x</code> and <code>y</code>. Run the following:</p>
 
-<pre class = 'prettyprint lang-r'>left_join(x, y, by = &quot;x1&quot;)</pre>
-
-<pre >## # A tibble: 3 × 3
-##      x1    x2    x3
-##   &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;
-## 1     A     1  TRUE
-## 2     B     2 FALSE
-## 3     C     3    NA</pre>
-
-<pre class = 'prettyprint lang-r'>full_join(x, y, by = &quot;x1&quot;)</pre>
-
-<pre >## # A tibble: 4 × 3
-##      x1    x2    x3
-##   &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;
-## 1     A     1  TRUE
-## 2     B     2 FALSE
-## 3     C     3    NA
-## 4     D    NA  TRUE</pre>
+<pre class = 'prettyprint lang-r'>x &lt;- data_frame(x1=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), x2=c(1,2,3))
+y &lt;- data_frame(x1=c(&quot;A&quot;,&quot;B&quot;,&quot;D&quot;), x3=c(TRUE,FALSE,TRUE))
+x
+y</pre>
 
 </article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins-2">
 
-<p>What the variable we want to join by has a different name in each data set:</p>
+<p>We join by the <code>&quot;x1&quot;</code> variable. Note how it is in quotation marks.</p>
 
-<pre >## # A tibble: 3 × 2
-##       a    x2
-##   &lt;chr&gt; &lt;dbl&gt;
-## 1     A     1
-## 2     B     2
-## 3     C     3</pre>
+<pre class = 'prettyprint lang-r'>left_join(x, y, by = &quot;x1&quot;)
+full_join(x, y, by = &quot;x1&quot;)</pre>
 
-<pre >## # A tibble: 3 × 2
-##       b    x3
-##   &lt;chr&gt; &lt;lgl&gt;
-## 1     A  TRUE
-## 2     B FALSE
-## 3     D  TRUE</pre>
+</article></slide><slide class=''><hgroup><h2>Different Join Variable Name?</h2></hgroup><article  id="different-join-variable-name">
 
-</article></slide><slide class=''><hgroup><h2>Combining Data Sets via Joins</h2></hgroup><article  id="combining-data-sets-via-joins-3">
+<p>What the variable we want to join by has a different name in each data set? Here <code>a</code> vs <code>b</code>:</p>
+
+<pre class = 'prettyprint lang-r'>i &lt;- data_frame(a=c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), x2=c(1,2,3))
+j &lt;- data_frame(b=c(&quot;A&quot;,&quot;B&quot;,&quot;D&quot;), x3=c(TRUE,FALSE,TRUE))
+i
+j</pre>
+
+</article></slide><slide class=''><hgroup><h2>Different Join Variable Name?</h2></hgroup><article  id="different-join-variable-name-1">
 
 <p>We use the <code>c()</code> function.</p>
 
-<pre >## # A tibble: 3 × 3
-##       a    x2    x3
-##   &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;
-## 1     A     1  TRUE
-## 2     B     2 FALSE
-## 3     C     3    NA</pre>
+<pre class = 'prettyprint lang-r'>left_join(i, j, by = c(&quot;a&quot; = &quot;b&quot;))</pre>
 
 <p>It is a bit confusing unfortunately. It&#39;s</p>
 
@@ -239,11 +205,24 @@ test_data %&gt;% arrange(desc(value_1), value_2)</pre>
 <li><code>by = c(&quot;a&quot;==&quot;b&quot;)</code></li>
 </ul>
 
+</article></slide><slide class=''><hgroup><h2>Different Join Variable Name?</h2></hgroup><article  id="different-join-variable-name-2">
+
+<p>There was an example of such a join in <a href='https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#barplots' title=''>Chapter 4.7.1</a> on Barplots where we <code>join</code></p>
+
+<ul>
+<li><code>flights</code> data, which had airport codes in <code>origin</code></li>
+<li><code>airports</code> data, which had airport codes in <code>faa</code></li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>inner_join(flights, airports, by = c(&quot;origin&quot; = &quot;faa&quot;))</pre>
+
+<p>This creates a single data set with all information combined.</p>
+
 </article></slide><slide class=''><hgroup><h2>Types of Joins</h2></hgroup><article  id="types-of-joins">
 
 <ul>
-<li>There are many types of <code>_join</code> (right-hand column of back of cheatsheet)</li>
-<li>To keep things simple, we&#39;ll only use
+<li>There are many types of <code>join</code> (right-hand column of back of cheatsheet)</li>
+<li>To keep things simple, we&#39;ll try to only use:
 
 <ul>
 <li><code>left_join</code></li>

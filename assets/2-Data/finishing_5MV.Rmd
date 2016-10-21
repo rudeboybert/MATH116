@@ -85,6 +85,8 @@ test_data
 
 
 
+
+
 ## Arrange Example
 
 Run these bits of code. Notice the subtle diff between 2 and 3:
@@ -105,6 +107,12 @@ test_data %>% arrange(desc(value_1), value_2)
 
 
 
+## Combining Data Sets via Joins
+
+And now the last component of data manipulation, and the data portion of this 
+class: **joining/merging two data sets**.
+
+
 
 
 
@@ -112,7 +120,7 @@ test_data %>% arrange(desc(value_1), value_2)
 
 Imagine we have two data frames `x` and `y`. Run the following:
 
-```{r, echo=FALSE}
+```{r, eval=FALSE, echo=TRUE}
 x <- data_frame(x1=c("A","B","C"), x2=c(1,2,3))
 y <- data_frame(x1=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
 x
@@ -122,12 +130,12 @@ y
 
 
 
+
 ## Combining Data Sets via Joins
 
-Say we'd like to `_join` i.e. merge together the two into a single data frame.
-We join by `"x1"`. Note how it is in quotation marks.
+We join by the `"x1"` variable. Note how it is in quotation marks.
 
-```{r, echo=TRUE}
+```{r, eval=FALSE, echo=TRUE}
 left_join(x, y, by = "x1")
 full_join(x, y, by = "x1")
 ```
@@ -136,14 +144,12 @@ full_join(x, y, by = "x1")
 
 
 
+## Different Join Variable Name?
 
+What the variable we want to join by has a different name in each data set? 
+Here `a` vs `b`:
 
-
-## Combining Data Sets via Joins
-
-What the variable we want to join by has a different name in each data set:
-
-```{r, echo=FALSE}
+```{r, eval=FALSE, echo=TRUE}
 i <- data_frame(a=c("A","B","C"), x2=c(1,2,3))
 j <- data_frame(b=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
 i
@@ -154,14 +160,11 @@ j
 
 
 
-
-
-
-## Combining Data Sets via Joins
+## Different Join Variable Name?
 
 We use the `c()` function.
 
-```{r, echo=FALSE}
+```{r, eval=FALSE, echo=TRUE}
 left_join(i, j, by = c("a" = "b"))
 ```
 
@@ -174,11 +177,28 @@ It is a bit confusing unfortunately. It's
 
 
 
+## Different Join Variable Name?
+
+There was an example of such a join in [Chapter 4.7.1](https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#barplots) on Barplots
+where we `join` 
+
+* `flights` data, which had airport codes in `origin`
+* `airports` data, which had airport codes in `faa`
+
+```{r, eval=FALSE, echo=TRUE}
+inner_join(flights, airports, by = c("origin" = "faa"))
+```
+
+This creates a single data set with all information combined.
+
+
+
+
 
 ## Types of Joins
 
-* There are many types of `_join` (right-hand column of back of cheatsheet)
-* To keep things simple, we'll only use
+* There are many types of `join` (right-hand column of back of cheatsheet)
+* To keep things simple, we'll try to only use:
     + `left_join`
     + `full_join`
 * This
