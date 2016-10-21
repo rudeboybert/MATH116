@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec16 Finishing the 5MV"
-subtitle: "Creating new variables by mutate() existing ones."
+subtitle: "arrange() variables in data frame and join() data frames."
 date:   2016-10-21 10:10:45
 categories: jekyll update
 ---
@@ -11,8 +11,9 @@ categories: jekyll update
 ### Announcements
 
 
-* Lec14 <a href = "{{ site.baseurl }}/assets/LC/more_data_manipulation.html" target = "_blank">learning check discussion</a>
+* Lec14 <a href = "{{ site.baseurl }}/assets/LC/more_data_manipulation.html" target = "_blank">learning check discussion</a> now posted.
 * Lec15 <a href = "{{ site.baseurl }}/assets/LC/more_data_manipulation_2.html" target = "_blank">learning check discussion</a>
+* Problem Set 04 <a href = "{{ site.baseurl }}/assets/PS/PS-04_discussion.html" target = "_blank">Discussion</a>. Source code file `PS-04_discussion.Rmd` is available on Problem Sets page.
 * Difference between `filter()` and `summarize()`:
     + `filter()` merely selects rows without transformation any of the data:
     <img src="{{ site.baseurl }}/assets/figure/filter.png" alt="Drawing" style="width: 500px;"/>
