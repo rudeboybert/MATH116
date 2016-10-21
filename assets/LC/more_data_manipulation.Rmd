@@ -80,8 +80,21 @@ What code would be required to get the mean and standard deviation temperature f
 
 ### Solution
 
-Just switch `month` above with `origin`. First with `%>%` piping and without. Recall
-`%>%` is pronounced "then":
+Just switch `month` above with `origin`. First without `%>%` piping. I find this
+awkward, as we first need to create an intermediate variable
+`weather_group_by_airport`.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+weather_group_by_airport <- group_by(weather, origin) 
+summary_temp_by_airport <- 
+  summarize(weather_group_by_airport,
+          mean = mean(temp, na.rm = TRUE),
+          std_dev = sd(temp, na.rm = TRUE)
+          )
+```
+
+
+Then with `%>%` piping which IMO is less awkward. Recall `%>%` is pronounced "then".
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
 summary_temp_by_airport <- weather %>% 
@@ -92,18 +105,6 @@ summary_temp_by_airport <- weather %>%
           )
 ```
 
-
-And without. We this is a little more awkward, as we first need to create an intermediate 
-variable `weather_group_by_airport`. I would argue the above approach is much cleaner.
-
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
-weather_group_by_airport <- group_by(weather, origin) 
-summary_temp_by_airport <- 
-  summarize(weather_group_by_airport,
-          mean = mean(temp, na.rm = TRUE),
-          std_dev = sd(temp, na.rm = TRUE)
-          )
-```
 
 
 We output `summary_temp_by_airport`:

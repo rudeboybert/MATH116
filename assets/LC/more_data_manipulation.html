@@ -322,17 +322,17 @@ data(weather)</code></pre>
 <p>What code would be required to get the mean and standard deviation temperature for each airport in NYC? Do this with and without using the <code>%&gt;%</code> operator.</p>
 <div id="solution-1" class="section level3">
 <h3>Solution</h3>
-<p>Just switch <code>month</code> above with <code>origin</code>. First with <code>%&gt;%</code> piping and without. Recall <code>%&gt;%</code> is pronounced “then”:</p>
-<pre class="r"><code>summary_temp_by_airport &lt;- weather %&gt;% 
-  group_by(origin) %&gt;% 
-  summarize(
-          mean = mean(temp, na.rm = TRUE),
-          std_dev = sd(temp, na.rm = TRUE)
-          )</code></pre>
-<p>And without. We this is a little more awkward, as we first need to create an intermediate variable <code>weather_group_by_airport</code>. I would argue the above approach is much cleaner.</p>
+<p>Just switch <code>month</code> above with <code>origin</code>. First without <code>%&gt;%</code> piping. I find this awkward, as we first need to create an intermediate variable <code>weather_group_by_airport</code>.</p>
 <pre class="r"><code>weather_group_by_airport &lt;- group_by(weather, origin) 
 summary_temp_by_airport &lt;- 
   summarize(weather_group_by_airport,
+          mean = mean(temp, na.rm = TRUE),
+          std_dev = sd(temp, na.rm = TRUE)
+          )</code></pre>
+<p>Then with <code>%&gt;%</code> piping which IMO is less awkward. Recall <code>%&gt;%</code> is pronounced “then”.</p>
+<pre class="r"><code>summary_temp_by_airport &lt;- weather %&gt;% 
+  group_by(origin) %&gt;% 
+  summarize(
           mean = mean(temp, na.rm = TRUE),
           std_dev = sd(temp, na.rm = TRUE)
           )</code></pre>

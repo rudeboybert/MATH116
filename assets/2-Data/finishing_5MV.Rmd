@@ -57,3 +57,18 @@ and `_join()`
 
 
 
+
+## Today: Finishing 5MV
+
+1. ~~`select()` columns by variable name: **front of cheatsheet, bottom right**~~
+1. ~~`filter()` rows matching criteria: **front of cheatsheet, bottom middle.**~~
+1. ~~`summarise()` numerical variables that are `group_by()` categorical variables~~
+1. ~~`mutate()` existing variables to create new ones~~
+1. `arrange()` rows
+
+and `_join()`
+
+
+
+
+
