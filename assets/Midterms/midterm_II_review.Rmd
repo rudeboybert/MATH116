@@ -1,0 +1,47 @@
+---
+title: "Midterm II Review"
+author: "Albert Y. Kim"
+date: "Mon Oct 24, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+```
+
+
+
+## Format
+
+* Wed Oct 23, 7:30pm-9:00pm, in Warner 506 and 507.
+* Closed book, no calculators, but you may bring `dplyr` cheatsheet.
+* You won't need to write explicitly working R code, but rough **pseudocode**
+
+
+
+## Sources
+
+* Lectures 01 through 16 inclusive
+    + Slides from each lecture
+    + Corresponding textbook material
+    + Learning check discussions
+* Problem Sets 01-05
+* Problem Set 06 as practice

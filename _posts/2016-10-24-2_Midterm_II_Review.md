@@ -11,13 +11,14 @@ categories: jekyll update
 ### Announcements
 
 * Lec16 <a href = "{{ site.baseurl }}/assets/LC/finishing_data_manipulation.html" target = "_blank">learning check discussion</a>
-* Wednesday 10/26 at 7:30pm here.
+* Office Hours:
+    + Monday 1-4pm
+    + Tuesday 1-3pm
 * Problem Set 05 <a href = "{{ site.baseurl }}/assets/PS/PS-05_discussion.html"
-target = "_blank">Discussion</a>. Source code file `PS-05_discussion.Rmd` is
-available on Problem Sets page. Note: Question 1.c) has an **advanced**
+target = "_blank">Discussion</a>. Note: Question 1.c) has an **advanced**
 discussion on how to:
     + Convert counts to proportions
-    + Make a `geom_bar()` barchart where you are explicitly defining a `y` aesthetic
+    + Make a `geom_bar()` barchart where you have an explicitly defined a `y` aesthetic, like a count or a proportion.
 
 
 
@@ -25,7 +26,8 @@ discussion on how to:
 
 ### In-Class
 
-*
+* <a href = "{{ site.baseurl }}/assets/Midterms/midterm_II_review.html" target = "_blank">Midterm II Review Slides</a>
+
 
 
 
