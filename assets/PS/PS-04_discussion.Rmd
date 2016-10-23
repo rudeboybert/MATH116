@@ -12,7 +12,7 @@ output:
 ## Load all necessary packages
 
 
-```{r, eval=FALSE, echo=TRUE}
+```{r, echo=TRUE, message=FALSE}
 library(ggplot2)
 library(dplyr)
 library(okcupiddata)
@@ -29,7 +29,7 @@ library(knitr)
 We investigate a data set of about 60,000 San Francisco OkCupid users in 2012.
 
 
-```{r, cache=TRUE, echo=TRUE}
+```{r, echo=TRUE}
 data(profiles)
 ```
 
@@ -46,7 +46,8 @@ Let's define "reasonable" as between 55 and 80 inches. i.e. people whose height 
 greater than or equal to 55 **AND** less than or equal to 80. 
 
 ```{r}
-profiles <- filter(profiles, height>=55 & height <= 80)
+profiles <- profiles %>% 
+  filter(height>=55 & height <= 80)
 ```
 
 Now let's plot the histogram. Note there are two ways to set the binning structure. By 
@@ -179,13 +180,7 @@ by Hans Rosling on "The best stats you've ever seen." The human and internationa
 
 
 
-```{r, cache=TRUE, echo=FALSE}
-# Do not modify any code in this block, however you still need to run it in your
-# console to load the gapminder data set, which is in the gapminder R package.
-
-# After loading the gapminder data set
-# -Filter the data set to only consider observations for two years: 1952 & 2007
-# -Rename the "pop" variable to "population"
+```{r, echo=TRUE}
 data(gapminder)
 gapminder <- 
   filter(gapminder, year==1952 | year==2007) %>% 
@@ -201,20 +196,6 @@ Recreate the scatterplot of "Child Survival (%)" over "GDP per capita ($)" for
 * Making a comparison between 1952 and 2007
 * Displaying "life expectancy" instead of "Child Survival"
 
-Copy the template code below:
-
-```{r, eval=FALSE}
-# Note this code will not work in your console, it merely serves as a template
-# that you will modify
-ggplot(data=DATASETNAME, aes(AES1=VAR1, AES2=VAR2, AES3=VAR3, AES4=VAR4)) +
-  geom_point() + 
-  facet_wrap(~VAR5) +
-  scale_x_log10() + 
-  labs(x="WRITE INFORMATIVE LABEL HERE", y="WRITE INFORMATIVE LABEL HERE", title="WRITE INFORMATIVE TITLE HERE")
-```
-
-then paste it in the code block below, then replace anything in CAPS with the
-appropriate terms:
 
 
 **Solution**: let's quickly see what variables we have at our disposal:

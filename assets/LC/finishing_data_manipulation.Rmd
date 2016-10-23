@@ -28,18 +28,95 @@ library(ggplot2)
 library(dplyr)
 library(nycflights13)
 
-# Load weather data set in nycflights
-data(weather)
+# Load flights data set in nycflights
+data(flights)
 ```
 
 
 
-## LC 
+
+
+## LC 5.12
+
+Create a new data frame that shows the top 5 airports with the largest arrival
+delays from NYC in 2013.
+
+#### Solution
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+flights %>%
+  group_by(dest) %>%
+  summarize(largest_arrival_delay = max(arr_delay, na.rm=TRUE)) %>%
+  top_n(n = 5) %>%
+  arrange(desc(largest_arrival_delay))
+```
+
+1272 minutes = 21.2 hour delay for a flight to Honolulu! So on top of the long,
+long flight, you arrive nearly a day late!
+
+
+
+
+
+## LC 5.16
+
+What happens when you try to `left_join` the `ten_freq_dests` data frame with
+`airports` instead of `airports_small`?  How might one use this result to answer
+further questions about the top 10 destinations?
+
+#### Solution
+
+We first define the necessary data frames
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+airports_small <- airports %>%
+  select(faa, name)
+
+ten_freq_dests <- flights %>%
+  group_by(dest) %>%
+  summarize(num_flights = n()) %>%
+  top_n(n = 10) %>%
+  arrange(desc(num_flights))
+```
+
+We compare the two possible joins:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+orig_join <- ten_freq_dests %>%
+  left_join(airports_small, by = c("dest" = "faa"))
+new_join <- ten_freq_dests %>%
+  left_join(airports, by = c("dest" = "faa"))
+```
+
+We then do a `View()` of both:
+
+```{r, eval=FALSE, echo=TRUE}
+View(orig_join)
+View(new_join)
 ```
 
 
+The latter profiles more information. For example, most of the top 10
+destinations have `tz=-5`. Looking at `?airports`, we see that `tz` corresponds
+to time zone. 7 of the top 10 destinations are in the Eastern time zone, with
+two more being in Pacific.
 
-### Solution
+
+
+
+## LC 5.17
+
+What surprises you about the top 10 destinations from NYC in 2013?
+
+#### Solution
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ten_freq_dests %>%
+  left_join(airports_small, by = c("dest" = "faa"))
+```
+
+Different people will have different answers, but I'm wondering: are that many
+people flying to Boston from NYC?
+
+
 

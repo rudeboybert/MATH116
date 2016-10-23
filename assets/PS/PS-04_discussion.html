@@ -144,7 +144,8 @@ library(knitr)</code></pre>
 <li>An appropriate binning structure given the units of the data</li>
 </ul>
 <p>Let’s define “reasonable” as between 55 and 80 inches. i.e. people whose height is greater than or equal to 55 <strong>AND</strong> less than or equal to 80.</p>
-<pre class="r"><code>profiles &lt;- filter(profiles, height&gt;=55 &amp; height &lt;= 80)</code></pre>
+<pre class="r"><code>profiles &lt;- profiles %&gt;% 
+  filter(height&gt;=55 &amp; height &lt;= 80)</code></pre>
 <p>Now let’s plot the histogram. Note there are two ways to set the binning structure. By changing:</p>
 <ul>
 <li>The number of <code>bins</code> via <code>geom_histogram(bins=40)</code></li>
@@ -286,6 +287,10 @@ kable(output_table)</code></pre>
 <div id="question-3-gapminder" class="section level2">
 <h2>Question 3: Gapminder</h2>
 <p>Watch the following 20 minute <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=en#t-801073">TED Talk</a> by Hans Rosling on “The best stats you’ve ever seen.” The human and international development data seen in the video is accessible in the <code>gapminder</code> data set within the <code>gapminder</code> package.</p>
+<pre class="r"><code>data(gapminder)
+gapminder &lt;- 
+  filter(gapminder, year==1952 | year==2007) %&gt;% 
+  rename(population=pop)</code></pre>
 <div id="a-2" class="section level4">
 <h4>a)</h4>
 <p>Recreate the scatterplot of “Child Survival (%)” over “GDP per capita ($)” for 1980 seen in the video, but</p>
@@ -293,15 +298,6 @@ kable(output_table)</code></pre>
 <li>Making a comparison between 1952 and 2007</li>
 <li>Displaying “life expectancy” instead of “Child Survival”</li>
 </ul>
-<p>Copy the template code below:</p>
-<pre class="r"><code># Note this code will not work in your console, it merely serves as a template
-# that you will modify
-ggplot(data=DATASETNAME, aes(AES1=VAR1, AES2=VAR2, AES3=VAR3, AES4=VAR4)) +
-  geom_point() + 
-  facet_wrap(~VAR5) +
-  scale_x_log10() + 
-  labs(x=&quot;WRITE INFORMATIVE LABEL HERE&quot;, y=&quot;WRITE INFORMATIVE LABEL HERE&quot;, title=&quot;WRITE INFORMATIVE TITLE HERE&quot;)</code></pre>
-<p>then paste it in the code block below, then replace anything in CAPS with the appropriate terms:</p>
 <p><strong>Solution</strong>: let’s quickly see what variables we have at our disposal:</p>
 <pre class="r"><code>names(gapminder)</code></pre>
 <pre><code>## [1] &quot;country&quot;    &quot;continent&quot;  &quot;year&quot;       &quot;lifeExp&quot;    &quot;population&quot;

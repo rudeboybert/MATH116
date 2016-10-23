@@ -28,7 +28,7 @@ library(gapminder)
 Let's revisit the 60,000 San Francisco OkCupid users in 2012 and consider the
 variable `drug` reflecting users' answers to a question on their drug use.
 
-```{r, cache=TRUE, echo=TRUE}
+```{r, echo=TRUE}
 data(profiles)
 # Convert as missing values in drugs to an actual category "N/A"
 profiles <- profiles %>% 

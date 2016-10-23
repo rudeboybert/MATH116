@@ -10,6 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
+* Lec16 <a href = "{{ site.baseurl }}/assets/LC/finishing_data_manipulation.html" target = "_blank">learning check discussion</a>
 * Wednesday 10/26 at 7:30pm here.
 * Problem Set 05 <a href = "{{ site.baseurl }}/assets/PS/PS-05_discussion.html"
 target = "_blank">Discussion</a>. Source code file `PS-05_discussion.Rmd` is
