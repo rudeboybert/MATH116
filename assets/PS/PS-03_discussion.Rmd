@@ -38,14 +38,13 @@ data.
 
 
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=TRUE, message=FALSE}
 # Do not modify any code in this block. You need to run it once in your console 
 # to load all the necessary packages, but do not change anything.
 library(ggplot2)
 library(dplyr)
 library(Quandl)
 library(lubridate)
-set.seed(76)
 Quandl.api_key("izVwTt9m5VoEe7TsEzdr")
 ```
 
@@ -60,11 +59,7 @@ of data on two forms of tradable currency: bitcoin and gold. Give these pages a 
 * [Bitcoin](https://www.quandl.com/data/BAVERAGE/USD)
 * [Gold](https://www.quandl.com/data/BUNDESBANK/BBK01_WT5511)
 
-```{r, cache=TRUE, echo=FALSE}
-# Do not modify any code in this block. You need to run it once in your console 
-# to load all the necessary data sets, but do not change anything:
-
-# Get bitcoin data off quandl.com
+```{r, echo=TRUE}
 bitcoin <- 
   Quandl("BAVERAGE/USD", start_date="2013-01-01", end_date="2016-01-01") %>% 
   mutate(type="bitcoin", date=ymd(Date)) %>%
@@ -176,10 +171,7 @@ following data:
 * [Cheese](https://www.quandl.com/data/USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB)
 * [Milk](https://www.quandl.com/data/NASS_MILKPRODUCTIONMEASUREDINLB)
 
-```{r, cache=TRUE, echo=FALSE}
-# Do not modify any code in this block. You need to run it once in your console 
-# to load all the necessary data sets, but do not change anything.
-
+```{r, echo=TRUE}
 # Get cheese data off quandl.com
 cheese <- 
   Quandl("USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB", start_date="1925-01-01") %>% 
@@ -237,7 +229,6 @@ data_frame(
     `% Change` = round(`Absolute Change`/price_1925 * 100, 2)
   ) %>% 
   kable()
-
 ```
 
 |Food Type |  1925|   2014| Absolute Change| % Change|

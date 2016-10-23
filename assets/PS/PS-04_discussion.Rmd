@@ -8,28 +8,8 @@ output:
 ---
 
 
-## Please Indicate
-
-* Who you collaborated with. If no one, please indicate so: 
-* Approximately how much time did you spend on this problem set: 
-* What, if anything, gave you the most trouble: 
-
 
 ## Load all necessary packages
-
-```{r, echo=FALSE, message=FALSE}
-# Do not modify any code in this block, however you still need to run it in your
-# console to load all the necessary packages.
-library(ggplot2)
-library(dplyr)
-
-# OkCupid Data:
-library(okcupiddata)
-# Gapminder Data:
-library(gapminder)
-# For making pretty table outputs
-library(knitr)
-```
 
 
 ```{r, eval=FALSE, echo=TRUE}

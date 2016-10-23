@@ -64,11 +64,10 @@ target="_blank">`PS-06.Rmd`</a>
 
 * Assigned Tue 10/18
 * Due Fri 10/21 11am
-
-<!--
 * <a href = "{{ site.baseurl }}/assets/PS/PS-05_discussion.html" target = "_blank">PS-05 Discussion</a>
 * PS-05 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-05_discussion.Rmd" target = "_blank">`PS-05_discussion.Rmd`</a> 
--->
+
+
 
 #### Learning Goals
 

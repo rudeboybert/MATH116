@@ -12,34 +12,13 @@ output:
 ---
 
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=TRUE, message=FALSE}
 # Do not edit this section
 library(ggplot2)
 library(dplyr)
 library(ggplot2movies)
 library(babynames)
-set.seed(76)
 ```
-
-
-## Please Indicate
-
-* Who you collaborated with:
-* Approximately how much time did you spend on this problem set:
-* What, if anything, gave you the most trouble:
-
-
-
-
-
-## Tips
-
-* Look and explore your data with the `View()` command
-* To get a quick idea of what kind of variables you have in a data frame, use the `glimpse()` function from the `dplyr` package
-* Help files are your friend. Many (but not all) R functions and datasets have help files. For example, you can 
-access the help file for the `movies` data set below by typing `?movies`
-
-
 
 
 ## Question 1: Movie Ratings
@@ -52,7 +31,6 @@ you don't need to understand this code for now, we'll see this when we study
 data manipulation.
 
 ```{r}
-# Do not edit this section
 data(movies)
 movies <- movies %>% 
   sample_n(1000) %>% 
@@ -67,7 +45,6 @@ distinguish between comedies and non-comedies. In the code block below, write
 the code that generates a graphic that will answer this for you:
 
 ```{r}
-# Write your code here:
 ggplot(data=movies, aes(x=year, y=rating, col=Comedy)) +
   geom_point()
 ```
@@ -80,7 +57,6 @@ rated higher than non-comedies?
 We add a regression line for Comedies and Non-Comedies
 
 ```{r}
-# Write your code here:
 ggplot(data=movies, aes(x=year, y=rating, col=Comedy)) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE)
@@ -97,7 +73,6 @@ Considering the `babynames` data set in the `babynames` package again, we will
 limit consideration to only the name "Casey".
 
 ```{r}
-# Do not edit this section
 data(babynames)
 babynames <- babynames %>% 
   filter(name=="Casey")
@@ -110,7 +85,6 @@ a female name over the years. In the code block below, write the code that
 generates a graphic that will answer this for you:
 
 ```{r}
-# Write your code here:
 ggplot(data=babynames, aes(x=year, y=prop, col=sex)) +
   geom_line()
 ```
