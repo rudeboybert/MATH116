@@ -17,7 +17,7 @@ discussion on:
     + Converting counts to proportions.
     + Making a `geom_bar()` barchart where you have an explicitly defined a `y` 
     aesthetic, like a <a href = "{{ site.baseurl }}/assets/2-Data/barplots.html#8" target = "_blank">pre-computed count</a> or a proportion.
-* Office Hours. Nice big table to work on outside my office, talk to other people:
+* Office Hours. Large table to work on outside my office, talk to other people:
     + Monday 1-4pm
     + Tuesday 1-3pm
     + Wednesday 1-4pm

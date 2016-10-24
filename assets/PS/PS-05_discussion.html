@@ -331,7 +331,246 @@ Titanic &lt;- Titanic %&gt;%
 <li>between men and women</li>
 <li>betweent the different classes</li>
 </ol>
-<p><strong>Solution:</strong> The key difficulty of this question was distiguising between using <code>n()</code> to count observations vs <code>sum()</code>. After <code>View(Titanic)</code> we see that for each <code>Class</code>, <code>Sex</code>, <code>Age</code>, <code>Survived</code> category we report the count in the variable <code>Freq</code>. We need to <code>sum(Freq)</code></p>
+<p><strong>Solution:</strong> Let’s first look at the <code>Titanic</code> data</p>
+<pre class="r"><code>kable(Titanic)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Class</th>
+<th align="left">Sex</th>
+<th align="left">Age</th>
+<th align="left">Survived</th>
+<th align="right">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">No</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">118</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">154</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">387</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">670</td>
+</tr>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">89</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">No</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Male</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Female</td>
+<td align="left">Child</td>
+<td align="left">Yes</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">57</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">75</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Male</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">192</td>
+</tr>
+<tr class="odd">
+<td align="left">1st</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">140</td>
+</tr>
+<tr class="even">
+<td align="left">2nd</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">80</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">76</td>
+</tr>
+<tr class="even">
+<td align="left">Crew</td>
+<td align="left">Female</td>
+<td align="left">Adult</td>
+<td align="left">Yes</td>
+<td align="right">20</td>
+</tr>
+</tbody>
+</table>
+<p>We see that the variable <code>Freq</code> reports the <strong>pre-computed</strong> count of passengers for each <code>Class</code>, <code>Sex</code>, <code>Age</code>, <code>Survived</code> category. The key difficulty of this question was distiguising between using <code>n()</code> to count observations vs <code>sum()</code>. Here, we need to <code>sum(Freq)</code>:</p>
 <pre class="r"><code>survival_by_sex &lt;- Titanic %&gt;% 
   group_by(Sex, Survived) %&gt;% 
   summarise(Freq=sum(Freq))

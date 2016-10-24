@@ -180,10 +180,16 @@ Output tables that compares survivor counts
 1. betweent the different classes
 
 
-**Solution:** The key difficulty of this question was distiguising between using
-`n()` to count observations vs `sum()`. After `View(Titanic)` we see that for
-each `Class`, `Sex`, `Age`, `Survived` category we report the count in the
-variable `Freq`. We need to `sum(Freq)`
+**Solution:** Let's first look at the `Titanic` data
+
+```{r, echo=TRUE}
+kable(Titanic)
+```
+
+We see that the variable `Freq` reports the **pre-computed** count of passengers
+for each `Class`, `Sex`, `Age`, `Survived` category. The key difficulty of this
+question was distiguising between using `n()` to count observations vs `sum()`.
+Here, we need to `sum(Freq)`:
 
 ```{r, echo=TRUE}
 survival_by_sex <- Titanic %>% 

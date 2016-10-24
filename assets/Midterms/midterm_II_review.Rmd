@@ -33,7 +33,7 @@ library(knitr)
 ## Format
 
 * Wed Oct 23, 7:30pm-10:00pm, in Warner 506.
-* I'm going to try to target it so median completion time is about 1h15m
+* I'm going to try to target it so the median completion time is about 1h15m
 * Closed book, no calculators, but you may bring `dplyr` cheatsheet.
 * You won't need to write 100% correct R code, but rather rough **pseudocode**
 
@@ -42,30 +42,32 @@ library(knitr)
 
 ## Pseudocode & Algorithms
 
-> * [Pseudocode](http://image.slidesharecdn.com/pseudocode-111128151539-phpapp02/95/introduction-to-pseudocode-38-638.jpg?cb=1393513763)
-is informal and rough code that doesn't necessarily need to work, but still
-illustrates each **step of your algorithm**.
+> * **Pseudocode** is informal and rough code that doesn't necessarily need to work,
+but still illustrates each step of your algorithm.
 > * An **algorithm** is just a computer recipe: a process or set of rules to be followed in
 calculations or other problem-solving operations.
-
+> * [Example](http://image.slidesharecdn.com/pseudocode-111128151539-phpapp02/95/introduction-to-pseudocode-38-638.jpg?cb=1393513763)
 
 
 
 ## Sources
 
 * Lectures 01 through 16 inclusive
-    + Slides from each lecture
+    + Read the slides from each lecture to get the **executive summary**
     + Corresponding textbook material
     + Learning check discussions
-* Problem Sets
+* Problem Sets!
 
 
 
 
 ## Sources: Problem Sets
 
-* Problem Sets 01-05: Go through them all. You are now in a position to understand all data manipulations.
-* Problem Set 06 as practice for data manipulation. Instructions:
+* Problem Sets 01-05: Go through them all. You are now in a position to
+understand all data manipulations.
+* Problem Set 06 as practice for data manipulation as it is a synthesis of all
+data manipulation tools we've seen.
+* Instructions:
     + Separate out **what** you are going to do from **how** you are going to do it. i.e. set up a plan
     + I **highly** recommend you work in groups for this, especially the brainstorming stage.
 
@@ -74,21 +76,23 @@ calculations or other problem-solving operations.
 
 ## Data Visualization
 
-> * For any kind of situation/data, be able to identify which of the 5NG (5 named graphs) is most 
-appropriate to convey information
-> * For each of the 5NG understand the **Grammar of Graphics**: `data`, `aes()`, `geom_WHATEVER`
+> * For any kind of situation/data, be able to identify which of the 5NG is most 
+appropriate to convey the information contained in the **variables**
+> * For each of the 5NG understand the **Grammar of Graphics**: `data`, `aes(VARIABLE_NAME)`, `geom_WHATEVER`
 > * How can faceting help?
 > * Be able to both:
-> * A: Forward engineer: I give you tidy data, you write out a rough `ggplot()` call and/or draw the graph
-> * B: Reverse engineer: I give you the graph, you write out a rough `ggplot()` call and/or the tidy data
+> * A: Forward engineer graphs: I give you tidy data, you write out a rough `ggplot()` call and/or draw the graph
+> * B: Reverse engineer graphs: I give you the graph, you write out a rough `ggplot()` call and/or the tidy data
 
 
 
 
 ## Data Manipulation
 
-> * Understand the 5MV (5 main verbs) + joins. The images on the `dplyr`
+> * Understand the 5MV + joins. The images on the `dplyr`
 cheatsheet illustrate these well.
-> * IMO the best way to study these to learn by doing. Go over any example of data manipulation in
-the learning checks, the textbook, and Problem Sets and see if you can reconstruct them on your own.
-> * If you can get them working in R, then you're **definitely** able to write the pseudocode.
+> * IMO the best way to study these to learn by doing.
+> * Go over examples of data manipulation in the learning checks, the
+textbook, and Problem Sets and see if you can reconstruct them on your own.
+> * If you can get them working in R, then you're **definitely** able to write
+the pseudocode.
