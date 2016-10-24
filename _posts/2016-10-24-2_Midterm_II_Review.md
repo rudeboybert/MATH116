@@ -27,7 +27,7 @@ discussion on:
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/Midterms/midterm_II_review.html" target = "_blank">Midterm II Review Slides</a>
-
+* <a href = "{{ site.baseurl }}/assets/PS/PS-06.html" target = "_blank">PS-06 Description</a>
 
 
 
