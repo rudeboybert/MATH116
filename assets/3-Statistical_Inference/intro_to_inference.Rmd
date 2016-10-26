@@ -80,8 +80,8 @@ What is my spin on multigrain rice made of?
 
 Let's ask our favorite search engine:
 
-* What is inference?
-* What is **statistical** inference?
+* Define inference
+* Define **statistical** inference?
 
 
 
