@@ -1,0 +1,112 @@
+---
+title: "Introduction to Inference"
+author: "Albert Y. Kim"
+date: "Wed Oct 26, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+
+
+
+## Today: Switching Gears
+
+* Done with "Tidy" and "Transform"
+* Start with "Model"
+
+<img src="../figure/pipeline.png" alt="Drawing" style="width: 700px;" border="1"/>
+
+
+
+
+
+## Example
+
+Growing up I used to only eat white rice, but now I only eat multigrain rice.
+
+White Rice           |  Multigrain Rice
+:-------------------------:|:-------------------------:
+<img src="../figure/white_rice.jpeg" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/japgokbap.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+
+
+## Example
+
+What is my spin on multigrain rice made of?
+
+1. Brown rice
+1. Sweet brown rice
+1. Barley
+1. Red beans
+1. Black beans
+
+
+
+
+
+## Example
+
+> * **Question**: Of all the kernels (pieces) in this tub **what percent are red beans**?
+> * **Question about question**: How can I answer this question with the minimal amount of effort?
+
+
+
+
+
+## Key Definitions
+
+> * What is inference?
+> * What is **statistical** inference?
+
+
+
+
+
+## The Paradigm for the Rest of the Class
+
+<img src="../figure/target-population.jpg" alt="Drawing" style="width: 700px;" border="1"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
