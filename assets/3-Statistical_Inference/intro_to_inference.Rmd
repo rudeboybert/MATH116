@@ -67,19 +67,21 @@ What is my spin on multigrain rice made of?
 
 
 
-## Example
+## Questions
 
-> * **Question**: Of all the kernels (pieces) in this tub **what percent are red beans**?
+> * Of all the kernels in this tub **what percent are red beans**?
 > * **Question about question**: How can I answer this question with the minimal amount of effort?
-
+> * Most often heard of example these days...
 
 
 
 
 ## Key Definitions
 
-> * What is inference?
-> * What is **statistical** inference?
+Let's ask our favorite search engine:
+
+* What is inference?
+* What is **statistical** inference?
 
 
 
@@ -87,7 +89,34 @@ What is my spin on multigrain rice made of?
 
 ## The Paradigm for the Rest of the Class
 
-<img src="../figure/target-population.jpg" alt="Drawing" style="width: 700px;" border="1"/>
+<img src="../figure/target-population.jpg" alt="Drawing" style="width: 600px;" border="1"/>
+
+
+
+
+
+## Learning Check
+
+For each of the following 4 scenarios 
+
+1. Identify
+    + The **population** of interest and if applicable the **population parameter**
+    + The **sample** used and if applicable the **statistic**
+1. Comment on the **representativeness/generalizability** of the results of the sample to the population.
+
+
+
+
+
+## Learning Check
+
+1. The Royal Air Force wants to study how resistant their airplanes are to bullets. They study the bullet holes on all the airplanes on the tarmac after an air battle against the Luftwaffe (German Air Force).
+1. I want to know the average income of Middlebury graduates in the last 10 years.  So I get the records of 10 randomly chosen Midd Kids.  They all answer and I take the average.
+1. Imagine it's 1993 i.e. almost all households have landlines.  You want to know the average number of people in each household in Middlebury.  You randomly pick out 500 phone numbers from the phone book and conduct a phone survey.
+1. You want to know the prevalence of illegal downloading of TV shows among Middlebury students.  You get the emails of 100 randomly chosen Midd Kids and ask them ``How many times did you download a pirated TV show last week?''
+
+
+
 
 
 
