@@ -10,6 +10,37 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
+<!--
+<br>
+
+***
+
+<br>
+
+  
+
+## Problem Set 07
+
+* Assigned Fri 10/28
+* Due Fri 11/4 11am
+
+
+
+#### Learning Goals
+
+* Turning pseudocode into code.
+
+
+
+#### Homework
+
+* Download these files to your computer and upload them to your `problem_sets`
+folder on RStudio Server:
+    + <a href="{{ site.baseurl }}/assets/PS/PS-07.Rmd" target="_blank">`PS-07.Rmd`</a>
+    + <a href="{{ site.baseurl }}/assets/PS/DD_vs_SB.csv" target="_blank">`DD_vs_SB.csv`</a>
+-->
+
+
 
 <br>
 

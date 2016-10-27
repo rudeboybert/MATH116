@@ -1,0 +1,82 @@
+
+---
+title: "Problem Set 07"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, November 4, 2016"
+output:
+  html_document
+---
+
+
+## Please Indicate
+
+* Who you collaborated with. If no one, please indicate so: 
+* Approximately how much time did you spend on this problem set: 
+* What, if anything, gave you the most trouble: 
+
+
+
+## Instructions:
+
+* 
+
+```{r, echo=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(knitr)
+
+# Need to read CSV spreadsheet data
+library(readr)
+```
+
+
+
+
+## Question 1: "Women and Children First"
+
+```{r, echo=FALSE, message=FALSE}
+data(Titanic)
+# Convert Titanic data to tidy format
+Titanic <- Titanic %>% 
+  as.data.frame()
+
+
+```
+
+
+
+
+## Question 2: "America Runs on Starbucks?"
+
+```{r, echo=FALSE, message=FALSE}
+DD_vs_SB <- read_csv("DD_vs_SB.csv")
+
+```
+
+
+
+
+## Question 3: "NYC Flights"
+
+```{r, echo=FALSE, message=FALSE}
+library(nycflights13)
+data(airports)
+data(planes)
+data(flights)
+data(weather)
+data(airlines)
+
+```
+
+
+
+
+## Question 4: "Unisex Names... Revisited"
+
+```{r, echo=FALSE, message=FALSE}
+library(babynames)
+
+```
+
+
+
