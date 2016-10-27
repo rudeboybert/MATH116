@@ -36,10 +36,10 @@ The Royal Air Force wants to study how resistant their airplanes are to bullets.
     + **population**: ALL Royal Air Force airplanes
     + **population parameter**: It wasn't explicitly defined here, but imagine some aircraft engineering measure of resistance/strength.
 1. Statements about sample
-    + **sample**: The airplanes that returned from an air battle
+    + **sample**: Only the airplanes that **returned**  from an air battle
     + **statistic**: The same measure above, but applied only to the returning aircraft:
 1. Representativeness/generalizability:
-    + The sample suffers from **survivor's bias** i.e. only planes that didn't get shot down are included in your sample. You don't have information on the more important cases of when planes do get shot down. Wald, an American statistician during World War II, suggested that they reinforce parts of the planes that bullet holes [were not](http://clearthinking.co/survivorship-bias/) present.
+    + The sample suffers from **survivor's bias** i.e. only planes that didn't get shot down are included in your sample. You don't have information on the more important cases of when planes do get shot down. Wald, an American statistician during World War II, suggested that they reinforce parts of the planes where bullet holes [were not](http://clearthinking.co/survivorship-bias/) present.
     + Also, this was a fight only against the German Air Force. Perhaps the Italian and Japanese Air Forces used different bullets, but we don't have a sample representative of these groups.
 
 
@@ -74,7 +74,7 @@ Imagine it's 1993 i.e. almost all households have landlines.  You want to know t
 1. Representativeness/generalizability:
     + We assumed that all households have landlines, so the real issue of poorer individuals not having phones is not in question here.
     + Rather, households with larger numbers of people are more likely to have at least one person at home, and thus someone able to pick up the phone. Our results will be biased towards larger households. 
-
+    + One way to address this is to keep trying until every house on your list picks up. But especially for single young professionals, this might be very hard to do.
 
 
 ## Scenario 4
