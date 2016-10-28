@@ -18,7 +18,17 @@ In reverse chronological order (a more detailed outline can be found
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %d" %}
-    {% if "10 26" <= current_date and current_date <= "10 27" %}
+    {% if "10 31" <= current_date and current_date <= "11 01" %}
+    <li>
+      {{ post.date | date: "%a %b %-d" }} -  
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:
+      {{ post.subtitle }}
+    </li>
+    {% endif %}
+  {% endfor %}
+  {% for post in site.posts %}
+    {% assign current_date = post.date | date: "%m %d" %}
+    {% if "10 26" <= current_date and current_date <= "10 26" %}
     <li>
       {{ post.date | date: "%a %b %-d" }} -  
       <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:
@@ -33,9 +43,24 @@ In reverse chronological order (a more detailed outline can be found
 
 
 ## 2. Data
+<!--
+### d) Importing Data
+
+<ul>
+  {% for post in site.posts %}
+    {% assign current_date = post.date | date: "%m %d" %}
+    {% if "10 28" <= current_date and current_date <= "10 28" %}
+    <li>
+      {{ post.date | date: "%a %b %-d" }} -  
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:
+      {{ post.subtitle }}
+    </li>
+    {% endif %}
+  {% endfor %}
+</ul> 
+-->
 
 ### c) Manipulation/Wrangling
-
 
 <ul>
   {% for post in site.posts %}

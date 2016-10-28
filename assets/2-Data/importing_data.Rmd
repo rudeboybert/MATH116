@@ -1,0 +1,141 @@
+---
+title: "Importing Data"
+author: "Albert Y. Kim"
+date: "Fri Oct 28, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+## Recall from the First Lecture
+
+<!--
+Hi professor, I really liked your intro stats class. Can I ask you a stats question on a bio project I'm working on?
+I have gene expression data in this excel file. How would I run some of the methods we learned in class on it?
+http://www.ios7text.com/em78xa
+-->
+
+> ![](../figure/dialogue_1.png)
+
+
+
+
+## How do I import my own data into R?
+
+> * You're going to need to do this for your final project (details coming soon)
+> * It's not rocket science/brain surgery, but it still takes practice.
+
+
+
+<!--
+## Working Directory
+
+Often before we can import our own data into R, we need to set the **working
+directory** i.e. the folder R is going to look for files in.
+
+Say there is a spreadsheet file you want to load into R:
+
+1. In the Files Panel of RStudio, navigate to the folder where the spreadsheet file is.
+1. In the Files Panel click -> More -> Set As Working Directory
+
+
+
+## How do I import my own data into R?
+
+Say your data is in an Excel file called `example.xlsx`
+
+1. Make sure your values are in **tidy data format**
+1. Set the correct working directory
+1. Then use the `read_excel()` function in the `readxl` package as follows:
+
+```{r, eval=FALSE, echo=TRUE}
+library(readxl)
+example <- read_excel("example.xlsx")
+```
+-->
+
+
+## How do I import my own data into R?
+
+> * Excel `.xlsx` files aren't the best file format as they not only contain the data, 
+but also lots of Microsoft metadata (data about the data) that we don't need.
+> * Alternative: Comma-separated values `.csv` files are a **minimalist** format for 
+spreadsheet data.
+
+
+
+## What is a CSV file?
+
+* A `.csv` file [(example)](http://www.sqlshack.com/wp-content/uploads/2015/02/word-image35.png) is just data and no fluff:
+    + Rows are separated by line breaks.
+    + Values for a given row (i.e. variables) are separated by commas. Each row has equal number of commas.
+    + The first row is typically a header row with the column/variable names
+
+Note `.csv` files are in tidy data format.
+
+
+
+## Convert to `.xlsx` to `.csv`
+
+You can convert `.xlsx` files to `.csv` format from Excel (and Google Docs):
+
+* Go to File -> Save As... -> File Format -> Windows Comma Separated (.csv)
+* Add `.csv` to the filename
+* Click "Save As"
+
+
+
+## Today's Exercise: Load a CSV into R
+
+Today you will load the `DD_vs_SB.csv` file that contains the Dunkin Donuts and
+Starbucks data from Question 2 from Midterm II so that you can use it for Problem
+Set 07.
+
+
+
+
+## Today's Exercise: Load CSV into RStudio
+
+1. From the Problem Sets page, upload both `PS-07.Rmd` and `DD_vs_SB.csv` to your Problem Set folder on RStudio server.
+1. In the RStudio Environment Panel -> "Import Dataset" -> From Local File... -> Select `DD_vs_SB.csv` -> Open
+1. Make sure "Heading" is set to "Yes". This tells RStudio that the first row are the variable names.
+1. Click Import
+1. The `View()` panel should pop up with the data. Make sure the variable names are correct.
+
+
+
+## Today's Exercise: Load CSV into RStudio
+
+Now look at your console. You should see a line that looks something like:
+
+```{r, eval=FALSE, echo=TRUE}
+DD_vs_SB <- read.csv("~/Problem_Sets/DD_vs_SB.csv")
+```
+
+This is the line of code that loads the CSV file into R and assigns it to an object
+called `DD_vs_SB`, which you will be working with. 
+
+1. Copy your version of the above line of code into the code block for Question 2 of `PS-07.Rmd`
+1. Knit the file to test that it works
+1. If so, start `PS-07.Rmd`!
+

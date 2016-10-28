@@ -29,9 +29,6 @@ and clean manner.
 library(ggplot2)
 library(dplyr)
 library(knitr)
-
-# Needed to read-in CSV spreadsheet data
-library(readr)
 ```
 
 
@@ -62,8 +59,7 @@ Recreate the plot in part a) (with any improvements you think are warranted in
 part c) in the code block. Don't worry about making the colors match.
 
 ```{r, echo=FALSE, message=FALSE}
-# This line 
-DD_vs_SB <- read_csv("DD_vs_SB.csv")
+# Copy and paste the line of code that loads DD_vs_SB.csv into R here:
 
 ```
 
