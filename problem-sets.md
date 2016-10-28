@@ -10,7 +10,6 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-<!--
 <br>
 
 ***
@@ -29,7 +28,8 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 #### Learning Goals
 
 * Practice turning pseudocode into code.
-
+* More imporantly: **Doing Research: Generating answers to scientific questions
+using data.**
 
 
 #### Homework
@@ -38,7 +38,8 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 folder on RStudio Server:
     + <a href="{{ site.baseurl }}/assets/PS/PS-07.Rmd" target="_blank">`PS-07.Rmd`</a>
     + <a href="{{ site.baseurl }}/assets/PS/DD_vs_SB.csv" target="_blank">`DD_vs_SB.csv`</a>
--->
+
+
 
 
 

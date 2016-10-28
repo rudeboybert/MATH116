@@ -7,44 +7,9 @@ output:
   html_document
 ---
 
-
-## Please Indicate
-
-* Who you collaborated with. If no one, please indicate so: 
-* Approximately how much time did you spend on this problem set: 
-* What, if anything, gave you the most trouble: 
-
-
-
-## Instructions:
-
-* As I said in lab on Thursday, unless you are **extremely** comfortable with
-the tools of `ggplot2` and `dplyr`, do not attempt to answer the questions below
-immediately in this R Markdown file. Rather, focus on separating the
-    + **"What"** you are going to do: the blueprint/plan
-    + **"How"** you are going to do it:  `ggplot2` and `dplyr` coding
-* Confusing the "what" and the "how" will only make this task more difficult.
-* For example, the "what" step could be tackled as follows:
-    + Draw on paper, a blackboard, or a whiteboard what your starting data frames
-    look like and
-        1. what your resulting data frames should look like
-        1. what any visualizations should look like
-    + Write out in 
-    [pseudocode](http://image.slidesharecdn.com/pseudocode-111128151539-phpapp02/95/introduction-to-pseudocode-38-638.jpg?cb=1393513763)
-    what your R code will look like. Pseudocode is informal and rough code that 
-    doesn't necessarily need to work, but still illustrates what you want to do.
-    More than anything else, writing pseudocode out forces you to think your
-    plan out loud.
-* Only after you a plan for the "what" should you start the "how" i.e. coding.
-* I **HIGHLY** encourage you to work in groups on this problem set, on both the
-"what" and "how" stages.
-
-
-
-
 ## Question: `nycflights13` data
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=TRUE, message=FALSE}
 # Load all pacakges necessary
 library(ggplot2)
 library(dplyr)
@@ -76,20 +41,166 @@ miles between Virgin America and ExpressJet Airlines Inc for the three NYC
 airports.
 
 
-Management offers the following helpful tips:
 
-* Keep `View()`ing your data
-* Figure 5.8 in [Chapter
-5.3](https://rudeboybert.github.io/IntroStatDataSciences/5-manip.html#joiningmerging-data-frames)
-gives a sense of what information you have to work with.
-* The help files contain the documentation. For example `?flights`
-* Say you have your results in a data frame called `results`. Including `kable(results)` in your code
-will print the table in your HTML page in a nice and clean manner.
-* You can `group_by` more than one variable. Example say you had another data
-set that you want to group by `state` and `city`, you would use `group_by(state,
-city)`.
 
+
+## Tips
+
+Two tips for working smarter: 
+
+1. Defining your target
+1. Cleaning up your workspace
+
+#### 1. Define your target
+
+You should at least mentally, if not explicitly on a piece of paper or
+black/whiteboard, know what your end data frame should look like **in tidy format**:
+
+* How many columns and what are their names i.e. the variables
+* How many rows will I have?
+* Fill in elements of the table the best you can.
+
+If you don't have a plan, not only will your work not be focused, but more 
+importantly, how would you know when you're done? In our case since we are 
+comparing capacity (as measured by available seat miles) at the three airports 
+for Virgin America and ExpressJet, we know before even typing a single line of 
+code, our end table should look something like this:
+
+|Airport |Airlines | Available Seat Miles|
+|:------|:-------|----------------:|
+|JFK    |VX      |       some value|
+|JFK    |EV      |       some value|
+|EWR    |VX      |       some value|
+|EWR    |EV      |       some value|
+|LGA    |VX      |       some value|
+|LGA    |EV      |       some value|
+
+
+**Advanced**: Annie pointed out that a table like this would work too:
+
+|Airport |VX Available Seat Miles | EV Available Seat Miles|
+|:------|:-------|----------------:|
+|JFK    |some value|       some value|
+|EWR    |some value|       some value|
+|EWR    |some value|       some value|
+
+But note this is not in tidy data format (i.e. long format), but in wide format.
+For `ggplot2` and `dplyr` to work, we need to be consistent about the data 
+format: only tidy format. If you do want to switch from tidy/long to wide
+format or vice versa, you can use the `tidyr` package: see the `dplyr`
+cheatsheet, front page, "Reshaping Data" section, `gather()` and `spread()`
+functions. This is for a more advanced class however.
+
+
+
+
+#### 2. Clean up your workspace
+
+Before doing any kind of complex `mutate`, `summarise`, `arrange`, or `_join`, I like
+to pare down the necessary data sets to the minimum of what I need by
+
+* `select` only the absolutely neccesary columns
+* `filter` only the absolutely necessary rows
+
+This has several benefits:
+
+1. It will make it much easier to digest `View()`s of your work as you progress.
+1. It will minimize the chance of weird errors creeping in.
+1. **Most importantly**: It will force you to think
+    + "What variables do I need?" and hence
+    + "Where are they located?" and hence
+    + "What data sets do I need?"
+
+In our case, we are going to need the following variables:
+
+* `carrier` and `origin` for the end table, both in the `flights` data set
+* `distance` and `seats` to compute `total_seat_miles`, with `seats` being in the `planes` data set
+* `tailnum` to be able to join/merge `flights`  and `planes`
+
+
+
+
+
+## Deliverable 1: Table
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+# Clean up our workspace: Reduce both the flights and planes data sets to only
+# those columns and rows we need.
+flights_cleaned <- flights %>%
+  filter(carrier == "VX" | carrier == "EV") %>% 
+  select(tailnum, carrier, distance, origin)
 
+planes_cleaned <- planes %>%
+  select(tailnum, seats)
+
+# Now we join the two by the variable "tailnum". Note, when the variable we are
+# joining along has the same name in both datasets, we don't need to do: 
+# by = c("tailnum" = "tailnum")
+flights_planes_joined <- flights_cleaned %>% 
+  left_join(planes_cleaned, by = "tailnum") 
+
+results <- flights_planes_joined %>% 
+  # Now we can compute ASM:
+  mutate(seat_miles = seats * distance) %>% 
+  # Since we want all 6 possible origin X carrier pairs, we group by
+  # those variables and THEN summarize
+  group_by(origin, carrier) %>% 
+  summarise(total_seat_miles = sum(seat_miles)) %>% 
+  # While not necessary, I decide to sort in descending order of ASM
+  arrange(desc(total_seat_miles))
+
+# Use the kable() function from the knitr package to print the output cleanly
+kable(results)
 ```
+
+
+
+
+
+## Deliverable 2: Visualization
+
+Now when it comes to plotting, recall me email from Thursday, Oct 27 referencing
+how to plot a `geom_bar()` when you have an explicit variable you want to map to
+the `y` aesthetic. You need to tell `geom_bar()` to override its default
+behavior and use the `y=total_seat_miles` variable by setting
+`geom_bar(stat="identity")`. See the code for Problem Set 05 Discussion -> Q1.c)
+-> second plot comparing proportions for another example.
+
+**Note**: We don't forget the axes labels and title!
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+ggplot(results, aes(x=origin, y=total_seat_miles)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~carrier) +
+  labs(x="NYC Airport", y="Total Available Seat Miles", title="Virgin vs ExpressJet Seat Miles in NYC in 2013")
+```
+
+My executive summary: Overall, we (as in Virgin America) have about the same
+capacity, but definitely spread out over different airports. We've got JFK
+covered, but definitely don't have the capacity that ExpressJet does at Newark 
+and La Guardia. So I suggest we target our marketing so that
+
+* we promote our great number of options to people who tend to fly out of JFK.
+* we start running ads that bad mouth ExpressJet to people who tend to fly out of Newark.
+
+
+
+
+
+## Advanced
+
+Once you get better at these things, you can write code super consisely. Not
+required for this class...
+
+```{r, echo=TRUE, eval=TRUE}
+flights %>% 
+  left_join(planes, by = "tailnum") %>% 
+  filter(carrier %in% c("VX", "EV")) %>% 
+  mutate(seat_miles = seats*distance) %>% 
+  group_by(origin, carrier) %>% 
+  summarise(total_seat_miles = sum(seat_miles)) %>% 
+  arrange(desc(total_seat_miles)) %>% 
+  kable()
+```
+
+

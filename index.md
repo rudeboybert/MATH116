@@ -43,7 +43,7 @@ In reverse chronological order (a more detailed outline can be found
 
 
 ## 2. Data
-<!--
+
 ### d) Importing Data
 
 <ul>
@@ -58,7 +58,7 @@ In reverse chronological order (a more detailed outline can be found
     {% endif %}
   {% endfor %}
 </ul> 
--->
+
 
 ### c) Manipulation/Wrangling
 
