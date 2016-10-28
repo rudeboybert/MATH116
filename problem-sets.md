@@ -28,7 +28,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Learning Goals
 
-* Turning pseudocode into code.
+* Practice turning pseudocode into code.
 
 
 
