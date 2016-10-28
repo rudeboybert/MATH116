@@ -16,16 +16,21 @@ output:
 
 
 
+
+
 ## Instructions:
 
-* 
+* Say you have your results in a data frame called `results`. Including
+`kable(results)` in your code will print the table in your HTML page in a nice
+and clean manner.
+
 
 ```{r, echo=FALSE, message=FALSE}
 library(ggplot2)
 library(dplyr)
 library(knitr)
 
-# Need to read CSV spreadsheet data
+# Needed to read-in CSV spreadsheet data
 library(readr)
 ```
 
@@ -34,21 +39,30 @@ library(readr)
 
 ## Question 1: "Women and Children First"
 
+Do part c) as thoroughly as possible here:
+
 ```{r, echo=FALSE, message=FALSE}
 data(Titanic)
 # Convert Titanic data to tidy format
 Titanic <- Titanic %>% 
   as.data.frame()
 
-
 ```
+
+Did the "women-and-children" first policy hold? Argue using the results from the
+above table.
+
 
 
 
 
 ## Question 2: "America Runs on Starbucks?"
 
+Recreate the plot in part a) (with any improvements you think are warranted in
+part c) in the code block. Don't worry about making the colors match.
+
 ```{r, echo=FALSE, message=FALSE}
+# This line 
 DD_vs_SB <- read_csv("DD_vs_SB.csv")
 
 ```
@@ -65,6 +79,15 @@ data(planes)
 data(flights)
 data(weather)
 data(airlines)
+
+# Do part c) here:
+
+
+# Do part d) here:
+
+
+# Do part e) here:
+
 
 ```
 
