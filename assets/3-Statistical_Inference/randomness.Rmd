@@ -38,7 +38,7 @@ Recall from last lecture we studied
 * Bias: A sample is biased if some observational units have a higher **probability** of being
 included in the sample. 
 
-Keywords: **random** and **probability**
+> * Keywords: **random** and **probability**
 
 
 
@@ -46,7 +46,7 @@ Keywords: **random** and **probability**
 ## Probability
 
 * In short: Probability is the study of randomness.
-* It's roots lie in one [historical constant](https://www.google.com/search?q=probability&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjnvJG7_oTQAhVIQiYKHSQ7CnoQ_AUICSgC&biw=2559&bih=1316&dpr=2#newwindow=1&tbm=isch&q=history+of+gambling).
+* Its roots lie in one [historical constant](https://www.google.com/search?q=probability&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjnvJG7_oTQAhVIQiYKHSQ7CnoQ_AUICSgC&biw=2559&bih=1316&dpr=2#newwindow=1&tbm=isch&q=history+of+gambling).
 
 
 
@@ -54,7 +54,7 @@ Keywords: **random** and **probability**
 ## Probability in History
 
 In 79 AD a volcanic eruption in the Roman city of Pompeii covered the entire city
-in hot ash, perfectly preserving may items:
+in hot ash, perfectly preserving many items...
 
 <img src="https://travelswithmrp.files.wordpress.com/2011/04/image14.png" alt="Drawing" style="width: 400px;"/>
 
@@ -62,7 +62,7 @@ in hot ash, perfectly preserving may items:
 
 ## Probability in History
 
-including what I saw at a Pompeii exhibit in Montreal:
+... including what I saw at a Pompeii exhibit in Montreal:
 
 <img src="../figure/dice.png" alt="Drawing" style="width: 400px;"/>
 
@@ -82,10 +82,11 @@ Mathematically (MATH 310)           |  Simulations
 
 
 
-## Simulations via Computer
+## Two Approaches to Probability
 
 > * The mathematical approach to studying probability requires more mathematical background: set theory, discrete math, calculus, and later on measure theory.
-> * The simulation approach does not. Instead we requires a computer's **random number generator** to generate simulations. Why?
+> * The simulation approach does not.
+> * Instead we require a computer's **random number generator** to generate simulations. Why?
 
 
 
@@ -108,10 +109,8 @@ Doing this repeatedly by hand is tiring:
 
 ## Analogy for Random Simulation
 
-Analogy for rest of course: POWERBALL
-
-<img src="../figure/powerball.jpg" alt="Drawing" style="width: 600px;"/>
-
+> * Analogy for rest of course: POWERBALL
+> * <img src="../figure/powerball.jpg" alt="Drawing" style="width: 600px;"/>
 > * We can model **any** random simulation by tinkering with the following **attributes** of Powerball:
 
 
@@ -124,7 +123,7 @@ Analogy for rest of course: POWERBALL
     * What are written on the balls?
     * Do the balls have equal probability of being picked?
 * Attributes of the Drawing:
-    * How are you drawing the balls
+    * How are you drawing the balls?
     * How many balls do you draw?
     * What are you recording about each drawn ball?
     * What do you do with drawn balls?
@@ -133,29 +132,48 @@ Analogy for rest of course: POWERBALL
 
 
 
+## Tools
+
+All hail the `mosaic` package, which is pre-installed on RStudio Server. Load as usual: `library(mosaic)`
+
+The following 4 functions will give us (most of) the random simulation tools we need:
+
+> 1. `rflip()`: Flip a coin
+> 1. `shuffle()`: Shuffle a set of values (akin to cards)
+> 1. `do()`: Do the same thing many, many, many times
+> 1. `resample()`: the swiss army knife of functions
 
 
-## Analogy for Random Simulation
-
-```{r, message=FALSE}
-library(mosaic)
-rflip()
-rflip(10)
-simulations <- do(10) * rflip(10)
-
+```{r, message=FALSE, eval=FALSE, echo=FALSE}
+# Load packages, including mosaic package
 library(dplyr)
-as_data_frame(simulations)
+library(ggplot2)
+library(mosaic)
 
-simulations %>% 
-  group_by(heads) %>%
-  summarize(count = n())
+# Flip a coin once. Try this multiple times:
+rflip()
 
+# Flip a coin 10 times. Try this multiple times:
+rflip(10)
 
+# Flip a coin 10 times, but do this 5 times. Try this multiple times
+do(5) * rflip(10)
 
-do(3)*rflip()
-do(3)*resample(c(1:6))
-do(3)*shuffle(c(1:6))
+# Flip a coin 10 times, but do this 500 times
+do(500) * rflip(10)
+
+# Gah! There are too many rows!
+simulations <- do(500) * rflip(10)
+
+# Convert to data frame format; this allows us to better view in console
+simulations <- simulations %>% 
+  as_data_frame()
+
+# We could also View() it
+View(simulations)
 ```
+
+
 
 
 

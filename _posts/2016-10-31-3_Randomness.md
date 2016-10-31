@@ -19,3 +19,10 @@ If you need help, let me know.
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/randomness.html" target = "_blank">Slides</a>: 
+* In-class exercise: Go over the code below, then do the following learning checks:
+    + LC1: Create a histogram of the number illustrating the long-run behavior of flipping a coin 10 times. 
+        * Where is it centered?
+        * Describe the shape of the **distribution** of values
+    + LC2: Tie all elements of Line 13 of code below to the Attributes of Powerball seen in the slides above.
+
+<script src="https://gist.github.com/rudeboybert/a20029fc7aa0e4af8e1687c12b278ae8.js"></script>
