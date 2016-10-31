@@ -45,8 +45,26 @@ Keywords: **random** and **probability**
 
 ## Probability
 
-* In short: probability is the study of randomness.
-* The study of probability lies in one [historical constant](https://www.google.com/search?q=probability&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjnvJG7_oTQAhVIQiYKHSQ7CnoQ_AUICSgC&biw=2559&bih=1316&dpr=2#newwindow=1&tbm=isch&q=history+of+gambling).
+* In short: Probability is the study of randomness.
+* It's roots lie in one [historical constant](https://www.google.com/search?q=probability&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjnvJG7_oTQAhVIQiYKHSQ7CnoQ_AUICSgC&biw=2559&bih=1316&dpr=2#newwindow=1&tbm=isch&q=history+of+gambling).
+
+
+
+
+## Probability in History
+
+In 79 AD a volcanic eruption in the Roman city of Pompeii covered the entire city
+in hot ash, perfectly preserving may items:
+
+<img src="https://travelswithmrp.files.wordpress.com/2011/04/image14.png" alt="Drawing" style="width: 400px;"/>
+
+
+
+## Probability in History
+
+including...
+
+<img src="../figure/dice.png" alt="Drawing" style="width: 400px;"/>
 
 
 
@@ -66,7 +84,7 @@ Mathematically (MATH 310)           |  Simulations
 ## Simulations via Computer
 
 > * The mathematical approach to studying probability requires more mathematical background: set theory, discrete math, calculus, and later on measure theory.
-> * The [simulation approach](http://rpruim.github.io/eCOTS2014/Workshop/ResamplingPres.html) does not, but requires a computer's **random number generator** to generate simulations. Why?
+> * The simulation approach does not. Instead we requires a computer's **random number generator** to generate simulations. Why?
 
 
 
@@ -101,22 +119,23 @@ For **any** random simulation, think to this: POWERBALL
 
 <img src="../figure/powerball.jpg" alt="Drawing" style="width: 600px;"/>
 
+> * We can model any random simulation by tinkering with these 8 attributes of Powerball:
 
 
 
 
-## Analogy for Random Simulation
-
-Different simulations can be set by varying the attributes of the Powerball lottery:
+## Attributes of a Random Simulation via Powerball
 
 * Balls:
     * How many balls do you have?
     * What are written on the balls?
     * Do the balls have equal probability of being picked?
-* Drawing balls at random
+* Drawing balls:
+    * How are you drawing the balls
     * How many balls do you pick?
-    * What do you do with a ball after you've picked/recorded it?
-* Number of lotteries
+    * What are you recording from each ball?
+    * What to do with a ball after you've drawn it?
+* Number of lotteries:
     * How many times do you repeat the lottery?
 
 
