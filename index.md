@@ -15,10 +15,6 @@ In reverse chronological order (a more detailed outline can be found
 
 ## 3. Statistical Inference
 
-### c) Confidence Interval via Bootstrapping
-
-### b) Hypothesis Testing via Permutation Test
-
 ### a) Background
 
 <ul>
