@@ -107,17 +107,17 @@ For **any** random simulation, think to this: POWERBALL
 
 ## Analogy for Random Simulation
 
-<img src="../figure/powerball.jpg" alt="Drawing" style="width: 400px;"/>
+Different simulations can be set by varying the attributes of the Powerball lottery:
 
-Different simulations can be set by varying the settings:
-
-> 1. How many balls do you have?
-> 1. What are written on the balls?
-> 1. Do the balls have equal probability of being picked?
-> 1. How many balls do you pick?
-> 1. What do you do with a ball after you've picked/recorded it?
-
-
+* Balls:
+    * How many balls do you have?
+    * What are written on the balls?
+    * Do the balls have equal probability of being picked?
+* Drawing balls at random
+    * How many balls do you pick?
+    * What do you do with a ball after you've picked/recorded it?
+* Number of lotteries
+    * How many times do you repeat the lottery?
 
 
 ## Analogy for Random Simulation
