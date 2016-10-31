@@ -24,5 +24,6 @@ If you need help, let me know.
         * Where is it centered?
         * Describe the shape of the **distribution** of values
     + LC2: Tie all elements of Line 13 of code below to the Attributes of Powerball seen in the slides above.
+    + LC3: Try to replicate the above, but for the sum of two die rolls. Hint: `resample(c(1:6), 2)`
 
 <script src="https://gist.github.com/rudeboybert/a20029fc7aa0e4af8e1687c12b278ae8.js"></script>
