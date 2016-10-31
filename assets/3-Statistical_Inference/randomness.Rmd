@@ -144,7 +144,11 @@ The following 4 functions will give us (most of) the random simulation tools we 
 > 1. `resample()`: the swiss army knife of functions
 
 
+
+
 ```{r, message=FALSE, eval=FALSE, echo=FALSE}
+# Post on GIST
+
 # Load packages, including mosaic package
 library(dplyr)
 library(ggplot2)

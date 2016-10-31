@@ -18,7 +18,10 @@ If you need help, let me know.
 
 ### In-Class
 
-* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/randomness.html" target = "_blank">Slides</a>: 
+* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/randomness.html"
+target = "_blank">Slides</a>: History of probability, two approaches to studying
+probability, the Powerball lottery analogy, the `mosaic` package for random
+simulations.
 * In-class exercise: Go over the code below, then do the following learning checks:
     + LC1: Create a histogram of the number illustrating the long-run behavior of flipping a coin 10 times. 
         * Where is it centered?
@@ -27,3 +30,9 @@ If you need help, let me know.
     + LC3: Try to replicate the above, but for the sum of two die rolls. Hint: `resample(c(1:6), 2)`
 
 <script src="https://gist.github.com/rudeboybert/a20029fc7aa0e4af8e1687c12b278ae8.js"></script>
+
+
+### After-Class Updates
+
+* Lec19 <a href = "{{ site.baseurl }}/assets/LC/randomness.html" target = "_blank">learning check discussion</a>
+

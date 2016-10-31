@@ -1,0 +1,181 @@
+---
+title: "Sampling"
+author: "Albert Y. Kim"
+date: "Wed Nov 2, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+
+
+
+## Recall
+
+Recall from last lecture we studied
+
+* **Random** sampling: where we select the sample from the population in an unbiased fashion
+* Bias: A sample is biased if some observational units have a higher **probability** of being
+included in the sample. 
+
+> * Keywords: **random** and **probability**
+
+
+
+
+## Probability
+
+* In short: Probability is the study of randomness.
+* Its roots lie in one [historical constant](https://www.google.com/search?q=probability&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjnvJG7_oTQAhVIQiYKHSQ7CnoQ_AUICSgC&biw=2559&bih=1316&dpr=2#newwindow=1&tbm=isch&q=history+of+gambling).
+
+
+
+
+## Probability in History
+
+In 79 AD a volcanic eruption in the Roman city of Pompeii covered the entire city
+in hot ash, perfectly preserving many items...
+
+<img src="https://travelswithmrp.files.wordpress.com/2011/04/image14.png" alt="Drawing" style="width: 400px;"/>
+
+
+
+## Probability in History
+
+... including what I saw at a Pompeii exhibit in Montreal:
+
+<img src="../figure/dice.png" alt="Drawing" style="width: 400px;"/>
+
+
+
+
+## Two Approaches to Probability
+
+There are two approaches to studying probability 
+)
+
+Mathematically (MATH 310)           |  Simulations
+:-------------------------:|:-------------------------:
+<img src="../figure/pdf.png" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/coin.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+
+
+## Two Approaches to Probability
+
+> * The mathematical approach to studying probability requires more mathematical background: set theory, discrete math, calculus, and later on measure theory.
+> * The simulation approach does not.
+> * **Note**: The "random simulation" in question is not limited to coin flips.
+> * Instead we require a computer's **random number generator** to generate simulations. Why?
+
+
+
+
+
+## Simulations via Computer
+
+Doing this repeatedly by hand is tiring:
+
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+
+
+
+
+
+## Analogy for Random Simulation
+
+> * Analogy for rest of course: POWERBALL
+> * <img src="../figure/powerball.jpg" alt="Drawing" style="width: 600px;"/>
+> * We can model **any** random simulation by tinkering with the following **attributes** of Powerball:
+
+
+
+
+## Attributes of Powerball
+
+* Atrributes of the Lottery Machine:
+    * How many balls do you have?
+    * What are written on the balls?
+    * Do the balls have equal probability of being picked?
+* Attributes of the Drawing:
+    * How are you drawing the balls?
+    * How many balls do you draw?
+    * What are you recording about each drawn ball?
+    * What do you do with drawn balls?
+* Number of Lotteries:
+    * How many times do you repeat the lottery?
+
+
+
+## Tools
+
+All hail the `mosaic` package, which is pre-installed on RStudio Server. Load as usual: `library(mosaic)`
+
+The following 4 functions will give us (most of) the random simulation tools we need:
+
+> 1. `rflip()`: Flip a coin
+> 1. `shuffle()`: Shuffle a set of values (akin to cards)
+> 1. `do()`: Do the same thing many, many, many times
+> 1. `resample()`: the swiss army knife of functions
+
+
+
+
+```{r, message=FALSE, eval=FALSE, echo=FALSE}
+# Post on GIST
+
+# Load packages, including mosaic package
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+
+# Flip a coin once. Try this multiple times:
+rflip()
+
+# Flip a coin 10 times. Try this multiple times:
+rflip(10)
+
+# Flip a coin 10 times, but do this 5 times. Try this multiple times
+do(5) * rflip(10)
+
+# Flip a coin 10 times, but do this 500 times
+do(500) * rflip(10)
+
+# Gah! There are too many rows!
+simulations <- do(500) * rflip(10)
+
+# Convert to data frame format; this allows us to better view in console
+simulations <- simulations %>% 
+  as_data_frame()
+
+# We could also View() it
+View(simulations)
+```
+
+

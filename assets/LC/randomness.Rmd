@@ -1,0 +1,28 @@
+---
+title: "Probability via Simulation"
+author: "Albert Y. Kim"
+date: "Mon Oct 31, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+```
+
+
+* LC1: Create a histogram of the number illustrating the long-run behavior of flipping a coin 10 times. 
+    + Where is it centered?
+    + Describe the shape of the **distribution** of values
+* LC2: Tie all elements of Line 13 of code below to the Attributes of Powerball seen in the slides above.
+* LC3: Try to replicate the above, but for the sum of two die rolls. Hint: `resample(c(1:6), 2)`
+
+
+
+## LC1
