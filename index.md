@@ -46,7 +46,7 @@ In reverse chronological order (a more detailed outline can be found
 
 ## 2. Data
 
-### d) Importing Data
+### d) Importing Data (Note Lec18 is here)
 
 <ul>
   {% for post in site.posts %}
