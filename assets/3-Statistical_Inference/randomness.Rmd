@@ -1,0 +1,154 @@
+---
+title: "Intro to Probability via Simulation"
+author: "Albert Y. Kim"
+date: "Mon Oct 31, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+
+
+
+## Recall
+
+Recall from last lecture we studied
+
+* **Random** sampling: where we select the sample from the population in an unbiased fashion
+* Bias: A sample is biased if some observational units have a higher **probability** of being
+included in the sample. 
+
+Keywords: **random** and **probability**
+
+
+
+
+## Probability
+
+* In short: probability is the study of randomness.
+* The study of probability lies in one [historical constant](https://www.google.com/search?q=probability&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjnvJG7_oTQAhVIQiYKHSQ7CnoQ_AUICSgC&biw=2559&bih=1316&dpr=2#newwindow=1&tbm=isch&q=history+of+gambling).
+
+
+
+
+## Two Approaches to Probability
+
+There are two way to approaches to studying probability:
+
+Mathematically (MATH 310)           |  Simulations
+:-------------------------:|:-------------------------:
+<img src="../figure/pdf.png" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/coin.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+
+
+## Simulations via Computer
+
+> * The mathematical approach to studying probability requires more mathematical background: set theory, discrete math, calculus, and later on measure theory.
+> * The [simulation approach](http://rpruim.github.io/eCOTS2014/Workshop/ResamplingPres.html) does not, but requires a computer's **random number generator** to generate simulations. Why?
+
+
+
+
+
+## Simulations via Computer
+
+Doing this repeatedly by hand is tiring:
+
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+
+
+
+
+
+## Critical Note
+
+The "random simulation" in question is not limited to coin flips.
+
+
+
+
+
+## Analogy for Random Simulation
+
+For **any** random simulation, think to this: POWERBALL
+
+<img src="../figure/powerball.jpg" alt="Drawing" style="width: 600px;"/>
+
+
+
+
+
+## Analogy for Random Simulation
+
+<img src="../figure/powerball.jpg" alt="Drawing" style="width: 400px;"/>
+
+Different simulations can be set by varying the settings:
+
+> 1. How many balls do you have?
+> 1. What are written on the balls?
+> 1. Do the balls have equal probability of being picked?
+> 1. How many balls do you pick?
+> 1. What do you do with a ball after you've picked/recorded it?
+
+
+
+
+## Analogy for Random Simulation
+
+```{r}
+library(mosaic)
+rflip()
+rflip(10)
+simulations <- do(10) * rflip(10)
+
+library(dplyr)
+as_data_frame(simulations)
+
+simulations %>% 
+  group_by(heads) %>%
+  summarize(count = n())
+
+
+
+do(3)*rflip()
+do(3)*resample(c(1:6))
+do(3)*shuffle(c(1:6))
+```
+
+
+
+
+
+
+
+
+
+
+
