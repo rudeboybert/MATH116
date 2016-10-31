@@ -62,7 +62,7 @@ in hot ash, perfectly preserving may items:
 
 ## Probability in History
 
-including...
+including what I saw at a Pompeii exhibit in Montreal:
 
 <img src="../figure/dice.png" alt="Drawing" style="width: 400px;"/>
 
@@ -77,6 +77,7 @@ Mathematically (MATH 310)           |  Simulations
 :-------------------------:|:-------------------------:
 <img src="../figure/pdf.png" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/coin.jpg" alt="Drawing" style="width: 300px;"/>
 
+> * **Note**: The "random simulation" in question is not limited to coin flips.
 
 
 
@@ -105,43 +106,38 @@ Doing this repeatedly by hand is tiring:
 
 
 
-## Critical Note
-
-The "random simulation" in question is not limited to coin flips.
-
-
-
-
-
 ## Analogy for Random Simulation
 
-For **any** random simulation, think to this: POWERBALL
+Analogy for rest of course: POWERBALL
 
 <img src="../figure/powerball.jpg" alt="Drawing" style="width: 600px;"/>
 
-> * We can model any random simulation by tinkering with these 8 attributes of Powerball:
+> * We can model **any** random simulation by tinkering with the following **attributes** of Powerball:
 
 
 
 
-## Attributes of a Random Simulation via Powerball
+## Attributes of Powerball
 
-* Balls:
+* Atrributes of the Lottery Machine:
     * How many balls do you have?
     * What are written on the balls?
     * Do the balls have equal probability of being picked?
-* Drawing balls:
+* Attributes of the Drawing:
     * How are you drawing the balls
-    * How many balls do you pick?
-    * What are you recording from each ball?
-    * What to do with a ball after you've drawn it?
-* Number of lotteries:
+    * How many balls do you draw?
+    * What are you recording about each drawn ball?
+    * What do you do with drawn balls?
+* Number of Lotteries:
     * How many times do you repeat the lottery?
+
+
+
 
 
 ## Analogy for Random Simulation
 
-```{r}
+```{r, message=FALSE}
 library(mosaic)
 rflip()
 rflip(10)
