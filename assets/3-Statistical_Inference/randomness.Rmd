@@ -71,7 +71,7 @@ in hot ash, perfectly preserving many items...
 
 ## Two Approaches to Probability
 
-There are two way to approaches to studying probability:
+There are two approaches to studying probability:
 
 Mathematically (MATH 310)           |  Simulations
 :-------------------------:|:-------------------------:
