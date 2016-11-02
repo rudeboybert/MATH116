@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lec20 Intro to Hypothesis Testing"
+title:  "Lec20 Sampling"
 subtitle: "The lady tasting tea."
 date:   2016-11-02 10:10:45
 categories: jekyll update
