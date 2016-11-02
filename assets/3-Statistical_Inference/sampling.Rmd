@@ -18,164 +18,147 @@ slides > slide.backdrop {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(knitr)
+library(mosaic)
 ```
-
-
 
 
 
 ## Recall
 
-Recall from last lecture we studied
+The `mosaic` package has the following 4 functions will give us (most of) the random simulation tools we need. We've seen
 
-* **Random** sampling: where we select the sample from the population in an unbiased fashion
-* Bias: A sample is biased if some observational units have a higher **probability** of being
-included in the sample. 
+1. `rflip()`: Flip a coin
+1. ~~`shuffle()`: Shuffle a set of values~~
+1. `do()`: Do the same thing many, many, many times
+1. ~~`resample()`: the swiss army knife of functions~~
 
-> * Keywords: **random** and **probability**
-
-
-
-
-## Probability
-
-* In short: Probability is the study of randomness.
-* Its roots lie in one [historical constant](https://www.google.com/search?q=probability&newwindow=1&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjnvJG7_oTQAhVIQiYKHSQ7CnoQ_AUICSgC&biw=2559&bih=1316&dpr=2#newwindow=1&tbm=isch&q=history+of+gambling).
+> * Today we do `shuffle()` and `resample()`
 
 
 
 
-## Probability in History
 
-In 79 AD a volcanic eruption in the Roman city of Pompeii covered the entire city
-in hot ash, perfectly preserving many items...
+## Key Distinction
 
-<img src="https://travelswithmrp.files.wordpress.com/2011/04/image14.png" alt="Drawing" style="width: 400px;"/>
+A *huge* distinction in types of sampling:
 
+1. Sampling **with** replacement
+1. Sampling **without** replacement
 
+In the Powerball analogy, this translates to:
 
-## Probability in History
-
-... including what I saw at a Pompeii exhibit in Montreal:
-
-<img src="../figure/dice.png" alt="Drawing" style="width: 400px;"/>
+> 1. After picking a ball, putting it back into the machine
+> 1. After picking a ball, leaving it out. What the lottery does in real life.
 
 
 
 
-## Two Approaches to Probability
+## Shuffling AKA Permuting
 
-There are two approaches to studying probability 
+Shuffling AKA re-ordering AKA **permuting** are all synonyms. I'm going to use
+all three terms interchangeably. 
+
+Run the following in your console:
+
+```{r, eval=FALSE}
+library(mosaic)
+# Define a vector fruit
+fruit <- c("apple", "orange", "mango")
+
+# Do this multiple times:
+shuffle(fruit)
+```
+
+
+
+
+## Shuffling AKA Permuting
+
+This works with the `do()` operator...
+
+```{r, eval=FALSE}
+do(5) * shuffle(fruit)
+```
+
+... as well as within a `mutate()`
+
+```{r, eval=FALSE}
+example_data <- data_frame(
+  name = c("Ilana", "Abbi", "Hannibal"),
+  fruit = c("apple", "orange", "mango")
 )
 
-Mathematically (MATH 310)           |  Simulations
-:-------------------------:|:-------------------------:
-<img src="../figure/pdf.png" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/coin.jpg" alt="Drawing" style="width: 300px;"/>
+# Run this multiple times: 
+example_data %>% 
+  mutate(fruit = shuffle(fruit))
+```
+
+
+
+## Resampling
+
+At its most basic, `resample()` resamples the input vector **with** replacement. Run this in the console multiple times:
+
+```{r, eval=FALSE}
+resample(fruit)
+```
+
+> * You can get the same fruit all three times i.e. sampling with replacement
+> * `resample()` has default settings that we can set to fit our needs; it is a swiss army knife.
+> * Let's unpack the defaults:
 
 
 
 
+## Resampling
 
-## Two Approaches to Probability
+```{r, eval=FALSE}
+resample(x=fruit, size=length(x), replace=TRUE, 
+         prob=rep(1/length(x), length(x)) )
+```
 
-> * The mathematical approach to studying probability requires more mathematical background: set theory, discrete math, calculus, and later on measure theory.
-> * The simulation approach does not.
-> * **Note**: The "random simulation" in question is not limited to coin flips.
-> * Instead we require a computer's **random number generator** to generate simulations. Why?
-
-
-
-
-
-## Simulations via Computer
-
-Doing this repeatedly by hand is tiring:
-
-<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
-<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
-<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
-<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
-<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
-<img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/><img src="../figure/coin.jpg" alt="Drawing" style="width: 100px;"/>
+> * `x` is the input. In this case `fruit`.
+> * `size`: size of output vector. By default the same size as `x`.
+> * `replace`: Sample **with** or **without** replacement. By default with replacement.
+> * `prob`: Probability of sampling each input value. By default, equal probability
+> * Run `rep(1/length(fruit), length(fruit))` in your console. In the case of
+`fruit`, this vector is `rep(1/3, 3)` i.e. repeat 1/3 three times.
 
 
 
 
+## Learning Checks
 
-## Analogy for Random Simulation
-
-> * Analogy for rest of course: POWERBALL
-> * <img src="../figure/powerball.jpg" alt="Drawing" style="width: 600px;"/>
-> * We can model **any** random simulation by tinkering with the following **attributes** of Powerball:
-
-
-
-
-## Attributes of Powerball
-
-* Atrributes of the Lottery Machine:
-    * How many balls do you have?
-    * What are written on the balls?
-    * Do the balls have equal probability of being picked?
-* Attributes of the Drawing:
-    * How are you drawing the balls?
-    * How many balls do you draw?
-    * What are you recording about each drawn ball?
-    * What do you do with drawn balls?
-* Number of Lotteries:
-    * How many times do you repeat the lottery?
+1. Rewrite `rflip(10)` using the `resample()` command. Hint: `coin <- c("H", "T")`
+1. Rewrite the `shuffle()` command by changing the minimal number of default settings of `resample()`. Test this on `fruit`
+1. Write code that will allow you to generate a sample of 15 fruit without replacement.
+1. Write code that will allow you to generate a sample of 15 fruit with replacement.
+1. What's the fastest way to do the above 5 times? Write it out
 
 
 
-## Tools
 
-All hail the `mosaic` package, which is pre-installed on RStudio Server. Load as usual: `library(mosaic)`
+## The Lady Tasting Tea
 
-The following 4 functions will give us (most of) the random simulation tools we need:
+> * In the early 1900's, Ronald Fisher (a statistician) met a woman who claimed to be able to tell by tasting whether the tea or the milk was added first to a cup.
+> * Fisher called BS and thought she was really only guessing.
+> * So he set up a **blinded experiment**:
+> * They provided the lady with 8 randomly ordered cups: 4 prepared by first adding milk, 4 prepared by first adding the tea.
+> * She got all 8 right.
 
-> 1. `rflip()`: Flip a coin
-> 1. `shuffle()`: Shuffle a set of values (akin to cards)
-> 1. `do()`: Do the same thing many, many, many times
-> 1. `resample()`: the swiss army knife of functions
+
 
 
 
 
 ```{r, message=FALSE, eval=FALSE, echo=FALSE}
-# Post on GIST
 
-# Load packages, including mosaic package
-library(dplyr)
-library(ggplot2)
-library(mosaic)
-
-# Flip a coin once. Try this multiple times:
-rflip()
-
-# Flip a coin 10 times. Try this multiple times:
-rflip(10)
-
-# Flip a coin 10 times, but do this 5 times. Try this multiple times
-do(5) * rflip(10)
-
-# Flip a coin 10 times, but do this 500 times
-do(500) * rflip(10)
-
-# Gah! There are too many rows!
-simulations <- do(500) * rflip(10)
-
-# Convert to data frame format; this allows us to better view in console
-simulations <- simulations %>% 
-  as_data_frame()
-
-# We could also View() it
-View(simulations)
 ```
 
 
