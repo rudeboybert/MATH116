@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Lec20 Different types of Sampling"
+title:  "Lec20 Different Types of Sampling"
 subtitle: "Shuffling/permuting, sampling with and without replacement, and designing experiments."
 date:   2016-11-02 10:10:45
 categories: jekyll update
