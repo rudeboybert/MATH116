@@ -9,6 +9,35 @@ own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
+<!--
+<br>
+
+***
+
+<br>
+
+  
+
+## Problem Set 08
+
+* Assigned Fri 11/4
+* Due Fri 11/11 11am
+
+
+
+#### Learning Goals
+
+* Switching gears to 
+
+
+#### Homework
+
+* Download these files to your computer and upload them to your `problem_sets`
+folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-08.Rmd" target="_blank">`PS-08.Rmd`</a>
+-->
+
+
+
 
 <br>
 
@@ -28,7 +57,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 #### Learning Goals
 
 * Practice turning pseudocode into code.
-* More imporantly: **Doing Research: Generating answers to scientific questions
+* More imporantly **doing research: generating answers to scientific questions
 using data.**
 
 

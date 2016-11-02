@@ -1,0 +1,92 @@
+---
+title: "Different Types of Sampling"
+author: "Albert Y. Kim"
+date: "Wed Nov 2, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+```
+
+
+
+#### LC1
+
+Rewrite `rflip(10)` using the `resample()` command. Hint: `coin <- c("H", "T")`
+
+**Answer**: `resample()` by default samples **with** replacement and with equal probability. All we need to change
+is the `size` argument:
+
+```{r, eval=FALSE}
+coin <- c("H", "T")
+
+# Compare the following multiple times:
+resample(coin, size=10)
+rflip(10)
+```
+
+
+#### LC2
+
+Rewrite the `shuffle()` command by changing the minimal number of
+default settings of `resample()`. Test this on `fruit`
+
+**Answer**: `shuffle()` is the same as sampling **without** replacement. All you need to
+change the `replace` argument from the default of `TRUE` to `FALSE`.
+
+```{r, eval=FALSE}
+fruit <- c("apple", "orange", "mango")
+
+# Compare the following multiple times:
+resample(fruit, replace=FALSE)
+shuffle(fruit)
+```
+
+
+#### LC3
+
+Write code that will allow you to generate a sample of 15 fruit
+without replacement.
+
+**Answer**: The following yields an error. You can't sample more balls **without**
+replacement than there are balls in the machine. Alternatively, the largest
+sample **without** replacement of `fruit` is of size 3.
+
+```{r, eval=FALSE}
+fruit <- c("apple", "orange", "mango")
+resample(fruit, size=15, replace=FALSE)
+```
+
+
+
+#### LC4
+
+Write code that will allow you to generate a sample of 15 fruit
+with replacement.
+
+**Answer**: This works!
+
+```{r, eval=FALSE}
+fruit <- c("apple", "orange", "mango")
+resample(fruit, size=15)
+```
+
+
+#### LC5
+
+What's the fastest way to do the above 5 times? Write it out
+
+**Answer**: Use `do()`!
+
+```{r, eval=TRUE}
+fruit <- c("apple", "orange", "mango")
+do(5) * resample(fruit, size=15)
+```

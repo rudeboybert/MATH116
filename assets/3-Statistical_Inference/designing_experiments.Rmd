@@ -1,0 +1,47 @@
+---
+title: "Designing Experiments"
+author: "Albert Y. Kim"
+date: "Fri Nov 4, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(mosaic)
+```
+
+
+
+## Recall
+
+* Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
+* You call BS and think they are just guessing.
+* Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
+* Brainstorm all the components of this experiment with your seatmates, then think about how you can implement this with `resampl()`ing.
+
+
+
+## Picking Pods at Random
+
+```{r, message=FALSE, eval=FALSE, echo=FALSE}
+
+```
+
+

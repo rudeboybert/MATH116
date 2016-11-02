@@ -1,0 +1,34 @@
+
+---
+title: "Problem Set 08"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, November 11, 2016"
+output:
+  html_document
+---
+
+
+## Please Indicate
+
+* Who you collaborated with. If no one, please indicate so: 
+* Approximately how much time did you spend on this problem set: 
+* What, if anything, gave you the most trouble: 
+
+
+
+
+
+## Instructions:
+
+* 
+
+
+
+
+
+## Question 1:
+
+
+```{r, echo=FALSE, message=FALSE}
+
+```
