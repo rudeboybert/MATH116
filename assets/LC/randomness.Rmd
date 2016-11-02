@@ -10,7 +10,7 @@ output:
     smooth_scroll: false
 ---
 
-```{r setup, include=FALSE}
+```{r setup, message=FALSE}
 library(dplyr)
 library(ggplot2)
 library(mosaic)
@@ -26,3 +26,47 @@ library(mosaic)
 
 
 ## LC1
+
+```{r}
+coin_flips <- do(500)*rflip(10)
+coin_flips <- coin_flips %>% 
+  as_data_frame()
+
+ggplot(coin_flips, aes(x=heads)) +
+  geom_histogram(binwidth = 1)
+```
+
+
+
+* Where is it centered?
+* Describe the shape of the **distribution** of values
+
+
+
+## LC2
+
+* Atrributes of the Lottery Machine:
+    * How many balls do you have? **2**
+    * What are written on the balls? **Heads and tails**
+    * Do the balls have equal probability of being picked? **Yes**
+* Attributes of the Drawing:
+    * How are you drawing the balls? **At random**
+    * How many balls do you draw? **10**
+    * What are you recording about each drawn ball? **If heads or tails**
+    * What do you do with drawn balls? **You DON'T put them back**
+* Number of Lotteries:
+    * How many times do you repeat the lottery? **Many many many times. In the above case, 500 times**
+
+
+
+## LC3
+
+```{r}
+two_dice <- do(500) * sample(c(1:6), 2)
+two_dice <- two_dice %>% 
+  as_data_frame() %>% 
+  mutate(sum = V1 + V2)
+
+ggplot(two_dice, aes(x=sum)) +
+  geom_bar()
+```
