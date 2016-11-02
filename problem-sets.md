@@ -55,7 +55,8 @@ folder on RStudio Server:
 
 * Assigned Fri 10/21
 * Due Fri 10/28 11am
-
+* <a href = "{{ site.baseurl }}/assets/PS/PS-06_discussion.html" target = "_blank">PS-06 Discussion</a>
+* PS-06 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-06_discussion.Rmd" target = "_blank">`PS-06_discussion.Rmd`</a> 
 
 
 #### Learning Goals
