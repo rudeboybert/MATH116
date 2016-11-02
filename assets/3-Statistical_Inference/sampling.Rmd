@@ -146,8 +146,8 @@ resample(x=fruit, size=length(x), replace=TRUE,
 
 ## Learning Check
 
-> * Say In the early 1900's, a statistician meets someone whos claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
-> * Fisher called BS and thought they are just guessing.
+> * Say its the early 1900's, and you are a statistician meets someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
+> * You called BS and thought they are just guessing.
 > * Say you have 8 cups, tea, and milk handy. How would **design an experiment** to test whether a) they can really tell which came first or b) they is just guessing?
 > * Brainstorming all the components of this experiment with your seatmates.
 
