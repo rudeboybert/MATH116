@@ -31,15 +31,30 @@ library(mosaic)
 coin_flips <- do(500)*rflip(10)
 coin_flips <- coin_flips %>% 
   as_data_frame()
+```
 
+If we `View(coin_flips)` the first 6 rows, we see that we have in **tidy format**:
+
+```{r, echo=FALSE}
+coin_flips %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+So we plot a histogram of the `heads` variable with `binwidth=1` since we are
+dealing with integers i.e. whole numbers.
+
+```{r}
 ggplot(coin_flips, aes(x=heads)) +
   geom_histogram(binwidth = 1)
 ```
 
+* Where is it centered? Answer: At 5 i.e. half of 10.
+* Describe the shape of the **distribution** of values. Answer: bell-shaped.
+i.e. like a Normal distribution.
 
 
-* Where is it centered?
-* Describe the shape of the **distribution** of values
+
 
 
 
@@ -52,8 +67,8 @@ ggplot(coin_flips, aes(x=heads)) +
 * Attributes of the Drawing:
     * How are you drawing the balls? **At random**
     * How many balls do you draw? **10**
-    * What are you recording about each drawn ball? **If heads or tails**
-    * What do you do with drawn balls? **You DON'T put them back**
+    * What are you recording about each drawn ball? **If the ball has heads or tails**
+    * What do you do with drawn balls? **You put them back in the machine**
 * Number of Lotteries:
     * How many times do you repeat the lottery? **Many many many times. In the above case, 500 times**
 
@@ -61,12 +76,71 @@ ggplot(coin_flips, aes(x=heads)) +
 
 ## LC3
 
+Let's unpack `sample(c(1:6), 2)`:
+
+* Running `c(1:6)` in the console returns six values, `1 2 3 4 5 6`, one for each possible die roll value.
+* `sample(c(1:6), 2)` says: sample a value from 1 to 6 twice. This is akin to rolling a die twice.
+
 ```{r}
 two_dice <- do(500) * sample(c(1:6), 2)
 two_dice <- two_dice %>% 
-  as_data_frame() %>% 
-  mutate(sum = V1 + V2)
+  as_data_frame() 
+```
 
+If we `View(two_dice)` the first 6 rows, we see that we have in **tidy format**:
+
+```{r, echo=FALSE}
+two_dice %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+So to get the sum of the two dice, we `mutate()` a new variable `sum` based on the sum of the two die:
+
+```{r}
+two_dice <- two_dice %>% 
+  mutate(sum = V1 + V2)
+```
+
+```{r, echo=FALSE}
+two_dice %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+And now we plot it:
+
+```{r, echo=FALSE, message=FALSE}
+ggplot(two_dice, aes(x=sum)) +
+  geom_histogram(binwidth=1)
+```
+
+
+* Atrributes of the Lottery Machine:
+    * How many balls do you have? **6**
+    * What are written on the balls? **Integers 1 through 6**
+    * Do the balls have equal probability of being picked? **Yes**
+* Attributes of the Drawing:
+    * How are you drawing the balls? **At random**
+    * How many balls do you draw? **2**
+    * What are you recording about each drawn ball? **The sum of the balls**
+    * What do you do with drawn balls? **You put them back in the machine**
+* Number of Lotteries:
+    * How many times do you repeat the lottery? **Many many many times. In the above case, 500 times**
+
+
+#### Advanced
+
+What's the deal with the ugly axes tick marks? This is again b/c computers are stupid,
+and ggplot does not know we are dealing only with whole numbers i.e. integers. We could cheat it
+and treat the sum, a numerical variable, as a categorical variable using `geom_bar()`
+
+```{r, echo=FALSE, message=FALSE}
 ggplot(two_dice, aes(x=sum)) +
   geom_bar()
 ```
+
+Here we can at least separate out the individual whole numbers, but we still
+have the axes tick marks problem? How do I fix these? That's for the more
+advanced data science class [MATH 216 Data
+Science](https://rudeboybert.github.io/MATH216/).
