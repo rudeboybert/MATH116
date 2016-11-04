@@ -34,7 +34,7 @@ library(mosaic)
 * Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
 * You call BS and think they are just guessing.
 * Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
-* Brainstorm all the components of this experiment with your seatmates, ~~then think about how you can implement this with `resampl()`ing~~.
+* Brainstorm all the components of this experiment with your seatmates. To revisit later: ~~Then think about how you can implement this with `resampl()`ing~~.
 
 Let's pick some pods at random...
 
@@ -42,11 +42,14 @@ Let's pick some pods at random...
 
 ## Randomness
 
-We'll view randomness in stats largely through two lenses. Either:
+We'll view randomness in this course largely through two lenses:
 
+See blackboard notes.
+
+<!--
 1. **Random sampling**: Obtaining a representative sample from a population. Ex: The tub of rice. 
 1. **Random assignment**: Used in the design of experiements. Last and today's lecture.
-
+-->
 
 
 
@@ -62,10 +65,10 @@ People who do this:            |  Wake up with this:
 
 ## Explanatory and Response Variables
 
-He then posits the following **causal** relationship:
+He then asserts the following **causal** relationship:
 
-* Explanatory AKA treatment variable: sleeping with shoes on 
-* Response variable: waking up with headaches
+* **Explanatory AKA treatment variable**: sleeping with shoes on 
+* **Response variable**: causes one to wake up with a headache
 
 What's wrong?
 
@@ -73,7 +76,7 @@ What's wrong?
 
 ## Diagram:
 
-
+See blackboard notes.
 
 
 
@@ -83,55 +86,65 @@ What's wrong?
 
 > * [Spurious correlations](http://tylervigen.com/spurious-correlations)
 > * [Organic food causes autism!](http://io9.gizmodo.com/on-correlation-causation-and-the-real-cause-of-auti-1494972271)
-> * Does college cause higher earnings?
+> * Does college cause higher earnings? See blackboard diagram.
 
 
 
 ## Two Types of Studies
 
+See blackboard notes.
+
+<!--
 To study the effect of a treatment there are two types of studies
 
 * **Observational studies**: Researchers have no control over who receives the treatment
 * **Randomized experiments**: Researchers not only have control over who receives the treatment, but also make the assignments at random
 
 The latter is the **gold standard** for making causal statements.
+-->
 
 
 
+## Asserting Causality
 
-## ECON 212
-
-Making causal statements with observational studies is harder because
-you need to **control for** (account for) all possible confounding variables; but you may not know them
-all
-
-Prof. Caitlin Myers' "Empirical Economic Research" this Spring will study
-methods that attempt to make **causal statements** despite only having
-observational data. This class satisfies the prereq.
+> * Making causal statements with observational studies is harder because you
+need to **control for** (account for) all possible confounding variables; in this case
+alcohol. 
+> * But you may not have access to all confounding variables.
+> * Prof. Caitlin Myers' "ECON 212 Empirical Economic Research" this Spring will study 
+methods that attempt to make **causal statements** despite only having 
+observational data.
 
 
 
 
 ## Back to Example
 
-* Sleeping with shoes on does not **cause** headaches, but rather is
-**associated/correlated** with headaches.
-* The treatment (sleeping with shoes on) was NOT assigned at random, so we can't
-make a statement on shoes causing headaches.
-* We need a **randomized experiment**!
+* The treatment, sleeping with shoes on, was NOT assigned at random; we have an 
+**observational study**.
+* We can't assert **causation**, but only **association/correlation**
+
+> * Instead 
+> * Say for each patient you have two variables: 1) whether they slept with shoes on and 2) whether they woke up with a headache
+> * To assert causality, we would need a **randomized experiment**!
 
 
 
 
 ## Principles of Designing Experiements
 
-* Controlling:  We want to control for differences between the two groups.
+See blackboard notes.
+
+<!--
+* Controlling:  We want to control i.e. account for differences between the two groups.
+* Control group: A baseline group to compare the treatment group to
 * Randomization: We randomize individuals into treatment vs control so that any differences in variables that are not of interest even out in the long run.  
 * Replication:  The more cases we observe, the more "precise" the results.
 * Blocking:  Researchers sometimes know or suspect that variables, other than the treatment, influence the response. In this case, they may first group individuals based on this variable into blocks and then randomize cases within each block.  
-* Blindedness: When researchers do not inform patients which group, or arm, they are in
-* Double blinded study:  When the person administering the treatment/control themselves do not know which group the patient is in.
+* Blindedness: When researchers do not inform patients which group they are in
+* Double blinded study:  When the person administering the treatment themselves do not know which group the patient is in.
 * Placebo: Fake treatment.  Sometimes the thought alone of having a treatment is enough to influence behavior/results.  
+--> 
 
 
 
@@ -150,7 +163,8 @@ alums include:
 
 ## Today's Learning Checks
 
-Next door is Ezell's Fried Chicken:
+Next door is Ezell's Fried Chicken. Oprah Winfrey apparently has it flown into
+to Chicago.
 
 <img src="../figure/ezells.jpg" alt="Drawing" style="width: 400px;"/> 
 
@@ -158,7 +172,7 @@ Next door is Ezell's Fried Chicken:
 
 ## Today's Learning Checks
 
-One day I was raving about Ezell's Chicken.  My friend Nick accused me "buying into the hype";
+One day I was raving about Ezell's Chicken.  My friend Nick accused me "buying into the hype".
 
 So what did we do?
 
@@ -174,36 +188,10 @@ Do people prefer this?            |  Or this?
 
 
 
-## Design an Experiment
+## Today's Learning Checks
 
-Say you have 12 grad students eager to procrastinate, how would you design a
-taste test to ascertain: independent of hype, which chicken is better?
+Say you have 12 grad students eager to procrastinate, how would you design a 
+taste test to ascertain, independent of hype, which fried chicken tastes better?
 
-Use the principles from above.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Use the relevant principles of designing experiements from above.
 
