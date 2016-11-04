@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Lec21 Designing Experiments"
-subtitle: "Principles to keep in mind."
+title:  "Lec21 Randomized Experiments"
+subtitle: "Correlation vs causation and principles of designing experiments."
 date:   2016-11-04 10:10:45
 categories: jekyll update
 ---
