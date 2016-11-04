@@ -10,8 +10,9 @@ categories: jekyll update
 
 ### Announcements
 
-* Lec20 <a href = "{{ site.baseurl }}/assets/LC/resampling.html" target = "_blank">learning check discussion</a>
-* 
+* Intro presentation by Ryan Clement Middlebury Data Services Librarian <a href = "http://www.go.middlebury.edu/ryan" target = "_blank">`go/ryan/`</a>.
+* Project outlines on Monday.
+* Lec20 <a href = "{{ site.baseurl }}/assets/LC/resampling.html" target = "_blank">learning check discussion</a>.
 
 
 
