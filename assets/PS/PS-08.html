@@ -131,14 +131,121 @@ $(document).ready(function () {
 <li>What, if anything, gave you the most trouble:</li>
 </ul>
 </div>
-<div id="instructions" class="section level2">
-<h2>Instructions:</h2>
+<div id="instructionshint" class="section level2">
+<h2>Instructions/Hint:</h2>
 <ul>
-<li></li>
+<li>As always, please knit this first and read it over once.</li>
+<li>Interpreting probability:
+<ul>
+<li><strong>In general</strong>: one interpretation of “the probability of x occuring” is the proportion of the time <code>x</code> occurs across many, many, many attempts.</li>
+<li><strong>Example</strong>: “the probability of flipping a coin and getting heads is 0.5 = 50%” can be interpreted as the proportion of heads occuring over many, many, many coin flips being one half.</li>
+<li>For the purposes of this problem set, let “many, many, many times” mean 10,000 times.</li>
+</ul></li>
+<li>As always, I recommend you separate out the <strong>what</strong> vs the <strong>how</strong> by first sketching out a plan of what you are going to do for each question on paper.</li>
 </ul>
 </div>
 <div id="question-1" class="section level2">
 <h2>Question 1:</h2>
+<p>We will be conducting the study from Lec21 on Friday November 4th on whether or not wearing shoes while sleeping causes people to wake up with headaches.</p>
+<div id="a" class="section level4">
+<h4>a)</h4>
+<p>Dr. Quack goes through the medical files for 1000 of their patients and obtains variables:</p>
+<ul>
+<li><code>shoes_on</code>: whether or not the patient slept with their shoes on</li>
+<li><code>headache</code>: whether or not the patient woke up with a headache</li>
+</ul>
+<p>where in both cases <code>0</code> indicates false and <code>1</code> indicates true. Dr. Quack presents their findings in a data frame <code>study_data_1</code> which is loaded from the web below. Questions:</p>
+<ol style="list-style-type: decimal">
+<li>Who had a higher headache rate: students who slept with their shoes on or those who didn’t? Is this difference significant?</li>
+<li>Can you prove or disprove the claim that sleeping with shoes on causes people to wake up with a headache with the information below? Why or why not?</li>
+</ol>
+<pre class="r"><code>study_data_1 &lt;- readr::read_csv(&quot;https://rudeboybert.github.io/MATH116/assets/PS/study_data_1.csv&quot;)</code></pre>
+</div>
+<div id="b" class="section level4">
+<h4>b)</h4>
+<p>Take your code for part a), but change it so that retroactively we had data from a <strong>randomized experiment</strong>. Questions:</p>
+<ul>
+<li>Who now had a higher headache rate: students who slept with their shoes on or those who didn’t? Is this difference significant?</li>
+<li>Can you prove or disprove the claim that sleeping with shoes on causes people to wake up with a headache with the information below? Why or why not?</li>
+</ul>
+</div>
+<div id="c" class="section level4">
+<h4>c)</h4>
+<p>Now say you also have access to information as to whether or not the patient got wasted the night before. Generate a table that compares headache rates for those patients who slept with shoes on versus those who didn’t <strong>controlling</strong> for whether or not they got wasted, in other words, taking into account whether or not they got wasted.</p>
+<pre class="r"><code>study_data_2 &lt;- readr::read_csv(&quot;https://rudeboybert.github.io/MATH116/assets/PS/study_data_2.csv&quot;)</code></pre>
+</div>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2:</h2>
+<p>You are going to compute via simulation and not via mathematical formulas, the <strong>probability distribution</strong> of all possible sums of two die rolls: for all possible sums of rolling two dice (x=2, x=3, …, x=12), we compute Probability(sum of rolling two dice = x).</p>
+<ol style="list-style-type: decimal">
+<li>Write code that will simulate die rolls and manipulate the output so that you end up with a data frame <code>probs</code> with 11 rows and 2 columns:
+<ul>
+<li><code>sum</code>: each value of the possible sum of rolling two dice</li>
+<li><code>probability</code>: the observed probability of each value of <code>sum</code></li>
+</ul></li>
+<li>Once you’ve fully created it, change the <code>eval=FALSE</code> to <code>eval=TRUE</code> in the starting line of the code block below to have the plot get generated.</li>
+<li>Note even though <code>sum</code> is a numerical variable, we’ll treat it as a categorical variable by using the <code>factor()</code> command and using a bar chart. It looks cleaner this way.</li>
+</ol>
+<pre class="r"><code># Write your code to create the data frame probs here:
+
+
+# Suggested ggplot call. Feel free to change it:
+ggplot(probs, aes(x=factor(sum), y=probability)) +
+  geom_bar(stat=&quot;identity&quot;) +
+  labs(x=&quot;Sum&quot;, y=&quot;Probability of Sum&quot;, title=&quot;Outcomes of Rolling Two Dice&quot;)</code></pre>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3:</h2>
+<p>Problem 3.20 on page 162 of the OpenIntro Textbook on “With and without replacement”. For this question, find all probabilities using R’s sampling capabilities.</p>
+<p>Part d) is the only required part for this problem set. Parts a), b), and c) are bonus parts.</p>
+<div id="a-and-b-from-text" class="section level4">
+<h4>a) and b) from text</h4>
+<p><strong>Starter Code</strong>: We define a <code>room</code> and <code>stadium</code>, both half female, but with populations of size <code>n=10</code> and <code>n=10000</code>. Let <code>1</code> represent a female and <code>0</code> represent a male, so that to count the number of females we need to only <code>sum()</code> a series of <code>0</code>’s and <code>1</code>’s.</p>
+<pre class="r"><code>room &lt;- rep(c(1, 0), each=5)
+stadium &lt;- rep(c(1, 0), each=5000)</code></pre>
+<p>Fill in the table with the results from your simulations in the code block below</p>
+<table>
+<thead>
+<tr class="header">
+<th>Sampling Type</th>
+<th>Room</th>
+<th>Stadium</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>With replacement</td>
+<td>0.000</td>
+<td>0.000</td>
+</tr>
+<tr class="even">
+<td>Without replacement</td>
+<td>0.000</td>
+<td>0.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="c-from-text" class="section level4">
+<h4>c) from text</h4>
+</div>
+<div id="d" class="section level4">
+<h4>d)</h4>
+<p>For the stadium case, answer the following questions about the components of the “powerball” analogy:</p>
+<p><strong>Atrributes of the Lottery Machine</strong>:</p>
+<ul>
+<li>How many balls do you have?</li>
+<li>What are written on the balls?</li>
+<li>Do the balls have equal probability of being picked?</li>
+</ul>
+<p><strong>Attributes of the Drawing</strong>:</p>
+<ul>
+<li>How are you drawing the balls?</li>
+<li>How many balls do you draw?</li>
+<li>What are you recording about each drawn ball?</li>
+</ul>
+</div>
 </div>
 
 

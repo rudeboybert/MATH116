@@ -8,8 +8,6 @@ While I encourage you to discuss problem sets with your peers, you must submit y
 own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
-
-<!--
 <br>
 
 ***
@@ -27,14 +25,23 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Learning Goals
 
-* Switching gears to 
+* Understanding the two places were randomness plays a part in this class:
+    + Random sampling: used for taking a sample from a population
+    + Random assignment: used in experiments
+* Learning to compute probabilities not using mathematical formulas, but rather 
+via random simulation using
+    + the data manipulation tools in the `dplyr` package
+    + the sampling tools in the `mosaic` package 
+
 
 
 #### Homework
 
 * Download these files to your computer and upload them to your `problem_sets`
 folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-08.Rmd" target="_blank">`PS-08.Rmd`</a>
--->
+* Download the <a href="https://www.openintro.org/stat/textbook.php?stat_book=os" target="_blank">OpenIntro Statistics 3rd Edition</a> open-source statistics 
+textbook (the textbook I used previously for MATH 116) and save this to your 
+computer.  Questions for the rest of the course will come from here.
 
 
 
