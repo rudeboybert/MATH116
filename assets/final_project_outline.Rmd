@@ -1,0 +1,30 @@
+---
+title: "Final Project Outline"
+author: "Albert Y. Kim"
+date: "November 7, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(79)
+library(tidyverse)
+library(lubridate)
+library(knitr)
+
+library(nycflights13)
+library(ggplot2movies)
+library(okcupiddata)
+library(babynames)
+library(fueleconomy)
+library(stringr)
+```
+
+
+
+## Scatterplot

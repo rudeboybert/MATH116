@@ -1,0 +1,22 @@
+---
+title: "Designing Experiments"
+author: "Albert Y. Kim"
+date: "Fri Nov 4, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+```
+
+
+
+## Fried Chicken Face-Off
+

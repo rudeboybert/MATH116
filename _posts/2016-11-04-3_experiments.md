@@ -24,6 +24,4 @@ categories: jekyll update
 
 ### After-Class Updates
 
-<!--
-* Lec21 <a href = "{{ site.baseurl }}/assets/LC/BLAH.html" target = "_blank">learning check discussion</a>
--->
+* Lec21 <a href = "{{ site.baseurl }}/assets/LC/designing_experiments.html" target = "_blank">learning check discussion</a>

@@ -1,0 +1,35 @@
+---
+title: "Hypothesis Testing"
+author: "Albert Y. Kim"
+date: "Mon Nov 7, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(mosaic)
+```
+
+
+
+## Slide 1
+
+
+
