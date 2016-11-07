@@ -10,13 +10,36 @@ output:
     smooth_scroll: false
 ---
 
-```{r setup, message=FALSE}
-library(dplyr)
-library(ggplot2)
-library(mosaic)
-```
-
 
 
 ## Fried Chicken Face-Off
 
+#### Design principles we put in place:
+
+* **Single blinded**: The taster doesn't know which (Ezell's or KFC) chicken they are eating, but the server does.
+* **Randomizing**
+    + Which order of chicken you eat:  KFC first or not
+    + Which kind of meat (wing, breast, leg) between tasters.  Each taster would try two kinds of meat. 
+* **Controlling** for
+    + Which kind of meat within a taster:  i.e. if you eat a KFC wing, you will necessarily eat an Ezell's wing
+    + Temperature: hence we're picking a place that is central to both Ezell's and KFC given the traveling required.
+    + Kind of batter:  we can't do KFC crispy chicken b/c Ezell's doesn't have that type of batter. This is a limitation of the study b/c some feel the crispy chicken is better, but we have no choice.
+    + Visual look: We thought blind-folds were a bit excessive
+* **Replicates**: Just one replicate of each kind of meat due to finite budget and finite stomach space.
+
+
+#### Results:
+
+Final score:  KFC 8, Ezell's 4.
+
+Some notes:
+
+* Even though people were ``blinded'', most knew which the two pieces were from KFC.  
+* People generally felt the chicken meat from Ezell's was better, and this was magnified as the chicken went cold.
+* However, they felt the skin was better at KFC.  Given that fried chicken is what it is b/c of the skin, people voted for KFC.
+* Future metrics need to consider the chicken and the skin separately, as well as the ``overall experience'' scores.  i.e. this face off should be viewed as a pilot study 
+
+
+## Caution: Grad Students NOT at Work
+
+<img src="../figure/fried_chicken_face_off.jpg" alt="Drawing" style="width: 600px;" border="10"/>
