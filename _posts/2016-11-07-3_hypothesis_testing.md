@@ -17,6 +17,12 @@ categories: jekyll update
 * Lec21 <a href = "{{ site.baseurl }}/assets/LC/designing_experiments.html" target = "_blank">learning check discussion</a>.
 -->
 
+* If you plan on gambling on tomorrow's election, get <a href = "https://electionbettingodds.com/" target = "_blank">the probabilities</a> using this code:
+
+<script src="https://gist.github.com/rudeboybert/97c0642fe5dd977804cb7299b8be299c.js"></script>
+
+
+
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing.html" target = "_blank">Slides</a>: Introducing the hypothesis testing framework.

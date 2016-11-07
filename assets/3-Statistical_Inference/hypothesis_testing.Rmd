@@ -77,10 +77,10 @@ Let's suppose 2 is true...
 > 1. **Big One:** How unlikely is this result? This is the ultimate statement: BS or not?
 
 
-## Learning Check: Probability via Simulation
+## Learning Check: Simulation
 
 1. See if using the `resample()` and `do()` commands you can
-    + simulate many, many, many cases of someone guessing at random for the eight cups
+    + simulate many, many, many cases of someone guessing at random for the eight cups, then
     + count the number of correct guesses
 1. How would you compare
     + the **observed** number of correct guesses (in this case 8)
