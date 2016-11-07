@@ -10,6 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
+* **Only one** member from each *requested* group please fill out this <a href = "https://docs.google.com/forms/d/1Y0VxFezSccs45CeJEmSCoqchdtdWpzx_kFeTFvYfw6c/edit" target = "_blank">Google Form</a>. If you are looking to join a group, please fill out the form with just your name under "Requested Group Member 1".
 * Final group project outline posted on Problem Sets page.
 * Lec21 <a href = "{{ site.baseurl }}/assets/LC/designing_experiments.html" target = "_blank">learning check discussion</a>.
 
