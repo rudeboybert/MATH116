@@ -1,7 +1,7 @@
 ---
 title: "Designing Experiments"
 author: "Albert Y. Kim"
-date: "Fri Nov 4, 2016"
+date: "Mon Nov 7, 2016"
 output:
   html_document:
     toc: true
@@ -16,28 +16,31 @@ output:
 
 #### Design principles we put in place:
 
-* **Single blinded**: The taster doesn't know which (Ezell's or KFC) chicken they are eating, but the server does.
-* **Randomizing**
+* **Single (but not double) blinded**: The taster doesn't know which (Ezell's or KFC) chicken they are eating, but the server does.
+* **Randomizing**:
     + Which order of chicken you eat:  KFC first or not
     + Which kind of meat (wing, breast, leg) between tasters.  Each taster would try two kinds of meat. 
-* **Controlling** for
-    + Which kind of meat within a taster:  i.e. if you eat a KFC wing, you will necessarily eat an Ezell's wing
-    + Temperature: hence we're picking a place that is central to both Ezell's and KFC given the traveling required.
-    + Kind of batter:  we can't do KFC crispy chicken b/c Ezell's doesn't have that type of batter. This is a limitation of the study b/c some feel the crispy chicken is better, but we have no choice.
+* **Controlling for**:
+    + Which kind of meat within a taster. Ex: if you eat a KFC wing, you will necessarily eat an Ezell's wing
+    + Temperature: We picked a place that is central to both Ezell's and KFC, given the cooling down of the chicken that can occur during travel.
+    + Kind of batter: Wwe can't do KFC crispy chicken b/c Ezell's doesn't have that type of batter. This is a limitation of the study b/c some feel the crispy chicken is better.
     + Visual look: We thought blind-folds were a bit excessive
 * **Replicates**: Just one replicate of each kind of meat due to finite budget and finite stomach space.
 
 
 #### Results:
 
-Final score:  KFC 8, Ezell's 4.
+**Final score:  KFC 8, Ezell's 4**. Some notes:
 
-Some notes:
-
-* Even though people were ``blinded'', most knew which the two pieces were from KFC.  
-* People generally felt the chicken meat from Ezell's was better, and this was magnified as the chicken went cold.
-* However, they felt the skin was better at KFC.  Given that fried chicken is what it is b/c of the skin, people voted for KFC.
-* Future metrics need to consider the chicken and the skin separately, as well as the ``overall experience'' scores.  i.e. this face off should be viewed as a pilot study 
+* Even though people were "blinded", most knew which of the two pieces was from KFC.
+* People generally felt
+    + The meat from Ezell's was better, and this was magnified as the chicken went cold.
+    + The skin was better at KFC.  Given that fried chicken is what it is b/c of the skin, people voted for KFC.
+* Future studies should
+    + Consider the chicken and the skin separately.
+    + Have "overall experience" scores.
+    + **Blocked** users into two groups first: those who've had Ezell's before and those who didn't.
+* This can be viewed as an example of a **pilot study** used to inform how to design a study appropriately.
 
 
 ## Caution: Grad Students NOT at Work
