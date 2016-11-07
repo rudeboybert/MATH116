@@ -10,7 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
-* Project outline posted <a href = "{{ site.baseurl }}/assets/final_project_outline.html" target = "_blank">here</a>.
+* Final group project outline posted on Problem Sets page.
 * Lec21 <a href = "{{ site.baseurl }}/assets/LC/designing_experiments.html" target = "_blank">learning check discussion</a>.
 
 

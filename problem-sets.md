@@ -16,6 +16,24 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
   
 
+## Final Group Project
+
+* Final group project <a href = "{{ site.baseurl }}/assets/final_project_outline.html" target = "_blank">outline</a>.
+* I will post a template `final_project.Rmd` file here by Monday 11/14.
+
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+  
+
 ## Problem Set 08
 
 * Assigned Fri 11/4
