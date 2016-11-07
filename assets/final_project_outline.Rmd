@@ -28,7 +28,7 @@ library(knitr)
 data/science research pipeline in as faithful a manner as possible while
 maintaining a level suitable for novices*:
 
-<img src="./figure/pipeline4.png" alt="Drawing" style="width: 500px;" border="10"/>
+<img src="./figure/pipeline4.png" alt="Drawing" style="width: 600px;" border="10"/>
 
 
 #### Format
