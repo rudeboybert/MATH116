@@ -17,7 +17,6 @@ categories: jekyll update
 * Lec21 <a href = "{{ site.baseurl }}/assets/LC/designing_experiments.html" target = "_blank">learning check discussion</a>.
 -->
 
-
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing.html" target = "_blank">Slides</a>: Introducing the hypothesis testing framework.
