@@ -1,7 +1,7 @@
 ---
 title: "Designing Experiments"
 author: "Albert Y. Kim"
-date: "Mon Nov 7, 2016"
+date: "Fri Nov 4, 2016"
 output:
   html_document:
     toc: true

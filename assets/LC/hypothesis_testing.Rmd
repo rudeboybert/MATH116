@@ -1,0 +1,15 @@
+---
+title: "Hypothesis Testing"
+author: "Albert Y. Kim"
+date: "Mon Nov 7, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+
+
+## Lady Tasting Tea
