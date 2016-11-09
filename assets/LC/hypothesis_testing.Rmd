@@ -1,5 +1,5 @@
 ---
-title: "Hypothesis Testing"
+title: "Hypothesis Testing via Lady Tasting Tea"
 author: "Albert Y. Kim"
 date: "Mon Nov 7, 2016"
 output:
@@ -8,8 +8,116 @@ output:
     toc_float: true
     collapsed: false
     smooth_scroll: false
+    df_print: kable
 ---
 
 
 
-## Lady Tasting Tea
+## Competing Hypotheses
+
+Recall the two competing hypotheses:
+
+1. She truly has the ability to tell which came first: milk or tea.
+1. She is just guessing.
+
+**Key**: Let's suppose 2 is true; suppose she is guessing.
+
+
+## Learning Check
+
+1. See if using the `resample()` and `do()` commands you can
+    + simulate many, many, many cases of someone guessing at random for the eight cups, then
+    + count the number of correct guesses
+1. How would you compare
+    + the **observed** number of correct guesses (in this case 8)
+    + to the **typical** number of correct guesses assuming she is guessing at random?
+
+
+## Solution
+
+#### 1. Simulating someone guessing at random for 8 cups many, many, many times
+
+```{r, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+
+# Single cup
+guess_cup <- c(1, 0)
+
+# Simulate many, many, many times someone guessing at random
+simulation <- do(10000) * resample(guess_cup, size=8)
+```
+```{r, echo=FALSE}
+simulation %>% head()
+```
+
+#### 2. Count the number of correct guesses
+
+```{r}
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
+```
+```{r, echo=FALSE}
+simulation %>% head()
+```
+
+#### 3. What is typical number of correct guesses assuming she is guessing at random?
+
+i.e. What is the distribution of `n_correct`?
+
+```{r, fig.width=8, fig.height=4.5}
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct")
+```
+
+
+#### 4. Compare to observed number correct
+
+i.e. she got 8/8 correct. We add a vertical red line:
+
+```{r, fig.width=8, fig.height=4.5}
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct") +
+  geom_vline(xintercept=8, col="red", size=2) 
+```
+
+
+<!--
+#### 4. Convert to proportions 
+
+Convert counts on y-axis to proportions by
+
+* counting the different values of `n_correct` using `n()`
+* dividing by the number of simulations `10000`
+* using `geom_bar()`, but now we have an explicity `y` aesthetic `prop_correct`, so we set `stat="identity"`
+
+```{r, fig.width=8, fig.height=4.5}
+simulation <- simulation %>% 
+  group_by(n_correct) %>%
+  summarise(prop_correct = n()/10000)
+
+ggplot(simulation, aes(x=n_correct, y=prop_correct)) + 
+  geom_bar(stat="identity") +
+  labs(x="Number of Guesses Correct", y="Proportion")
+```
+
+#### 5. Compare to observed number correct
+
+i.e. she got 8/8 correct. We add a vertical red line:
+
+```{r, fig.width=8, fig.height=4.5}
+ggplot(simulation, aes(x=n_correct, y=prop_correct)) + 
+  geom_bar(stat="identity") +
+  labs(x="Number of Guesses Correct", y="Proportion") +
+  geom_vline(xintercept=8, col="red", size=2) 
+```
+-->
+
+## Questions
+
+1. If she were truly guessing at random, how likely is it that she gets 8/8 correct?
+1. What does the observed data say about the hypothesis that she was guessing at random?
+
