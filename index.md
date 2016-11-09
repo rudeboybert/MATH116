@@ -15,12 +15,31 @@ In reverse chronological order (a more detailed outline can be found
 
 ## 3. Statistical Inference
 
+### c) Confidence Intervals
+
+
+### b) Hypothesis Testing
+
+<ul>
+  {% for post in site.posts %}
+    {% assign current_date = post.date | date: "%m %d" %}
+    {% if "11 06" <= current_date and current_date <= "11 30" %}
+    <li>
+      {{ post.date | date: "%a %b %-d" }} -  
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:
+      {{ post.subtitle }}
+    </li>
+    {% endif %}
+  {% endfor %}
+</ul> 
+
+
 ### a) Background
 
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %d" %}
-    {% if "10 31" <= current_date and current_date <= "11 30" %}
+    {% if "10 31" <= current_date and current_date <= "11 05" %}
     <li>
       {{ post.date | date: "%a %b %-d" }} -  
       <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:

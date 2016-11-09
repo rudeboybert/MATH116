@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec22 Hypothesis Testing"
-subtitle: "Introducing the framework."
+subtitle: "The example of the Lady Tasting Tea."
 date:   2016-11-07 10:10:45
 categories: jekyll update
 ---
@@ -21,7 +21,7 @@ categories: jekyll update
 
 ### In-Class
 
-* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing.html" target = "_blank">Slides</a>: Introducing the hypothesis testing framework.
+* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing.html" target = "_blank">Slides</a>: Introducing the example of the Lady Tasting Tea.
 
 
 
