@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec24 Hypothesis Testing Part III"
-subtitle: "Defining the p-value."
+subtitle: "Defining the p-value; a quantification of surprise."
 date:   2016-11-11 10:10:45
 categories: jekyll update
 ---
