@@ -10,8 +10,9 @@ categories: jekyll update
 
 ### Announcements
 
-* When sitting in groups, please sit with your <a href = "https://docs.google.com/spreadsheets/d/1dYdsSvJkl80VRP84qB-UpTy9YsrC4d6WYqYGVJWTYVY/pubhtml?gid=1939155032&single=true" target = "_blank">group members</a>.
 * Midterm III review on Monday; please email me any questions before then.
+* Problem Set 07 <a href = "{{ site.baseurl }}/assets/PS/PS-07_discussion.html"
+target = "_blank">discussion</a>.
 
 
 ### In-Class

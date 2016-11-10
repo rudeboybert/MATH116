@@ -15,7 +15,6 @@ categories: jekyll update
 * Lec20 <a href = "{{ site.baseurl }}/assets/LC/resampling.html" target = "_blank">learning check discussion</a>.
 
 
-
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/designing_experiments.html" target = "_blank">Slides</a>: Various principles of designing experiments.
