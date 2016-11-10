@@ -10,9 +10,12 @@ categories: jekyll update
 
 ### Announcements
 
+* <a href = "https://www.facebook.com/photo.php?fbid=10154207118483471&set=a.70806808470.70454.500148470&type=3&theater" target = "_blank">Voter turnout strikes again!</a>
 * Midterm III review on Monday; please email me any questions before then.
 * Problem Set 07 <a href = "{{ site.baseurl }}/assets/PS/PS-07_discussion.html"
 target = "_blank">discussion</a>.
+
+
 
 
 ### In-Class
