@@ -10,9 +10,11 @@ categories: jekyll update
 
 ### Announcements
 
-* Image of the day: <a href = "{{ site.baseurl }}/assets/figure/blue_vs_red.jpg" target = "_blank">Voter turnout</a>
+
 * Midterm III review on Monday; please email me any questions before then.
-* Problem Set 07 <a href = "{{ site.baseurl }}/assets/PS/PS-07_discussion.html" target = "_blank">discussion</a>.
+* Image of the day: <a href = "{{ site.baseurl }}/assets/figure/blue_vs_red.jpg" target = "_blank">Voter turnout</a>
+
+<script src="https://gist.github.com/rudeboybert/b88cc53c419ad47eeaf4255617809c43.js"></script>
 
 
 

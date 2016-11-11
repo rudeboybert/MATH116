@@ -117,18 +117,11 @@ one observed **assuming $H_0$ is true**.
 
 ## Convert Counts to Proportions
 
-This combines the two most difficult data manipulation/visulalization concepts in this class:
+Code combines the most difficult `ggplot2`/`dplyr` concepts:
 
-* counting the different values of `n_correct` using `n()`
+* counting the different values of `n_correct` using `n()` instead of `sum()`
 * dividing by the number of simulations `10000`
-* using `geom_bar()`, but now we have an explicity `y` aesthetic `prop_correct`, so we set `stat="identity"`
-
-
-
-
-## Code
-
-Please read later:
+* using `geom_bar()` when we have an explicity `y` aesthetic `prop_correct`, so we set `stat="identity"`
 
 ```{r, eval=FALSE}
 simulation <- simulation %>% 
@@ -174,6 +167,44 @@ Study Conclusion:
 
 > * Conceptually: She was probably NOT guessing at random; she probably could tell.
 > * Statistically: We reject $H_0$ in favor of $H_A$
+
+
+
+
+## Learning Check
+
+Say I give you a data set with two variables:
+
+* Even or odd number of letters in last name i.e. two groups
+* Test score
+
+```{r, echo=FALSE}
+data_frame(
+  num_letters = c("even", "odd", "odd"),
+  test_score = c(0.7, 0.6, 0.8)
+) %>% 
+  kable()
+```
+
+
+
+
+## Learning Check
+
+Think about how you would test:
+
+* $H_0$: no difference in test scores between odd vs even
+* $H_A$: there is a difference
+
+Hints:
+
+* Think about what assuming $H_0$ allows you to do the data set
+* Question from homework about using one of the `mosaic` package sampling tools
+
+
+
+
+
 
 
 
