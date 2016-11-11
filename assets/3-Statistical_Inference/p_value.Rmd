@@ -1,0 +1,185 @@
+---
+title: "p-Value"
+author: "Albert Y. Kim"
+date: "Fri Nov 11, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(mosaic)
+```
+
+
+
+
+## Recall LC Code for Lady Tasting Tea
+
+```{r, eval=FALSE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+
+# Simulate many, many, many times someone guessing at random
+guess_cup <- c(1, 0)
+simulation <- do(10000) * resample(guess_cup, size=8)
+
+# Count number correct
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
+
+# Plot
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct") +
+  geom_vline(xintercept=8, col="red", size=1) 
+```
+
+
+
+
+
+## Recall: Definitions
+
+> * We have two competing **hypotheses**:
+>     + $H_0$: the taster is guessing at random
+>     + $H_A$: the taster is not. i.e. she can really tell which came first
+> * The **test statistic** used here is: # of correct guesses
+> * The **observed test statistic** is 8 correct (out of 8)
+> * We going to **assume** $H_0$ is true and see how likely the observed test statistic was.
+
+
+
+
+
+## If She's Guessing at Random...
+
+**Not very likely!**
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+
+# Simulate many, many, many times someone guessing at random
+guess_cup <- c(1, 0)
+simulation <- do(10000) * resample(guess_cup, size=8)
+
+# Count number correct and plot
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct") +
+  geom_vline(xintercept=8, col="red", size=1) 
+```
+
+
+
+
+## Recall: Definitions
+
+> * The bar chart of the 10000 simulations of 8 random guesses is the **null distribution**.
+> * Formally: it is the distribution that describes the random behavior of the test statistic
+assuming $H_0$ is true.
+
+
+
+
+## Today's Single Definition
+
+**p-value**
+
+> * Statistically: the probability of observing a test statistic as extreme as the
+one observed **assuming $H_0$ is true**.
+> * Conceptually: measures our degree of surprise (lower = more surprised) of what we observed **assuming $H_0$ is true**.
+> * Ex: how unlikely is it that the taster got 8 out of 8 right **assuming she was just guessing at random**
+
+
+
+
+## Convert Counts to Proportions
+
+This combines the two most difficult data manipulation/visulalization concepts in this class:
+
+* counting the different values of `n_correct` using `n()`
+* dividing by the number of simulations `10000`
+* using `geom_bar()`, but now we have an explicity `y` aesthetic `prop_correct`, so we set `stat="identity"`
+
+
+
+
+## Code
+
+Please read later:
+
+```{r, eval=FALSE}
+simulation <- simulation %>% 
+  group_by(n_correct) %>%
+  summarise(prop_correct = n()/10000)
+
+ggplot(simulation, aes(x=n_correct, y=prop_correct)) + 
+  geom_bar(stat="identity") +
+  labs(x="Number of Guesses Correct", y="Proportion") +
+  geom_vline(xintercept=8, col="red", size=2) 
+```
+
+
+
+
+## How unlikely?
+
+The proportion of times 8 occurs is 0.0050 = 0.5%.
+
+```{r, echo=FALSE}
+simulation <- simulation %>% 
+  group_by(n_correct) %>%
+  summarise(prop_correct = n()/10000)
+
+ggplot(simulation, aes(x=n_correct, y=prop_correct)) + 
+  geom_bar(stat="identity") +
+  labs(x="Number of Guesses Correct", y="Proportion") +
+  geom_vline(xintercept=8, col="red", size=2) 
+```
+
+
+
+
+## p-Value and Conclusion
+
+p-Value meaning:
+
+> * Conceptually: **Assuming she was guessing at random**, we are **very surprised** at observing 8 correct guesses
+> * Statistically: probability of observing a test statistic of 8 **assuming $H_0$ is true** is approx. 0.5%.  i.e. TINY
+
+
+Study Conclusion:
+
+> * Conceptually: She was probably NOT guessing at random; she probably could tell.
+> * Statistically: We reject $H_0$ in favor of $H_A$
+
+
+
+
+
+
+
+
+

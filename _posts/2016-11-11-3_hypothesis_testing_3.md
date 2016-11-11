@@ -10,21 +10,16 @@ categories: jekyll update
 
 ### Announcements
 
-* <a href = "https://www.facebook.com/photo.php?fbid=10154207118483471&set=a.70806808470.70454.500148470&type=3&theater" target = "_blank">Voter turnout strikes again!</a>
+* Image of the day: <a href = "{{ site.baseurl }}/assets/figure/blue_vs_red.jpg" target = "_blank">Voter turnout</a>
 * Midterm III review on Monday; please email me any questions before then.
-* Problem Set 07 <a href = "{{ site.baseurl }}/assets/PS/PS-07_discussion.html"
-target = "_blank">discussion</a>.
+* Problem Set 07 <a href = "{{ site.baseurl }}/assets/PS/PS-07_discussion.html" target = "_blank">discussion</a>.
 
 
 
 
 ### In-Class
 
-* 
-
-<!--
-<a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing_2.html" target = "_blank">Slides</a>: Introducing the terminology.
--->
+* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/p_value.html" target = "_blank">Slides</a>: p-value
 
 
 
