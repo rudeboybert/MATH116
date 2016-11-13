@@ -1,0 +1,169 @@
+
+---
+title: "Problem Set 08"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, November 11, 2016"
+output:
+  html_document
+---
+
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+
+# For printing clean tables using the kable() function
+library(knitr)
+
+# Set random number generator seed value:
+set.seed(76)
+```
+
+
+
+## Question 1:
+
+We will be conducting the study from Lec21 on Friday November 4th on whether or
+not wearing shoes while sleeping causes people to wake up with headaches.
+
+#### a)
+
+Dr. Quack goes through the medical files for 1000 of their patients and obtains 
+variables:
+
+* `shoes_on`: whether or not the patient slept with their shoes on
+* `headache`: whether or not the patient woke up with a headache
+
+where in both cases `0` indicates false and `1` indicates true. Dr. Quack 
+presents their findings in a data frame `study_data_1` which is loaded from the
+web below. Questions:
+
+1. Who had a higher headache rate: students who slept with their shoes on or those
+who didn't? Is this difference significant?
+1. Can you prove or disprove the claim that sleeping with shoes on causes people
+to wake up with a headache with the information below? Why or why not?
+
+```{r, echo=TRUE, message=FALSE}
+study_data_1 <- readr::read_csv("https://rudeboybert.github.io/MATH116/assets/PS/study_data_1.csv")
+
+```
+
+
+
+#### b)
+
+Take your code for part a), but change it so that retroactively we had data from
+a **randomized experiment**. Questions:
+
+* Who now had a higher headache rate: students who slept with their shoes on or those
+who didn't? Is this difference significant?
+* Can you prove or disprove the claim that sleeping with shoes on causes people
+to wake up with a headache with the information below? Why or why not?
+
+
+```{r, echo=TRUE, message=FALSE}
+
+```
+
+
+#### c)
+
+Now say you also have access to information as to whether or not the patient got
+wasted the night before. Generate a table that compares headache rates for those
+patients who slept with shoes on versus those who didn't **controlling** for 
+whether or not they got wasted, in other words, taking into account whether or
+not they got wasted.
+
+```{r, echo=TRUE, message=FALSE}
+study_data_2 <- readr::read_csv("https://rudeboybert.github.io/MATH116/assets/PS/study_data_2.csv")
+
+```
+
+
+
+
+## Question 2:
+
+You are going to compute via simulation and not via mathematical formulas, the 
+**probability distribution** of all possible sums of two die rolls: for all 
+possible sums of rolling two dice (x=2, x=3, ..., x=12), we compute
+Probability(sum of rolling two dice = x).
+
+1. Write code that will simulate die rolls and manipulate the output so that
+you end up with a data frame `probs` with 11 rows and 2 columns:
+    + `sum`: each value of the possible sum of rolling two dice
+    + `probability`: the observed probability of each value of `sum`
+1. Once you've fully created it, change the `eval=FALSE` to `eval=TRUE` in the 
+starting line of the code block below to have the plot get generated.
+1. Note even though `sum` is a numerical variable, we'll treat it as a 
+categorical variable by using the `factor()` command and using a bar chart. It 
+looks cleaner this way.
+
+```{r, eval=FALSE}
+# Write your code to create the data frame probs here:
+
+
+# Suggested ggplot call. Feel free to change it:
+ggplot(probs, aes(x=factor(sum), y=probability)) +
+  geom_bar(stat="identity") +
+  labs(x="Sum", y="Probability of Sum", title="Outcomes of Rolling Two Dice")
+```
+
+
+
+
+## Question 3:
+
+Problem 3.20 on page 162 of the OpenIntro Textbook on "With and without 
+replacement". For this question, find all probabilities using R's sampling 
+capabilities.
+
+Part d) is the only required part for this problem set. Parts a), b), and c) are 
+bonus parts.
+
+#### a) and b) from text
+
+**Starter Code**: We define a `room` and `stadium`, both half female, but with 
+populations of size `n=10` and `n=10000`. Let `1` represent a female and `0` 
+represent a male, so that to count the number of females we need to only `sum()`
+a series of `0`'s and `1`'s.
+
+```{r}
+room <- rep(c(1, 0), each=5)
+stadium <- rep(c(1, 0), each=5000)
+
+```
+
+Fill in the table with the results from your simulations in the code block below
+
+Sampling Type        | Room   | Stadium
+-------------------- | -------| -------
+With replacement     | 0.000  | 0.000
+Without replacement  | 0.000  | 0.000
+
+
+#### c) from text
+
+
+#### d)
+
+For the stadium case, answer the following questions about the components of the
+"powerball" analogy:
+
+**Atrributes of the Lottery Machine**:
+
+* How many balls do you have?
+* What are written on the balls?
+* Do the balls have equal probability of being picked?
+
+
+**Attributes of the Drawing**:
+
+* How are you drawing the balls?
+* How many balls do you draw? 
+* What are you recording about each drawn ball?
+
+
+
+

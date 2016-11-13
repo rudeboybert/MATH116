@@ -1,0 +1,115 @@
+
+---
+title: "Problem Set 07"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, November 4, 2016"
+output:
+  html_document
+---
+
+
+
+```{r, echo=TRUE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(knitr)
+```
+
+
+
+
+## Question 1: Women and Children First
+
+**Research question**: Did the "women-and-children" first
+policy hold? Hint: the answer is yes.
+
+Argue your conclusion using the results from an outputed table. Do as much as
+you can computationally to minimize the number of hand calculations you may need
+to make (if any).
+
+```{r, echo=FALSE, message=FALSE}
+data(Titanic)
+# Convert Titanic data to tidy format
+Titanic <- Titanic %>% 
+  as.data.frame()
+
+Titanic %>% 
+  group_by(Sex, Age, Survived) %>% 
+  summarise(Freq=sum(Freq))
+
+```
+
+**Your conclusion**:
+
+
+
+
+
+
+
+## Question 2: America Runs on Starbucks?
+
+**Research question**: Do Starbucks tend to locate in higher income neighbors,
+while Dunkin Donuts does not i.e. they tend to locate in lower income
+neighborhoods." 
+
+Recreate the plot in part a), but with any improvements you think are warranted 
+**in order to answer the question**. Don't worry about making the green/orange
+colors match.
+
+```{r, echo=FALSE, message=FALSE}
+# Copy and paste the line of code that loads DD_vs_SB.csv into R here:
+
+```
+
+**Your conclusion**:
+
+
+
+
+
+
+
+## Question 3: NYC Flights
+
+Do parts c), d), and e)
+
+**Hint**: For part e), you may need to lean on Google. Google is a Data
+Scientist's best friend; effective Googling is a skill that needs developping.
+Example: Googling "DESIRED TASK dplyr" will return relevant results how to do a
+desired task, but specific to the dplyr package.
+
+```{r, echo=FALSE, message=FALSE}
+library(nycflights13)
+data(airports)
+data(planes)
+data(flights)
+data(weather)
+data(airlines)
+
+# Do part c) here:
+
+
+# Do part d) here:
+
+
+# Do part e) here. Hint: 
+
+
+```
+
+
+
+
+
+
+
+## Question 4: Unisex Names... Revisited
+
+```{r, echo=FALSE, message=FALSE}
+library(babynames)
+
+```
+
+
+
