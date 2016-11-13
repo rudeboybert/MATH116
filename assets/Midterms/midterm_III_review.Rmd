@@ -1,0 +1,53 @@
+---
+title: "Midterm III Review"
+author: "Albert Y. Kim"
+date: "Mon Nov 14, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+```
+
+
+
+
+## Format
+
+* Wed Nov 16, 7:30pm-10:00pm in Warner 506/507.
+* I'm going to try to target it so the median completion time is about 1h15m
+* Closed book, no calculators, but you may bring `dplyr` cheatsheet.
+* You won't need to write 100% correct R code, but rather rough **pseudocode**
+
+
+
+
+## Sources
+
+* Lectures 01 through 23 inclusive
+    + Read the slides from each lecture to get the **executive summary**
+    + Learning check discussions
+* Problem Sets!
+
+
+
+
+## Topics

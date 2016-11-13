@@ -2,7 +2,7 @@
 layout: post
 title:  "Lec24 Hypothesis Testing Part III"
 subtitle: "Defining the p-value; a quantification of surprise."
-date:   2016-11-11 10:10:45
+date:   2016-11-16 10:10:45
 categories: jekyll update
 ---
 
@@ -10,13 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
-
-* Midterm III review on Monday; please email me any questions before then.
-* Image of the day: <a href = "{{ site.baseurl }}/assets/figure/blue_vs_red.jpg" target = "_blank">Voter turnout</a>
-
-<script src="https://gist.github.com/rudeboybert/b88cc53c419ad47eeaf4255617809c43.js"></script>
-
-
+* 
 
 
 ### In-Class

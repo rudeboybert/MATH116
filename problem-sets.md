@@ -25,7 +25,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-<!--
+
 <br>
 
 ***
@@ -36,7 +36,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ## Problem Set 09
 
-* Assigned Fri 11/11
+* Assigned Sun 11/13
 * Due Fri 11/18 11am
 
 
@@ -48,6 +48,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Homework
 
+<!--
 * Download these files to your computer and upload them to your `problem_sets`
 folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-09.Rmd" target="_blank">`PS-09.Rmd`</a>
 -->
@@ -96,7 +97,8 @@ folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-08.Rmd" targe
 * Download the <a href="https://www.openintro.org/stat/textbook.php?stat_book=os" target="_blank">OpenIntro Statistics 3rd Edition</a> open-source statistics 
 textbook (the textbook I used previously for MATH 116) and save this to your 
 computer.  Questions for the rest of the course will come from here.
-
+* <a href = "{{ site.baseurl }}/assets/PS/PS-08_discussion.html" target = "_blank">PS-08 Discussion</a>
+* PS-08 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-08_discussion.Rmd" target = "_blank">`PS-08_discussion.Rmd`</a> 
 
 
 
@@ -128,7 +130,8 @@ using data.**
 folder on RStudio Server:
     + <a href="{{ site.baseurl }}/assets/PS/PS-07.Rmd" target="_blank">`PS-07.Rmd`</a>
     + <a href="{{ site.baseurl }}/assets/PS/DD_vs_SB.csv" target="_blank">`DD_vs_SB.csv`</a>
-
+* <a href = "{{ site.baseurl }}/assets/PS/PS-07_discussion.html" target = "_blank">PS-07 Discussion</a>
+* PS-07 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-07_discussion.Rmd" target = "_blank">`PS-07_discussion.Rmd`</a> 
 
 
 
