@@ -24,12 +24,11 @@ categories: jekyll update
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/Midterms/midterm_III_review.html" target = "_blank">Midterm III Review Slides</a>
-* Time permitting: <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/p_value.html" target = "_blank">Slides</a>: p-value
+* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/p_value.html" target = "_blank">Slides</a>: p-value
 
 
 
 ### After-Class Updates
 
-<!--
-* Lec22 <a href = "{{ site.baseurl }}/assets/LC/hypothesis_testing.html" target = "_blank">learning check discussion</a>
--->
+* Lec24 <a href = "{{ site.baseurl }}/assets/LC/p-value.html" target = "_blank">learning check discussion</a>
+

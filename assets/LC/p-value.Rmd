@@ -1,0 +1,108 @@
+---
+title: "p-Values"
+author: "Albert Y. Kim"
+date: "Mon Nov 14, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    df_print: kable
+---
+
+## To be Completed by Wednesday 11am
+
+
+
+## Even vs Odd # of Letters in Last Name
+
+Say I give you a data set with two variables: 1) even or odd number of letters
+in last name i.e. two groups and 2) test score. For example, here is an example
+of what this data would look like, with only 3 rows:
+
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+data_frame(
+  id = c(1, 2, 3),
+  num_letters = c("even", "odd", "odd"),
+  test_score = c(0.7, 0.6, 0.8)
+)
+```
+
+Think about how you would test:
+
+* $H_0$: no difference in test scores between odd vs even
+* $H_A$: there is a difference
+
+Hints:
+
+* Think about what assuming $H_0$ allows you to do the data set
+* Question from Problem Set 08 Question 1.b)
+
+
+
+#### Assuming $H_0$ Allows You To...
+
+All hypothesis is done **assuming the null hypothesis is true**. In our case, we assume
+there is no difference in test scores between those with even # and those with odd #.
+
+So for the above data, for each student, it doesn't matter if they have an even or odd #. In other
+words, the variable `num_letters` is meaningless. If it's meaningless, then we can permute it
+and nothing should matter!
+
+Thus assuming $H_0$ is true, the above data is the same as the following data
+
+```{r, echo=FALSE, message=FALSE}
+data_frame(
+  id = c(1, 2, 3),
+  num_letters = c("odd", "even", "odd"),
+  test_score = c(0.7, 0.6, 0.8)
+)
+```
+
+which is the same as the following data
+
+```{r, echo=FALSE, message=FALSE}
+data_frame(
+  id = c(1, 2, 3),
+  num_letters = c("odd", "odd", "even"),
+  test_score = c(0.7, 0.6, 0.8)
+)
+```
+
+
+
+#### Test Statistic
+
+Now we need a **test statistic**. A statistic is just a summary of many values
+of numbers to a single one. A test statistic is simply a statistic used for the
+purpose of testing.
+
+Here, we want to compare odd vs even. So what's an obvious test statistic?
+The mean test score of odd MINUS the mean test score of even. Or using mathematical notation:
+$\mu_E- \mu_O$. $\mu$ is the traditional character for means.
+
+What is the **observed test statistic**? $\overline{x}_E - \overline{x}_o$: the
+observed difference in means.
+
+
+
+#### Null Distribution
+
+The null distribution is the distribution of the test statistic assuming $H_0$ is
+true. How do we construct this? Using `shuffle()`!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
