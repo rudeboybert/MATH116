@@ -20,10 +20,11 @@ categories: jekyll update
 * <a href = "{{ site.baseurl }}/assets/PS/PS-08_discussion.html" target = "_blank">PS-08 Discussion</a>
 
 
+
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/Midterms/midterm_III_review.html" target = "_blank">Midterm III Review Slides</a>
-* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/p_value.html" target = "_blank">Slides</a>: p-value
+* Time permitting: <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/p_value.html" target = "_blank">Slides</a>: p-value
 
 
 

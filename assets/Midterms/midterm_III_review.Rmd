@@ -33,7 +33,7 @@ library(knitr)
 ## Format
 
 * Wed Nov 16, 7:30pm-10:00pm in Warner 506/507.
-* I'm going to try to target it so the median completion time is about 1h15m
+* Target median completion time is about 1h15m
 * Closed book, no calculators, but you may bring `dplyr` cheatsheet.
 * You won't need to write 100% correct R code, but rather rough **pseudocode**
 
@@ -42,12 +42,40 @@ library(knitr)
 
 ## Sources
 
-* Lectures 01 through 23 inclusive
+* Suggested approach
     + Read the slides from each lecture to get the **executive summary**
+    + Chalk talks went slow for reason: they are important concepts not worth rushing
     + Learning check discussions
-* Problem Sets!
-
+    + Problem Sets
 
 
 
 ## Topics
+
+* Focus on Lec17 through Lec23
+* However the midterm is still cumulative in that `ggplot2`/`dplyr` are now not
+goals in and of themselves (like with Data Science), but rather the **tools** we
+use for
+    + Performing simulations, studying sampling, etc...
+    + Examining results
+
+
+
+## Topics
+
+* Note the paradigm shift:
+    + PS-07: recap of the tools of data visualization/manipulation **to the end of data science**
+    + PS-08: using the tools of data visualization/manipulation **to the end of sampling and probability**
+* Think of reading/writing as a **tool for communication** for various essay-based classes
+* Much in the same way, we are using coding as the language for expressing statistical ideas.
+
+
+
+
+## Extra Resources
+
+Especially for the section 3 of the syllabus: Statistical Inference, look at the
+OpenIntro textbook from Problem Set 08 and use the index to find the topics
+(mostly at the front of the text).
+
+
