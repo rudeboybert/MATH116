@@ -23,9 +23,7 @@ categories: jekyll update
 ### In-Class
 
 * <a href = "{{ site.baseurl }}/assets/Midterms/midterm_III_review.html" target = "_blank">Midterm III Review Slides</a>
-<!--
-<a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing_2.html" target = "_blank">Slides</a>: Introducing the terminology.
--->
+* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/p_value.html" target = "_blank">Slides</a>: p-value
 
 
 
