@@ -34,7 +34,7 @@ Argue your conclusion using the results from an outputed table. Do as much as
 you can computationally to minimize the number of hand calculations you may need
 to make (if any).
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE}
+```{r, message=FALSE, echo=TRUE}
 data(Titanic)
 # Convert Titanic data to tidy format
 Titanic <- Titanic %>% 
@@ -70,7 +70,7 @@ neighborhoods."
 
 **Your conclusion**: Here is the plot from the midterm (without colors).
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
 DD_vs_SB <- read.csv("DD_vs_SB.csv")
 
 ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
@@ -86,7 +86,7 @@ I'm going to do three things to improve it:
 * Change the y-axis scale to where most of the points are: between 0 and 0.75
 * Use `alpha=0.1` in the `geom_point()` to try to see better what's going on at `y=0`
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
 ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
   geom_point(alpha=0.1) + 
   facet_wrap(~Type) +
@@ -111,7 +111,7 @@ below.
 
 ## Question 3: NYC Flights
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE}
+```{r, message=FALSE, echo=TRUE}
 library(nycflights13)
 data(airports)
 data(planes)
@@ -130,7 +130,7 @@ departure delay of all flights for each airline leaving Newark (airport code
 
 **Solution**: This gets the job done:
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE}
+```{r, message=FALSE, echo=TRUE}
 median_delays_by_carrier_EWR <- flights %>% 
   filter(origin == "EWR") %>% 
   group_by(carrier) %>% 
@@ -143,7 +143,7 @@ median_delays_by_carrier_EWR
 **Advanced**: But this is a little more elegant: using the `name` variable in the `airlines`
 data set instead of `carrier` codes.
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE}
+```{r, message=FALSE, echo=TRUE}
 flights %>% 
   # join the flights to airlines data sets here!
   left_join(airlines, by="carrier") %>% 
@@ -162,7 +162,7 @@ tables in part b)/c).
 
 **Solution**: This gets the job done:
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+```{r, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
 EWR_flights <- flights %>% 
   filter(origin == "EWR")
 
@@ -170,7 +170,20 @@ ggplot(data=EWR_flights, aes(x=carrier, y=dep_delay)) +
   geom_boxplot()
 ```
 
-**Advanced**: Let's zoom 
+**Advanced**: As we said in the **advanced** part of Question 2,
+`coord_cartesian(ylim=c(a,b))` will yield very different behavior than
+`ylim(c(a,b))`. Why? Because if we clip points, we are going to change what
+points going into the plots, and hence what the boxplot looks like!
+
+```{r, echo=TRUE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+ggplot(data=EWR_flights, aes(x=carrier, y=dep_delay)) +
+  geom_boxplot() +
+  ylim(c(-10, 10))
+ggplot(data=EWR_flights, aes(x=carrier, y=dep_delay)) +
+  geom_boxplot() +
+  coord_cartesian(ylim=c(-10, 10))
+```
+
 
 
 
@@ -179,9 +192,22 @@ ggplot(data=EWR_flights, aes(x=carrier, y=dep_delay)) +
 Write the rough pseudocode that will tabulate the mean humidity level 
 recorded for all flights leaving New York City in July 2013.
 
-**Solution**:
+**Solution**: Recall the image:
 
-The tough part here was recognizing that 
+<img src="https://rudeboybert.github.io/MATH116/assets/figure/relational-nycflights.png" alt="Drawing" style="width: 600px;"/>
+
+To match a flight to weather, you need to join by `year` AND `month` AND `day`
+AND `hour` AND the airport of `origin`. (There was also a variable `time_hour`,
+but for some reason it gave me errors). Also, note we don't need to `group_by`
+anything! Just one overall mean!
+
+```{r, echo=FALSE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+nyc_2013_july <- flights %>% 
+  filter(month==7) %>% 
+  left_join(weather, by=c("year", "month", "day", "hour", "origin")) %>% 
+  summarise(mean_humid = mean(humid, na.rm=TRUE))
+nyc_2013_july
+```
 
 
 
@@ -190,10 +216,44 @@ The tough part here was recognizing that
 
 ## Question 4: Unisex Names... Revisited
 
-```{r, echo=FALSE, message=FALSE}
-library(babynames)
+**Question**: Compare the "unisexiness" of Casey vs Riley between 1950 and 2014.
 
+
+#### Manipulating the Data
+
+The tricky part here is using and/or statements. Here we want all rows where
+
+* `name` is Casey **OR** Riley
+* `year` is greater than or equal to 1950 **AND** less than or equal to 2014.
+
+These principles of **boolean logic** hold for ALL programming languages.
+
+```{r, echo=FALSE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+library(babynames)
+casey_and_riley <- babynames %>% 
+  filter(name == "Casey" | name == "Riley") %>% 
+  filter(year >= 1950 & year <= 2014)
 ```
+
+
+#### Plotting the Comparison
+
+There are two ways we can use `col` and `facet_wrap` to compare both the `sex`
+and `name` variables.
+
+```{r, echo=FALSE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+ggplot(data=casey_and_riley, aes(x=year, y=prop, col=name)) +
+  geom_line() +
+  facet_wrap(~sex)
+ggplot(data=casey_and_riley, aes(x=year, y=prop, col=sex)) +
+  geom_line() +
+  facet_wrap(~name)
+```
+
+While both do technically show the same information, I argue the latter is
+better, as it better compares the male/female proportion of each name
+head-to-head, as opposed to Casey/Riley proportions for each sex.
+
 
 
 
