@@ -1,0 +1,48 @@
+
+---
+title: "Final Project"
+author: "WRITE GROUP MEMBERS NAMES HERE!!!!!!!!!!"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+```
+
+
+
+
+
+## Main Article
+
+Write your main article here i.e. the part that will show in print or online.
+If you are interested in formatting tips, go to RStudio Menu Bar -> Help -> 
+Markdown Quick Reference
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+```
+
+
+
+
+
+## Supplementary Materials
+
+Write your extra materials here i.e. extra info for people who want to know
+more, but including in the main article would unnecessarily bloat things.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+```

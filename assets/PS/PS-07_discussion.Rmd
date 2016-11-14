@@ -4,7 +4,8 @@ title: "Problem Set 07"
 author: "WRITE YOUR NAME HERE"
 date: "Due Friday, November 4, 2016"
 output:
-  html_document
+  html_document:
+    df_print: kable
 ---
 
 
@@ -14,6 +15,12 @@ library(ggplot2)
 library(dplyr)
 library(knitr)
 ```
+
+
+
+## Comment
+
+This was a difficult problem set.
 
 
 
@@ -27,19 +34,27 @@ Argue your conclusion using the results from an outputed table. Do as much as
 you can computationally to minimize the number of hand calculations you may need
 to make (if any).
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, echo=TRUE}
 data(Titanic)
 # Convert Titanic data to tidy format
 Titanic <- Titanic %>% 
   as.data.frame()
 
 Titanic %>% 
-  group_by(Sex, Age, Survived) %>% 
-  summarise(Freq=sum(Freq))
-
+  group_by(Survived, Sex, Age) %>% 
+  summarise(Freq=sum(Freq)) 
 ```
 
-**Your conclusion**:
+
+**Conclusion**: 
+
+* `338/(338+1329)` = 20.3% of male adults survived
+* `(29+28+316)/(29+28+316+35+17+109)` = 69.8% of everyone else survived
+
+Don't need no PhD in statistics to know this difference is **statistically significant** i.e.
+
+1. Survival wasn't random
+1. There was a mechanism dictating who had greater chances of survival
 
 
 
@@ -53,18 +68,42 @@ Titanic %>%
 while Dunkin Donuts does not i.e. they tend to locate in lower income
 neighborhoods." 
 
-Recreate the plot in part a), but with any improvements you think are warranted 
-**in order to answer the question**. Don't worry about making the green/orange
-colors match.
+**Your conclusion**: Here is the plot from the midterm (without colors).
 
-```{r, echo=FALSE, message=FALSE}
-# Copy and paste the line of code that loads DD_vs_SB.csv into R here:
+```{r, echo=FALSE, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+DD_vs_SB <- read.csv("DD_vs_SB.csv")
 
+ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
+  geom_point() + 
+  facet_wrap(~Type) +
+  geom_smooth(method="lm", se=FALSE) + 
+  labs(x="Median Household Income", y="# per 1000 people", title="Coffee/Cafe Comparison in Eastern MA")
 ```
 
-**Your conclusion**:
+I'm going to do three things to improve it:
 
+* Use a smoother that isn't a regression line
+* Change the y-axis scale to where most of the points are: between 0 and 0.75
+* Use `alpha=0.1` in the `geom_point()` to try to see better what's going on at `y=0`
 
+```{r, echo=FALSE, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
+  geom_point(alpha=0.1) + 
+  facet_wrap(~Type) +
+  geom_smooth(se=FALSE) + 
+  labs(x="Median Household Income", y="# per 1000 people", title="Coffee/Cafe Comparison in Eastern MA") +
+  coord_cartesian(ylim=c(0, 0.75))
+```
+
+**Advanced**: Why did I use `coord_cartesian(ylim=c(0, 0.75))` and not 
+`ylim(c(0, 0.75))`? Because of **point clipping**. See the [ggplot2 
+cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf),
+back page, bottom right corner, Zooming section to see the difference in
+behavior. Some times you want to "clip" points and others you don't. 
+
+In our case, if you clip points, it will alter the behavior of the smoother
+since it will be based on fewer points. This also relevant to Question 3.d)
+below.
 
 
 
@@ -72,32 +111,77 @@ colors match.
 
 ## Question 3: NYC Flights
 
-Do parts c), d), and e)
-
-**Hint**: For part e), you may need to lean on Google. Google is a Data
-Scientist's best friend; effective Googling is a skill that needs developping.
-Example: Googling "DESIRED TASK dplyr" will return relevant results how to do a
-desired task, but specific to the dplyr package.
-
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, echo=TRUE}
 library(nycflights13)
 data(airports)
 data(planes)
 data(flights)
 data(weather)
 data(airlines)
-
-# Do part c) here:
-
-
-# Do part d) here:
-
-
-# Do part e) here. Hint: 
-
-
 ```
 
+
+
+#### c)
+
+Write the rough pseudocode that will output a table presenting the median
+departure delay of all flights for each airline leaving Newark (airport code
+`EWR`) in reverse alphabetical order.
+
+**Solution**: This gets the job done:
+
+```{r, echo=FALSE, message=FALSE, echo=TRUE}
+median_delays_by_carrier_EWR <- flights %>% 
+  filter(origin == "EWR") %>% 
+  group_by(carrier) %>% 
+  summarise(med_delay = median(dep_delay, na.rm=TRUE)) %>% 
+  arrange(desc(carrier))
+
+median_delays_by_carrier_EWR
+```
+
+**Advanced**: But this is a little more elegant: using the `name` variable in the `airlines`
+data set instead of `carrier` codes.
+
+```{r, echo=FALSE, message=FALSE, echo=TRUE}
+flights %>% 
+  # join the flights to airlines data sets here!
+  left_join(airlines, by="carrier") %>% 
+  filter(origin == "EWR") %>% 
+  group_by(name) %>% 
+  summarise(med_delay = median(dep_delay, na.rm=TRUE)) %>% 
+  arrange(desc(name))
+```
+
+
+
+#### d)
+
+Name a graphic that would best show all the information contained in the
+tables in part b)/c).
+
+**Solution**: This gets the job done:
+
+```{r, echo=FALSE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+EWR_flights <- flights %>% 
+  filter(origin == "EWR")
+
+ggplot(data=EWR_flights, aes(x=carrier, y=dep_delay)) +
+  geom_boxplot()
+```
+
+**Advanced**: Let's zoom 
+
+
+
+#### e)
+
+Write the rough pseudocode that will tabulate the mean humidity level 
+recorded for all flights leaving New York City in July 2013.
+
+**Solution**:
+
+The tough part here was recognizing that 
 
 
 

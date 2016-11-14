@@ -18,8 +18,15 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ## Final Group Project
 
-* Final group project <a href = "{{ site.baseurl }}/assets/final_project_outline.html" target = "_blank">outline</a>.
-* I will post a template `final_project.Rmd` file here by Monday 11/14.
+* Final group project <a href = "{{ site.baseurl }}/assets/Final_Project/final_project_outline.html" target = "_blank">instructions</a>.
+* Monday 11/14 updates:
+    + Final group project template file <a href="{{ site.baseurl }}/assets/Final_Project/Final_Project.Rmd" target="_blank">`Final_Project.Rmd`</a> posted. One group member to upload to group's RStudio Shared Project Folder.
+    + Please write your group's info in this <a href = "https://docs.google.com/spreadsheets/d/1Pl8K6bYjeJbiRVVNZ-rALtb6zB7ma8DhYBDr_Xubnq4/edit#gid=0" target = "_blank">Google Sheet</a>. Note that one group member will also be publishing the analysis on the web on <a href = "http://rpubs.com/" target = "_blank">rpubs.com</a> for all to see:
+        1. Knit HTML your document as usual
+        1. On the top right click "Publish" -> Select RPubs -> Publish -> Then login to RPubs.
+        1. Give your file an appropriate title and URL name `Final_Project`.
+        1. Copy/paste the URL into the Google Sheet above.
+        1. Update your publication as need by repeating this process.
 
 
 
