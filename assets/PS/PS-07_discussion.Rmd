@@ -162,7 +162,7 @@ tables in part b)/c).
 
 **Solution**: This gets the job done:
 
-```{r, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
 EWR_flights <- flights %>% 
   filter(origin == "EWR")
 
@@ -175,7 +175,7 @@ ggplot(data=EWR_flights, aes(x=carrier, y=dep_delay)) +
 `ylim(c(a,b))`. Why? Because if we clip points, we are going to change what
 points going into the plots, and hence what the boxplot looks like!
 
-```{r, echo=TRUE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
+```{r, echo=TRUE, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
 ggplot(data=EWR_flights, aes(x=carrier, y=dep_delay)) +
   geom_boxplot() +
   ylim(c(-10, 10))
@@ -201,12 +201,11 @@ AND `hour` AND the airport of `origin`. (There was also a variable `time_hour`,
 but for some reason it gave me errors). Also, note we don't need to `group_by`
 anything! Just one overall mean!
 
-```{r, echo=FALSE, message=FALSE, echo=TRUE, fig.width=16/2, fig.height=9/2}
-nyc_2013_july <- flights %>% 
+```{r, echo=FALSE, message=FALSE, echo=TRUE,  warning=FALSE,  fig.width=16/2, fig.height=9/2}
+flights %>% 
   filter(month==7) %>% 
   left_join(weather, by=c("year", "month", "day", "hour", "origin")) %>% 
   summarise(mean_humid = mean(humid, na.rm=TRUE))
-nyc_2013_july
 ```
 
 
