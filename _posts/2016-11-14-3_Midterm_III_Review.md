@@ -11,7 +11,7 @@ categories: jekyll update
 ### Announcements
 
 * Final project `.Rmd` template now posted on Problem Sets page.
-* Before Wed 11/16 lecture, a student will be conducting a 5-10 minute survey about student stress on campus for a research project.
+* Before midterm, a student will be conducting a 5-10 minute survey about student stress on campus for a research project.
 * Office hours:
     + Monday ~~1:00-4:00pm~~ 2:30-4:30pm
     + Tuesday 1:00-2:30pm
