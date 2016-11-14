@@ -52,7 +52,7 @@ library(knitr)
 
 ## Topics
 
-* Focus on Lec17 through Lec23
+* Focus on Lec17 through Lec24. For Lec24 ignore anything involving p-values: Slides 6-9.
 * However the midterm is still cumulative in that `ggplot2`/`dplyr` are now not
 goals in and of themselves (like with Data Science), but rather the **tools** we
 use for
@@ -79,3 +79,26 @@ OpenIntro textbook from Problem Set 08 and use the index to find the topics
 (mostly at the front of the text).
 
 
+
+
+## Some Important Topics
+
+* Definitions relating to sampling. Ex: 
+    + Tub of rice
+    + LC: Comment on the generalizability/representativeness of situations
+* Being able to describe any sampling situation in terms of the Powerball analogy
+* Components of designing experiments. Ex: Fried chicken face off
+* Defintions relating to hypothesis testing. Ex: Lady Tasting Tea
+
+
+
+
+## Computational Tools
+
+The **tools** for sampling, randomization, and probability from the `mosaic` 
+package:
+
+* `rflip()` a coin
+* `shuffle()` 
+* `do()` many, many, many times
+* `resample()`: the swiss army knife. Understand the three knobs you can control to have different types of sampling.
