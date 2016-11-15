@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Midterm III Review + Lec24"
-subtitle: "Everything up to, but not including, p-values."
+subtitle: "Everything up to and including Lec24, but not p-values."
 date:   2016-11-14 10:10:45
 categories: jekyll update
 ---
