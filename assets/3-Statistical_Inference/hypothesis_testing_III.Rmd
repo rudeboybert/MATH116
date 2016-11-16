@@ -1,0 +1,98 @@
+---
+title: "Hypothesis Testing Part III"
+author: "Albert Y. Kim"
+date: "Mon Nov 16, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(mosaic)
+```
+
+
+
+
+## Today
+
+More answering questions with data.
+
+
+
+
+## Concept 1: EDA
+
+> * Before using any statistical tool, always do an **exploratory data analysis (EDA)** to look at your data.
+> * You might not even need statistics.
+
+
+
+
+## Concept 2: Wrapper Function
+
+> * Wikipedia: A **wrapper function** is computer code whose main purpose is to
+call more complex computer code with little or no additional work.
+> * The wrapper exists simply to "hide" more complex code and/or to simplify its use.
+
+
+
+
+## Concept 3: Setting Seed Value
+
+A computer can't generate pure random numbers, but **pseudorandom** results:
+
+> * Takes a seed value and returns numbers that are indistinguishable from true randomness
+> * If you don't give a seed, the computer picks one based on how much disk space + clock
+> * If you do give the same seed, you'll get **replicable** pseudorandom results.
+
+
+
+
+## Run the Following in Console
+
+```{r, eval=FALSE}
+library(mosaic)
+basket <- c("apple", "orange", "mango", "pear")
+
+# Seed is set automatically by computer
+shuffle(basket)
+
+# Set seed
+set.seed(76)
+shuffle(basket)
+
+# Set seed to same value to get replicable pseudorandom results.
+set.seed(76)
+shuffle(basket)
+```
+
+
+
+
+## Setting Seed Value
+
+My favorite seed value is [76](http://www.macleans.ca/wp-content/uploads/2014/05/MAC21_SUBBAN_CAROUSEL.jpg).
+
+
+
+
+
+
+
