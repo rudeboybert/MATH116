@@ -119,8 +119,8 @@ resample(fruit)
 ## Resampling
 
 ```{r, eval=FALSE}
-resample(x=fruit, size=length(x), replace=TRUE, 
-         prob=rep(1/length(x), length(x)) )
+resample(x=fruit, size=length(fruit), replace=TRUE, 
+         prob=rep(1/length(fruit), length(fruit)) )
 ```
 
 > * `x` is the input. In this case `fruit`.
