@@ -32,7 +32,8 @@ library(mosaic)
 
 ## Today
 
-More answering questions with data.
+More answering questions with data: specifically final exam scores from when
+I taught intro stats at Reed College.
 
 
 

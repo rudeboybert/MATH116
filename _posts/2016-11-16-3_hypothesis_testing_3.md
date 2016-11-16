@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec25 Hypothesis Testing Part III"
-subtitle: "."
+subtitle: "Permutations under (i.e. assuming) the null hypothesis."
 date:   2016-11-16 10:10:45
 categories: jekyll update
 ---

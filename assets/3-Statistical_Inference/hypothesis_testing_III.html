@@ -105,20 +105,20 @@ slides > slide.backdrop {
 
 <slide class=''><hgroup><h2>Today</h2></hgroup><article  id="today">
 
-<p>More answering questions with data.</p>
+<p>More answering questions with data: specifically final exam scores from when I taught intro stats at Reed College.</p>
 
 </article></slide><slide class=''><hgroup><h2>Concept 1: EDA</h2></hgroup><article  id="concept-1-eda">
 
 <ul class = 'build'>
-<li>Before using any statistical tool, always do an <strong>exploratory data analysis (EDA)</strong>.</li>
-<li>You might be in what I call &quot;You don&#39;t need no PhD in statistics to&#8230;&quot; situations</li>
+<li>Before using any statistical tool, always do an <strong>exploratory data analysis (EDA)</strong> to look at your data.</li>
+<li>You might not even need statistics.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Concept 2: Wrapper Function</h2></hgroup><article  id="concept-2-wrapper-function">
 
 <ul class = 'build'>
 <li>Wikipedia: A <strong>wrapper function</strong> is computer code whose main purpose is to call more complex computer code with little or no additional work.</li>
-<li>The wrapper exists simply to &quot;hide&quot; more complex code and/or simply using code.</li>
+<li>The wrapper exists simply to &quot;hide&quot; more complex code and/or to simplify its use.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Concept 3: Setting Seed Value</h2></hgroup><article  id="concept-3-setting-seed-value">
@@ -126,9 +126,9 @@ slides > slide.backdrop {
 <p>A computer can&#39;t generate pure random numbers, but <strong>pseudorandom</strong> results:</p>
 
 <ul class = 'build'>
-<li>It takes a seed value and returns numbers that are indistinguishable from random results</li>
-<li>If you don&#39;t give it a seed, the computer picks one based on how much disk space you have + time</li>
-<li>If you do give it the same seed, you&#39;ll get replicable pseudorandom results.</li>
+<li>Takes a seed value and returns numbers that are indistinguishable from true randomness</li>
+<li>If you don&#39;t give a seed, the computer picks one based on how much disk space + clock</li>
+<li>If you do give the same seed, you&#39;ll get <strong>replicable</strong> pseudorandom results.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Run the Following in Console</h2></hgroup><article  id="run-the-following-in-console">
@@ -136,7 +136,7 @@ slides > slide.backdrop {
 <pre class = 'prettyprint lang-r'>library(mosaic)
 basket &lt;- c(&quot;apple&quot;, &quot;orange&quot;, &quot;mango&quot;, &quot;pear&quot;)
 
-# Random
+# Seed is set automatically by computer
 shuffle(basket)
 
 # Set seed
