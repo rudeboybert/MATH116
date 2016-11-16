@@ -241,26 +241,26 @@ room <- rep(c(1, 0), each=5)
 stadium <- rep(c(1, 0), each=5000)
 
 # Sampling with and without replacement from the room
-room_sample_with_replace <- do(10000)*sample(room, size=2, replace=TRUE)
+room_sample_with_replace <- do(10000)*resample(room, size=2, replace=TRUE)
 room_sample_with_replace %>% 
   mutate(num_female = V1+V2) %>% 
   group_by(num_female) %>% 
   summarise(count=n())
 
-room_sample_without_replace <- do(10000)*sample(room, size=2, replace=FALSE)
+room_sample_without_replace <- do(10000)*resample(room, size=2, replace=FALSE)
 room_sample_without_replace %>% 
   mutate(num_female = V1+V2) %>% 
   group_by(num_female) %>% 
   summarise(count=n())
 
 # Sampling with and without replacement from the stadium
-stadium_sample_with_replace <- do(10000)*sample(stadium, size=2, replace=TRUE)
+stadium_sample_with_replace <- do(10000)*resample(stadium, size=2, replace=TRUE)
 stadium_sample_with_replace %>% 
   mutate(num_female = V1+V2) %>% 
   group_by(num_female) %>% 
   summarise(count=n())
 
-stadium_sample_with_replace <- do(10000)*sample(stadium, size=2, replace=FALSE)
+stadium_sample_with_replace <- do(10000)*resample(stadium, size=2, replace=FALSE)
 stadium_sample_with_replace %>% 
   mutate(num_female = V1+V2) %>% 
   group_by(num_female) %>% 

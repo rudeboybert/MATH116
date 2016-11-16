@@ -341,7 +341,7 @@ ggplot(probs, aes(x=factor(sum), y=probability)) +
 stadium &lt;- rep(c(1, 0), each=5000)
 
 # Sampling with and without replacement from the room
-room_sample_with_replace &lt;- do(10000)*sample(room, size=2, replace=TRUE)
+room_sample_with_replace &lt;- do(10000)*resample(room, size=2, replace=TRUE)
 room_sample_with_replace %&gt;% 
   mutate(num_female = V1+V2) %&gt;% 
   group_by(num_female) %&gt;% 
@@ -370,7 +370,7 @@ room_sample_with_replace %&gt;%
 </tbody>
 </table>
 </div>
-<pre class="r"><code>room_sample_without_replace &lt;- do(10000)*sample(room, size=2, replace=FALSE)
+<pre class="r"><code>room_sample_without_replace &lt;- do(10000)*resample(room, size=2, replace=FALSE)
 room_sample_without_replace %&gt;% 
   mutate(num_female = V1+V2) %&gt;% 
   group_by(num_female) %&gt;% 
@@ -400,7 +400,7 @@ room_sample_without_replace %&gt;%
 </table>
 </div>
 <pre class="r"><code># Sampling with and without replacement from the stadium
-stadium_sample_with_replace &lt;- do(10000)*sample(stadium, size=2, replace=TRUE)
+stadium_sample_with_replace &lt;- do(10000)*resample(stadium, size=2, replace=TRUE)
 stadium_sample_with_replace %&gt;% 
   mutate(num_female = V1+V2) %&gt;% 
   group_by(num_female) %&gt;% 
@@ -429,7 +429,7 @@ stadium_sample_with_replace %&gt;%
 </tbody>
 </table>
 </div>
-<pre class="r"><code>stadium_sample_with_replace &lt;- do(10000)*sample(stadium, size=2, replace=FALSE)
+<pre class="r"><code>stadium_sample_with_replace &lt;- do(10000)*resample(stadium, size=2, replace=FALSE)
 stadium_sample_with_replace %&gt;% 
   mutate(num_female = V1+V2) %&gt;% 
   group_by(num_female) %&gt;% 
