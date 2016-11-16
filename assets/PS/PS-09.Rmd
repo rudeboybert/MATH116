@@ -56,19 +56,19 @@ grades %>%
 set.seed(76)
 mean(final ~ shuffle(even), data=grades)
 mean(final ~ shuffle(even), data=grades) %>% diff()
+observed_diff <- mean(final ~ shuffle(even), data=grades) %>% diff()
 
 
-simulations <- do(10) * mean(final ~ shuffle(even), data=grades)
+simulations <- do(10000) * mean(final ~ shuffle(even), data=grades)
+simulations <- simulations %>% 
+  mutate(diff=even-odd)
 
-
-ggplot(data=permuted_diff_means, aes(x=diff)) +
+ggplot(data=simulations , aes(x=diff)) +
   geom_histogram() +
   geom_vline(xintercept = observed_diff, col="red")
 
 
-
-
-
+# This sucks:
 simulations <- do(10) * (
   grades %>% 
   mutate(even=shuffle(even)) %>% 
@@ -84,14 +84,6 @@ simulations
 
 
 
-
-
-permuted_diff_means <- do(10) * mean(final ~ shuffle(even), data=grades)
-permuted_diff_means <- permuted_diff_means %>% 
-  as_data_frame()
-
-permuted_diff_means <- permuted_diff_means %>% 
-  mutate(diff=even-odd)
 
 
 ```
