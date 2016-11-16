@@ -17,76 +17,42 @@ output:
 
 
 
-## Instructions/Hint:
-
-* 
-
 ```{r, message=FALSE, echo=FALSE}
 library(ggplot2)
 library(dplyr)
 library(mosaic)
 library(readr)
-library(knitr)
-library(tidyr)
 ```
 
+
+
+## Instructions/Hints:
+
+* Only include that is absolutely necessary to conducting the test. For example:
+    + Remove all `View()`'s since R Markdown will generate an error
+    + Do not include the sidenotes from Lec25.R. They were included only to assist your learning
+* If you feel up to it, compute the p-value!
 
 
 ## Question 1:
 
-```{r}
-grades <- read_csv("grades.csv")
-
-ggplot(data=grades, aes(x=even, y=final)) +
-  geom_boxplot()
-
-grades %>% 
-  group_by(even) %>% 
-  summarise(mean=mean(final))
-mean(final ~ even, data=grades)
+Investigate whether economics majors did better than all other majors on the
+final exam for my intro stats class back in the day. Tweak the code from
+`Lec25.R`.
 
 
-set.seed(76)
-grades %>% 
-  mutate(even=shuffle(even)) %>%   
-  group_by(even) %>% 
-  summarise(mean=mean(final))
-
-set.seed(76)
-mean(final ~ shuffle(even), data=grades)
-
-# observed difference
-observed_diff <- mean(final ~ even, data=grades) %>% diff()
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+# Copy the code that loads grades.csv into RStudio here:
 
 
-simulations <- do(10000) * mean(final ~ shuffle(even), data=grades)
-simulations <- simulations %>% 
-  as_data_frame()
-simulations <- simulations %>% 
-  mutate(diff=even-odd)
-
-ggplot(data=simulations , aes(x=diff)) +
-  geom_histogram() +
-  geom_vline(xintercept = observed_diff, col="red")
+# Do your exploratory data analysis here:
 
 
-# This sucks:
-simulations <- do(10) * (
-  grades %>% 
-  mutate(even=shuffle(even)) %>% 
-  group_by(even) %>% 
-  summarise(mean=mean(final)) %>% 
-  tidyr::spread(even, mean)
-)
-simulations <- simulations %>% 
-  select(even, odd)
-simulations
-
-
-
-
-
+# Perform your hypothesis test here:
 
 
 ```
+
+
+What is your conclusion?
 

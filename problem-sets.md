@@ -50,15 +50,18 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Learning Goals
 
-* 
+* Only one question: based on `Lec25.R` from Lecture 25
+* Baby's first hypothesis test!
+* Further exploring the components: observed test statistics and null distributions
+* Tieing in the `shuffle()` (i.e. random simulation) idea from PS-08 Question 1.b) to hypothesis testing
 
 
 #### Homework
 
-<!--
 * Download these files to your computer and upload them to your `problem_sets`
-folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-09.Rmd" target="_blank">`PS-09.Rmd`</a>
--->
+folder on RStudio Server:
+    + <a href = "{{ site.baseurl }}/assets/PS/grades.csv" target = "_blank">`grades.csv`</a> 
+    + <a href="{{ site.baseurl }}/assets/PS/PS-09.Rmd" target="_blank">`PS-09.Rmd`</a>
 
 
 
