@@ -25,14 +25,74 @@ output:
 library(ggplot2)
 library(dplyr)
 library(mosaic)
-
-# For printing clean tables using the kable() function
+library(readr)
 library(knitr)
-
-# Set random number generator seed value:
-set.seed(76)
+library(tidyr)
 ```
 
 
 
 ## Question 1:
+
+```{r}
+grades <- read_csv("grades.csv")
+
+ggplot(data=grades, aes(x=even, y=final)) +
+  geom_boxplot()
+
+
+grades %>% 
+  group_by(even) %>% 
+  summarise(mean=mean(final))
+mean(final ~ even, data=grades)
+
+
+set.seed(76)
+grades %>% 
+  mutate(even=shuffle(even)) %>%   
+  group_by(even) %>% 
+  summarise(mean=mean(final))
+
+set.seed(76)
+mean(final ~ shuffle(even), data=grades)
+mean(final ~ shuffle(even), data=grades) %>% diff()
+
+
+simulations <- do(10) * mean(final ~ shuffle(even), data=grades)
+
+
+ggplot(data=permuted_diff_means, aes(x=diff)) +
+  geom_histogram() +
+  geom_vline(xintercept = observed_diff, col="red")
+
+
+
+
+
+simulations <- do(10) * (
+  grades %>% 
+  mutate(even=shuffle(even)) %>% 
+  group_by(even) %>% 
+  summarise(mean=mean(final)) %>% 
+  tidyr::spread(even, mean)
+)
+simulations <- simulations %>% 
+  select(even, odd)
+simulations
+
+
+
+
+
+
+
+permuted_diff_means <- do(10) * mean(final ~ shuffle(even), data=grades)
+permuted_diff_means <- permuted_diff_means %>% 
+  as_data_frame()
+
+permuted_diff_means <- permuted_diff_means %>% 
+  mutate(diff=even-odd)
+
+
+```
+
