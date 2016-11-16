@@ -11,18 +11,17 @@ output:
     df_print: kable
 ---
 
-## To be Completed by Wednesday 11am
-
-
 
 ## Even vs Odd # of Letters in Last Name
 
-Say I give you a data set with two variables: 1) even or odd number of letters
+You are given a data set with two variables: 1) even or odd number of letters
 in last name i.e. two groups and 2) test score. For example, here is an example
 of what this data would look like, with only 3 rows:
 
 ```{r, echo=FALSE, message=FALSE}
 library(dplyr)
+library(mosaic)
+library(ggplot2)
 data_frame(
   id = c(1, 2, 3),
   num_letters = c("even", "odd", "odd"),
@@ -42,16 +41,16 @@ Hints:
 
 
 
-#### Assuming $H_0$ Allows You To...
+#### 1) Assuming $H_0$ Allows You To...
 
-All hypothesis is done **assuming the null hypothesis is true**. In our case, we assume
-there is no difference in test scores between those with even # and those with odd #.
+All hypothesis testing **assumes the null hypothesis is true**. In our case:
 
-So for the above data, for each student, it doesn't matter if they have an even or odd #. In other
-words, the variable `num_letters` is meaningless. If it's meaningless, then we can permute it
-and nothing should matter!
+1. We assume no difference in test scores between evens and odds
+1. So for each student, it doesn't matter if they have even or odd
+1. In other words, the variable `num_letters` is meaningless
+1. If `num_letters` is meaningless, then we can **permute** its values to no consequence
 
-Thus assuming $H_0$ is true, the above data is the same as the following data
+Thus assuming $H_0$ is true, the above **observed** data is the same as the following **permuted** data
 
 ```{r, echo=FALSE, message=FALSE}
 data_frame(
@@ -61,7 +60,7 @@ data_frame(
 )
 ```
 
-which is the same as the following data
+which is the same as the following **permuted** data
 
 ```{r, echo=FALSE, message=FALSE}
 data_frame(
@@ -73,25 +72,48 @@ data_frame(
 
 
 
-#### Test Statistic
+#### 2) Test Statistic
 
-Now we need a **test statistic**. A statistic is just a summary of many values
-of numbers to a single one. A test statistic is simply a statistic used for the
-purpose of testing.
+We need a **test statistic**:
 
-Here, we want to compare odd vs even. So what's an obvious test statistic?
-The mean test score of odd MINUS the mean test score of even. Or using mathematical notation:
-$\mu_E- \mu_O$. $\mu$ is the traditional character for means.
+* A **statistic** is just a summary of many values of numbers to a single value. Ex: sum, mean, min, max, median, etc.
+* A **test statistic** is simply a statistic used for the purpose of testing.
 
-What is the **observed test statistic**? $\overline{x}_E - \overline{x}_o$: the
+In our case
+
+1. We want to compare test scores for student with even vs odd
+1. Choice of test statistic: the mean test score of odd MINUS the mean test score of even. 
+1. Using mathematical notation: $\mu_E- \mu_O$. More on this notation later.
+1. What is the **observed test statistic**? $\overline{x}_E - \overline{x}_o$: the
 observed difference in means.
 
 
 
-#### Null Distribution
+#### 3) Null Distribution in General
 
-The null distribution is the distribution of the test statistic assuming $H_0$ is
-true. How do we construct this? Using `shuffle()`!
+We need a **null distribution**: the typical behavior of the test statistic **assuming $H_0$ is true**. 
+That way we can say how likely/unlikely the observed test statistic is. 
+
+Think back to the Lady Tasting Tea example. 8 correct guesses (red line) is unlikely **relative** to the
+typical number correct if she were guessing at random i.e. the null distribution i.e. the bar plot.
+
+```{r, echo=FALSE, fig.width=16/3, fig.height=9/3}
+guess_cup <- c(1, 0)
+simulation <- do(10000) * resample(guess_cup, size=8)
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct") +
+  geom_vline(xintercept=8, col="red") 
+```
+
+
+
+#### 4) Null Distribution in our Case
+
+How do we construct the null distribution in our case? Using **permutations**
+assuming $H_0$ is true. What is a synonym for permute?
 
 
 
