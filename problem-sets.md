@@ -32,6 +32,50 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
+<!--
+<br>
+
+***
+
+<br>
+
+  
+
+## Problem Set 10
+
+* Assigned Fri 11/18
+* Due Mon 11/28 **5pm** (note special date and time)
+
+
+
+#### Learning Goals
+
+* 
+
+
+#### Homework
+
+* Download these files to your computer and upload them to your `problem_sets`
+folder on RStudio Server:
+    + <a href = "{{ site.baseurl }}/assets/PS/hiring.csv" target = "_blank">`hiring.csv`</a> 
+    + <a href="{{ site.baseurl }}/assets/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br>
 
@@ -43,7 +87,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ## Problem Set 09
 
-* Assigned Sun 11/13
+* Assigned Wed 11/16
 * Due Fri 11/18 11am
 
 

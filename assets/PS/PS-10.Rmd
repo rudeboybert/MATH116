@@ -1,0 +1,78 @@
+
+---
+title: "Problem Set 10"
+author: "WRITE YOUR NAME HERE"
+date: "Due Monday, November 28, 2016 at 5pm"
+output:
+  html_document
+---
+
+
+
+## Please Indicate
+
+* Who you collaborated with. If no one, please indicate so: 
+* Approximately how much time did you spend on this problem set: 
+* What, if anything, gave you the most trouble: 
+
+
+
+```{r, message=FALSE, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+```
+
+
+
+## Instructions/Hints:
+
+* 
+
+
+
+
+
+## Question 1:
+
+Answer the question from Question 3 from the midterm "The Dude Rolling Die": is he 
+full of BS or can he actually correctly predict die rolls?
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+
+
+
+
+## Question 2:
+
+#### a) 
+
+Let's consider the hiring data in `hiring.csv`
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+# Copy the code that loads hiring.csv into RStudio here:
+
+
+# Do your exploratory data analysis here:
+
+
+# Perform your hypothesis test, including p-value
+
+
+```
+
+
+#### b) 
+
+Who penalized women applicants more on average? The male evaluators or the female evaluators?
+
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+
+
+```
