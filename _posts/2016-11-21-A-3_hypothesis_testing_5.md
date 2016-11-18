@@ -10,6 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
+* Office Hours today from 1-2:30pm only. 
 * Note on the variable "gender".
 * 
 
