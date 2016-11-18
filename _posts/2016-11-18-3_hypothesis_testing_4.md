@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec26 Hypothesis Testing Part IV"
-subtitle: "Wrapping up hypothesis testing."
+subtitle: "Casting hypothesis testing in terms of sampling."
 date:   2016-11-18 10:10:45
 categories: jekyll update
 ---
@@ -18,7 +18,7 @@ categories: jekyll update
 
 ### In-Class
 
-* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing_IV.html" target = "_blank">Slides</a>: Wrapping up hypothesis testing.
+* Chalk Talk
     
 
 ### After-Class Updates
