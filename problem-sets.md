@@ -106,7 +106,8 @@ folder on RStudio Server:
 folder on RStudio Server:
     + <a href = "{{ site.baseurl }}/assets/PS/grades.csv" target = "_blank">`grades.csv`</a> 
     + <a href="{{ site.baseurl }}/assets/PS/PS-09.Rmd" target="_blank">`PS-09.Rmd`</a>
-
+* <a href = "{{ site.baseurl }}/assets/PS/PS-09_discussion.html" target = "_blank">PS-09 Discussion</a>
+* PS-09 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-09_discussion.Rmd" target = "_blank">`PS-09_discussion.Rmd`</a> 
 
 
 

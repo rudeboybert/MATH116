@@ -1,0 +1,99 @@
+
+---
+title: "Problem Set 09"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, November 18, 2016"
+output:
+  html_document:
+    df_print: kable
+---
+
+Investigate whether economics majors did better than all other majors on the
+final exam for my intro stats class back in the day. Tweak the code from
+`Lec25.R`.
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+
+# Copy the code that loads grades.csv into RStudio here.
+# Note you will need to change this line to whatever loads the data for you:
+grades <- read_csv("../PS/grades.csv")
+```
+
+
+
+## Exploratory Data Analysis
+
+It is not immediately apparent if one did better:
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+ggplot(data=grades, aes(x=major, y=final)) +
+  geom_boxplot()
+ggplot(data=grades, aes(x=final)) +
+  geom_histogram(binwidth = 0.25) + 
+  facet_wrap(~major)
+```
+
+**Important**: We have to be very careful to note if we are subtracting:
+
+* `Other-Economics`
+* `Economics-Other`
+
+and be consistent. It seems we are doing `Other-Economics`: 
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+mean(final ~ major, data=grades)
+mean(final ~ major, data=grades) %>% diff()
+```
+
+Econ majors did about 7.8% better on average.
+
+## Hypothesis Test
+
+We proceed with the hypothesis test
+
+* $H_0$: econ and other majors did equally well i.e. no difference
+* $H_A$: i.e. there is a difference
+
+Recall that under $H_0$, since there is no difference between the two groups,
+the variable `major` is meaningless, so we can permute/shuffle it around and it
+doesn't matter:
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2, cache=TRUE}
+# Compute observed test statistic
+observed_diff <- mean(final ~ major, data=grades) %>% diff()
+
+# Simulate the null distribution of the test statistic:
+simulations <- do(10000) * mean(final ~ shuffle(major), data=grades)
+simulations <- simulations %>%
+  as_data_frame() %>% 
+  mutate(difference=Other-Economics)
+
+# Compare what we observed (red) to what happens if we assume no difference:
+ggplot(data=simulations , aes(x=difference)) +
+  geom_histogram() +
+  geom_vline(xintercept = observed_diff, col="red") +
+  geom_vline(xintercept = 0, linetype="dashed") +
+  labs(x="Other Avg - Econ Avg")
+```
+
+
+## Conclusion
+
+IMO I wouldn't say Econ did significantly better. We fail to reject $H_0$ that
+they did equally well.  i.e. Maybe one group is in fact better than the other, but
+we don't have evidence to suggest that here.
+
+
+## p-Value
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2, cache=TRUE}
+simulations %>%
+  mutate(more_extreme = difference < observed_diff) %>% 
+  summarise(sum(more_extreme))
+```
+
+

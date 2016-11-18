@@ -1,0 +1,108 @@
+---
+title: "Hypothesis Testing Part III"
+author: "Albert Y. Kim"
+date: "Wed Nov 18, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    df_print: kable
+---
+
+
+```{r, echo=TRUE, message=FALSE}
+library(dplyr)
+library(mosaic)
+library(ggplot2)
+library(readr)
+
+# Note you will need to change this line to whatever loads the data for you:
+grades <- read_csv("../PS/grades.csv")
+```
+
+
+
+## LC1: Visuzalization
+
+Both the following get the job done, but when using the boxplot:
+
+* **Pro**: You can compare both groups with a single horizontal line
+* **Con**: You lose information about the shape of the distribution
+
+```{r, warning=FALSE, message=FALSE, fig.width=16/2, fig.height=9/2}
+ggplot(data=grades, aes(x=even_vs_odd, y=final)) +
+  geom_boxplot()
+ggplot(data=grades, aes(x=final)) +
+  geom_histogram(binwidth = 0.25) + 
+  facet_wrap(~even_vs_odd)
+```
+
+No clear "slam-dunk" winner in my opinion! But really? # of letters in your last
+name?!?
+
+
+
+
+## LC2: Setting the Seed Value
+
+When demonstrating that the long code and the wrapper function code do the same
+thing **when randomization** is involved, we need to set the seed value to get
+**replicable random results**. 76 was an arbitrary choice of seed. Choose your 
+favorite number.
+
+
+
+
+
+
+## LC3: Perform Hypothesis Test
+
+```{r, warning=FALSE, message=FALSE, fig.width=16/2, fig.height=9/2, cache=TRUE}
+# The true observed difference in averages i.e. the observed test statistic
+observed_diff <- mean(final ~ even_vs_odd, data=grades) %>% diff()
+
+# Simulate the null distribution of the test statistic:
+simulations <- do(10000) * mean(final ~ shuffle(even_vs_odd), data=grades)
+simulations <- simulations %>%
+  as_data_frame() %>% 
+  mutate(difference=odd-even)
+
+# Compare what we observed (red) to what happens if we assume no difference:
+ggplot(data=simulations , aes(x=difference)) +
+  geom_histogram() +
+  geom_vline(xintercept = observed_diff, col="red") +
+  geom_vline(xintercept = 0, linetype="dashed")
+```
+
+Observing a difference in means of `r observed_diff %>% round(3)` still seems
+somewhat plausible. Also, not where it is centered: 0 i.e. no difference!
+
+
+
+
+## Crucial Concept: Conclusion
+
+We can only falsify the null hypothesis, never prove that it's true.
+
+* We are not
+    + **Statistically**: Saying $H_0$ is true
+    + **Conceptually**: We haven't proven that odds and evens perform equally well.
+* Rather, we are
+    + **Statistically**: Failing to reject $H_0$: it might still be false, we just don't have the evidence here.
+    + **Conceptually**: Odds and evens might still perform differently, we just don't have the evidence here to suggest so.
+
+
+**Analogy**: Criminal justice system has two possible verdicts:
+
+* **Guilty**
+* **Not guilty**. This is NOT the same as saying the defendent is innocent, but rather they might still be guilty, but we can't prove beyond a reasonable doubt that they are guilty.
+
+
+
+
+
+
+
+
