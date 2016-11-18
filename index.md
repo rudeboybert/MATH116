@@ -19,12 +19,27 @@ In reverse chronological order (a more detailed outline can be found
 ### c) Confidence Intervals
 
 
+<ul>
+  {% for post in site.posts %}
+    {% assign current_date = post.date | date: "%m %d %R" %}
+    {% if "11 21 10:10:46" <= current_date and current_date <= "12 01 10:10:46" %}
+    <li>
+      {{ post.date | date: "%a %b %-d" }} -  
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:
+      {{ post.subtitle }}
+    </li>
+    {% endif %}
+  {% endfor %}
+</ul> 
+
+
+
 ### b) Hypothesis Testing
 
 <ul>
   {% for post in site.posts %}
-    {% assign current_date = post.date | date: "%m %d" %}
-    {% if "11 06" <= current_date and current_date <= "11 18" %}
+    {% assign current_date = post.date | date: "%m %d %R" %}
+    {% if "11 06 09 00:00:01" <= current_date and current_date <= "11 21 10:10:46" %}
     <li>
       {{ post.date | date: "%a %b %-d" }} -  
       <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>:
