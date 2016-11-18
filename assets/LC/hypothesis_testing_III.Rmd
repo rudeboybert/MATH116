@@ -11,7 +11,6 @@ output:
     df_print: kable
 ---
 
-
 ```{r, echo=TRUE, message=FALSE}
 library(dplyr)
 library(mosaic)
@@ -21,6 +20,7 @@ library(readr)
 # Note you will need to change this line to whatever loads the data for you:
 grades <- read_csv("../PS/grades.csv")
 ```
+
 
 
 
@@ -55,8 +55,6 @@ favorite number.
 
 
 
-
-
 ## LC3: Perform Hypothesis Test
 
 ```{r, warning=FALSE, message=FALSE, fig.width=16/2, fig.height=9/2, cache=TRUE}
@@ -73,7 +71,8 @@ simulations <- simulations %>%
 ggplot(data=simulations , aes(x=difference)) +
   geom_histogram() +
   geom_vline(xintercept = observed_diff, col="red") +
-  geom_vline(xintercept = 0, linetype="dashed")
+  geom_vline(xintercept = 0, linetype="dashed") +
+  labs(x="Difference: Odd Avg - Even Avg")
 ```
 
 Observing a difference in means of `r observed_diff %>% round(3)` still seems

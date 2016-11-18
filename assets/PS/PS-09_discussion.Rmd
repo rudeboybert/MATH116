@@ -87,6 +87,16 @@ IMO I wouldn't say Econ did significantly better. We fail to reject $H_0$ that
 they did equally well.  i.e. Maybe one group is in fact better than the other, but
 we don't have evidence to suggest that here.
 
+**Note**: this was an example of a *two-sided two-sample permutation test for differences in means*
+
+1. two-sided: type of alternative hypothesis
+1. two-sample: i.e there are two groups
+1. permutation test: we constructed the null distribution via permutations/simulations
+1. difference in means: comparing means
+
+More on these options on Monday.
+
+
 
 ## p-Value
 
