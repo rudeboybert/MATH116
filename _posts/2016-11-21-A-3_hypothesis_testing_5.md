@@ -12,7 +12,7 @@ categories: jekyll update
 
 * Project proposals due. Please post URL to Shared Project on Google Sheet on
 Problem Sets page.
-* Office Hours today from 1:30-2:30pm only. 
+* Office Hours **by request** today from 1:30-2:30pm only. 
 * After lecture, I will post:
     + Example of p-value computation here
     + Problem Set 10
