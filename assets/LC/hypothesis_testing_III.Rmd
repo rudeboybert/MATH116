@@ -8,7 +8,6 @@ output:
     toc_float: true
     collapsed: false
     smooth_scroll: false
-    df_print: kable
 ---
 
 ```{r, echo=TRUE, message=FALSE}
@@ -16,6 +15,9 @@ library(dplyr)
 library(mosaic)
 library(ggplot2)
 library(readr)
+
+# Set seed value
+set.seed(76)
 
 # Note you will need to change this line to whatever loads the data for you:
 grades <- read_csv("../PS/grades.csv")
@@ -81,6 +83,54 @@ somewhat plausible. Also, not where it is centered: 0 i.e. no difference!
 
 
 
+
+## p-Value
+
+The p-value is the probability of observing a test statistic just as or more 
+extreme than the one observed.  In our case since $H_A: \mu_{odd} - \mu_{even} \neq 0$: i.e. there is a difference, we can have either
+
+* A more extreme negative difference 
+* A more extreme positive difference
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+simulations %>%
+  mutate(more_extreme_left = difference <= observed_diff) %>% 
+  summarise(more_extreme_left = sum(more_extreme_left))
+```
+
+
+There are 1248 values less than the observed difference of `r observed_diff %>% round(3)`. So the p-value is 
+
+$$
+\frac{2 \times 1248 + 1}{10000 + 1} = 0.250
+$$
+**Notes**:
+
+1. Note we doubled the 1248 because we have a two-sided alternative $H_A: \mu_{odd} - \mu_{even} \neq 0$
+1. We add 1 to both the numerator and denominator since we also need to account for the observed test statistic itself
+
+
+
+## Other Alternatives
+
+* Say we had $H_A: \mu_{odd} - \mu_{even} < 0$, more extreme would mean more
+negative, i.e. more to the left of the observed test statistic, i.e. the p-value
+would be
+$$
+\frac{1248 + 1}{10000 + 1} = 0.125
+$$
+* Say we had $H_A: \mu_{odd} - \mu_{even} > 0$, more extreme would mean more
+positive, i.e. more to the right of the observed test statistic, i.e. the p-value
+would be
+$$
+\frac{(10000-1248) + 1}{10000 + 1} = 0.875
+$$
+
+
+
+
+
+
 ## Crucial Concept: Conclusion
 
 We can only falsify the null hypothesis, never prove that it's true.
@@ -97,11 +147,5 @@ We can only falsify the null hypothesis, never prove that it's true.
 
 * **Guilty**
 * **Not guilty**. This is NOT the same as saying the defendent is innocent, but rather they might still be guilty, but we can't prove beyond a reasonable doubt that they are guilty.
-
-
-
-
-
-
 
 

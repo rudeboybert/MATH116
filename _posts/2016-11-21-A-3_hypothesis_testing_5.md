@@ -13,9 +13,11 @@ categories: jekyll update
 * Project proposals due. Please post URL to Shared Project on Google Sheet on
 Problem Sets page.
 * Office Hours **by request** today from 1:30-2:30pm only. 
-* After lecture, I will post:
-    + Example of p-value computation here
-    + Problem Set 10
+* Problem Set 10 is now posted
+* Example of p-value computation
+    + Lec25 <a href = "{{ site.baseurl }}/assets/LC/hypothesis_testing_III.html" target = "_blank">learning check discussion</a>
+    + <a href = "{{ site.baseurl }}/assets/PS/PS-09_discussion.html" target = "_blank">PS-09 Discussion</a>
+
 
 
 ### In-Class

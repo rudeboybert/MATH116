@@ -4,8 +4,7 @@ title: "Problem Set 09"
 author: "WRITE YOUR NAME HERE"
 date: "Due Friday, November 18, 2016"
 output:
-  html_document:
-    df_print: kable
+  html_document
 ---
 
 Investigate whether economics majors did better than all other majors on the
@@ -17,6 +16,9 @@ library(ggplot2)
 library(dplyr)
 library(mosaic)
 library(readr)
+
+# Set see value
+set.seed(76)
 
 # Copy the code that loads grades.csv into RStudio here.
 # Note you will need to change this line to whatever loads the data for you:
@@ -100,10 +102,41 @@ More on these options on Monday.
 
 ## p-Value
 
+The p-value is the probability of observing a test statistic just as or more 
+extreme than the one observed.  In our case since $H_A: \mu_{other} - \mu_{econ} \neq 0$: i.e. there is a difference, we can have either
+
+* A more extreme negative difference 
+* A more extreme positive difference
+
 ```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2, cache=TRUE}
 simulations %>%
-  mutate(more_extreme = difference < observed_diff) %>% 
-  summarise(sum(more_extreme))
+  mutate(more_extreme_left = difference <= observed_diff) %>% 
+  summarise(more_extreme_left = sum(more_extreme_left))
 ```
 
+There are 1181 values less than the observed difference of -7.8%. So the p-value is 
 
+$$
+\frac{2 \times 1181 + 1}{10000 + 1} = 0.236
+$$
+**Notes**:
+
+1. Note we doubled the 1181 because we have a two-sided alternative $H_A: \mu_{other} - \mu_{econ} \neq 0$
+1. We add 1 to both the numerator and denominator since we also need to account for the observed test statistic itself
+
+
+
+## Other Alternatives
+
+* Say we had $H_A: \mu_{other} - \mu_{econ} < 0$, more extreme would mean more
+negative, i.e. more to the left of the observed test statistic, i.e. the p-value
+would be
+$$
+\frac{1181 + 1}{10000 + 1} = 0.118
+$$
+* Say we had $H_A: \mu_{other} - \mu_{econ} > 0$, more extreme would mean more
+positive, i.e. more to the right of the observed test statistic, i.e. the p-value
+would be
+$$
+\frac{(10000-1181) + 1}{10000 + 1} = 0.882
+$$
