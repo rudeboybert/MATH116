@@ -16,7 +16,7 @@ categories: jekyll update
 
 ### In-Class
 
-*
+* 
 
 
 ### After-Class Updates

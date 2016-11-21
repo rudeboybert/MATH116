@@ -60,8 +60,8 @@ We can do hypothesis testing for different scenarios
 
 Type  | Population Parameter | Test Statistic
 ------------- | ------------- | -------------
-One-Sample  | Mean $\mu$ | $\overline{x}$
-One-Sample  | Proportion $p$ | $\widehat{p}$
+One-Sample  | Mean $\mu$ | Sample Mean $\overline{x}$
+One-Sample  | Proportion $p$ | Sample Proportion $\widehat{p}$
 Two-Sample  | Diff of Means $\mu_1 - \mu_2$ | $\overline{x}_1 - \overline{x}_2$
 Two-Sample  | Diff of Proportions $p_1 - p_2$ | $\widehat{p}_1 - \widehat{p}_2$
 

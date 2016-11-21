@@ -1,0 +1,110 @@
+---
+title: "Confidence Intervals"
+author: "Albert Y. Kim"
+date: "Mon Nov 21, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(mosaic)
+```
+
+
+
+## Recall: Point of Statistics
+
+Taking a **sample** in order to infer about the **population**:
+
+<img src="../figure/target-population.jpg" alt="Drawing" style="width: 600px;" border="1"/>
+
+
+
+## Recall: Point of Statistics
+
+**Sample statistics** estimate unknown population parameters. From last lecture:
+
+Population Parameter | Sample Statistic
+------------- | -------------
+Mean $\mu$ | Sample Mean $\overline{x}$
+Proportion $p$ | Sample Proportion $\widehat{p}$
+Diff of Means $\mu_1 - \mu_2$ | $\overline{x}_1 - \overline{x}_2$
+Diff of Proportions $p_1 - p_2$ | $\widehat{p}_1 - \widehat{p}_2$
+
+
+
+## Example:
+
+You are interested in the avg height of Midd Kids so you take a random
+sample of 10 students and find an avg of 66 inches.
+
+> * $\mu$: true mean height of all 2400 students. You don't know this
+> * $\overline{x} = 66$: sample mean. This is a **point estimate** of $\mu$
+
+
+
+## Confidence Intervals
+
+Instead of guessing $\mu$ with a single value, why not a **range of plausible values**?
+
+Point Estimate            |  Confidence Interval
+:-------------------------:|:-------------------------:
+<img src="../figure/spear.jpg" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/net.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+## Learning Check
+
+Let's revisit the OkCupid profile data. Run the following in your console:
+
+```{r, eval=FALSE}
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+
+library(okcupiddata)
+data(profiles)
+```
+
+
+
+## Learning Check
+
+1. Discuss with your seatmates what the following code does.
+1. Try varying `n`. What does this correspond to doing?
+1. How does the histogram change?
+
+
+```{r, eval=FALSE}
+n <- 5
+samples <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples <- samples %>% 
+  as_data_frame()
+samples
+
+ggplot(samples, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  xlim(c(40,90))
+```
+
+
+
+
