@@ -10,15 +10,15 @@ categories: jekyll update
 
 ### Announcements
 
-* Office Hours today from 1-2:30pm only. 
+* Project proposals due. Please post URL to Shared Project on Google Sheet on Problem Sets page.
+* Office Hours today from 1:30-2:30pm only. 
 * Note on the variable "gender".
-* 
 
 
 
 ### In-Class
 
-* 
+* Partial Chalk Talk
     
 
 ### After-Class Updates

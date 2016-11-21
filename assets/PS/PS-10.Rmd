@@ -70,9 +70,19 @@ Let's consider the hiring data in `hiring.csv`
 
 Who penalized women applicants more on average? The male evaluators or the female evaluators?
 
-
 ```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
 
 
 
 ```
+
+
+
+
+
+## Question 3:
+
+Proporportions fail to reject.
+
+
+

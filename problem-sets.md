@@ -32,7 +32,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-<!--
+
 <br>
 
 ***
@@ -43,7 +43,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ## Problem Set 10
 
-* Assigned Fri 11/18
+* Assigned Mon 11/21
 * Due Mon 11/28 **5pm** (note special date and time)
 
 
@@ -53,6 +53,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * 
 
 
+<!--
 #### Homework
 
 * Download these files to your computer and upload them to your `problem_sets`
