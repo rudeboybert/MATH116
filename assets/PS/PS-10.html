@@ -134,18 +134,32 @@ $(document).ready(function () {
 <div id="instructionshints" class="section level2">
 <h2>Instructions/Hints:</h2>
 <ul>
-<li></li>
+<li>If your simulations are really slow at first, instead of generating your null distributions based on many, many, many instances, try using a smaller number at first to test your code out. Once you feel like you have the right format, then set it to a large number.</li>
 </ul>
 </div>
 <div id="question-1" class="section level2">
 <h2>Question 1:</h2>
-<p>Answer the question from Question 3 from the midterm “The Dude Rolling Die”: is he full of BS or can he actually correctly predict die rolls?</p>
+<p>Answer the question from Question 3 from the midterm “The Dude Rolling Die”: is he full of BS or can he actually correctly predict die rolls? Base your answer on the p-value.</p>
+<p>For this question, since there are only 7 possible outcomes (# correct out of 6 guesses), use a <code>geom_bar()</code> instead of a <code>geom_histogram()</code> to show your results.</p>
 </div>
 <div id="question-2" class="section level2">
 <h2>Question 2:</h2>
 <div id="a" class="section level4">
 <h4>a)</h4>
-<p>Let’s consider the hiring data in <code>hiring.csv</code></p>
+<p>Let’s consider the hiring data in <code>hiring.csv</code>. Let’s say we are only looking for mild evidence that women got lower <code>hireable</code> scores than men.</p>
+<ol style="list-style-type: decimal">
+<li>Create an appropriate exploratory data analysis visualization.</li>
+<li>Perform an hypothesis test of
+<ul>
+<li><span class="math inline">\(H_0:\)</span> men and women got the on average the same <code>hireable</code> score vs</li>
+<li><span class="math inline">\(H_A:\)</span> you choose! state your choice below</li>
+</ul></li>
+<li>State the conclusion of the test both
+<ul>
+<li>in statistical language</li>
+<li>in terms of the data’s context.</li>
+</ul></li>
+</ol>
 <pre class="r"><code># Copy the code that loads hiring.csv into RStudio here:
 
 
@@ -156,7 +170,12 @@ $(document).ready(function () {
 </div>
 <div id="b" class="section level4">
 <h4>b)</h4>
-<p>Who penalized women applicants more on average? The male evaluators or the female evaluators?</p>
+<p>Who penalized women applicants more on average? The male evaluators or the female evaluators? Do not perform an exhaustive hypothesis test, but rather</p>
+<ol style="list-style-type: decimal">
+<li>Generate an appropriate exploratory data analysis visualization AND</li>
+<li>Summarize the data in an appropriate table of values</li>
+</ol>
+<pre class="r"><code># Do your exploratory data analysis here:</code></pre>
 </div>
 </div>
 

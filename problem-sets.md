@@ -50,10 +50,12 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Learning Goals
 
-* 
+* Perform a start-to-finish hypothesis test and state the conclusion both a 
+scientific and statistical conclusion.
+* More exploratory data analysis
 
 
-<!--
+
 #### Homework
 
 * Download these files to your computer and upload them to your `problem_sets`
@@ -61,7 +63,6 @@ folder on RStudio Server:
     + <a href = "{{ site.baseurl }}/assets/PS/hiring.csv" target = "_blank">`hiring.csv`</a> 
     + <a href="{{ site.baseurl }}/assets/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a>
 
--->
 
 
 
