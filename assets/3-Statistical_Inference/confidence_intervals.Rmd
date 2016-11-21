@@ -104,7 +104,6 @@ samples <- do(10000) *
   mean(resample(profiles$height, size=n, replace=TRUE))
 samples <- samples %>% 
   as_data_frame()
-samples
 
 ggplot(samples, aes(x=mean)) +
   geom_histogram(binwidth = 1) +
