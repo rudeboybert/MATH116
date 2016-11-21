@@ -64,6 +64,12 @@ sample of 10 students and find an avg of 66 inches.
 
 Instead of guessing $\mu$ with a single value, why not a **range of plausible values**?
 
+
+
+## Confidence Intervals
+
+Imagine the $\mu$ is a fish:
+
 Point Estimate            |  Confidence Interval
 :-------------------------:|:-------------------------:
 <img src="../figure/spear.jpg" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/net.jpg" alt="Drawing" style="width: 300px;"/>
