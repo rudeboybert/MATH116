@@ -12,14 +12,16 @@ categories: jekyll update
 
 * Project proposals due. Please post URL to Shared Project on Google Sheet on Problem Sets page.
 * Office Hours today from 1:30-2:30pm only. 
-* Note on the variable "gender".
+* Note on the use variable "gender".
 
 
 
 ### In-Class
 
 * Partial Chalk Talk
-    
+* <a href = "{{ site.baseurl }}/assets/3-Statistical_Inference/hypothesis_testing_V.html" target = "_blank">Slides</a>: There is only one test! We view
+    + **What** 3 components exist for all hypothesis tests
+    + **How** the 3 components vary from setting to setting
 
 ### After-Class Updates
 
