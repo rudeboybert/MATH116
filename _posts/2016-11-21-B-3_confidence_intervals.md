@@ -22,3 +22,4 @@ Estimating an unknown population parameter is like trying to catch a fish:
 
 ### After-Class Updates
 
+* Lec27-B <a href = "{{ site.baseurl }}/assets/LC/confidence_intervals.html" target = "_blank">learning check discussion</a>
