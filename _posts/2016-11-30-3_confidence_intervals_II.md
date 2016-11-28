@@ -16,7 +16,7 @@ categories: jekyll update
 
 ### Recall
 
-* **Thought Experiment**: Sample 3 students at random and get their (sample) mean age. Do this ~~many, many, many~~ only 3 times
+* **Thought Experiment**: Sample 3 students at random and get their (sample) mean age. Do this ~~many, many, many~~ (only) 3 times
 * **Question**: Why do the sample means below vary?
 * **Answer**: Because of the sampling variability induced by the random sampling!
 
@@ -33,10 +33,7 @@ categories: jekyll update
 
 ### In-Class
 
-* Lec27-B <a href = "{{ site.baseurl }}/assets/LC/confidence_intervals.html" target = "_blank">learning check discussion</a>
-* Chalk talk on
-    + Sampling distributions
-    + Standard errors
+* 
 
 
 ### After-Class Updates
