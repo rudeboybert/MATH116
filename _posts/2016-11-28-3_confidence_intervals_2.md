@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec28 Sampling Distributions and Standard Errors"
-subtitle: "Plausible Range."
+subtitle: "A digression; back to confidence intervals later."
 date:   2016-11-28 15:10:45
 categories: jekyll update
 ---
