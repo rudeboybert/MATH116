@@ -1,0 +1,107 @@
+
+---
+title: "Problem Set 10"
+author: "WRITE YOUR NAME HERE"
+date: "Due Monday, November 28, 2016 at 5pm"
+output:
+  html_document
+---
+
+
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+library(knitr)
+```
+
+
+## Question 1:
+
+Answer the question from Question 3 from the midterm "The Dude Rolling Die": is 
+he full of BS or can he actually correctly predict die rolls? Base your answer
+on the p-value.
+
+For this question, since there are only 7 possible outcomes (# correct out of 6
+guesses), use a `geom_bar()` instead of a `geom_histogram()` to show your
+results.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+die <- c(1, 0, 0, 0, 0, 0)
+simulations <- do(10000)*resample(die, 6)
+simulations <- simulations %>% 
+  as_data_frame() %>% 
+  mutate(correct=V1+V2+V3+V4+V5+V6)
+
+ggplot(simulations, aes(x=as.factor(correct))) +
+  geom_bar() +
+  geom_vline(xintercept=4, col="red")
+```
+
+
+
+
+
+## Question 2:
+
+#### a) 
+
+Let's consider the hiring data in `hiring.csv`. Let's say we are only looking
+for mild evidence that women got lower `hireable` scores than men.
+
+1. Create an appropriate exploratory data analysis visualization.
+1. Perform an hypothesis test of
+    + $H_0:$ men and women got the on average the same `hireable` score vs
+    + $H_A:$ you choose! state your choice below
+1. State the conclusion of the test both
+    + in statistical language
+    + in terms of the data's context.
+
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+# Copy the code that loads hiring.csv into RStudio here:
+hiring <- read_csv("hiring.csv")
+
+# Do your exploratory data analysis here:
+ggplot(hiring, aes(x=applicant_gender, y=hireable)) + 
+  geom_boxplot()
+
+# Perform your hypothesis test, including p-value
+obs_diff <- mean(hireable~applicant_gender, data=hiring) %>% diff()
+
+simulations <- do(10000) * mean(hireable~shuffle(applicant_gender), data=hiring)
+simulations <- simulations %>% 
+  as_data_frame() %>% 
+  mutate(diff=male-female)
+
+ggplot(simulations, aes(x=diff)) + 
+  geom_histogram() + 
+  geom_vline(xintercept=obs_diff, col="red")
+
+```
+
+
+#### b) 
+
+Who penalized women applicants more on average? The male evaluators or the
+female evaluators? Do not perform an exhaustive hypothesis test, but rather
+
+1. Generate an appropriate exploratory data analysis visualization AND
+1. Summarize the data in an appropriate table of values
+
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+# Do your exploratory data analysis here:
+ggplot(data=hiring, aes(x=applicant_gender, y=hireable)) +
+  geom_boxplot()
+
+ggplot(data=hiring, aes(x=applicant_gender, y=hireable)) +
+  geom_boxplot() +
+  facet_wrap(~evaluator_gender)
+
+hiring %>%
+  group_by(evaluator_gender, applicant_gender) %>%
+  summarise(hireable=mean(hireable))
+```

@@ -10,6 +10,7 @@ categories: jekyll update
 
 ### Announcements
 
+* <a href = "{{ site.baseurl }}/assets/PS/PS-10_discussion.html" target = "_blank">PS-10 Discussion</a>
 
 
 
