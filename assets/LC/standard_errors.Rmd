@@ -1,0 +1,145 @@
+---
+title: "Standard Errors"
+author: "Albert Y. Kim"
+date: "Wed Nov 30, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+Let's revisit the OkCupid profile data. Run the following in your console:
+
+```{r, echo=TRUE, message=FALSE}
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+
+library(okcupiddata)
+data(profiles)
+
+# Added line: let's remove all users (i.e. rows) who did not list a height. is.na() returns
+# TRUE if missing, so we want those that are NOT missing.
+profiles <- profiles %>% 
+  filter(!is.na(height))
+```
+
+Then run the following:
+
+```{r, echo=TRUE, message=FALSE, eval=FALSE}
+n <- 5
+samples <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples <- samples %>% 
+  as_data_frame() 
+ggplot(samples, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  xlim(c(40,90))
+```
+
+
+## Learning Checks
+
+1. Explicity compute the **standard error** when taking samples of size `n=5` and `n=50`. 
+2. Discuss with your peers **why** they matter in any study that involves some kind of sampling.
+
+
+#### LC1
+
+This code
+
+* Samples `n=5` OkCupid users with replacement from the **population** of OkCupid users
+* Computes the sample mean height $\overline{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$, where $x_i$ is the height of the $i$th sampled user out of $n$.
+* Does this many, many, many times i.e. 10000 times
+* Plots the **distribution** of these 10000 values of $\overline{x}$ via a histogram
+
+
+#### LC2
+
+Varying `n` corresponds to sampling a different amount of people. Here are the histogram of sample means when 
+
+* `n=5`
+* `n=50`
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, cache=TRUE, fig.height=9/2, fig.width=16/2}
+n <- 5
+samples_5 <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples_5 <- samples_5 %>% 
+  as_data_frame() %>% 
+  mutate(n="n=5")
+
+n <- 50
+samples_50 <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples_50 <- samples_50 %>% 
+  as_data_frame()%>% 
+  mutate(n="n=50")
+
+samples <- bind_rows(
+  samples_5, samples_50
+)
+
+ggplot(samples, aes(x=mean)) +
+  facet_wrap(~n) + 
+  geom_histogram(binwidth = 1) +
+  xlim(c(40,90))
+```
+
+
+#### LC3
+
+The histogram for `n=500` latter is **narrower** i.e. less variable i.e. more **precise**.
+
+
+
+
+## Extra
+
+#### Point Estimate of True Population Mean
+
+Recall that in both cases, the sample mean $\overline{x}$ is a **point
+estimate** of the **true population mean $\mu$**, i.e. the true mean height of
+all 60K OkCupid users. i.e. $\mu$ = `r mean(profiles$height) %>%
+round(2)` inches (or about 5'8''). Let's plot this value in red:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, cache=TRUE, fig.height=9/2, fig.width=16/2}
+ggplot(samples, aes(x=mean)) +
+  facet_wrap(~n) + 
+  geom_histogram(binwidth = 1) +
+  xlim(c(40,90)) + 
+  geom_vline(xintercept = mean(profiles$height, na.rm=TRUE), col="red")
+```
+
+We see that using `n=50`, our sample means $\overline{x}$ i.e. our point 
+estimates of $\mu$ are more often closer to the true population mean in red.
+**We are more often closer to the true value**. This is why sample size matters!
+
+
+#### Confidence Interval
+
+Let's look at the middle 95% of values for `n=5`. It is [65.0, 71.6]. i.e.
+
+* 2.5% of values are to the left of the left dashed line
+* 95% of values are between the two dashed lines
+* 2.5% of values are to the right of the right dashed line
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, cache=TRUE, fig.height=9/2, fig.width=16/2}
+ggplot(samples_5, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  xlim(c(40,90)) + 
+  geom_vline(xintercept = mean(profiles$height, na.rm=TRUE), col="red") +
+  geom_vline(xintercept = quantile(samples_5$mean, probs=c(0.025, 0.975)), linetype="dashed")
+```
+
+Let's look at the middle 95% of values for `n=50`. It is [67.18, 69.40]:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, cache=TRUE, fig.height=9/2, fig.width=16/2}
+ggplot(samples_50, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  xlim(c(40,90)) + 
+  geom_vline(xintercept = mean(profiles$height, na.rm=TRUE), col="red") +
+  geom_vline(xintercept = quantile(samples_50$mean, probs=c(0.025, 0.975)), linetype="dashed")
+```
