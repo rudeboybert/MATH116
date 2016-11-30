@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Lec29 Confidence Intervals Part II"
-subtitle: "Back to confidence intervals."
+title:  "Lec29 Standard Errors Part II"
+subtitle: "More on standard errors."
 date:   2016-11-30 15:10:45
 categories: jekyll update
 ---
@@ -39,7 +39,14 @@ categories: jekyll update
 
 ### In-Class
 
-* 
+**Learning checks**: Based on
+
+* the example in the Lec27-B <a href = "{{ site.baseurl }}/assets/LC/confidence_intervals.html" target = "_blank">learning check discussion</a>
+* the chalk talk notes from Lec28
+
+1. Explicity compute the **standard error** when taking samples of size `n=5` and `n=50`. 
+2. Discuss with your peers **why** they matter in any study that involves some kind of sampling.
+
 
 
 ### After-Class Updates
