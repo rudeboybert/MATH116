@@ -62,11 +62,8 @@ scientific and statistical conclusion.
 folder on RStudio Server:
     + <a href = "{{ site.baseurl }}/assets/PS/hiring.csv" target = "_blank">`hiring.csv`</a> 
     + <a href="{{ site.baseurl }}/assets/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a>
-
-<!--
 * <a href = "{{ site.baseurl }}/assets/PS/PS-10_discussion.html" target = "_blank">PS-10 Discussion</a>
 * PS-10 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-10_discussion.Rmd" target = "_blank">`PS-10_discussion.Rmd`</a> 
--->
 
 
 
