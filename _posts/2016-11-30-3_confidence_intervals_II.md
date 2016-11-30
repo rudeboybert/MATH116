@@ -23,9 +23,10 @@ categories: jekyll update
 ### Recall
 
 * **Thought Experiment**: Sample 3 students at random and get their (sample) mean age. Do this ~~many, many, many~~ only 3 times
-* **Question**: Why do the sample means below vary?
-* **Answer**: Because of the sampling variability induced by the random sampling!
-
+* **Question 1**: Why do the sample means below vary?
+* **Answer 1**: Because of the sampling variability induced by the random sampling!
+* **Question 2**: What value quantifies how much these sample means vary by?
+* **Answer 2**: The Standard Error!
 
 |Random Sample            | (Sample) Mean Age|
 |:------------------------|-----------------:|
@@ -50,4 +51,5 @@ categories: jekyll update
 
 
 ### After-Class Updates
+
 
