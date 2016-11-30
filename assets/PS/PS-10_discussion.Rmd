@@ -68,7 +68,7 @@ simulations %>%
 the p-value is
 
 $$
-\frac{553+1}{10000+1} = 0.055 = 5.5%
+\frac{553+1}{10000+1} = 0.055 = 5.5\mbox{%}
 $$
 
 Recall we add 1 to the numerator and denominator to account for the observed test statistic.
@@ -163,7 +163,7 @@ simulations %>%
 ```
 
 $$
-\frac{0+1}{10000+1} \approx 0.0001
+\frac{0+1}{10000+1} \approx 0.0001 = 0.01\mbox{%}
 $$
 
 
@@ -202,7 +202,7 @@ ggplot(data=hiring, aes(x=applicant_gender, y=hireable)) +
   facet_wrap(~evaluator_gender) +
   labs(x="Applicant Gender", title="All Applicants")
 ```
-```{r, message=FALSE, echo=TRUE, warning=FALSE, eval=FALSE, fig.width=16/2, fig.height=9/2}
+```{r, message=FALSE, echo=FALSE, warning=FALSE, eval=TRUE, fig.width=16/2, fig.height=9/2}
 hiring %>% 
   mutate(evaluator_gender = ifelse(evaluator_gender=="female", "Female Evaluator", "Male Evaluator")) %>% 
   ggplot(aes(x=applicant_gender, y=hireable)) +
