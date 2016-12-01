@@ -1,0 +1,173 @@
+---
+title: "Back to Confidence Intervals"
+author: "Albert Y. Kim"
+date: "Thu Dec 01, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+library(mosaic)
+
+library(okcupiddata)
+data(profiles)
+profiles <- profiles %>% 
+  filter(!is.na(height))
+```
+
+
+
+
+## Recall: Point of Statistics
+
+Taking a **sample** in order to infer about the **population**:
+
+<img src="../figure/target-population.jpg" alt="Drawing" style="width: 600px;" border="1"/>
+
+
+
+## Confidence Intervals
+
+> * We want to know the population mean $\mu$, so we take a sample mean $\overline{x}$. 
+> * But instead of using a single value $\overline{x}$, why not a **range of plausible values**?
+
+
+
+## Confidence Intervals
+
+Imagine the $\mu$ is a fish:
+
+Sample Mean $\overline{x}$            |  Confidence Interval
+:-------------------------:|:-------------------------:
+<img src="../figure/spear.jpg" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/net.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+
+
+## Back to LC from Lec29
+
+Let's focus on the case of taking many, many, many samples of size `n=5` and `n=50`
+from the population of OkCupid users: 
+
+```{r, eval=TRUE, cache=TRUE}
+n <- 5
+samples_5 <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples_5 <- samples_5 %>% 
+  as_data_frame()
+
+n <- 50
+samples_50 <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples_50 <- samples_50 %>% 
+  as_data_frame()
+```
+
+
+
+## Standard Errors
+
+We computed
+
+Sample Size  | Standard Error
+------------- | -------------
+`5`  | `r samples_5$mean %>% sd() %>% round(3)`
+`50`  | `r samples_50$mean %>% sd() %>% round(3)`
+
+
+
+## Two Methods to Construct 95% Confidence Intervals
+
+1. Looking at the middle 95% of data using `quantile()`
+1. If the data is bell-shaped, using the rule of thumb
+
+
+
+## Method 1: Quantile Function
+
+Recall from Lec28 Chalk Talk: **quantiles**. Run the following in your console:
+
+```{r, eval=FALSE}
+x <- c(0:12)
+x
+quantile(x, prob=c(0.25, 0.5, 0.75))
+```
+
+This is saying
+
+* ~25% of `x` values are less than 3
+* ~50% of `x` values are less than 6
+* ~75% of `x` values are less than 9
+
+
+
+## Method 2: Data Bell Shaped
+
+Behold: the normal distribution i.e. the bell curve.
+
+```{r, echo=FALSE}
+ggplot(data.frame(x = c(-4, 12)), aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = 4, sd = 2))
+```
+
+
+
+## Method 2: Data Bell Shaped
+
+Properties of the Normal Distribution:
+
+> * Unimodel, symmetric
+> * Entirely defined by its
+>       + mean $\mu$: i.e. center
+>       + standard deviation $\sigma$: i.e. spread
+> * **Key**: 95% of values lie within $2\sigma$ of $\mu$
+>     + i.e. the interval [\mu - 2\times\sigma, \mu + 2 \times\sigma] contains 95% of values
+
+
+## Method 2: Data Bell Shaped
+
+Below we have a Normal Distribution with $\mu=4$ and $\sigma=2$...
+
+```{r, echo=FALSE}
+ggplot(data.frame(x = c(-4, 12)), aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = 4, sd = 2))
+```
+
+
+
+
+## Method 2: Data Bell Shaped
+
+So the interval $[\mu -2\times\sigma, \mu +2\times\sigma] = [4 -2\times 2, 4 +2\times 2] = [0, 8]$ contains 95% of values
+
+```{r, echo=FALSE}
+dnorm_limit <- function(x) {
+    y <- dnorm(x, mean = 4, sd = 2)
+    y[x < 0  |  x > 8] <- NA
+    return(y)
+}
+
+# ggplot() with dummy data
+p <- ggplot(data.frame(x=c(-4, 12)), aes(x=x))
+
+p + stat_function(fun=dnorm_limit, geom="area", fill="blue", alpha=0.2) +
+    stat_function(fun=dnorm, args = list(mean = 4, sd = 2))
+```
