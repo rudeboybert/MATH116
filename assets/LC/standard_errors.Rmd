@@ -57,7 +57,9 @@ samples_50 <- samples_50 %>%
 
 **In General**: The standard error is the standard deviation of the point estimate. In this case, it is the value that quantifies how much the sample means vary by.
 
-**Computation**: It is the standard deviation of our 10000 sample means:
+**Mathematically**: You can derive the standard error mathematically, but this is for a more advanced class in probability. See Advanced section below.
+
+**Computationally**: It is the standard deviation of our 10000 sample means:
 
 ```{r, echo=TRUE, message=FALSE, eval=TRUE}
 samples_5 %>% 
@@ -66,16 +68,21 @@ samples_50 %>%
   summarise(SE = sd(mean))
 ```
 
+
 **Results**:
 
 1. The SE with `n=50` is smaller i.e.
 1. The sample mean $\overline{x}$ are less variable when `n=50`
 1. The sample mean $\overline{x}$ is more precise when `n=50`
-1. Our estimates are better when `n=50`
+1. **Our estimates are on average better when `n=50`**
 
 **Visualization**: 
 
-**Recall**: The sampling distribution is the distribution of the point estimate:
+**Recall**: The sampling distribution is the distribution of the point estimate. We see that for `n=50`
+
+* the distribution is narrower i.e. 
+* it has a smaller standard deviation i.e.
+* the standard error is smaller
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.height=9/2, fig.width=16/2}
 samples_5 <- samples_5 %>% 
@@ -97,4 +104,29 @@ ggplot(samples, aes(x=mean)) +
 
 #### LC2
 
-Standard errors matter because they quantify the uncertainty around your estimate due to sampling. i.e. how precise are your results.
+From sample to sample, your point estimate, in this case the sample mean, will
+vary! i.e. there is **uncertainty**. How much uncertainty? The SE quantifies
+this!
+
+
+#### Advanced
+
+If you're curious, the mathematically/probabilistically derived formula for the Standard Error is $\mbox{SE}_{\overline{x}} = \frac{\sigma}{\sqrt{n}}$ where 
+
+* $\sigma$ is the **population standard deviation**: the true standard deviation of the 60K heights (and not the standard deviation of the 10000 many, many, many sample means)
+* $n$ is the sample size (and not the many, many, many number of times `n`)
+
+Note how $n$ is in the denominator. So
+
+* As $n \longrightarrow \infty$, we have $\mbox{SE}_{\overline{x}} \longrightarrow 0$ i.e. 
+* As $n \longrightarrow \infty$, there is no uncertainty in our estimate $\overline{x}$ of $\mu$, we know the answer exactly!
+
+In our case since $\sigma$ = `sd(profiles$height)` = `r sd(profiles$height) %>%
+round(3)`, we have for
+
+* `n=5`: SE = $\frac{3.995}{\sqrt{5}} = 1.787$
+* `n=50`: SE = $\frac{3.995}{\sqrt{50}} = 0.564$
+
+Note these are pretty close to the computationally computed values above. Why is
+$\mbox{SE}_{\overline{x}} = \frac{\sigma}{\sqrt{n}}$? You need the tools from
+Probability MATH 310 to show this.

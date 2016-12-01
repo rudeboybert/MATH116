@@ -51,4 +51,4 @@ categories: jekyll update
 
 ### After-Class Updates
 
-* Lec29 <a href = "{{ site.baseurl }}/assets/LC/confidence_intervals.html" target = "_blank">learning check discussion</a>
+* Lec29 <a href = "{{ site.baseurl }}/assets/LC/standard_errors.html" target = "_blank">learning check discussion</a>
