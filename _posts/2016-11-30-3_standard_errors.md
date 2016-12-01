@@ -8,18 +8,6 @@ categories: jekyll update
 
 
 
-### Announcements
-
-* <a href = "{{ site.baseurl }}/assets/PS/PS-10_discussion.html" target = "_blank">PS-10 Discussion</a>.
-* Regular lecture during lab time tomorrow.
-* <a href = "http://doodle.com/poll/4eer9iwu68gn35sn" target = "_blank">Doodle Poll</a> to fill 11 time slots to discuss projects, as a group.
-
-
-
-
-
-
-
 ### Recall
 
 * **Thought Experiment**: Sample 3 students at random and get their (sample) mean age. Do this ~~many, many, many~~ only 3 times
@@ -38,6 +26,17 @@ categories: jekyll update
 
 
 
+
+### Announcements
+
+* <a href = "{{ site.baseurl }}/assets/PS/PS-10_discussion.html" target = "_blank">PS-10 Discussion</a>.
+* Regular lecture during lab time tomorrow.
+* <a href = "http://doodle.com/poll/4eer9iwu68gn35sn" target = "_blank">Doodle Poll</a> to fill 11 time slots to discuss projects, as a group.
+
+
+
+
+
 ### In-Class
 
 **Learning checks**: Based on
@@ -52,4 +51,4 @@ categories: jekyll update
 
 ### After-Class Updates
 
-
+* Lec29 <a href = "{{ site.baseurl }}/assets/LC/confidence_intervals.html" target = "_blank">learning check discussion</a>
