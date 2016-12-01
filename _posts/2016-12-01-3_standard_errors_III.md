@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Lec30 Standard Errors Part III"
-subtitle: "More on standard errors."
+title:  "Lec30 Back to Confidence Intervals"
+subtitle: "Tying the concepts of standard errors and confidence intervals together."
 date:   2016-12-01 15:10:45
 categories: jekyll update
 ---
@@ -11,9 +11,9 @@ categories: jekyll update
 
 ### Recall
 
-* **Thought Experiment**: Sample 3 students at random and get their (sample) mean age. Do this ~~many, many, many~~ only 3 times
+* **Thought Experiment**: Sample 3 students at random and get their (sample) mean age.
 * **Question**: What value quantifies how much these sample means vary by?
-* **Answer**: The Standard Error!
+* **Answer**: The standard error.
 
 |Random Sample            | (Sample) Mean Age|
 |:------------------------|-----------------:|
