@@ -94,7 +94,9 @@ Sample Size  | Standard Error
 
 
 
-## Two Methods to Construct 95% Confidence Intervals
+## Constructing Confidence Intervals
+
+Let's construct 95% confidence intervals via two methods:
 
 1. Looking at the middle 95% of data using `quantile()`
 1. If the data is bell-shaped, using the rule of thumb
@@ -119,13 +121,13 @@ This is saying
 
 
 
-## Method 2: Data Bell Shaped
+## Method 2: Bell-Shaped Data
 
 Behold: the normal distribution i.e. the bell curve.
 
 ```{r, echo=FALSE}
-ggplot(data.frame(x = c(-4, 12)), aes(x)) + 
-  stat_function(fun = dnorm, args = list(mean = 4, sd = 2))
+ggplot(data.frame(x = c(-3, 13)), aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = 5, sd = 2))
 ```
 
 
@@ -139,16 +141,16 @@ Properties of the Normal Distribution:
 >       + mean $\mu$: i.e. center
 >       + standard deviation $\sigma$: i.e. spread
 > * **Key**: 95% of values lie within $2\sigma$ of $\mu$
->     + i.e. the interval [\mu - 2\times\sigma, \mu + 2 \times\sigma] contains 95% of values
+>     + i.e. the interval $[\mu - 2\sigma, \mu + 2\sigma]$ contains ~95% of values
 
 
 ## Method 2: Data Bell Shaped
 
-Below we have a Normal Distribution with $\mu=4$ and $\sigma=2$...
+Below we have a Normal Distribution with $\mu=5$ and $\sigma=2$...
 
 ```{r, echo=FALSE}
-ggplot(data.frame(x = c(-4, 12)), aes(x)) + 
-  stat_function(fun = dnorm, args = list(mean = 4, sd = 2))
+ggplot(data.frame(x = c(-3, 13)), aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = 5, sd = 2))
 ```
 
 
@@ -156,18 +158,33 @@ ggplot(data.frame(x = c(-4, 12)), aes(x)) +
 
 ## Method 2: Data Bell Shaped
 
-So the interval $[\mu -2\times\sigma, \mu +2\times\sigma] = [4 -2\times 2, 4 +2\times 2] = [0, 8]$ contains 95% of values
+... Interval $[\mu -2\sigma, \mu +2\sigma] = [5 -2\times 2, 5 +2\times 2] = [1, 9]$ contains 95% of values (in purple).
 
 ```{r, echo=FALSE}
 dnorm_limit <- function(x) {
-    y <- dnorm(x, mean = 4, sd = 2)
-    y[x < 0  |  x > 8] <- NA
+    y <- dnorm(x, mean = 5, sd = 2)
+    y[x <= 1  |  x >= 9] <- NA
     return(y)
 }
 
 # ggplot() with dummy data
-p <- ggplot(data.frame(x=c(-4, 12)), aes(x=x))
-
-p + stat_function(fun=dnorm_limit, geom="area", fill="blue", alpha=0.2) +
-    stat_function(fun=dnorm, args = list(mean = 4, sd = 2))
+ggplot(data.frame(x=c(-5, 13)), aes(x=x)) + 
+  stat_function(fun=dnorm_limit, geom="area", fill="blue", alpha=0.2) +
+  stat_function(fun=dnorm, args = list(mean = 5, sd = 2))
 ```
+
+
+
+## Learning Check
+
+Construct 95% confidence intervals for $\mu$, the true average height of all 60K OkCupid users
+
+* Using both methods for constructing confidence intervals: quantiles and bell-curve aproach
+* For both when `n=5` and `n=50`
+
+Hint: You can sanity check your answers using the histograms of the 10000 simulations.
+
+
+
+
+
