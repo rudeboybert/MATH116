@@ -20,8 +20,7 @@ library(ggplot2)
 library(okcupiddata)
 data(profiles)
 
-# Added line: let's remove all users (i.e. rows) who did not list a height. is.na() returns
-# TRUE if missing, so we want those that are NOT missing.
+# Remove individuals with no listed height
 profiles <- profiles %>% 
   filter(!is.na(height))
 ```
@@ -57,7 +56,9 @@ samples_50 <- samples_50 %>%
 
 **In General**: The standard error is the standard deviation of the point estimate. In this case, it is the value that quantifies how much the sample means vary by.
 
-**Mathematically**: You can derive the standard error mathematically, but this is for a more advanced class in probability. See Advanced section below.
+**In Our Case**: If we take a sample of 5 OkCupid users and compute the (sample) mean height, are we going to get the same value each time? No. The SE measures this sample mean varies.
+
+**Mathematically**: You can derive the standard error mathematically, but this is for a more advanced class in Probability/Statistics. See Advanced section below.
 
 **Computationally**: It is the standard deviation of our 10000 sample means:
 
@@ -76,13 +77,13 @@ samples_50 %>%
 1. The sample mean $\overline{x}$ is more precise when `n=50`
 1. **Our estimates are on average better when `n=50`**
 
-**Visualization**: 
 
-**Recall**: The sampling distribution is the distribution of the point estimate. We see that for `n=50`
+**Visualization**: Recall, the sampling distribution is the distribution of the point estimate. We see that for `n=50`
 
 * the distribution is narrower i.e. 
 * it has a smaller standard deviation i.e.
 * the standard error is smaller
+* **Our estimates are on average better when `n=50`. Bigger sample size is better.**
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.height=9/2, fig.width=16/2}
 samples_5 <- samples_5 %>% 
