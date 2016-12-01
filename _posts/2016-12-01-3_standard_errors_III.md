@@ -13,7 +13,6 @@ categories: jekyll update
 
 ### Announcements
 
-* Food for thought: [Economic Worries vs Racism/Xenophobia](http://www.recode.net/2016/12/1/13797554/stephen-dubner-freakonomics-donald-trump-economic-anxiety-racism-recode-podcast)
 * Lec29 <a href = "{{ site.baseurl }}/assets/LC/standard_errors.html" target = "_blank">learning check discussion</a>
 
 
