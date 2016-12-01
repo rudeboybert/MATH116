@@ -182,7 +182,7 @@ Construct 95% confidence intervals for $\mu$, the true average height of all 60K
 * Using both methods for constructing confidence intervals: quantiles and bell-curve aproach
 * For both when `n=5` and `n=50`
 
-Hint: You can sanity check your answers using the histograms of the 10000 simulations.
+Hint: Look at the histograms of the 10000 simulations.
 
 
 
