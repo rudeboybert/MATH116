@@ -43,4 +43,4 @@ categories: jekyll update
 
 ### After-Class Updates
 
-* 
+* Lec30 <a href = "{{ site.baseurl }}/assets/LC/standard_errors_III.html" target = "_blank">learning check discussion</a>

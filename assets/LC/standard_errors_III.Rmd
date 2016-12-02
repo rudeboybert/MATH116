@@ -1,0 +1,172 @@
+---
+title: "Back to Confidence Intervals"
+author: "Albert Y. Kim"
+date: "Thu Dec 2, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    df_print: kable
+---
+
+Load the familiar data again, removing individuals with no listed height
+
+```{r, echo=TRUE, message=FALSE}
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+library(okcupiddata)
+data(profiles)
+set.seed(76)
+profiles <- profiles %>% 
+  filter(!is.na(height))
+```
+
+We take many, many, many samples of size 5 and then take the sample mean, and then do the same for samples of size 50:
+
+```{r, echo=TRUE, message=FALSE, eval=TRUE, cache=TRUE}
+n <- 5
+samples_5 <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples_5 <- samples_5 %>% 
+  as_data_frame() 
+
+n <- 50
+samples_50 <- do(10000) * 
+  mean(resample(profiles$height, size=n, replace=TRUE))
+samples_50 <- samples_50 %>% 
+  as_data_frame() 
+```
+
+
+## Learning Checks
+
+Construct 95% confidence intervals for $\mu$, the true average height of all 60K OkCupid users
+
+* Using both methods for constructing confidence intervals: quantiles and bell-curve aproach
+* For both when `n=5` and `n=50`
+
+Hint: Look at the histograms of the 10000 simulations.
+
+
+
+## Notes
+
+#### Quantiles
+
+To get 95% confidence interval, we need
+
+* the middle 95% (blue)
+* so the tails represent 5% (red), i.e. 2.5% each
+* thus we need the 2.5% and 97.5% percentiles
+* thus we use `quantile()` with `prob=c(0.025, 0.975)`
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE, fig.height=9/2, fig.width=16/2}
+dnorm_limit <- function(x) {
+    y <- dnorm(x, mean = 5, sd = 2)
+    y[x <= 1  |  x >= 9] <- NA
+    return(y)
+}
+dnorm_limit_left <- function(x) {
+    y <- dnorm(x, mean = 5, sd = 2)
+    y[x >= 1  ] <- NA
+    return(y)
+}
+dnorm_limit_right <- function(x) {
+    y <- dnorm(x, mean = 5, sd = 2)
+    y[x < 9  ] <- NA
+    return(y)
+}
+
+# ggplot() with dummy data
+ggplot(data.frame(x=c(-5, 13)), aes(x=x)) + 
+  stat_function(fun=dnorm_limit, geom="area", fill="blue", alpha=0.2, n=10000) +
+  stat_function(fun=dnorm_limit_left, geom="area", fill="red", alpha=0.2, n=10000) +
+  stat_function(fun=dnorm_limit_right, geom="area", fill="red", alpha=0.2, n=10000) +
+  stat_function(fun=dnorm, args = list(mean = 5, sd = 2))
+```
+
+#### Normal Curve
+
+We need the mean and the standard deviation of the **sampling distribution**,
+i.e. the distribution of the 10,000 $\overline{x}$. The latter is the **standard
+error**.
+
+
+
+## n=5
+
+**Quantiles**: Using the fact above
+
+```{r}
+quantile(samples_5$mean, prob=c(0.025, 0.975))
+```
+
+**Normal-Curve Approach**: 
+
+```{r}
+samples_5 %>% 
+  summarise(center=mean(mean), SE=sd(mean))
+```
+
+So using the +/- 2 SD from the mean rule, we have: $(68.29 - 2\times 1.80, 68.29 + 2\times 1.80) = (64.69, 71.89)$.
+
+We plot the resulting confidence intervals i.e. **our net**
+
+* Blue: Quantile contstructed
+* Red: Normal curve constructed
+
+```{r, message=FALSE, warning=FALSE, eval=TRUE, fig.height=9/2, fig.width=16/2}
+ggplot(samples_5, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  xlim(c(60,76)) +
+  geom_vline(xintercept = 68.29, linetype="dashed") +
+  geom_vline(xintercept = c(64.8,  71.6), col="blue") +
+  geom_vline(xintercept = c(64.69, 71.89), col="red")
+```
+
+
+## n=50
+
+**Quantiles**: Using the fact above
+
+```{r}
+quantile(samples_50$mean, prob=c(0.025, 0.975))
+```
+
+**Normal-Curve Approach**:
+
+```{r}
+samples_50 %>% 
+  summarise(center=mean(mean), SE=sd(mean))
+```
+
+So using the +/- 2 SD from the mean rule, we have: $(68.30 - 2\times 0.57, 68.30 + 2\times 0.57) = (67.16, 69.44)$.
+
+We plot the resulting confidence intervals i.e. **our net**
+
+* Blue: Quantile contstructed
+* Red: Normal curve constructed
+
+```{r, message=FALSE, warning=FALSE, eval=TRUE, fig.height=9/2, fig.width=16/2}
+ggplot(samples_50, aes(x=mean)) +
+  geom_histogram(binwidth = 0.5) +
+  xlim(c(60,76)) +
+  geom_vline(xintercept = 68.30, linetype="dashed") +
+  geom_vline(xintercept = c(67.18, 69.40), col="blue") +
+  geom_vline(xintercept = c(67.16, 69.44), col="red")
+```
+
+
+
+## Conclusion
+
+As expected, confidence interval is narrower for `n=50`. This is because the SE is smaller when `n=50`.
+
+
+
+
+
+
