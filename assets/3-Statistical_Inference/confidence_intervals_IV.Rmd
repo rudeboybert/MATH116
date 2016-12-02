@@ -96,3 +96,11 @@ using
 > * **Answer**: Only as a theoretical/rhetorical exercise to show the random behavior of $\overline{x}$.
 > * **In Practice**: You only take **one** sample of size as large as you afford.
 
+
+
+## A Theoretical/Rhetorical Exercise
+
+[Tough concept to teach](https://twitter.com/rudeboybert/status/439167809575464961)
+
+
+
