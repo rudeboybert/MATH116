@@ -20,9 +20,9 @@ categories: jekyll update
 * Chalk talk
 * Learning check:
     + Let's **pretend** we don't know the true mean $\mu = 68.3$ inches
-    + Using the `resample()` function, take a **single sample** of size $n=50$ of 50 OkCupid users' heights. Do not `set.seed(76)`
-    + Using the `mean()`, `sd()`, and `sqrt()` functions, compute one confidence interval for $\mu$
-    + Everyone pod will report their CI's at the end of class.
+    + Using the `resample()` function, take a **single sample** (without replacement) of size $n=50$ of 50 OkCupid users' heights `profiles$height`. Assign this to an object `sample_50`.
+    + Using the `mean()`, `sd()`, and `sqrt()` functions, compute one confidence interval for $\mu$.
+    + Did your net catch the fish?
 
 ### After-Class Updates
 
