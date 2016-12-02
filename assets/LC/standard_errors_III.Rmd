@@ -104,14 +104,16 @@ error**.
 quantile(samples_5$mean, prob=c(0.025, 0.975))
 ```
 
+i.e. we have **(64.8, 71.8)**
+
 **Normal-Curve Approach**: 
 
 ```{r}
 samples_5 %>% 
-  summarise(center=mean(mean), SE=sd(mean))
+  summarise(mean=mean(mean), SE=sd(mean))
 ```
 
-So using the +/- 2 SD from the mean rule, we have: $(68.29 - 2\times 1.80, 68.29 + 2\times 1.80) = (64.69, 71.89)$.
+So using the +/- 2 SD from the mean rule, we have: $(68.29 - 2\times 1.80, 68.29 + 2\times 1.80)$ = **(64.69, 71.89)**.
 
 We plot the resulting confidence intervals i.e. **our net**
 
@@ -136,14 +138,16 @@ ggplot(samples_5, aes(x=mean)) +
 quantile(samples_50$mean, prob=c(0.025, 0.975))
 ```
 
+i.e. we have **(67.18, 69.38)**
+
 **Normal-Curve Approach**:
 
 ```{r}
 samples_50 %>% 
-  summarise(center=mean(mean), SE=sd(mean))
+  summarise(mean=mean(mean), SE=sd(mean))
 ```
 
-So using the +/- 2 SD from the mean rule, we have: $(68.30 - 2\times 0.57, 68.30 + 2\times 0.57) = (67.16, 69.44)$.
+So using the +/- 2 SD from the mean rule, we have: $(68.30 - 2\times 0.57, 68.30 + 2\times 0.57)$ = **(67.16, 69.44)**.
 
 We plot the resulting confidence intervals i.e. **our net**
 
