@@ -51,7 +51,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * Perform a realistic confidence interval calculation: where you don't know the
 real population parameter!
-* Solidy understanding of confidence intervals
+* Solidify understanding of confidence intervals
 
 
 
