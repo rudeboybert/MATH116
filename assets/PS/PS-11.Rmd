@@ -1,0 +1,203 @@
+
+---
+title: "Problem Set 11"
+author: "WRITE YOUR NAME HERE"
+date: "Due Monday, December 9, 2016 at 11am"
+output:
+  html_document
+---
+
+
+
+## Please Indicate
+
+* Who you collaborated with. If no one, please indicate so: 
+* Approximately how much time did you spend on this problem set: 
+* What, if anything, gave you the most trouble: 
+
+
+
+```{r, message=FALSE, echo=FALSE}
+# Load packages:
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+library(knitr)
+```
+
+
+
+## Instructions/Hints:
+
+* Knit this once and read over all questions
+* Set the seed value on line 69 to be something other than 76
+* Fill in this Google Sheet with your answers
+
+
+
+## Scenario:
+
+You are charged to study the average age of members of congress (House of
+Representatives and Senate) at the start of their term for all sessions of
+Congress between:
+
+* The [80th United States Congress](https://en.wikipedia.org/wiki/80th_United_States_Congress) 
+that started on January 3, 1947
+* The [113th United States Congress](https://en.wikipedia.org/wiki/113th_United_States_Congress) 
+that started on January 3, 2013
+
+In particular, you are interested in answering the following three questions:
+
+1. What is the average age for **all** members of Congress between the 80th and
+113th sessions of Congress? Is it 30?
+1. Comparing just the 113th and the 80th sessions of Congress, are members of
+congress on average younger now (in 2013) or then (in 1947)?
+1. Considering just the 113th session on Congress, who on average are younger?
+Democrats or Republicans?
+
+However, researching birthdays and age at the start of the terms for all 18635
+members of congress between the 80th and 113th sessions of Congress is painstakingly
+boring work. So you decide to use sampling. Run the following two lines: 
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+source("https://rudeboybert.github.io/MATH116/assets/PS/raw_data/sampling.R")
+# Change this seed value to be your favorite number:
+seed_value <- 76
+```
+
+
+
+## Question 1: CI for Population Mean
+
+Run these two lines to get your sample over all members of congress between the
+80th and 113th sessions of Congress.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+set.seed(seed_value)
+congress <- get_sample_of_congress(n = 100)
+```
+
+
+#### a) EDA
+
+Create one plot of exploratory data analysis.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+
+#### b) 95% CI with `n=100`
+
+Just as in the LC for Lec31, create a 95% confidence interval for $\mu$, the
+true population mean age of all members of congress between the 80th and 113th
+sessions of Congress.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+**Your Answers**: 
+
+* My confidence interval is: ( , )
+* My answer to the first question above is:
+
+
+#### c) 95% CI with `n=1000`
+
+Repeat part b), but now taking a random sample of 1000 members of congress.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+set.seed(seed_value)
+congress <- get_sample_of_congress(n = 1000)
+```
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+**Your Answers**: 
+
+* My confidence interval is: ( , )
+* My answer to the first question above is:
+
+
+
+
+
+
+
+## Question 2: CI for Difference of Population Means
+
+Run these two lines to get your random sample of
+
+* `n_80` 40 members of congress from the 80th session
+* `n_113` 35 members of congress from the 113th session
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+set.seed(seed_value)
+congress_80_and_113 <- get_sample_of_congress_80_and_113(n_80 = 40, n_113 = 35)
+```
+
+
+#### a) EDA
+
+Create one plot of exploratory data analysis.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+
+#### b) 95% CI
+
+Create a 95% confidence interval for $\mu_{80}-\mu_{113}$, the true **population
+difference in means** of the average age in the 80th session minus the average 
+age in the 113th session. 
+
+**Hint**: The formula to approximate the standard error for a difference of means 
+$\overline{x}_1 - \overline{x}_2$ is
+
+$$
+SE_{\overline{x}_1 - \overline{x}_2} = \sqrt{ 
+\left( \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2} \right) 
+\left( \frac{1}{n_1} + \frac{1}{n_2} \right) 
+}
+$$
+
+Nasty! Why don't I just give it to you:
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+SE <- SE_diff_means(congress_80_and_113, variable="age", group_by_variable = "congress")
+```
+
+**Your Answers**: 
+
+* My confidence interval is: ( , )
+* My answer to the second question above is:
+
+
+
+
+
+
+
+## (BONUS) Question 3: Difference of Population Means
+
+Answer the third question above based on a sample of size 544. Don't forget to
+do an EDA!
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+set.seed(seed_value)
+congress_113 <- get_sample_of_congress_113(n_113 = 544)
+```
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+**Your Answers**: 
+
+* My answer to the third question above is:
+
