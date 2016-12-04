@@ -20,13 +20,13 @@ get_sample_of_congress_then_and_now <- function(n_80, n_113){
   return(sample_of_congress_then_and_now)
 }
 
-get_sample_of_congress_113 <- function(n){
+get_sample_of_congress_113 <- function(n_113){
   url <- "https://rudeboybert.github.io/MATH116/assets/PS/raw_data/congress.csv"
   congress <- suppressMessages(readr::read_csv(url)) 
   congress <- dplyr::select(congress, -c(bioguide, middlename, suffix))
   
   congress_113 <- dplyr::filter(congress, congress==113)
-  sample_of_congress_113 <- dplyr::sample_n(congress_113, n)
+  sample_of_congress_113 <- dplyr::sample_n(congress_113, n_113)
   return(sample_of_congress_113)
 }
 
