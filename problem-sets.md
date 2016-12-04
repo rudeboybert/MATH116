@@ -41,6 +41,46 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
   
 
+## Problem Set 11
+
+* Assigned Sun 12/4
+* Due Fri 12/9 11am
+
+
+#### Learning Goals
+
+* Perform a realistic confidence interval calculation: where you don't know the
+real population parameter!
+* Solidy understanding of confidence intervals
+
+
+
+#### Homework
+
+* Download these files to your computer and upload them to your `problem_sets`
+folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-11.Rmd" target="_blank">`PS-11.Rmd`</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+  
+
 ## Problem Set 10
 
 * Assigned Mon 11/21

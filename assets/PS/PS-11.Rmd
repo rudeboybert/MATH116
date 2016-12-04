@@ -123,6 +123,9 @@ congress <- get_sample_of_congress(n = 1000)
 * My answer to the first question above is:
 
 
+#### d) Google Form
+
+Fill out this [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfpa6sYaRSxRyZNN_-pMXbu0A0bTYLZGmSh8Qgg7RSD-OllJw/viewform) with your two confidence intervals.
 
 
 
