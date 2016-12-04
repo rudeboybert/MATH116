@@ -2,9 +2,10 @@ library(dplyr)
 
 get_sample_of_congress <- function(n){
   url <- "https://rudeboybert.github.io/MATH116/assets/PS/raw_data/congress.csv"
-  congress <- readr::read_csv(url, col_types = cols()) %>% 
-    select(-c(bioguide, middlename, suffix))
-    
+  congress <- read.csv(url) %>% 
+    select(-c(bioguide, middlename, suffix)) %>% 
+    as_data_frame()
+      
   sample_of_congress <- congress %>%  
     sample_n(n)
   return(sample_of_congress)
@@ -12,8 +13,9 @@ get_sample_of_congress <- function(n){
 
 get_sample_of_congress_80_and_113 <- function(n_80, n_113){
   url <- "https://rudeboybert.github.io/MATH116/assets/PS/raw_data/congress.csv"
-  congress <- readr::read_csv(url, col_types = cols()) %>% 
-    select(-c(bioguide, middlename, suffix))
+  congress <- read.csv(url) %>% 
+    select(-c(bioguide, middlename, suffix)) %>% 
+    as_data_frame()
   
   congress_80 <- congress %>% 
     filter(congress==80) %>% 
@@ -31,8 +33,9 @@ get_sample_of_congress_80_and_113 <- function(n_80, n_113){
 
 get_sample_of_congress_113 <- function(n_113){
   url <- "https://rudeboybert.github.io/MATH116/assets/PS/raw_data/congress.csv"
-  congress <- readr::read_csv(url, col_types = cols()) %>% 
-    select(-c(bioguide, middlename, suffix))
+  congress <- read.csv(url) %>% 
+    select(-c(bioguide, middlename, suffix)) %>% 
+    as_data_frame()
   
   sample_of_congress_113 <- congress %>% 
     filter(congress==113) %>% 
