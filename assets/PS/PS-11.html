@@ -135,31 +135,30 @@ $(document).ready(function () {
 <h2>Instructions/Hints:</h2>
 <ul>
 <li>Knit this once and read over all questions</li>
-<li>Set the seed value on line 69 to be something other than 76</li>
-<li>Fill in this Google Sheet with your answers</li>
+<li>Set the seed value on line 66 to be something other than 76</li>
 </ul>
 </div>
 <div id="scenario" class="section level2">
 <h2>Scenario:</h2>
-<p>You are charged to study the average age of members of congress (House of Representatives and Senate) at the start of their term for all sessions of Congress between:</p>
+<p>You are charged with studying the average age of members of congress (House of Representatives and Senate) at the start of their term for all sessions of Congress between:</p>
 <ul>
-<li>The <a href="https://en.wikipedia.org/wiki/80th_United_States_Congress">80th United States Congress</a> that started on January 3, 1947</li>
-<li>The <a href="https://en.wikipedia.org/wiki/113th_United_States_Congress">113th United States Congress</a> that started on January 3, 2013</li>
+<li>The <a href="https://en.wikipedia.org/wiki/80th_United_States_Congress">80th United States Congress</a> from January 3, 1947 to January 3, 1949</li>
+<li>The <a href="https://en.wikipedia.org/wiki/113th_United_States_Congress">113th United States Congress</a> from January 3, 2013 to January 3, 2015</li>
 </ul>
 <p>In particular, you are interested in answering the following three questions:</p>
 <ol style="list-style-type: decimal">
-<li>What is the average age for <strong>all</strong> members of Congress between the 80th and 113th sessions of Congress? Is it 30?</li>
-<li>Comparing just the 113th and the 80th sessions of Congress, are members of congress on average younger now (in 2013) or then (in 1947)?</li>
-<li>Considering just the 113th session on Congress, who on average are younger? Democrats or Republicans?</li>
+<li>What is the average age of all members of Congress between the 80th and 113th sessions? Is it 30?</li>
+<li>Comparing just the 80th and the 113th sessions, are members of congress on average younger now (in 2013) or then (in 1947)?</li>
+<li>Considering just the 113th session, on average who are younger? Democrats or Republicans?</li>
 </ol>
-<p>However, researching birthdays and age at the start of the terms for all 18635 members of congress between the 80th and 113th sessions of Congress is painstakingly boring work. So you decide to use sampling. Run the following two lines:</p>
+<p>However, researching birthdays and age at the start of the terms for all 18635 members of congress between the 80th and 113th sessions of Congress is painstakingly boring work. So you decide to compute ages only for a random sample of members of congress instead. Run the following lines of code in your console before answering the three questions:</p>
 <pre class="r"><code>source(&quot;https://rudeboybert.github.io/MATH116/assets/PS/raw_data/sampling.R&quot;)
 # Change this seed value to be your favorite number:
 seed_value &lt;- 76</code></pre>
 </div>
 <div id="question-1-ci-for-population-mean" class="section level2">
 <h2>Question 1: CI for Population Mean</h2>
-<p>Run these two lines to get your sample over all members of congress between the 80th and 113th sessions of Congress.</p>
+<p>Run these two lines to get a random sample of size 100 from the population of all members of congress between the 80th and 113th sessions.</p>
 <pre class="r"><code>set.seed(seed_value)
 congress &lt;- get_sample_of_congress(n = 100)</code></pre>
 <div id="a-eda" class="section level4">
@@ -168,7 +167,7 @@ congress &lt;- get_sample_of_congress(n = 100)</code></pre>
 </div>
 <div id="b-95-ci-with-n100" class="section level4">
 <h4>b) 95% CI with <code>n=100</code></h4>
-<p>Just as in the LC for Lec31, create a 95% confidence interval for <span class="math inline">\(\mu\)</span>, the true population mean age of all members of congress between the 80th and 113th sessions of Congress.</p>
+<p>Just as in the LC for Lec31, create a 95% confidence interval for <span class="math inline">\(\mu\)</span>, the true population mean age of all members of congress between the 80th and 113th sessions.</p>
 <p><strong>Your Answers</strong>:</p>
 <ul>
 <li>My confidence interval is: ( , )</li>
@@ -177,7 +176,7 @@ congress &lt;- get_sample_of_congress(n = 100)</code></pre>
 </div>
 <div id="c-95-ci-with-n1000" class="section level4">
 <h4>c) 95% CI with <code>n=1000</code></h4>
-<p>Repeat part b), but now taking a random sample of 1000 members of congress.</p>
+<p>Repeat part b), but now taking a random sample of 1000.</p>
 <pre class="r"><code>set.seed(seed_value)
 congress &lt;- get_sample_of_congress(n = 1000)</code></pre>
 <p><strong>Your Answers</strong>:</p>
@@ -188,15 +187,15 @@ congress &lt;- get_sample_of_congress(n = 1000)</code></pre>
 </div>
 <div id="d-google-form" class="section level4">
 <h4>d) Google Form</h4>
-<p>Fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpa6sYaRSxRyZNN_-pMXbu0A0bTYLZGmSh8Qgg7RSD-OllJw/viewform">Google Form</a> with your two confidence intervals.</p>
+<p>After you’ve completed parts b) and c), fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpa6sYaRSxRyZNN_-pMXbu0A0bTYLZGmSh8Qgg7RSD-OllJw/viewform">Google Form</a> with your two confidence intervals.</p>
 </div>
 </div>
 <div id="question-2-ci-for-difference-of-population-means" class="section level2">
 <h2>Question 2: CI for Difference of Population Means</h2>
 <p>Run these two lines to get your random sample of</p>
 <ul>
-<li><code>n_80</code> 40 members of congress from the 80th session</li>
-<li><code>n_113</code> 35 members of congress from the 113th session</li>
+<li><span class="math inline">\(n_{80}\)</span> = 40 members of congress from the 80th session</li>
+<li><span class="math inline">\(n_{113}\)</span> = 35 members of congress from the 113th session</li>
 </ul>
 <pre class="r"><code>set.seed(seed_value)
 congress_80_and_113 &lt;- get_sample_of_congress_80_and_113(n_80 = 40, n_113 = 35)</code></pre>
@@ -206,15 +205,14 @@ congress_80_and_113 &lt;- get_sample_of_congress_80_and_113(n_80 = 40, n_113 = 3
 </div>
 <div id="b-95-ci" class="section level4">
 <h4>b) 95% CI</h4>
-<p>Create a 95% confidence interval for <span class="math inline">\(\mu_{80}-\mu_{113}\)</span>, the true <strong>population difference in means</strong> of the average age in the 80th session minus the average age in the 113th session.</p>
-<p><strong>Hint</strong>: The formula to approximate the standard error for a difference of means <span class="math inline">\(\overline{x}_1 - \overline{x}_2\)</span> is</p>
+<p>Create a 95% confidence interval for <span class="math inline">\(\mu_{80}-\mu_{113}\)</span>, the true <strong>population difference in means</strong> of the average age in the 80th session minus the average age in the 113th session. <strong>Hint</strong>: The formula to approximate the standard error for a difference of means <span class="math inline">\(\overline{x}_1 - \overline{x}_2\)</span> is</p>
 <p><span class="math display">\[
 SE_{\overline{x}_1 - \overline{x}_2} = \sqrt{ 
 \left( \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2} \right) 
 \left( \frac{1}{n_1} + \frac{1}{n_2} \right) 
 }
 \]</span></p>
-<p>Nasty! Why don’t I just give it to you:</p>
+<p>Nasty! Why don’t I just give you code to compute it:</p>
 <pre class="r"><code>SE &lt;- SE_diff_means(congress_80_and_113, variable=&quot;age&quot;, group_by_variable = &quot;congress&quot;)</code></pre>
 <p><strong>Your Answers</strong>:</p>
 <ul>
@@ -225,7 +223,7 @@ SE_{\overline{x}_1 - \overline{x}_2} = \sqrt{
 </div>
 <div id="bonus-question-3-difference-of-population-means" class="section level2">
 <h2>(BONUS) Question 3: Difference of Population Means</h2>
-<p>Answer the third question above based on a sample of size 544. Don’t forget to do an EDA!</p>
+<p>Answer the third question above based on a sample of size 544. Don’t forget to do an EDA.</p>
 <pre class="r"><code>set.seed(seed_value)
 congress_113 &lt;- get_sample_of_congress_113(n_113 = 544)</code></pre>
 <p><strong>Your Answers</strong>:</p>
