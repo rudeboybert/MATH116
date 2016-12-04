@@ -49,8 +49,8 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 #### Learning Goals
 
-* Perform a realistic confidence interval calculation: where you don't know the
-real population parameter!
+* Perform a more realistic confidence interval calculation: **where you don't know the
+real population parameter**
 * Solidify understanding of confidence intervals
 
 
