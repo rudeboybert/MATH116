@@ -21,7 +21,8 @@ categories: jekyll update
     + Confidence intervals in general
     + Correlation coefficient
 * Lec32 <a href = "{{ site.baseurl }}/assets/LC/linear_regression.html" target = "_blank">learning check discussion</a>
-    + Chalk Talk based off of 
+    + Chalk talk interpreting all aspects of regression output
+    + In particular the importance of the slope parameter
 
 
 
