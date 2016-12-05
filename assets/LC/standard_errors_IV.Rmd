@@ -1,0 +1,116 @@
+---
+title: "Finishing Confidence Intervals"
+author: "Albert Y. Kim"
+date: "Fri Dec 3, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    df_print: kable
+---
+
+Load the familiar data again, removing individuals with no listed height
+
+```{r, echo=TRUE, message=FALSE}
+library(mosaic)
+library(dplyr)
+library(ggplot2)
+library(okcupiddata)
+data(profiles)
+profiles <- profiles %>% 
+  filter(!is.na(height))
+```
+
+
+
+## Learning Checks
+
+* Let's **pretend** we don't know the true mean mu = 68.3 inches
+* Using the `resample()` function, take a **single sample** (without replacement) of size $n=50$ of 50 OkCupid users' heights `profiles$height`. Assign this to an object `sample_50`.
+* Using the `mean()`, `sd()`, and `sqrt()` functions, compute one confidence interval for mu.
+* Did your net catch the fish?
+
+
+
+## LC1: A Single Sample
+
+```{r}
+set.seed(76)
+sample_50 <- resample(profiles$height, size=50, replace = FALSE)
+```
+
+
+
+## LC2: A 95% CI
+
+```{r}
+xbar <- mean(sample_50)
+s <- sd(sample_50)
+n <- length(sample_50)
+c(xbar, s, n)
+c(xbar -2*s/sqrt(n), xbar +2*s/sqrt(n))
+```
+
+Our 95% CI is 
+$$
+\left(\overline{x} - 2 SE, \overline{x} + 2 SE\right) =\left(\overline{x} - 2 \frac{s}{\sqrt{n}}, \overline{x} + 2 \frac{s}{\sqrt{n}}\right) = \left(67.01, 69.67\right)
+$$
+
+
+## Long-Run Performance of CI
+
+**Back to theoretical/rhetorical land** Let's repeat the following procedure 100 times:
+
+1. Take a sample of size $n=50$
+1. Compute the 95% CI based on $\overline{x}$, $s$, $\sqrt{n}$
+1. See if we caught the fish
+
+
+Here are the (random) results:
+
+```{r, echo=FALSE}
+n_sim <- 100
+pop_mean <- mean(profiles$height)
+
+CI <- data_frame(
+  ID = 1:n_sim,
+  left=0, 
+  right=0,
+  captured=""
+)
+set.seed(79)
+for(i in 1:n_sim){
+  sample_50 <- resample(profiles$height, size=50, replace = FALSE)
+  xbar <- mean(sample_50)
+  s <- sd(sample_50)
+  n <- length(sample_50)
+  CI[i, c("left", "right")] <- c(xbar - 2*s/sqrt(n), xbar + 2*s/sqrt(n))
+  CI$captured[i] <- between(pop_mean, xbar - 2*s/sqrt(n), xbar + 2*s/sqrt(n))
+}
+
+CI <- CI %>% 
+  #mutate(captured = ifelse(captured, "black", "red")) %>% 
+  tidyr::gather(type, values, c(2,3))
+
+
+ggplot(CI, aes(y=ID, x=values, group=ID, col=captured)) +
+  geom_line(size=1) +
+  geom_vline(xintercept=68.3, linetype="dashed") +
+  labs(title="Real Mean Height is Dashed Line", y="", x="height")
+```
+
+Our net missed the fish 3 times! On average, it will miss it 5% of the time.
+
+
+## Correct Interpretation of Original CI
+
+So the correct interpretation of our original 95% confidence interval (67.01, 69.67)
+
+* **IS**: the procedure that generated the CI (67.01, 69.67) is **95% reliable**.
+i.e. 95% of the time it will get it right
+* **IS NOT**: the probability that (67.01, 69.67) contains the true mean height is 95%.  
+i.e. the probability is either 1 or 0: either is does or doesn't.
+
+

@@ -1,0 +1,196 @@
+---
+title: "Linear Regression"
+author: "Albert Y. Kim"
+date: "Mon Dec 05, 2016"
+output: ioslides_presentation
+---
+
+<style>
+h2 { 
+ color: #3399ff;		
+}
+h3 { 
+ color: #3399ff;		
+}
+slides > slide.backdrop {
+  background: white;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(nycflights13)
+data(flights)
+```
+
+
+
+## Correlation Coefficient
+
+* Measures the strength of linear association between two variables
+* Always between [-1, 1] where
+    + -1 indicates perfect negative relationship
+    + 0 indicates no relationship
+    + +1 indicates perfect positive relationship
+
+
+
+## Correlation Coefficient
+
+```{r, echo=FALSE, warning=FALSE}
+library(mvtnorm) 
+correlation <- c(-0.9999, -0.9, -0.75, -0.3, 0, 0.3, 0.75, 0.9, 0.9999)
+n_sim <- 100
+
+values <- NULL
+for(i in 1:length(correlation)){
+  rho <- correlation[i]
+  sigma <- matrix(c(5, rho*sqrt(50), rho*sqrt(50), 10), 2, 2) 
+  sim <- rmvnorm(
+    n=n_sim,
+    mean=c(20,40),
+    sigma=sigma
+    ) %>%
+    as_data_frame() %>% 
+    mutate(correlation=round(rho,2))
+  
+  values <- bind_rows(values, sim)
+}
+
+ggplot(data=values, aes(V1,V2)) +
+  geom_point() +
+  facet_wrap(~correlation, ncol=5) +
+  labs(x="", y="", title="Different Correlation Coefficients") + 
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank()
+  )
+```
+
+
+
+## Correlation Coefficient
+
+Two versions: Just like with $\mu$ and $\overline{x}$
+
+* **Population correlation coefficient** $\rho$
+* **Sample correlation coefficent** $r$ based on a sample of n **pairs** of observations
+
+
+
+## Example
+
+Recall the `nycflights` data set. For Alaska Air flights, let's explore the **relationship** between
+
+* Departure delay
+* Arrival delay
+
+```{r, warning=FALSE, eval=FALSE}
+library(nycflights13)
+data(flights)
+
+# Load Alaska data, deleting rows that have missing dep or arr data
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+   geom_point()
+```
+
+
+
+## Example
+
+```{r, warning=FALSE, echo=FALSE}
+library(nycflights13)
+data(flights)
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+   geom_point()
+```
+
+
+
+## Example
+
+The correlation coefficient is computed as follows:
+
+```{r, warning=FALSE, echo=TRUE}
+cor(alaska_flights$dep_delay, alaska_flights$arr_delay)
+```
+
+This is fairly strongly **positively associated**!
+
+
+
+## Bored? 
+
+Play [Guess the Correlation](http://guessthecorrelation.com/)
+
+
+
+## Important Note
+
+**Correlation coefficent $\neq$ slope of regression line.**
+Example: Say we have 3 group of points
+
+```{r, echo=FALSE, warning=FALSE}
+vals <- seq(-2, 2, length=20)
+example <- data_frame(
+  x=rep(vals, 3),
+  y=c(0.01*vals, 1*vals, 3*vals),
+  slope=factor(rep(c(0.01, 1, 3), each=length(vals)))
+)
+ggplot(example, aes(x=x, y=y, col=slope)) +
+  geom_point(size=2) +
+  theme(legend.position="none")
+```
+
+
+
+## Important Note
+
+Their regression lines have different slopes, but $r= 1$ for all 3. i.e. perfect (positive) linear relationship.
+
+```{r, echo=FALSE, warning=FALSE}
+ggplot(example, aes(x=x, y=y, col=slope)) +
+  geom_point(size=2) + 
+  geom_smooth(method="lm", se=FALSE)
+```
+
+
+
+## Plotting Regression
+
+We've done this a bunch already in Data Visualization!
+
+```{r, warning=FALSE, eval=FALSE}
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+```
+
+
+
+## Plotting Regression
+
+```{r, warning=FALSE, echo=FALSE}
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+```
+
+
+
+
+
+
+

@@ -10,12 +10,15 @@ categories: jekyll update
 
 ### Announcements
 
-* 
+* PS-11 posted in Problem Sets page
+* Lec31 <a href = "{{ site.baseurl }}/assets/LC/standard_errors_IV.html" target = "_blank">learning check discussion</a>
+
 
 
 ### In-Class
 
-* 
+* Package to install: `broom`
+* <a href = "{{ site.baseurl }}/assets/4-Regression/linear_regression.html" target = "_blank">Slides</a>: 
 
 
 ### After-Class Updates
