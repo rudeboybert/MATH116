@@ -60,8 +60,3 @@ model_output <- tidy(model, conf.int = TRUE)
 kable(model_output, digits=3)
 ```
 
-
-
-## Example 2: Your Turn
-
-Pick another **numerical variable** that you think as no relationship to arrival delay and do a regression analysis.

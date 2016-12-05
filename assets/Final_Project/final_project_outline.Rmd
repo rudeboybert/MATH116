@@ -28,7 +28,7 @@ library(knitr)
 data/science research pipeline in as faithful a manner as possible while
 maintaining a level suitable for novices*:
 
-<img src="./figure/pipeline4.png" alt="Drawing" style="width: 600px;" border="10"/>
+<img src="../figure/pipeline4.png" alt="Drawing" style="width: 600px;" border="10"/>
 
 
 #### Format
@@ -73,10 +73,13 @@ files.
     + Individually: A Google Forms survey, which I will email on Fri Dec 16 by 5pm.
     + Your project won't be considered submitted until I give you email confirmation that everything looks good.
 * **Office Hours**: During exam week
-    + Tuesday Dec 13: 9-12 and 1-4
-    + Wednesday Dec 15: 9-12 and 1-4
-    + Friday Dec 16: 9-12
-    + I might be out of town that weekend, so email responses might be slow.
+    + ~~Tuesday Dec 13: 9-12 and 1-4~~
+    + ~~Wednesday Dec 15: 9-12 and 1-4~~
+    + ~~Friday Dec 16: 9-12~~
+    + ~~I might be out of town that weekend, so email responses might be slow.~~
+    + Saturday Dec 10: 10-4pm in Warner 310
+    + Wednesday Dec 14: 10-4pm (by request on Google Hangouts or FaceTime)
+    + Saturday Dec 17: 12-4pm in Warner 310
 * **Honor Code**: This is the equivalent of an academic term paper; all honor code rules about plagarism and citations apply.
 
 
