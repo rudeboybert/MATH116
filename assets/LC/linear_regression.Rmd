@@ -1,0 +1,67 @@
+---
+title: "Linear Regression"
+author: "Albert Y. Kim"
+date: "Mon Dec 5, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    df_print: kable
+---
+
+## Alaska Flights
+
+#### Load Alaska Flights data:
+
+```{r, echo=TRUE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(nycflights13)
+library(knitr)
+data(flights)
+
+# Load Alaska data, deleting rows that have missing dep or arr data
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+
+# Number of observations
+nrow(alaska_flights)
+```
+
+
+
+
+## Example 1: Departure vs Arrival Delay
+
+#### Plot points and regression line
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, eval=TRUE, fig.height=9/2, fig.width=16/2}
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+```
+
+
+#### Output regression info
+
+```{r, warning=FALSE, echo=TRUE, eval=TRUE}
+model <- lm(arr_delay ~ dep_delay, data=alaska_flights)
+model
+```
+
+The above output is ugly and incomplete. Let's use the `tidy()` function from the `broom` package:
+
+```{r, warning=FALSE, echo=TRUE, eval=TRUE}
+library(broom)
+model_output <- tidy(model, conf.int = TRUE)
+kable(model_output, digits=3)
+```
+
+
+
+## Example 2: Your Turn
+
+Pick another **numerical variable** that you think as no relationship to arrival delay and do a regression analysis.

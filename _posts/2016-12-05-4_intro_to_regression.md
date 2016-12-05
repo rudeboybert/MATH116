@@ -14,11 +14,15 @@ categories: jekyll update
 * Lec31 <a href = "{{ site.baseurl }}/assets/LC/standard_errors_IV.html" target = "_blank">learning check discussion</a>
 
 
-
 ### In-Class
 
 * Package to install: `broom`
-* <a href = "{{ site.baseurl }}/assets/4-Regression/linear_regression.html" target = "_blank">Slides</a>: 
+* <a href = "{{ site.baseurl }}/assets/4-Regression/linear_regression.html" target = "_blank">Slides</a>:
+    + Confidence intervals in general
+    + Correlation coefficient
+* Lec32 <a href = "{{ site.baseurl }}/assets/LC/linear_regression.html" target = "_blank">learning check discussion</a>
+    + Chalk Talk based off of 
+
 
 
 ### After-Class Updates

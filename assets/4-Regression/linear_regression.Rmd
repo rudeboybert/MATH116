@@ -27,6 +27,19 @@ library(nycflights13)
 data(flights)
 ```
 
+## Final Note about Confidence Intervals
+
+* **ALL** confidence intervals have form: $\mbox{Point Estimate}\pm 2 \times SE$
+* What the point estimate and SE are will change
+
+
+> * CI for $\mu$:
+>     + Point estimate: $\overline{x}$
+>     + SE = $\frac{s}{\sqrt{n}}$
+>     + 95% CI: $\overline{x} \pm 2 \frac{s}{\sqrt{n}} = \left(\overline{x} - 2 \frac{s}{\sqrt{n}}, \overline{x} + 2 \frac{s}{\sqrt{n}}\right)$
+> * PS-11: CI for $\mu_1 - \mu_2$ i.e. Difference in means of two groups
+>     + Point estimate: $\overline{x}_1 - \overline{x}_2$
+>     + SE = NASTY!
 
 
 ## Correlation Coefficient
@@ -168,25 +181,11 @@ ggplot(example, aes(x=x, y=y, col=slope)) +
 
 
 
-## Plotting Regression
-
-We've done this a bunch already in Data Visualization!
-
-```{r, warning=FALSE, eval=FALSE}
-ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
-  geom_point() +
-  geom_smooth(method="lm", se=FALSE)
-```
+## Learning Check
 
 
 
-## Plotting Regression
 
-```{r, warning=FALSE, echo=FALSE}
-ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
-  geom_point() +
-  geom_smooth(method="lm", se=FALSE)
-```
 
 
 
