@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lec34 Finishing Regression"
-subtitle: "The coda to the course: many variables."
+subtitle: "The coda to the course."
 date:   2016-12-09 15:10:45
 categories: jekyll update
 ---
@@ -10,7 +10,6 @@ categories: jekyll update
 
 ### Announcements
 
-* Teacher evaluations at the end of lecture today: <https://crfaccess.middlebury.edu/student/>
 
 
 
