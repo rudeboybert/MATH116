@@ -1,0 +1,94 @@
+---
+title: "Linear Regression"
+author: "Albert Y. Kim"
+date: "Wed Dec 7, 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+    df_print: kable
+---
+
+## Alaska Flights
+
+#### Load Alaska Flights data:
+
+```{r, echo=TRUE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(nycflights13)
+library(knitr)
+data(flights)
+
+# Load Alaska data, deleting rows that have missing dep or arr data
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+
+# Instead of looking at all 709 Alaska flights, let's look at a random sample
+# of 10 of them:
+set.seed(76)
+alaska_flights_sample <- alaska_flights %>% 
+  sample_n(10)
+
+# Plot the 25 pairs of points and regression line:
+ggplot(data=alaska_flights_sample, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+```
+
+
+
+## Regression:
+
+Let's take
+
+* The **outcome** variable y to be departure delay `dep_delay`
+* The **predictor** variable x to be arrival delay `arr_delay`
+
+
+#### Running Regression
+
+The way you run regression in R is via the `lm()` command for linear model and
+assign this to `model`
+
+```{r, eval=FALSE}
+lm(OUTCOME_VARIABLE ~ PREDICTOR_VARIABLE, data=DATA_SET_NAME)
+```
+
+Let's run the regression using only the 10 randomly sampled flights:
+
+```{r, warning=FALSE, echo=TRUE, eval=TRUE}
+model <- lm(arr_delay ~ dep_delay, data=alaska_flights_sample)
+```
+
+
+#### Looking at Output
+
+There are two useful functions from the broom package to look at the output of a regression:
+
+* `tidy()` to get the **regression table**
+* `augment()` to get **point-by-point** values. This table also contains more advanced output
+
+```{r, warning=FALSE, echo=TRUE, eval=TRUE}
+library(broom)
+regression_table <- tidy(model, conf.int = TRUE)
+kable(regression_table, digits=3)
+
+point_by_point <- augment(model) %>% 
+  as_data_frame()
+kable(point_by_point, digits=3)
+```
+
+
+
+## Learning Check
+
+1. Identify in the point-by-point table which columns correspond to
+    + The observed outcome variable $y$
+    + The fitted values on the regression line $\widehat{y}$
+    + The residuals and which two columns they are computed based on.
+1. Re-run the regression, but using **all** 907 flights in the `alaska_flights` 
+data set and plot a histogram of the residuals. What shape does the distribution have?
