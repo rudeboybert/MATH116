@@ -31,12 +31,12 @@ data(flights)
 
 ## Recall
 
-* The (population) regression line: $y = \beta_0 + \beta_1 x + \epsilon$
-* When $\beta_1=0 \Longrightarrow$ no relationship between variables x and y
-* The p-value for $\beta_1$ is based on:
-    + $H_0: \beta_1=0$ vs
-    + $H_A: \beta_1\neq 0$ 
-* If CI for $\beta_1$ does not contain 0, it suggests a significant relationship between x and y.
+> * The (population) regression line: $y = \beta_0 + \beta_1 x + \epsilon$
+> * When $\beta_1=0 \Longrightarrow$ no relationship between variables x and y
+> * The p-value for $\beta_1$ is based on:
+>     + $H_0: \beta_1=0$ vs
+>     + $H_A: \beta_1\neq 0$ 
+> * If CI for $\beta_1$ does not contain 0, it suggests a significant relationship between x and y.
 
 
 
@@ -115,7 +115,7 @@ $$
 * They're the error, the lack of fit, what's leftover.
 * It's the **noise** around the signal (regression line).
 * Punchline: We want there to be no systematic pattern in the residuals.
-
+* Kind of a big deal...
 
 
 
