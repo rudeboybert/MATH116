@@ -60,7 +60,8 @@ real population parameter**
 * Please read over <a href="{{ site.baseurl }}/assets/PS/PS-11.html" target="_blank">`PS-11`</a> first.
 * Download these files to your computer and upload them to your `problem_sets`
 folder on RStudio Server: <a href="{{ site.baseurl }}/assets/PS/PS-11.Rmd" target="_blank">`PS-11.Rmd`</a>
-
+* <a href = "{{ site.baseurl }}/assets/PS/PS-11_discussion.html" target = "_blank">PS-11 Discussion</a>
+* PS-11 Discussion source code file <a href = "{{ site.baseurl }}/assets/PS/PS-11_discussion.Rmd" target = "_blank">`PS-11_discussion.Rmd`</a> 
 
 
 

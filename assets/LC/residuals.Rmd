@@ -1,5 +1,5 @@
 ---
-title: "Linear Regression"
+title: "Residuals"
 author: "Albert Y. Kim"
 date: "Wed Dec 7, 2016"
 output:
@@ -72,7 +72,7 @@ There are two useful functions from the broom package to look at the output of a
 * `tidy()` to get the **regression table**
 * `augment()` to get **point-by-point** values. This table also contains more advanced output
 
-```{r, warning=FALSE, echo=TRUE, eval=TRUE}
+```{r, warning=FALSE, echo=TRUE, eval=TRUE, fig.width=16/2, fig.height=9/2}
 library(broom)
 regression_table <- tidy(model, conf.int = TRUE)
 kable(regression_table, digits=3)
@@ -87,8 +87,82 @@ kable(point_by_point, digits=3)
 ## Learning Check
 
 1. Identify in the point-by-point table which columns correspond to
-    + The observed outcome variable $y$
-    + The fitted values on the regression line $\widehat{y}$
-    + The residuals and which two columns they are computed based on.
+    + The observed outcome variable $y$: `arr_delay`
+    + The fitted values on the regression line $\widehat{y}$: `.fitted`
+    + The residuals and which two columns they are computed based on: `.resid`
 1. Re-run the regression, but using **all** 907 flights in the `alaska_flights` 
-data set and plot a histogram of the residuals. What shape does the distribution have?
+data set and plot a histogram of the residuals. What shape does the distribution
+have?
+
+
+#### Residual Plots
+
+Before we plot the histogram of residuals, let's plot the raw residuals. Imagine
+we take the red line in the left-hand plot and flatten it out in the right hand
+plot. This is equivalent to computing the residuals.
+
+We see that the residuals just form random scatter/noise around the $y=0$ line i.e.
+**there is no systematic pattern in the residuals**
+
+```{r, echo=FALSE,  fig.width=16/2, fig.height=9/2}
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
+p1 <- ggplot(data=point_by_point, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE, col="blue") +
+  labs(x="Departure Delay", y="Arrival Delay", title="Arrival Delay over Departure Delay")
+p2 <- ggplot(data=point_by_point, aes(x = dep_delay, y =.resid )) + 
+  geom_point() +
+  geom_hline(yintercept=0, col="blue", size=1) +
+  labs(x="Departure Delay", y="Residuals", title="Residuals over Departure Delay")
+multiplot(p1, p2, cols=2)
+```
+
+
+
+The residuals are $\epsilon_i = \mbox{observed} - \mbox{fitted} = y_i -
+\widehat{y}_i$. They roughly follow a Normal distribution centered at 0. i.e.
+on average the error is 0. **This is good!**
+
+```{r, warning=FALSE, echo=TRUE, eval=TRUE, fig.width=16/2, fig.height=9/2}
+model <- lm(arr_delay ~ dep_delay, data=alaska_flights)
+point_by_point <- augment(model) %>% 
+  as_data_frame()
+ggplot(point_by_point, aes(x=.resid)) +
+  geom_histogram(binwidth = 10)
+```
+
