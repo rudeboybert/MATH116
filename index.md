@@ -6,16 +6,17 @@ layout: default
 
 <img src="./assets/figure/pipeline.png" alt="Drawing" style="width: 700px;" border="1"/>
 
-# Fall 2016 Topic List
+# 2017 Spring Topic List
 
-In reverse chronological order (a more detailed outline can be found
-[here](https://docs.google.com/spreadsheets/d/1qy21hHMbjYfv65IL5DwxID0nEltXgOD6h52hBVwWa_s/edit#gid=0)).
+In reverse chronological order. A more detailed outline can be found
+[here](https://docs.google.com/spreadsheets/d/1B4r6x1H9NQXSS-5MzYg3ho5gyMa8wIbP4WEFAzg_Yik/pubhtml?gid=0&single=true).
 
 ## 4. Regression
 
+<!--
 <ul>
   {% for post in site.posts %}
-    {% assign current_date = post.date | date: "%m %d" %}
+    {% assign current_date = post.date | date: "%m %d %y" %}
     {% if "12 04" <= current_date and current_date <= "12 31" %}
     <li>
       {{ post.date | date: "%a %b %-d" }} -  
@@ -25,14 +26,14 @@ In reverse chronological order (a more detailed outline can be found
     {% endif %}
   {% endfor %}
 </ul> 
-
+-->
 
 
 
 
 ## 3. Statistical Inference
 
-
+<!--
 ### c) Confidence Intervals
 
 
@@ -91,13 +92,15 @@ In reverse chronological order (a more detailed outline can be found
     {% endif %}
   {% endfor %}
 </ul> 
-
+-->
 
 
 
 
 ## 2. Data
 
+
+<!--
 ### d) Importing Data (Note Lec18 is here)
 
 <ul>
@@ -165,11 +168,16 @@ In reverse chronological order (a more detailed outline can be found
     {% endif %}
   {% endfor %}
 </ul>  
+-->
+
+
 
 
 
 ## 1. Introduction & Tools
 
+
+<!--
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %d" %}
@@ -185,4 +193,4 @@ In reverse chronological order (a more detailed outline can be found
     {% endif %}
   {% endfor %}
 </ul>  
-
+-->

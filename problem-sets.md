@@ -8,6 +8,9 @@ While I encourage you to discuss problem sets with your peers, you must submit y
 own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
+
+
+<!--
 <br>
 
 ***
@@ -515,5 +518,5 @@ Move the file `PS-01.Rmd` to the `problem_sets` shared project folder so the gra
 **For all future problem sets:**
 
 * When uploading the relevant `PS-XX.Rmd` file to RStudio Server, upload it directly to the `problem_sets` folder.
-
+-->
 
