@@ -4,7 +4,7 @@ title: Syllabus
 permalink: /syllabus/
 ---
 
-## MATH 116: Fall 2016
+## MATH 116: 2017 Spring
 
 * **Instructor:** [Albert Y. Kim](https://rudeboybert.github.io/) -
 Assistant Professor of Statistics
@@ -13,14 +13,12 @@ Assistant Professor of Statistics
     + Please only email me with administrative and briefer questions as I prefer
     addressing more substantive questions in person.
 * **Class Location/Time:**
-    + MWF 11:15–12:05 in Warner 506 and R 11:00-12:15 in Sunderland 202. 
+    + MWF 11:15–12:05 in Warner 506 and Th 11:00-12:15 in McCardell Bicentennial Hall 530. 
     + You do not need to inform me of absences. Please consult your peers for
     what you missed.
-* **Office Hours:** Warner 310 or the math lounge just outside. Feel free to
-come to the [MATH 216](https://rudeboybert.github.io/MATH216/) office hours as
-well, but those students get priority then.
-    + M 2:30-4:00 and W 1:00-2:30
-    + MATH 216: M 1:00-2:30 and W 2:30-4:00
+* **Office Hours:** Warner 310 or the math lounge just outside. Note that office hours for 
+[MATH 218 Statistical Learning](https://rudeboybert.github.io/MATH216/) occur concurrently.
+    + M 1:00-4:00 and W 1:00-4:00
     + Or by appointment
 
 
@@ -133,7 +131,6 @@ midterms, and the final project.
 
 #### 1) Weekly Problem Sets 10%
 
-
 The problem sets in this class should be viewed as low-stakes opportunities to
 develop one's statistics and data science muscles and receive feedback on the
 progress of one's learning, instead of viewing them as evaluative tools used by
@@ -166,7 +163,7 @@ items to be graded on.
 
 #### 3) Three Midterms 45%
 
-* Midterm dates: Wed 10/5 (in-class), Wed 10/26 7:30pm, and Wed 11/16 7:30pm.
+* Midterm dates: TBD <!--Wed 10/5 (in-class), Wed 10/26 7:30pm, and Wed 11/16 7:30pm.-->
 * All midterms are cumulative and may require a scientific calculator, so
 please have access to one (no smartphones).
 * There is no extra-credit work to improve midterm scores after the fact.
@@ -186,7 +183,7 @@ analysis project. The project will involving you addressing a scientific
 question by choosing a data set, performing an analysis using the concepts and
 tools we have covered in this course, and writing a report.
 
-* Due Sun 12/18 at noon.
+* TBD <!-- Due Sun 12/18 at noon.-->
 * Groups of no more than three will be assigned by me.
 * A system will be put in place to hold your group peers accountable for their
 work.

@@ -8,8 +8,9 @@ layout: default
 
 # 2017 Spring Topic List
 
-In reverse chronological order. A more detailed outline can be found
-[here](https://docs.google.com/spreadsheets/d/1B4r6x1H9NQXSS-5MzYg3ho5gyMa8wIbP4WEFAzg_Yik/pubhtml?gid=0&single=true).
+In reverse chronological order. A more detailed outline can be found in this <a target="_blank" class="page-link" href="https://docs.google.com/spreadsheets/d/1B4r6x1H9NQXSS-5MzYg3ho5gyMa8wIbP4WEFAzg_Yik/pubhtml?gid=0&single=true">Google Sheet</a>.
+
+
 
 ## 4. Regression
 
