@@ -1,0 +1,36 @@
+---
+title: "Learning Checks"
+author: "Albert Y. Kim"
+date: "Last updated on `r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 1
+    theme: cosmo
+    highlight: tango
+    df_print: paged
+---
+
+<style>
+h1{font-weight: bold;}
+h2{color: #3399ff;}
+h3{color: #3399ff;}
+slides > slide.backdrop {background: white;}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+if(FALSE){
+  rmarkdown::render("slides.Rmd", output_format = c("html_document", "ioslides_presentation"))
+  rmarkdown::render("slides.Rmd", output_format = c("html_document"))
+}
+```
+
+
+
+
+# Lec01 - Mon 2/13: Introduction
+
+## 

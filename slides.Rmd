@@ -5,6 +5,7 @@ date: "Last updated on `r Sys.Date()`"
 output:
   ioslides_presentation:
     df_print: kable
+    incremental: true
   html_document:
     toc: true
     toc_float: true
@@ -21,7 +22,7 @@ output:
 h1{font-weight: bold;}
 h2{color: #3399ff;}
 h3{color: #3399ff;}
-slides > slide.backdrop {background: white;}
+slides slide.backdrop {background: white;}
 </style>
 
 ```{r setup, include=FALSE}
@@ -40,8 +41,8 @@ if(FALSE){
 
 ## Course Title
 
-> * In catalog: Introduction to Statistical Sciences
-> * New: Introduction to Statistical **and Data** Sciences
+* In catalog: Introduction to Statistical Sciences
+* New: Introduction to Statistical **and Data** Sciences
 
 
 
@@ -53,8 +54,8 @@ if(FALSE){
 
 ## Data Science
 
-> * Example domains: biology, economics, physics, sociology, etc.
-> * So why the title switch?
+* Example domains: biology, economics, physics, sociology, etc.
+* So why the title switch?
 
 
 ## Dialogue with Student 
@@ -65,7 +66,7 @@ I have gene expression data in this excel file. How would I run some of the meth
 http://www.ios7text.com/em78xa
 -->
 
-> ![](./assets/figure/dialogue_1.png)
+![](./assets/figure/dialogue_1.png)
 
 
 
@@ -75,16 +76,16 @@ Have students engage in the data/science research pipeline in as faithful a
 manner as possible while maintaining a level [suitable for
 novices](http://arxiv.org/abs/1507.05346).  
 
-> * Cobb: Minimizing prerequisites to research
-> * Not necessarily publishing in top journals, but **answering scientific questions with data**.
-> * Difficult to do research without understanding stats, however
+* Cobb: Minimizing prerequisites to research
+* Not necessarily publishing in top journals, but **answering scientific questions with data**.
+* Difficult to do research without understanding stats, however
 
 
 ## Data/Science Research Pipeline
 
 We will, as best we can, perform all this:
 
-> ![](./assets/figure/pipeline.png)
+![](./assets/figure/pipeline.png)
 
 
 ## Data/Science Research Pipeline
@@ -101,12 +102,12 @@ Foster a conceptual understanding of statistical topics and methods using
 [simulation/resampling](https://www.amstat.org/education/pdfs/ResamplingUndergradCurriculum.pdf)
 and real data whenever possible, rather than mathematical formulae.
 
-> * Whenever we can, use real data
-> * "Classroom data are like teddy bears and real data are like a grizzly bear with salmon blood dripping out its mouth."
-> * Example data set: [nycflights](https://github.com/hadley/nycflights13)
-> * There are two "engines" that can make statistics "work"
->     + Mathematics: formulas, approximations, etc
->     + Computers: simulations, random number generation 
+* Whenever we can, use real data
+* "Classroom data are like teddy bears and real data are like a grizzly bear with salmon blood dripping out its mouth."
+* Example data set: [nycflights](https://github.com/hadley/nycflights13)
+* There are two "engines" that can make statistics "work"
+    + Mathematics: formulas, approximations, etc
+    + Computers: simulations, random number generation 
 
 
 
@@ -116,18 +117,18 @@ and real data whenever possible, rather than mathematical formulae.
 
 In this course, computers and not math will be the "engine". What does this mean?
 
-> * Less of this:  
-> <img src="./assets/figure/formulas.png" alt="Drawing" style="width: 300px;"/> 
-> * But more of this:  
-> <img src="./assets/figure/coding.jpg" alt="Drawing" style="width: 300px;"/> 
+* Less of this:  
+<img src="./assets/figure/formulas.png" alt="Drawing" style="width: 300px;"/>
+* But more of this:  
+<img src="./assets/figure/coding.jpg" alt="Drawing" style="width: 300px;"/>
 
 
 
 ## Programming/Coding
 
-> * Previous programming/coding experience **is not a prerequisite to this course**
-> * This course is **NOT** a course on programming, coding, nor computer science
-> * You will however be exposed to basic **computational and algorithmic** thinking
+* Previous programming/coding experience **is not a prerequisite to this course**
+* This course is **NOT** a course on programming, coding, nor computer science
+* You will however be exposed to basic **computational and algorithmic** thinking
 
 
 
@@ -140,8 +141,8 @@ by incorporating more [computational and algorithmic
 thinking](http://www.stat.berkeley.edu/~statcur/Preprints/ComputingCurric3.pdf) 
 into the syllabus.
 
-> * Completely separate lecture and labs is a legacy of a time before  
-> <img src="./assets/figure/laptop.png" alt="Drawing" style="width: 300px;"/> 
+* Completely separate lecture and labs is a legacy of a time before  
+<img src="./assets/figure/laptop.png" alt="Drawing" style="width: 300px;"/>
 
 
 
@@ -149,9 +150,9 @@ into the syllabus.
 
 ## RStudio Server
 
-> * Not all laptops are created equal: operating system, processing power, age
-> * RStudio Server: cloud-based version of RStudio where all processing is done on Middlebury servers
-> * [`go/rstudio/`](https://rstudio.middlebury.edu/) (on campus or via VPN)
+* Not all laptops are created equal: operating system, processing power, age
+* RStudio Server: cloud-based version of RStudio where all processing is done on Middlebury servers
+* [`go/rstudio/`](https://rstudio.middlebury.edu/) (on campus or via VPN)
 
 
 
@@ -160,10 +161,10 @@ into the syllabus.
 
 **Undirected** time to
 
-> * Set aside to help people get up to speed with computing
-> * It is like learning a language.
-> * Learn from each other.
-> * Collaborate on problem sets (due on Fridays)
+* Set aside to help people get up to speed with computing
+* It is like learning a language.
+* Learn from each other.
+* Collaborate on problem sets (due on Fridays)
 
 
 ## Course Objective #5
@@ -173,26 +174,26 @@ literacy](https://en.wikipedia.org/wiki/Statistical_literacy) by, among other
 ways, tying in the curriculum to current events, demonstrating the importance
 statistics plays in society.
 
-> * H.G. Wells (paraphrased): "Statistical thinking will one day be as necessary for efficient citizenship as the ability to read and write."
-> * Me: "Sure, it's easy to lie with statistics. But it's also hard to tell the truth without them."
+* H.G. Wells (paraphrased): "Statistical thinking will one day be as necessary for efficient citizenship as the ability to read and write."
+* Me: "Sure, it's easy to lie with statistics. But it's also hard to tell the truth without them."
 
 
 
 
 ## Data Visualization and EDA
 
-> - EDA = Exploratory data analysis
-> - **"Data visualization is a gateway drug to statistics."**
-> - Prez from Season 4 of "The Wire":
-> - <center><img src="./assets/figure/Prez.png" height="300px"/></center>
+* EDA = Exploratory data analysis
+* **"Data visualization is a gateway drug to statistics."**
+* Prez from Season 4 of "The Wire":
+* <center><img src="./assets/figure/Prez.png" height="300px"/></center>
 
 
 
 ## Final Project
 
-> - ~~Final exam~~
-> - Capstone experience to align this topics and principles of this course with how research and learning is done in practice.
-> - Work on interpersonal and collaborative skills. No textbook on that!
+* ~~Final exam~~
+* Capstone experience to align this topics and principles of this course with how research and learning is done in practice.
+* Work on interpersonal and collaborative skills. No textbook on that!
 
 
 

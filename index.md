@@ -6,10 +6,10 @@ layout: default
 
 <img src="./assets/figure/pipeline.png" alt="Drawing" style="width: 700px;" border="1"/>
 
-# Lectures
+# Topics
 
 * Running <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">slide deck</a> (also in <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>).
-* Learning Checks
+* Learning check <a target="_blank" class="page-link" href="{{ site.baseurl }}/LC.html">discussions</a>.
 
 
 
