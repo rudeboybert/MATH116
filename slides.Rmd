@@ -1,5 +1,5 @@
 ---
-title: "Intro to Statistial & Data Sciences"
+title: "Intro to Statistial and Data Sciences"
 author: "Albert Y. Kim"
 date: "Last updated on `r Sys.Date()`"
 output:
@@ -29,8 +29,9 @@ slides slide.backdrop {background: white;}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 if(FALSE){
-  rmarkdown::render("slides.Rmd", output_format = c("html_document", "ioslides_presentation"))
+  #rmarkdown::render("slides.Rmd", output_format = c("html_document", "ioslides_presentation"))
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
+  
 }
 ```
 
