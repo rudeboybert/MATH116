@@ -16,11 +16,9 @@ Assistant Professor of Statistics
     + MWF 11:15–12:05 in Warner 506 and Th 11:00-12:15 in McCardell Bicentennial Hall 530. 
     + You do not need to inform me of absences. Please consult your peers for
     what you missed.
-* **Office Hours:** Warner 310 or the math lounge just outside. Note that office hours for 
-[MATH 218 Statistical Learning](https://rudeboybert.github.io/MATH216/) occur concurrently.
-    + M 1:00-4:00 and W 1:00-4:00
+* **Office Hours:** Warner 310 or the math lounge just outside. 
+    + M 1:00-4:00 and W 1:00-4:00 (concurrent with [MATH 218 office hours](https://rudeboybert.github.io/MATH218/))
     + Or by appointment
-
 
 
 
@@ -58,17 +56,6 @@ literacy](https://en.wikipedia.org/wiki/Statistical_literacy) by, among other
 ways, tying in the curriculum to current events, demonstrating the importance
 statistics plays in society.
 
-<!-- Prior to 2016-09
-
-This is an introductory probability and statistics class where a conceptual understanding of the material will be stressed.  Goals of this course include:
-
-* Expose students to statistical concepts, including sampling, data visualizations, confidence intervals, hypothesis tests, and regression.
-* Give students experience manipulating and analyzing data using the R statistical software package.
-* Introduce the theory underlying statistics, including probability, distributions, the central limit theorem, etc.
-* Develop statistical literacy.
-* Tie in the curriculum to current events, demonstrating the importance statistics plays in society.
--->
-
 
 
 
@@ -76,7 +63,7 @@ This is an introductory probability and statistics class where a conceptual unde
 ## Topics
 
 Roughly speaking we will cover the following topics (a more detailed outline can be found
-[here](https://docs.google.com/spreadsheets/d/1qy21hHMbjYfv65IL5DwxID0nEltXgOD6h52hBVwWa_s/edit#gid=0)):
+[here](https://docs.google.com/spreadsheets/d/1B4r6x1H9NQXSS-5MzYg3ho5gyMa8wIbP4WEFAzg_Yik/pubhtml?gid=0&single=true)):
 
 1. Introduction and Tools (R, RStudio, and R Markdown)
 1. Data:
@@ -97,28 +84,17 @@ Roughly speaking we will cover the following topics (a more detailed outline can
 
 ## Materials
 
-#### 1) Textbooks
-
-* An Introduction to Statistical and Data Sciences by Kim and Ismay available [online](https://rudeboybert.github.io/IntroStatDataSciences/).
-* Intro Stat with Randomization and Simulation 1st edition by Diez, Barr, and
-Cetinkaya-Rundel available
-    + Online at the [OpenIntro
-    webpage](https://www.openintro.org/stat/textbook.php?stat_book=isrs) in both
-    standard and tablet friendly PDF formats.
-    + In print at the Middlebury bookstore and 
-    [Amazon](https://www.amazon.com/Introductory-Statistics-Randomization-Simulation-David/dp/1500576697).
-
-#### 2) Computing and Software
-
-* Instead of using the desktop version of the RStudio interface to R, we will be
+* **Textbook**: "ModernDive: An Introduction to Statistical and Data Sciences"
+by Ismay and Kim, available at <a target="_blank" class="page-link"
+href="http://www.moderndive.com">http://www.moderndive.com</a>.
+* **Software**: Instead of using the desktop version of the RStudio interface to R, we will be
 using the cloud-based RStudio Server, which you can access in your browser via 
-[go/rstudio](https://rstudio.middlebury.edu/). Note if you are off-campus you 
+[`go/rstudio/`](https://rstudio.middlebury.edu/). Note if you are off-campus you 
 must first log into the [Middlebury 
 VPN](http://mediawiki.middlebury.edu/wiki/LIS/Off-campus_Access).
-* Just like your 
-[middfiles](http://www.middlebury.edu/offices/technology/help/technology/servers/middfiles)
-file server, you can access the files on the RStudio file server by logging onto
-[cifs://rstudio.middlebury.edu](cifs://rstudio.middlebury.edu)
+* **Online**: [DataCamp](https://www.datacamp.com/). A brower based interactive
+tool for learning R and python.
+
 
 
 
@@ -143,8 +119,8 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * Assigned/due on Fridays.
 * Lowest two scores dropped.
-* No email submissions will be accepted; ask a classmate to print it for you.
 * No extensions for any problem sets will be granted. 
+
 
 #### 2) Engagement 10%
 
@@ -163,7 +139,7 @@ items to be graded on.
 
 #### 3) Three Midterms 45%
 
-* Midterm dates: TBD <!--Wed 10/5 (in-class), Wed 10/26 7:30pm, and Wed 11/16 7:30pm.-->
+* Midterm dates: Wed 3/8 (in-class), Wed 4/12 (evening: location TBD), and during finals week.
 * All midterms are cumulative and may require a scientific calculator, so
 please have access to one (no smartphones).
 * There is no extra-credit work to improve midterm scores after the fact.
@@ -183,11 +159,10 @@ analysis project. The project will involving you addressing a scientific
 question by choosing a data set, performing an analysis using the concepts and
 tools we have covered in this course, and writing a report.
 
-* TBD <!-- Due Sun 12/18 at noon.-->
+* Due Tue 5/23 at noon.
 * Groups of no more than three will be assigned by me.
-* A system will be put in place to hold your group peers accountable for their
+* A system will be in place to hold your group peers accountable for their
 work.
-* Complete project details and groups will be addressed on Wed 10/26.
 
 
 

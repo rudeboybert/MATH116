@@ -22,6 +22,13 @@ for learning R.
 * YouTube video on using [R Markdown with RStudio](https://www.youtube.com/watch?v=DNS7i2m4sB0)
 * [R Markdown debugging](https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/edit?usp=sharing) reference sheet
 
+
+## Machine Learning
+
+* Andrew Ng coursera
+*
+
+
 ## Data Science
 
 * [R for Data Science](http://r4ds.had.co.nz/) by Grolemund and Wickham

@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 *.Rproj
+218-Webpage.Rproj
 .sass-cache/*
 _site/*
 *_cache/

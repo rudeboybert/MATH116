@@ -1,8 +1,8 @@
 # Site settings
-title: Intro to Statistical and Data Sciences
+title: Statistical Learning
 email: albert.ys.kim@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Combining statistical and computational thinking to make sense of data.
+  An introduction to statistical and machine learning.
 baseurl: /MATH116
 url: https://rudeboybert.github.io
 urllabel: "Albert Y. Kim's Webpage"

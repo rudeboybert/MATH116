@@ -6,15 +6,33 @@ layout: default
 
 <img src="./assets/figure/pipeline.png" alt="Drawing" style="width: 700px;" border="1"/>
 
-# 2017 Spring Topic List
+# Lectures
 
-In reverse chronological order. A more detailed outline can be found in this <a target="_blank" class="page-link" href="https://docs.google.com/spreadsheets/d/1B4r6x1H9NQXSS-5MzYg3ho5gyMa8wIbP4WEFAzg_Yik/pubhtml?gid=0&single=true">Google Sheet</a>.
+Lectures will be a combination of chalk talks and <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">a running slide deck</a>, the latter being also available in:
+  
+* <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>
+* <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.Rmd">R Markdown `.Rmd` source code</a>
+
 
 
 
 ## 4. Regression
 
+## 3. Statistical Inference
+
+## 2. Data
+
+## 1. Introduction & Tools
+
+* **Lec01 - Mon 2/13** Getting Started: We discuss the syllabus and the pedogical thinking behind its design and introduce R and RStudio.
+
+
+
 <!--
+
+## 4. Regression
+
+
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %d %y" %}
@@ -27,14 +45,14 @@ In reverse chronological order. A more detailed outline can be found in this <a 
     {% endif %}
   {% endfor %}
 </ul> 
--->
+
 
 
 
 
 ## 3. Statistical Inference
 
-<!--
+
 ### c) Confidence Intervals
 
 
@@ -93,7 +111,7 @@ In reverse chronological order. A more detailed outline can be found in this <a 
     {% endif %}
   {% endfor %}
 </ul> 
--->
+
 
 
 
@@ -101,7 +119,7 @@ In reverse chronological order. A more detailed outline can be found in this <a 
 ## 2. Data
 
 
-<!--
+
 ### d) Importing Data (Note Lec18 is here)
 
 <ul>
@@ -169,7 +187,7 @@ In reverse chronological order. A more detailed outline can be found in this <a 
     {% endif %}
   {% endfor %}
 </ul>  
--->
+
 
 
 
@@ -178,7 +196,7 @@ In reverse chronological order. A more detailed outline can be found in this <a 
 ## 1. Introduction & Tools
 
 
-<!--
+
 <ul>
   {% for post in site.posts %}
     {% assign current_date = post.date | date: "%m %d" %}

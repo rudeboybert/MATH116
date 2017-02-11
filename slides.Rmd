@@ -1,0 +1,170 @@
+---
+title: "Intro to Statistial & Data Sciences"
+author: "Albert Y. Kim"
+date: "Last updated on `r Sys.Date()`"
+output:
+  ioslides_presentation:
+    df_print: kable
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    theme: cosmo
+    highlight: tango
+    df_print: paged
+    pandoc_args: [
+      "--output=notes.html"
+    ]
+---
+
+<style>
+h1{font-weight: bold;}
+h2{color: #3399ff;}
+h3{color: #3399ff;}
+slides > slide.backdrop {background: white;}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+if(FALSE){
+  rmarkdown::render("slides.Rmd", output_format = c("html_document", "ioslides_presentation"))
+  rmarkdown::render("slides.Rmd", output_format = c("html_document"))
+}
+```
+
+
+
+
+
+# Lec01 - Mon 2/13: Introduction
+
+## What is statistical/machine learning?
+
+yoyo
+
+
+## Unchartered Territory
+
+
+
+
+
+
+<!--
+# Lec04: 2/22 - Stat Background
+
+
+## Quarterly Results {.tabset}
+
+### By Product
+asdfasd
+
+### By Region
+
+asdfa
+
+
+
+## Testing
+
+```{r}
+mtcars
+```
+
+
+## Dinner {.flexbox .vcenter}
+
+
+asdfasdf  
+asdfadfas  
+asdfasdf  
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. `rnorm()`
+
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r}
+plot(pressure)
+```
+
+
+
+
+
+
+
+
+
+
+# Lec03: 2/20
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. `rnorm()`
+
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r}
+plot(pressure)
+```
+
+
+
+
+
+
+
+
+
+
+# Lec02: 2/15
+
+## R Markdown
+
+Testing
+
+
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+
+-->
