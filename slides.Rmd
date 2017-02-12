@@ -185,12 +185,14 @@ statistics plays in society.
 
 
 
+<!--
 ## Data Visualization and EDA
 
 * EDA = Exploratory data analysis
 * **"Data visualization is a gateway drug to statistics."**
 * Prez from Season 4 of HBO's "The Wire":
 * <center><img src="./assets/figure/Prez.png" height="300px"/></center>
+-->
 
 
 
@@ -198,6 +200,19 @@ statistics plays in society.
 
 * Capstone experience to align this topics and principles of this course with how research and learning is done in practice.
 * Work on interpersonal and collaborative skills. No textbook on that!
+
+
+
+## Lecture Format
+
+Either
+
+* **Lab format**: With laptop
+    + You sit in groups of 4
+    + I'll talk for 10-15 minutes before you work on learning checks
+* **Chalk talk**: Old-school
+    + Keep desk in rows
+    + More traditional lecture format
 
 
 

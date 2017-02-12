@@ -21,6 +21,7 @@ layout: default
 
 ## 1. Introduction & Tools
 
+* Wed Feb 15 - No Lecture
 * Mon Feb 13 - Lec01 Getting Started: We discuss the syllabus and the pedogical thinking behind its design and introduce R & RStudio.
     + Please ensure you've completed the following survey on <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeMrj9k7nI2iHURuqgStWligJ9HLOoPE8aG7TwjFOxwfC4wpg/viewform">Google Forms</a>
     + Problem Set 01 posted.
