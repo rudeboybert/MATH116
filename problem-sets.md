@@ -9,6 +9,27 @@ own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
+### Problem Set 01
+
+* **Info:**
+    + Assigned Mon 2/13
+    + Due Thu 2/16 11am
+* **Learning Goals:**
+    + Getting familiar with working from command line and the R workflow
+    + Learn R-specific terminology
+* **Notes**:
+    + Don't focus on memorizing anything for now, just complete the assignment.
+    + If you find yourself spinning your wheels, let me know.
+* **Homework:**
+    + Accept email invitation to new assigment on DataCamp.
+    + Complete the DataCamp course "Introduction to R".
+
+
+
+
+
+
+
 
 <!--
 <br>

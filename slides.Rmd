@@ -37,7 +37,6 @@ if(FALSE){
 
 
 
-
 # Lec01 - Mon 2/13: Introduction
 
 ## Course Title
@@ -57,6 +56,7 @@ if(FALSE){
 
 * Example domains: biology, economics, physics, sociology, etc.
 * So why the title switch?
+
 
 
 ## Dialogue with Student 
@@ -82,11 +82,13 @@ novices](http://arxiv.org/abs/1507.05346).
 * Difficult to do research without understanding stats, however
 
 
+
 ## Data/Science Research Pipeline
 
 We will, as best we can, perform all this:
 
 ![](./assets/figure/pipeline.png)
+
 
 
 ## Data/Science Research Pipeline
@@ -104,13 +106,10 @@ Foster a conceptual understanding of statistical topics and methods using
 and real data whenever possible, rather than mathematical formulae.
 
 * Whenever we can, use real data
-* "Classroom data are like teddy bears and real data are like a grizzly bear with salmon blood dripping out its mouth."
-* Example data set: [nycflights](https://github.com/hadley/nycflights13)
+* Example data set: [nycflights13](https://github.com/hadley/nycflights13)
 * There are two "engines" that can make statistics "work"
     + Mathematics: formulas, approximations, etc
     + Computers: simulations, random number generation 
-
-
 
 
 
@@ -128,10 +127,16 @@ In this course, computers and not math will be the "engine". What does this mean
 ## Programming/Coding
 
 * Previous programming/coding experience **is not a prerequisite to this course**
-* This course is **NOT** a course on programming, coding, nor computer science
-* You will however be exposed to basic **computational and algorithmic** thinking
+* This course is not an explicit course on programming, coding, nor computer science. But we will use some elements. 
+* Also you will be exposed to basic **algorithmic thinking and computational logic**
+* Learning R is like learning a foreign language: its really hard at first!
 
 
+
+## Two Simple Rules of Learning Code
+
+* Computers are stupid!
+* When learning, take existing code that works, and tweak it!
 
 
 
@@ -147,8 +152,6 @@ into the syllabus.
 
 
 
-
-
 ## RStudio Server
 
 * Not all laptops are created equal: operating system, processing power, age
@@ -157,7 +160,7 @@ into the syllabus.
 
 
 
-
+<!--
 ## Thursday Lab Time
 
 **Undirected** time to
@@ -166,6 +169,8 @@ into the syllabus.
 * It is like learning a language.
 * Learn from each other.
 * Collaborate on problem sets (due on Fridays)
+-->
+
 
 
 ## Course Objective #5
@@ -180,24 +185,72 @@ statistics plays in society.
 
 
 
-
 ## Data Visualization and EDA
 
 * EDA = Exploratory data analysis
 * **"Data visualization is a gateway drug to statistics."**
-* Prez from Season 4 of "The Wire":
+* Prez from Season 4 of HBO's "The Wire":
 * <center><img src="./assets/figure/Prez.png" height="300px"/></center>
 
 
 
 ## Final Project
 
-* ~~Final exam~~
 * Capstone experience to align this topics and principles of this course with how research and learning is done in practice.
 * Work on interpersonal and collaborative skills. No textbook on that!
 
 
 
-## What is R vs RStudio?
+## Let's Build our Toolbox
 
-[Google Doc](https://docs.google.com/presentation/d/1TboL5JVHmGhKPI8OIVwQsM9vET-cLmw_mWgbNOe73sg/edit#slide=id.p4>)
+<center><img src="./assets/figure/tools.jpg" height="400px"/><c/enter>
+
+
+
+## R, RStudio, and DataCamp
+
+* R: Software behind the scenes i.e. **the engine**
+* RStudio: Intergrated development environment i.e. **the interface**
+* DataCamp: Browser-based learning tool i.e. **the driver's ed teacher**
+
+
+
+## Analogy
+
+R            |  RStudio |  DataCamp
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="./assets/figure/engine.jpg" alt="Drawing" style="width: 200px;"/>  |  <img src="./assets/figure/dashboard.jpg" alt="Drawing" style="width: 200px;"/>  |  <img src="./assets/figure/instructor.jpg" alt="Drawing" style="width: 200px;"/>
+
+
+
+## Test Drive RStudio
+
+> * Login to [`go/rstudio/`](https://rstudio.middlebury.edu/auth-sign-in) with your Midd account
+> * If you don't have access, raise your hand. (Username: guest1, password: rstudioguest)
+> * In RStudio menu bar -> File -> New File -> R Script
+
+
+
+## The Four Panels
+
+1. Console: Crunch numbers in R
+1. Files, Packages, Help: See your files, install packages, help files
+1. Editor: Where you'll write code and save it
+1. Environment: Your workspace
+
+
+
+## Important: Console
+
+> * This is where you run/execute commands
+> * The ">" is the prompt.  It means R is ready to receive commands
+> * If you don’t see a ">" and want to restart, press ESC.
+
+
+
+## Switching Gears
+
+Now we will use R via DataCamp instead of via RStudio, but just for driver's ed. Two panels exist in both:
+
+1. Editor panel: Where you write code
+1. Console panel: Where you will execute code
