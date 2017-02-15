@@ -8,10 +8,9 @@ permalink: /syllabus/
 
 * **Instructor:** [Albert Y. Kim](https://rudeboybert.github.io/) -
 Assistant Professor of Statistics
-* **Email:** [aykim@middlebury.edu](aykim@middlebury.edu)
-    + I will respond to emails within 24h, but not during weekends.
-    + Please only email me with administrative and briefer questions as I prefer
-    addressing more substantive questions in person.
+* **~~Email:~~** ~~[aykim@middlebury.edu](aykim@middlebury.edu)~~ **Slack team**: <a target="_blank" class="page-link" href="https://midd-math116.slack.com/">midd-math116.slack.com</a>
+    + I will respond to ~~emails~~ Slack messages within 24h, but not during weekends.
+    + Please only ~~email~~ Slack message me with administrative and briefer questions as I prefer addressing more substantive questions in person.
 * **Class Location/Time:**
     + MWF 11:15–12:05 in Warner 506 and Th 11:00-12:15 in McCardell Bicentennial Hall 530. 
     + You do not need to inform me of absences. Please consult your peers for
