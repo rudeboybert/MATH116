@@ -14,7 +14,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * **Info:**
     + Assigned Thu 2/16
     + Due: Fri 2/24 11:15am
-* **Homework:** Complete the following chapters from DataCamp course "Intermediate R" (in this order):
+* **Homework:** Complete the following three chapters (in this order) from the DataCamp course <a target="_blank" class="page-link" href="https://www.datacamp.com/courses/intermediate-r">"Intermediate R"</a>:
     1. Conditionals and Control Flow
     1. Loops
     1. Functions
@@ -35,7 +35,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     + Due Thu 2/16 11am
 * **Homework:**
     + Accept email invitation to new assigment on DataCamp.
-    + Complete the DataCamp course "Introduction to R".
+    + Complete the DataCamp course <a target="_blank" class="page-link" href="https://www.datacamp.com/courses/free-introduction-to-r">"Introduction to R"</a>.
 * **Learning Goals:**
     + Getting familiar with working from command line and the R workflow.
     + Learn R-specific terminology.

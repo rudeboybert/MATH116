@@ -20,17 +20,99 @@ slides > slide.backdrop {background: white;}
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library(tidyverse)
-if(FALSE){
-  rmarkdown::render("slides.Rmd", output_format = c("html_document", "ioslides_presentation"))
-  rmarkdown::render("slides.Rmd", output_format = c("html_document"))
-}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+<!----------------------------------------------------------------------------->
+# Lec02 - Thu 2/16: R Packages
+
+You will be getting your first experience with:
+
+* RStudio: The Dashboard
+* R Packages: Extending the functionality
+* `View()`: A command for viewing your data
+* R Scripts: Text files to save your work
 
 
-# Lec01 - Mon 2/13: Introduction
+## Setting Up
 
-## 
+As described in today's lecture slides, in RStudio
+
+1. Install the `ggplot2`, `dplyr`, and `babynames` packages.
+1. Load the `ggplot2`, `dplyr`, and `babynames` packages.
+
+
+## `View()` Your Data
+
+Load the `babynames` dataset in the RStudio viewer by running the following in 
+the console. You should get in the habit of **always** `View()`ing your data first!
+
+```{r, eval=FALSE}
+View(babynames)
+```
+
+* Scroll through the viewer to get an overall feel for your data:
+* Filter your data in the viewer
+    + Click on the **Filter** button
+    + Click in the white boxes under the variable names and
+        + Play with any sliders for numerical variables: year, n, prop
+        + Enter in values to view subsets of rows: sex, name
+
+
+## R Scripts
+
+There are two ways to run commands in the R console: Either
+
+1. Typing them directly in the console and pressing enter.
+1. Typing them in an *R Script* (which you can save) and passing them to the console.
+
+Do the following:
+
+* In RStudio menu bar -> File -> New File -> R Script
+* Save the file as `babynames`. Note:
+    + A file extension `.R` gets added: `babynames.R`
+    + You should see this file in your File panel:
+* Cut/paste the contents of the grey block below into `babynames.R` and save it again.
+* Run the code that loads packages in the console by highlighting it and pressing
+    + Mac users: COMMAND+ENTER
+    + PC users: CTRL+ENTER
+
+
+```{r, eval=FALSE}
+# This bit of code loads packages.
+library(ggplot2)
+library(dplyr)
+library(babynames)
+
+# The code below shows the popularity trend for the name "Jeffrey" amongst 
+# males. Switch the name/sex variable values that get assigned and explore the 
+# popularity of different names. 
+# 
+# You do not need to understand this code for now. Just run it.
+baby_name <- "Jeffrey"
+baby_sex <- "M"
+
+single_name <- babynames %>% 
+  filter(name==baby_name & sex==baby_sex)
+
+ggplot(data=single_name, mapping = aes(x=year, y=prop)) + 
+  geom_line() +
+  xlim(c(1880, 2014)) +
+  ylim(c(0, NA)) +
+  xlab("Year") +
+  ylab(paste("Prop. of ", baby_sex, " born with name ", baby_name, sep=""))
+```
+
+
+## Today's Exercise
+
+Investigate your hypothesized names that are "modern", "old-fashioned", and "back in vogue" by
+
+* Changing only what gets assigned to
+    + `baby_name`
+    + `baby_sex`
+* Running the appropriate lines of code in the console.
+
+
+
