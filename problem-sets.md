@@ -9,20 +9,40 @@ own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
+### Problem Set 02
+
+* **Info:**
+    + Assigned Thu 2/16
+    + Due: Fri 2/24 11:15am
+* **Homework:** Complete the following chapters from DataCamp course "Intermediate R" (in this order):
+    1. Conditionals and Control Flow
+    1. Loops
+    1. Functions
+* **Learning Goals:**
+    + Getting more experience with the R command line.
+    + Expanding our toolbox!
+* **Notes**:
+    + Again, don't focus on memorizing anything; just get a feel for things.
+    + If you are feeling lost/overwhelmed, speak to me sooner than later!
+
+    
+
+
 ### Problem Set 01
 
 * **Info:**
     + Assigned Mon 2/13
     + Due Thu 2/16 11am
-* **Learning Goals:**
-    + Getting familiar with working from command line and the R workflow
-    + Learn R-specific terminology
-* **Notes**:
-    + Don't focus on memorizing anything for now, just complete the assignment.
-    + If you find yourself spinning your wheels, let me know.
 * **Homework:**
     + Accept email invitation to new assigment on DataCamp.
     + Complete the DataCamp course "Introduction to R".
+* **Learning Goals:**
+    + Getting familiar with working from command line and the R workflow.
+    + Learn R-specific terminology.
+* **Notes**:
+    + Don't focus on memorizing anything for now, just complete the assignment.
+    + If you find yourself spinning your wheels, let me know.
+
 
 
 
