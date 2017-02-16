@@ -8,7 +8,7 @@ layout: default
 
 # Topics
 
-* Running <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">slide deck</a> (also in <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>).
+* <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">Slides</a>. Also in <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>.
 * <a target="_blank" class="page-link" href="{{ site.baseurl }}/LC.html">Learning checks</a>.
 
 

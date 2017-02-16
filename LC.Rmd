@@ -99,7 +99,7 @@ ggplot(data=single_name, aes(x=year, y=prop)) +
   geom_line() +
   xlim(c(1880, 2014)) +
   ylim(c(0, NA)) +
-  labs(x="Year", y="Proportion", title = paste("Proportion of ", baby_sex, " with Name ", baby_name, sep=""))
+  labs(x="Year", y="Proportion", title = paste("Prop of", baby_sex, "Named", baby_name))
 ```
 
 
