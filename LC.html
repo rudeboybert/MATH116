@@ -270,7 +270,7 @@ slides > slide.backdrop {background: white;}
 </ul>
 <div id="setting-up" class="section level2">
 <h2>Setting Up</h2>
-<p>As described in today’s lecture slides in RStudio (not DataCamp):</p>
+<p>As described in today’s lecture slides: In RStudio (not DataCamp):</p>
 <ol style="list-style-type: decimal">
 <li>Install the <code>ggplot2</code>, <code>dplyr</code>, and <code>babynames</code> packages.</li>
 <li>Load the <code>ggplot2</code>, <code>dplyr</code>, and <code>babynames</code> packages.</li>
@@ -306,43 +306,40 @@ slides > slide.backdrop {background: white;}
 <li>Save the file as <code>babynames</code>. Note:
 <ul>
 <li>A file extension <code>.R</code> gets added: <code>babynames.R</code></li>
-<li>You should see this file in your File panel:</li>
+<li>You should see <code>babynames.R</code> in the File panel of RStudio:</li>
 </ul></li>
 <li>Cut/paste the contents of the grey block below into <code>babynames.R</code> and save it again.</li>
-<li>Run the code that loads packages in the console by highlighting it and pressing
+<li>Run all the code in the console by highlighting it and pressing
 <ul>
 <li>Mac users: COMMAND+ENTER</li>
 <li>PC users: CTRL+ENTER</li>
 </ul></li>
+<li>Comment on what you see</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This bit of code loads packages.</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This bit of code loads packages:</span>
 <span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(babynames)
 
 <span class="co"># The code below shows the popularity trend for the name &quot;Jeffrey&quot; amongst </span>
-<span class="co"># males. Switch the name/sex variable values that get assigned and explore the </span>
-<span class="co"># popularity of different names. </span>
-<span class="co"># </span>
-<span class="co"># You do not need to understand this code for now. Just run it.</span>
+<span class="co"># males. You do not need to understand this code for now; Just run it.</span>
 baby_name &lt;-<span class="st"> &quot;Jeffrey&quot;</span>
 baby_sex &lt;-<span class="st"> &quot;M&quot;</span>
 
 single_name &lt;-<span class="st"> </span>babynames %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(name==baby_name &amp;<span class="st"> </span>sex==baby_sex)
 
-<span class="kw">ggplot</span>(<span class="dt">data=</span>single_name, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>prop)) +<span class="st"> </span>
+<span class="kw">ggplot</span>(<span class="dt">data=</span>single_name, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>prop)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>() +
 <span class="st">  </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">1880</span>, <span class="dv">2014</span>)) +
 <span class="st">  </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="ot">NA</span>)) +
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) +
-<span class="st">  </span><span class="kw">ylab</span>(<span class="kw">paste</span>(<span class="st">&quot;Prop. of &quot;</span>, baby_sex, <span class="st">&quot; born with name &quot;</span>, baby_name, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Proportion&quot;</span>, <span class="dt">title =</span> <span class="kw">paste</span>(<span class="st">&quot;Proportion of &quot;</span>, baby_sex, <span class="st">&quot; with Name &quot;</span>, baby_name, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))</code></pre></div>
 </div>
 <div id="todays-exercise" class="section level2">
 <h2>Today’s Exercise</h2>
 <p>Investigate your hypothesized names that are “modern”, “old-fashioned”, and “back in vogue” by</p>
 <ul>
-<li>Changing only what gets assigned to
+<li>Changing <strong>only</strong> what gets assigned to
 <ul>
 <li><code>baby_name</code></li>
 <li><code>baby_sex</code></li>

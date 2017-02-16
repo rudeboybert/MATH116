@@ -38,7 +38,7 @@ You will be getting your first experience with:
 
 ## Setting Up
 
-As described in today's lecture slides in RStudio (not DataCamp):
+As described in today's lecture slides: In RStudio (not DataCamp):
 
 1. Install the `ggplot2`, `dplyr`, and `babynames` packages.
 1. Load the `ggplot2`, `dplyr`, and `babynames` packages.
@@ -82,23 +82,20 @@ Do the following:
 
 
 ```{r, eval=FALSE}
-# This bit of code loads packages.
+# This bit of code loads packages:
 library(ggplot2)
 library(dplyr)
 library(babynames)
 
 # The code below shows the popularity trend for the name "Jeffrey" amongst 
-# males. Switch the name/sex variable values that get assigned and explore the 
-# popularity of different names. 
-# 
-# You do not need to understand this code for now. Just run it.
+# males. You do not need to understand this code for now; Just run it.
 baby_name <- "Jeffrey"
 baby_sex <- "M"
 
 single_name <- babynames %>% 
   filter(name==baby_name & sex==baby_sex)
 
-ggplot(data=single_name, mapping = aes(x=year, y=prop)) + 
+ggplot(data=single_name, aes(x=year, y=prop)) + 
   geom_line() +
   xlim(c(1880, 2014)) +
   ylim(c(0, NA)) +
