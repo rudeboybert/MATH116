@@ -10,7 +10,7 @@ layout: default
 
 * <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">Slides</a>. Also in <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>.
 * <a target="_blank" class="page-link" href="{{ site.baseurl }}/LC.html">Learning checks</a>.
-
+* <a target="_blank" class="page-link" href="http://www.moderndive.com">ModernDive</a> textbook.
 
 
 ## 4. Regression
@@ -19,8 +19,9 @@ layout: default
 
 ## 2. Data
 
+* **Lec03 - Thu 2/16: Intro to Tidy Data**: A common way of representing data
+
 ## 1. Introduction & Tools
 
-* **Thu Feb 16 - Lec02 R Packages**: Extending R's base functionality with packages.
-* **Wed Feb 15: No Lecture**
-* **Mon Feb 13 - Lec01 Getting Started**: We discuss the syllabus, the pedogical thinking behind its design and introduce R, RStudio, and DataCamp.
+* **Lec02 - Thu 2/16: R Packages**: Extending R's base functionality with packages.
+* **Lec01 - Mon 2/13: Introduction**: We discuss the syllabus, the pedogical thinking behind its design and introduce R, RStudio, and DataCamp.

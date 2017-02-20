@@ -33,12 +33,63 @@ slides > slide:not(.nobackground):after {
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(tidyverse)
+set.seed(76)
 if(FALSE){
-  #rmarkdown::render("slides.Rmd", output_format = c("html_document", "ioslides_presentation"))
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
 }
 ```
+
+<!----------------------------------------------------------------------------->
+# Lec03 - Thu 2/16: Intro to Tidy Data
+
+## What is Tidy Data?
+
+* There are many ways to organize data. Today we learn one way: the "tidy data" format.
+* It is rather simple, but deceptively powerful.
+* Equivalent to "long format"
+
+
+## What is Tidy Data?
+
+<img src="http://garrettgman.github.io/images/tidy-1.png" alt="Drawing" style="width: 800px;"/>
+
+1. Each observation forms a row
+1. Each variable forms a column
+1. Each type of observational unit forms a table
+
+
+
+## What is Tidy Data (Advanced)?
+
+1. Each observation forms a row: *In other words, each row corresponds to a single **observational unit***
+1. Each variable forms a column:
+    + *Some of the variables may be used to identify the **observational units**. For organizational purposes, it's generally better to put these in the left-hand columns*
+    + *Some of the variables may be **observed values** associated with each observational unit*
+1. Each type of observational unit forms a table: *Don't mix apples and oranges, keep apples with apples and oranges with oranges*
+
+
+
+## nycflights13 Package
+
+The [`nycflights13`](https://github.com/hadley/nycflights13) package contains
+"tidy data" all 336,776 flights that departed from NYC (e.g. EWR, JFK and LGA) in
+2013.
+
+To help understand what causes delays, it also includes a number of other useful datasets.
+
+* `weather`: hourly meterological data for each airport
+* `planes`: construction information about each plane
+* `airports`: airport names and locations
+* `airlines`: translation between two letter carrier codes and names
+
+
+
+
+
+
+
+
+
 
 <!----------------------------------------------------------------------------->
 # Lec02 - Thu 2/16: R Packages

@@ -25,6 +25,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 <!----------------------------------------------------------------------------->
+# Lec03 - Thu 2/16: Intro to Tidy Data
+
+Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://ismayc.github.io/moderndiver-book/3-tidy.html">Chapter 3 of ModernDive: Tidy Data</a>. You do not need to submit these.
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec02 - Thu 2/16: R Packages
 
 You will be getting your first experience with:
