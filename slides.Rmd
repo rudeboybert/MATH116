@@ -40,7 +40,182 @@ if(FALSE){
 ```
 
 <!----------------------------------------------------------------------------->
-# Lec03 - Thu 2/16: Intro to Tidy Data
+```{r, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(stringr)
+library(ggplot2movies)
+library(nycflights13)
+library(babynames)
+library(fueleconomy)
+library(okcupiddata)
+```
+
+# Lec04 - Wed 2/22: 5NG
+
+## What is a statistical graphic?
+
+* Today we kick off Topic 2.b) **Data Visualization** by asking ourselves: What is a statistical graphic?
+* But a brief lesson from military history first
+
+
+## Napoleon's March on Russia in 1812
+
+In 1812, Napoleon led a French invasion of Russia, marching on [Moscow](https://goo.gl/maps/geRyXH3rJcK2).  
+
+<center><img src="./assets/figure/napoleon.jpg" alt="Drawing" style="height: 350px;"/></center>
+
+
+## Napoleon's March on Russia in 1812
+
+It was one of the biggest [military
+disasters](http://www.history.com/news/napoleons-disastrous-invasion-of-russia-200-years-ago)
+ever, in particular b/c of the Russian winter.
+
+<center><img src="./assets/figure/retreat.jpg" alt="Drawing" style="height: 350px;"/></center>
+
+
+## Minard's Illustration of the March
+
+Famous graphical illustration of Napolean's march to/from Moscow
+
+<center><img src="./assets/figure/Minard.png" alt="Drawing" style="width: 800px;"/></center>
+
+
+## Minard's Illustration of the March
+
+This was considered a revolution in statistical graphics because between
+
+> * the map on top
+> * the line graph on the bottom
+
+there are 6 dimensions of information (i.e. variables) being displayed on a 2D page.
+
+
+## The Grammar of Graphics
+
+A statistical graphic is a mapping of `data` variables to `aes()`thetic
+attributes of `geom_`etric objects.
+
+
+## Minard's Illustration of the March
+
+Where? | **`data`** | **`aes()`**  | **`geom_`**
+------------- | ------------- | ------------- | -------------
+top map | longitude | **`x`** | **`point`** 
+" | latitude | **`y`** | **`point`** 
+" | army size | **`size`** | **`path`**
+" | army direction (forward vs retreat) | **`color`** | **`path`**
+bottom graph | date | **`x`** | **`line`** & **`text`**
+" | temperature | **`y`** | **`line`** & **`text`**
+
+
+## Grammar of Graphics
+
+2005 - Proposal            | 2009 - R Implementtation
+:-------------------------:|:-------------------------:
+<img src="./assets/figure/graphics.jpg" height="300px"/>  | <img src="./assets/figure/ggplot2.jpg" height="300px"/>
+
+
+## Name this Graph
+
+From `ggplot2movies` package, the `movies` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+# Scatterplot i.e. bivariate plot
+movies %>% 
+  ggplot(data=., aes(x=budget, y=rating)) +
+  geom_point() +
+  labs(x="Movie Budget", y="IMDB Rating", title="IMDB Rating vs Budget")
+```
+
+
+## Name this Graph
+
+From `nycflights13` package, the `flights` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+# Line graph
+flights %>% 
+  mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
+  filter(month==1) %>% 
+  group_by(date) %>% 
+  tally() %>% 
+  ggplot(data=., aes(x=date, y=n)) + 
+  labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
+  geom_line()
+```
+
+
+## Name this Graph
+
+From `fueleconomy` package, the `vehicles` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+# Boxplot
+vehicles %>% 
+  mutate(trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic")) %>% 
+  ggplot(data=., aes(x=trans2, y=hwy)) +
+  geom_boxplot() +
+  labs(y="Highway Mileage (miles/gallon)", x="Transmission Type",
+       title="Highway Mileage of all Car Models 1984-2015") +
+  coord_cartesian(ylim=c(5, 45))
+```
+
+
+## Name this Graph
+
+From `babynames` package, the `babynames` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+# Bar Chart
+babynames %>% 
+  mutate(decade = round(year / 10) * 10) %>% 
+  filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
+  filter(decade >= 1990) %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  ggplot(data=., aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
+```
+
+
+## Name this Graph
+
+From `okcupiddata` package, the `profiles` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+# Histogram
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram() +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+
+## 5NG
+
+Say hello to the 5NG: the **five named graphs**
+
+1. Scatterplot AKA bivariate plot
+1. Line-graph
+1. Boxplot
+1. Barplot AKA Barchart AKA bargraph
+1. Histogram
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec03 - Mon 2/20: Tidy Data
 
 ## What is Tidy Data?
 

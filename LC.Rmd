@@ -25,9 +25,43 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 <!----------------------------------------------------------------------------->
-# Lec03 - Thu 2/16: Intro to Tidy Data
+# Lec04 - Wed 2/22: 5NG
+
+Based on the 5NG examples in today's slides
+
+* **Learning Check 1**: Following the example of Napoleon's march, identify the elements of the Grammar of Graphics:
+    1. identify the `data` variables being displayed and what type of variable they are
+    1. identify the `aes()`thetic attribute of the `geom_`etric object the above `data` variables are being mapped to
+* **Learning Check 2**: Answer the following questions:
+    1. Does spending more on a movie yield higher IMDB ratings?
+    1. Why are there drops in the number of flights?
+    1. Click <a target="_blank" class="page-link" href="http://www.datavizcatalogue.com/methods/images/anatomy/box_plot.png">here</a> for an explanation of boxplots. About what proportion of manual car models sold between 1984 and 2015 got 20 mpg or worse mileage?
+    1. About how many babies were named "Hayden" between 1990-2014?
+    1. What are the smallest and largest visible heights and what do you think of them? Also, think of one graph improvement to better convey information about SF OkCupid users.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec03 - Mon 2/20: Tidy Data
 
 Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://ismayc.github.io/moderndiver-book/3-tidy.html">Chapter 3 of ModernDive: Tidy Data</a>. You do not need to submit these.
+
+## Discussion
+
+
 
 
 

@@ -19,9 +19,15 @@ layout: default
 
 ## 2. Data
 
-* **Lec03 - Thu 2/16: Intro to Tidy Data**: A common way of representing data
+### b) Visualization
+
+* Lec04 - Wed 2/22: 5NG. Constructing statistical graphics in a 'grammatical' fashion and introducing the Five Named Graphs.
+
+### a) Representation
+
+* Lec03 - Mon 2/20: Tidy Data. A common way of representing data
 
 ## 1. Introduction & Tools
 
-* **Lec02 - Thu 2/16: R Packages**: Extending R's base functionality with packages.
-* **Lec01 - Mon 2/13: Introduction**: We discuss the syllabus, the pedogical thinking behind its design and introduce R, RStudio, and DataCamp.
+* Lec02 - Thu 2/16: R Packages. Extending R's base functionality with packages.
+* Lec01 - Mon 2/13: Introduction. We discuss the syllabus, the pedogical thinking behind its design and introduce R, RStudio, and DataCamp.
