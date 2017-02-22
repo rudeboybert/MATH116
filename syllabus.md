@@ -12,7 +12,7 @@ Assistant Professor of Statistics
     + I will respond to ~~emails~~ Slack messages within 24h, but not during weekends.
     + Please only ~~email~~ Slack message me with administrative and briefer questions as I prefer addressing more substantive questions in person.
 * **Class Location/Time:**
-    + MWF 11:15–12:05 in Warner 506 and Th 11:00-12:15 in McCardell Bicentennial Hall 530. 
+    + MWF 11:15–12:05 in Warner 506 and Th 11:00-12:15 in McCardell Bicentennial Hall ~~530~~ (changed to) 503. 
     + You do not need to inform me of absences. Please consult your peers for
     what you missed.
 * **Office Hours:** Warner 310 or the math lounge just outside. 
