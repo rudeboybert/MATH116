@@ -61,6 +61,91 @@ Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://
 
 ## Discussion
 
+**3.1** 3.2 is an example!
+
+**3.2** Since there are three variable at play (Date, Price, Stock Name), there should be three columns!
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+data.frame(
+  Date = as.Date('2009-01-01') + 0:4,
+  Boeing = paste("$", c("173.55", "172.61", "173.86", "170.77", "174.29"), sep=""),
+  Amazon = paste("$", c("174.90", "171.42", "171.58", "173.89", "170.16"), sep=""),
+  Google = paste("$", c("174.34", "170.04", "173.65", "174.87", "172.19") ,sep="")
+) %>% 
+  gather(`Stock Name`, Price, -Date) %>% 
+  knitr::kable()
+```
+
+**3.3 What does any ONE row in thd `flights` dataset refer to?**  Data on a flight. Not a flight path! Example: 
+
+* a flight path would be United 1545 to Houston
+* a flight would be United 1545 to Houston *2013/1/1 at 5:15am*
+
+
+**3.4 What are some examples in this dataset of categorical variables? What makes them different than quantitative variables?**
+
+Hint: Type `?flights` in the console to see what all the variables mean!
+
+* Cateogorical:
+    + `carrier` the company
+    + `dest` the destination
+    + `flight` the flight number. Even though this is a number, its simply a label. Example United 1545 isn't "less than" United 1714
+* Quantitative:
+    + `distance` the distance in miles
+    + `time_hour` time
+
+**3.5 What does `int`, `dbl`, and `chr` mean in the output above?** 
+
+* `int`: integer. Used to count things i.e. a discrete value. Ex: the # of cars parked in a lot
+* `dbl`: double. Used to measure things. i.e. a continuous value. Ex: your height in inches
+* `chr`: character. i.e. text
+
+
+**3.6 & 3.7** 19 columns (variables) and 336,776 rows (observations i.e. flights)
+
+**3.8** `weather`, `planes`, `airports`, `airlines` data sets.
+
+The observational units, i.e. what each row corresponds to:
+
+* `weather`: weather at a given `origin` (EWR, JFK, LGA) for a given hour i.e. `year`, `month`, `day`, `hour`
+* `planes`: a physical aircraft
+* `airports`: an airport in the US
+* `airlines`: an airline company
+
+**3.9** See `?airports` help file
+
+**3.10** Identification Variables
+
+* In the `weather` example in LC3.8, the combination of `origin`, `year`, `month`, `day`, `hour`  are identification variables as they identify the observation in question.
+* Anything else pertains to observations: `temp`, `humid`, `wind_speed`, etc.
+
+**3.11 What are common characteristics of “tidy” datasets?** Described in Lecture slides.
+
+**3.12 What makes “tidy” datasets useful for organizing data?** Organized way of viewing data. We'll see later that this format is required for the `ggplot2` and `dplyr` packages for data visualization and manipulation.
+
+**3.13** There are 2 variables below, but what does each row correspond to? We don't know b/c there are no identification variables.
+
+```{r, echo=FALSE, message=FALSE}
+students <- c(4, 6)
+faculty <- c(2, 3)
+data_frame("students" = students, "faculty" = faculty) %>% 
+  knitr::kable()
+```
+
+**3.14** We need at least a third variable to identify the observations. For example a variable "Department".
+
+**3.15** Sociology example
+
+* Each row is a member of a university.
+* Variables are the columns
+* `TRUE` and `FALSE`. This is called a logical variable AKA a boolean variable. `1` and `0` can also be used
+
+**3.16** We can easily `_join` them with other data sets! For example, can we join the `flights` data with the `planes` data?  We'll see this more in Chapter 4!
+
+
+
+****
 
 
 

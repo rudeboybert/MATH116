@@ -21,6 +21,7 @@ layout: default
 
 ### b) Visualization
 
+* Lec05 - Fri 2/24:
 * Lec04 - Wed 2/22: 5NG. Constructing statistical graphics in a 'grammatical' fashion and introducing the Five Named Graphs.
 
 ### a) Representation

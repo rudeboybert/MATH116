@@ -246,7 +246,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learning Checks</h1>
 <h4 class="author"><em>Albert Y. Kim</em></h4>
-<h4 class="date"><em>Last updated on 2017-02-21</em></h4>
+<h4 class="date"><em>Last updated on 2017-02-22</em></h4>
 
 </div>
 
@@ -283,6 +283,165 @@ slides > slide.backdrop {background: white;}
 <p>Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://ismayc.github.io/moderndiver-book/3-tidy.html">Chapter 3 of ModernDive: Tidy Data</a>. You do not need to submit these.</p>
 <div id="discussion" class="section level2">
 <h2>Discussion</h2>
+<p><strong>3.1</strong> 3.2 is an example!</p>
+<p><strong>3.2</strong> Since there are three variable at play (Date, Price, Stock Name), there should be three columns!</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Date</th>
+<th align="left">Stock Name</th>
+<th align="left">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2009-01-01</td>
+<td align="left">Boeing</td>
+<td align="left">$173.55</td>
+</tr>
+<tr class="even">
+<td align="left">2009-01-02</td>
+<td align="left">Boeing</td>
+<td align="left">$172.61</td>
+</tr>
+<tr class="odd">
+<td align="left">2009-01-03</td>
+<td align="left">Boeing</td>
+<td align="left">$173.86</td>
+</tr>
+<tr class="even">
+<td align="left">2009-01-04</td>
+<td align="left">Boeing</td>
+<td align="left">$170.77</td>
+</tr>
+<tr class="odd">
+<td align="left">2009-01-05</td>
+<td align="left">Boeing</td>
+<td align="left">$174.29</td>
+</tr>
+<tr class="even">
+<td align="left">2009-01-01</td>
+<td align="left">Amazon</td>
+<td align="left">$174.90</td>
+</tr>
+<tr class="odd">
+<td align="left">2009-01-02</td>
+<td align="left">Amazon</td>
+<td align="left">$171.42</td>
+</tr>
+<tr class="even">
+<td align="left">2009-01-03</td>
+<td align="left">Amazon</td>
+<td align="left">$171.58</td>
+</tr>
+<tr class="odd">
+<td align="left">2009-01-04</td>
+<td align="left">Amazon</td>
+<td align="left">$173.89</td>
+</tr>
+<tr class="even">
+<td align="left">2009-01-05</td>
+<td align="left">Amazon</td>
+<td align="left">$170.16</td>
+</tr>
+<tr class="odd">
+<td align="left">2009-01-01</td>
+<td align="left">Google</td>
+<td align="left">$174.34</td>
+</tr>
+<tr class="even">
+<td align="left">2009-01-02</td>
+<td align="left">Google</td>
+<td align="left">$170.04</td>
+</tr>
+<tr class="odd">
+<td align="left">2009-01-03</td>
+<td align="left">Google</td>
+<td align="left">$173.65</td>
+</tr>
+<tr class="even">
+<td align="left">2009-01-04</td>
+<td align="left">Google</td>
+<td align="left">$174.87</td>
+</tr>
+<tr class="odd">
+<td align="left">2009-01-05</td>
+<td align="left">Google</td>
+<td align="left">$172.19</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3.3 What does any ONE row in thd <code>flights</code> dataset refer to?</strong> Data on a flight. Not a flight path! Example:</p>
+<ul>
+<li>a flight path would be United 1545 to Houston</li>
+<li>a flight would be United 1545 to Houston <em>2013/1/1 at 5:15am</em></li>
+</ul>
+<p><strong>3.4 What are some examples in this dataset of categorical variables? What makes them different than quantitative variables?</strong></p>
+<p>Hint: Type <code>?flights</code> in the console to see what all the variables mean!</p>
+<ul>
+<li>Cateogorical:
+<ul>
+<li><code>carrier</code> the company</li>
+<li><code>dest</code> the destination</li>
+<li><code>flight</code> the flight number. Even though this is a number, its simply a label. Example United 1545 isn’t “less than” United 1714</li>
+</ul></li>
+<li>Quantitative:
+<ul>
+<li><code>distance</code> the distance in miles</li>
+<li><code>time_hour</code> time</li>
+</ul></li>
+</ul>
+<p><strong>3.5 What does <code>int</code>, <code>dbl</code>, and <code>chr</code> mean in the output above?</strong></p>
+<ul>
+<li><code>int</code>: integer. Used to count things i.e. a discrete value. Ex: the # of cars parked in a lot</li>
+<li><code>dbl</code>: double. Used to measure things. i.e. a continuous value. Ex: your height in inches</li>
+<li><code>chr</code>: character. i.e. text</li>
+</ul>
+<p><strong>3.6 &amp; 3.7</strong> 19 columns (variables) and 336,776 rows (observations i.e. flights)</p>
+<p><strong>3.8</strong> <code>weather</code>, <code>planes</code>, <code>airports</code>, <code>airlines</code> data sets.</p>
+<p>The observational units, i.e. what each row corresponds to:</p>
+<ul>
+<li><code>weather</code>: weather at a given <code>origin</code> (EWR, JFK, LGA) for a given hour i.e. <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code></li>
+<li><code>planes</code>: a physical aircraft</li>
+<li><code>airports</code>: an airport in the US</li>
+<li><code>airlines</code>: an airline company</li>
+</ul>
+<p><strong>3.9</strong> See <code>?airports</code> help file</p>
+<p><strong>3.10</strong> Identification Variables</p>
+<ul>
+<li>In the <code>weather</code> example in LC3.8, the combination of <code>origin</code>, <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code> are identification variables as they identify the observation in question.</li>
+<li>Anything else pertains to observations: <code>temp</code>, <code>humid</code>, <code>wind_speed</code>, etc.</li>
+</ul>
+<p><strong>3.11 What are common characteristics of “tidy” datasets?</strong> Described in Lecture slides.</p>
+<p><strong>3.12 What makes “tidy” datasets useful for organizing data?</strong> Organized way of viewing data. We’ll see later that this format is required for the <code>ggplot2</code> and <code>dplyr</code> packages for data visualization and manipulation.</p>
+<p><strong>3.13</strong> There are 2 variables below, but what does each row correspond to? We don’t know b/c there are no identification variables.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">students</th>
+<th align="right">faculty</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3.14</strong> We need at least a third variable to identify the observations. For example a variable “Department”.</p>
+<p><strong>3.15</strong> Sociology example</p>
+<ul>
+<li>Each row is a member of a university.</li>
+<li>Variables are the columns</li>
+<li><code>TRUE</code> and <code>FALSE</code>. This is called a logical variable AKA a boolean variable. <code>1</code> and <code>0</code> can also be used</li>
+</ul>
+<p><strong>3.16</strong> We can easily <code>_join</code> them with other data sets! For example, can we join the <code>flights</code> data with the <code>planes</code> data? We’ll see this more in Chapter 4!</p>
+<hr />
 <!----------------------------------------------------------------------------->
 </div>
 </div>
