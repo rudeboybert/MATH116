@@ -74,7 +74,7 @@ simple_ex <-
     A = c(1, 2, 3, 4),
     B = c(1, 2, 3, 4),
     C = c(3, 2, 1, 2),
-    D = c("a", "a", "b", "b")
+    D = c("Hot", "Hot", "Cold", "Cold")
   )
 View(simple_ex)
 
