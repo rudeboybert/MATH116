@@ -18,7 +18,7 @@ Assistant Professor of Statistics
 * **Office Hours:** Warner 310 or the math lounge just outside. 
     + M 1:00-4:00 and W 1:00-4:00 (concurrent with [MATH 218 office hours](https://rudeboybert.github.io/MATH218/))
     + Or by appointment
-
+* **Drop-In Tutoring** CTLR conference room (rear of Davis Library) Thursdays 7pm-9pm. 
 
 
 

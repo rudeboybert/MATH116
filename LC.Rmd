@@ -20,8 +20,75 @@ slides > slide.backdrop {background: white;}
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(
+  echo = FALSE, message = FALSE, warning = FALSE,
+  fig.width=8, fig.height=4.5)
+set.seed(76)
 ```
+
+
+<!----------------------------------------------------------------------------->
+# Lec05 - Thu 2/23: More 5NG
+
+Consider the following data in tidy format:
+
+```{r}
+library(dplyr)
+simple <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("Hot", "Hot", "Cold", "Cold")
+  )
+simple %>% knitr::kable(format="markdown")
+```
+
+Letting
+
+* the `x`-axis correspond to variable `A`
+* the `y`-axis is variable `B`
+
+draw on paper the 5 graphics below:
+
+1. A scatter plot
+1. A scatter plot where the `color` of the points corresponds to `D`
+1. A scatter plot where the `size` of the points corresponds to `C`
+1. A line graph
+1. A line graph where the `color` of the line corresponds to `D`
+
+
+**BONUS**: A little ambitious right now, but see if you can change the code below to
+create the first graphic. I suggest you:
+
+1. Create a new `.R` script file
+1. Cut and paste the code below
+1. Tweak the code from your Editor (not directly in console)
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+library(ggplot2)
+
+simple_ex <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("a", "a", "b", "b")
+  )
+View(simple_ex)
+
+ggplot(data=DATASETNAME, mapping=aes(x=VARIABLENAME, y=VARIABLENAME)) +
+  geom_point()
+```
+
+
+
+
+
+
+
+
 
 
 <!----------------------------------------------------------------------------->
@@ -35,15 +102,230 @@ Based on the 5NG examples in today's slides
 * **Learning Check 2**: Answer the following questions:
     1. Does spending more on a movie yield higher IMDB ratings?
     1. Why are there drops in the number of flights?
+    1. What are the smallest and largest visible heights and what do you think of them? Also, think of one graph improvement to better convey information about SF OkCupid users.
     1. Click <a target="_blank" class="page-link" href="http://www.datavizcatalogue.com/methods/images/anatomy/box_plot.png">here</a> for an explanation of boxplots. About what proportion of manual car models sold between 1984 and 2015 got 20 mpg or worse mileage?
     1. About how many babies were named "Hayden" between 1990-2014?
-    1. What are the smallest and largest visible heights and what do you think of them? Also, think of one graph improvement to better convey information about SF OkCupid users.
+    
+## Discussion
+
+```{r, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(stringr)
+
+library(nycflights13)
+library(ggplot2movies)
+library(okcupiddata)
+library(babynames)
+library(fueleconomy)
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+### 5NG#1: Scatterplot
+
+```{r}
+# Scatterplot i.e. bivariate plot
+movies <- movies %>% 
+  select(title, budget, rating)  
+
+ggplot(data=movies, aes(x=budget, y=rating)) +
+  geom_point() +
+  labs(x="Movie Budget", y="IMDB Rating", title="IMDB Rating vs Budget")
+```
+
+Let's look at a random sample of 3 of the movies:
+
+```{r}
+# Scatterplot i.e. bivariate plot
+movies %>% 
+  filter(!is.na(budget)) %>% 
+  sample_n(3) %>% 
+  kable()
+```
+
+**Both variables are numerical**. Here are the components of the Grammar of Graphics:
+
+`data` variable | `aes()`thetic attribute  | `geom_`etric object
+------------- | ------------- | -------------
+`budget` | `x` | `point` 
+`rating` | `y` | `point` 
+
+**Question: Does spending more on a movie yield higher IMDB ratings?**
+
+```{r}
+ggplot(data=movies, aes(x=budget, y=rating)) +
+  geom_point() +
+  labs(x="Movie Budget", y="IMDB Rating", title="IMDB Rating vs Budget") +
+  geom_smooth(method="lm", se=FALSE)
+```
 
 
 
 
+### 5NG#2: Linegraph
+
+```{r}
+# Line graph
+flights <- flights %>% 
+  mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
+  filter(month==1) %>% 
+  group_by(date) %>% 
+  tally()
+  
+ggplot(data=flights, aes(x=date, y=n)) + 
+  labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
+  geom_line()
+```
 
 
+Let's look at a random sample of 3 of the dates:
+
+```{r}
+# Scatterplot i.e. bivariate plot
+flights %>% 
+  sample_n(3) %>% 
+  kable()
+```
+
+**Both variables are numerical (dates are technically numerical since they are an abstraction of time)**. Here are the components of the Grammar of Graphics:
+
+`data` variable | `aes()`thetic attribute  | `geom_`etric object
+------------- | ------------- | -------------
+`date` | `x` | `line` 
+`n` | `y` | `line` 
+
+**Note**: Why did we use `line` as the `geom_`etric object? Because lines suggest sequence/relationship, and points don't.
+
+**Question: Why are there drops in the number of flights?** 2013/01/14 was a Monday.
+
+```{r}
+ggplot(data=flights, aes(x=date, y=n)) + 
+  labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
+  xlim(as.Date(c("2013-01-14", "2013-01-20"))) +
+  geom_line()
+```
+
+
+### 5NG#3: Histogram
+
+```{r}
+# Histogram
+profiles <- profiles %>% 
+  select(sex, height)
+
+ggplot(data=profiles, aes(x=height)) +
+  geom_histogram() +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+Let's look at a random sample of 3 of the users:
+
+```{r}
+# Scatterplot i.e. bivariate plot
+profiles %>% 
+  sample_n(3) %>% 
+  kable(row.names=FALSE)
+```
+
+**Height is numerical**. Here are the components of the Grammar of Graphics:
+
+`data` variable | `aes()`thetic attribute  | `geom_`etric object
+------------- | ------------- | -------------
+`height` | `x` | `histogram` 
+
+
+**Note**: We'll see later there is no `y` aesthetic here, because there is
+no explicit variable that maps to it, but rather it is computed internally.
+
+**Question: What are the smallest and largest visible heights and what do you think of them? Also, think of one graph improvement to better convey information about SF
+OkCupid users.**
+
+```{r}
+ggplot(data=profiles, aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  facet_wrap(~sex, nrow=1) +
+  coord_cartesian(xlim=c(50, 80)) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+
+### 5NG#4: Boxplot
+
+```{r}
+# Boxplot
+vehicles <- vehicles %>% 
+  mutate(
+    trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic"),
+    name = paste(year, make, model)
+    ) %>% 
+  select(name, trans2, hwy) %>% 
+  rename(trans=trans2)
+
+ggplot(data=vehicles, aes(x=trans, y=hwy)) +
+  geom_boxplot() +
+  labs(y="Highway Mileage (miles/gallon)", x="Transmission Type", title="Highway Mileage of all Car Models 1984-2015") +
+  coord_cartesian(ylim=c(5, 45))
+```
+
+Let's look at a random sample of 3 of the car year/make/model matchings:
+
+```{r}
+# Scatterplot i.e. bivariate plot
+vehicles %>% 
+  sample_n(3) %>% 
+  kable()
+```
+
+**`trans` type is categorical, whereas `hwy` is numerical**. Here are the components of the Grammar of Graphics:
+
+`data` variable | `aes()`thetic attribute  | `geom_`etric object
+------------- | ------------- | -------------
+`trans` | `x` | `boxplot` 
+`hwy` | `y` | `boxplot` 
+
+**Question: About what proportion of manual car models sold between 1984 and 2015 got 20 mpg or worse mileage?** Answer: 25%
+
+
+
+### 5NG#5: Bar Plot
+
+```{r}
+# Bar Chart
+babynames <- babynames %>% 
+  mutate(decade = round(year / 10) * 10) %>% 
+  filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
+  filter(decade >= 1990) %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n))
+  
+ggplot(data=babynames, aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
+```
+
+
+Let's look at all the data:
+
+```{r}
+# Scatterplot i.e. bivariate plot
+babynames %>% 
+  kable()
+```
+
+**Name is categorical**. Here are the components of the Grammar of Graphics:
+
+`data` variable | `aes()`thetic attribute  | `geom_`etric object
+------------- | ------------- | -------------
+`name` | `x` | `bar` 
+`n` | `y` | `bar` 
+
+
+**Question: About how many babies were named "Hayden" between 1990-2014?** Answer: 1e+05 is R's shorthand notation for $1 \times 10^5 = 10,000$. To help me remember exponents, I just memorize that $1\times 10^6 = 1,000,000$ i.e. one million.
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(cache=FALSE)
+```
 
 
 
@@ -65,7 +347,7 @@ Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://
 
 **3.2** Since there are three variable at play (Date, Price, Stock Name), there should be three columns!
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r}
 library(tidyverse)
 data.frame(
   Date = as.Date('2009-01-01') + 0:4,
@@ -126,7 +408,7 @@ The observational units, i.e. what each row corresponds to:
 
 **3.13** There are 2 variables below, but what does each row correspond to? We don't know b/c there are no identification variables.
 
-```{r, echo=FALSE, message=FALSE}
+```{r}
 students <- c(4, 6)
 faculty <- c(2, 3)
 data_frame("students" = students, "faculty" = faculty) %>% 

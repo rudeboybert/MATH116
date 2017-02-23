@@ -21,7 +21,7 @@ layout: default
 
 ### b) Visualization
 
-* Lec05 - Fri 2/24:
+* Lec05 - Thu 2/23: More 5NG. Instead of reverse engineering graphics using the grammar, we now forward engineer them.
 * Lec04 - Wed 2/22: 5NG. Constructing statistical graphics in a 'grammatical' fashion and introducing the Five Named Graphs.
 
 ### a) Representation

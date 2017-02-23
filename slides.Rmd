@@ -35,11 +35,72 @@ slides > slide:not(.nobackground):after {
 knitr::opts_chunk$set(echo = FALSE)
 set.seed(76)
 if(FALSE){
+  # Run this line to render the document as running HTML document instead of
+  # slides:
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
 }
 ```
 
 <!----------------------------------------------------------------------------->
+# Lec05 - Thu 2/23: More 5NG
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+
+## Refresher: The Grammar of Graphics
+
+A statistical graphic is a mapping of `data` variables to `aes()`thetic
+attributes of `geom_`etric objects.
+
+
+## Refresher: 5NG
+
+The **five named graphs** we'll see in this class. Note: I reordered them from last time to be easiest to hardest to work with:
+
+1. Scatterplot AKA bivariate plot
+1. Line-graph
+1. Histogram
+1. Boxplot
+1. Barplot AKA Barchart AKA bargraph
+
+
+## Data Visualization via ggplot2 Package
+
+* We are building up to doing data visualization in R via the `ggplot2` package
+* Last time we reverse-engineered the grammar from graphical outputs
+* Today we (forward) engineer them
+
+
+## Today's Data
+
+In tidy format: 
+
+```{r}
+simple <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("Hot", "Hot", "Cold", "Cold")
+  )
+simple %>% kable(format="markdown")
+```
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec04 - Wed 2/22: 5NG
+
 ```{r, include=FALSE}
 library(tidyverse)
 library(lubridate)
@@ -50,8 +111,6 @@ library(babynames)
 library(fueleconomy)
 library(okcupiddata)
 ```
-
-# Lec04 - Wed 2/22: 5NG
 
 ## What is a statistical graphic?
 
@@ -149,6 +208,19 @@ flights %>%
 
 ## Name this Graph
 
+From `okcupiddata` package, the `profiles` data set:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+# Histogram
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram() +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+
+## Name this Graph
+
 From `fueleconomy` package, the `vehicles` data set:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
@@ -181,28 +253,15 @@ babynames %>%
 ```
 
 
-## Name this Graph
-
-From `okcupiddata` package, the `profiles` data set:
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
-# Histogram
-profiles %>% 
-  ggplot(data=., aes(x=height)) +
-  geom_histogram() +
-  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
-```
-
-
 ## 5NG
 
 Say hello to the 5NG: the **five named graphs**
 
 1. Scatterplot AKA bivariate plot
 1. Line-graph
+1. Histogram
 1. Boxplot
 1. Barplot AKA Barchart AKA bargraph
-1. Histogram
 
 
 
