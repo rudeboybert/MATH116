@@ -38,7 +38,8 @@ if(FALSE){
   # Run this line to render the document as running HTML document instead of
   # slides:
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
-}
+  knitr::purl("slides.Rmd")
+  }
 ```
 
 <!----------------------------------------------------------------------------->
@@ -60,11 +61,11 @@ attributes of `geom_`etric objects.
 
 The **five named graphs** we'll see in this class. Note: I reordered them from last time to be easiest to hardest to work with:
 
-1. Scatterplot AKA bivariate plot
-1. Line-graph
-1. Histogram
-1. Boxplot
-1. Barplot AKA Barchart AKA bargraph
+> 1. Scatterplot AKA bivariate plot
+> 1. Line-graph
+> 1. Histogram
+> 1. Boxplot
+> 1. Barplot AKA Barchart AKA bargraph
 
 
 ## Data Visualization via ggplot2 Package

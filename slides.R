@@ -1,0 +1,81 @@
+## ----setup, include=FALSE------------------------------------------------
+knitr::opts_chunk$set(echo = FALSE)
+set.seed(76)
+if(FALSE){
+  # Run this line to render the document as running HTML document instead of
+  # slides:
+  rmarkdown::render("slides.Rmd", output_format = c("html_document"))
+  knitr::purl("slides.Rmd")
+  }
+
+## ---- echo=FALSE, message=FALSE, warning=FALSE---------------------------
+library(tidyverse)
+library(knitr)
+
+## ------------------------------------------------------------------------
+simple <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("Hot", "Hot", "Cold", "Cold")
+  )
+simple %>% kable(format="markdown")
+
+## ---- include=FALSE------------------------------------------------------
+library(tidyverse)
+library(lubridate)
+library(stringr)
+library(ggplot2movies)
+library(nycflights13)
+library(babynames)
+library(fueleconomy)
+library(okcupiddata)
+
+## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+# Scatterplot i.e. bivariate plot
+movies %>% 
+  ggplot(data=., aes(x=budget, y=rating)) +
+  geom_point() +
+  labs(x="Movie Budget", y="IMDB Rating", title="IMDB Rating vs Budget")
+
+## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+# Line graph
+flights %>% 
+  mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
+  filter(month==1) %>% 
+  group_by(date) %>% 
+  tally() %>% 
+  ggplot(data=., aes(x=date, y=n)) + 
+  labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
+  geom_line()
+
+## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+# Histogram
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram() +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+
+## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+# Boxplot
+vehicles %>% 
+  mutate(trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic")) %>% 
+  ggplot(data=., aes(x=trans2, y=hwy)) +
+  geom_boxplot() +
+  labs(y="Highway Mileage (miles/gallon)", x="Transmission Type",
+       title="Highway Mileage of all Car Models 1984-2015") +
+  coord_cartesian(ylim=c(5, 45))
+
+## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+# Bar Chart
+babynames %>% 
+  mutate(decade = round(year / 10) * 10) %>% 
+  filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
+  filter(decade >= 1990) %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  ggplot(data=., aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
+

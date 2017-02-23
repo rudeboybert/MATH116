@@ -260,7 +260,7 @@ slides > slide.backdrop {background: white;}
 <!----------------------------------------------------------------------------->
 <div id="lec05---thu-223-more-5ng" class="section level1">
 <h1>Lec05 - Thu 2/23: More 5NG</h1>
-<p>Consider the following data in tidy format:</p>
+<p><strong>LC1-5</strong> Consider the following data in tidy format:</p>
 <table>
 <thead>
 <tr class="header">
@@ -302,7 +302,7 @@ slides > slide.backdrop {background: white;}
 <li>the <code>x</code>-axis correspond to variable <code>A</code></li>
 <li>the <code>y</code>-axis is variable <code>B</code></li>
 </ul>
-<p>draw on paper the 5 graphics below:</p>
+<p>draw using pen &amp; paper the 5 graphics below:</p>
 <ol style="list-style-type: decimal">
 <li>A scatter plot</li>
 <li>A scatter plot where the <code>color</code> of the points corresponds to <code>D</code></li>
@@ -310,11 +310,11 @@ slides > slide.backdrop {background: white;}
 <li>A line graph</li>
 <li>A line graph where the <code>color</code> of the line corresponds to <code>D</code></li>
 </ol>
-<p><strong>BONUS</strong>: A little ambitious right now, but see if you can change the code below to create the first graphic. I suggest you:</p>
+<p><strong>Reach for the Stars #1:</strong> A little ambitious right now, but see if you can tweak the code below to create baby’s first <code>ggplot2</code> graphic, graphic #1 above: just the scatter plot. I suggest you:</p>
 <ol style="list-style-type: decimal">
 <li>Create a new <code>.R</code> script file</li>
 <li>Cut and paste the code below</li>
-<li>Tweak the code from your Editor (not directly in console)</li>
+<li>Tweak the code in the <code>ggplot()</code> function from your Editor (not directly in console)</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggplot2)
@@ -330,6 +330,11 @@ simple_ex &lt;-
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>DATASETNAME, <span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>VARIABLENAME, <span class="dt">y=</span>VARIABLENAME)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><strong>Reach for the Stars #2:</strong> Even more ambitious right now, but see if you can tweak the same code to make graphic #2 above: a scatter plot where the <code>color</code> of the points corresponds to <code>D</code>. Hint:</p>
+<ul>
+<li>open the help file for <code>geom_point</code> by running <code>?geom_point</code> in the console</li>
+<li>scroll down to the <em>Aesthetics</em> section.</li>
+</ul>
 <!----------------------------------------------------------------------------->
 </div>
 <div id="lec04---wed-222-5ng" class="section level1">

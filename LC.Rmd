@@ -30,7 +30,7 @@ set.seed(76)
 <!----------------------------------------------------------------------------->
 # Lec05 - Thu 2/23: More 5NG
 
-Consider the following data in tidy format:
+**LC1-5** Consider the following data in tidy format:
 
 ```{r}
 library(dplyr)
@@ -49,7 +49,7 @@ Letting
 * the `x`-axis correspond to variable `A`
 * the `y`-axis is variable `B`
 
-draw on paper the 5 graphics below:
+draw using pen & paper the 5 graphics below:
 
 1. A scatter plot
 1. A scatter plot where the `color` of the points corresponds to `D`
@@ -58,12 +58,12 @@ draw on paper the 5 graphics below:
 1. A line graph where the `color` of the line corresponds to `D`
 
 
-**BONUS**: A little ambitious right now, but see if you can change the code below to
-create the first graphic. I suggest you:
+**Reach for the Stars #1:** A little ambitious right now, but see if you can tweak the code below to
+create baby's first `ggplot2` graphic, graphic #1 above: just the scatter plot. I suggest you:
 
 1. Create a new `.R` script file
 1. Cut and paste the code below
-1. Tweak the code from your Editor (not directly in console)
+1. Tweak the code in the `ggplot()` function from your Editor (not directly in console)
 
 ```{r, eval=FALSE, echo=TRUE}
 library(dplyr)
@@ -83,6 +83,10 @@ ggplot(data=DATASETNAME, mapping=aes(x=VARIABLENAME, y=VARIABLENAME)) +
 ```
 
 
+**Reach for the Stars #2:** Even more ambitious right now, but see if you can tweak the same code to make graphic #2 above: a scatter plot where the `color` of the points corresponds to `D`. Hint:
+
+* open the help file for `geom_point` by running `?geom_point` in the console
+* scroll down to the *Aesthetics* section.
 
 
 
