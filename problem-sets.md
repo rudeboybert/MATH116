@@ -9,7 +9,7 @@ own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
-### Problem Set 03 (Incomplete)
+### Problem Set 03
 
 * **Info:**
     + To be posted by the morning of Sat 2/25
