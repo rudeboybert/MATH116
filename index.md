@@ -21,6 +21,7 @@ layout: default
 
 ### b) Visualization
 
+* Lec06 - Fri 2/24: 5NG#1 Scatterplots. We deconstruct scatterplots i.e. `geom_point()`.
 * Lec05 - Thu 2/23: More 5NG. Instead of reverse engineering graphics using the grammar, we now forward engineer them.
 * Lec04 - Wed 2/22: 5NG. Constructing statistical graphics in a 'grammatical' fashion and introducing the Five Named Graphs.
 

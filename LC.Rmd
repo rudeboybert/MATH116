@@ -28,6 +28,20 @@ set.seed(76)
 
 
 <!----------------------------------------------------------------------------->
+# Lec06 - Fri 2/24: 5NG#1 Scatterplots
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec05 - Thu 2/23: More 5NG
 
 **LC1-5** Consider the following data in tidy format:
@@ -88,6 +102,43 @@ ggplot(data=DATASETNAME, mapping=aes(x=VARIABLENAME, y=VARIABLENAME)) +
 * open the help file for `geom_point` by running `?geom_point` in the console
 * scroll down to the *Aesthetics* section.
 
+## Discussion
+
+**LC1-5**: Chalk Talk
+
+**Reach for the Stars #1:**
+
+```{r, echo=FALSE}
+library(dplyr)
+library(ggplot2)
+
+simple_ex <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("Hot", "Hot", "Cold", "Cold")
+  )
+```
+
+
+```{r, echo=TRUE}
+ggplot(data=simple_ex, mapping=aes(x=A, y=B)) +
+  geom_point()
+```
+
+**Reach for the Stars #2:**
+
+```{r, echo=TRUE}
+ggplot(data=simple_ex, mapping=aes(x=A, y=B, color=D)) +
+  geom_point()
+```
+
+**Notice**:
+
+1. We simply added `color=D` in the `aes()`thetic mapping statement!
+1. How Cold gets mapped to red and Hot to blue. Computers don't know one color
+represents heat better than another! How do you change these colors? We'll see later; let's keep things simple for now
 
 
 
