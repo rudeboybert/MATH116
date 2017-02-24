@@ -6,10 +6,9 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: /MATH116
 url: https://rudeboybert.github.io
 urllabel: "Albert Y. Kim's Webpage"
-bookurl: https://rudeboybert.github.io/ModernDive/
 
 # Build settings
 markdown: kramdown
 github_username: rudeboybert
 future: true
-timezone: UTC+4
+timezone: UTC-5
