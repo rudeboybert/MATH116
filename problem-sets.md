@@ -9,6 +9,24 @@ own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
+### Problem Set 03 (Incomplete)
+
+* **Info:**
+    + Assigned Fri 2/20
+    + Due: Fri 3/3 11:15am
+* **Homework:** Complete the following three chapters (in this order) from the DataCamp course <a target="_blank" class="page-link" href="https://www.datacamp.com/courses/intermediate-r">"Intermediate R"</a>:
+    1. Conditionals and Control Flow
+    1. Loops
+    1. Functions
+* **Learning Goals:**
+    + Getting more experience with the R command line.
+    + Expanding our toolbox!
+* **Notes**:
+    + Again, don't focus on memorizing anything; just get a feel for things.
+    + If you are feeling lost/overwhelmed, speak to me sooner than later!
+
+
+
 ### Problem Set 02
 
 * **Info:**

@@ -1,5 +1,5 @@
 ## ----setup, include=FALSE------------------------------------------------
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 set.seed(76)
 if(FALSE){
   # Run this line to render the document as running HTML document instead of
@@ -7,6 +7,15 @@ if(FALSE){
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
   knitr::purl("slides.Rmd")
   }
+
+## ------------------------------------------------------------------------
+library(tidyverse)
+library(nycflights13)
+all_alaska_flights <- flights %>% 
+  filter(carrier == "AS")
+ggplot(data = all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  labs(x="Departure Delay", y="Arrival Delay", title="Departure/Arrival Delays for Alaska Airlines 2013 NYC Flights")
 
 ## ---- echo=FALSE, message=FALSE, warning=FALSE---------------------------
 library(tidyverse)

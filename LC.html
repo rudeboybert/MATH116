@@ -246,7 +246,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learning Checks</h1>
 <h4 class="author"><em>Albert Y. Kim</em></h4>
-<h4 class="date"><em>Last updated on 2017-02-23</em></h4>
+<h4 class="date"><em>Last updated on 2017-02-24</em></h4>
 
 </div>
 
@@ -260,6 +260,16 @@ slides > slide.backdrop {background: white;}
 <!----------------------------------------------------------------------------->
 <div id="lec06---fri-224-5ng1-scatterplots" class="section level1">
 <h1>Lec06 - Fri 2/24: 5NG#1 Scatterplots</h1>
+<p>In ModernDive, LC4.1 thru 4.8 which include in <a target="_blank" class="page-link" href="{{ site.bookurl }}3-tidy.html">Chapter 4</a>:</p>
+<ul>
+<li>Review Readings: Start of Chapter 4 to 4.2</li>
+<li>Chapter 4.3 to 4.3.1: 5NG#1 Scatterplots. Drill down on <code>geom_point()</code></li>
+<li>Chapter 4.3.2: Two ways for dealing with <strong>overplotting</strong>:
+<ol style="list-style-type: decimal">
+<li><code>alpha</code> to control <strong>transparency</strong></li>
+<li><code>geom_jitter()</code>: a variation of <code>geom_point()</code> where we add a little <strong>jitter</strong> (i.e. random noise) to the points to break log-jams</li>
+</ol></li>
+</ul>
 <!----------------------------------------------------------------------------->
 </div>
 <div id="lec05---thu-223-more-5ng" class="section level1">
@@ -392,19 +402,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Network</td>
-<td align="right">3.8e+06</td>
-<td align="right">8.0</td>
+<td align="left">Return with Honor</td>
+<td align="right">1000000</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="even">
-<td align="left">Return to Oz</td>
-<td align="right">2.7e+07</td>
-<td align="right">6.3</td>
+<td align="left">Hulk</td>
+<td align="right">120000000</td>
+<td align="right">6.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Hukkle</td>
-<td align="right">1.0e+05</td>
-<td align="right">7.1</td>
+<td align="left">Black Cat, The</td>
+<td align="right">95745</td>
+<td align="right">7.2</td>
 </tr>
 </tbody>
 </table>
@@ -446,16 +456,16 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2013-01-04</td>
-<td align="right">915</td>
-</tr>
-<tr class="even">
 <td align="left">2013-01-15</td>
 <td align="right">894</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2013-01-23</td>
 <td align="right">897</td>
+</tr>
+<tr class="odd">
+<td align="left">2013-01-09</td>
+<td align="right">902</td>
 </tr>
 </tbody>
 </table>
@@ -499,15 +509,15 @@ simple_ex &lt;-
 <tbody>
 <tr class="odd">
 <td align="left">m</td>
-<td align="right">65</td>
+<td align="right">75</td>
 </tr>
 <tr class="even">
 <td align="left">m</td>
-<td align="right">71</td>
+<td align="right">67</td>
 </tr>
 <tr class="odd">
-<td align="left">m</td>
-<td align="right">67</td>
+<td align="left">f</td>
+<td align="right">58</td>
 </tr>
 </tbody>
 </table>
@@ -546,19 +556,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2001 Mazda B3000</td>
-<td align="left">Automatic</td>
-<td align="right">20</td>
-</tr>
-<tr class="even">
 <td align="left">2007 Jeep Grand Cherokee 2WD</td>
 <td align="left">Automatic</td>
 <td align="right">23</td>
 </tr>
+<tr class="even">
+<td align="left">2010 Suzuki Kizashi S AWD</td>
+<td align="left">Automatic</td>
+<td align="right">30</td>
+</tr>
 <tr class="odd">
-<td align="left">2013 Suzuki Kizashi S</td>
-<td align="left">Manual</td>
-<td align="right">31</td>
+<td align="left">1986 Toyota Truck 4WD</td>
+<td align="left">Automatic</td>
+<td align="right">20</td>
 </tr>
 </tbody>
 </table>

@@ -30,7 +30,13 @@ set.seed(76)
 <!----------------------------------------------------------------------------->
 # Lec06 - Fri 2/24: 5NG#1 Scatterplots
 
+In ModernDive, LC4.1 thru 4.8 which include in <a target="_blank" class="page-link" href="{{ site.bookurl }}3-tidy.html">Chapter 4</a>:
 
+* Review Readings: Start of Chapter 4 to 4.2
+* Chapter 4.3 to 4.3.1: 5NG#1 Scatterplots. Drill down on `geom_point()`
+* Chapter 4.3.2: Two ways for dealing with **overplotting**:
+    1. `alpha` to control **transparency**
+    1. `geom_jitter()`: a variation of `geom_point()` where we add a little **jitter** (i.e. random noise) to the points to break log-jams
 
 
 

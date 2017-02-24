@@ -32,7 +32,7 @@ slides > slide:not(.nobackground):after {
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 set.seed(76)
 if(FALSE){
   # Run this line to render the document as running HTML document instead of
@@ -49,20 +49,36 @@ if(FALSE){
 
 ## Today
 
-1. **Scatterplot AKA bivariate plot**
-1. Line-graph
-1. Histogram
-1. Boxplot
-1. Barplot AKA Barchart AKA bargraph
+> 1. **Scatterplot AKA bivariate plot**
+> 1. Line-graph
+> 1. Histogram
+> 1. Boxplot
+> 1. Barplot AKA Barchart AKA bargraph
 
 
 ## Today
 
-* Drill down on `geom_point()`
-* Introduce two techniques for **over-plotting**. See saw this phenomenon in the [Lec05 Learning Check](https://rudeboybert.github.io/MATH116/assets/LC/5NG.html) discussion.
-    + `alpha` to control **transparency**
-    + `geom_jitter()`: a kind of `geom_point()` where we add a little **jitter** (i.e. random noise) to the points to break log-jams
+What's not great about this plot, especially near (0, 0)?
 
+```{r}
+library(tidyverse)
+library(nycflights13)
+all_alaska_flights <- flights %>% 
+  filter(carrier == "AS")
+ggplot(data = all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  labs(x="Departure Delay", y="Arrival Delay", title="Departure/Arrival Delays for Alaska Airlines 2013 NYC Flights")
+```
+
+
+## Overplotting
+
+This is called overplotting: when points are stacked so densely we can't see what's going on!
+
+There are two ways of dealing with this:
+
+1. Make points a little more transparent
+1. Jiggle the points a little
 
 
 
