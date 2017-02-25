@@ -12,12 +12,28 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 ### Problem Set 03
 
 * **Info:**
-    + To be posted by the morning of Sat 2/25
+    + Assigned Sat 2/25 (one more element to be posted by Sunday)
     + Due: Fri 3/3 11:15am
 * **Homework:** 
+    + Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeYv6TUIKFh9JymvwYGDwzWzsxioUjwSPc9jE34yo7lBbAujQ/viewform">feedback survey</a> on the "Intro to R" and "Intermediate R" courses on DataCamp.
+    + Complete the work in <a href="{{ site.baseurl }}/PS/PS-03.R" target="_blank">`PS-03.R`</a>, saving your work in this file as you will be submitting it. Standby for the submission format.
+    + Another DataCamp course to be posted here by Sunday.
 * **Learning Goals:**
-* **Notes**:
-
+    + Weaning yourselves away from the DataCamp nest and doing your own work in RStudio.
+    + Baby's first data analysis!
+* **Tips**:
+    * *Learning to Code*:
+        1. Computers are stupid: In order for step C of your code to work, you 
+        need to make sure you ran steps A & B first.
+        1. Learning strategy: Tweak existing code in the Learning Checks (go 
+        over them!) to suit your ends; don't code from scratch.
+    * *Working with Data*:
+        1. Always look and explore your data first. In our case with the
+        `View()` function and/or the `glimpse()` function from the `dplyr`
+        package.
+        1. Help files are your friend. Most R functions and datasets have
+        help files. For example, you can access the help file for the `movies` 
+        data set by typing `?movies`.
 
 
 ### Problem Set 02
