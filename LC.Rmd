@@ -28,6 +28,24 @@ set.seed(76)
 
 
 <!----------------------------------------------------------------------------->
+# Lec07 - Mon 2/27: 5NG#2 Linegraphs
+
+In ModernDive, LC4.9 thru 4.13 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#linegraphs">Chapter 4.4</a>. **Hint**: For LC4.10, Google "NYC Timezone" and note the number next to UTC. UTC stands for <a target="_blank" class="page-link" href="https://www.timeanddate.com/time/aboututc.html">Coordinated Universal Time</a>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec06 - Fri 2/24: 5NG#1 Scatterplots
 
 In ModernDive, LC4.1 thru 4.8 which include in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html">Chapter 4</a>:
@@ -37,6 +55,71 @@ In ModernDive, LC4.1 thru 4.8 which include in <a target="_blank" class="page-li
 * Chapter 4.3.2: Two ways for dealing with **overplotting**:
     1. `alpha` to control **transparency**
     1. `geom_jitter()`: a variation of `geom_point()` where we add a little **jitter** (i.e. random noise) to the points to break log-jams
+
+## Discussion
+
+Load necessary data and packages:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+library(dplyr)
+library(ggplot2)
+library(nycflights13)
+data(flights)
+all_alaska_flights <- flights %>% 
+  filter(carrier == "AS")
+```
+
+**LC4.1**: `flights` includes all flights, whereas `all_alaska_flights` only
+includes Alaska Airlines flights. 
+
+
+**LC 4.2-4.6**:
+
+```{r, echo=TRUE}
+ggplot(data=all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
+```
+
+* **4.2**: What are some practical reasons why `dep_delay` and `arr_delay` have a positive relationship? *The later a plane departs, typically the later it will arrive.*
+* **4.3**: What does (0, 0) correspond to from the point of view of a passenger on an Alaskan flight?  Why do you believe there is a cluster of points near (0, 0)? *The point (0,0) means no delay in departure and arrival. From the passenger's point of view, this means the flight was on time. It seems most flights are at least close to being on time.*
+* **4.4**: Create a similar plot, but one showing the relationship between departure time and departure delay. What hypotheses do you have about the patterns you see? *We now put `dep_time` as the `x`-aesthetic and `dep_delay` as the `y`-aesthetic*
+
+```{r, echo=TRUE}
+ggplot(data=all_alaska_flights, aes(x = dep_time, y = dep_delay)) + 
+  geom_point()
+```
+
+**Hint:** Look at Alaska Airlines' route map. In fact, there are only two
+flights paths: Flights 7 and 11 flying from Newark (EWR) to Seattle (SEA).
+
+![alt text](assets/figure/alaska_airlines_map.png)
+
+
+**LC 4.7-4.8**:
+
+```{r alpha, warning=FALSE}
+ggplot(all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
+ggplot(all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point(alpha = 0.2)
+```
+
+* **4.7**: Why is setting the `alpha` argument value useful with scatter-plots? *It thins out the points so we address over-plotting. But more importantly it hints at the (statistical) **density** and **distribution** of the points: where are the points concentrated, where do they occur. We will see more about densities and distributions in Chapter 6 when we switch gears to statistical topics.*
+* **4.8**: After viewing the above plot, give a range of arrival delays and departure delays that occur most frequently?  How has that region changed compared to when you observed the same plot without the `alpha = 0.2` set in lower plot? *The lower plot suggests that most Alaska flights from NYC depart between 12 minutes early and on time and arrive between 50 minutes early and on time.*
+
+
+
+<!--
+1. Compare the "transparency" vs "jitter" approach to dealing with over-plotting above. In this case, which do you prefer?
+-->
+
+```{r, echo=FALSE}
+# ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+#   geom_point(alpha = 0.2)
+# ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+#   geom_jitter(width = 30, height = 30)
+```
+
 
 
 

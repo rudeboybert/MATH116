@@ -12,12 +12,12 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 ### Problem Set 03
 
 * **Info:**
-    + Assigned Sat 2/25 (one more element to be posted by Sunday)
+    + Assigned Sat 2/25
     + Due: Fri 3/3 11:15am
 * **Homework:** 
     + Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeYv6TUIKFh9JymvwYGDwzWzsxioUjwSPc9jE34yo7lBbAujQ/viewform">feedback survey</a> on the "Intro to R" and "Intermediate R" courses on DataCamp.
     + Complete the work in <a href="{{ site.baseurl }}/PS/PS-03.R" target="_blank">`PS-03.R`</a>, saving your work in this file as you will be submitting it. Standby for the submission format.
-    + Another DataCamp course to be posted here by Sunday.
+    + DataCamp course. Standby for email.
 * **Learning Goals:**
     + Weaning yourselves away from the DataCamp nest and doing your own work in RStudio.
     + Baby's first data analysis!

@@ -8,6 +8,25 @@ if(FALSE){
   knitr::purl("slides.Rmd")
   }
 
+## ---- eval=TRUE, echo=FALSE----------------------------------------------
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# Create data frame
+simple_ex <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("Hot", "Hot", "Cold", "Cold")
+  )
+simple_ex
+
+## ---- echo=TRUE, fig.height=3--------------------------------------------
+ggplot(data=simple_ex, aes(x=A, y=B, size=C, color=D )) + 
+  geom_line()
+
 ## ------------------------------------------------------------------------
 library(tidyverse)
 library(nycflights13)
@@ -29,7 +48,7 @@ simple <-
     C = c(3, 2, 1, 2),
     D = c("Hot", "Hot", "Cold", "Cold")
   )
-simple %>% kable(format="markdown")
+simple_ex %>% kable(format="markdown")
 
 ## ---- include=FALSE------------------------------------------------------
 library(tidyverse)

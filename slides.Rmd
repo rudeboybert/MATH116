@@ -45,6 +45,75 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
+# Lec07 - Mon 2/27: 5NG#2 Linegraphs
+
+## Today
+
+> 1. ~~Scatterplot AKA bivariate plot~~
+> 1. **Line-graph**
+> 1. Histogram
+> 1. Boxplot
+> 1. Barplot AKA Barchart AKA bargraph
+
+
+
+## Recall Example Data
+
+```{r, eval=TRUE, echo=FALSE}
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# Create data frame
+simple_ex <-
+  data_frame(
+    A = c(1, 2, 3, 4),
+    B = c(1, 2, 3, 4),
+    C = c(3, 2, 1, 2),
+    D = c("Hot", "Hot", "Cold", "Cold")
+  )
+simple_ex
+```
+
+
+
+## Example 
+
+A statistical graphic is a mapping of `data` variables to `aes()`thetic
+attributes of `geom_`etric objects.
+
+```{r, echo=TRUE, fig.height=3}
+ggplot(data=simple_ex, aes(x=A, y=B, size=C, color=D )) + 
+  geom_line()
+```
+
+<!--
+## Smoothers
+
+Smoothing is a technique that allows us to separate the "signal" from the "noise."
+
+In this [example](http://www.quantdec.com/Excel/Exhibit5.png):
+
+> 1. The dots are the raw data
+> 1. The blue and red lines are smoothers: they pick out the overall **trend**
+> 1. The blue curve is a "smoother" smoother in that is isn't as variable
+
+
+## Smoothing Techniques
+
+There are two general techniques for smoothing:
+
+> 1. A straight line: overall trend
+> 1. A wiggly line: local trends
+-->
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec06 - Fri 2/24: 5NG#1 Scatterplots
 
 ## Today
@@ -132,7 +201,7 @@ simple <-
     C = c(3, 2, 1, 2),
     D = c("Hot", "Hot", "Cold", "Cold")
   )
-simple %>% kable(format="markdown")
+simple_ex %>% kable(format="markdown")
 ```
 
 

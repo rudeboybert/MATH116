@@ -10,7 +10,7 @@ layout: default
 
 * <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">Slides</a>. Also in <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>.
 * <a target="_blank" class="page-link" href="{{ site.baseurl }}/LC.html">Learning checks</a>.
-* <a target="_blank" class="page-link" href="{{ site.bookurl }}">ModernDive</a> textbook. Feedback form <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSd28dfQ6r9DwIBPEErWE4PIxrDOSerhPYSoXmONiUHfrbo2ww/viewform">here</a>.
+* <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/">ModernDive</a> textbook. Feedback form <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSd28dfQ6r9DwIBPEErWE4PIxrDOSerhPYSoXmONiUHfrbo2ww/viewform">here</a>.
 
 
 
@@ -23,6 +23,7 @@ layout: default
 
 ### b) Visualization
 
+* Lec07 - Mon 2/27: 5NG#2 Linegraphs. We deconstruct linegraphs i.e. `geom_line()`.
 * Lec06 - Fri 2/24: 5NG#1 Scatterplots. We deconstruct scatterplots i.e. `geom_point()`.
 * Lec05 - Thu 2/23: More 5NG. Instead of reverse engineering graphics using the grammar, we now forward engineer them.
 * Lec04 - Wed 2/22: 5NG. Constructing statistical graphics in a 'grammatical' fashion and introducing the Five Named Graphs.
