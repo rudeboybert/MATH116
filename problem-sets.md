@@ -17,7 +17,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * **Homework:** 
     + Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeYv6TUIKFh9JymvwYGDwzWzsxioUjwSPc9jE34yo7lBbAujQ/viewform">feedback survey</a> on the "Intro to R" and "Intermediate R" courses on DataCamp.
     + Complete the work in <a href="{{ site.baseurl }}/PS/PS-03.R" target="_blank">`PS-03.R`</a>, saving your work in this file as you will be submitting it. Standby for the submission format.
-    + DataCamp course. Standby for email.
+    + Complete Chapter 2: Tidy Data of <a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>
 * **Learning Goals:**
     + Weaning yourselves away from the DataCamp nest and doing your own work in RStudio.
     + Baby's first data analysis!
