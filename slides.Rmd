@@ -43,6 +43,76 @@ if(FALSE){
 ```
 
 
+<!----------------------------------------------------------------------------->
+# Lec08 - Wed 3/1: 5NG#3 Histograms + Facets
+
+## Today
+
+> 1. ~~Scatterplot AKA bivariate plot~~
+> 1. ~~Line-graph~~
+> 1. **Histogram**
+> 1. Boxplot
+> 1. Barplot AKA Barchart AKA bargraph
+
+
+## Histograms
+
+> * The y-axis displays notions of **relative frequency** i.e. which values 
+occur more than others. This is not a variable in the data set, but rather is 
+computed internally.
+> * Huge definition: they are a visualization of the **statistical 
+distribution** of values.
+
+
+## Recall
+
+From `okcupiddata` package, the `profiles` data set:
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(okcupiddata)
+```
+
+```{r, echo=FALSE, cache=TRUE}
+# Histogram
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+
+## Recall
+
+Cleaned up to only have heights between 55 (5'5'') and 80 (6'8'') inches:
+
+```{r, echo=FALSE, cache=TRUE}
+# Histogram
+profiles %>% 
+  filter(between(height, 55, 80)) %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+```
+
+
+## Interpreting a Histogram
+
+* Binwidths?
+
+
+## Facets
+
+* What are facets?
+
+
+
+
+
+
+
+
+
 
 <!----------------------------------------------------------------------------->
 # Lec07 - Mon 2/27: 5NG#2 Linegraphs
@@ -54,7 +124,6 @@ if(FALSE){
 > 1. Histogram
 > 1. Boxplot
 > 1. Barplot AKA Barchart AKA bargraph
-
 
 
 ## Recall Example Data
@@ -74,7 +143,6 @@ simple_ex <-
   )
 simple_ex
 ```
-
 
 
 ## Example 
@@ -113,6 +181,7 @@ There are two general techniques for smoothing:
 
 
 
+
 <!----------------------------------------------------------------------------->
 # Lec06 - Fri 2/24: 5NG#1 Scatterplots
 
@@ -132,6 +201,9 @@ What's not great about this plot, especially near (0, 0)?
 ```{r}
 library(tidyverse)
 library(nycflights13)
+```
+
+```{r, cache=TRUE}
 all_alaska_flights <- flights %>% 
   filter(carrier == "AS")
 ggplot(data = all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 

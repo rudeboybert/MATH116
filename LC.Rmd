@@ -28,13 +28,42 @@ set.seed(76)
 
 
 <!----------------------------------------------------------------------------->
+# Lec08 - Wed 3/1: 5NG#3 Histograms + Facets
+
+In ModernDive, LC4.14 thru 4.21 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#linegraphs">Chapters 4.5-4.6</a>. 
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec07 - Mon 2/27: 5NG#2 Linegraphs
 
 In ModernDive, LC4.9 thru 4.13 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#linegraphs">Chapter 4.4</a>. **Hint**: For LC4.10, Google "NYC Timezone" and note the number next to UTC. UTC stands for <a target="_blank" class="page-link" href="https://www.timeanddate.com/time/aboututc.html">Coordinated Universal Time</a>.
 
 
+## Discussion
 
+* **LC4.9**: Take a look at both the `weather` and `early_january_weather` data frames by running `View(weather)` and `View(early_january_weather)` in the console. In what respect do these data frames differ? *The rows of `early_january_weather` are a subset of `weather`.*
+* **LC4.10**: The `weather` data is recorded hourly. Why does the `time_hour` variable correctly identify the hour of the measurement whereas the hour variable does not? *Because to uniquely identify an hour, we need the `year`/`month`/`day`/`hour` sequence, whereas there are only 24 possible `hour`'s. Note that in the case of `weather`, there is a timezone bug: the `time_hour` variable is off by 5 hours from the `year`/`month`/`day`/`hour` sequence, since the Eastern Time Zone is 5 hours off UTC.*
+* **LC4.11**: Why should line-graphs be avoided when there is not a clear ordering of the horizontal axis? *Because lines suggest connectedness and ordering.*
+* **LC4.12**: Why are line-graphs frequently used when time is the explanatory variable? *Because time is sequential: subsequent observations are closely related to each other.*
+* **LC4.13**: Plot a time series of a variable other than temp for Newark Airport in the first 15 days of January 2013. *Humidity is a good one to look at, since this very closely related to the cycles of a day.*
 
+```{r, echo=TRUE}
+library(nycflights13)
+library(dplyr)
+library(ggplot2)
+data(weather)
+early_january_weather <- weather %>% 
+  filter(origin == "EWR" & month == 1 & day <= 15)
+ggplot(data = early_january_weather, aes(x = time_hour, y = humid)) +
+  geom_line()
+```
 
 
 

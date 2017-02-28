@@ -8,6 +8,25 @@ if(FALSE){
   knitr::purl("slides.Rmd")
   }
 
+## ---- echo=FALSE---------------------------------------------------------
+library(tidyverse)
+library(okcupiddata)
+
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
+# Histogram
+profiles %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
+# Histogram
+profiles %>% 
+  filter(between(height, 55, 80)) %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
+
 ## ---- eval=TRUE, echo=FALSE----------------------------------------------
 # Load packages
 library(dplyr)
@@ -30,6 +49,8 @@ ggplot(data=simple_ex, aes(x=A, y=B, size=C, color=D )) +
 ## ------------------------------------------------------------------------
 library(tidyverse)
 library(nycflights13)
+
+## ---- cache=TRUE---------------------------------------------------------
 all_alaska_flights <- flights %>% 
   filter(carrier == "AS")
 ggplot(data = all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 

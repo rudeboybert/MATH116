@@ -23,6 +23,7 @@ layout: default
 
 ### b) Visualization
 
+* Lec08 - Wed 3/1: 5NG#3 Histograms + facets. We deconstruct histograms i.e. `geom_histogram()` + We introduce the technique of faceting.
 * Lec07 - Mon 2/27: 5NG#2 Linegraphs. We deconstruct linegraphs i.e. `geom_line()`.
 * Lec06 - Fri 2/24: 5NG#1 Scatterplots. We deconstruct scatterplots i.e. `geom_point()`.
 * Lec05 - Thu 2/23: More 5NG. Instead of reverse engineering graphics using the grammar, we now forward engineer them.
