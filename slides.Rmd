@@ -55,15 +55,6 @@ if(FALSE){
 > 1. Barplot AKA Barchart AKA bargraph
 
 
-## Histograms
-
-> * The y-axis displays notions of **relative frequency** i.e. which values 
-occur more than others. This is not a variable in the data set, but rather is 
-computed internally.
-> * Huge definition: they are a visualization of the **statistical 
-distribution** of values.
-
-
 ## Recall
 
 From `okcupiddata` package, the `profiles` data set:
@@ -84,7 +75,7 @@ profiles %>%
 
 ## Recall
 
-Cleaned up to only have heights between 55 (5'5'') and 80 (6'8'') inches:
+Restricted to heights between 55 (5'5'') and 80 (6'8'') inches:
 
 ```{r, echo=FALSE, cache=TRUE}
 # Histogram
@@ -96,14 +87,47 @@ profiles %>%
 ```
 
 
-## Interpreting a Histogram
+## What Histograms Do
 
-* Binwidths?
+> * The y-axis displays notions of **relative frequency** i.e. which values 
+occur more than others.
+> * Huge definition: they are a visualization of the **statistical 
+distribution** of values.
+
+
+## How Do I Construct Them?
+
+> * We have an `x` aesthetic
+> * Counts on the y-axis not an explicit variable in the data set, but rather are 
+computed internally. i.e. No `y` aesthetic
+> * The shape of a histogram is dependent on the **structure of the bins** on the x-axis.
+
+
+## Chalk Talk:
+
+For values: $-2.5, -1.5, -0.5, 0.5, 1.5, 2.5$
+
+Let's draw histograms using the following binning structures:
+
+> 1. (-3, -2, -1, 0, 1, 2, 3)
+> 1. (-4, -2, 0, 2, 4)
+> 1. (-4, 4)
 
 
 ## Facets
 
-* What are facets?
+Facets allow you split *ANY* plot by a categorical variable. In this case by adding
+`+facet_wrap(~sex)` to the `ggplot()` call
+
+```{r, echo=FALSE, cache=TRUE}
+# Histogram
+profiles %>% 
+  filter(between(height, 55, 80)) %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users") +
+  facet_wrap(~sex)
+```
 
 
 

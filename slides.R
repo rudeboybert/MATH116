@@ -27,6 +27,15 @@ profiles %>%
   geom_histogram(binwidth = 1) +
   labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
 
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
+# Histogram
+profiles %>% 
+  filter(between(height, 55, 80)) %>% 
+  ggplot(data=., aes(x=height)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users") +
+  facet_wrap(~sex)
+
 ## ---- eval=TRUE, echo=FALSE----------------------------------------------
 # Load packages
 library(dplyr)
