@@ -21,6 +21,9 @@ layout: default
 
 ## 2. Data
 
+### c) Manipulation AKA Wrangling
+
+
 ### b) Visualization
 
 * Lec08 - Wed 3/1: 5NG#3 Histograms + facets. We deconstruct histograms i.e. `geom_histogram()` + We introduce the technique of faceting.

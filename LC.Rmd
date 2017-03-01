@@ -21,8 +21,7 @@ slides > slide.backdrop {background: white;}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  echo = FALSE, message = FALSE, warning = FALSE,
-  fig.width=8, fig.height=4.5)
+  echo = FALSE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 set.seed(76)
 ```
 
@@ -30,9 +29,9 @@ set.seed(76)
 <!----------------------------------------------------------------------------->
 # Lec08 - Wed 3/1: 5NG#3 Histograms + Facets
 
-In ModernDive, LC4.14 thru 4.21 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#linegraphs">Chapters 4.5-4.6</a>. 
+In ModernDive, LC4.14 thru 4.21 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#histograms">Chapters 4.5-4.6</a>. 
 
-
+## Discussion
 
 
 
