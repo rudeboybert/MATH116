@@ -44,6 +44,79 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
+# Lec09 - Thu 3/2: 5NG#4 Boxplots
+
+## Today
+
+> 1. ~~Scatterplot AKA bivariate plot~~
+> 1. ~~Line-graph~~
+> 1. ~~Histogram~~
+> 1. **Boxplot**
+> 1. Barplot AKA Barchart AKA bargraph
+
+
+## Example
+
+If I know your name, I can guess your [age](http://fivethirtyeight.com/features/how-to-tell-someones-age-when-all-you-know-is-her-name/). Looking at the handout answer the following questions:
+
+As of Jan 1st, 2014 in the United States
+
+> 1. What can you say about females named Ella vs Zoe?
+> 1. What can you say about males named Aidan vs Oliver?
+> 1. What proportion of male Connors are younger than 16? 
+> 1. What proportion of female Gertrudes are older than 69?
+
+## Statistics Terminology
+
+* The $p^{th}$ **percentile** means p% of observations fall below it.
+* Ex: If 30 years old is the 40th percentile of age, then 40% of people are 30 or younger.
+* The horizontal bars indicate the 3 **quartiles**
+    + 1st quartile = 25th percentile:
+    + 2nd quartile = 50th percentile AKA median. It is a measure of **center**.
+    + 3rd quartile i.e. 75th percentile
+* The width of the bars (3rd quartile - 1st quartile) is the **interquartile range (IQR)**
+    + It contains the middle 50% of observations.
+    + It is a measure of **spread/variability**.
+    
+
+
+## Boxplots
+
+**Chalk Talk**:  <a target="_blank" class="page-link" href="https://en.wikipedia.org/wiki/113th_United_States_Congress">Age of 544 Members of 113th United States Congress</a>:
+
+> * 439 members of House of Representatives
+> * 105 Senators
+
+
+```{r, eval=FALSE}
+library(fivethirtyeight)
+library(tidyverse)
+
+current_congress <- congress_age %>% 
+  filter(congress == 113) %>% 
+  mutate(party=ifelse(party=="D", "Democrat", ifelse(party=="R", "Republican", "Independent")))
+ggplot(current_congress, aes(x=party, y=age)) +
+  geom_boxplot() 
+```
+
+
+## Why Boxplots?
+
+* The babynames example of today are boxplots **without the whiskers**
+* Boxplots, just like histograms, show distributions. But IMO they are better for comparing multiple distributions with a single line.
+* Ex: [Planet Money](http://www.npr.org/sections/money/2015/03/19/394057221/how-much-or-little-the-middle-class-makes-in-30-u-s-cities) article. In this case,
+you can compare cities with a single vertical line.
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec08 - Wed 3/1: 5NG#3 Histograms + Facets
 
 ## Today

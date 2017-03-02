@@ -20,18 +20,129 @@ slides > slide.backdrop {background: white;}
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  echo = FALSE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 set.seed(76)
+library(nycflights13)
+library(dplyr)
+library(ggplot2)
 ```
 
 
 <!----------------------------------------------------------------------------->
-# Lec08 - Wed 3/1: 5NG#3 Histograms + Facets
+# Lec09 - Thu 3/2: 5NG#4 Boxplots
+
+In ModernDive
+
+* Read <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/A-appendixA.html">Appendix A</a>
+* LC4.22 thru 4.25 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#ng4-boxplots">Chapters 4.7</a>
+
+## Discussion
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec08 - Wed 3/1: 5NG#3 Histograms
 
 In ModernDive, LC4.14 thru 4.21 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#histograms">Chapters 4.5-4.6</a>. 
 
 ## Discussion
+
+```{r, echo=TRUE}
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+library(nycflights13)
+
+# Load weather data set in nycflights
+data(weather)
+```
+
+
+### LC 4.14-4.17
+
+**4.14: What does changing the number of bins from 30 to 60 tell us about the distribution of temperatures?**
+
+```{r, echo=TRUE, cache=TRUE}
+ggplot(data = weather, aes(x = temp)) +
+  geom_histogram(bins = 30)
+ggplot(data = weather, aes(x = temp)) +
+  geom_histogram(bins = 60)
+```
+
+The distribution doesn't change much. But by refining the bid width, we see
+that the temperature data has a high degree of accuracy. What do I mean by
+accuracy? Looking at the `temp` variabile by `View(weather)`, we see that the
+precision of each temperature recording is 2 decimal places.
+
+
+**4.15: Would you classify the distribution of temperatures as symmetric or
+skewed?** 
+
+It is rather symmetric, i.e. there are no **long tails** on only one side of the distribution
+
+**4.16: What would you guess is the "center" value in this distribution?  Why
+did you make that choice?**
+
+The center is around 55&deg;F. By running the `summary()` command, we see
+that the mean and median are very similar. In fact, when the distribution is
+symmetric the mean equals the median.
+
+**4.17: Is this data spread out greatly from the center or is it close? Why?**
+
+This can only be answered relatively speaking! Let's pick things to be relative to Seattle, WA temperatures:
+
+![alt text](http://dssni5kiwicxb.cloudfront.net/climate/Washington/Seattle%20Sea-Tac%20Airport/temp.png)
+
+While, it appears that Seattle weather has a similar center of 55&deg;F, its
+temperatures are almost entirely between 35&deg;F and 75&deg;F for a range of
+about 40&deg;F. Seattle temperatures are much less spread out than New York i.e.
+much more consistent over the year. New York on the other hand has much colder
+days in the winter and much hotter days in the summer. Expressed differently,
+the middle 50% of values, as delineated by the interquartile range is 30&deg;F:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+IQR(weather$temp, na.rm=TRUE)
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+summary(weather$temp)
+```
+
+
+### LC 4.18-4.21
+
+**4.18: What other things do you notice about the faceted plot above? How does a
+faceted plot help us see relationships between two variables?**
+
+* Certain months have much more consistent weather (August in particular), while
+others have crazy variability like January and October, representing changes in the seasons.
+* The two variables we are see the relationship of are `temp` and `month`.
+    
+**4.19: What do the numbers 1-12 correspond to in the plot above? What about 25, 50, 75, 100?**
+
+* While month is technically a number between 1-12, we're viewing it as a categorical variable here. Specifically an **ordinal categorical** variable since there is a ordering to the categories
+* 25, 50, 75, 100 are temperatures
+
+**4.20: For which types of datasets would these types of faceted plots not work well in comparing relationships between variables? Give an example describing the variability of the variables and other important characteristics?**
+
+Having histograms split by day would not be great:
+
+* We'd have 365 facets to look at. Way to many.
+* We don't really care about day-to-day fluctuation in weather so much, but maybe more week-to-week variation. We'd like to focus on seasonal trends.
+
+**4.21: Does the `temp` variable in the `weather` data set have a lot of variability? Why do you say that?**
+
+Again, like in LC 4.17, this is a relative question. I would say yes, because in New York City, you have 4 clear seasons with different weather. Whereas in Seattle WA and Portland OR, you have two seasons: summer and rain!
+
+
+
 
 
 
@@ -53,10 +164,8 @@ In ModernDive, LC4.9 thru 4.13 in <a target="_blank" class="page-link" href="htt
 * **LC4.12**: Why are line-graphs frequently used when time is the explanatory variable? *Because time is sequential: subsequent observations are closely related to each other.*
 * **LC4.13**: Plot a time series of a variable other than temp for Newark Airport in the first 15 days of January 2013. *Humidity is a good one to look at, since this very closely related to the cycles of a day.*
 
-```{r, echo=TRUE}
-library(nycflights13)
-library(dplyr)
-library(ggplot2)
+
+```{r, echo=TRUE, cache=TRUE}
 data(weather)
 early_january_weather <- weather %>% 
   filter(origin == "EWR" & month == 1 & day <= 15)
@@ -88,10 +197,12 @@ In ModernDive, LC4.1 thru 4.8 which include in <a target="_blank" class="page-li
 
 Load necessary data and packages:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+```{r, echo=TRUE}
 library(dplyr)
 library(ggplot2)
 library(nycflights13)
+```
+```{r, echo=TRUE, cache=TRUE}
 data(flights)
 all_alaska_flights <- flights %>% 
   filter(carrier == "AS")
@@ -103,7 +214,7 @@ includes Alaska Airlines flights.
 
 **LC 4.2-4.6**:
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, cache=TRUE}
 ggplot(data=all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
   geom_point()
 ```
@@ -112,7 +223,7 @@ ggplot(data=all_alaska_flights, aes(x = dep_delay, y = arr_delay)) +
 * **4.3**: What does (0, 0) correspond to from the point of view of a passenger on an Alaskan flight?  Why do you believe there is a cluster of points near (0, 0)? *The point (0,0) means no delay in departure and arrival. From the passenger's point of view, this means the flight was on time. It seems most flights are at least close to being on time.*
 * **4.4**: Create a similar plot, but one showing the relationship between departure time and departure delay. What hypotheses do you have about the patterns you see? *We now put `dep_time` as the `x`-aesthetic and `dep_delay` as the `y`-aesthetic*
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, cache=TRUE}
 ggplot(data=all_alaska_flights, aes(x = dep_time, y = dep_delay)) + 
   geom_point()
 ```
@@ -125,7 +236,7 @@ flights paths: Flights 7 and 11 flying from Newark (EWR) to Seattle (SEA).
 
 **LC 4.7-4.8**:
 
-```{r alpha, warning=FALSE}
+```{r, cache=TRUE}
 ggplot(all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
   geom_point()
 ggplot(all_alaska_flights, aes(x = dep_delay, y = arr_delay)) + 

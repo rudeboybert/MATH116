@@ -8,6 +8,16 @@ if(FALSE){
   knitr::purl("slides.Rmd")
   }
 
+## ---- eval=FALSE---------------------------------------------------------
+## library(fivethirtyeight)
+## library(tidyverse)
+## 
+## current_congress <- congress_age %>%
+##   filter(congress == 113) %>%
+##   mutate(party=ifelse(party=="D", "Democrat", ifelse(party=="R", "Republican", "Independent")))
+## ggplot(current_congress, aes(x=party, y=age)) +
+##   geom_boxplot()
+
 ## ---- echo=FALSE---------------------------------------------------------
 library(tidyverse)
 library(okcupiddata)
