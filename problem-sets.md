@@ -27,12 +27,14 @@ Discussions on each of the Problem Sets can be found <a target="_blank" class="p
     + Assigned Mon 3/6
     + Due: Fri 3/3 11:15am
 * **Homework:** 
-    + Complete this feedback survey on "Chapter 2: Tidy Data" of the "Effective Data Storytelling using the tidyverse" DataCamp course.
-    + *Ethics*: Listen to <a target="_blank" class="page-link" href="http://www.econtalk.org/archives/2016/10/cathy_oneil_on_1.html">Econ Talk podcast interview</a> (time 1h11m) of <a target="_blank" class="page-link" href="https://mathbabe.org/">Cathy O'Neil</a>, author of <a target="_blank" class="page-link" href="https://weaponsofmathdestructionbook.com/">Weapons of Math Destruction</a>. Explain in two paragraphs Cathy O'Neil's argument of how supposedly objective mathematical/algorithmic models reinforce inequality in the **two of the three** following contexts:
-    1. Crime recidivism
-    2. The thought experiment of hiring in tech firms
-    3. Teacher evaluations
-
+    + Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1Z8Dl7Aa80jk7Eur3V64DlFD-emRS8TGu-Y4OTH4wWB4/viewform">feedback survey</a> on "Chapter 2: Tidy Data" of the "Effective Data Storytelling using the tidyverse" DataCamp course.
+    + *Ethics*:
+        + Listen to <a target="_blank" class="page-link" href="http://www.econtalk.org/archives/2016/10/cathy_oneil_on_1.html">Econ Talk podcast interview</a> (time 1h11m) of <a target="_blank" class="page-link" href="https://mathbabe.org/">Cathy O'Neil</a>, author of <a target="_blank" class="page-link" href="https://weaponsofmathdestructionbook.com/">Weapons of Math Destruction</a>.
+        + Explain in two paragraphs Cathy O'Neil's argument of how supposedly objective mathematical/algorithmic models reinforce inequality in the **two of the three** following contexts:
+            1. Crime recidivism
+            2. The thought experiment of hiring in tech firms
+            3. Teacher evaluations
+        + Save this is a file `PS-04_Discussion_FirstName_LastName.doc` or `.txt` or whatever.
 
 
 
