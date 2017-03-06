@@ -67,7 +67,7 @@ this for you. Write your code here:
 
 a) Comedy is a categorical variable we can split on by assigning a color to
 
-```{r}
+```{r, cache=TRUE}
 ggplot(data=movies, aes(x=year, y=rating, color=Comedy)) +
   geom_point()
 ```
@@ -79,7 +79,7 @@ see more and more of this as the semester progresses. Is that small difference
 **statistically significant**? Hard to tell.
 
 
-```{r}
+```{r, cache=TRUE}
 ggplot(data=movies, aes(x=year, y=rating, col=Comedy)) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE)
@@ -111,7 +111,7 @@ would you tell a parent who is interested in naming their child "Casey"?
 
 a) While we could've made separate plots, its easier to view things on the same plot:
 
-```{r}
+```{r, cache=TRUE}
 ggplot(data=babynames, aes(x=year, y=prop, col=sex)) +
   geom_line()
 ```
