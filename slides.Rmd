@@ -43,6 +43,64 @@ if(FALSE){
 ```
 
 
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec10 - Mon 3/6: Midterm
+
+## Administrative
+
+> * In-class Wed 3/8
+> * Closed book, no calculators
+
+
+## Philosophy
+
+* More conceptual in nature
+* Code: you won't need to write code, but you will need to understand it.
+* Normal curve of distribution of difficulty
+
+
+## Sources
+
+* Lectures 01 through 09 inclusive
+    + Slides from each lecture
+    + Corresponding textbook material
+    + Learning Checks
+    + PS-03
+
+
+## Major Topics
+
+* Tidy data. What are the components?
+* What is the Grammar of Graphics? How do they tie in with `ggplot2`?
+* What are the first four of the 5NG? What are their distinguishing features?
+
+
+## Practice Midterm
+
+* Disclaimer, disclaimer, disclaimer
+* Do not overly interpret the content of this midterm.
+* Rather, view it to get a rough sense of my exam philosophy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!----------------------------------------------------------------------------->
 # Lec09 - Thu 3/2: 5NG#4 Boxplots
 

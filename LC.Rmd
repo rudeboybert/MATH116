@@ -34,9 +34,97 @@ library(ggplot2)
 In ModernDive
 
 * Read <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/A-appendixA.html">Appendix A</a>
-* LC4.22 thru 4.25 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#ng4-boxplots">Chapters 4.7</a>
+* LC4.22 thru 4.25 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#ng4-boxplots">Chapter 4.7</a>
+
 
 ## Discussion
+
+```{r, echo=TRUE}
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+library(nycflights13)
+
+# Load weather data set in nycflights
+data(weather)
+```
+
+### LC 4.22-4.25
+
+**4.22: What does the dot at the bottom of the plot for May correspond to? Explain what might have occurred in May to produce this point.**
+
+```{r, echo=TRUE, cache=TRUE}
+ggplot(data = weather, mapping = aes(x = factor(month), y = temp)) +
+  geom_boxplot()
+```
+
+It appears to be an outlier. Let's revisit the use of the `filter` command to hone in on it. We want all data points
+where the `month` is 5 and `temp<25`
+
+```{r, echo=TRUE, eval=FALSE}
+weather %>% 
+  filter(month==5 & temp < 25)
+```
+
+```{r, echo=FALSE, cache=TRUE}
+weather %>% 
+  filter(month==5 & temp < 25) %>% 
+  knitr::kable()
+```
+
+There appears to be only one hour and only at JFK that recorded 13.1 F (-10.5 C) in the month of May. This is probably a data entry mistake!
+Why wasn't the weather at least similar at EWR (Newark) and LGA (La Guardia)?
+
+
+**4.23: Which months have the highest variability in temperature? What reasons do you think this is?**
+
+We are now interested in the **spread** of the data. One measure some of you may
+have seen previously is the standard deviation. But in this plot we can read off
+the Interquartile Range (IQR):
+
+* The distance from the 1st to the 3rd quartiles i.e. the length of the boxes
+* You can also think of this as the spread of the **middle 50%** of the data
+
+Just from eyeballing it, it seems
+
+* November has the biggest IQR, i.e. the widest box, so has the most variation in temperature
+* August has the smallest IQR, i.e. the narrowest box, so is the most consistent temperature-wise
+
+Here's how we compute the exact IQR values for each month (we'll see this more in depth Chapter 5 of the text):
+
+1. `group` the observations by `month` then
+1. for each `group`, i.e. `month`, `summarise` it by applying the summary statistic function `IQR()`, while making sure to skip over missing data via `na.rm=TRUE` then
+1. `arrange` the table in `desc`ending order of `IQR`
+
+```{r, echo=TRUE, eval=FALSE}
+weather %>% 
+  group_by(month) %>% 
+  summarise(IQR = IQR(temp, na.rm=TRUE)) %>% 
+  arrange(desc(IQR))
+```
+
+```{r, echo=FALSE, cache=TRUE}
+weather %>% 
+  group_by(month) %>% 
+  summarise(IQR = IQR(temp, na.rm=TRUE)) %>% 
+  arrange(desc(IQR)) %>% 
+  knitr::kable()
+```
+
+
+**4.24: We looked at the distribution of a continuous variable over a
+categorical variable here with this boxplot. Why can’t we look at the
+distribution of one continuous variable over the distribution of another
+continuous variable? Say, temperature across pressure, for example?**
+
+Because we need a way to group many continuous observations together, say by grouping
+by month. For pressure, we have near unique values for pressure, i.e. no groups, so we
+can't make boxplots.
+
+
+**4.25: Boxplots provide a simple way to identify outliers. Why may outliers be easier to identify when looking at a boxplot instead of a faceted histogram?**
+
+In a histogram, the bin corresponding to where an outlier lies may not by high enough for us to see. In a boxplot, they are explicitly labelled separately. 
 
 
 

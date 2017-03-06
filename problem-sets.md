@@ -8,6 +8,42 @@ While I encourage you to discuss problem sets with your peers, you must submit y
 own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
+Discussions on each of the Problem Sets can be found <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">here</a>.
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
+### Problem Set 04
+
+* **Info:**
+    + Assigned Mon 3/6
+    + Due: Fri 3/3 11:15am
+* **Homework:** 
+    + Complete this feedback survey on "Chapter 2: Tidy Data" of the "Effective Data Storytelling using the tidyverse" DataCamp course.
+    + *Ethics*: Listen to <a target="_blank" class="page-link" href="http://www.econtalk.org/archives/2016/10/cathy_oneil_on_1.html">Econ Talk podcast interview</a> (time 1h11m) of <a target="_blank" class="page-link" href="https://mathbabe.org/">Cathy O'Neil</a>, author of <a target="_blank" class="page-link" href="https://weaponsofmathdestructionbook.com/">Weapons of Math Destruction</a>. Explain in three paragraphs Cathy O'Neil's argument of how supposedly object mathematical/algorithmic models reinforce inequality in the **two of the three** following contexts:
+    1. Crime recidivism
+    2. The thought experiment of hiring in tech firms
+    3. Teacher evaluations
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
 
 ### Problem Set 03
 
@@ -36,6 +72,17 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
         data set by typing `?movies`.
 
 
+
+<br>
+
+***
+
+<br>
+
+
+
+
+
 ### Problem Set 02
 
 * **Info:**
@@ -52,7 +99,18 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     + Again, don't focus on memorizing anything; just get a feel for things.
     + If you are feeling lost/overwhelmed, speak to me sooner than later!
 
-    
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
 
 
 ### Problem Set 01
