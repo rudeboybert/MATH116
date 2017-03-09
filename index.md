@@ -26,6 +26,7 @@ layout: default
 
 ### b) Visualization
 
+* Lec11 - Thu 3/9: 5NG#5 Barplots. We deconstruct boxplots i.e. `geom_bar()`.
 * Lec10 - Mon 3/6: Midterm I Review (<a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm</a>). 
 * Lec09 - Thu 3/2: 5NG#4 Boxplots. We deconstruct boxplots i.e. `geom_boxplot()`.
 * Lec08 - Wed 3/1: 5NG#3 Histograms + facets. We deconstruct histograms i.e. `geom_histogram()` + We introduce the technique of faceting.

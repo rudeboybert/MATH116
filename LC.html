@@ -246,7 +246,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learning Checks</h1>
 <h4 class="author"><em>Albert Y. Kim</em></h4>
-<h4 class="date"><em>Last updated on 2017-03-06</em></h4>
+<h4 class="date"><em>Last updated on 2017-03-09</em></h4>
 
 </div>
 
@@ -258,6 +258,14 @@ h3{color: #3399ff;}
 slides > slide.backdrop {background: white;}
 </style>
 <!----------------------------------------------------------------------------->
+<div id="lec11---thu-39-5ng5-barplots" class="section level1">
+<h1>Lec11 - Thu 3/9: 5NG#5 Barplots</h1>
+<p>In ModernDive, LC4.27 thru 4.38 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#barplots">Chapters 4.7</a>.</p>
+<div id="discussion" class="section level2">
+<h2>Discussion</h2>
+<!----------------------------------------------------------------------------->
+</div>
+</div>
 <div id="lec09---thu-32-5ng4-boxplots" class="section level1">
 <h1>Lec09 - Thu 3/2: 5NG#4 Boxplots</h1>
 <p>In ModernDive</p>
@@ -265,7 +273,7 @@ slides > slide.backdrop {background: white;}
 <li>Read <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/A-appendixA.html">Appendix A</a></li>
 <li>LC4.22 thru 4.25 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#ng4-boxplots">Chapter 4.7</a></li>
 </ul>
-<div id="discussion" class="section level2">
+<div id="discussion-1" class="section level2">
 <h2>Discussion</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load necessary packages</span>
 <span class="kw">library</span>(ggplot2)
@@ -414,7 +422,7 @@ slides > slide.backdrop {background: white;}
 <div id="lec08---wed-31-5ng3-histograms" class="section level1">
 <h1>Lec08 - Wed 3/1: 5NG#3 Histograms</h1>
 <p>In ModernDive, LC4.14 thru 4.21 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#histograms">Chapters 4.5-4.6</a>.</p>
-<div id="discussion-1" class="section level2">
+<div id="discussion-2" class="section level2">
 <h2>Discussion</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load necessary packages</span>
 <span class="kw">library</span>(ggplot2)
@@ -477,7 +485,7 @@ slides > slide.backdrop {background: white;}
 <div id="lec07---mon-227-5ng2-linegraphs" class="section level1">
 <h1>Lec07 - Mon 2/27: 5NG#2 Linegraphs</h1>
 <p>In ModernDive, LC4.9 thru 4.13 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#linegraphs">Chapter 4.4</a>. <strong>Hint</strong>: For LC4.10, Google “NYC Timezone” and note the number next to UTC. UTC stands for <a target="_blank" class="page-link" href="https://www.timeanddate.com/time/aboututc.html">Coordinated Universal Time</a>.</p>
-<div id="discussion-2" class="section level2">
+<div id="discussion-3" class="section level2">
 <h2>Discussion</h2>
 <ul>
 <li><strong>LC4.9</strong>: Take a look at both the <code>weather</code> and <code>early_january_weather</code> data frames by running <code>View(weather)</code> and <code>View(early_january_weather)</code> in the console. In what respect do these data frames differ? <em>The rows of <code>early_january_weather</code> are a subset of <code>weather</code>.</em></li>
@@ -507,7 +515,7 @@ early_january_weather &lt;-<span class="st"> </span>weather %&gt;%<span class="s
 <li><code>geom_jitter()</code>: a variation of <code>geom_point()</code> where we add a little <strong>jitter</strong> (i.e. random noise) to the points to break log-jams</li>
 </ol></li>
 </ul>
-<div id="discussion-3" class="section level2">
+<div id="discussion-4" class="section level2">
 <h2>Discussion</h2>
 <p>Load necessary data and packages:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
@@ -623,7 +631,7 @@ simple_ex &lt;-
 <li>open the help file for <code>geom_point</code> by running <code>?geom_point</code> in the console</li>
 <li>scroll down to the <em>Aesthetics</em> section.</li>
 </ul>
-<div id="discussion-4" class="section level2">
+<div id="discussion-5" class="section level2">
 <h2>Discussion</h2>
 <p><strong>LC1-5</strong>: Chalk Talk</p>
 <p><strong>Reach for the Stars #1:</strong></p>
@@ -660,7 +668,7 @@ simple_ex &lt;-
 <li>About how many babies were named “Hayden” between 1990-2014?</li>
 </ol></li>
 </ul>
-<div id="discussion-5" class="section level2">
+<div id="discussion-6" class="section level2">
 <h2>Discussion</h2>
 <div id="ng1-scatterplot" class="section level3">
 <h3>5NG#1: Scatterplot</h3>
@@ -676,19 +684,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Return with Honor</td>
-<td align="right">1000000</td>
-<td align="right">8.5</td>
+<td align="left">Network</td>
+<td align="right">3.8e+06</td>
+<td align="right">8.0</td>
 </tr>
 <tr class="even">
-<td align="left">Hulk</td>
-<td align="right">120000000</td>
-<td align="right">6.1</td>
+<td align="left">Return to Oz</td>
+<td align="right">2.7e+07</td>
+<td align="right">6.3</td>
 </tr>
 <tr class="odd">
-<td align="left">Black Cat, The</td>
-<td align="right">95745</td>
-<td align="right">7.2</td>
+<td align="left">Hukkle</td>
+<td align="right">1.0e+05</td>
+<td align="right">7.1</td>
 </tr>
 </tbody>
 </table>
@@ -730,16 +738,16 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">2013-01-04</td>
+<td align="right">915</td>
+</tr>
+<tr class="even">
 <td align="left">2013-01-15</td>
 <td align="right">894</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2013-01-23</td>
 <td align="right">897</td>
-</tr>
-<tr class="odd">
-<td align="left">2013-01-09</td>
-<td align="right">902</td>
 </tr>
 </tbody>
 </table>
@@ -783,15 +791,15 @@ simple_ex &lt;-
 <tbody>
 <tr class="odd">
 <td align="left">m</td>
-<td align="right">75</td>
+<td align="right">65</td>
 </tr>
 <tr class="even">
 <td align="left">m</td>
-<td align="right">67</td>
+<td align="right">71</td>
 </tr>
 <tr class="odd">
-<td align="left">f</td>
-<td align="right">58</td>
+<td align="left">m</td>
+<td align="right">67</td>
 </tr>
 </tbody>
 </table>
@@ -830,19 +838,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">2001 Mazda B3000</td>
+<td align="left">Automatic</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
 <td align="left">2007 Jeep Grand Cherokee 2WD</td>
 <td align="left">Automatic</td>
 <td align="right">23</td>
 </tr>
-<tr class="even">
-<td align="left">2010 Suzuki Kizashi S AWD</td>
-<td align="left">Automatic</td>
-<td align="right">30</td>
-</tr>
 <tr class="odd">
-<td align="left">1986 Toyota Truck 4WD</td>
-<td align="left">Automatic</td>
-<td align="right">20</td>
+<td align="left">2013 Suzuki Kizashi S</td>
+<td align="left">Manual</td>
+<td align="right">31</td>
 </tr>
 </tbody>
 </table>
@@ -926,7 +934,7 @@ simple_ex &lt;-
 <div id="lec03---mon-220-tidy-data" class="section level1">
 <h1>Lec03 - Mon 2/20: Tidy Data</h1>
 <p>Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/3-tidy.html">Chapter 3 of ModernDive: Tidy Data</a>. You do not need to submit these.</p>
-<div id="discussion-6" class="section level2">
+<div id="discussion-7" class="section level2">
 <h2>Discussion</h2>
 <p><strong>3.1</strong> 3.2 is an example!</p>
 <p><strong>3.2</strong> Since there are three variable at play (Date, Price, Stock Name), there should be three columns!</p>

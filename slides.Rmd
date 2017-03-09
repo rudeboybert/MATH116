@@ -47,6 +47,103 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
+# Lec11 - Thu 3/9: 5NG#5 Barplots
+
+## Today
+
+> 1. ~~Scatterplot AKA bivariate plot~~
+> 1. ~~Line-graph~~
+> 1. ~~Histogram~~
+> 1. ~~Boxplot~~
+> 1. **Barplot AKA Barchart AKA bargraph**
+
+
+## Barplots
+
+Recall from first Grammar of Graphics lecture, we displayed
+
+```{r, echo=FALSE, fig.height=4}
+library(tidyverse)
+library(babynames)
+# Bar Chart
+babynames %>% 
+  mutate(decade = round(year / 10) * 10) %>% 
+  filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
+  filter(decade >= 1990) %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  ggplot(data=., aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
+```
+
+
+## Exercise
+
+Say these piecharts represent polls for a local election with 5 candidates at time points A, B, and C:
+
+<img src="assets/figure/piecharts.png" alt="Drawing" style="width: 550px;"/>
+
+Answer the following questions:
+
+* In the first race, is candidate 5 doing better than candidate 4?
+* Who did better between time A and time B, candidate 2 or candidate 4?
+
+
+## Exercise
+
+<!--
+<img src="assets/figure/barplots.png" alt="Drawing" style="width: 700px;"/>
+-->
+
+
+## Barplots
+
+* **y-axis**: Both histograms and barplots display notions of relative frequency/counts
+* **x-axis**:
+    + Histogram: continuous variable
+    + Barplot: **categorical** variable
+* `geom_bar()` is the trickiest of the 5NG, so we'll use it in limited capacity.
+
+
+## Chief Difficulty with Barplots
+
+Two different ways to have counts show on y-axis:
+
+> * Computed internally by `geom_bar()`
+> * Precomputed manually by yourself in your `data` in a variable `count`, `n`, etc.
+
+
+## Example
+
+Counts **are not** pre-computed:
+
+```{r, echo=FALSE}
+x <- data_frame(`Row Number`=1:5, name=c("Albert", "Albert", "Albert", "Mo", "Mo"))
+knitr::kable(x)
+```
+
+
+<!--
+## Example
+
+Counts **are** pre-computed in variable `n`. So `n` becomes a `y` aesthetic variable!
+
+```{r, echo=FALSE}
+x %>% 
+  count(name) %>% 
+  knitr::kable()
+```
+-->
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec10 - Mon 3/6: Midterm
 
 ## Administrative
@@ -522,7 +619,7 @@ bottom graph | date | **`x`** | **`line`** & **`text`**
 
 From `ggplot2movies` package, the `movies` data set:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+```{r, echo=FALSE, cache=TRUE}
 # Scatterplot i.e. bivariate plot
 movies %>% 
   ggplot(data=., aes(x=budget, y=rating)) +
@@ -535,7 +632,7 @@ movies %>%
 
 From `nycflights13` package, the `flights` data set:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+```{r, echo=FALSE, cache=TRUE}
 # Line graph
 flights %>% 
   mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
@@ -552,7 +649,7 @@ flights %>%
 
 From `okcupiddata` package, the `profiles` data set:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+```{r, echo=FALSE, cache=TRUE}
 # Histogram
 profiles %>% 
   ggplot(data=., aes(x=height)) +
@@ -565,7 +662,7 @@ profiles %>%
 
 From `fueleconomy` package, the `vehicles` data set:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+```{r, echo=FALSE, cache=TRUE}
 # Boxplot
 vehicles %>% 
   mutate(trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic")) %>% 
@@ -581,7 +678,7 @@ vehicles %>%
 
 From `babynames` package, the `babynames` data set:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
+```{r, echo=FALSE, cache=TRUE}
 # Bar Chart
 babynames %>% 
   mutate(decade = round(year / 10) * 10) %>% 

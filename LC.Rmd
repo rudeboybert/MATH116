@@ -29,6 +29,21 @@ library(ggplot2)
 
 
 <!----------------------------------------------------------------------------->
+# Lec11 - Thu 3/9: 5NG#5 Barplots
+
+In ModernDive, LC4.27 thru 4.38 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#barplots">Chapters 4.7</a>.
+
+## Discussion
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec09 - Thu 3/2: 5NG#4 Boxplots
 
 In ModernDive

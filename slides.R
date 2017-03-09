@@ -8,6 +8,29 @@ if(FALSE){
   knitr::purl("slides.Rmd")
   }
 
+## ---- echo=FALSE, fig.height=4-------------------------------------------
+library(tidyverse)
+library(babynames)
+# Bar Chart
+babynames %>% 
+  mutate(decade = round(year / 10) * 10) %>% 
+  filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
+  filter(decade >= 1990) %>% 
+  group_by(name) %>% 
+  summarise(n=sum(n)) %>% 
+  ggplot(data=., aes(x=name, y=n)) +
+  geom_bar(stat="identity") +
+  labs(x="Name", y="Count", title="Name Counts since 1990")
+
+## ---- echo=FALSE---------------------------------------------------------
+x <- data_frame(`Row Number`=1:5, name=c("Albert", "Albert", "Albert", "Mo", "Mo"))
+knitr::kable(x)
+
+## ---- echo=FALSE---------------------------------------------------------
+x %>% 
+  count(name) %>% 
+  knitr::kable()
+
 ## ---- eval=FALSE---------------------------------------------------------
 ## library(fivethirtyeight)
 ## library(tidyverse)
@@ -100,14 +123,14 @@ library(babynames)
 library(fueleconomy)
 library(okcupiddata)
 
-## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
 # Scatterplot i.e. bivariate plot
 movies %>% 
   ggplot(data=., aes(x=budget, y=rating)) +
   geom_point() +
   labs(x="Movie Budget", y="IMDB Rating", title="IMDB Rating vs Budget")
 
-## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
 # Line graph
 flights %>% 
   mutate(date=ymd(paste(year, month, day, sep="-"))) %>% 
@@ -118,14 +141,14 @@ flights %>%
   labs(x="Date", y="Number of Flights", title="Number of Daily Flights from NYC in Jan 2013") +
   geom_line()
 
-## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
 # Histogram
 profiles %>% 
   ggplot(data=., aes(x=height)) +
   geom_histogram() +
   labs(x="height (in inches)", y="count", title="Heights of San Francisco OkCupid Users")
 
-## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
 # Boxplot
 vehicles %>% 
   mutate(trans2 = ifelse(str_sub(trans, 1, 1) == "M", "Manual", "Automatic")) %>% 
@@ -135,7 +158,7 @@ vehicles %>%
        title="Highway Mileage of all Car Models 1984-2015") +
   coord_cartesian(ylim=c(5, 45))
 
-## ---- echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE---------------
+## ---- echo=FALSE, cache=TRUE---------------------------------------------
 # Bar Chart
 babynames %>% 
   mutate(decade = round(year / 10) * 10) %>% 
