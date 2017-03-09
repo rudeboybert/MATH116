@@ -1,0 +1,121 @@
+---
+title: "Final Project Proposal: NESCAC College Rankings"
+output: html_document
+---
+
+Group Members: Joe Moscatelli, Zach Levitt, David Valentin
+
+```{r, echo=FALSE, message=FALSE}
+library(knitr)
+library(mosaic)
+```
+
+##Purpose
+
+The goal of this project is to explore the process of college rankings, and to familiarize ourselves with the process of establishing and manifesting a methodology. Middlebury students may be interested by this process, as many students are familiar with the competetive college admissions process and often refer to college rankings. In order to keep this relavent within the Middlebury community, we will scale down the breadth of our rankings, focusing only on NESCAC schools. This will enable us perform a more thorough analysis, thus establishing a more wholistic rankings system. The schools within the NESCAC are similar to each other and therefore, we will be able to focus only on the specific attributes that differentiate them.
+
+The attributes of each school that we will investigate are:
+
+1. Endowment
+2. Admission Rate
+3. Freshman Retention Rate
+4. Yield Rate
+5. Average ACT Score of Accepted Students
+6. Faculty:Student Ratio
+7. Percent of Classes under 20 students
+8. 20/30-year Return on Investment
+9. 3-year Average Alumni Participation Rate
+10. Percent of First-Gen Students
+11. Professor Salaries
+12. Salary After Attending
+13. Socioeconomic Diversity
+14. **We may add more attributes if we need more data**
+
+Our methodology is a work in progress. Our plan-- after we investigate and estbalish all of the attributes-- is to assign a weight to each attribute, based on our subjective opinions on how important each attribute is in representing the school. The weights will then be added to each schools "ranking score," enabling us to simply create one final ranking data frame in descending order.
+
+We think this project will provide students with insight into not only a NESCAC-specific heirarchy but also how college ranking methodologies should be evaluated. Big-name college rankings systems like Forbes and US News have hundreds of schools to investigate; in turn, attributes more personalized for small schools are often overlooked. Therefore, our more focused analysis will hopefully provide some contrast to previous big-named college rankings systems; we anticipate some "upsets."  
+
+Additional analysis in addition to the rankings will be evaluating correlations between different academic, financial, and social attributes of these schools. We will determine which attributes to do this once we start investigating the data further. 
+
+We may further this investigation by comparing our final ranking to the final rankings from big name ranking systems-- Forbes, US News, New York Times, etc.-- which will hopefully highlight the contrasts, thus promoting our more wholistic, less surface-level analysis.
+
+Additonally, we may compare ROI for each school to the average return on S&P Index as means to guage whether the opportunity cost in purely quantitative terms is worth more than the standard return. We akcnowledge that students do not pay full tuition 
+
+
+##Scientific Questions
+
+1. How should college rankings weigh different factors in evaluating 4 year institutions?
+
+2. How do different financial, academic, and social attributes of NESCAC schools correlate with each other? For example, we may look at faculty salaries in comparison to endowment size.  
+
+3. How does Middlebury compare to other NESCAC schools in terms of financial success and return on investment after graduation?
+
+##Data Sources
+
+US News 2 Year Donation	http://www.usnews.com/education/best-colleges/the-short-list-college/articles/2016-10-18/10-universities-where-the-most-alumni-donate
+
+PayScale ROI	http://www.payscale.com/college-roi?page=94
+
+Average College SAT Scores	http://www.compassprep.com/college-profiles-new-sat/
+
+College Scorecard	https://collegescorecard.ed.gov/
+
+US News - Yield	http://www.usnews.com/education/best-colleges/articles/2016-01-25/liberal-arts-colleges-where-students-are-eager-to-enroll
+
+US News - Ranking	http://colleges.usnews.rankingsandreviews.com/best-colleges/rankings/national-liberal-arts-colleges
+
+Middlebury - Specific and Updated Data	https://www.middlebury.edu
+
+Amherst - Specific and Updated Data	https://www.amherst.edu
+
+Williams - Specific and Updated Data	https://www.williams.edu
+
+Hamilton - Specific and Updated	https://www.hamilton.edu
+
+Bowdoin - Specific and Updated	https://www.bowdoin.edu
+
+Bates - Specific and Updated	https://www.bates.edu
+
+Wesleyan - Specific and Updated 	https://www.wesleyan.edu
+
+Colby - Specific and Updated	https://www.colby.edu
+
+Tufts - Specific and Updated	https://www.tufts.edu
+
+Trinity - Specific and Updated	https://www.trinity.edu
+
+Connecticut College - Specific and Updated	https://www.conncollege.edu
+
+
+##Data Format
+
+We will have one table that has data for each NESCAC school and 10+ attributes specific to each school. The observational unit in this table is each college in the NESCAC. 
+
+These are our variables:
+
+1. Endowment - dollars
+2. Admission Rate - percent
+3. Freshman Retention Rate - percent
+4. Yield Rate - percent
+5. Average ACT Score of Accepted Students - ACT score
+6. Faculty:Student Ratio - ratio
+7. Percent of Classes under 20 students - percent
+8. 20/30-year Return on Investment - dollars
+9. 3-year Average Alumni Participation Rate - percent
+10. Percent of First-Gen Students - percent
+11. Professor Salaries - dollars
+12. Salary After Attending - dollars
+13. Socioeconomic Diversity - percent
+
+We will eventually create an output table that ranks each school in the NESCAC based on our methodology. We will compare this output table to rankings from other big name ranking systems. 
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+College_Data <- read.csv("College_Data.csv")
+
+College_Data <- College_Data %>%
+  as_data_frame()
+
+kable(College_Data)
+```
+
+

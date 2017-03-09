@@ -1,0 +1,20 @@
+---
+title: "Project Proposal"
+author: "Theodore Henderson and Will Perry"
+date: "November 20, 2016"
+output: html_document
+---
+
+## Project Proposal
+
+
+Title: Movement and Economic Activity
+Group Members: Theo Henderson and Wil Perry
+Purpose: What influences the decision to move, and where do people decide to move to? Our project will analyze the declining rate of movement in the United States in the context of economic slumps. Our hypothesis is that people are moving less frequently as a result of financial crashes, and that this means an inevitable end to the influx of new residents to our nation’s cities. We will use census data to track movement, financial activity, and birth rates in urban and rural areas. These facets will be used in graphics that attempt to explain how a declining movement rate does not mean that the population concentration in America will begin to favor rural areas over cities. 
+One possible course of action for this project is to focus on a single state, to make analysis more manageable. Possible areas are New York and Texas, which both have multiple significant cities and large agricultural areas.
+Data Sources: All of the data that we have selected is avaible on the US census data website.
+Movement data: https://www.census.gov/newsroom/press-releases/2016/cb16-189.html?intcmp=sldr2
+Financial Data: https://www.census.gov/econ/census/
+Data Format: The end goal is to have two data sets with corresponding graphics. One depicting movement rates and one financial activity. Depending on the nature of the data it may be useful to superimpose the graphics, and combining data sets, or to have a facet-wrapped visual. Our data sets will have locational data, i.e. Longitude and Latitude or town name. It will also have general financial indicators such as GDP or average income for a region. The data sets might be joined by locational data, and differences in the locational indicators made available may create a need to manipulate the data so that the two sets are compatible. 
+
+

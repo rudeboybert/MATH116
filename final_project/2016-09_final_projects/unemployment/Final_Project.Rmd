@@ -1,0 +1,278 @@
+
+---
+title: "Final Project"
+author: "Theo Henderson and Will Perry"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(knitr)
+```
+
+
+
+
+
+##Unemployment and Migration in the United States
+
+Unemployment is a critical item on the political agenda, which is frequently discussed by candidates at national, state, and local level. The rhetoric surrounding the effects of unemployment vary widely depending on the group that these candidates are addressing, creating a litany of misinformation and fear among voters. Common impressions of unemployment are that there are many more unemployed people in the United States than studies and data show. Unemployment has become a scape goat for a large number of issues such as a depressed housing market or a decreased level of movement due to fear that the loss of a current job may have irreparable consequences. 
+
+In light of this it seems only reasonable to take a look at what the data on unemployment and movement actually tell us about how these two factors interact. Below are a series of graphics that display the trends in unemployment, out-migrants, in-migrants, and net migration in four regions of the United States from 2000-2015. All of the data used in the study was taken from the national census.
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+census <- read.csv("/home/tahenderson/Final Project Math 116 Will Perry and Theodore Henderson/2000-2015 movement.csv")
+
+census %>% 
+  ggplot(aes(x=year,y=unemployment,group=1))+geom_line()+facet_wrap(~region)
+
+census %>% 
+  ggplot(aes(x=year,y=outmigrants,group=1))+geom_line()+facet_wrap(~region)+geom_smooth(se=FALSE, span=0.5)
+
+census %>% 
+  ggplot(aes(x=year,y=inmigrants,group=1))+geom_line()+facet_wrap(~region)+geom_smooth(se=FALSE, span=0.5)
+
+census %>% 
+  ggplot(aes(x=year,y=net_migration,group=1))+geom_line()+facet_wrap(~region)+geom_smooth(se=FALSE, span=0.5)
+```
+
+
+At a glance it seems as though there could be a causational relationship, or a correlation, between the movement metrics and unemployment, but a closer examination of the data reveals that the though the two measures appear to vary with each other there is a high probability that this could be a product of random chance. This does not discount the chance that unemployment has an effect on movement, or vice versa, but does indicate that it cannot be said with certainty that one varies in tandem with the other. 
+
+The factors that influence a person’s decision to, or not to, move are much more complex than the simple explanations offered by the media and political candidates. This study of movement data only examined its relationship with unemployment and did not address other factors such as income, family size, school offerings, and local amenities.  A much more comprehensive study of the things that influence movement is needed to discover what truly drives this phenomena, however it is clear that any suggestion that unemployment is directly linked to a decrease in movement should be taken with a grain of salt.
+
+
+
+
+
+##Supplementary Materials
+
+
+This is an outline of the methods we used to create our article, including data, collection, manipulation, and the hypothesis tests we completed to write our article.
+
+
+We obtained the data for movement off of https://www.census.gov. However, the data was not in tidy format. We cleaned it by making both region and year variable so that they had thir own collumns. Then, we obtained the unemployment data from Quandle. These data sets were separated by the same census regions used in the movemnt data, so it was easy to combine the two data sets. Once we combined the two data sets into one in Excel, we uploaded it to R and have further manipulated the data by using the 5 main verbs.   
+
+
+First we created data sets for each of the regions by filtering by region. We also calculated the percent_difference,meaning how much each of the measures changed from one year to another relative to themselves, in unemployment,inmigrants, outmigrants, and net_migration. These values were then used to calculate the abosolute difference between percent_difference in unemployment and percent_difference in each of the three migration metrics.
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+
+midwest<-census %>%
+  filter(region=="midwest") %>% 
+  select(-net_internal_migration,-movers_from_abroad) %>% 
+  mutate(unemployment_percent_diff=((lead(unemployment)-lag(unemployment))/(lag(unemployment))*100))%>% 
+  mutate(inmigrants_percent_diff=((lead(inmigrants)-lag(inmigrants))/(lag(inmigrants))*100)) %>%
+  mutate(outmigrants_percent_diff=((lead(outmigrants)-lag(outmigrants))/(lag(outmigrants))*100)) %>% 
+  mutate(net_migration_percent_diff=((lead(net_migration)-lag(net_migration))/(lag(net_migration))*100)) %>% 
+  mutate(unemployment_in_difference=unemployment_percent_diff-inmigrants_percent_diff) %>% 
+  mutate(unemployment_out_difference=unemployment_percent_diff-outmigrants_percent_diff) %>% 
+  mutate(unemployment_net_difference=unemployment_percent_diff-net_migration_percent_diff)
+  
+south<-census %>%
+  filter(region=="south") %>% 
+  select(-net_internal_migration,-movers_from_abroad) %>% 
+  mutate(unemployment_percent_diff=((lead(unemployment)-lag(unemployment))/(lag(unemployment))*100))%>% 
+  mutate(inmigrants_percent_diff=((lead(inmigrants)-lag(inmigrants))/(lag(inmigrants))*100)) %>%
+  mutate(outmigrants_percent_diff=((lead(outmigrants)-lag(outmigrants))/(lag(outmigrants))*100)) %>% 
+  mutate(net_migration_percent_diff=((lead(net_migration)-lag(net_migration))/(lag(net_migration))*100)) %>% 
+  mutate(unemployment_in_difference=unemployment_percent_diff-inmigrants_percent_diff) %>% 
+  mutate(unemployment_out_difference=unemployment_percent_diff-outmigrants_percent_diff) %>% 
+  mutate(unemployment_net_difference=unemployment_percent_diff-net_migration_percent_diff)
+
+northeast<-census %>%
+  filter(region=="northeast") %>% 
+  select(-net_internal_migration,-movers_from_abroad) %>% 
+  mutate(unemployment_percent_diff=((lead(unemployment)-lag(unemployment))/(lag(unemployment))*100))%>% 
+  mutate(inmigrants_percent_diff=((lead(inmigrants)-lag(inmigrants))/(lag(inmigrants))*100)) %>%
+  mutate(outmigrants_percent_diff=((lead(outmigrants)-lag(outmigrants))/(lag(outmigrants))*100)) %>% 
+  mutate(net_migration_percent_diff=((lead(net_migration)-lag(net_migration))/(lag(net_migration))*100)) %>% 
+  mutate(unemployment_in_difference=unemployment_percent_diff-inmigrants_percent_diff) %>% 
+  mutate(unemployment_out_difference=unemployment_percent_diff-outmigrants_percent_diff) %>% 
+  mutate(unemployment_net_difference=unemployment_percent_diff-net_migration_percent_diff)
+
+west<-census %>%
+  filter(region=="west") %>% 
+  select(-net_internal_migration,-movers_from_abroad) %>% 
+  mutate(unemployment_percent_diff=((lead(unemployment)-lag(unemployment))/(lag(unemployment))*100))%>% 
+  mutate(inmigrants_percent_diff=((lead(inmigrants)-lag(inmigrants))/(lag(inmigrants))*100)) %>%
+  mutate(outmigrants_percent_diff=((lead(outmigrants)-lag(outmigrants))/(lag(outmigrants))*100)) %>% 
+  mutate(net_migration_percent_diff=((lead(net_migration)-lag(net_migration))/(lag(net_migration))*100)) %>% 
+  mutate(unemployment_in_difference=unemployment_percent_diff-inmigrants_percent_diff) %>% 
+  mutate(unemployment_out_difference=unemployment_percent_diff-outmigrants_percent_diff) %>% 
+  mutate(unemployment_net_difference=unemployment_percent_diff-net_migration_percent_diff)
+```
+
+
+
+The unemployment_in_difference, unemployment_out_difference, and unemployment_net_difference prepared the data for hypothesis tests exploring whether unemployment varries with any of the three migration metrics. Our exploratory data analysis can be seen above in the four graphs facet_wrapped by region, all of which suggest that the relationships warrent further analysis. Breaking up the data by region allowed us to take a closer look at the relationships we were studying. 
+
+##Midwest Hypothesis Tests
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+midwest1<-midwest %>% 
+  summarise(average_diff_unemployment_in=mean(unemployment_in_difference,na.rm=TRUE))  
+  kable(midwest1)
+  
+set.seed(2)
+simulations1 <- do(10000) * midwest %>% 
+  mutate(sample_diff=unemployment_percent_diff - shuffle(inmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations1,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -0.7952518, col="red")
+       
+  
+midwest2<-midwest %>% 
+  summarise(average_diff_unemployment_out=mean(unemployment_out_difference,na.rm=TRUE)) 
+  kable(midwest2)
+
+set.seed(2)
+simulations2 <- do(10000) * midwest %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(outmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations2,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -2.356716, col="red")
+
+        
+midwest3<-midwest %>% 
+  summarise(average_diff_unemployment_net=mean(unemployment_net_difference,na.rm=TRUE))
+  kable(midwest3)
+
+set.seed(2)
+simulations3<- do(10000) * midwest %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(net_migration_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations3,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = 17.30472, col="red")
+```
+
+##South Hypothesis Tests
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+south1<-south %>% 
+  summarise(average_diff_unemployment_in=mean(unemployment_in_difference,na.rm=TRUE)) 
+  kable(south1)
+
+set.seed(2)
+simulations4 <- do(10000) * south %>% 
+  mutate(sample_diff=unemployment_percent_diff - shuffle(inmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations4,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -0.8468215, col="red")
+      
+  
+south2<-south %>% 
+  summarise(average_diff_unemployment_out=mean(unemployment_out_difference,na.rm=TRUE)) 
+  kable(south2)
+
+set.seed(2)
+simulations5 <- do(10000) * south %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(outmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations5,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -0.4807787, col="red")
+
+  
+south3<-south %>% 
+  summarise(average_diff_unemployment_net=mean(unemployment_net_difference,na.rm=TRUE))
+  kable(south3)
+
+set.seed(2)
+simulations6<- do(10000) * south %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(net_migration_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations6,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -2.758507, col="red")
+```
+
+##Northeast Hypothesis Tests
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+northeast1<-northeast %>% 
+  summarise(average_diff_unemployment_in=mean(unemployment_in_difference,na.rm=TRUE)) 
+  kable(northeast1)
+
+set.seed(2)
+simulations7 <- do(10000) * northeast %>% 
+  mutate(sample_diff=unemployment_percent_diff - shuffle(inmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations7,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -3.124144, col="red")
+
+        
+northeast2<-northeast %>% 
+  summarise(average_diff_unemployment_out=mean(unemployment_out_difference,na.rm=TRUE)) 
+  kable(northeast2)
+
+set.seed(2)
+simulations8 <- do(10000) * northeast %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(outmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations8,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -0.3017089, col="red")
+
+  
+northeast3<-northeast %>% 
+  summarise(average_diff_unemployment_net=mean(unemployment_net_difference,na.rm=TRUE))
+  kable(northeast3)
+
+set.seed(2)
+simulations9<- do(10000) * northeast %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(net_migration_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations9,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = 60.38786, col="red")
+```
+
+##West Hypothesis Tests
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+west1<-west %>% 
+  summarise(average_diff_unemployment_in=mean(unemployment_in_difference,na.rm=TRUE))
+  kable(west1)
+
+set.seed(2)
+simulations10 <- do(10000) * west %>% 
+  mutate(sample_diff=unemployment_percent_diff - shuffle(inmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations10,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = 0.7302539, col="red")
+
+        
+west2<-west %>% 
+  summarise(average_diff_unemployment_out=mean(unemployment_out_difference,na.rm=TRUE))
+  kable(west2)
+
+set.seed(2)
+simulations11 <- do(10000) * west %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(outmigrants_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations11,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -0.4660455, col="red")
+
+
+west3<-west %>% 
+  summarise(average_diff_unemployment_net=mean(unemployment_net_difference,na.rm=TRUE))
+  kable(west3)
+
+set.seed(2)
+simulations12<- do(10000) * west %>% 
+mutate(sample_diff=unemployment_percent_diff - shuffle(net_migration_percent_diff)) %>% 
+  summarise(sample_diff_mean=mean(sample_diff,na.rm=TRUE)) 
+
+ggplot(data=simulations12,aes(x=sample_diff_mean))+geom_histogram(bins=30)+geom_vline(xintercept = -18.10072, col="red")
+```
+
+##Conclusion
+
+Looking at the graphics depicting the obseved relationship between the movement metrics and the sample distributions it is abubdantly clear that their is nothing remarkable about the relationship between unemployment and migration. 
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+```

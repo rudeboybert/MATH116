@@ -1,0 +1,198 @@
+---
+title: "Maddie's_Version"
+author: "Sophia Konanc and Madeline Maloney"
+date: "12/15/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(lubridate)
+library(knitr)
+
+# Load all datasets
+Killington <- read.csv("/home/skonanc/problem_sets/Killington Snowfall.csv") %>% 
+  mutate(resort="Killington")
+Stowe <- read.csv("/home/skonanc/problem_sets/Stowe Snowfall.csv") %>% 
+  mutate(resort="Stowe")
+Sugarbush <- read.csv("/home/skonanc/problem_sets/Sugarbush Snowfall.csv") %>% 
+  mutate(resort="Sugarbush")
+
+January_weather <- read.csv("/home/skonanc/problem_sets/January_weather.csv")
+elnino <- read.csv("/home/skonanc/problem_sets/elnino.csv")
+
+# Mutate and filter
+snowfall <- bind_rows(Killington, Stowe, Sugarbush) %>% 
+  as_data_frame() %>% 
+  mutate(
+    Month = as.character(Month), 
+    Day = "01",
+    date = paste(Year, Month, Day, sep="-")
+  ) %>% 
+  mutate(date = lubridate::parse_date_time(date, "Y-Om!-d"))
+
+winter_snowfall <- snowfall %>% filter(Month=="October" | Month=="November" | Month=="December" | Month=="January" | Month=="February" | Month=="March" | Month=="April")
+
+January_snowfall <- snowfall %>% filter(Month=="January")
+
+January_snowfall <- January_snowfall %>% 
+  as_data_frame() %>% 
+  mutate(
+    Month = as.character(Month), 
+    Day = "01",
+    date = paste(Year, Month, Day, sep="-")
+  ) %>% 
+  mutate(date = lubridate::parse_date_time(date, "Y-Om!-d"))
+
+January_weather <- January_weather %>% 
+  as_data_frame() %>% 
+  mutate(
+    Month = as.character(Month), 
+    Day = "01",
+    date = paste(Year, Month, Day, sep="-")
+  ) %>% 
+  mutate(date = lubridate::parse_date_time(date, "Y-Om!-d"))
+
+January <- left_join(January_snowfall, January_weather, by = c("Month", "Year", "resort", "Day", "date"))
+
+elnino <- elnino %>% 
+  as_data_frame() %>% 
+  mutate(
+    Month = as.character(Month), 
+    Day = "01",
+    date = paste(Year, Month, Day, sep="-")
+  ) %>% 
+  mutate(date = lubridate::parse_date_time(date, "Y-Om!-d"))
+
+elninoallseason <- left_join(winter_snowfall, elnino, by = c("Month", "Year", "Day", "date"))
+elninoallseason <- elninoallseason %>% filter(Snowfall != 0)
+
+elninoJanuary <- elnino %>% filter(Month=="January")
+January <- left_join(January, elninoJanuary, by = c("Month", "Year", "Day", "date"))
+
+```
+
+Resorts and Middlebury students alike have been hyping this year's ski season, perhaps in reaction to last year's lackluster snowfall totals. Accuweather reports that a [frequent snow is to blast the Northeast](http://www.accuweather.com/en/weather-news/2016-2017-us-winter-forecast-northeast-above-normal-snow-freeze-hurt-citrus-south/60277878), while the 2017 Farmer's Almanac claims ["winter is back!"](http://farmersalmanac.com/weather-outlook/2017-winter-forecast/). But will this winter really be all that us die-hard Midd skiiers and boarders are hoping for, or is it all hype? And which mountain should we hit to make the most of our time on the slopes?
+
+ Many factors go into determining where Midd students choose to ski: proximity to campus, the price of lift passes, and childhood experiences, to name a few. Students often frequent Killington, Sugarbush, and Stowe, so we analyzed data for those three mountains to help Middlebury students choose where to ski. While you might not value data over your emotional ties to a particular mountain, here are some trends to consider when planning the perfect day of shredding.
+
+## Snowfall Trends
+For the discerning powder hounds among you, we looked at average January snowfall totals over time and on average, by resort. 
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(January, aes(x=Year, y=Snowfall, color=resort)) +
+   geom_point() +
+   geom_smooth(span=0.6, se=FALSE)
+ggplot(January, aes(x=resort, y=Snowfall)) +
+  geom_boxplot()
+```
+Stowe consistently receives a signficant amount of snowfall in January, but in recent years Sugarbush has surpassed Stowe in snowfall totals. Stowe and Sugarbush are the safest bets for fresh powder this January. Killington is not to be discounted; it has the highest capacity for snow-making of the three. The resort recently hosted the International Ski Federation (FIS) World Cup with the help of its 1,700 snow guns. Stowe has also improved its snow-making capacity, adding 20 miles of snow-making pipes. 
+
+
+## Temperature and Wind
+There's nothing worse than a day on the slopes being foiled by lift closures and windchill. To determine where winds are most likely to be high enough to be dangerous and warrant lift closures, we assigned each resort a wind score. The wind score is the product of the average number of January gust events and the average January maximum gust speed. Killington has the highest wind score, but you should also take temperature into consideration.
+Resorts use the wet-bulb temperature to determine how much snow they will make on a given day. The wet-bulb temperature is the product of the ambient temperature and relative humidity. The ideal range for the wet-bulb temperature is between 14 and 10 degress wet-bulb, which can occur when the ambient temperature is between 5 to 25 degrees depending on the humidity. Besides affecting snow-making capacity, low temperatures can make skiing feel miserable. Killington is the windiest of the three resorts, but also has a higher average January temperature. Stowe and Sugarbush are about on par with each other in terms of average January temperature. Does four degrees make a difference? It depends on the skier and the windchill.  
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+temp_and_wind <- January %>% group_by(resort) %>% summarize(mean_temp=mean(avg_temp), mean_gusts=mean(gust_wind), mean_events=mean(gust_events), wind_score=(mean_gusts*mean_events))
+kable(temp_and_wind)
+```
+
+
+## La Nina
+
+In addition to the factors that typically affect snowfall, meteorologists predict La Nina will enter into the mix this winter. The term La Nina describes the phenomenon when temperatures in the Pacific Ocean near the equator become cooler than normal by more than 0.5 degrees C. The temperature change affects where the most air evaporates, which changes the location of the jetstream. The jetstream influences where storms will occur, and consequently how much snow different parts of the world receive. For the United States, La Nina usually causes the jetstream and storm track to shift north and more snow to fall in the country's northern third. However, La Nina is not pushing the jetstream far enough north to reach Vermont this year, and this season's La Nina is expected to be weak to moderate. In fact, in recent years La Nina has not been a determining factor in how much snowfall Vermont gets.  If La Nina was the main determining factor in snowfall this year, you might find more snow the farther north you go in the state, but snow storms also crop up due to somewhat random, unpredictable factors. If you have many resort options from which to choose, your best bet for above-average snowfall in a La Nina year is the Pacific Northwest because of this year's jetstream trajectory. As far as Vermont goes, La Nina should not significantly affect snowfall at ski mountains positively or negatively. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+resort_averages <- January %>% group_by(Year) %>% mutate(mean_snowfall=mean(Snowfall)) %>% filter(resort=="Stowe")
+ggplot(resort_averages, aes(x=Year, y=mean_snowfall, fill=La.Nina)) +
+  geom_bar(stat = "identity") +
+  labs(y="Average January Snowfall (in)")
+```
+
+
+
+
+
+
+For those who would like to know more about how we conducted our analysis, we have included some supplementary materials below.
+
+## Supplementary Materials
+
+We conducted two hypothesis tests to determine if La Nina or El Nino affected average snowfall totals in the winter at Sugarbush, Stowe, and Killington. When the La Nina condition was true, snowfall totals were actually less. The p-value for the La Nina test was 0.001. We reject our null hypothesis, that La Nina has no affect on snowfall totals in Vermont, in favor of the alternate hypothesis that in La Nina years Vermont gets less snowfall on average. This is surprising, but could perhaps be explained by the fact that our data only went far back enough to include weak to mild La Nina events rather than strong ones. Additionally, we included October and November of 2016, which had relatively low snowfall totals. The Pacific Ocean has not cooled as much as researchers predicted, which could be why La Nina's effects have yet to be felt much by the United States this winter.     
+
+The hypothesis test for El Nino and snowfall totals had a p-value of 0.126, rendering it not statistically significant. We fail to reject our null hypothesis that El Nino does not impact snowfall totals in Vermont.
+
+##Exploratory Data Analysis
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=elninoallseason, aes(x=La.Nina, y=Snowfall)) +
+  geom_boxplot() + facet_wrap(~resort)
+ggplot(data=elninoallseason, aes(x=El.Nino, y=Snowfall)) +
+  geom_boxplot() + facet_wrap(~resort)
+
+
+# Hypothesis testing for el nino and la nina
+lanina_avg <- elninoallseason %>% group_by(La.Nina) %>% summarize(avg_snowfall = mean(Snowfall))
+kable(lanina_avg)
+elnino_avg <- elninoallseason %>% group_by(El.Nino) %>% summarize(avg_snowfall = mean(Snowfall))
+kable(elnino_avg)
+
+observed_diff_lanina <- mean(Snowfall ~ La.Nina, data=elninoallseason) %>% diff()
+
+observed_diff_elnino <- mean(Snowfall ~ El.Nino, data=elninoallseason) %>% diff()
+
+
+simulations.lanina <- do(100) * mean(Snowfall ~ shuffle(La.Nina), data=elninoallseason)
+simulations.lanina <- simulations.lanina %>%
+  as_data_frame() %>% 
+  mutate(difference=t-f)
+
+
+ggplot(data=simulations.lanina , aes(x=difference)) +
+  geom_histogram() +
+  geom_vline(xintercept = observed_diff_lanina, col="red") +
+  geom_vline(xintercept = 0, linetype="dashed") +
+  labs(x="Difference: True Avg - False Avg")
+
+simulations.lanina %>%
+  mutate(more_extreme_left = difference <= observed_diff_lanina) %>% 
+  summarise(more_extreme_left = sum(more_extreme_left))
+
+simulations.elnino <- do(100) * mean(Snowfall ~ shuffle(El.Nino), data=elninoallseason)
+simulations.elnino <- simulations.elnino %>%
+  as_data_frame() %>% 
+  mutate(difference=t-f)
+
+ggplot(data=simulations.elnino , aes(x=difference)) +
+  geom_histogram() +
+  geom_vline(xintercept = observed_diff_elnino, col="red") +
+  geom_vline(xintercept = 0, linetype="dashed") +
+  labs(x="Difference: True Avg - False Avg")
+simulations.elnino %>%
+  mutate(more_extreme_right = difference >= observed_diff_elnino) %>% 
+  summarise(more_extreme_right = sum(more_extreme_right))
+
+```
+
+## Sources: 
+[NOAA El Nino and La Nina](http://www.cpc.noaa.gov/products/analysis_monitoring/ensostuff/ensoyears.shtml)
+
+[Wind and Temperature](https://www.wunderground.com)
+
+[La Nina's Effect on Snowfall](http://www.onthesnow.com/news/a/584883/how-does-la-niña-drive-snowfall-in-u-s--)
+
+[La Nina Updated Forecast](http://www.onthesnow.com/news/a/620741/what-la-niña-has-in-store-for-winter-2016-2017)
+
+[Resort Background](http://skivermont.com/skivt-blog/1800/2016/09/27/winters-best-kept-secret-world-class-snowmaking-in-vermont/)
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+```
+
+

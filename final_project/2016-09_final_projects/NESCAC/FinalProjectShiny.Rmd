@@ -1,0 +1,1029 @@
+
+---
+output: html_document
+runtime: shiny
+---
+
+
+
+---
+title: "MATH116 Final Project"          
+author: "Zach Levitt, Joe Moscatelli, David Valentin"
+date: "December 18th, 2016"
+output: html_document
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)     
+library(mosaic)
+library(knitr)
+library(shiny)
+library(ggthemes)
+library(evaluate)
+
+
+```
+
+<p align= "center"><font size= 30> Who Sits at the Top of NESCAC Stack? </font></p>
+***
+
+
+<center>![](thecacshirt.jpg)</center>
+  
+<p margin-top = "3em"><font size =4>
+  With the college admissions season finally here, along with the flood of Facebook posts and the yearly U.S. News College Rankings, our team here at Minnesota Wilds Media will be investigating the NESCAC colleges and how they stack up against one another terms of return on investment, employment, and other major indicators. If you're considering a liberal arts college, or even a NESCAC school for that matter, check out our step-by-step financial analysis and exclusive Valentin-Levitt-Moscatelli NESCAC Rankings. It may give you some insight into what your future holds...
+</font></p>
+
+
+***
+
+
+## Scores are Outdated
+
+
+
+First, we will discuss what we are not considering. As many of you have already heard, there is a widespread movement away from standardized testing with respect to the college admissions process. Academic institutions recognize the financial limitations and limited effectiveness to these standardized tests; thus, many schools--including a few NESCAC schools--have become "test optional." Therefore, in order to emphasize fairness across various socioeconomic statuses and focus on the real factors that determine the quality of higher education, we have decided not to include SAT or ACT scores in our analysis. 
+
+
+Figure 1 highlights this inequality. We can see a clear correlation between SAT scores and family income. We want to free our rankings system from these income labels. Furthermore, most NESCAC schools have relatively similar SAT scores, meaning these scores would hold little weight in determining the overall hierarchy anyway. 
+
+
+
+
+
+
+
+
+*** 
+
+
+
+
+
+
+
+
+#### Figure 1:
+
+
+
+
+This data is primarily sourced from the years 2012 to 2013. 
+
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+#Add inputs and ouputs in the fluid page function
+ui = fluidPage(
+  #First Comparison
+  sidebarPanel(selectInput(inputId = "statChoice", label="Score Type",
+              choices = c("Total", "Mathematics.Mean", "Critical.Reading.Mean", "Writing.Mean"))),
+  
+  #ID for plot output
+  mainPanel(plotOutput(outputId = "geomline")),
+  
+  #ID for Text Output
+  textOutput("main")
+  )
+
+
+
+
+
+
+
+
+server = function(input, output) {
+  #references the output object - list like objects
+  #sat.income.filtered = sat.income %>% filter(Family.Income == input$incomeChoice)
+  plotData <- reactive({
+
+
+
+
+
+
+
+
+  idx <- match(input$statChoice, names(sat.income))
+  sat.income.filtered <- sat.income %>% select(Family.Income, idx)
+    
+    ggplot(sat.income.filtered, aes(x = Family.Income, y= sat.income.filtered[2], fill = Family.Income)) + geom_bar(stat="identity") + labs(x= "Family Income", y = input$statChoice, title = "Family Income and SAT Scores") + geom_smooth(se = FALSE) + coord_flip()
+  })
+  
+  printData <- reactive({
+    total.by.family.income <- aov(sat.income$Total~sat.income$Family.Income, data= sat.income)
+    })
+  
+  
+  output$geomline = renderPlot(plotData())
+  output$main = renderPrint(printData())
+}
+
+
+
+shinyApp(ui = ui, server = server)
+
+
+```
+
+
+
+
+
+
+
+
+As you read on, keep in mind that this is a FINANCIALLY HEAVY ANALYSIS. If you're more concerned with which DIII NESCAC sports team you want to cheer for, or which school has the best food, than the return on your quarter million-dolar investment, then perhaps this rankings system doesn't suit you.
+
+
+
+
+We've included an in-depth exploratory analysis of four financial variables that we believe anyone deeply involved in an academic investment should be concerned with:
+<ul>
+  <li>Unemployment Rate of Recent Graduates</li>
+  <li>Unemployment Rate of All Graduates</li>
+  <li>Median Salary of Recent Graduates</li>
+  <li>Median Salary of All Graduates</li>
+</ul>
+
+
+See the Supplementary Materials section for our methodology in calculating the above four varibales for each NESCAC school.
+
+
+***
+
+
+
+
+
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+# Define UI for application that draws a histogram
+
+
+
+
+
+
+college.rankings <- read.csv("College_Rankings.csv", stringsAsFactors = FALSE)
+sat.income <- read.csv("SAT_Collegeboard_Income.csv", stringsAsFactors = FALSE) 
+all.ages <- read.csv("all-ages.csv")
+grad.students <- read.csv("grad-students.csv")
+recent.grads <- read.csv("recent-grads.csv")
+Major_data <- read.csv("Major_data.csv")
+Master_Data <- read.csv("Master_Data.csv")
+College_Data <- read.csv("College_Data.csv")
+NESCAC_rankings <- read.csv("ranking1.csv")
+
+
+
+
+
+
+
+
+
+
+
+
+College_Data = College_Data %>%  filter(School_Name != "Trinity")
+
+
+
+
+
+
+
+
+All_College_Data = left_join(Master_Data, College_Data, by = "School_Name")
+
+
+
+
+
+
+
+
+unemployment_rate_descend <- All_College_Data %>% 
+  select(School_Name, All_Ages_Unemployment) %>% 
+  arrange(desc(All_Ages_Unemployment))
+
+
+
+
+NESCAC_rankings <- NESCAC_rankings %>% 
+  arrange(desc(VLM.Score)) %>% 
+  select(Ranking, School.Name, VLM.Score)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Code for all our calculations
+
+
+
+
+
+
+
+
+#Middlebury
+Middlebury_data = Major_data %>%
+  select(Majors, Middlebury, Recent_grads_median, Recent_grads_unemployment_rate,            All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal = (Middlebury/100)*Recent_grads_median,
+         prop_rec_un = (Middlebury/100)*Recent_grads_unemployment_rate,
+         prop_all_sal = (Middlebury/100)*All_salary,
+         prop_all_un = (Middlebury/100)*All_unemploy)
+  
+Middlebury_ratio = 100/sum(Middlebury_data$Middlebury)
+Middlebury_rec_sal=Middlebury_ratio*sum(Middlebury_data$prop_rec_sal)
+Middlebury_rec_un=Middlebury_ratio*sum(Middlebury_data$prop_rec_un)
+Middlebury_all_sal=Middlebury_ratio*sum(Middlebury_data$prop_all_sal)
+Middlebury_all_un=Middlebury_ratio*sum(Middlebury_data$prop_all_un)
+
+
+
+
+
+
+
+
+#Bowdoin
+Bowdoin_data <- Major_data %>% 
+  select(Majors, Bowdoin, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Bowdoin/100)*Recent_grads_median,
+         prop_rec_un=(Bowdoin/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Bowdoin/100)*All_salary,
+         prop_all_un=(Bowdoin/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Bowdoin_ratio=100/sum(Bowdoin_data$Bowdoin)
+Bowdoin_rec_sal=Bowdoin_ratio*sum(Bowdoin_data$prop_rec_sal)
+Bowdoin_rec_un=Bowdoin_ratio*sum(Bowdoin_data$prop_rec_un)
+Bowdoin_all_sal=Bowdoin_ratio*sum(Bowdoin_data$prop_all_sal)
+Bowdoin_all_un=Bowdoin_ratio*sum(Bowdoin_data$prop_all_un)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Amherst 
+Amherst_data <- Major_data %>% 
+  select(Majors, Amherst, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Amherst/100)*Recent_grads_median,
+         prop_rec_un=(Amherst/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Amherst/100)*All_salary,
+         prop_all_un=(Amherst/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Amherst_ratio=100/sum(Amherst_data$Amherst)
+Amherst_rec_sal=Amherst_ratio*sum(Amherst_data$prop_rec_sal)
+Amherst_rec_un=Amherst_ratio*sum(Amherst_data$prop_rec_un)
+Amherst_all_sal=Amherst_ratio*sum(Amherst_data$prop_all_sal)
+Amherst_all_un=Amherst_ratio*sum(Amherst_data$prop_all_un)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Williams
+Williams_data <- Major_data %>% 
+  select(Majors, Williams, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Williams/100)*Recent_grads_median,
+         prop_rec_un=(Williams/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Williams/100)*All_salary,
+         prop_all_un=(Williams/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Williams_ratio=100/sum(Williams_data$Williams)
+Williams_rec_sal=Williams_ratio*sum(Williams_data$prop_rec_sal)
+Williams_rec_un=Williams_ratio*sum(Williams_data$prop_rec_un)
+Williams_all_sal=Williams_ratio*sum(Williams_data$prop_all_sal)
+Williams_all_un=Williams_ratio*sum(Williams_data$prop_all_un)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Colby
+Colby_data <- Major_data %>% 
+  select(Majors, Colby, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Colby/100)*Recent_grads_median,
+         prop_rec_un=(Colby/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Colby/100)*All_salary,
+         prop_all_un=(Colby/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Colby_ratio=100/sum(Colby_data$Colby)
+Colby_rec_sal=Colby_ratio*sum(Colby_data$prop_rec_sal)
+Colby_rec_un=Colby_ratio*sum(Colby_data$prop_rec_un)
+Colby_all_sal=Colby_ratio*sum(Colby_data$prop_all_sal)
+Colby_all_un=Colby_ratio*sum(Colby_data$prop_all_un)
+
+
+
+
+
+
+
+
+#Tufts
+Tufts_data <- Major_data %>% 
+  select(Majors, Tufts, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Tufts/100)*Recent_grads_median,
+         prop_rec_un=(Tufts/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Tufts/100)*All_salary,
+         prop_all_un=(Tufts/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Tufts_ratio=100/sum(Tufts_data$Tufts)
+Tufts_rec_sal=Tufts_ratio*sum(Tufts_data$prop_rec_sal)
+Tufts_rec_un=Tufts_ratio*sum(Tufts_data$prop_rec_un)
+Tufts_all_sal=Tufts_ratio*sum(Tufts_data$prop_all_sal)
+Tufts_all_un=Tufts_ratio*sum(Tufts_data$prop_all_un)
+
+
+
+
+
+
+
+
+#Bates
+Bates_data <- Major_data %>% 
+  select(Majors, Bates, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Bates/100)*Recent_grads_median,
+         prop_rec_un=(Bates/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Bates/100)*All_salary,
+         prop_all_un=(Bates/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Bates_ratio=100/sum(Bates_data$Bates)
+Bates_rec_sal=Bates_ratio*sum(Bates_data$prop_rec_sal)
+Bates_rec_un=Bates_ratio*sum(Bates_data$prop_rec_un)
+Bates_all_sal=Bates_ratio*sum(Bates_data$prop_all_sal)
+Bates_all_un=Bates_ratio*sum(Bates_data$prop_all_un)
+
+
+
+
+
+
+
+
+#Connecticut
+Connecticut_data <- Major_data %>% 
+  select(Majors, Connecticut, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Connecticut/100)*Recent_grads_median,
+         prop_rec_un=(Connecticut/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Connecticut/100)*All_salary,
+         prop_all_un=(Connecticut/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Connecticut_ratio=100/sum(Connecticut_data$Connecticut)
+Connecticut_rec_sal=Connecticut_ratio*sum(Connecticut_data$prop_rec_sal)
+Connecticut_rec_un=Connecticut_ratio*sum(Connecticut_data$prop_rec_un)
+Connecticut_all_sal=Connecticut_ratio*sum(Connecticut_data$prop_all_sal)
+Connecticut_all_un=Connecticut_ratio*sum(Connecticut_data$prop_all_un)
+
+
+
+
+
+
+
+
+#Wesleyan
+Wesleyan_data <- Major_data %>% 
+  select(Majors, Wesleyan, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Wesleyan/100)*Recent_grads_median,
+         prop_rec_un=(Wesleyan/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Wesleyan/100)*All_salary,
+         prop_all_un=(Wesleyan/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Wesleyan_ratio=100/sum(Wesleyan_data$Wesleyan)
+Wesleyan_rec_sal=Wesleyan_ratio*sum(Wesleyan_data$prop_rec_sal)
+Wesleyan_rec_un=Wesleyan_ratio*sum(Wesleyan_data$prop_rec_un)
+Wesleyan_all_sal=Wesleyan_ratio*sum(Wesleyan_data$prop_all_sal)
+Wesleyan_all_un=Wesleyan_ratio*sum(Wesleyan_data$prop_all_un)
+
+
+
+
+
+
+
+
+#Hamilton
+Hamilton_data <- Major_data %>% 
+  select(Majors, Hamilton, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Hamilton/100)*Recent_grads_median,
+         prop_rec_un=(Hamilton/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Hamilton/100)*All_salary,
+         prop_all_un=(Hamilton/100)*All_unemploy)
+
+
+
+
+
+
+
+
+Hamilton_ratio=100/sum(Hamilton_data$Hamilton)
+Hamilton_rec_sal=Hamilton_ratio*sum(Hamilton_data$prop_rec_sal)
+Hamilton_rec_un=Hamilton_ratio*sum(Hamilton_data$prop_rec_un)
+Hamilton_all_sal=Hamilton_ratio*sum(Hamilton_data$prop_all_sal)
+Hamilton_all_un=Hamilton_ratio*sum(Hamilton_data$prop_all_un)
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+## Unemployment Rates for Graduates of NESCAC Institutions
+
+
+
+
+
+
+
+
+Figure 2 exhibits the unemployment rate for all graduates (all ages) for the year 2012. The figure also provides a comparision of this variable across the NESCAC schools:
+
+
+
+
+#### Figure 2:
+
+
+
+
+
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+
+
+
+
+
+
+
+ggplot(data=Master_Data, aes(x=reorder(School_Name, All_Ages_Unemployment), y=All_Ages_Unemployment)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0.06, 0.085) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Unemployment Rate", title="NESCAC All Graduates Unemployment Rate") +
+  geom_hline(yintercept = 0.08, color="red")
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+Before you're inlcined to throw away your love for Bates, consider these schools' graduates with respect to the national unemployment rate in 2012 (vertical red line). All of these competitive, prestigious liberal arts schools beat the national unemployment rate by at least one percent. 
+
+
+Overall, you should be very satisfied with every NESCAC school's performance when it comes to employment security. I urge you to reconsider your initial assumptions about Bates' homeless graduates and Bowdoin's billionaires; after all, the margin is only a little over half a percent.
+
+
+
+
+***
+
+
+
+
+
+
+
+
+### Unemployment-- Comparing Two NESCACs
+
+
+
+
+
+
+
+
+For all of you college shoppers--or, perhaps, bored retired folks--who are simply torn between two NESCAC schools instead of the whole bunch, check out our Comparatron(TM) widget! It allows you to compare unemployment rates between two different NESCAC Colleges:
+
+
+
+
+
+
+
+
+#### Figure 3:
+
+
+
+
+
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Add inputs and ouputs in the fluid page function
+ui = fluidPage(
+  #First Comparison
+  sidebarPanel(selectInput(inputId = "School_1", label="Choose a school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton")),
+  
+  #Second Comparison
+  selectInput(inputId = "School_2", label="Choose a second school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton"))),
+  
+  mainPanel(
+  plotOutput(outputId = "geomline"))
+  
+  )
+
+
+
+
+
+
+
+
+server = function(input, output) {
+  #references the output object - list like objects
+  data <- reactive({
+  
+  Master_Data_Filtered = Master_Data %>% filter(School_Name == input$School_1 | School_Name == input$School_2)
+  
+    ggplot(data=Master_Data_Filtered, aes(x=reorder(School_Name, All_Ages_Unemployment), y=All_Ages_Unemployment, color = School_Name)) +
+  geom_point(size = 5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0.06, 0.085) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Unemployment Rate", title="NESCAC All Graduates Unemployment Rate") +
+  geom_hline(yintercept = 0.08, color="red")
+    }
+  )
+  
+  output$geomline = renderPlot(data()) 
+ 
+}
+
+
+
+shinyApp(ui = ui, server = server)
+
+
+```
+
+***
+
+
+## Median Salaries for Graduates of NESCAC Institutions
+
+
+Now that we've established a general healthy employment rate for the majority of NESCAC graduates, let's look at a financial variable that everyone participating in our capitalist society is concerned with: salary. 
+
+
+Figure 4 describes a comparison of median salary for all graduates between the NESCAC schools. We can also compare these to the average median salary for Americans with bachelor degrees in 2012 (denoted by the red vertical line).
+
+
+#### Figure 4: 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=Master_Data, aes(x=reorder(School_Name, All_Ages_Median_Salary), y=All_Ages_Median_Salary), color = School_Name) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(47000, 62500) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Median Salary", title="NESCAC All Graduates Median Salary") +
+  geom_hline(yintercept = 48244, color="red")
+```
+
+
+Alright, now this comparison warrents a more significant reaction. A gap greater than $10,000 would definitly turn some heads when it comes to the college selection process. Again, this median salary falls under the same generalzability as the unemployment rates. With more accurate median salaries, you would expect all points to shift to the right; however, the relationship between the points would--for the most part--remain the same, which is what we care about. This assumption, however, does not take into account individual connections that a school might provide within the working world.
+
+
+Basically, The national average line should tell you that, even when generalized to the national average by major, NESCAC schools still beat the national average with respect to median income. 
+
+
+From the figure, we can see that Bowdoin wins, with Hamilton in second, and Bates coming in last. Because the relationships between schools here remains (presumably) accurate, regardless of the accuracy of the actual monetary value for median income, we can acknowledge the difference in median incomes. We will carry this acknowledgement forward heavily when it comes time to establish our rankings system.
+
+
+Again, we've provided another Comparatron(TM) widget that allows you to compare median salaries between two different NESCAC Colleges:
+
+
+#### Figure 5:
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+#Add inputs and ouputs in the fluid page function
+ui = fluidPage(
+  #First Comparison
+  sidebarPanel(selectInput(inputId = "School_1", label="Choose a school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton")),
+  
+  #Second Comparison
+  selectInput(inputId = "School_2", label="Choose a second school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton"))),
+  
+  mainPanel(
+  plotOutput(outputId = "geomline"))
+  
+  )
+
+
+
+
+
+
+
+
+server = function(input, output) {
+  #references the output object - list like objects
+  data <- reactive({
+  
+  Master_Data_Filtered = Master_Data %>% filter(School_Name == input$School_1 | School_Name == input$School_2)
+  
+  ggplot(data=Master_Data_Filtered, aes(x= School_Name, y=All_Ages_Median_Salary, color = School_Name)) +
+  geom_point(size = 5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(50000, 62500) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Median Salary", title="NESCAC All Graduates Median Salary") +
+  geom_hline(yintercept = 56500, color="red")
+    }
+  )
+  
+  output$geomline = renderPlot(data()) 
+ 
+}
+
+
+
+
+shinyApp(ui = ui, server = server)
+
+
+
+
+```
+
+
+Now let's look at the median salaries of recent graduates, those graduates under 28 years old: 
+
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+
+
+ggplot(data=Master_Data, aes(x=reorder(School_Name, Recent_Grad_Median_Salary), y=Recent_Grad_Median_Salary)) +
+  geom_point() +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Median Salary", title="NESCAC Recent Graduates Median Salary")
+```
+
+
+
+
+It's interesting to view this statistic after all graduates. For the most part, the hierarchy is unchanged; however, there are a few exceptions. Amherst falls, while Tufts rises. This could tell us something about the longevity of the support that graduates receive from their respective schools. It could also indicate something about the strength of certain pre-workforce programs at schools. Without completely dissecting the internal structures of how each school prepares students for the working world, we cannot say anything for certain; however, it is an interesting trend to consider throughout the college selection process.
+
+
+For the most part, people should be more concerned about salaries for all graduates, as it can provide a more wholistic perspective of long-term returns on academic investments. Many schools will report one or the other, recent or all graduates, on there admissions website. Prospective students-- and ESPECIALLY their parents-- tend to be more attracted to recent graduate salaries, as they believe it indicates instant job placement and success. However, if an overall return on the academic investment is one's priority, then he/she should consider both median income variables.
+
+***
+
+
+
+### NESCAC All Graduate Unemployment Rate vs. Median Salary
+
+Here is an important correlation (or lack thereof) to look at:
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(data=Master_Data, aes(x=All_Ages_Median_Salary, y=All_Ages_Unemployment, color=School_Name)) +
+  geom_point() +
+  labs(x="Median Salary", y="Unemployment Rate", title="NESCAC All Graduate Unemployment Rate vs. Median Salary", color="School Name")
+```
+
+While a linear regression line might be able to highlight some sort of relationship between increasing median salary and decreasing unemployment rate, we chose NOT to include this line. Instead of looking for a correlation, we want viewers to appreciate the spread. A correlation would be intuitively obvious, as higher median salaries imply a less unemployed population. However, the spread in this graph illustrates that special cases that deviate from this intuitive trend exist, especially within the NESCAC. 
+
+Take Wesleyan, for example. While it has nearly the lowest unemployment rate, it only falls in the middle of the pack with respect to median salary. This could indicate something about the types of graduates that Wesleyan produces. Perhaps versatility within the workforce is emphasized over specialization. On the other end of the spectrum, Middlebury for example, perhaps students out of Middlebury are prepared for high paying jobs that are in lower demand.
+
+### College Rankings
+
+
+
+Finally, the most anticipated part of this article: exclusive NESCAC college rankings. We toiled long and hard over what attributes of these schools to include and how to make these rankings specific to the NESCAC schools. We did not want to make rankings based on the same factors that every other ranking emphasizes, such as standardized test scores. Instead, our ranking focuses on financial factors, metrics that measure enjoyment and experience at these schools, and the quality of the teaching and educational environments. We used the following factors in our final rankings: 
+
+
+
+
+1. **Socio-Economic Diversity** - Percent of students receving Federal Pell Grants
+2. **Endowment**
+3. **Freshman Retention Rate** - Percent of First-year students who return to the school the next year
+4. **Student:Faculty Ratio**
+5. **Median Salary of Recent Graduates** - Median salary for graduates under 28
+6. **Median Salary of All Graduates**
+7. **Alumni Participation Rate** - Three year average number of alumni who donated
+8. **Percent of Classes Under 20 Students**
+9. **Yield_Rate** - Percent of students admitted that attend the school
+10. **Unemployment Rate of Recent Graduates** - Unemployment rate for graduates under 28
+11. **Unemployment Rate of All Graduates**
+
+
+
+
+And now, the moment you have all been waiting for: 
+
+
+### The 2016 Valentin-Levitt-Moscatelli NESCAC College Rankings
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+kable(NESCAC_rankings)
+
+```
+
+As "Midd Kids," we are slightly disappointed with the results of our analysis and final rankings. Yet we think this new ranking gives a good overview of which NESCAC schools fit the factors that we found important in our analysis. We focused on schools that prepare students for financial success, create a positive academic and social environment, and provide the highest quality of teaching. Our ranking system places Bowdoin College in the lead and it could appear like we are advocating for students to attend that school. However, in retrospect, you may want to consider the NESCAC college that enables students to build these wonderful statistical analyses with R. Just a thought...
+
+
+### Concluding Notes:
+Of course, pleae take our rankings with a grain of salt. The rankings system did not include the entire NESCAC as we could not find data from Trinity College. In addition, our unemployment data is typically sourced from 2012 data, so the analysis is slightly dated; however, we assume that if the NESCAC schools were beating the unemployment rate in 2012, then they are most likely beating the 2015 unemployment rate.  
+
+There are several disclaimers that are important to note as well. First, not all of the data used in our rankings is from the same year. We tried to find, for example, student:faculty ratios for the same year but were only able to find them for different recent years for different colleges. While this did not significantly mess up our analysis, it is important to note. Also, we think it is important to note that much of the data in our rankings is pulled off of individual college sites and was not part of a tidy, pre-formatted data source. This may have allowed some error in our analysis by trusting schools with their advertised statistics instead of an accredited organization gathering the data. However, we think that since it was all done in the same way, our numbers and analysis are still solid.
+
+Also, come to **Middlebury**!!
+
+
+## Supplementary Materials
+
+This part of our project will provide further details on how we carried out the analysis and provide more in-depth analysis on certain correlations. Also, we will provide the details on how we created the ranking system. 
+
+### Explanation of Methods
+
+The following section will explain how we carried out the analysis to calculate the following values: 
+
+* Unemployment Rate of Recent Graduates
+* Unemployment Rate of All Graduates
+* Median Salary of Recent Graduates
+* Median Salary of All Graduates
+
+
+First, we gathered data from US News and World Report on the top five most popular majors at each school, and the percentage of students that major in each discipline. Next, we used the college major data used by FiveThirtyEight in their 2014 article "The Economic Guide To Picking A College Major" (http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/). This data gives the median salary and unemployment rate for every major and major category available at United States colleges. This data is also available for both recent graduates (under 28) and all graduates. We calculated the percent of each school that majors in the top 5 majors and matched the median salary or unemployment rate to those majors. Then, for example, we multiplied the percent of students who majored in Economics at Middlebury (15%) by the corresponding median salary and added up those values for each major by school. Then, we extrapolated to get a median salary that was on the same scale by multiplying by a scale factor that brought the percent of each school that majors in the top 5 majors to 100%. We did this for every school for all four of our variables: Unemployment Rate of Recent Graduates, Unemployment Rate of All Graduates, Median Salary of Recent Graduates, Median Salary of All Graduates.
+
+We think this analysis will provide very college-specific values that highlight the importance of specific popular liberal arts majors. While somewhat generalized, these values provide a good reference to show how colleges compare by majors that set you up for a lifetime of financial and employment security. 
+
+
+### More Correlations and College Attribute Relationships
+
+
+#### Recent Graduate Median Salary across all Ages
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(data=All_College_Data, aes(x=Recent_Grad_Median_Salary, y=All_Ages_Median_Salary, color=School_Name)) +
+  geom_point() +
+    labs(x="Recent Graduate Median Salary", y="All Graduates Median Salary", title="NESCAC Graduates Median Salary: Recent vs. All", color="School Name")
+```
+
+
+This graphic shows that the relationship between the median salary of recent and all graduates of the NESCAC schools stays fairly consistent among schools. It seems as though the NESCAC schools produce students who are immediately competitive and able to uphold a level of success for their entire career. This highlights several schools, such as Tufts and Colby, that have lower median salaries for all graduates versus recent graduates relative to the rest of the NESCAC. While this would probably not contribute to someones decision to attend or not attend one of these schools, it may say something about what kinds of subjects students tend to study there. It seems that relative to the rest of the NESCAC, more students at Tufts and Colby study less long-term financially viable subjects. In a further analysis, we think it would be interesting to compare the correlation between recent and all graduates median salaries for NESCAC and liberal arts schools and larger research universities. 
+
+***
+
+
+### College Rankings
+
+The following list of attributes explains why we decided to include each variable in our final rankings. 
+
+
+1. **Socio-Economic Diversity** - Schools that have more socio-economic diversity provide more students with the opportunity to attend college and diversifying the backgrounds and experiences of the student body will enrich the academic environment of these schools.
+
+2. **Endowment** - The ability of schools to fund research, build world-class academic facilities, and provide financial aid are important factors in determining the quality of experience.
+
+3. **Freshman Retention Rate** - Measures how much students like attending the school and takes into account the academic and social environments at these schools.
+
+4. **Student:Faculty Ratio** - Smaller classes and more intimate academic environments contribute to better learning and richer experiences. This is especially important at small schools like in the NESCAC.
+
+5. **Median Salary of Recent Graduates** - Measures the ability of schools to produce immediately competitive individuals in the workforce who have marketable and financially viable skills. 
+
+6. **Median Salary of All Graduates** - Measures the ability of schools to produce competitive individuals in the workforce in the long term with marketable and financially viable skills. 
+
+7. **Alumni Participation Rate** - Measures how valuable the experience at these schools is to graduates based on their willingness to contribute to further improvements at these institutions. 
+
+8. **Percent of Classes Under 20 Students** - Another metric that measures small classes and intimate academic environments.
+   
+9. **Yield_Rate** - Measures how much students want to attend a certain school, often taking into account the many factors laid out here.
+
+10. **Unemployment Rate of Recent Graduates** - Measures the ability of schools to produce immediately competitive individuals that are able to find employment soon after graduation.
+
+11. **Unemployment Rate of All Graduates** - Measures the ability of schools to produce competitive individuals in the long term with continually sought-after skills and experience. 
+
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+
+kable(college.rankings)
+kable(NESCAC_rankings)
+
+```
+
+Our method of ranking the NESCAC schools involved ranking each school on each variable from 1-10, since there were 10 schools in our analysis. Then, we assigned these values to each school and applied our weight to each ranking and summed a value for each school. We tried to make the analysis work so that the highest school would be near 100, just easier for people to interpret the results. The weights column above for each variable represents the importance we assigned to each attribute of a school. As you can see, we assigned the most importance to median salaries, freshman retention rate, socio-economic diversity, and endowment. The least importance was given to alumni participation rate and the percent of classes under 20 students. 
+
+
+
+### Resources and References
+
+We used the following sources throughout our analysis:
+
+* US News and World Report: http://colleges.usnews.rankingsandreviews.com/best-colleges
+* PayScale.com: http://www.payscale.com/college-roi?page=94
+* FiveThirtyEight: https://github.com/fivethirtyeight/data/tree/master/college-majors
+* College Specific Sites:https://www.middlebury.edu, https://www.amherst.edu, https://www.williams.edu, https://www.hamilton.edu, https://www.bowdoin.edu, https://www.bates.edu, https://www.wesleyan.edu, https://www.colby.edu, https://www.tufts.edu, https://www.trinity.edu, https://www.conncollege.edu
+* College Scorecard: https://collegescorecard.ed.gov/
+* CompassPrep: https://www.compassprep.com/
+
+
