@@ -92,9 +92,9 @@ Answer the following questions:
 
 ## Exercise
 
-<!--
+
 <img src="assets/figure/barplots.png" alt="Drawing" style="width: 700px;"/>
--->
+
 
 
 ## Barplots
@@ -124,7 +124,7 @@ knitr::kable(x)
 ```
 
 
-<!--
+
 ## Example
 
 Counts **are** pre-computed in variable `n`. So `n` becomes a `y` aesthetic variable!
@@ -134,7 +134,7 @@ x %>%
   count(name) %>% 
   knitr::kable()
 ```
--->
+
 
 
 
