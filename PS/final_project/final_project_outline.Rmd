@@ -1,0 +1,154 @@
+---
+title: "Final Group Project Outline"
+author: "Albert Y. Kim"
+date: "Last updated on `r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
+set.seed(79)
+library(tidyverse)
+library(lubridate)
+library(knitr)
+```
+
+
+
+
+## Learning Goals
+
+**Only one**: The first course objective in the syllabus: *Have students engage in the
+data/science research pipeline in as faithful a manner as possible while
+maintaining a level suitable for novices*:
+
+<img src="../../assets/figure/pipeline.png" alt="Drawing" style="width: 600px;" border="10"/>
+
+
+#### Format
+
+* Your final project will center around writing a "data journalism" style 
+newspaper article suitable for publication in <a href =
+"https://middleburycampus.com/" target = "_blank">The Middlebury Campus
+newspaper</a>. In other words, your target audience is the Middlebury community.
+Examples of such types of journalism can be found on:
+    + <a href = "http://fivethirtyeight.com/" target = "_blank">FiveThirtyEight</a>
+    + The New York Times' <a href = "http://www.nytimes.com/section/upshot" target = "_blank">The Upshot</a>
+* You must flex your "data science" muscles you've built this semester. In
+particular, data visualization and manipulation
+
+
+
+## Past Examples
+
+From Fall 2016:
+
+```{r, echo=FALSE}
+read_csv("2016-09_final_projects.csv") %>% 
+  select(-Folder) %>% 
+  knitr::kable()
+```
+
+
+
+
+
+## Important Dates
+
+1. **By Fri Apr 28 - Project Proposal**: Project proposal (see below) in both
+printed and electronic format and an electronic submission of:
+    + All data files
+    + An `.R` script that loads the data so you can `View()` them.
+1. **By Fri May 5 - Feedback Session**: To make sure your project idea is
+feasible, after you've submitted your proposal, your group must schedule to
+speak to me during office hours so that I can give feedback. While this must be
+done by Fri May 5, please note the earlier you complete this, the more breathing
+room this will give you.
+1. **By Tue May 23 at 12pm - Electronic-Only Final Project Submission**: Standby
+for more details.
+<!--
+    + In the RStudio Server group shared folder:
+        + A `final_project.Rmd` file that completely reproduces your analysis i.e. I should have to press Knit only once to recreate the entire HTML page.
+        + All necessary data files.
+    + Individually: A Google Forms survey, which I will email on Fri Dec 16 by 5pm.
+    + Your project won't be considered submitted until I give you email confirmation that everything looks good.
+* **Honor Code**: This is the equivalent of an academic term paper; all honor code rules about plagarism and citations apply.
+* **Submission Format**: Each group must create a single RStudio Server shared 
+project that is shared amongst the group members and with me (please email the
+URL to me). All your work will be centrally located here; do not email me any
+files.
+-->
+
+
+
+
+## 1. Project Proposal
+
+#### Data Sets
+
+* Your **immediate goal** should be to get some data loaded into RStudio. This 
+may take some help from me as finding the right data sets is very important, as
+they need to balance:
+    + Being complex enough to use the data science toolbox developed this semester.
+    + Being rich enough to be able to answer meaningful scientific questions with.
+    + Not being so complex and rich that you are overwhelmed, as you are only novices.
+* Having two or more different data sets to join is not an explicit requirement
+for this project; your scientific question will dictate this need.
+* Suggested Sources: 
+    + Whatever you're interested in!
+    + Make an appointment with the Middlebury Data Services Librarian Ryan Clement at <a target="_blank" class="page-link" href="http://guides.middlebury.edu/prf.php?account_id=75445">`go/ryan/`</a>
+    + The `fivethirtyeight` R package.  See <a target="_blank" class="page-link" href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/rudeboybert/fivethirtyeight/master/vignettes/fivethirtyeight.html#data-sets">data set list</a>. Not all data sets in this package are allowable, so be sure to consult with me as soon as you can.
+
+
+
+    
+
+#### Write-Up
+
+Your group proposal (to be submitted in print and electronically on Slack) should contain the following:
+
+1. **Title**: The title of your project.
+1. **Group Members**: List of all group members.
+1. **Purpose**: Describe the general topic/phenomenon you want to explore:
+    + Why should a Middlebury student be interested in your work? 
+    + What do you hope people will learn from your project?
+1. **Scientific Question**: Journalism, just like academic writing, has the goal
+of answering questions, but with a slightly more informal tone. What is the 
+scientific question you want to answer using data?
+1. **Data Sources**: Describe where you will find/access your
+data. Be as specific as you can, listing URLs and file formats if possible.
+1. **Data Format**: Describe what your data set looks like:
+    * How many tables will you have? What are the observational units of each table?
+    * How many rows does each table have?
+    * How many columns does each table have and what are their names i.e. the
+    variables? What are their units?
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+## Electronic-Only Final Project Submission
+
+Roughly speaking, your final project submission will have two major components:
+
+* The actual journalism article. As to knowing the guidelines (length, format,
+tone), just ask yourself: "What does a newspaper/online news story sound like?"
+* A supplementary materials section that goes more in depth about the
+nitty-gritty details, that one might want to spare casual readers from, but
+include for people wanting to learn more.
+* I will post the template `final_project.Rmd` file in the Problem Sets section
+of the course webpage by Monday Nov 14th.
+-->

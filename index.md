@@ -14,7 +14,6 @@ layout: default
 
 
 
-
 ## 4. Regression
 
 ## 3. Statistical Inference
@@ -27,7 +26,6 @@ layout: default
 ### b) Visualization
 
 * Lec11 - Thu 3/9: 5NG#5 Barplots. We deconstruct boxplots i.e. `geom_bar()`.
-* Lec10 - Mon 3/6: Midterm I Review (<a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm</a>). 
 * Lec09 - Thu 3/2: 5NG#4 Boxplots. We deconstruct boxplots i.e. `geom_boxplot()`.
 * Lec08 - Wed 3/1: 5NG#3 Histograms + facets. We deconstruct histograms i.e. `geom_histogram()` + We introduce the technique of faceting.
 * Lec07 - Mon 2/27: 5NG#2 Linegraphs. We deconstruct linegraphs i.e. `geom_line()`.
@@ -43,3 +41,8 @@ layout: default
 
 * Lec02 - Thu 2/16: R Packages. Extending R's base functionality with packages.
 * Lec01 - Mon 2/13: Introduction. We discuss the syllabus, the pedogical thinking behind its design and introduce R, RStudio, and DataCamp.
+
+## Other Stuff
+
+* Final project <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html" target="_blank">information</a>.
+* Lec10 - Mon 3/6: Midterm I Review (<a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm</a>). 
