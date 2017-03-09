@@ -1,0 +1,163 @@
+
+---
+title: "Will Your Major Field Change Your Prospects for Employment?"
+author: "Steven Lillis and Stefan Asamoah"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(knitr)
+library(readr)
+library(tidyr)
+library(broom)
+```
+
+
+
+
+
+## *The Significance of your Major - Which find students full time jobs?*
+
+ In the past students came into college beaming with the prospect of majoring in subjects they were interested in. There was the hope that as long as they were passionate about the major it would lead them to a job. Yet recently, there has been an almost pervasive belief that the choice of your major can have a significant impact on your chances of receiving a full time job after graduation.  By looking at a number of majors with the highest number of students and analyzing the proportion of students that actually attain full time employment after undergraduate study, we set out to examine the merits of this belief, and hope to answer if this is truth or a myth.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Loading Data Set 
+grad.students <- read.csv("/home/slillis/Final_Project/grad-students.csv")
+grad.students.a <- read.csv("/home/slillis/Final_Project/grad-students-a.csv")
+```
+
+In order to better examine this theory, the first thing we did was to form a table. This table consisted of four columns where the first column consisted of the field of college majors, the second represented the number of undergraduates, the third showed the number of undergraduates that had received full time employment, and the last column displayed  the proportion of undergraduates who had received full time employment. The table shows that the Major fields with the highest proportion of undergraduates attaining full time employment after were Law and Policy at  69% and Computers and Mathematics with 67%. There are a number of different reasons for why these fields are so attractive to employers, yet the biggest reason would have to be the nature of these two industries. With the growing world of technology and the fact  that law plays a role within almost every facet of our lives, spurs the demand for a number of individuals who have skills for these professions. On the other side of the spectrum, the majors who fall under the field of education have the lowest proportion of students finding full time employment. One possible explanation for this could be that right now the market is oversaturated with educators and teachers; as a result the demand for more educators just isn't there. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Refining Data Set
+employment <- grad.students %>%
+  select(Major_category, Nongrad_total, Nongrad_full_time_year_round)%>%
+  group_by(Major_category)%>%
+  summarise(Undergraduates=sum(Nongrad_total), Under_employed=sum(Nongrad_full_time_year_round))%>%
+  group_by(Major_category)%>%
+  mutate(Proportion_Under = Under_employed/Undergraduates) %>% 
+  mutate(Proportion_Under = round(Proportion_Under,2)) %>%
+  arrange(desc(Proportion_Under))
+
+ref.employ <- grad.students %>%
+  select(Major_code, Major, Major_category, Nongrad_full_time_year_round)
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Table Showing Data
+
+Employment<-rename(employment, Field_of_Major = Major_category, Undergraduates_Employed=Under_employed, Proportion_of_Undergraduates=Proportion_Under)
+
+kable(Employment)
+```
+
+We also made scatterplot and boxplot graphs of the data represented in the table.  On the scatterplot the independent variable was the number of students enrolled in a major, while the dependent variable were the all the major fields that we were concerned with. The graph also had different sized dots that represented the proportion of undergraduates who attained a full time job after college. The bigger the dot was represented the more people that had received a job, while a smaller dot represented the opposite.  
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Graph for undergraduates
+ggplot(data=employment, aes(x = Under_employed, y = Major_category, size = Proportion_Under)) + 
+  geom_point()+
+  labs(x="Number of Undergraduates Employed", y="Category of Major", title="Number and Proportion of Undergraduates Employed Full Time")
+```
+
+This graph would be a great tool in helping undecided students choose which major to pick. This is because the graph clearly shows majors with high proportions of employment but not a lot of students enrolled. Knowing and having this information so clearly would be of use to undecided students because they would be looking for jobs that have high hireability rates and have low competition in terms of students vying for them. Such majors include Mathematics and Computers, Agriculture and Resources, or even Law and Public Policy. The boxplot we created also provides a quick five point analysis of the 16 major categories.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(grad.students.a, aes(x=Major_category, y=Nongrad_full_time_year_round)) + 
+  geom_boxplot()+
+  labs(x="Category of Major", y="Undergraduates Employed Full Time", title="5 Point Analysis of Full Time Employment")
+```
+
+In order to make a more general observation of the effects of major on employment we decided to create and analyze a confidence interval. In forming the interval we looked at 100 majors to get a general idea of how many students would attain full time jobs if hired randomly. Our random sampling shows that in general, 74,031 students would be the low point and 167,441 students would the high point of students hired for full time employment, and out of this the average would be 120,736 students. Referring back to the actual data represented on the table, Education was on the lower end of the range with almost 1,788,687  students receiving employment while business was at the higher end with 5,939,132 employed. This acts as one piece of evidence toward the idea that major category has a significant effect on employment. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Confidence Interval
+xbar <- mean(grad.students$Nongrad_full_time_year_round)
+s <- sd(grad.students$Nongrad_full_time_year_round)
+n <- 100
+c(xbar - 2*s/sqrt(n), xbar + 2*s/sqrt(n))
+c(xbar)
+```
+
+##*Measuring the impact of Major through P-Value - **Case Study of Business vs Education** *
+
+In regards to whether those in popular majors have a higher chance at unemployment, we decided to explicitly define both variables under $H_0$ and $H_A$ to appropriately find a p-value. To those unincorporated to statistics language,  $H_0$ is the belief that the hypothesis is true, and in this case it  defined as the idea that there is not an expressed preference towards majors that will land you a full time job. $H_A$ is essentially the converse and is the idea that there is an expressed preference towards which majors will land you a full time job. We then created a histogram that looked at the differences between Major categories and their count. We deliberately looked at the majors of Education and Business since one is the most popular major while the other is the least popular major, and examined the difference between the two. We find the difference between them is 345,063 students shows a p-value of .166. Because this value is not 0 it conveys that $H_A$ is true, yet it is also important to note that a p-value as small as .166 does not help to make a definitive argument. Regardless this all suggests that a student’s choice in major is more than likely to affect whether the student receives full time employment.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Hypothesis Testing
+set.seed(27)
+
+obs.mean <- mean(Nongrad_full_time_year_round~Major_category, data=grad.students)
+obs.mean <- obs.mean %>%
+  as_data_frame()
+
+obs.diff = 456856.31 - 111792.94
+
+grad.students.ref <- grad.students.a %>%
+  filter(Major_category=="Edu"|Major_category=="Busi.") %>%
+  select(Major, Major_category, Nongrad_full_time_year_round)
+
+simulations <- do(10000) * mean(Nongrad_full_time_year_round~shuffle(Major_category), data=grad.students.ref)
+simulations <- simulations %>% 
+  as_data_frame() %>% 
+  select(Busi., Edu) %>%
+  mutate(diff = Busi. - Edu)
+
+ggplot(simulations, aes(x=diff)) + 
+  geom_histogram() + 
+  geom_vline(xintercept=obs.diff, col="red") +
+  labs(x="Major Category")
+
+calculating.p.value <- simulations %>% 
+  mutate(more_extreme_right = diff >= obs.diff) %>% 
+  summarise(count = sum(more_extreme_right))
+
+P.Value = (165+1)/(1000+1)
+```
+
+##*Majoring in a field with high full time employment? - Are you sabotaging yourself?*
+
+In our attempts to be thorough we also utilized a regression analysis, as well as a residual graph. In conducting our regression analysis we categorized undergraduates unemployed and compared it to the dependent variable undergraduates employed full time. We found that the graph had a positive slope with most  points were clustering towards the bottom left of the graph, while very few were at the top right. This regression line suggests that there is a general connection between full time employment and unemployment. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Regression
+ggplot(data=grad.students, aes(x = Nongrad_unemployed, y = Nongrad_full_time_year_round)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)+
+  labs(x="Undergraduates Unemployed", y="Undergraduates Employed Full Time", title="Regression Analysis of Employment and Underemployment")
+
+model <- lm(Nongrad_full_time_year_round ~ Nongrad_unemployed, data=grad.students)
+
+regression_table <- tidy(model, conf.int = TRUE)
+kable(regression_table, digits=3)
+
+point_by_point <- augment(model) %>% 
+  as_data_frame()
+
+ggplot(point_by_point, aes(x=.resid)) +
+  geom_histogram(bins=13)
+```
+
+Our residual graph confirmed this idea as well, with it being centered at 0. Both these serve to show that although certain fields may seem promising because of the high number of students being employed full time, the more people being hired full time raises the chances that one may be unemployed. Unless you play your cards rights, you may be a statistic in wrong category.
+
+
+
+
+##*Majors seem to matter... So what do you do?*
+
+In analyzing a number of different graphs that had the proportions of undergraduates and jobs, a confidence interval regarding student employment, and a regression line that shows the relationship between enrollment and employment,  all served as evidence to our conclusion  that choosing the most popular majors leads to a higher chance of being unemployed is in fact true. Although this may be disheartening, students should take this with a grain of salt and should still major in something that interests them, and just persevere when it comes time to job hunting and applying. This did prove a widespread myth but it is important to strive for a major that will lead you to a job that you're happy with rather than one you will never enjoy. Although unquantifiable, striving towards a goal you are passionate about, rather than one superficially pleasing, will help you remain optimistic and retain your drive when obstacles approach, even if the obstacle may be unemployment.
+
+
+
+
+## ***Want to learn more? Employment rates and salaries!***
+
+  In this article, we heavily discuss the comparison of full-time employment rates between major fields for undergraduate students, which should concern Middlebury students that have yet to choose a major. We concluded there is a difference in finding employemt depending on the major field. The highest proportion of employment tends to be Law and Public Policy, while the lowest we concluded to be education. However, that is not to say they receive the same post-education experience. There have been numerous studies that have shown decisions about majors and studying for advance degrees have a noticeable effect. Depending on your [major](http://money.cnn.com/2016/01/29/news/economy/recent-college-graduates-job-new-york-federal-reserve/) your starting salary could be as low as $28,000, or as high as $70,000. It is important to note, much of this depends on the industry's demand for skilled employees. Similarly, [advanced education](http://howtoedu.org/college-facts/how-much-more-money-do-college-grads-make/) has an impact on salary. With more education, you acquire mastery and expertise in your field of work, and to employers, this makes you a desireable asset. You are also put in a position of leverage as you have the skills to help with negotiations and understanding your value in your field.
+
+General labor statistics about employment can be found on the [website](http://www.bls.gov/emp/ep_table_201.htm) of the Bureau of Labor Statistics. It is important to note that aside from our analysis of employment and the discussions on salaries, there are numerous intersecitions where something as seemingly simple as finding a job can be made difficult. Discrimination in the work place, during [hiring](https://rudeboybert.github.io/MATH116/assets/PS/raw_data/PNAS/PNAS-2012-Moss-Racusin-16474-9.pdf), and in pay still exists today. The state of the economy is well known to impact the job market and unemployment, and that is something out of an individual's control. Finding a job, let alone a career is difficult, but with this difficulty, it is important to have passion. Do something you are passionate about, so when you do face obstacles and tribulations, you have something important to you to fight for and you have the motivation to overcome and succeed in your own way.
