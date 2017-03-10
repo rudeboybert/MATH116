@@ -44,5 +44,5 @@ layout: default
 
 ## Other Stuff
 
-<!--* Final project <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html" target="_blank">information</a>.-->
+* Final project <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html" target="_blank">information</a>.
 * Lec10 - Mon 3/6: Midterm I Review (<a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm</a>). 
