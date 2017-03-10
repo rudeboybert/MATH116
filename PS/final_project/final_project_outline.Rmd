@@ -40,13 +40,18 @@ Examples of such types of journalism can be found on:
     + <a href = "http://fivethirtyeight.com/" target = "_blank">FiveThirtyEight</a>
     + The New York Times' <a href = "http://www.nytimes.com/section/upshot" target = "_blank">The Upshot</a>
 * You must flex your "data science" muscles you've built this semester. In
-particular, data visualization and manipulation
+particular, data visualization and wrangling.
 
 
 
 ## Past Examples
 
-From Fall 2016:
+From Fall 2016. In the spirit of <a target="_blank" class="page-link"
+href="https://www.forbes.com/sites/quora/2017/02/09/how-the-reproducibility-crisis-in-academia-is-affecting-scientific-research/#604cb84b3dad">reproducible
+research</a>, here is a link to all <a target="_blank" class="page-link"
+href="https://github.com/rudeboybert/MATH116/tree/gh-pages/PS/final_project/2016-09_final_projects">source
+code/data</a> for these projects.
+
 
 ```{r, echo=FALSE}
 read_csv("2016-09_final_projects.csv") %>% 
@@ -69,8 +74,7 @@ feasible, after you've submitted your proposal, your group must schedule to
 speak to me during office hours so that I can give feedback. While this must be
 done by Fri May 5, please note the earlier you complete this, the more breathing
 room this will give you.
-1. **By Tue May 23 at 12pm - Electronic-Only Final Project Submission**: Standby
-for more details.
+1. **By Tue May 23 at 12pm - Electronic-Only Final Project Submission**. 
 <!--
     + In the RStudio Server group shared folder:
         + A `final_project.Rmd` file that completely reproduces your analysis i.e. I should have to press Knit only once to recreate the entire HTML page.
@@ -118,8 +122,9 @@ Your group proposal (to be submitted in print and electronically on Slack) shoul
     + Why should a Middlebury student be interested in your work? 
     + What do you hope people will learn from your project?
 1. **Scientific Question**: Journalism, just like academic writing, has the goal
-of answering questions, but with a slightly more informal tone. What is the 
-scientific question you want to answer using data?
+of answering questions, but with a slightly more informal tone. Andrew Flowers
+of 538 referred to it as "social science on demand." What is the scientific question you
+want to answer using data?
 1. **Data Sources**: Describe where you will find/access your
 data. Be as specific as you can, listing URLs and file formats if possible.
 1. **Data Format**: Describe what your data set looks like:
@@ -127,6 +132,21 @@ data. Be as specific as you can, listing URLs and file formats if possible.
     * How many rows does each table have?
     * How many columns does each table have and what are their names i.e. the
     variables? What are their units?
+
+
+
+
+## 2. Feedback Session
+
+Standby for more details.
+
+
+
+
+## 3. Final Project Submission
+
+Standby for more details.
+
 
 
 
