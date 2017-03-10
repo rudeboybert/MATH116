@@ -1,0 +1,146 @@
+
+---
+title: Sexism on the Silver Screen: Exploring film’s gender divide
+author: "WRITE GROUP MEMBERS NAMES HERE!!!!!!!!!!"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(tm)
+library(stringr)
+library(lubridate)
+library(broom)
+library(knitr)
+
+Final_movie_data <- read.csv("/home/tinac/Final Project/Possible extra data set/Final_movie_data.txt", sep=";")
+
+actor_edit <- read.csv("/home/tinac/Final Project/Possible extra data set/actor_edit.txt", sep=";")
+```
+
+
+
+
+
+## Main Article
+
+Write your main article here i.e. the part that will show in print or online.
+If you are interested in formatting tips, go to RStudio Menu Bar -> Help -> 
+Markdown Quick Reference
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+movie_edit3 <- Final_movie_data %>%
+  as_data_frame() %>% 
+  mutate(ID=factor(ID))
+  
+actor_edit3 <- actor_edit %>%  
+  as_data_frame() %>% 
+  mutate(ID=factor(ID))
+
+joined_data <- full_join(movie_edit3, actor_edit3, by="ID") %>% 
+  mutate(Title = as.character(Title)) %>% 
+  mutate(Year = as.character(Year)) %>% 
+  mutate(date = paste(Year, "01-01", sep="-")) %>% 
+  mutate(date=ymd(date))%>% mutate(Year=ifelse(is.na(Year), "N/A", Year))
+
+Filtered_joined_data<-joined_data%>% 
+  filter(Year>=1890 & Year<= 2012)%>%filter(Gender=="M" |  Gender=="F")
+
+Final_joined_data<-Filtered_joined_data%>%group_by(Gender, Year, date)%>%summarise(count=n())
+
+ggplot(data=Final_joined_data, aes(x=date, y=count, color=Gender))+geom_point(stat="identity")+ 
+  labs(x="Date", y="Number of Movies Staring Males and Females", title="Figure 1:Number of Movies Vs. The Gender of The Lead")
+```
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+Joined_Gender_Lead_Female<- Final_joined_data %>% filter(Gender=="F") %>% mutate(Female_Count=count)
+
+Joined_Gender_Lead_Male<-Final_joined_data%>%filter(Gender=="M")%>%mutate(Male_Count=count)
+
+Joined_Gender_lead_combined<-Joined_Gender_Lead_Female%>%left_join(Joined_Gender_Lead_Male, by = c("Year", "date"))%>%ungroup%>%select(Female_Count, Male_Count, Year, date)
+
+Joined_Gender_lead_combined_difference<-Joined_Gender_lead_combined%>%mutate(Male_Difference=Male_Count/(Male_Count+Female_Count))%>%mutate(Proportion_Female_Lead=Female_Count/(Male_Count+Female_Count))%>% 
+  filter(Year>=1889 & Year<= 2015)
+
+Joined_Gender_lead_filtered<-Joined_Gender_lead_combined_difference%>% 
+  filter(Year>=1950 & Year<= 2010)
+
+ggplot(data=Joined_Gender_lead_filtered, aes(x=date, y=Proportion_Female_Lead))+geom_point(stat="identity")+
+  geom_smooth(method="lm", se=FALSE)+ 
+  labs(x="Date", y="Proportion of Female Leads", title="Figure 2:Female Have The Lead Role In Movies")
+
+Slope_M <- lm(Male_Difference ~ date, data=Joined_Gender_lead_filtered)
+Slope_output_M <- tidy(Slope_M, conf.int = TRUE)
+kable(Slope_output_M, digits=3)
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+ 
+F1 <-Joined_Gender_lead_combined_difference %>% 
+  filter(Year>=2000 & Year<= 2009)
+
+ggplot(data=F1)+
+  geom_line(aes(x=Year, y=Proportion_Female_Lead, group=1, col="Female"),colour="red") +
+  geom_line(aes(x=Year, y=Male_Difference, group = 1, col="Male"),colour="blue") + 
+  labs(x="Year", y="Proportion of Movies Staring Males vs. Females", title="Figure 3:Gender Disparities of Movie Leads")
+
+f2 <-  F1 %>% rename(
+              Female_Leads = Female_Count,
+              Male_Leads = Male_Count
+              )
+
+
+f3 <- f2 %>% select(Year, Female_Leads, Male_Leads, Proportion_Female_Lead, Male_Difference) 
+kable(f3)
+```
+
+## Supplementary Materials
+
+Write your extra materials here i.e. extra info for people who want to know
+more, but including in the main article would unnecessarily bloat things.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+Movie_simplified  <- readr::read_csv("/home/tinac/Final Project/Possible extra data set/Movie_simplified.csv")
+
+AVG_Movie_S <- Movie_simplified %>% group_by(Year, Gender) %>% summarise(mean=mean(AdjBoxOffice))
+
+Filter_AVG_Movie_S <- filter(AVG_Movie_S, Year <= 2009)
+
+ggplot(data = Filter_AVG_Movie_S, aes(x = Year, y = mean, fill=Gender)) +
+  geom_bar(position="dodge", stat="identity")+ 
+  labs(x="Year", y="Avg Box Office Revenue", title="Figure 4: Average Box Office Income between movies with Male Leads vs. Female Leads")
+```
+Figure 4:For all the movies that achieved higher than 10 million dollars at the box office, movies with male leads tend to have a higher average box office than movies with female leads. In 2009, it seems like movies with female leads finally matched the male average. This data will make for an interesting future study to see if the trend continues.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+model_fprop<-lm(Proportion_Female_Lead ~ date, data=Joined_Gender_lead_filtered)
+regression_table <- tidy(model_fprop, conf.int = TRUE)
+point_by_point_fprop <- augment(model_fprop) %>% 
+  as_data_frame()
+point_by_point_fprop
+ggplot(point_by_point_fprop, aes(x=.resid)) +
+  geom_histogram(binwidth = 0.07)+ 
+  labs(x="Residual Difference", y="Count", title="Figure 5:Residual Graph For Regression line in Figure 2")
+```
+Figure 5:Proof that this trend is consistnent over the years. Since the center of the residuals is at 0 this line is very indicative of the trend. Which means there is a decline in the ratio of female leads to male leads over the years. 

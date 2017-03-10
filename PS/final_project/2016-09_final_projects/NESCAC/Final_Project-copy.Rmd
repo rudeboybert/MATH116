@@ -1,0 +1,583 @@
+
+---
+title: "Final Project"          
+author: "Zach Levitt, Joe Moscatelli, David Valentin"
+date: "Sunday December 18th, 2016"
+output: html_document
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)     
+library(mosaic)
+library(knitr)
+library(shiny)
+library(ggthemes)
+
+
+
+```
+
+
+<p align= "center"><font size= 30> Who Sits at the Top of NESCAC Stack? </font></p>
+***
+
+<center>![](thecacshirt.jpg)</center>
+  
+<p margin-top = "3em"><font size =4>
+  With the college admissions season finally here along with the flood of Facebook posts and the yearly U.S. College News Rankings, we here at Minnesota Wilds Media will be investigating the NESCAC Colleges and how they stack up against each other in terms of Return on Investment and Employment and other major indicators. We will go into a step by step process of looking into what aspects are important in a Liberal Arts Institution. 
+</font></p>
+
+***
+
+## Breakdown of Our Analysis
+
+Our analysis does not include SAT scores or ACT scores as we know that SAT scores correlate heavily with Family Incomes, and therefore we believe that higher mean SAT scores for NESCAC colleges is what makes an institution competitive. Our data is primarily sourced from the years 2012 to 2013. 
+
+Include Methods of Calculations HERE:
+
+<ul>
+  <li>Unemployment Rate</li>
+  <li>Median Salary</li>
+  <li>Graduate Median Salary</li>
+
+</ul>
+
+
+If you take a look at figure one, you can see the correlation between SAT Scores and Family Income, and therefore we wanted our ranking system to be free of these income because frankly many of the NESCACS have relatively all the same SAT scores with a few even becoming now test-optional. The data is from 2013 SAT Scores. 
+
+
+*** 
+
+### Figure 1:
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+#Add inputs and ouputs in the fluid page function
+ui = fluidPage(
+  #First Comparison
+  sidebarPanel(selectInput(inputId = "statChoice", label="Score Type",
+              choices = c("Total", "Mathematics.Mean", "Critical.Reading.Mean", "Writing.Mean"))),
+  
+  #ID for plot output
+  mainPanel(plotOutput(outputId = "geomline")),
+  
+  #ID for Text Output
+  textOutput("main")
+  )
+
+server = function(input, output) {
+  #references the output object - list like objects
+  #sat.income.filtered = sat.income %>% filter(Family.Income == input$incomeChoice)
+  plotData <- reactive({
+
+  idx <- match(input$statChoice, names(sat.income))
+  sat.income.filtered <- sat.income %>% select(Family.Income, idx)
+    
+    ggplot(sat.income.filtered, aes(x = Family.Income, y= sat.income.filtered[2], fill = Family.Income)) + geom_bar(stat="identity") + labs(x= "Family Income", y = input$statChoice, title = "Family Income and SAT Scores") + geom_smooth(se = FALSE) + coord_flip()
+  })
+  
+  printData <- reactive({
+    total.by.family.income <- aov(sat.income$Total~sat.income$Family.Income, data= sat.income)
+    })
+  
+  
+  output$geomline = renderPlot(plotData())
+  output$main = renderPrint(printData())
+}
+
+shinyApp(ui = ui, server = server)
+
+```
+
+***
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+# Define UI for application that draws a histogram
+
+
+college.rankings <- read.csv("College_Rankings.csv", stringsAsFactors = FALSE)
+sat.income <- read.csv("SAT_Collegeboard_Income.csv", stringsAsFactors = FALSE) 
+all.ages <- read.csv("all-ages.csv")
+grad.students <- read.csv("grad-students.csv")
+recent.grads <- read.csv("recent-grads.csv")
+Major_data <- read.csv("Major_data.csv")
+Master_Data <- read.csv("Master_Data.csv")
+College_Data <- read.csv("College_Data.csv")
+
+
+
+all_ages_median_unempl = all.ages %>% 
+  select(Major, Major_category, Median, Unemployment_rate)
+
+recent_grads_median_unempl = recent.grads %>% 
+  select(Major, Major_category, Median, Unemployment_rate)
+
+recent_grads_major_categories = recent.grads %>% 
+  group_by(Major_category) %>% 
+  summarize(Median = mean(Median),
+            Unemployment_rate = mean(Unemployment_rate))
+
+
+College_Data = College_Data %>%  filter(School_Name != "Trinity")
+
+All_College_Data = left_join(Master_Data, College_Data, by = "School_Name")
+
+unemployment_rate_descend <- All_College_Data %>% 
+  select(School_Name, All_Ages_Unemployment) %>% 
+  arrange(desc(All_Ages_Unemployment))
+
+
+```
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+#Code for all our calculations
+
+#Middlebury
+Middlebury_data = Major_data %>%
+  select(Majors, Middlebury, Recent_grads_median, Recent_grads_unemployment_rate,            All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal = (Middlebury/100)*Recent_grads_median,
+         prop_rec_un = (Middlebury/100)*Recent_grads_unemployment_rate,
+         prop_all_sal = (Middlebury/100)*All_salary,
+         prop_all_un = (Middlebury/100)*All_unemploy)
+  
+Middlebury_ratio = 100/sum(Middlebury_data$Middlebury)
+Middlebury_rec_sal=Middlebury_ratio*sum(Middlebury_data$prop_rec_sal)
+Middlebury_rec_un=Middlebury_ratio*sum(Middlebury_data$prop_rec_un)
+Middlebury_all_sal=Middlebury_ratio*sum(Middlebury_data$prop_all_sal)
+Middlebury_all_un=Middlebury_ratio*sum(Middlebury_data$prop_all_un)
+
+#Bowdoin
+Bowdoin_data <- Major_data %>% 
+  select(Majors, Bowdoin, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Bowdoin/100)*Recent_grads_median,
+         prop_rec_un=(Bowdoin/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Bowdoin/100)*All_salary,
+         prop_all_un=(Bowdoin/100)*All_unemploy)
+
+Bowdoin_ratio=100/sum(Bowdoin_data$Bowdoin)
+Bowdoin_rec_sal=Bowdoin_ratio*sum(Bowdoin_data$prop_rec_sal)
+Bowdoin_rec_un=Bowdoin_ratio*sum(Bowdoin_data$prop_rec_un)
+Bowdoin_all_sal=Bowdoin_ratio*sum(Bowdoin_data$prop_all_sal)
+Bowdoin_all_un=Bowdoin_ratio*sum(Bowdoin_data$prop_all_un)
+
+
+#Amherst 
+Amherst_data <- Major_data %>% 
+  select(Majors, Amherst, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Amherst/100)*Recent_grads_median,
+         prop_rec_un=(Amherst/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Amherst/100)*All_salary,
+         prop_all_un=(Amherst/100)*All_unemploy)
+
+Amherst_ratio=100/sum(Amherst_data$Amherst)
+Amherst_rec_sal=Amherst_ratio*sum(Amherst_data$prop_rec_sal)
+Amherst_rec_un=Amherst_ratio*sum(Amherst_data$prop_rec_un)
+Amherst_all_sal=Amherst_ratio*sum(Amherst_data$prop_all_sal)
+Amherst_all_un=Amherst_ratio*sum(Amherst_data$prop_all_un)
+
+
+#Williams
+Williams_data <- Major_data %>% 
+  select(Majors, Williams, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Williams/100)*Recent_grads_median,
+         prop_rec_un=(Williams/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Williams/100)*All_salary,
+         prop_all_un=(Williams/100)*All_unemploy)
+
+Williams_ratio=100/sum(Williams_data$Williams)
+Williams_rec_sal=Williams_ratio*sum(Williams_data$prop_rec_sal)
+Williams_rec_un=Williams_ratio*sum(Williams_data$prop_rec_un)
+Williams_all_sal=Williams_ratio*sum(Williams_data$prop_all_sal)
+Williams_all_un=Williams_ratio*sum(Williams_data$prop_all_un)
+
+
+#Colby
+Colby_data <- Major_data %>% 
+  select(Majors, Colby, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Colby/100)*Recent_grads_median,
+         prop_rec_un=(Colby/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Colby/100)*All_salary,
+         prop_all_un=(Colby/100)*All_unemploy)
+
+Colby_ratio=100/sum(Colby_data$Colby)
+Colby_rec_sal=Colby_ratio*sum(Colby_data$prop_rec_sal)
+Colby_rec_un=Colby_ratio*sum(Colby_data$prop_rec_un)
+Colby_all_sal=Colby_ratio*sum(Colby_data$prop_all_sal)
+Colby_all_un=Colby_ratio*sum(Colby_data$prop_all_un)
+
+#Tufts
+Tufts_data <- Major_data %>% 
+  select(Majors, Tufts, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Tufts/100)*Recent_grads_median,
+         prop_rec_un=(Tufts/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Tufts/100)*All_salary,
+         prop_all_un=(Tufts/100)*All_unemploy)
+
+Tufts_ratio=100/sum(Tufts_data$Tufts)
+Tufts_rec_sal=Tufts_ratio*sum(Tufts_data$prop_rec_sal)
+Tufts_rec_un=Tufts_ratio*sum(Tufts_data$prop_rec_un)
+Tufts_all_sal=Tufts_ratio*sum(Tufts_data$prop_all_sal)
+Tufts_all_un=Tufts_ratio*sum(Tufts_data$prop_all_un)
+
+#Bates
+Bates_data <- Major_data %>% 
+  select(Majors, Bates, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Bates/100)*Recent_grads_median,
+         prop_rec_un=(Bates/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Bates/100)*All_salary,
+         prop_all_un=(Bates/100)*All_unemploy)
+
+Bates_ratio=100/sum(Bates_data$Bates)
+Bates_rec_sal=Bates_ratio*sum(Bates_data$prop_rec_sal)
+Bates_rec_un=Bates_ratio*sum(Bates_data$prop_rec_un)
+Bates_all_sal=Bates_ratio*sum(Bates_data$prop_all_sal)
+Bates_all_un=Bates_ratio*sum(Bates_data$prop_all_un)
+
+#Connecticut
+Connecticut_data <- Major_data %>% 
+  select(Majors, Connecticut, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Connecticut/100)*Recent_grads_median,
+         prop_rec_un=(Connecticut/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Connecticut/100)*All_salary,
+         prop_all_un=(Connecticut/100)*All_unemploy)
+
+Connecticut_ratio=100/sum(Connecticut_data$Connecticut)
+Connecticut_rec_sal=Connecticut_ratio*sum(Connecticut_data$prop_rec_sal)
+Connecticut_rec_un=Connecticut_ratio*sum(Connecticut_data$prop_rec_un)
+Connecticut_all_sal=Connecticut_ratio*sum(Connecticut_data$prop_all_sal)
+Connecticut_all_un=Connecticut_ratio*sum(Connecticut_data$prop_all_un)
+
+#Wesleyan
+Wesleyan_data <- Major_data %>% 
+  select(Majors, Wesleyan, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Wesleyan/100)*Recent_grads_median,
+         prop_rec_un=(Wesleyan/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Wesleyan/100)*All_salary,
+         prop_all_un=(Wesleyan/100)*All_unemploy)
+
+Wesleyan_ratio=100/sum(Wesleyan_data$Wesleyan)
+Wesleyan_rec_sal=Wesleyan_ratio*sum(Wesleyan_data$prop_rec_sal)
+Wesleyan_rec_un=Wesleyan_ratio*sum(Wesleyan_data$prop_rec_un)
+Wesleyan_all_sal=Wesleyan_ratio*sum(Wesleyan_data$prop_all_sal)
+Wesleyan_all_un=Wesleyan_ratio*sum(Wesleyan_data$prop_all_un)
+
+#Hamilton
+Hamilton_data <- Major_data %>% 
+  select(Majors, Hamilton, Recent_grads_median, Recent_grads_unemployment_rate, All_salary, All_unemploy) %>% 
+  mutate(prop_rec_sal=(Hamilton/100)*Recent_grads_median,
+         prop_rec_un=(Hamilton/100)*Recent_grads_unemployment_rate,
+         prop_all_sal=(Hamilton/100)*All_salary,
+         prop_all_un=(Hamilton/100)*All_unemploy)
+
+Hamilton_ratio=100/sum(Hamilton_data$Hamilton)
+Hamilton_rec_sal=Hamilton_ratio*sum(Hamilton_data$prop_rec_sal)
+Hamilton_rec_un=Hamilton_ratio*sum(Hamilton_data$prop_rec_un)
+Hamilton_all_sal=Hamilton_ratio*sum(Hamilton_data$prop_all_sal)
+Hamilton_all_un=Hamilton_ratio*sum(Hamilton_data$prop_all_un)
+
+```
+
+## Unemployment Rates Across the NESCAC
+
+We decided to calculate the unemployment rate for NESCAC graduates of all ages for the year 2012. Take this data with a grain of salt, as this does take in account for studnets who are  pursuing Graduate Programs, which many NESCAC colleges have students pursue. 
+
+### Figure 2:
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+ggplot(data=Master_Data, aes(x=reorder(School_Name, All_Ages_Unemployment), y=All_Ages_Unemployment)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0.06, 0.085) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Unemployment Rate", title="NESCAC All Graduates Unemployment Rate") +
+  geom_hline(yintercept = 0.08, color="red")
+
+```
+
+We noticed that 
+
+***
+
+## Unemployment Rate Comparison Between NESCAC Colleges
+
+In our analysis, we loooked unemployment rates across Nescac schools. Our Shiny widget allows you to compare unemployment rates between different NESCAC Colleges and see how they stack against each other: 
+
+### Figure 3:
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+#Add inputs and ouputs in the fluid page function
+ui = fluidPage(
+  #First Comparison
+  sidebarPanel(selectInput(inputId = "School_1", label="Choose a school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton")),
+  
+  #Second Comparison
+  selectInput(inputId = "School_2", label="Choose a second school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton"))),
+  
+  mainPanel(
+  plotOutput(outputId = "geomline"))
+  
+  )
+
+server = function(input, output) {
+  #references the output object - list like objects
+  data <- reactive({
+  
+  Master_Data_Filtered = Master_Data %>% filter(School_Name == input$School_1 | School_Name == input$School_2)
+  
+    ggplot(data=Master_Data_Filtered, aes(x=reorder(School_Name, All_Ages_Unemployment), y=All_Ages_Unemployment, color = School_Name)) +
+  geom_point(size = 5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(0.06, 0.085) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Unemployment Rate", title="NESCAC All Graduates Unemployment Rate") +
+  geom_hline(yintercept = 0.08, color="red")
+    }
+  )
+  
+  output$geomline = renderPlot(data()) 
+ 
+}
+
+
+shinyApp(ui = ui, server = server)
+
+```
+
+***
+
+## NESCAC All Graduates Median Salary
+
+Now, lets will dive into looking at Median Salary of Students across all ages after graduation. 
+
+
+### Figure 4: 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+
+ggplot(data=Master_Data, aes(x=reorder(School_Name, All_Ages_Median_Salary), y=All_Ages_Median_Salary), color = School_Name) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(50000, 62500) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Median Salary", title="NESCAC All Graduates Median Salary") +
+  geom_hline(yintercept = 56500, color="red")
+
+
+
+```
+
+We can see that Hamilton and Bowdoin have the highest Median Salary for all graduates.
+
+## NESCAC All Graduates Median Salary Comparison
+
+Our Shiny Widget allows you to compare Median Salaries between different NESCAC Colleges and see how they stack against each other:
+
+### Figure 5:
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+#Add inputs and ouputs in the fluid page function
+ui = fluidPage(
+  #First Comparison
+  sidebarPanel(selectInput(inputId = "School_1", label="Choose a school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton")),
+  
+  #Second Comparison
+  selectInput(inputId = "School_2", label="Choose a second school",
+              choices = c("Middlebury", "Bowdoin", "Amherst", "Williams", "Colby", "Tufts", "Bates", "Connecticut", "Wesleyan", "Hamilton"))),
+  
+  mainPanel(
+  plotOutput(outputId = "geomline"))
+  
+  )
+
+server = function(input, output) {
+  #references the output object - list like objects
+  data <- reactive({
+  
+  Master_Data_Filtered = Master_Data %>% filter(School_Name == input$School_1 | School_Name == input$School_2)
+  
+  ggplot(data=Master_Data_Filtered, aes(x= School_Name, y=All_Ages_Median_Salary, color = School_Name)) +
+  geom_point(size = 5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ylim(50000, 62500) +
+  coord_flip() +
+  labs(x="NESCAC Schools", y="Median Salary", title="NESCAC All Graduates Median Salary") +
+  geom_hline(yintercept = 56500, color="red")
+    }
+  )
+  
+  output$geomline = renderPlot(data()) 
+ 
+}
+
+
+shinyApp(ui = ui, server = server)
+
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=Master_Data, aes(x=reorder(School_Name, Recent_Grad_Unemployment), y=Recent_Grad_Unemployment)) +
+  coord_flip() +
+  geom_point() +
+  labs(x="School Name", y="Unemployment Rate", title="NESCAC Recent Graduate Unemployment Rate", color="School Name")
+
+```
+
+## NESCAC Recent Graduates Median Salary
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=Master_Data, aes(x=reorder(School_Name, Recent_Grad_Median_Salary), y=Recent_Grad_Median_Salary)) +
+  coord_flip() +
+  geom_point() +
+  labs(x="School Name", y="Median Salary", title="NESCAC Recent Graduates Median Salary", color="School Name")
+
+```
+
+## Analysis: 
+
+*** 
+
+## NESCAC Recent Graduate Unemployment Rate vs. Median Salary
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=Master_Data, aes(x=Recent_Grad_Median_Salary, y=Recent_Grad_Unemployment, color=School_Name)) +
+  geom_point() +
+  ylim(0.08, 0.095) +
+  labs(x="Median Salary", y="Unemployment Rate", title="NESCAC Recent Graduate Unemployment Rate vs. Median Salary", color="School Name")
+
+```
+
+### Analysis:
+
+
+***
+
+## NESCAC All Graduate Unemployment Rate vs. Median Salary
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=Master_Data, aes(x=All_Ages_Median_Salary, y=All_Ages_Unemployment, color=School_Name)) +
+  geom_point() +
+  labs(x="Median Salary", y="Unemployment Rate", title="NESCAC All Graduate Unemployment Rate vs. Median Salary", color="School Name")
+
+```
+
+### Analysis:
+
+
+***
+
+## Recent Graduate Median Salary across all Ages
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=All_College_Data, aes(x=Recent_Grad_Median_Salary, y=All_Ages_Median_Salary, color=School_Name)) +
+  geom_point() +
+    labs(x="Recent Graduate Median Salary", y="All Graduates Median Salary", title="NESCAC Graduates Median Salary: Recent vs. All", color="School Name")
+
+```
+
+### Analysis: 
+
+
+***
+
+## Recent Graduate Unemployment against All Ages Unemployment
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+ggplot(data=All_College_Data, aes(x=round(as.numeric(Recent_Grad_Unemployment), 3), y=round(as.numeric(All_Ages_Unemployment), 3), color=School_Name)) +
+  geom_point() +
+  labs(x="Recent Graduate Unemployment", y="All Graduates Unemployment", title="NESCAC Graduates Unemployment: Recent vs. All", color="School Name")
+
+```
+
+### Analysis:
+
+***
+
+## Concluding Notes:
+
+Ofcourse, we here at the Minnesota Wilds TM know that rankings should always be taken with a grain of salt. The rankings system did not include the entire NESCAC as we could not find data from Trinity College. In addition, our Unemployment data is typically sourced from 2012 to 2013 data, so the analysis is slightly dated; however, we assume that if the NESCAC schools were beating the unemployment rate in 2012, then they are most likely beating the 2015 unemployment rate.  
+
+
+### College Rankings Table
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+kable(college.rankings)
+
+
+
+```
+
+
+## Breakdown of each variable
+
+* Socioeconomic diversity
++ Why it was included
+
+* Endowment
++ Why it was included  
+
+* Freshman Retention Rate
++ Why it was included  
+
+* Faculty-Ratio
++ Why it was included  
+
+* Median_Salary_Of_Recent_Grads
++ Why it was included  
+
+* Median_Salary_Of_All_Ages
++ Why it was included  
+
+* Alumni_Participation_Rate
++ Why it was included  
+
+* Percent of Classes Under 20
++ Why it was included  
+
+* Yield_Rate
++ Why it was included  
+
+* Unemployment_Rate_Recent_Grads
++ Why it was included  
+
+* All_Ages_Unemployment
++ Why it was included  
+
+
+
+It looks like the our ranking system places Bowdoin College in the lead, so I guess go to Bowdoin, but in retrospect you may want to factor in the college that the students who built this R analysis with these fancy widgets. Just a thought...
+
+
+### Resources and References
+

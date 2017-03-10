@@ -1,0 +1,179 @@
+
+---
+title: "Final Project"
+author: "Julia Keith and Annie Glassie"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+```
+
+
+
+
+
+## Main Article
+
+Write your main article here i.e. the part that will show in print or online.
+If you are interested in formatting tips, go to RStudio Menu Bar -> Help -> 
+Markdown Quick Reference
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+library(tidyr)
+women.stem <- read.csv("women-stem.csv")
+
+bio_life <- filter(women.stem, Major_category == "Biology & Life Science")
+biolife2 <- filter(bio_life, Major != "BOTANY", Major != "GENETICS",  Major !="PHARMACOLOGY", Major != "ZOOLOGY", Major !="COGNITIVE SCIENCE AND BIOPSYCHOLOGY") 
+bio_life_tidy <- biolife2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(bio_life_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title="Biology & Life Sciences")
+
+
+health <- filter(women.stem, Major_category == "Health")
+health2 <- filter(health, Major != "MEDICAL ASSISTING SERVICES", Major != "MISCELLANEOUS HEALTH MEDICAL PROFESSIONS", Major != "HEALTH AND MEDICAL PREPARATORY PROGRAMS", Major != "PHARMACY PHARMACEUTICAL SCIENCES AND ADMINISTRATION", Major != "MEDICAL TECHNOLOGIES TECHNICIANS")
+health_tidy <- health2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(health_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1))+
+  labs(title="Health")
+
+
+engineering <- filter(women.stem, Major_category == "Engineering")
+engineering2 <- filter(engineering, Major != "MINING AND MINERAL ENGINEERING", Major != "GEOLOGICAL AND GEOPHYSICAL ENGINEERING",  Major !="MECHANICAL ENGINEERING RELATED TECHNOLOGIES", Major != "PETROLEUM ENGINEERING", Major !="NUCLEAR ENGINEERING", Major != "NAVAL ARCHITECTURE AND MARINE ENGINEERING ", Major != "MISCELLANEOUS ENGINEERING TECHNOLOGIES", Major != "NAVAL ARCHITECTURE AND MARINE ENGINEERING",  Major != "METALLURGICAL ENGINEERING",  Major != "MATERIALS ENGINEERING AND MATERIALS SCIENCE",  Major != "ENGINEERING AND INDUSTRIAL MANAGEMENT",  Major != "ENGINEERING MECHANICS PHYSICS AND SCIENCE", Major != "ENGINEERING TECHNOLOGIES", Major != "ENVIRONMENTAL ENGINEERING", Major != "ARCHITECTURAL ENGINEERING", Major != "INDUSTRIAL PRODUCTION TECHNOLOGIES", Major != "MATERIALS SCIENCE" )
+
+engineering_tidy <- engineering2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(engineering_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+  labs(title="Engineering")
+
+physical_sciences<- filter(women.stem, Major_category == "Physical Sciences")
+physical_sciences2 <-filter(physical_sciences, Major != "PHYSICAL SCIENCES", Major != "GEOSCIENCES", Major != "ASTRONOMY AND ASTROPHYSICS", Major != " NUCLEAR INDUSTRIAL AND BIOLOGICAL TECHNOLOGIES")
+
+physical_science_tidy <- physical_sciences2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(physical_science_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+    labs(title="Physical Sciences")
+
+computer_math<- filter(women.stem, Major_category == "Computers & Mathematics")
+computer_math2 <- filter(computer_math,Major != "MATHEMATICS AND COMPUTER SCIENCE", Major != "COMPUTER PROGRAMMING AND DATA PROCESSING", Major != "COMPUTER NETWORKING AND TELECOMMUNICATIONS", Major != "APPLIED MATHEMATICS")
+
+computer_math_tidy <- computer_math2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(computer_math_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+  labs(title="Computers and Mathematics")
+
+
+```
+
+
+
+
+
+
+
+
+
+
+## Supplementary Materials
+
+Write your extra materials here i.e. extra info for people who want to know
+more, but including in the main article would unnecessarily bloat things.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+library(tidyr)
+women.stem <- read.csv("women-stem.csv")
+
+bio_life <- filter(women.stem, Major_category == "Biology & Life Science")
+biolife2 <- filter(bio_life, Major != "BOTANY", Major != "GENETICS",  Major !="PHARMACOLOGY", Major != "ZOOLOGY", Major !="COGNITIVE SCIENCE AND BIOPSYCHOLOGY") 
+bio_life_tidy <- biolife2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(bio_life_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title="Biology & Life Sciences")
+
+
+health <- filter(women.stem, Major_category == "Health")
+health2 <- filter(health, Major != "MEDICAL ASSISTING SERVICES", Major != "MISCELLANEOUS HEALTH MEDICAL PROFESSIONS", Major != "HEALTH AND MEDICAL PREPARATORY PROGRAMS", Major != "PHARMACY PHARMACEUTICAL SCIENCES AND ADMINISTRATION", Major != "MEDICAL TECHNOLOGIES TECHNICIANS")
+health_tidy <- health2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(health_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1))+
+  labs(title="Health")
+
+
+engineering <- filter(women.stem, Major_category == "Engineering")
+engineering2 <- filter(engineering, Major != "MINING AND MINERAL ENGINEERING", Major != "GEOLOGICAL AND GEOPHYSICAL ENGINEERING",  Major !="MECHANICAL ENGINEERING RELATED TECHNOLOGIES", Major != "PETROLEUM ENGINEERING", Major !="NUCLEAR ENGINEERING", Major != "NAVAL ARCHITECTURE AND MARINE ENGINEERING ", Major != "MISCELLANEOUS ENGINEERING TECHNOLOGIES", Major != "NAVAL ARCHITECTURE AND MARINE ENGINEERING",  Major != "METALLURGICAL ENGINEERING",  Major != "MATERIALS ENGINEERING AND MATERIALS SCIENCE",  Major != "ENGINEERING AND INDUSTRIAL MANAGEMENT",  Major != "ENGINEERING MECHANICS PHYSICS AND SCIENCE", Major != "ENGINEERING TECHNOLOGIES", Major != "ENVIRONMENTAL ENGINEERING", Major != "ARCHITECTURAL ENGINEERING", Major != "INDUSTRIAL PRODUCTION TECHNOLOGIES", Major != "MATERIALS SCIENCE" )
+
+engineering_tidy <- engineering2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(engineering_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+  labs(title="Engineering")
+
+physical_sciences<- filter(women.stem, Major_category == "Physical Sciences")
+physical_sciences2 <-filter(physical_sciences, Major != "PHYSICAL SCIENCES", Major != "GEOSCIENCES", Major != "ASTRONOMY AND ASTROPHYSICS", Major != " NUCLEAR INDUSTRIAL AND BIOLOGICAL TECHNOLOGIES")
+
+physical_science_tidy <- physical_sciences2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(physical_science_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+    labs(title="Physical Sciences")
+
+computer_math<- filter(women.stem, Major_category == "Computers & Mathematics")
+computer_math2 <- filter(computer_math,Major != "MATHEMATICS AND COMPUTER SCIENCE", Major != "COMPUTER PROGRAMMING AND DATA PROCESSING", Major != "COMPUTER NETWORKING AND TELECOMMUNICATIONS", Major != "APPLIED MATHEMATICS")
+
+computer_math_tidy <- computer_math2 %>% 
+  select(Major, Major_category, Men, Women) %>% 
+  gather(Gender, Count, -Major, -Major_category) 
+
+ggplot(computer_math_tidy, aes(x=Major, y=Count, fill=Gender)) +
+  geom_bar(stat="identity", position = "dodge") + 
+  theme(axis.text.x = element_text(angle = 55, hjust = 1)) +
+  labs(title="Computers and Mathematics")
+
+
+```

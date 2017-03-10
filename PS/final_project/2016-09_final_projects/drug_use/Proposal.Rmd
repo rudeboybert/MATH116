@@ -1,0 +1,54 @@
+---
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Are Students Taking Advantage of The Opportunity of Attending the Best Language School in The Country?
+
+###Group Members: 
+Wengel Kifle, Luisangel Osorio,
+
+###Purpose: Describe the general topic/phenomenon you want to explore:
+
+The purpose of this study is to make students ask themselves if they are taking advantage of the great opportunity they have at their hands while being at Middlebury 
+
+###Why should a Middlebury student be interested in your work?
+A Middlebury student would be interested in our work because of the curiosity that arises from having the best language program and whether or not people are majoring in languages. This would let a Middlebury student have a general idea of how many of their peers are here for language instead of any other major. 
+
+### What do you hope people will learn from your project?
+
+Do students regard language as highly as the institution does?
+
+###Scientific Question: 
+How many students major in languages versus other majors at Middlebury College?
+
+###Data Sources: 
+https://nces.ed.gov/ipeds/datacenter/Data.aspx
+###Data Format: 
+As described in the Tips section of the Problem Set 06 discussion, describe what your tidy format data set looks like:
+How many tables will you have? What are the observational units of each table?
+
+1st table: observational units are the number of language and non-language majors.
+2nd Table: Observational units are each language offered
+
+How many rows does each table have?
+
+1st Table:  2 Rows (Language vs Non Language Majors)
+2nd Table: 10 Rows (Languages offered)
+
+How many columns does each table have and what are their names i.e. the variables? What are their units?
+
+1. 1st Table: 3 numerical Columns
+Language Majors/Non-language majors “Language or Non Language”
+Number of the language/non-language majoring students
+Percentage of the numbers in relation to student body
+
+2nd Table: 2 Columns 
+“Language” “Percentage”
+Their units are numerical and categorical. 
+
+
+

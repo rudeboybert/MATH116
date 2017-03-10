@@ -1,0 +1,113 @@
+
+---
+title: "Final Project: Drug Use Within Age Groups"
+author: "Wengel Kifle and Luisangel Osorio"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(tidyr)
+library(knitr)
+
+GroupedAges2 <- read.csv("GroupedAges2.csv")
+CollegeAgeTeens <- read.csv("CollegeAgeTeens.csv")
+drug.use.by.age <- read.csv("drug-use-by-age.csv")
+```
+
+
+
+
+
+
+## Main Article
+
+
+The demand for drugs is only increasing and in alarming quantities. The country is seeing more and more fatalities resulting from the great epidemic of dangerous and addictive substance abuse. The facotr of age in the country's drug use will be investigated through these statistics.
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+top5drugsagegroups <- GroupedAges2 %>% filter(Drug=="alcohol" | Drug == "marijuana" | Drug == "pain-releiver" | Drug== "hallucinogen" |Drug== "cocaine")
+ggplot(top5drugsagegroups, aes(x=Drug, y= Drug_Use, color=age)) +
+    geom_bar(stat = "identity")
+
+```
+
+Within a pool of ages ranging from thirteen to past sixty, the most popular drugs used according to percentage of age groups were alcohol, marijuana, pain-reliever, hallucinogen and cocaine, respectively, with alcohol having a significant lead. Legality and accessibility of alcohol are possible attributes to the popularity of the drug. Although alcohol is only legal after the age of twenty-one, all the other drugs besides pain-relievers, are illegal at all ages. Although pain-killers are legal, they are hard to access through the regulation of prescriptions. However, there is a rise in illegal selling which is how marijuana gained popularity as well. 
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+
+top5drugsCollege <- CollegeAgeTeens %>% filter(Drug=="alcohol" | Drug == "marijuana" | Drug == "pain-releiver" | Drug== "hallucinogen" |Drug== "tranquilizer")
+ggplot(top5drugsCollege, aes(x=Drug, y= Drug_Use, color=age)) +
+    geom_bar(stat = "identity") 
+
+```
+
+Drug use in the range of college years mimics the statistics of all age groups in terms of popularity of the differnt drugs. Alcohol consumption, again trumps all other drugs. Drinking has come to dominate social gatherings in college with increasing pressure. And with beign able to live with students that are of-age, even those below twenty-one show substantial usage. Marijuana has also become very popualar in college with only growing popularity and accesibilty. 
+
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+ggplot(data=drug.use.by.age, aes(x=age, y=alcohol.use, group=1)) + 
+  geom_line()
+
+```
+
+Alcohol is consumed by all ages represented but peaks at the ages of 21-23, right after it is legal. These statistics go hand in hand with the fact that after having to hide or avoid the consumption of alcohol up until twenty-one, individuals are then able to purchase and consume alcohol publicly. Therefore, in the years between 21-23, people will excitedly have what they could not have before and feel less reluctance to do so since it will then be perfectly legal to consume alcoholic beverages in the United States of America.
+
+After college age years, alcohol consumption does not grow, but decline even though it is still legal. In college during one's late teens to early twenties, there are parties multiple times a week and thus many opportunities and more pressure to drink alcohol. After this time, entering the age twenty-four, people are graduating, getting jobs, and having a more professional lifestyle where opportunities to drink do not come very often. There is also less of an inclination to drink because people have gotten to experience alcohol after being forbidden for so long, as one might due at a younger age. Despite its decline, its lowest usage is at 50% even at age group 60+, demonstrating the lasting popularity of the substance. 
+
+
+## Supplementary Materials
+
+Write your extra materials here i.e. extra info for people who want to know
+more, but including in the main article would unnecessarily bloat things.
+
+
+This data was found on GitHub and was oringally from the National Survey on Drug Use and Health from the Substance Abuse and Mental Health Data Archive. 
+
+https://github.com/fivethirtyeight/data/tree/master/drug-use-by-age
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+
+
+top5drugsagegroups <- GroupedAges2 %>% filter(Drug=="alcohol" | Drug == "marijuana" | Drug == "pain-releiver" | Drug== "hallucinogen" |Drug== "cocaine")
+ggplot(top5drugsagegroups, aes(x=Drug, y= Drug_Use, color=age)) +
+    geom_bar(stat = "identity")
+
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+
+
+top5drugsCollege <- CollegeAgeTeens %>% filter(Drug=="alcohol" | Drug == "marijuana" | Drug == "pain-releiver" | Drug== "hallucinogen" |Drug== "tranquilizer")
+ggplot(top5drugsCollege, aes(x=Drug, y= Drug_Use, color=age)) +
+    geom_bar(stat = "identity") 
+
+```
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=TRUE}
+
+
+ggplot(data=drug.use.by.age, aes(x=age, y=alcohol.use, group=1)) + 
+  geom_line()
+
+```

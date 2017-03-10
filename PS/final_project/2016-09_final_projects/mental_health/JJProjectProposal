@@ -1,0 +1,42 @@
+Mental Health and Treatment Amongst College Students
+Jack Kagan and Joccelyn Alvarado
+
+
+Purpose:
+
+There is increasing concern surrounding mental illness amongst students due to the competitive and stressful environment college campuses create.  Middlebury students would be able to gain insight and more knowledge on the topic if data and trends were outlined. We would hope to figure out exact figures detailing the increase in diagnosis of mental illness amongst students and what are the top risk factors and common treatments? We would like to find a control group of students in the same range that do not attend college to make a more accurate comparison. 
+
+
+Scientific Question:
+
+What corralations are there between mental illness reported by students in an area in comparison to treatment being recieved (Ex. how many facilities are in the area, how many take prescription drugs or nonprescription drugs) and what are the most common factors between students that seem are diagnosed. 
+
+
+Related Guiding Questions:
+
+How has Mental Illness increased over the years within college campuses/in general? 
+What are the top risk factors have led to this increase? Who is at most risk?
+What treatments have colleges put in place to help students manage their illnesses. Cost of treatment?
+Frequency of mental health treatment facilities in an area vs. frequency of illness
+
+Data Sources:
+
+National child health survey 2015 
+http://www.cdc.gov/nchs/nhis/SHS/tables.htm
+
+
+Data on mental health services facilities - *mh2012_puf.csv* R download.
+http://wwwdasis.samhsa.gov/dasis2/nmhss.htm
+http://wwwdasis.samhsa.gov/dasis2/nmhss/2010_nmhss_codebook.pdf
+
+
+Large Drug Study (problems dowloading)
+http://www.icpsr.umich.edu/icpsrweb/ICPSR/ssvd/studies/36361/variables
+http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/36361#matchingVars
+
+Large mental health study 
+http://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/35525#matchingVars
+
+
+Data Format: 
+One table per dataset. The observational units of most of these tables correspond to patients. One unit is one patient, or person, responding to the survey. There are many many many rows corresponding to different people. There are many many many columns corresponding to different questions asked of subjects (ex. Race, gender, location, mental conditions, etc.) 

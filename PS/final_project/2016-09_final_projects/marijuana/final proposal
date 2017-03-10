@@ -1,0 +1,34 @@
+Title 
+Recreational Marijuana and High School Absenteeism: CO trends, MA and CA expectations?
+
+
+Group Members
+Sam O’Keefe & Ian Strohbehn
+
+
+Describe the general topic/phenomenon you want to explore: 
+Why should a Middlebury student be interested in your work? 
+What do you hope people will learn from your project?
+Marijuana legalization for recreational use has been gaining momentum rapidly at the state level in recent years. Colorado was the first state to do so in 2014 and has since been highly scrutinized to evaluate the economic and social implications of the legislation. Massachusetts, Nevada, Maine and California are the most recent states to legalize the drug, and Vermont seems destined to do so in the near future.
+Marijuana legalization has had clear economic benefits in Colorado, yet the social aspects have been analyzed less. It remains to be seen if its legalization will have social benefits or not, especially in the younger, developing population who are learning to make decisions on their own.
+The debate is highly complex, involving an astonishing array of impacts both immediate and distant. 
+
+
+Scientific Question: Journalism, just like academic writing, has the goal of answering questions, but with a slightly more informal tone. What is the scientific question you want to answer using data?
+Have high school truancy rates and test scores responded to marijuana legalization in CO?
+One hypothesis is that there has been no change in high school truancy rates nor test scores after marijuana legalization. Excused absences can be used as a baseline. We will observe unexcused absences.
+
+
+Data Sources: Describe where you will find/access your data. Be as specific as you can, listing URLs and file formats if possible.
+Truancy rates: https://www.cde.state.co.us/cdereval/truancystatistics
+Test scores: https://edx.cde.state.co.us/SchoolView/DataCenter/reports.jspx?_adf_ctrl-state=pac20phbp_4&_afrWindowMode=0&_afrLoop=438843896048882&_adf.ctrl-state=ourv6crwe_29
+Marijuana usage: data needs to be requested (https://www.ephtrequest.dphe.state.co.us/requests/create) 
+Weedmaps: https://weedmaps.com/dispensaries/in/united-states/colorado
+	(map of dispensaries in Colorado)
+
+
+Data Format: As described in the Tips section of the Problem Set 06 discussion, describe what your tidy format data set looks like:
+How many tables will you have? What are the observational units of each table?
+How many rows does each table have?
+How many columns does each table have and what are their names i.e. the variables? What are their units?
+We will have one table that outlines truancy rates and test scores various counties, as well as marijuana use in each county. Therefore, the table will have four columns (county, truancy rates, test scores, marijuana usage). The table will have as many rows as data we are able to find. Truancy rates are calculated as follows: (total Student Days Unexcused Absent/Total days Possible). Test scores based on Colorado Student Assessment Program (CSAP) and Transitional Colorado Assessment Program (TCAP) scores. Marijuana usage is based on number of users per county (data needs to be requested).

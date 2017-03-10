@@ -1,0 +1,171 @@
+
+---
+title: "Final Project"
+author: "Carline Cating, Rebecca Conover, Sarah Koenigsberg"
+date: "Sunday December 18th, 2016"
+
+output: html_document
+---
+```{r, echo=FALSE, message=FALSE}
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(tidytext)
+library(tidyr)
+library(wordcloud)
+```
+
+## Main Article
+
+Write your main article here i.e. the part that will show in print or online.
+If you are interested in formatting tips, go to RStudio Menu Bar -> Help -> 
+Markdown Quick Reference
+
+  As enlightened, community minded Middlebury students, it’s easy to fall into the trap of assuming we know what’s going on in our community. We think we know what people care about, what the buzz is, how everything from global news to campus gossip is affecting our bubble; but how as an individual student can any of us actually perceive this? We considered different ways we might be able to probe the topics that are part of the collective consciousness in a numerical and chronological way, ideally approaching some form of objectivity. A zillion ethnographic interviews weren’t going to happen (ain’t nobody got time for that) so we went straight to the proverbial horse’s mouth: The Campus.
+  We knew from the beginning that the Campus is not a perfect reflection of student views, as not everyone feels comfortable or included in the Campus space and the perspectives of the editorial board would be overemphasized, however it is a wealth of chronologically organized data regarding the goings on at Middlebury, and notably offers space for any student - not just staff writers and editors - to write about whatever they want in the Op-Ed section. Rebecca Conover developed a text-mining tool that we used to collect and count the occurrence of every single word in all the available digital archives of The Campus dating back to 2011.
+  We picked a number of topics to investigate based on our perceptions of what topics have been important in the larger campus discourse. Spoiler: Campus text data is not a perfect metric of student body consciousness, but it can offer some insight into notable events and shifts in attiude.
+
+  Perhaps unsurprisingly, for several topics word usage correlated with specific events, either internal to the Middlebury community, or external involving nationwide or worldwide developments. 
+
+  A look at the topic of terrorism demonstrates this phenomenon, with spikes occurring in January 2015 after the Charlie Hebdo attack and the massacre of a school auditorium in Peshwar, Pakistan. Similarly, the attack on a Paris nightclub in late fall of 2015 caused a sharp increase in such discussion. 
+
+
+#Sentiments
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+data2<-data %>% 
+  rename(word=words) %>% 
+  inner_join(get_sentiments("bing")) %>% 
+  group_by(word) %>% 
+  summarize(counts=n())
+
+data2 %>%
+  with(wordcloud(word, counts, max.words = 100))
+
+data %>%
+  rename(word=words) %>% 
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE) %>%
+  acast(word ~ sentiment, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("#F8766D", "#00BFC4"),
+                   max.words = 5)
+```
+
+#Feminism
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+feminism<-data %>% 
+  filter(words=="feminism"|words=="feminist"|words=="sexism"|words=="patriarchy"|words=="misogyny")%>% 
+  group_by(date) %>% 
+  summarize(count=n()) 
+
+
+ggplot(data=feminism, aes(x=date,y=count))+geom_point()+geom_smooth(se=FALSE)+ylim(0,4)+labs(x="date",y="count",title="Frequency of use of Words Related to Feminism and Women's Issues")
+```
+
+
+The discussion around women's issues appears to be consistent but somewhat limited. The average issue that mentions this topic will mention it about two times.  Additionally, about half of the issues from the past five years mentioned this topic. Why is the discussion of such a prevalent issue behaving in this way? We see it as a reflection of the fact that while problems of sexism and misogyny are far from absent at Middlebury, they don't often emerge as moments of direct conflict. There haven't been any sharp peaks but the dialogue persists.
+
+
+We also examined the use of gendered pronouns as a barometer of representation of women in the Campus. We found that overall, there was an equal use of masculine and feminine pronouns.
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+#Male word cluster
+word_root_male_total <- data %>%
+  filter((words == "male") | (words == "men") | (words == "man") |
+           (words == "boy") | (words == "he") | (words == "him") | (words == "his") | (words == "mens") | (words == "masculine") | (words == "masculinity")) %>%
+  group_by(date) %>%
+  summarize(Total_counts = sum(counts))
+
+#Female word cluster
+word_root_female_total <- data %>%
+  filter((words == "female") | (words == "women") | (words == "woman") |
+           (words == "girl") | (words == "she") | (words == "her") | (words == "hers") | (words == "womens") | (words == "feminine") | (words == "femininity")) %>%
+  group_by(date) %>%
+  summarize(Total_counts = sum(counts))
+
+
+word_root_female_total["gender"]<-c(rep("Female", nrow(word_root_female_total)))
+word_root_male_total["gender"]<-c(rep("Male", nrow(word_root_male_total)))
+
+
+pronoun_words<-bind_rows(word_root_female_total,word_root_male_total)
+
+ggplot(data=pronoun_words,)
+#male separated by word
+word_root_male <- data %>%
+  filter((words == "male") | (words == "men") | (words == "man") |
+           (words == "boy") | (words == "he") | (words == "him") | (words == "his") | (words == "mens") | (words == "masculine") | (words == "masculinity"))
+
+ggplot(word_root_male, aes(x = date, y = counts, col=words)) + geom_point() + scale_y_continuous(limits = c(0, 75)) +
+  geom_smooth(se=FALSE) +
+  labs(x="Date", y="Frequency", title ="male")
+
+
+
+#female separated by word
+word_root_female <- data %>%
+  filter((words == "female") | (words == "women") | (words == "woman") |
+           (words == "girl") | (words == "she") | (words == "her") | (words == "hers") | (words == "womens") | (words == "feminine") | (words == "femininity"))
+
+ggplot(word_root_female, aes(x = date, y = counts, col=words)) + geom_point() + scale_y_continuous(limits = c(0, 75)) +
+  geom_smooth(se=FALSE) 
+  labs(x="Date", y="Frequency", title ="female")
+
+  
++
+```
+
+While this is does not mean that there is equal representation, these trends may be revealing of a lack of explicit gender bias in The Campus. What would a more productive dialogue look like? Will women's issues become more or less prevalent in the future? This analysis does not give us very much insight.  
+
+#Election
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+election_overall<-data %>% 
+  filter(words=="election") 
+ggplot(data=election_overall, aes(x=date, y=counts))+geom_point()+geom_smooth()+labs(title="Frequency of mentions of 'election' in The Campus")
+```
+
+We see that there is relatively consistent mention of elections in the campus throughout the year, presumably related to SGA and other campus groups. But there are significant peaks during presidental elections. We found that the trends during the 2016 election were especially interesting. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+
+election<-data %>% 
+  filter(words=="obama"|words=="romney"|words=="clinton"|words=="trump"|words=="sanders")
+
+election_overall<-data %>% 
+  filter(words=="election") %>% 
+
+
+election2016<-election %>% 
+  filter(words=="clinton"|words=="trump"|words=="sanders") %>% 
+  filter(year>=2015)
+
+ggplot(data=election2016, aes(x=date, y=counts,color=words))+geom_point()+geom_smooth(se=FALSE)+labs(title="Mentions of Presidential Candidates in the Campus")
+
+```
+
+Here we see that the dynamics of election coverage in the campus divereged from wider national trends. For most of the campaign, Senator Sanders was mentioned more often than any of the candidates. This is not true of the national news media, where coverage of trump dominated. But, in some ways this mirrors trends that took place in extremely liberal dominated communities. The possibility of Trump winning the presidency appeared so absurd that most didn't give it any thought. Thus, when he did win there was a major bump as the community readjusted their perceptions.
+
+While these trends are not necessarily suprising, they point to an interesting dynamic. At Middlebury, it is very easy for most of us to insulate ourselves from the reality of the rest of the country.
+
+
+## Supplementary Materials
+
+Write your extra materials here i.e. extra info for people who want to know
+more, but including in the main article would unnecessarily bloat things.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+```
+How did we extract data?
+
+
+

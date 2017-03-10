@@ -1,0 +1,162 @@
+
+---
+title: "Looking for Mental Health Care? West is Best"
+author: "Joccelyn Alvarado and Jack Kagan"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(knitr)
+
+mh2012_puf <- read.csv("mh2012_puf.csv")
+
+South <- filter(mh2012_puf, LST == "TX" |LST == "OK" | LST == "AR"| LST == "LA"| LST == "MS"| LST == "TN"| LST == "AL"| LST == "KY"| LST == "WV"| LST == "FL"| LST == "GA"| LST == "SC"| LST == "NC"| LST == "VA"| LST == "DC"| LST =="MD"| LST =="DE")
+
+Midwest <- filter(mh2012_puf, LST == "ND" | LST == "SD" | LST == "NE" | LST == "KS" | LST == "MO" | LST == "IA" | LST == "MN" | LST == "WI" | LST == "IL" | LST == "IN" | LST =="MI" | LST =="OH")
+
+NorthEast <- filter(mh2012_puf, LST == "ME" |LST == "NH" | LST == "VT"| LST == "MA"| LST == "RI"| LST == "CT"| LST == "NJ"| LST == "NY"| LST == "CT"| LST == "PA")
+
+West <- filter(mh2012_puf, LST == "HI" | LST == "AK" | LST == "CA" | LST == "OR" | LST == "NV" | LST == "WA" | LST == "ID" | LST == "MT" | LST == "WY" | LST == "UT" | LST =="CO" | LST =="AZ"| LST =="NM")
+```
+
+
+
+## Mental Illness Treatment in America
+
+Two things that are fair to say about Middlebury is that it is a rigorous academic institution, and that its students hail from all across the country. The whole school represents 47 states and DC, and the middle 50% SAT score for the class of 2020 was between 1940 and 2240. Thus, Middlebury expects a lot out of its students. And this, as is the case with many colleges, contributes to the mental health problem that plagues youth and college students across the country. As for us here in Vermont, during the summer and post-Middlebury, when we go back to our respective homes, the landscape is often very different from the one in rural Vermont, or even in New England. 
+
+We've taken data on over 13,000 mental health services facilities across the U.S. and compiled them into regions - Northeast, South, West, and Midwest. From there, we've compared the amount of facilities in each region that have various treatment options that might be PARTICULARLY relevant to a young person/college student looking for mental health care. 
+
+We got our data from the 2012 National Mental Health Services Survey, which included 15,183 of 16,782 eligible/relevant mental health facilities in the country. 
+
+
+
+For all the following graphs, the x axis is the proportion of facilities that offer that particular service, while the y axis is the # of facilities that offer that service.
+
+Green is the south.
+Black is the northeast.
+Red is the midwest.
+Blue is the west. 
+
+### Availabilty of 24 hour Inpatient Services AND Walk ins 
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+ggplot(data = NorthEast, aes(x=sum(SETTINGIP)/length(SETTINGIP))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("24hr inpatient care proportion by region")
+
+ggplot(NorthEast, aes(sum(MHEMGCY)/length(MHEMGCY))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("Psychiatric Emergency Walk in availability proportion")
+```
+
+The south has the highest proportion of the service available while the West has the lowest. In general this is not seen much in facilties which is seen through the lower frequency of them in general (all under 20 percent) and demonstrates that is not as highly regarded as other illness. 
+
+For walk in availabilities, there is a wider range with the Southern regions having around a 40 percent versus the NorthEast having around a 25 percent frequency. Pretty astonding different and they are overall very low. 
+
+### Does the Facility offer Specialized Substance Abuse Treatment?
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+ggplot(data = NorthEast, aes(x=sum(TREATMT)/length(TREATMT))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("Substance abuse treatment facilities by region")
+```
+
+Another issue that's relevant to young people and college students alike is substance abuse. The region with the highest proportion of facilities that offer substance abuse treatment is the west, but this proportion is still under 55%. 
+
+
+### AUTISM AND PSYCHOSES SPECIALIZED TREATMENT
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+ggplot(data = NorthEast, aes(x=sum(PSYCHOSES)/length(PSYCHOSES))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("Schizophrenia, other Psychoses treatment")
+
+ggplot(data = NorthEast, aes(x=sum(AUTISM)/length(AUTISM))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("Autism spectrum treatment proportion")
+
+```
+
+We were surprised at the range of autism/autism spectrum treatment across the regions. The midwest leads the pack with just over 45% of facilities having treatment options, but the other end, the south and the west, have only around 35% of facilities with treatment options. Treatment for Psychoses seems to be within the range of 80 to 86 percent frequency between all the regions. Therefore they are generally a common treatment option amongst most facilities. 
+
+### EATING DISORDERS SPECIALIZED TREATMENT
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+ggplot(data = NorthEast, aes(x=sum(EATING)/length(EATING))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("Eating disorder treatment proportion")
+
+```
+
+Another both low and wide range is on the graph of facilities with eating disorder treatment. The midwest leads with almost 48% percent, while the south trails with just over 36% of facilities providing eating disorder treatment.
+
+### SERVICES FOR LGBT CLIENTS
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+ggplot(data = NorthEast, aes(sum(SRVC80)/length(SRVC80))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("proportion of facilities that treat LGBT clients")
+```
+
+Another jarring graph is that of the proportion of facilities that provide service to LGBT clients. The south has a shockingly low proportion here. Even the leading west's proportion is surprisingly low. Yes, as sad as it is, some facilities can refuse to serve because of sexual orientation. 
+
+### LANGUAGE SPOKEN OTHER THAN ENGLISH 
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(NorthEast, aes(sum(LANG)/length(LANG))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("proportion of facilities w/mental health services in a language other than English")
+```
+
+The proportions on the graph are drastic ranging from less than 30 percent of facilities in the South providing treatment in a language other than English compared to the 60 percent of facilities in the West. It is important to keep in mind that there are many factors that may lead to this, perhaps the demands of the area and availibilty of people speaking other languages. 
+
+### IS IT FINANCIALLY FEASABLE TO EVERYONE?
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(NorthEast, aes(sum(PAYASST)/length(PAYASST))) + geom_histogram() + geom_histogram(data = Midwest, fill = "red") + geom_histogram(data = South, fill = "green") + geom_histogram(data = West, fill = "blue") + xlab("Proportion of facilities with care for those who cannot pay")
+```
+
+Pay Assist has a frequency of about 43 percent in the South an then around 51 percent in the. This being said, these facilities are an often option for people that can afford them and leaving many americans without option. The West offers more facilities that can pay, but has a lower number of facilites within the area. 
+
+
+### IN A SUM: 
+We also synthesized all the results for the regions as they relate to each other. For these 12 factors that we designated as releavnt for young adults and college students, a region got 4 points for leading the pack, 3 points for second place, 2 points for 3rd place, and 1 point for 4th place out of the 4. 
+
+By this system, the west got an average score of 3.08.
+Midwest: 2.92
+Northeast: 2.25
+and south came in dead last with a 1.9 average score. 
+
+## The Tables behind the graphs
+
+Below are summaries of the different categories that we analyzed and the frequency that they occured for each region. 
+
+SOUTH: MEAN VALUES
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+Sum_South <- South %>% summarise (mean(TREATMT), mean(SETTINGIP), mean(PSYCHOSES), mean(AUTISM), mean(EATING), mean(SRVC80), mean(MHEMGCY), mean(LANG), mean(PAYASST))
+kable(Sum_South)
+```
+
+
+MIDWEST: MEANVALUES
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+Sum_Midwest <- Midwest %>% summarise(mean(TREATMT), mean(SETTINGIP), mean(PSYCHOSES), mean(AUTISM), mean(EATING), mean(SRVC80), mean(MHEMGCY), mean(LANG), mean(PAYASST))
+kable(Sum_Midwest)
+```
+
+
+NORTHEAST: MEAN VALUES
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+Sum_NorthEast <- NorthEast %>% summarise(mean(TREATMT), mean(SETTINGIP), mean(PSYCHOSES), mean(AUTISM), mean(EATING), mean(SRVC80), mean(MHEMGCY), mean(LANG), mean(PAYASST))
+kable(Sum_NorthEast)
+```
+
+
+WEST: MEAN VALUES
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+Sum_West <- West %>% summarise(mean(TREATMT), mean(SETTINGIP), mean(PSYCHOSES), mean(AUTISM), mean(EATING), mean(SRVC80), mean(MHEMGCY), mean(LANG), mean(PAYASST))
+kable(Sum_West)
+```

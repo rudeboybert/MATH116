@@ -1,0 +1,55 @@
+File Manifest for ICPSR 36361
+
+United States Department of Health and Human Services. Substance Abuse and
+Mental Health Services Administration. Center for Behavioral Health
+Statistics and Quality. National Survey on Drug Use and Health, 2014.
+ICPSR36361-v1. Ann Arbor, MI: Inter-university Consortium for Political and
+Social Research [distributor], 2016-03-22.
+http://doi.org/10.3886/ICPSR36361.v1
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    36361-manifest.txt                  -       -         -       2016-11-21  -
+
+
+DS0001 National Survey on Drug Use and Health, 2014
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    36361-0001-Codebook.pdf             -       -         -       2016-03-22  bd8dac9f372d1eb7610e67e9db88011d
+
+    36361-0001-Data.dta                 -       55,271    3148    2016-03-22  01a9b0257b56d8d08e6b0a5be9b69976
+
+    36361-0001-Data.rda                 -       55,271    3148    2016-03-22  485dea6a656e8f5b248a98a1cd88977c
+
+    36361-0001-Data.sav                 -       55,271    3148    2016-03-22  7437941f6164e63d048365666d16555e
+
+    36361-0001-Data.stc                 -       55,271    3148    2016-03-22  1aa7d819cf7fbb9c263c4c8c04027464
+
+    36361-0001-Data.tsv                 -       55,271    3148    2016-03-22  e66332df464c5d5e16823867a46f57f0
+
+    36361-0001-Data.txt                 6440    55,271    3148    2016-03-22  2e35f4012c24e8d55eab21c30f502e67
+
+    36361-0001-Questionnaire-screener.pdf -       -         -       2016-03-22  5d56f702c5c176501cf0bb2913b13413
+
+    36361-0001-Questionnaire-showcards.pdf -       -         -       2016-03-22  86820117a3aafb50e09bfdea02297d26
+
+    36361-0001-Questionnaire-specs.pdf  -       -         -       2016-03-22  386df1f80d1a39b5c5f9c39b0c9bd193
+
+    36361-0001-Setup.dct                -       -         -       2016-03-22  ca72f26a1c1678b0e0b795e306e2a639
+
+    36361-0001-Setup.do                 -       -         -       2016-03-22  f66536247c79fd62152fbb28c1ec6fbc
+
+    36361-0001-Setup.sas                -       -         -       2016-03-22  4c4a9270f881f67f4ee9c05b58ceda74
+
+    36361-0001-Setup.sps                -       -         -       2016-03-22  a23dad6c9429c4eae627fcdfd04d26d7
+
+    36361-0001-Supplemental_syntax.do   -       -         -       2016-03-22  2da6a4428f7af653eda478466cc1c7fa
+
+    36361-0001-Supplemental_syntax.sas  -       -         -       2016-03-22  64a2f3afa6fbb38589587a3c9113c37b
+

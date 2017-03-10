@@ -1,0 +1,216 @@
+
+---
+title: Marijuana retail and production dispersal in Colorado
+author: Ian Strohbehn & Sam O'Keefe
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(tidyr)
+library(knitr)
+library(ggmap)
+library(rgeos)
+library(maptools)
+library(gpclib)
+
+# Import datasets
+
+# List of marijuana retail facilities in Colorado, contains zip code.
+mari_retail_CO <- read.csv("mari_retail_CO.csv")
+
+# List of marijuana cultivation facilities in Colorado, contains zip code.
+mari_cultivation_CO <- read.csv("mari_cultivation_CO.csv")
+
+# Population and economic characteristics for zip codes in Colorado.
+co_zip_data <- read.csv("co_zip_data.csv", check.names = FALSE)
+load("zipcode.rda")
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE
+
+
+# Joining retail and cultivation data to zipcode data, and summarizing frequencies:
+zipcode <- zipcode %>% mutate(zip = as.numeric(as.character(zip)))
+mari_retail_counts <- mari_retail_CO %>% left_join(zipcode, by=c("Zip" = "zip")) %>%
+  group_by(Zip) %>%
+  summarize(count=n())
+mari_cultivation_counts <- mari_cultivation_CO %>% left_join(zipcode, by=c("Zip"="zip")) %>%
+  group_by(Zip) %>%
+  summarize(count=n())
+
+# Joining retail and cultivation data to income and population data:
+mari_retail_CO_plus <- mari_retail_CO %>% left_join(zipcode, by=c("Zip" = "zip")) %>%
+  group_by(longitude, latitude, Zip) %>%
+  summarize(count=n())
+mari_cultivation_CO_plus <- mari_cultivation_CO %>% left_join(zipcode, by=c("Zip"="zip")) %>%
+  group_by(longitude, latitude, Zip) %>%
+  summarize(count=n())
+
+mari_retail_data <- mari_retail_CO %>%
+  left_join(co_zip_data, by = c("Zip" = "ZIP_Code_Tabulation_Area_5_digit"))
+mari_cultivation_data <- mari_cultivation_CO %>%
+  left_join(co_zip_data, by = c("Zip" = "ZIP_Code_Tabulation_Area_5_digit"))
+mari_retail_graph <- mari_retail_counts %>% 
+  left_join(co_zip_data, by=c("Zip" = "ZIP_Code_Tabulation_Area_5_digit"))
+mari_cultivation_graph <- mari_cultivation_counts %>% 
+  left_join(co_zip_data, by=c("Zip" = "ZIP_Code_Tabulation_Area_5_digit"))
+
+mari_retail_summary <- mari_retail_counts %>%
+  left_join(co_zip_data, by = c("Zip" = "ZIP_Code_Tabulation_Area_5_digit")) %>% 
+  filter(count>11) %>%
+  arrange(desc(count)) %>%
+  select(Zip, count, Per_Capita_Income)
+
+mari_cultivation_summary <- mari_cultivation_counts %>%
+  left_join(co_zip_data, by = c("Zip" = "ZIP_Code_Tabulation_Area_5_digit")) %>% 
+  filter(count>30) %>%
+  arrange(desc(count)) %>%
+  select (Zip, count, Per_Capita_Income)
+
+mari_retail_aspen <- mari_retail_counts %>%
+  left_join(co_zip_data, by = c("Zip" = "ZIP_Code_Tabulation_Area_5_digit")) %>%
+  filter(Zip == 81611) %>%
+  select (Zip, count, Per_Capita_Income)
+
+mari_retail_denver <- mari_retail_counts %>%
+  left_join(co_zip_data, by = c("Zip" = "ZIP_Code_Tabulation_Area_5_digit")) %>%
+  filter(Zip<80300 & Zip>80122) %>%
+   arrange(desc(count)) %>%
+  select (Zip, count, Per_Capita_Income)
+
+mari_cultivation_denver <- mari_cultivation_counts %>%
+  left_join(co_zip_data, by = c("Zip" = "ZIP_Code_Tabulation_Area_5_digit")) %>%
+  filter(Zip<80300 & Zip>80122) %>%
+   arrange(desc(count)) %>%
+  select (Zip, count, Per_Capita_Income)
+```
+
+## Introduction
+
+  On November 12, 2012, Colorado voters passed the Colorado Amendment 64, which legalized the recreational use of marijuana in the state. Since then, Washington, Oregon, Alaska, California, Massachusetts, Maine, and Nevada have also legalized recreational use of the drug. These changes have had and will continue to have broad impacts on the commercial cultivation, production, and retail of the drug across the country. Retailers popped up extremely rapidly in Colorado, and between 2013 and 2014 sales reached $700 million. Despite heavy taxation, a new market had emerged and exploded.
+  However, questions remain as to how these changes are felt at the local scale. To that end, the following investigates whether there is a relationship between per capita income and the abundance of mariuana retail or cultivation establishments by zip code.
+  According to basic economic principles, products are sold where demand for them is highest, and produced where costs can be kept low. In this context, zip codes with high per capita incomes are expected to contain more marijuana retail facilities, while cultivation facilities might locate in less affleunt zip codes. Time to take a closer look:
+
+### Where is Marijuana Sold? Number of Retail Facilities (Dispensaries) by Zip Code
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+google.map <-get_googlemap(center = c(lon=-105.62, lat=38.93), zoom=7, maptype = c("roadmap"), color = "color")
+
+ggmap(google.map) +
+  coord_map() +
+  xlab("longitude") + ylab("latitude") +
+  geom_point(data=mari_retail_CO_plus, aes(x=longitude, y=latitude, size=count), col="red")
+```
+
+### Where is Marijuana Grown? Number of Cultivation Facilities (Farms) by Zip Code
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggmap(google.map) +
+  coord_map() +
+  xlab("longitude") + ylab("latitude") +
+  geom_point(data=mari_cultivation_CO_plus, aes(x=longitude, y=latitude, size=count), col="red")
+```
+
+## Case Studies
+
+  The two maps above of retail and cultivation facilities are similar at first glance, but there are some notable differences. Indeed, two localities warrant further investigation. 
+  The first is the city of __Aspen__ (located below the "White River National Forest" label on the map), which contains numerous retail facilities but not a single cultivation facilities. Aspen is an archetypal wealthy mountain town, attracting affluent tourists year round with its robust natural amenities; potentially a deep market for retailers. 
+
+### Number of dispensaries and per capita income of Aspen, CO
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+kable(mari_retail_aspen)
+```
+
+Per capita income in Aspen is quite high. Furthermore, year round residents comprise only a small part of the potential marijuana consumer base. Likely, the majority of consumers are winter season visitors, who also have more money to spend. It would be interesting to examine consumer data of Aspen depending on season.
+
+The second locality is the city of __Denver__, Colorado's capitol. Interestingly, the zip code with the most retail facilities does not have a strikingly high per capita income. On the contrary, it is just over $15,000/yr on average for residents in that zip code. This same zip code, 80216, also contains the most marijuana cultivation facilities in Denver. Continueing down the table, any sorting by income is not obvious. Note 80209, having a very high per capita income but only three dispensaries. Perhaps the wealthiest areas prefer to buy their marijuana elsehere? Table data is shown in "Supplemental Material".
+
+It is not surprusing that a predictive relationship between income and marijuana facilities is not observed in a large, diverse, capitol city like Denver due to an array of other factors at play.
+
+
+## Statewide Trends
+
+Both retailers and cultivators are extremely concentrated in cities. Perhaps, the demand for marijuana in the country has simply not reached the levels it is at in the cities. 
+
+### Marijuana dispensaries vs. Per capita income
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(mari_retail_graph, aes(x=Per_Capita_Income, y=count))+geom_point()+geom_smooth(method="lm",se=FALSE) + labs(x = "Per capita income", y = "Number of marijuana dispensaries")
+```
+
+### Correlation coefficient 
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+cor(mari_retail_graph$count, mari_retail_graph$Per_Capita_Income, use="complete")
+```
+
+### Top 5 zip codes with most dispensaries 
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+kable(mari_retail_summary)
+```
+
+Colorado dispensary data showed that  that the demand for marijuana is more or less universal, regardless of socioeconomic status. Despite general expectations, there was no apparent trend between income per capita and presence of retailers. However, zip code 80216 of Denver, CO contains by far the most retailers of any other zip code in the state (25), and has an income per capita of just $15,198. Nevertheless, there was an utter lack of a general trend, as is evident in the correlation coefficient.
+
+### Marijuana farms vs. Per capita income
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+ggplot(mari_cultivation_graph, aes(x=Per_Capita_Income, y=count))+geom_point()+geom_smooth(method="lm",se=FALSE) + labs(x = "Per capita income", y = "Number of marijuana farms")
+```
+
+### Correlation coefficient 
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+cor(mari_cultivation_graph$count, mari_cultivation_graph$Per_Capita_Income, use="complete")
+```
+
+
+### Top 5 zip codes with most marijuana cultivators
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+kable(mari_cultivation_summary)
+```
+
+  Another essential component to the business is the cultivation of the product. This trend was more expected. As zip code per capita increased, the presence of marijuana retailers decreased. Again, zip code 80216 of Denver, CO contains by far the far most cultivators of any other zip code in the state (63). Growing marijuana does not necessitate very much in terms of monetary or educational requirements; therefore, it makes sense that zip codes with lower incomes per capita may be more likely to get into the business. Despite the apparent trend, the coefficient coefficient is quite far from 1, and therefore there is not a strong correlation.
+
+# Conclusions
+  As was evident in the scatterplots and regression lines, there did not seem to be a relationship between marijuana retailers and per capita income, but there did seem to be a relationship between marijuana growers and per capita income.
+  Obviously, there are many confounding variables that could play into these relatinoships that would alter them; for example, average age could confound the data; young people are more likely to consume marijuana, and are more populous in cities, which would explain the above finding. A study would be needed to confirm.
+  Another interesting study related to this data would be to examine how closely connected the marijuana cultivators and retailers are in the state. Does most of the marijuana grown in the state go to Colorado retailers? Or does most of the marijuana sold in the state come from Colorado growers? These questions would be beneficial in an economic analysis of this novel state business.
+  Lastly, Colorado's law change is a fairly recent transformation that likely has not manifested all the effects that it will down the road. Therefore, this study may be premature. However, it may give some sort of preliminary indications regarding this blossoming business in America.
+
+
+## Supplementary Materials
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+```
+
+### Number of dispensaries and per capita income in Denver's zipcodes
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+kable(mari_retail_denver)
+```
+
+### Number of cultivators and per capita income in Denver's zipcodes
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+kable(mari_cultivation_denver)
+```
+
+### Sources:
+
+https://www.washingtonpost.com/news/wonk/wp/2015/02/12/colorados-legal-weed-market-700-million-in-sales-last-year-1-billion-by-2016/?utm_term=.1ac08298af6f
+
+Income and demographic data from American Community Survey (ACS) 2011-2015 (5-Year Estimates): http://www.socialexplorer.com/tables/ACS2015_5yr
+
+Retail and cultivation data from Colorado Department of Revenue: https://www.colorado.gov/pacific/enforcement/med-licensed-facilities
+
+### Notes: 
+
+* Per Capita Income is in 2015 Inflation Adjusted Dollars
+
+* Definition of ZIP Code Tabulation Areas from US Census Bureau: _ZIP Code Tabulation Areas (ZCTAs) are generalized areal representations of United States Postal Service (USPS) ZIP Code service areas. The USPS ZIP Codes identify the individual post office or metropolitan area delivery station associated with mailing addresses. USPS ZIP Codes are not areal features but a collection of mail delivery routes._

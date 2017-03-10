@@ -1,0 +1,219 @@
+
+---
+title: '**Sexism on the Silver Screen: Exploring film’s gender divide**'
+author: "Tina Chen, Sierra Moen, Jared Whitman"
+date: "Sunday December 18th, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(tm)
+library(stringr)
+library(lubridate)
+library(broom)
+library(knitr)
+
+Final_movie_data <- read.csv("Possible extra data set/Final_movie_data.txt", sep=";")
+
+actor_edit <- read.csv("Possible extra data set/actor_edit.txt", sep=";")
+```
+
+
+  Quick! Think of a movie with a strong female lead - not a supportive wife, not a ditzy fashionista, and not a sexualized object. Couldn’t do it? There’s a good reason: the movie industry is biased in creating films with leading male actors.
+  
+  A woman's role has evolved in tandem with the film industry. Since its conception in 1872, film has developed into one of the most powerful mediums in contemporary society. Special effects, color, and sound have been incorporated into movies, just as a woman’s right to vote and right to work outside the home have incorporated into the structure of society.
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+movie_edit3 <- Final_movie_data %>%
+  as_data_frame() %>% 
+  mutate(ID=factor(ID))
+  
+actor_edit3 <- actor_edit %>%  
+  as_data_frame() %>% 
+  mutate(ID=factor(ID))
+
+joined_data <- full_join(movie_edit3, actor_edit3, by="ID") %>% 
+  mutate(Title = as.character(Title)) %>% 
+  mutate(Year = as.character(Year)) %>% 
+  mutate(date = paste(Year, "01-01", sep="-")) %>% 
+  mutate(date=ymd(date))%>% mutate(Year=ifelse(is.na(Year), "N/A", Year))
+
+Filtered_joined_data<-joined_data%>% 
+  filter(Year>=1890 & Year<= 2009)%>%filter(Gender=="M" |  Gender=="F")
+
+Final_joined_data<-Filtered_joined_data%>%group_by(Gender, Year, date)%>%summarise(count=n())
+
+ggplot(data=Final_joined_data, aes(x=date, y=count, color=Gender))+geom_point(stat="identity")+ 
+  labs(x="Year", y="Number of Movies Staring Males and Females", title="Figure 1: Number of Movies Vs. The Gender of The Lead")
+```
+ 
+  However, one facet of Hollywood that has stayed consistent through the technological changes is gender inequality in films. To compare female versus male driven movies, we analyzed 1,022,149 movies produced between 1950-2009. A detailed methodology can be found in the Supplementary Information. Figure 1 indicates male leads are far more common than female leads. Though the gender gap in the film industry is not a new phenomenon, the increase in movies favoring male protagonists over female protagonists in the last half century is shocking. 
+ 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+Joined_Gender_Lead_Female<- Final_joined_data %>% filter(Gender=="F") %>% mutate(Female_Count=count)
+
+Joined_Gender_Lead_Male<-Final_joined_data%>%filter(Gender=="M")%>%mutate(Male_Count=count)
+
+Joined_Gender_lead_combined<-Joined_Gender_Lead_Female%>%left_join(Joined_Gender_Lead_Male, by = c("Year", "date"))%>%ungroup%>%select(Female_Count, Male_Count, Year, date)
+
+Joined_Gender_lead_combined_difference<-Joined_Gender_lead_combined%>%mutate(Male_Difference=Male_Count/(Male_Count+Female_Count))%>%mutate(Proportion_Female_Lead=Female_Count/(Male_Count+Female_Count))%>% 
+  filter(Year>=1889 & Year<= 2015)
+
+Joined_Gender_lead_filtered<-Joined_Gender_lead_combined_difference%>% 
+  filter(Year>=1950 & Year<= 2010)
+
+ggplot(data=Joined_Gender_lead_filtered, aes(x=date, y=Proportion_Female_Lead))+geom_point(stat="identity")+
+  geom_smooth(method="lm", se=FALSE)+ 
+  labs(x="Date", y="Proportion of Female Leads", title="Figure 2: Proportion of Movies with Female Leads")
+
+Slope_M <- lm(Male_Difference ~ date, data=Joined_Gender_lead_filtered)
+Slope_output_M <- tidy(Slope_M, conf.int = TRUE)
+kable(Slope_output_M, digits=3)
+```
+
+  As seen Figure 2, the volume of movies produced worldwide increased steadily between 1950 and the late 1980’s, and the relative proportion of male to female leads remained consistent. An interesting spike occurred in 1972 and 1973, when the number of films with a female lead more than doubled. What triggered this spike, and what caused the sudden return to the status quo by 1975? 
+
+  One theory is the impact of the Second-Wave Feminism Movement. During the early 1970’s, the feminist movement was as its height after the passing of the Equal Pay Act of 1963 and other gender related legislation. The public continued rejecting sexist stereotypes in film, including the portrayal of a “happy homemaker” that was so prevalent in the 1950’s and 60’s. Women increasingly engaged in debates about their position in society and representation on television, and began to more heavily influence the production and distribution of films.
+
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+ 
+F1 <-Joined_Gender_lead_combined_difference %>% 
+  filter(Year>=2000 & Year<= 2009)
+
+ggplot(data=F1)+
+  geom_line(aes(x=Year, y=Proportion_Female_Lead, group=1, col="Female"),colour="red") +
+  geom_line(aes(x=Year, y=Male_Difference, group = 1, col="Male"),colour="blue") + 
+  labs(x="Year", y="Proportion of Movies Staring Males vs. Females", title="Figure 3: Gender Disparities of Movie Leads in the 21st Century")
+
+
+```
+
+  With the emergence of media downloading and content streaming, the film industry exploded in 1990, and the number of movies produced quadrupled in less than two decades. But, as the number of films grew, so did the gender divide. 
+ 
+  The feminist movement continued to work for equal rights throughout the 20th century. The impact of their achievements could have been expected to lessen the gender gap in film, or, at the very least, keep it consistent. However, the overall trend of females taking on lead roles in movies has been declining, despite continual efforts to increase inclusivity in society.
+
+  In this analysis, the decline is most notable in the early 2000’s (see Figure 3). The proportion of movies starring female characters fell 55% between 2005 and 2009, from a record high of 17,403 movies in 2005, to 7,884 movies in 2009. In terms of relative proportions, males held between 72% and 84% of leading roles between 2000 and 2009. 
+
+  This systematic underrepresentation of women in the film industry is known as the “celluloid ceiling.” Celluloid is a material once used to make film stock, and the phrase is a play on the metaphorical “glass ceiling.” In addition to the disparity in terms of the number of women onscreen, women remain underrepresented in writing, acting, producing, and directing positions. According to NPR, film studios in Hollywood are currently 94% white and 100% male. The industry remains an “old boys’ club,” where very few executives and directors are women or minorities. 
+  
+  According to a study conducted by the Center for the Study of Women in Television and Film at San Diego State University, “breaking the ‘celluloid ceiling’ must start where the ceiling is — at upper echelons, where senior management sets the ‘tone at the top.’” 
+  
+  Michael Shamberg, producer of popular male-driven movies such as Pulp Fiction and Django Unchained, gave insight to the increase in the gender divide in film. He says, “Women will go to a guys’ movie more easily than guys will go to a woman’s movie.” For example, a superhero action movie is more likely to have a mixed-gendered audience then a romantic comedy.
+  
+  Sheryl Sanberg, Chief Operating Officer of Facebook, argues, “What’s really holding [women] back are the stereotypes. We don’t believe women should lead, so when they do, we react negatively. We don’t believe men should be caregivers, so when they do, we tell them to man up.” 
+  
+  Though recent box-office successes like Gravity with Sandra Bullock and The Hunger Games with Jennifer Lawrence have strong female leads, the majority of popular films feature females in secondary or stereotypical roles. The formula the industry uses to dictate gender in film is outside of conscious awareness: sexism is not usually overt, but stems implicitly and unconsciously. 
+  
+  As presented in Figure 2, the trend is clear: males star in nearly two times more movies than females. Without equal representation between the genders at all levels of production, and without a more level playing field for women in film, this gender gap will only continue to increase.
+
+
+## Supplementary Materials
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+Movie_simplified  <- readr::read_csv("Possible extra data set/Movie_simplified.csv")
+
+AVG_Movie_S <- Movie_simplified %>% group_by(Year, Gender) %>% summarise(mean=mean(AdjBoxOffice))
+
+Filter_AVG_Movie_S <- filter(AVG_Movie_S, Year <= 2009)
+
+ggplot(data = Filter_AVG_Movie_S, aes(x = Year, y = mean, fill=Gender)) +
+  geom_bar(position="dodge", stat="identity")+ 
+  labs(x="Year", y="Average Box Office Revenue", title="Figure 4: Average Box Office Income between Movies with Male Leads vs. Female Leads")
+```
+  
+  Exploring the mean box office revenue of movies by the gender of their starring role adds nuance to the discussion of females in film. Figure 4 shows that between 2000 and 2009, movies with male leads have grossed more than movies with female leads. One explanation could be the market is flooded with male-driven movies. Over the studied years, males had between 2 and 5.5 times more starring roles than females.
+  
+  Are movie-goers financially invested in equal representation on the silver screen? Using 2004 and 2009 as case studies, we can unpack this question. In 2004, the earning divide was at its peak: the top grossing movies in America were Shrek 2, Harry Potter and the Prisoner of Azkaban, and Spiderman 2. The gender gulf gradually decreased until 2009, when mean box office earnings were nearly equal. Interestingly, this came at a time when the proportion between male and female leads was at a decade high, at 84% and 16%, respectively. Top grossing films with female leads were The Twilight Saga: New Moon, Monsters vs. Aliens, and The Proposal. From this, it can be hypothesized movie-going audiences are willing to pay millions of dollars to watch films in theatres, regardless of the cast’s gender.
+
+  Two datasets were used in this analysis. The first was from the Open Movie Database, a web service that disseminates information relevant to cinema. This was joined with a secondary dataset from Max Woolf, a software engineer and data enthusiast. The combined datasets were refined to contain only the year the movie was produced and the gender of the lead character. Movies produced before 1950 or between 2012 and 2016 were not included in this analysis, as the dataset lacked sufficient information on those years. The first-credited actor or actress in the cast overview on IMDb identifies the gender of the leading role. Separated by year, we found the overall proportion of male and female leads.
+  
+  We approached the question of gender in film from a Western perspective; as students at a liberal arts college, we expected to see a certain level of representation in cinema. However, the data used in this analysis was inclusive of international movies from cultures where gender diversity is less salient in mainstream culture. According to the Media, Diversity, and Social Change Initiative at the University of Southern California, only 31% of speaking and named characters in international films were women. 
+  
+  For a secondary analysis of box office revenue and the gender of the lead role, we used Max Woolf’s dataset. By taking the mean revenue of films, separated by year and gender, we visualized the effect gender has on a film’s monetary success. 
+  
+  For future work, it would be interesting to include the gender of the directors in our analysis. We would also like to incorporate the Bechdel Test for all the movies that have female leads and create another plot and find the percent difference in the number of movies that pass the test. Equally so, how many of the movies that passed the Bechdel Test are produced in the US, versus in other countries? The implications from these statistical analyses would further provide necessary outlets in understanding the gender equality in the film industry that goes beyond what is seen on the screen. 
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+model_fprop<-lm(Proportion_Female_Lead ~ date, data=Joined_Gender_lead_filtered)
+regression_table <- tidy(model_fprop, conf.int = TRUE)
+point_by_point_fprop <- augment(model_fprop) %>% 
+  as_data_frame()
+
+ggplot(point_by_point_fprop, aes(x=.resid)) +
+  geom_histogram(binwidth = 0.1)+ 
+  labs(x="Residual Difference", y="Count", title="Figure 5: Residual Graph For Regression line in Figure 2")
+```
+
+Figure 5: This visualization proves this regression line seen in Figure 2 is consistent over the years. Since the center of the residuals is at 0, this regression line is very consistnent with the data and proves that the data does hold a trend and is not just a few outliers that create this trend. Therefore, since most of the points fall on the regression line, this residual test shows that there is a decline in the ratio of female leads to male leads over the years. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+F1 <-Joined_Gender_lead_combined_difference %>% 
+  filter(Year>=2000 & Year<= 2009)
+
+f2 <-  F1 %>% rename(
+              Female_Leads = Female_Count,
+              Male_Leads = Male_Count
+              )
+
+f3 <- f2 %>% select(Year, Female_Leads, Male_Leads, Proportion_Female_Lead, Male_Difference)
+kable(f3)
+```
+
+This table shows the proportion of male and female leads between the years of 2000 and 2009. This information is displayed graphically in Figure 3.
+
+
+
+**Literature Cited**
+
+BBC. (2014). Second Wave Feminism: The campaign for women’s rights in the 1970’s. Retrieved from http://www.bbc.co.uk/archive/70sfeminism/. 
+
+Cuarón, A., Rowling, J. K., et al. (2004). Harry Potter and the prisoner of Azkaban. Warner Bros. Pictures. 
+
+Cuarón, J., Price, S., Heyman, D., & Cuarón, J. (2014). Gravity. Warner Home Video Denmark.
+
+Katzenberg, J., Adamson, A., Asbury, K., & Vernon, C. (2004). Shrek 2 [Motion Picture]. United States: DreamWorks Animation.
+
+NPR. (2015). Diversity Sells - But Hollywood Remains Overwhelmingly White, Male. Retrieved December 16, 2016, from http://www.npr.org/sections/codeswitch/2015/02/28/389259335/diversity-sells-but-hollywood-remains-overwhelmingly-white-male
+Hauser, S. (May 15, 2012). The Women’s Movement in the ’70s, Today: ‘You’ve Come a Long Way,’ But … Workforce. Retrieved December 12, 2016.
+
+Hickey, W. (2014). The dollar-and-cents case against Hollywood’s exclusion of women. FiveThirtyEight. Retrieved December 5, 2016.
+
+Hickey, W. (2015). The workplace is even more sexist in movies than in reality. FiveThirtyEight. Retrieved December 7th, 2016.
+
+Kelly, G., & Robson, C. (2014). Celluloid Ceiling: Women Film Directors Breaking Through.
+
+Lauzen, M. (2010). The celluloid ceiling. Center for the Study of Women in Television and Film, San Diego State University. San Diego.
+
+Ross, G., Collins, S., & Ray, B. (2012). The hunger games. Roadshow Entertainment.
+
+Women’s International Center. (n.d.). Women’s History in America. Retrieved from http://www.wic.org/misc/history.htm.
+
+Woolf, M. (April 13, 2016). Blockbuster Movies with Male Leads Earn More Than Those with Female Leads. Retrieved December 16, 2016, from http://minimaxir.com/2016/04/movie-gender/
+
+Wittkecmission. (2013). Blockbuster: 2004. Retreived from http://www.imdb.com/list/ls051658638/.
+
