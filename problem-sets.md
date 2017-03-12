@@ -31,7 +31,7 @@ Discussions on each of the Problem Sets can be found <a target="_blank" class="p
     1. From the DataCamp course "Reporting with R Markdown", complete the first two Chapters (I anticipate this taking between 90 min and 2 hours):
         1. Authoring R Markdown Reports. In this Chapter, don't worry if you don't fully understand "Section 2: R code for your report."
         1. Embedding Code
-    1. **Optional:** If you want reinforcement on `ggplot2`, from "Effective Data Storytelling using the tidyverse" DataCamp course, complete Chapters
+    1. **Optional:** If you want reinforcement on `ggplot2`, from "<a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>" DataCamp course, complete Chapters
         * 3: Scatter-plots & Line-graphs
         * 4: Histograms & Boxplots 
         * 5: Barplots 
