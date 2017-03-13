@@ -38,7 +38,9 @@ Discussions on each of the Problem Sets can be found <a target="_blank" class="p
 * **Learning Goals:**
     + Begin to master `ggplot`
     + Take our first steps with R Markdown
-
+* **Notes**:
+    + For Question 1.b) I accidentally left the code in the problem set. There is nothing to do here.
+    + For Question 4.b) I gave an example of how to show the data using a `geom_boxplot()`. Submit an answer that does it using another `geom`.
 
 
 
