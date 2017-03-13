@@ -22,6 +22,8 @@ layout: default
 
 ### c) Manipulation AKA Wrangling
 
+* Lec12 - Mon 3/13: Intro to Data Wrangling
+
 
 ### b) Visualization
 
