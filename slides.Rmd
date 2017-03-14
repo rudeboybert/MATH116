@@ -44,6 +44,115 @@ if(FALSE){
 
 
 
+<!----------------------------------------------------------------------------->
+# Lec13 - Piping `%>%`, 5MV#1 `filter`ing, and 5MV#2 `summarize()`
+
+## Piping
+
+* R Command: `%>%`
+* Pronounced: "_then_"
+* Keyboard shortcuts:
+    + macOS: COMMAND+SHIFT+M
+    + PC: CTRL+SHIFT+M
+
+
+## Piping
+
+Piping allows you to
+
+1. Take the output of one function and **pipe** it as the input of the next
+1. You can string along several pipes to form a single **chain**
+1. See Chalk Talk
+
+
+
+<!--
+## Piping
+
+Ex:  say you want to apply functions `h()` and `g()` and then `f()` on data `x`.  You can do
+
+> * `f(g(h(x)))` OR
+> * `x %>% h() %>% g() %>% f()`
+
+
+## Important Concept: Piping
+
+This
+
+> * saves you from confusing nested parentheses
+> * emphasizes the **sequential** breaking down of tasks, making it more readable
+> * i.e. Do this _then_ do this _then_ do this _then_ ...
+
+
+## Important Concept: Piping
+
+Pipes are always directed to the first argument of any function. The following three bits of R code
+do the same thing: extract all january flights:
+
+```{r,eval=FALSE, echo=TRUE}
+library(dplyr)
+library(nycflights13)
+data(flights)
+
+# Bit 1: No piping
+filter(flights, month == 1)
+
+# Bit 2: Piping. Note no comma
+flights %>% filter(month == 1)
+
+# Bit 3: Piping across multiple lines (preferred for legibility)
+flights %>% 
+  filter(month==1)
+```
+-->
+
+
+
+## Today: Five Main Verbs
+
+1. `filter()` rows/observations matching criteria
+1. `summarize()` numerical variables
+1. ~~`group_by()` group rows/observations by a categorical variable~~
+1. ~~`mutate()` existing variables to create new ones~~
+1. ~~`arrange()` rows~~
+
+
+
+## 5MV#1 Filter
+
+`filter()` rows/observations matching criteria
+
+<center>
+<img src="assets/figure/filter.png" alt="Drawing" style="width: 700px;"/>
+</center>
+
+
+
+## Example
+
+Take `flights` then filter for all rows where `year` is equal to 2014. 
+
+Note `==` and not `=`:
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+library(nycflights13)
+data(flights)
+
+flights %>% 
+  filter(year == 2014)
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!----------------------------------------------------------------------------->
@@ -121,12 +230,13 @@ To take this, we now officially introduce the `dplyr` package: a grammar of data
 Say hello to the 5MV: the **five main verbs**
 
 1. `filter()` rows/observations matching criteria
-1. `summarise()` numerical variables
+1. `summarize()` numerical variables
 1. `group_by()` group rows/observations by a categorical variable
 1. `mutate()` existing variables to create new ones
 1. `arrange()` rows
-1. Also, later `_join()` two separate data frames `by` corresponding variables
 
+
+Also, later `_join()` two separate data frames `by` corresponding variables
 
 
 
@@ -167,7 +277,7 @@ babynames %>%
   filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
   filter(decade >= 1990) %>% 
   group_by(name) %>% 
-  summarise(n=sum(n)) %>% 
+  summarize(n=sum(n)) %>% 
   ggplot(data=., aes(x=name, y=n)) +
   geom_bar(stat="identity") +
   labs(x="Name", y="Count", title="Name Counts since 1990")
@@ -781,7 +891,7 @@ babynames %>%
   filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
   filter(decade >= 1990) %>% 
   group_by(name) %>% 
-  summarise(n=sum(n)) %>% 
+  summarize(n=sum(n)) %>% 
   ggplot(data=., aes(x=name, y=n)) +
   geom_bar(stat="identity") +
   labs(x="Name", y="Count", title="Name Counts since 1990")

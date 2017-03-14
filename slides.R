@@ -8,6 +8,29 @@ if(FALSE){
   knitr::purl("slides.Rmd")
   }
 
+## ----eval=FALSE, echo=TRUE-----------------------------------------------
+## library(dplyr)
+## library(nycflights13)
+## data(flights)
+## 
+## # Bit 1: No piping
+## filter(flights, month == 1)
+## 
+## # Bit 2: Piping. Note no comma
+## flights %>% filter(month == 1)
+## 
+## # Bit 3: Piping across multiple lines (preferred for legibility)
+## flights %>%
+##   filter(month==1)
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## library(dplyr)
+## library(nycflights13)
+## data(flights)
+## 
+## flights %>%
+##   filter(year == 2014)
+
 ## ---- echo=FALSE, fig.height=4-------------------------------------------
 library(tidyverse)
 library(babynames)
@@ -17,7 +40,7 @@ babynames %>%
   filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
   filter(decade >= 1990) %>% 
   group_by(name) %>% 
-  summarise(n=sum(n)) %>% 
+  summarize(n=sum(n)) %>% 
   ggplot(data=., aes(x=name, y=n)) +
   geom_bar(stat="identity") +
   labs(x="Name", y="Count", title="Name Counts since 1990")
@@ -165,7 +188,7 @@ babynames %>%
   filter(name=="Hayden" | name == "Carlos" | name == "Ethan") %>% 
   filter(decade >= 1990) %>% 
   group_by(name) %>% 
-  summarise(n=sum(n)) %>% 
+  summarize(n=sum(n)) %>% 
   ggplot(data=., aes(x=name, y=n)) +
   geom_bar(stat="identity") +
   labs(x="Name", y="Count", title="Name Counts since 1990")

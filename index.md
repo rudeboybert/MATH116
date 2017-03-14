@@ -22,7 +22,9 @@ layout: default
 
 ### c) Manipulation AKA Wrangling
 
-* Lec12 - Mon 3/13: Intro to Data Wrangling
+* Lec14 - Thu 3/16: 
+* Lec13 - Wed 3/15: Piping `%>%`, 5MV#1 `filter`ing, and 5MV#2 `summarize()`
+* Lec12 - Mon 3/13: Intro to Data Wrangling + Intro to R Markdown
 
 
 ### b) Visualization
