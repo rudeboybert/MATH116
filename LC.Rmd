@@ -29,25 +29,80 @@ library(ggplot2)
 
 
 <!----------------------------------------------------------------------------->
-# Lec14 - Fri 3/17: Grouping
+# Lec14 - Thu 3/16: 5MV#3 `group_by()` & 5MV#4 `mutate()`
 
-In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.
+In ModernDive, LC5.5 thru 5.12 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html#mv3-group-rows-using-group_by">Chapters 5.2.3-5.2.4</a>.
 
 ## Discussion
+
+
+
 
 
 
 
 
 <!----------------------------------------------------------------------------->
-# Lec13 - Wed 3/15: Piping, filtering, and summarizing
+# Lec13 - Wed 3/15: Piping, 5MV#1 `filter()` & 5MV#2 `summarize()`
 
 In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.
 
 ## Discussion
 
+### LC 5.1
+
+All the following are the same! 
+
+```{r, eval=TRUE, echo=TRUE}
+library(nycflights13)
+library(dplyr)
+data(flights)
+```
+```{r, eval=FALSE, echo=TRUE}
+# Original in book
+not_BTV_SEA <- flights %>% 
+  filter(!(dest == "BTV" | dest == "SEA"))
+
+# Alternative way
+not_BTV_SEA <- flights %>% 
+  filter(!dest == "BTV" & !dest == "SEA")
+
+# Or even
+not_BTV_SEA <- flights %>% 
+  filter(dest != "BTV" & dest != "SEA")
+```
 
 
+### LC 5.2-5.4
+
+* **5.2 Say a doctor is studying the effect of smoking on lung cancer of a large number of patients who have records measured at five year intervals. He notices that a large number of patients have missing data points because the patient has died, so he chooses to ignore these patients in his analysis. What is wrong with this doctor’s approach?** The missing patients may have died of lung cancer! So to ignore them might seriously **bias** your results! It is very important to think of what the consequences on your analysis are of ignoring missing data! Ask yourself:
+    + There is a systematic reasons why certain values are missing? If so, you might be biasing your results!
+    + If there isn't, then it might be ok to "sweep missing values under the rug."
+* **5.3 Modify the above summarize function to be use the `n()` summary function: `summarize(count=n())`. What does the returned value correspond to?** It corresponds to a count of the number of observations/rows:
+
+```{r, eval=TRUE, echo=TRUE}
+data(weather)
+weather %>% 
+  summarize(count = n())
+```
+
+* **5.4 Why doesn’t the following code work? You may want to run the code line by line:**
+
+```{r, eval=FALSE, echo=TRUE}
+summary_temp <- weather %>%   
+  summarize(mean = mean(temp, na.rm = TRUE)) %>% 
+  summarize(std_dev = sd(temp, na.rm = TRUE))
+```
+
+Consider the output of only running the first two lines:
+
+```{r, eval=TRUE, echo=TRUE}
+weather %>%   
+  summarize(mean = mean(temp, na.rm = TRUE))
+```
+
+Because after the first `summarize()`, the variable `temp` disappears as it has been collapsed to the value `mean`. So when we try to run the second `summarize()`, it can't find the variable
+`temp` to compute the standard deviation of. 
 
 
 

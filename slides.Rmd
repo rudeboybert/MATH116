@@ -45,23 +45,124 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
-# Lec14 - Grouping variables using `group_by()`
+# Lec14 - Thu 3/16: 5MV#3 `group_by()` & 5MV#4 `mutate()`
 
 ## Today: Five Main Verbs
 
 > 1. ~~`filter()` rows/observations matching criteria~~
 > 1. ~~`summarize()` numerical variables~~
 > 1. **`group_by()` group rows/observations by a categorical variable**
-> 1. `mutate()` existing variables to create new ones
+> 1. **`mutate()` existing variables to create new ones**
 > 1. `arrange()` rows
 
 
 
+## Grouping Example
+
+Run the following in your console:
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+
+# Create data frame with two variables
+test_data <- data_frame(
+  name=c("Albert", "Albert", "Albert", "Yolanda", "Yolanda"),
+  value=c(2, 2, 2, 3, 3)
+)
+
+# See contents in console
+test_data
+```
 
 
 
+## Grouping
+
+* Say we don't want the overall average, but averages for Albert and Yolanda
+separately. i.e. grouped by name.
+* `group_by(name)` puts grouping meta-data
+* **meta-data is data about data**; it doesn't change the actual data
 
 
+
+## Grouping Example
+
+Run the following. Notice the data itself doesn't change, but the data about the
+data does:
+
+```{r, eval=FALSE, echo=TRUE}
+test_data
+
+test_data %>% 
+  group_by(name)
+```
+
+
+
+## Grouping Example
+
+Run both these 
+
+```{r, eval=FALSE, echo=TRUE}
+test_data %>% 
+  summarise(overall_avg = mean(value))
+
+test_data %>% 
+  group_by(name) %>% 
+  summarise(name_avg = mean(value))
+```
+
+What's the difference?
+
+
+
+## Grouping then Summarizing
+
+Chalk talk
+
+```{r, eval=FALSE, echo=FALSE}
+ group_by(categorical_var) %>% 
+   summarize(output_name = many_to_one_function(numerical_var))
+```
+
+
+
+## 5MV#3 Grouping + 5MV#2 Summarize:
+
+Here:
+
+> * Grey, blue, green rows are in the same group
+> * For each group, summarize numerical values i.e. many-to-one
+
+<center>
+<img src="assets/figure/group.png" alt="Drawing" style="width: 700px;"/>
+<img src="assets/figure/group_summary.png" alt="Drawing" style="width: 700px;"/>
+</center>
+
+
+
+## 5MV#4 Mutate
+
+Mutate existing variables to create new ones. Always of the form:
+
+```{r, eval=FALSE, echo=TRUE}
+DATASET_NAME %>% 
+  mutate(NEW_VARIABLE_NAME = OLD_VARIABLE_NAMES)
+```
+
+
+## Example
+
+Using the same example as earlier. Run both:
+
+```{r, eval=FALSE, echo=TRUE}
+test_data %>% 
+  mutate(double_value = value * 2)
+
+test_data %>% 
+  mutate(double_value = value * 2) %>% 
+  mutate(triple_value = value + double_value)
+```
 
 
 
@@ -284,7 +385,6 @@ To take this, we now officially introduce the `dplyr` package: a grammar of data
 * Were it not for this package, I probably wouldn't be taking a data-centric view to this course.   
 * The **verb** describing the action you want to perform on your data **IS** the name of the `function()` you use.
 * So you don't need extensive programming experience (indexing, for loops, etc) to be able to manipulate data.
-
 
 
 

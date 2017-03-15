@@ -8,6 +8,48 @@ if(FALSE){
   knitr::purl("slides.Rmd")
   }
 
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## library(dplyr)
+## 
+## # Create data frame with two variables
+## test_data <- data_frame(
+##   name=c("Albert", "Albert", "Albert", "Yolanda", "Yolanda"),
+##   value=c(2, 2, 2, 3, 3)
+## )
+## 
+## # See contents in console
+## test_data
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## test_data
+## 
+## test_data %>%
+##   group_by(name)
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## test_data %>%
+##   summarise(overall_avg = mean(value))
+## 
+## test_data %>%
+##   group_by(name) %>%
+##   summarise(name_avg = mean(value))
+
+## ---- eval=FALSE, echo=FALSE---------------------------------------------
+##  group_by(categorical_var) %>%
+##    summarize(output_name = many_to_one_function(numerical_var))
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## DATASET_NAME %>%
+##   mutate(NEW_VARIABLE_NAME = OLD_VARIABLE_NAMES)
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## test_data %>%
+##   mutate(double_value = value * 2)
+## 
+## test_data %>%
+##   mutate(double_value = value * 2) %>%
+##   mutate(triple_value = value + double_value)
+
 ## ----eval=FALSE, echo=TRUE-----------------------------------------------
 ## library(dplyr)
 ## library(nycflights13)

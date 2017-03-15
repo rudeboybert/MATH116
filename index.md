@@ -22,8 +22,8 @@ layout: default
 
 ### c) Manipulation AKA Wrangling
 
-* Lec14 - Thu 3/16: 5MV#3 `group_by()`
-* Lec13 - Wed 3/15: Piping `%>%`, 5MV#1 `filter`ing, and 5MV#2 `summarize()`
+* Lec14 - Thu 3/16: 5MV#3 `group_by()` & 5MV#4 `mutate()`
+* Lec13 - Wed 3/15: Piping `%>%`, 5MV#1 `filter()` & 5MV#2 `summarize()`
 * Lec12 - Mon 3/13: Intro to Data Wrangling + Intro to R Markdown
 
 

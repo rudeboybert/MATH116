@@ -258,18 +258,78 @@ h3{color: #3399ff;}
 slides > slide.backdrop {background: white;}
 </style>
 <!----------------------------------------------------------------------------->
-<div id="lec13---wed-315-piping-filtering-and-summarizing" class="section level1">
-<h1>Lec13 - Wed 3/15: Piping, filtering, and summarizing</h1>
-<p>In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.</p>
+<div id="lec14---thu-316-5mv3-group_by-5mv4-mutate" class="section level1">
+<h1>Lec14 - Thu 3/16: 5MV#3 <code>group_by()</code> &amp; 5MV#4 <code>mutate()</code></h1>
+<p>In ModernDive, LC5.5 thru 5.12 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html#mv3-group-rows-using-group_by">Chapters 5.2.3-5.2.4</a>.</p>
 <div id="discussion" class="section level2">
 <h2>Discussion</h2>
 <!----------------------------------------------------------------------------->
 </div>
 </div>
+<div id="lec13---wed-315-piping-5mv1-filter-5mv2-summarize" class="section level1">
+<h1>Lec13 - Wed 3/15: Piping, 5MV#1 <code>filter()</code> &amp; 5MV#2 <code>summarize()</code></h1>
+<p>In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.</p>
+<div id="discussion-1" class="section level2">
+<h2>Discussion</h2>
+<div id="lc-5.1" class="section level3">
+<h3>LC 5.1</h3>
+<p>All the following are the same!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nycflights13)
+<span class="kw">library</span>(dplyr)
+<span class="kw">data</span>(flights)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Original in book</span>
+not_BTV_SEA &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(!(dest ==<span class="st"> &quot;BTV&quot;</span> |<span class="st"> </span>dest ==<span class="st"> &quot;SEA&quot;</span>))
+
+<span class="co"># Alternative way</span>
+not_BTV_SEA &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(!dest ==<span class="st"> &quot;BTV&quot;</span> &amp;<span class="st"> </span>!dest ==<span class="st"> &quot;SEA&quot;</span>)
+
+<span class="co"># Or even</span>
+not_BTV_SEA &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(dest !=<span class="st"> &quot;BTV&quot;</span> &amp;<span class="st"> </span>dest !=<span class="st"> &quot;SEA&quot;</span>)</code></pre></div>
+</div>
+<div id="lc-5.2-5.4" class="section level3">
+<h3>LC 5.2-5.4</h3>
+<ul>
+<li><strong>5.2 Say a doctor is studying the effect of smoking on lung cancer of a large number of patients who have records measured at five year intervals. He notices that a large number of patients have missing data points because the patient has died, so he chooses to ignore these patients in his analysis. What is wrong with this doctor’s approach?</strong> The missing patients may have died of lung cancer! So to ignore them might seriously <strong>bias</strong> your results! It is very important to think of what the consequences on your analysis are of ignoring missing data! Ask yourself:
+<ul>
+<li>There is a systematic reasons why certain values are missing? If so, you might be biasing your results!</li>
+<li>If there isn’t, then it might be ok to “sweep missing values under the rug.”</li>
+</ul></li>
+<li><strong>5.3 Modify the above summarize function to be use the <code>n()</code> summary function: <code>summarize(count=n())</code>. What does the returned value correspond to?</strong> It corresponds to a count of the number of observations/rows:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(weather)
+weather %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count =</span> <span class="kw">n</span>())</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["count"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"26130"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li><strong>5.4 Why doesn’t the following code work? You may want to run the code line by line:</strong></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summary_temp &lt;-<span class="st"> </span>weather %&gt;%<span class="st">   </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">std_dev =</span> <span class="kw">sd</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p>Consider the output of only running the first two lines:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather %&gt;%<span class="st">   </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["mean"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"55.20351"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Because after the first <code>summarize()</code>, the variable <code>temp</code> disappears as it has been collapsed to the value <code>mean</code>. So when we try to run the second <code>summarize()</code>, it can’t find the variable <code>temp</code> to compute the standard deviation of.</p>
+<!----------------------------------------------------------------------------->
+</div>
+</div>
+</div>
 <div id="lec11---thu-39-5ng5-barplots" class="section level1">
 <h1>Lec11 - Thu 3/9: 5NG#5 Barplots</h1>
 <p>In ModernDive, LC4.26 thru 4.37 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#geombar">Chapters 4.7</a>.</p>
-<div id="discussion-1" class="section level2">
+<div id="discussion-2" class="section level2">
 <h2>Discussion</h2>
 <p><strong>Note on Wed March 15</strong>: The learning checks originally posted were from the previous version of the book, therefore the discussion below might differ <em>slightly</em> from what you wrote originally. The above link has been fixed.</p>
 <div id="lc-4.26-4.29" class="section level3">
@@ -309,7 +369,7 @@ slides > slide.backdrop {background: white;}
 <li>Read <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/A-appendixA.html">Appendix A</a></li>
 <li>LC4.22 thru 4.25 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#ng4-boxplots">Chapter 4.7</a></li>
 </ul>
-<div id="discussion-2" class="section level2">
+<div id="discussion-3" class="section level2">
 <h2>Discussion</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load necessary packages</span>
 <span class="kw">library</span>(ggplot2)
@@ -458,7 +518,7 @@ slides > slide.backdrop {background: white;}
 <div id="lec08---wed-31-5ng3-histograms" class="section level1">
 <h1>Lec08 - Wed 3/1: 5NG#3 Histograms</h1>
 <p>In ModernDive, LC4.14 thru 4.21 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#histograms">Chapters 4.5-4.6</a>.</p>
-<div id="discussion-3" class="section level2">
+<div id="discussion-4" class="section level2">
 <h2>Discussion</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load necessary packages</span>
 <span class="kw">library</span>(ggplot2)
@@ -521,7 +581,7 @@ slides > slide.backdrop {background: white;}
 <div id="lec07---mon-227-5ng2-linegraphs" class="section level1">
 <h1>Lec07 - Mon 2/27: 5NG#2 Linegraphs</h1>
 <p>In ModernDive, LC4.9 thru 4.13 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#linegraphs">Chapter 4.4</a>. <strong>Hint</strong>: For LC4.10, Google “NYC Timezone” and note the number next to UTC. UTC stands for <a target="_blank" class="page-link" href="https://www.timeanddate.com/time/aboututc.html">Coordinated Universal Time</a>.</p>
-<div id="discussion-4" class="section level2">
+<div id="discussion-5" class="section level2">
 <h2>Discussion</h2>
 <ul>
 <li><strong>LC4.9</strong>: Take a look at both the <code>weather</code> and <code>early_january_weather</code> data frames by running <code>View(weather)</code> and <code>View(early_january_weather)</code> in the console. In what respect do these data frames differ? <em>The rows of <code>early_january_weather</code> are a subset of <code>weather</code>.</em></li>
@@ -551,7 +611,7 @@ early_january_weather &lt;-<span class="st"> </span>weather %&gt;%<span class="s
 <li><code>geom_jitter()</code>: a variation of <code>geom_point()</code> where we add a little <strong>jitter</strong> (i.e. random noise) to the points to break log-jams</li>
 </ol></li>
 </ul>
-<div id="discussion-5" class="section level2">
+<div id="discussion-6" class="section level2">
 <h2>Discussion</h2>
 <p>Load necessary data and packages:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
@@ -667,7 +727,7 @@ simple_ex &lt;-
 <li>open the help file for <code>geom_point</code> by running <code>?geom_point</code> in the console</li>
 <li>scroll down to the <em>Aesthetics</em> section.</li>
 </ul>
-<div id="discussion-6" class="section level2">
+<div id="discussion-7" class="section level2">
 <h2>Discussion</h2>
 <p><strong>LC1-5</strong>: Chalk Talk</p>
 <p><strong>Reach for the Stars #1:</strong></p>
@@ -704,7 +764,7 @@ simple_ex &lt;-
 <li>About how many babies were named “Hayden” between 1990-2014?</li>
 </ol></li>
 </ul>
-<div id="discussion-7" class="section level2">
+<div id="discussion-8" class="section level2">
 <h2>Discussion</h2>
 <div id="ng1-scatterplot" class="section level3">
 <h3>5NG#1: Scatterplot</h3>
@@ -970,7 +1030,7 @@ simple_ex &lt;-
 <div id="lec03---mon-220-tidy-data" class="section level1">
 <h1>Lec03 - Mon 2/20: Tidy Data</h1>
 <p>Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/3-tidy.html">Chapter 3 of ModernDive: Tidy Data</a>. You do not need to submit these.</p>
-<div id="discussion-8" class="section level2">
+<div id="discussion-9" class="section level2">
 <h2>Discussion</h2>
 <p><strong>3.1</strong> 3.2 is an example!</p>
 <p><strong>3.2</strong> Since there are three variable at play (Date, Price, Stock Name), there should be three columns!</p>
