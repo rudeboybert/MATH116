@@ -246,7 +246,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learning Checks</h1>
 <h4 class="author"><em>Albert Y. Kim</em></h4>
-<h4 class="date"><em>Last updated on 2017-03-09</em></h4>
+<h4 class="date"><em>Last updated on 2017-03-15</em></h4>
 
 </div>
 
@@ -258,12 +258,48 @@ h3{color: #3399ff;}
 slides > slide.backdrop {background: white;}
 </style>
 <!----------------------------------------------------------------------------->
-<div id="lec11---thu-39-5ng5-barplots" class="section level1">
-<h1>Lec11 - Thu 3/9: 5NG#5 Barplots</h1>
-<p>In ModernDive, LC4.27 thru 4.38 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#barplots">Chapters 4.7</a>.</p>
+<div id="lec13---wed-315-piping-filtering-and-summarizing" class="section level1">
+<h1>Lec13 - Wed 3/15: Piping, filtering, and summarizing</h1>
+<p>In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.</p>
 <div id="discussion" class="section level2">
 <h2>Discussion</h2>
 <!----------------------------------------------------------------------------->
+</div>
+</div>
+<div id="lec11---thu-39-5ng5-barplots" class="section level1">
+<h1>Lec11 - Thu 3/9: 5NG#5 Barplots</h1>
+<p>In ModernDive, LC4.26 thru 4.37 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#geombar">Chapters 4.7</a>.</p>
+<div id="discussion-1" class="section level2">
+<h2>Discussion</h2>
+<p><strong>Note on Wed March 15</strong>: The learning checks originally posted were from the previous version of the book, therefore the discussion below might differ <em>slightly</em> from what you wrote originally. The above link has been fixed.</p>
+<div id="lc-4.26-4.29" class="section level3">
+<h3>LC 4.26-4.29</h3>
+<ul>
+<li><strong>4.26: Why are histograms inappropriate for visualizing categorical variables?</strong> Histograms are for continuous variables i.e. the horizontal part of each histogram bar represents an interval, whereas for a categorical variable each bar represents only one level of the categorical variable.</li>
+<li><strong>4.27: What is the difference between histograms and barplots?</strong> See above.</li>
+<li><strong>4.28: How many Envoy Air flights departed NYC in 2013?</strong> Envoy Air is carrier code <code>MQ</code> and thus 26397 flights departed NYC in 2013.</li>
+<li><strong>4.29: What was the seventh highest airline in terms of departed flights from NYC in 2013? How could we better present the table to get this answer quickly.</strong> What a pain! We’ll see in Chapter 5 on Data Wrangling that applying <code>arrange(desc(n))</code> will sort this table in descending order of <code>n</code>!</li>
+</ul>
+</div>
+<div id="lc-4.30-4.31" class="section level3">
+<h3>LC 4.30-4.31</h3>
+<ul>
+<li><strong>4.30: Why should pie charts be avoided and replaced by barplots?</strong> In my <strong>opinion</strong>, comparisons using horizontal lines are easier than comparing angles and areas of circles.</li>
+<li><strong>4.31: What is your opinion as to why pie charts continue to be used?</strong> Legacy?</li>
+</ul>
+</div>
+<div id="lc-4.32-4.37" class="section level3">
+<h3>LC 4.32-4.37</h3>
+<ul>
+<li><strong>4.32 What kinds of questions are not easily answered by looking at the above figure?</strong> Because the red, green, and blue bars don’t all start at 0 (only red does), it makes comparing counts hard.</li>
+<li><strong>4.33 What can you say, if anything, about the relationship between airline and airport in NYC in 2013 in regards to the number of departing flights?</strong> The different airlines prefer different airports. For example, United is mostly a Newark carrier and JetBlue is a JFK carrier. If airlines didn’t prefer airports, each color would be roughly one third of each bar.</li>
+<li><strong>4.34 Why might the side-by-side barplot be preferable to a stacked barplot in this case?</strong> We can easily compare the different aiports for a given carrier using a single comparison line i.e. things are lined up</li>
+<li><strong>4.35 What are the disadvantages of using a side-by-side barplot, in general?</strong> Hard to get totals for each airline.</li>
+<li><strong>4.36 Why is the faceted barplot preferred to the side-by-side and stacked barplots in this case?</strong> Not that different than using side-by-side; depends on how you want to organize your presentation.</li>
+<li><strong>4.37 What information about the different carriers at different airports is more easily seen in the faceted barplot?</strong> Now we can also compare the different carriers <strong>within</strong> a particular airport easily too. For example, we can read off who the top carrier for each airport is easily using a single horizontal line.</li>
+</ul>
+<!----------------------------------------------------------------------------->
+</div>
 </div>
 </div>
 <div id="lec09---thu-32-5ng4-boxplots" class="section level1">
@@ -273,7 +309,7 @@ slides > slide.backdrop {background: white;}
 <li>Read <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/A-appendixA.html">Appendix A</a></li>
 <li>LC4.22 thru 4.25 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#ng4-boxplots">Chapter 4.7</a></li>
 </ul>
-<div id="discussion-1" class="section level2">
+<div id="discussion-2" class="section level2">
 <h2>Discussion</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load necessary packages</span>
 <span class="kw">library</span>(ggplot2)
@@ -422,7 +458,7 @@ slides > slide.backdrop {background: white;}
 <div id="lec08---wed-31-5ng3-histograms" class="section level1">
 <h1>Lec08 - Wed 3/1: 5NG#3 Histograms</h1>
 <p>In ModernDive, LC4.14 thru 4.21 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#histograms">Chapters 4.5-4.6</a>.</p>
-<div id="discussion-2" class="section level2">
+<div id="discussion-3" class="section level2">
 <h2>Discussion</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load necessary packages</span>
 <span class="kw">library</span>(ggplot2)
@@ -485,7 +521,7 @@ slides > slide.backdrop {background: white;}
 <div id="lec07---mon-227-5ng2-linegraphs" class="section level1">
 <h1>Lec07 - Mon 2/27: 5NG#2 Linegraphs</h1>
 <p>In ModernDive, LC4.9 thru 4.13 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#linegraphs">Chapter 4.4</a>. <strong>Hint</strong>: For LC4.10, Google “NYC Timezone” and note the number next to UTC. UTC stands for <a target="_blank" class="page-link" href="https://www.timeanddate.com/time/aboututc.html">Coordinated Universal Time</a>.</p>
-<div id="discussion-3" class="section level2">
+<div id="discussion-4" class="section level2">
 <h2>Discussion</h2>
 <ul>
 <li><strong>LC4.9</strong>: Take a look at both the <code>weather</code> and <code>early_january_weather</code> data frames by running <code>View(weather)</code> and <code>View(early_january_weather)</code> in the console. In what respect do these data frames differ? <em>The rows of <code>early_january_weather</code> are a subset of <code>weather</code>.</em></li>
@@ -515,7 +551,7 @@ early_january_weather &lt;-<span class="st"> </span>weather %&gt;%<span class="s
 <li><code>geom_jitter()</code>: a variation of <code>geom_point()</code> where we add a little <strong>jitter</strong> (i.e. random noise) to the points to break log-jams</li>
 </ol></li>
 </ul>
-<div id="discussion-4" class="section level2">
+<div id="discussion-5" class="section level2">
 <h2>Discussion</h2>
 <p>Load necessary data and packages:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
@@ -631,7 +667,7 @@ simple_ex &lt;-
 <li>open the help file for <code>geom_point</code> by running <code>?geom_point</code> in the console</li>
 <li>scroll down to the <em>Aesthetics</em> section.</li>
 </ul>
-<div id="discussion-5" class="section level2">
+<div id="discussion-6" class="section level2">
 <h2>Discussion</h2>
 <p><strong>LC1-5</strong>: Chalk Talk</p>
 <p><strong>Reach for the Stars #1:</strong></p>
@@ -668,7 +704,7 @@ simple_ex &lt;-
 <li>About how many babies were named “Hayden” between 1990-2014?</li>
 </ol></li>
 </ul>
-<div id="discussion-6" class="section level2">
+<div id="discussion-7" class="section level2">
 <h2>Discussion</h2>
 <div id="ng1-scatterplot" class="section level3">
 <h3>5NG#1: Scatterplot</h3>
@@ -684,19 +720,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Network</td>
-<td align="right">3.8e+06</td>
-<td align="right">8.0</td>
+<td align="left">Return with Honor</td>
+<td align="right">1000000</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="even">
-<td align="left">Return to Oz</td>
-<td align="right">2.7e+07</td>
-<td align="right">6.3</td>
+<td align="left">Hulk</td>
+<td align="right">120000000</td>
+<td align="right">6.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Hukkle</td>
-<td align="right">1.0e+05</td>
-<td align="right">7.1</td>
+<td align="left">Black Cat, The</td>
+<td align="right">95745</td>
+<td align="right">7.2</td>
 </tr>
 </tbody>
 </table>
@@ -738,16 +774,16 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2013-01-04</td>
-<td align="right">915</td>
-</tr>
-<tr class="even">
 <td align="left">2013-01-15</td>
 <td align="right">894</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2013-01-23</td>
 <td align="right">897</td>
+</tr>
+<tr class="odd">
+<td align="left">2013-01-09</td>
+<td align="right">902</td>
 </tr>
 </tbody>
 </table>
@@ -791,15 +827,15 @@ simple_ex &lt;-
 <tbody>
 <tr class="odd">
 <td align="left">m</td>
-<td align="right">65</td>
+<td align="right">75</td>
 </tr>
 <tr class="even">
 <td align="left">m</td>
-<td align="right">71</td>
+<td align="right">67</td>
 </tr>
 <tr class="odd">
-<td align="left">m</td>
-<td align="right">67</td>
+<td align="left">f</td>
+<td align="right">58</td>
 </tr>
 </tbody>
 </table>
@@ -838,19 +874,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2001 Mazda B3000</td>
-<td align="left">Automatic</td>
-<td align="right">20</td>
-</tr>
-<tr class="even">
 <td align="left">2007 Jeep Grand Cherokee 2WD</td>
 <td align="left">Automatic</td>
 <td align="right">23</td>
 </tr>
+<tr class="even">
+<td align="left">2010 Suzuki Kizashi S AWD</td>
+<td align="left">Automatic</td>
+<td align="right">30</td>
+</tr>
 <tr class="odd">
-<td align="left">2013 Suzuki Kizashi S</td>
-<td align="left">Manual</td>
-<td align="right">31</td>
+<td align="left">1986 Toyota Truck 4WD</td>
+<td align="left">Automatic</td>
+<td align="right">20</td>
 </tr>
 </tbody>
 </table>
@@ -934,7 +970,7 @@ simple_ex &lt;-
 <div id="lec03---mon-220-tidy-data" class="section level1">
 <h1>Lec03 - Mon 2/20: Tidy Data</h1>
 <p>Do the 16 Learning Checks in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/3-tidy.html">Chapter 3 of ModernDive: Tidy Data</a>. You do not need to submit these.</p>
-<div id="discussion-7" class="section level2">
+<div id="discussion-8" class="section level2">
 <h2>Discussion</h2>
 <p><strong>3.1</strong> 3.2 is an example!</p>
 <p><strong>3.2</strong> Since there are three variable at play (Date, Price, Stock Name), there should be three columns!</p>

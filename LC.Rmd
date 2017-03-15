@@ -29,12 +29,54 @@ library(ggplot2)
 
 
 <!----------------------------------------------------------------------------->
-# Lec11 - Thu 3/9: 5NG#5 Barplots
+# Lec13 - Wed 3/15: Piping, filtering, and summarizing
 
-In ModernDive, LC4.27 thru 4.38 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#barplots">Chapters 4.7</a>.
+In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.
 
 ## Discussion
 
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec11 - Thu 3/9: 5NG#5 Barplots
+
+In ModernDive, LC4.26 thru 4.37 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/4-viz.html#geombar">Chapters 4.7</a>.
+
+## Discussion
+
+**Note on Wed March 15**: The learning checks originally posted were from the previous version of the book, therefore the discussion below might differ *slightly* 
+from what you wrote originally. The above link has been fixed.
+
+
+### LC 4.26-4.29
+
+* **4.26: Why are histograms inappropriate for visualizing categorical variables?** Histograms are for continuous variables i.e. the horizontal part of each
+histogram bar represents an interval, whereas for a categorical variable each
+bar represents only one level of the categorical variable.
+* **4.27: What is the difference between histograms and barplots?** See above.
+* **4.28: How many Envoy Air flights departed NYC in 2013?** Envoy Air is carrier code `MQ` and thus 26397 flights departed NYC in 2013.
+* **4.29: What was the seventh highest airline in terms of departed flights from NYC in 2013? How could we better present the table to get this answer quickly.**
+What a pain! We'll see in Chapter 5 on Data Wrangling that applying `arrange(desc(n))` will sort this table in descending order of `n`!
+
+
+### LC 4.30-4.31
+
+* **4.30: Why should pie charts be avoided and replaced by barplots?** In my **opinion**, comparisons using horizontal lines are easier than comparing angles and areas of circles.
+* **4.31: What is your opinion as to why pie charts continue to be used?** Legacy?
+
+
+### LC 4.32-4.37
+
+* **4.32 What kinds of questions are not easily answered by looking at the above figure?** Because the red, green, and blue bars don't all start at 0 (only red does), it makes comparing counts hard.
+* **4.33 What can you say, if anything, about the relationship between airline and airport in NYC in 2013 in regards to the number of departing flights?** The different airlines prefer different airports. For example, United is mostly a Newark carrier and JetBlue is a JFK carrier. If airlines didn't prefer airports, each color would be roughly one third of each bar.
+* **4.34 Why might the side-by-side barplot be preferable to a stacked barplot in this case?** We can easily compare the different aiports for a given carrier using a single comparison line i.e. things are lined up
+* **4.35 What are the disadvantages of using a side-by-side barplot, in general?** Hard to get totals for each airline.
+* **4.36 Why is the faceted barplot preferred to the side-by-side and stacked barplots in this case?** Not that different than using side-by-side; depends on how you want to organize your presentation.
+* **4.37 What information about the different carriers at different airports is more easily seen in the faceted barplot?** Now we can also compare the different carriers **within** a particular airport easily too. For example, we can read off who the top carrier for each airport is easily using a single horizontal line.
 
 
 

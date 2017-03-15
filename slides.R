@@ -31,6 +31,14 @@ if(FALSE){
 ## flights %>%
 ##   filter(year == 2014)
 
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## library(dplyr)
+## library(nycflights13)
+## data(weather)
+## 
+## weather %>%
+##   summarize(mean_temp = mean(temp))
+
 ## ---- echo=FALSE, fig.height=4-------------------------------------------
 library(tidyverse)
 library(babynames)

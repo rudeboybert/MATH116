@@ -110,11 +110,11 @@ flights %>%
 
 ## Today: Five Main Verbs
 
-1. `filter()` rows/observations matching criteria
-1. `summarize()` numerical variables
-1. ~~`group_by()` group rows/observations by a categorical variable~~
-1. ~~`mutate()` existing variables to create new ones~~
-1. ~~`arrange()` rows~~
+> 1. **`filter()` rows/observations matching criteria**
+> 1. **`summarize()` numerical variables**
+> 1. `group_by()` group rows/observations by a categorical variable
+> 1. `mutate()` existing variables to create new ones
+> 1. `arrange()` rows
 
 
 
@@ -128,11 +128,11 @@ flights %>%
 
 
 
-## Example
+## Filter Example
 
-Take `flights` then filter for all rows where `year` is equal to 2014. 
+Take `flights` and then filter for all rows where `year` is equal to 2014. 
 
-Note `==` and not `=`:
+Note we use `==` and not `=`
 
 ```{r, eval=FALSE, echo=TRUE}
 library(dplyr)
@@ -142,6 +142,42 @@ data(flights)
 flights %>% 
   filter(year == 2014)
 ```
+
+
+
+## 5MV#2 Summarize
+
+`summarize()` numerical variables using a _many to one_ function:
+
+<center>
+<img src="assets/figure/summarize1.png" alt="Drawing" style="width: 700px;"/>
+</center>
+
+
+## 5MV#2 Summarize
+
+Examples of _many to one_ functions:
+
+* `sum()`: sum of n values
+* `mean()`: mean of n values
+* `sd()`: standard deviation of n values
+* See backside of cheatsheet -> Summarize Data -> Summary functions
+
+
+
+## Summarize Example
+
+What's going here?
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+library(nycflights13)
+data(weather)
+
+weather %>% 
+  summarize(mean_temp = mean(temp))
+```
+
 
 
 
@@ -168,8 +204,7 @@ With the internet, we are in a new age of data:
 
 ## Bridging the Gap
 
-> * Meet Jenny Bryan at UBC: <a target="_blank" class="page-link" href="https://github.com/jennybc">GitHub</a> profile
-> * She teaches a graduate level class <a target="_blank" class="page-link" href="http://stat545.com/">STAT 545</a> on **Data wrangling, exploration, and analysis with R**. Note the ordering.
+> * Jenny Bryan at UBC teaches a graduate level class <a target="_blank" class="page-link" href="http://stat545.com/">STAT 545</a> on **Data wrangling, exploration, and analysis with R**. Note the ordering.
 > * <img src="assets/figure/gap.png" alt="Drawing" style="width: 500px;"/>
 
 
