@@ -29,6 +29,17 @@ library(ggplot2)
 
 
 <!----------------------------------------------------------------------------->
+# Lec14 - Fri 3/17: Grouping
+
+In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.
+
+## Discussion
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec13 - Wed 3/15: Piping, filtering, and summarizing
 
 In ModernDive, LC5.1 thru 5.4 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html">Chapters 5-5.2.2</a>.

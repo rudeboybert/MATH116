@@ -45,6 +45,34 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
+# Lec14 - Grouping variables using `group_by()`
+
+## Today: Five Main Verbs
+
+> 1. ~~`filter()` rows/observations matching criteria~~
+> 1. ~~`summarize()` numerical variables~~
+> 1. **`group_by()` group rows/observations by a categorical variable**
+> 1. `mutate()` existing variables to create new ones
+> 1. `arrange()` rows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec13 - Piping `%>%`, 5MV#1 `filter`ing, and 5MV#2 `summarize()`
 
 ## Piping
