@@ -763,7 +763,10 @@ summary_temp_by_day</code></pre></div>
 <p>All remarkably similar!</p>
 <p>Note: the <code>n()</code> function counts rows, whereas the <code>sum(VARIABLE_NAME)</code> funciton sums all values of a certain numerical variable <code>VARIABLE_NAME</code>.</p>
 <p><strong>5.9 How does the <code>filter</code> operation differ from a <code>group_by</code> followed by a <code>summarize</code>?</strong></p>
-<p><code>filter</code> picks out rows from the original data set without modifying them, whereas <code>group_by %&gt;% summarize</code> computes summaries of numerical variables, and hence reports new values.</p>
+<ul>
+<li><code>filter</code> picks out rows from the original data set without modifying them, whereas</li>
+<li><code>group_by %&gt;% summarize</code> computes summaries of numerical variables, and hence reports new values.</li>
+</ul>
 </div>
 <div id="lc-5.10-5.12" class="section level3">
 <h3>LC 5.10-5.12</h3>
@@ -777,7 +780,8 @@ summary_temp_by_day</code></pre></div>
 <p>I never understood this. If the pilot says “we’re going make up time in the air” because of delay by flying faster, why don’t you always just fly faster to begin with?</p>
 <p><strong>5.11 Could we create the <code>dep_delay</code> and <code>arr_delay</code> columns by simply subtracting <code>dep_time</code> from <code>sched_dep_time</code> and similarly for arrivals? Try the code out and explain any differences between the result and what actually appears in <code>flights</code>?</strong></p>
 <p>No because you can’t do direct arithmetic on times. The difference in time between 12:03 and 11:59 is 4 minutes, but <code>1293-1159 = 134</code></p>
-<p>** 5.12 What can we say about the distribution of <code>gain</code>? Describe it in a few sentences using the plot and the <code>gain_summary</code> data frame values.**</p>
+<p><strong>5.12 What can we say about the distribution of <code>gain</code>? Describe it in a few sentences using the plot and the <code>gain_summary</code> data frame values.</strong></p>
+<p>Most of the time the gain is a little under zero, most of the time the gain is between -50 and 50 minutes. There are some extreme cases however!</p>
 <!----------------------------------------------------------------------------->
 </div>
 </div>
