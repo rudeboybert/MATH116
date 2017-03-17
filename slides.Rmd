@@ -45,6 +45,158 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
+# Lec15 - Fri 3/17: 5MV#5 `arrange()` & `_join`
+
+## Today: Five Main Verbs
+
+> 1. ~~`filter()` rows/observations matching criteria~~
+> 1. ~~`summarize()` numerical variables~~
+> 1. ~~`group_by()` group rows/observations by a categorical variable~~
+> 1. ~~`mutate()` existing variables to create new ones~~
+> 1. **`arrange()` rows**
+
+And `_join`!
+
+
+
+## Arrange
+
+Really simple. Either
+
+* `DATASET_NAME %>% arrange(VARIABLE_NAME)` or
+* `DATASET_NAME %>% arrange(desc(VARIABLE_NAME))`
+
+
+
+## Arrange Example
+
+```{r, eval=FALSE, echo=TRUE}
+library(dplyr)
+
+# Create data frame with two variables
+test_data <- data_frame(
+  name=c("Abbi", "Abbi ", "Ilana", "Ilana", "Ilana"),
+  value_1=c(0, 1, 0, 1, 0),
+  value_2=c(4, 6, 3, 2, 5)
+)
+
+# See contents in console
+test_data
+```
+
+
+
+## Arrange Example
+
+Run this code. Notice the subtle diff between 2 and 3:
+
+```{r, eval=FALSE, echo=TRUE}
+# 1: Arrange in ascending order
+test_data %>% 
+  arrange(value_1)
+
+# 2: Arrange in descending order
+test_data %>% 
+  arrange(desc(value_1))
+
+# 3: Arrange in decending order of value_1, and then within
+# value_1, arrange in ascending order of value_2
+test_data %>% 
+  arrange(desc(value_1), value_2)
+```
+
+
+
+## Combining Data Sets via Joins
+
+And now the last component of data wrangling: **joining/merging two data sets**. Run the following:
+
+```{r, eval=FALSE, echo=TRUE}
+x <- data_frame(x1=c("A","B","C"), x2=c(1,2,3))
+y <- data_frame(x1=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
+x
+y
+```
+
+
+
+## Combining Data Sets via Joins
+
+We join by the `"x1"` variable. Note how it is in quotation marks.
+
+```{r, eval=FALSE, echo=TRUE}
+left_join(x, y, by = "x1")
+full_join(x, y, by = "x1")
+```
+
+
+
+<!--
+## Different Join Variable Name?
+
+What the variable we want to join by has a different name in each data set? 
+Here `a` vs `b`:
+
+```{r, eval=FALSE, echo=TRUE}
+i <- data_frame(a=c("A","B","C"), x2=c(1,2,3))
+j <- data_frame(b=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
+i
+j
+```
+
+
+
+## Different Join Variable Name?
+
+We use the `c()` function.
+
+```{r, eval=FALSE, echo=TRUE}
+left_join(i, j, by = c("a" = "b"))
+```
+
+It is a bit confusing unfortunately. It's
+
+* `by = c("a"="b")` and not
+* `by = c("a"=="b")`
+
+
+
+## Different Join Variable Name?
+
+There was an example of such a join in [Chapter 4.7.1](https://rudeboybert.github.io/IntroStatDataSciences/4-viz.html#barplots) on Barplots
+where we `join` 
+
+* `flights` data, which had airport codes in `origin`
+* `airports` data, which had airport codes in `faa`
+
+```{r, eval=FALSE, echo=TRUE}
+inner_join(flights, airports, by = c("origin" = "faa"))
+```
+
+This creates a single data set with all information combined.
+-->
+
+
+## Extra on Joins
+
+* In [Chapter 5.3.2](https://rudeboybert.github.io/ModernDive/5-manip.html#joining-by-key-variables-with-different-names), there is
+an example of joining when variable names are different in the two data sets.
+* There are many types of `join` (right-hand column of back of cheatsheet). To keep things simple, we'll try to only use:
+    + `left_join`
+    + `full_join`
+* This
+[illustration](https://twitter.com/yutannihilation/status/551572539697143808)
+succinctly summarizes all of them.
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec14 - Thu 3/16: 5MV#3 `group_by()` & 5MV#4 `mutate()`
 
 ## Today: Five Main Verbs

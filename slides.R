@@ -13,6 +13,55 @@ if(FALSE){
 ## 
 ## # Create data frame with two variables
 ## test_data <- data_frame(
+##   name=c("Abbi", "Abbi ", "Ilana", "Ilana", "Ilana"),
+##   value_1=c(0, 1, 0, 1, 0),
+##   value_2=c(4, 6, 3, 2, 5)
+## )
+## 
+## # See contents in console
+## test_data
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## # 1: Arrange in ascending order
+## test_data %>%
+##   arrange(value_1)
+## 
+## # 2: Arrange in descending order
+## test_data %>%
+##   arrange(desc(value_1))
+## 
+## # 3: Arrange in decending order of value_1, and then within
+## # value_1, arrange in ascending order of value_2
+## test_data %>%
+##   arrange(desc(value_1), value_2)
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## x <- data_frame(x1=c("A","B","C"), x2=c(1,2,3))
+## y <- data_frame(x1=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
+## x
+## y
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## left_join(x, y, by = "x1")
+## full_join(x, y, by = "x1")
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## i <- data_frame(a=c("A","B","C"), x2=c(1,2,3))
+## j <- data_frame(b=c("A","B","D"), x3=c(TRUE,FALSE,TRUE))
+## i
+## j
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## left_join(i, j, by = c("a" = "b"))
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## inner_join(flights, airports, by = c("origin" = "faa"))
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## library(dplyr)
+## 
+## # Create data frame with two variables
+## test_data <- data_frame(
 ##   name=c("Albert", "Albert", "Albert", "Yolanda", "Yolanda"),
 ##   value=c(2, 2, 2, 3, 3)
 ## )
