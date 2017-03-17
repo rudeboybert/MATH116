@@ -115,9 +115,9 @@ The difference is they are organized/sorted by `month` first, then `origin`
 
 We could summarize the count from each airport using the `n()` function, which *counts rows*.
 
-```{r, echo=TRUE, }
-count_flights_by_airport <- weather %>% 
-  group_by(origin) %>% 
+```{r, echo=TRUE, cache=TRUE}
+count_flights_by_airport <- flights %>% 
+  group_by(origin, month) %>% 
   summarize(count=n())
 ```
 

@@ -13,7 +13,7 @@ if(FALSE){
 ## 
 ## # Create data frame with two variables
 ## test_data <- data_frame(
-##   name=c("Abbi", "Abbi ", "Ilana", "Ilana", "Ilana"),
+##   name=c("Abbi", "Abbi", "Ilana", "Ilana", "Ilana"),
 ##   value_1=c(0, 1, 0, 1, 0),
 ##   value_2=c(4, 6, 3, 2, 5)
 ## )

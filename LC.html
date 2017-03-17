@@ -566,28 +566,197 @@ summary_temp_by_day</code></pre></div>
 <p>The difference is they are organized/sorted by <code>month</code> first, then <code>origin</code></p>
 <p><strong>5.8 How could we identify how many flights left each of the three airports in each of the months of 2013?</strong></p>
 <p>We could summarize the count from each airport using the <code>n()</code> function, which <em>counts rows</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">count_flights_by_airport &lt;-<span class="st"> </span>weather %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(origin) %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">count_flights_by_airport &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(origin, month) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count=</span><span class="kw">n</span>())</code></pre></div>
 <table>
 <thead>
 <tr class="header">
 <th align="left">origin</th>
+<th align="right">month</th>
 <th align="right">count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">EWR</td>
-<td align="right">8708</td>
+<td align="right">1</td>
+<td align="right">9893</td>
+</tr>
+<tr class="even">
+<td align="left">EWR</td>
+<td align="right">2</td>
+<td align="right">9107</td>
+</tr>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">3</td>
+<td align="right">10420</td>
+</tr>
+<tr class="even">
+<td align="left">EWR</td>
+<td align="right">4</td>
+<td align="right">10531</td>
+</tr>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">5</td>
+<td align="right">10592</td>
+</tr>
+<tr class="even">
+<td align="left">EWR</td>
+<td align="right">6</td>
+<td align="right">10175</td>
+</tr>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">7</td>
+<td align="right">10475</td>
+</tr>
+<tr class="even">
+<td align="left">EWR</td>
+<td align="right">8</td>
+<td align="right">10359</td>
+</tr>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">9</td>
+<td align="right">9550</td>
+</tr>
+<tr class="even">
+<td align="left">EWR</td>
+<td align="right">10</td>
+<td align="right">10104</td>
+</tr>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">11</td>
+<td align="right">9707</td>
+</tr>
+<tr class="even">
+<td align="left">EWR</td>
+<td align="right">12</td>
+<td align="right">9922</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">1</td>
+<td align="right">9161</td>
 </tr>
 <tr class="even">
 <td align="left">JFK</td>
-<td align="right">8711</td>
+<td align="right">2</td>
+<td align="right">8421</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">3</td>
+<td align="right">9697</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">4</td>
+<td align="right">9218</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">5</td>
+<td align="right">9397</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">6</td>
+<td align="right">9472</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">7</td>
+<td align="right">10023</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">8</td>
+<td align="right">9983</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">9</td>
+<td align="right">8908</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">10</td>
+<td align="right">9143</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="right">11</td>
+<td align="right">8710</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">12</td>
+<td align="right">9146</td>
 </tr>
 <tr class="odd">
 <td align="left">LGA</td>
-<td align="right">8711</td>
+<td align="right">1</td>
+<td align="right">7950</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">2</td>
+<td align="right">7423</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">3</td>
+<td align="right">8717</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">4</td>
+<td align="right">8581</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">5</td>
+<td align="right">8807</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">6</td>
+<td align="right">8596</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">7</td>
+<td align="right">8927</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">8</td>
+<td align="right">8985</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">9</td>
+<td align="right">9116</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">10</td>
+<td align="right">9642</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">11</td>
+<td align="right">8851</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="right">12</td>
+<td align="right">9067</td>
 </tr>
 </tbody>
 </table>
@@ -1127,19 +1296,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Return with Honor</td>
-<td align="right">1000000</td>
-<td align="right">8.5</td>
+<td align="left">Network</td>
+<td align="right">3.8e+06</td>
+<td align="right">8.0</td>
 </tr>
 <tr class="even">
-<td align="left">Hulk</td>
-<td align="right">120000000</td>
-<td align="right">6.1</td>
+<td align="left">Return to Oz</td>
+<td align="right">2.7e+07</td>
+<td align="right">6.3</td>
 </tr>
 <tr class="odd">
-<td align="left">Black Cat, The</td>
-<td align="right">95745</td>
-<td align="right">7.2</td>
+<td align="left">Hukkle</td>
+<td align="right">1.0e+05</td>
+<td align="right">7.1</td>
 </tr>
 </tbody>
 </table>
@@ -1181,16 +1350,16 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">2013-01-04</td>
+<td align="right">915</td>
+</tr>
+<tr class="even">
 <td align="left">2013-01-15</td>
 <td align="right">894</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">2013-01-23</td>
 <td align="right">897</td>
-</tr>
-<tr class="odd">
-<td align="left">2013-01-09</td>
-<td align="right">902</td>
 </tr>
 </tbody>
 </table>
@@ -1234,15 +1403,15 @@ simple_ex &lt;-
 <tbody>
 <tr class="odd">
 <td align="left">m</td>
-<td align="right">75</td>
+<td align="right">65</td>
 </tr>
 <tr class="even">
 <td align="left">m</td>
-<td align="right">67</td>
+<td align="right">71</td>
 </tr>
 <tr class="odd">
-<td align="left">f</td>
-<td align="right">58</td>
+<td align="left">m</td>
+<td align="right">67</td>
 </tr>
 </tbody>
 </table>
@@ -1281,19 +1450,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">2001 Mazda B3000</td>
+<td align="left">Automatic</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
 <td align="left">2007 Jeep Grand Cherokee 2WD</td>
 <td align="left">Automatic</td>
 <td align="right">23</td>
 </tr>
-<tr class="even">
-<td align="left">2010 Suzuki Kizashi S AWD</td>
-<td align="left">Automatic</td>
-<td align="right">30</td>
-</tr>
 <tr class="odd">
-<td align="left">1986 Toyota Truck 4WD</td>
-<td align="left">Automatic</td>
-<td align="right">20</td>
+<td align="left">2013 Suzuki Kizashi S</td>
+<td align="left">Manual</td>
+<td align="right">31</td>
 </tr>
 </tbody>
 </table>
