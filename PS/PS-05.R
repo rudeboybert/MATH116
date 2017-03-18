@@ -34,8 +34,7 @@ bechdel_cleaned <- bechdel %>%
 
 # After View()'ing the data, create an appropriate plot that shows the time 
 # trend of the proportion of movies that pass the Bechdel test. 
-ggplot(bechdel_cleaned, aes(x=year, y=prop_pass_bechdel)) +
-  geom_line()
+
 
 
 # c) Say you're an individual who is concerned with underrepresentation of women
@@ -98,8 +97,6 @@ drinks_tidy <- drinks %>%
   gather(type, servings, -c(country, total_litres_of_pure_alcohol)) %>%
   arrange(country)
 
-ggplot(data=drinks_tidy, aes(x=type, y=servings)) + 
-  geom_boxplot()
 
 # c) What type of alcoholic beverage is the most consumed on earth?
 

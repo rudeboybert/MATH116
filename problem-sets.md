@@ -27,6 +27,38 @@ Discussions and solutions on each of the Problem Sets can be found
 
 
 
+### Problem Set 06
+
+* **Info:**
+    + Assigned Sat 3/18
+    + Due: Fri 3/24 11:15am
+* **Homework:** 
+    1. Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1FW2_pW_JvzR0VKHGsUv81vP08p5mh-bVh04mftN-Q7s/viewform">feedback survey</a> on the "R Markdown" course on DataCamp from last week.
+    1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-06.Rmd"
+    target="_blank">`PS-06.Rmd`</a>. If you're having trouble with R Markdown,
+    read this <a target="_blank" class="page-link"
+    href="https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/">Google
+    Doc</a> first.
+    1. **Optional:** If you want reinforcement on `dplyr`, from the "<a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>" DataCamp course, complete Chapter 7 (Filtering, Grouping, & Summarizing) and Chapter 8 (dplyr Review). Notes:
+        + Two topics, `%in%` and `geom_col`, have not been covered in our course.
+        + If you do complete this course, please help me and Chester out by completing this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1FW2_pW_JvzR0VKHGsUv81vP08p5mh-bVh04mftN-Q7s/viewform">feedback survey</a>.
+    
+
+
+
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
 ### Problem Set 05
 
 * **Info:**
@@ -37,7 +69,7 @@ Discussions and solutions on each of the Problem Sets can be found
     1. From the DataCamp course "Reporting with R Markdown", complete the first two Chapters (I anticipate this taking between 90 min and 2 hours):
         1. Authoring R Markdown Reports. In this Chapter, don't worry if you don't fully understand "Section 2: R code for your report."
         1. Embedding Code
-    1. **Optional:** If you want reinforcement on `ggplot2`, from "<a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>" DataCamp course, complete Chapters
+    1. **Optional:** If you want reinforcement on `ggplot2`, from the "<a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>" DataCamp course, complete Chapters
         * 3: Scatter-plots & Line-graphs
         * 4: Histograms & Boxplots 
         * 5: Barplots 
@@ -67,8 +99,8 @@ Discussions and solutions on each of the Problem Sets can be found
     + Assigned Mon 3/6
     + Due: Fri 3/10 11:15am
 * **Homework:** 
-    + Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1Z8Dl7Aa80jk7Eur3V64DlFD-emRS8TGu-Y4OTH4wWB4/viewform">feedback survey</a> on "Chapter 2: Tidy Data" of the "Effective Data Storytelling using the tidyverse" DataCamp course.
-    + *Ethics*:
+    1. Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1Z8Dl7Aa80jk7Eur3V64DlFD-emRS8TGu-Y4OTH4wWB4/viewform">feedback survey</a> on "Chapter 2: Tidy Data" of the "Effective Data Storytelling using the tidyverse" DataCamp course.
+    1. *Ethics*:
         + Listen to <a target="_blank" class="page-link" href="http://www.econtalk.org/archives/2016/10/cathy_oneil_on_1.html">Econ Talk podcast interview</a> (time 1h11m) of <a target="_blank" class="page-link" href="https://mathbabe.org/">Cathy O'Neil</a>, author of <a target="_blank" class="page-link" href="https://weaponsofmathdestructionbook.com/">Weapons of Math Destruction</a>.
         + Explain in two paragraphs Cathy O'Neil's argument of how supposedly objective mathematical/algorithmic models reinforce inequality in the **two of the three** following contexts:
             1. Crime recidivism
@@ -96,9 +128,9 @@ Discussions and solutions on each of the Problem Sets can be found
     + Assigned Sat 2/25
     + Due: Fri 3/3 11:15am
 * **Homework:** 
-    + Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeYv6TUIKFh9JymvwYGDwzWzsxioUjwSPc9jE34yo7lBbAujQ/viewform">feedback survey</a> on the "Intro to R" and "Intermediate R" courses on DataCamp.
-    + Complete the work in <a href="{{ site.baseurl }}/PS/PS-03.R" target="_blank">`PS-03.R`</a>, saving your work in this file as you will be submitting it. Standby for the submission format.
-    + Complete Chapter 2: Tidy Data of <a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>
+    1. Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeYv6TUIKFh9JymvwYGDwzWzsxioUjwSPc9jE34yo7lBbAujQ/viewform">feedback survey</a> on the "Intro to R" and "Intermediate R" courses on DataCamp.
+    1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-03.R" target="_blank">`PS-03.R`</a>, saving your work in this file as you will be submitting it. Standby for the submission format.
+    1. Complete Chapter 2: Tidy Data of <a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>
 * **Learning Goals:**
     + Weaning yourselves away from the DataCamp nest and doing your own work in RStudio.
     + Baby's first data analysis!

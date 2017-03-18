@@ -1,0 +1,126 @@
+
+---
+title: "Problem Set 06"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, March 24, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+    df_print: kable
+---
+
+Load necessary packages:
+
+```{r, message=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+
+
+
+## Question 1: Drug Use Amongst OkCupid Users
+
+Let's revisit the 60,000 San Francisco OkCupid users in 2012 and consider the 
+variable `drug` reflecting users' answers to a question on their drug use. Run
+this code first:
+
+```{r}
+library(okcupiddata)
+data(profiles)
+# Convert as missing values in drugs to an actual category "N/A"
+profiles <- profiles %>% 
+  mutate(drugs = ifelse(is.na(drugs), "N/A", drugs))
+```
+
+
+**a)** Type in a series of commands that will output a table of how many men and
+women there are in this population.
+
+
+```{r}
+# Write your code below:
+
+```
+
+
+**b)** Create a visualization that shows the distribution of the different
+responses of in variable `drugs`.
+
+
+```{r}
+# Write your code below:
+
+```
+
+**c)** Create a visualization that shows the same information as in part a), but
+for men and women separately. Who is more likely to say they never use drugs?
+Men or women?
+
+
+```{r}
+# Write your code below:
+
+```
+
+
+
+
+
+
+## Question 2: Gapminder
+
+We're going revisit the Gapminder data from PS-05. Run this code first:
+
+```{r}
+library(gapminder)
+data(gapminder)
+```
+
+
+**a)** Output a table that shows the mean and median GDP of all countries in the
+year 2007, but split by continent. Your table should be 5 rows and 3 columns.
+
+
+```{r}
+# Write your code below:
+
+```
+
+
+
+
+
+
+
+
+
+## Question 3: Titanic
+
+Let's study data relating to who survived the Titanic disaster. Run this code
+first:
+
+```{r}
+data(Titanic)
+# Convert the Titanic data to data frame format
+Titanic <- Titanic %>% 
+  tbl_df()
+```
+
+
+**a)** Output tables that compares survivor counts
+
+1. between men and women
+1. betweent the different classes
+
+
+
+```{r}
+# Write your code below:
+
+```
+
+
+**b)** For each comparison above, show who was most likely to survive. Spoiler: 
+it was men and 1st class passenger; show your work.

@@ -9,7 +9,7 @@
 #'     toc_depth: 1
 #'     theme: cosmo
 #'     highlight: tango
-#'     df_print: paged
+#'     df_print: kable
 #' ---
 #' 
 #' <style>
@@ -30,6 +30,16 @@ if(FALSE){
   knitr::purl(input="PS/PS.Rmd", output="PS/PS_code.R", documentation=2)
 }
 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
 #' 
 #' 
 #' 
@@ -104,8 +114,6 @@ ggplot(bechdel_cleaned, aes(x=year, y=prop_pass_bechdel)) +
 #' 
 #' 
 #' 
-#' 
-#' 
 #' ## Question 2: Cheese and Milk Production 
 #' 
 #' Run the code below. It will create a data frame food contains cheese and milk
@@ -115,7 +123,7 @@ ggplot(bechdel_cleaned, aes(x=year, y=prop_pass_bechdel)) +
 #' * <https://www.quandl.com/data/USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB>
 #' * <https://www.quandl.com/data/NASS_MILKPRODUCTIONMEASUREDINLB>
 #' 
-## ------------------------------------------------------------------------
+## ---- cache=TRUE---------------------------------------------------------
 cheese <- 
   Quandl("USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB", start_date="1925-01-01") %>% 
   mutate(type="cheese", date=ymd(Date), value=Value) %>%
@@ -136,7 +144,7 @@ food <- bind_rows(cheese, milk) %>%
 #' 
 #' At first glance, it seems milk made the biggest gains:
 #' 
-## ------------------------------------------------------------------------
+## ---- cache=TRUE---------------------------------------------------------
 ggplot(data=food, aes(x=date, y=value, col=type)) + 
   geom_line()
 
@@ -145,7 +153,7 @@ ggplot(data=food, aes(x=date, y=value, col=type)) +
 #' difficult to see any differences in the price of cheese. Let's plot them
 #' separately.
 #' 
-## ---- fig.height=3, fig.width=5------------------------------------------
+## ---- fig.height=3, fig.width=5, cache=TRUE------------------------------
 # Write your code below:
 ggplot(data=milk, aes(x=date, y=value)) + 
   geom_line()
@@ -160,10 +168,8 @@ ggplot(data=cheese, aes(x=date, y=value)) +
 #' $$
 #' 
 #' 
-#' 
 ## ---- eval=FALSE, echo=FALSE---------------------------------------------
 ## # Ignore this:
-## library(knitr)
 ## data_frame(
 ##   food_type=c("milk", "cheese"),
 ##   price_1925 = c(90699000000, 501096000),
@@ -173,7 +179,7 @@ ggplot(data=cheese, aes(x=date, y=value)) +
 ##     `Absolute Change` = price_2014 - price_1925,
 ##     `% Change` = round(`Absolute Change`/price_1925 * 100, 2)
 ##   ) %>%
-##   kable()
+##   knitr::kable()
 
 #' 
 #' |Food Type |  1925|   2014| Absolute Change| % Change|
@@ -198,13 +204,14 @@ example <- data_frame(
 #' 
 #' ### Solution
 #' 
-## ---- echo=TRUE----------------------------------------------------------
+## ---- echo=TRUE, cache=TRUE----------------------------------------------
 ggplot(data=example, aes(x=x)) +
   geom_histogram(bins=5) +
   facet_wrap(~group)
 
 #' 
 #' We could've also done `geom_histogram(binwidth=1)`
+#' 
 #' 
 #' 
 #' ## Question 4: Drinks 
