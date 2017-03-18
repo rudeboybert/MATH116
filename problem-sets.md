@@ -14,7 +14,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 Discussions and solutions on each of the Problem Sets can be found 
 
 * In <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML format</a>
-* In <a target="_blank" class="page-link" href="https://raw.githubusercontent.com/rudeboybert/MATH116/gh-pages/PS/PS_code.R">`.R` code format</a>
+* In <a target="_blank" class="page-link" href="https://github.com/rudeboybert/MATH116/blob/gh-pages/PS/PS_code.R">`.R` code format</a>
 
 
 
