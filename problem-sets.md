@@ -8,7 +8,13 @@ While I encourage you to discuss problem sets with your peers, you must submit y
 own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
-Discussions on each of the Problem Sets can be found <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">here</a>.
+
+### Discussions and Solutions
+
+Discussions and solutions on each of the Problem Sets can be found 
+
+* In <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML format</a>
+* In <a target="_blank" class="page-link" href="https://raw.githubusercontent.com/rudeboybert/MATH116/gh-pages/PS/PS_code.R">`.R` code format</a>
 
 
 
@@ -41,7 +47,6 @@ Discussions on each of the Problem Sets can be found <a target="_blank" class="p
 * **Notes**:
     + For Question 1.b) I accidentally left the code in the problem set. There is nothing to do here.
     + For Question 4.b) I gave an example of how to show the data using a `geom_boxplot()`. Submit an answer that does it using another `geom`.
-
 
 
 

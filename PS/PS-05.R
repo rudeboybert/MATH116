@@ -54,7 +54,6 @@ ggplot(bechdel_cleaned, aes(x=year, y=prop_pass_bechdel)) +
 # -https://www.quandl.com/data/USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB
 # -https://www.quandl.com/data/NASS_MILKPRODUCTIONMEASUREDINLB
 
-Quandl.api_key("izVwTt9m5VoEe7TsEzdr")
 cheese <- 
   Quandl("USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB", start_date="1925-01-01") %>% 
   mutate(type="cheese", date=ymd(Date), value=Value) %>%
