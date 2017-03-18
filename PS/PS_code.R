@@ -1,0 +1,408 @@
+#' ---
+#' title: "Problem Set Discussions"
+#' author: "Albert Y. Kim"
+#' date: "Last updated on `r Sys.Date()`"
+#' output:
+#'   html_document:
+#'     toc: true
+#'     toc_float: true
+#'     toc_depth: 1
+#'     theme: cosmo
+#'     highlight: tango
+#'     df_print: paged
+#' ---
+#' 
+#' <style>
+#' h1{font-weight: bold;}
+#' h2{color: #3399ff;}
+#' h3{color: #3399ff;}
+#' slides > slide.backdrop {background: white;}
+#' </style>
+#' 
+## ----setup, include=FALSE------------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
+set.seed(76)
+library(nycflights13)
+library(dplyr)
+library(ggplot2)
+if(FALSE){
+  rmarkdown::render("slides.Rmd", output_format = c("html_document"))
+  knitr::purl(input="PS/PS.Rmd", output="PS/PS_code.R")
+  }
+
+#' 
+#' 
+#' <!----------------------------------------------------------------------------->
+#' # Problem Set 05
+#' 
+#' Load needed packages:
+#' 
+## ------------------------------------------------------------------------
+library(ggplot2)
+library(dplyr)
+library(fivethirtyeight)
+library(Quandl)
+library(lubridate)
+library(tidyr)
+
+#' 
+#' ## Question 1: Bechdel Test
+#' 
+#' **a)** What is the Bechdel test? Hint: Read the first three paragraphs of the news
+#' article linked in the help file for the bechdel data set.
+#' 
+#' **b)** The following bit of code takes the bechdel data set, limits to movies made 
+#' in 1972 or later, and for each year reports the proportion of movies where 
+#' binary is equal to PASS. Run this code (such code is the focus of Chapter 5: 
+#' Data Wrangling):
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+bechdel_cleaned <- bechdel %>% 
+  select(year, binary) %>% 
+  filter(year >= 1972) %>% 
+  group_by(year) %>% 
+  summarize(prop_pass_bechdel=sum(binary=="PASS")/n())
+
+#' 
+#' After `View()`'ing the data, create an appropriate plot that shows the time 
+#' trend of the proportion of movies that pass the Bechdel test. Write your code
+#' here:
+#' 
+#' **c)** What can you tell someone who asks "What is the state of female
+#' representation" in movies?
+#' 
+#' 
+#' ### Discussion
+#' 
+#' **a)** For any of the data sets in the `fivethirtyeight` package, the help file 
+#' lists information. For example: `?bechdel`. The Bechdel test is:
+#' 
+#' 1. Are there at least two named women in the movie?
+#' 1. Do they have a conversation with each other at some point?
+#' 1. Does that conversation involve something other than a male character??
+#' 
+#' **b)** Notice how we computed the propotion using `group_by()`, `summarize()`,
+#' and the `n()` summary/many-to-one function. Also note I forgot to erase the
+#' solution to this question, so let me make the plot a little fancier:
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+ggplot(bechdel_cleaned, aes(x=year, y=prop_pass_bechdel)) +
+  geom_line() +
+  labs(x="Year", y="Proportion Pass Bechdel Test", 
+       "Proportion of Movies that Pass Bechdel Test over Time") +
+  geom_smooth(se=FALSE)
+
+#' 
+#' `geom_smooth()` adds a **smoother** line, `se=FALSE` suppresses the error bars (
+#' try `geom_smooth()` by itself where `se` is set to TRUE by default to see
+#' difference). This picks out the **signal** from the **noise**.
+#' 
+#' **c)** Many possible answers here. In my opinion, there has been an increases 
+#' since the 1970's in movies that pass Bechdel, but of late things seem to have 
+#' leveled off at about 50%.
+#' 
+#' 
+#' 
+#' ## Question 2: Cheese and Milk Production 
+#' 
+#' Run the code below. It will create a data frame food contains cheese and milk
+#' production in the United States for every year since 1925. See these links for
+#' more info:
+#' 
+#' * <https://www.quandl.com/data/USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB>
+#' * <https://www.quandl.com/data/NASS_MILKPRODUCTIONMEASUREDINLB>
+#' 
+## ------------------------------------------------------------------------
+Quandl.api_key("izVwTt9m5VoEe7TsEzdr")
+cheese <- 
+  Quandl("USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB", start_date="1925-01-01") %>% 
+  mutate(type="cheese", date=ymd(Date), value=Value) %>%
+  select(type, date, value) 
+milk <- 
+  Quandl("USDANASS/NASS_MILKPRODUCTIONMEASUREDINLB", start_date="1925-01-01") %>% 
+  mutate(type="milk", date=ymd(Date), value=Value) %>%
+  select(type, date, value) 
+food <- bind_rows(cheese, milk) %>% 
+  tbl_df()
+
+#' 
+#' **a)** Between cheese and milk, relatively speaking, which agricultural good has 
+#' seen the bigger overall increases in production? Write your code below:
+#' 
+#' 
+#' ### Discussion
+#' 
+#' At first glance, it seems milk made the biggest gains:
+#' 
+## ------------------------------------------------------------------------
+ggplot(data=food, aes(x=date, y=value, col=type)) + 
+  geom_line()
+
+#' 
+#' But the above plot is of little use since the scale of milk prices is making it
+#' difficult to see any differences in the price of cheese. Let's plot them
+#' separately.
+#' 
+## ---- fig.height=3, fig.width=5------------------------------------------
+# Write your code below:
+ggplot(data=milk, aes(x=date, y=value)) + 
+  geom_line()
+ggplot(data=cheese, aes(x=date, y=value)) + 
+  geom_line()
+
+#' 
+#' Both trend up, but which had the biggest relative increases i.e. which had the **highest percent increase**?
+#' 
+#' $$
+#' \text{% difference} = \frac{\text{Price in 2015} - \text{Price in 1925}}{\text{Price in 1925}} \times 100 \%
+#' $$
+#' 
+## ---- eval=FALSE, echo=FALSE---------------------------------------------
+## # Ignore this:
+## library(knitr)
+## data_frame(
+##   food_type=c("milk", "cheese"),
+##   price_1925 = c(90699000000, 501096000),
+##   price_2014 = c(206046000000, 11450117000 )
+## ) %>%
+##   mutate(
+##     `Absolute Change` = price_2014 - price_1925,
+##     `% Change` = round(`Absolute Change`/price_1925 * 100, 2)
+##   ) %>%
+##   kable()
+
+#' 
+#' |Food Type |  1925|   2014| Absolute Change| % Change|
+#' |:---------|-----------:|------------:|---------------:|--------:|
+#' |milk      | 90,699,000,000| 206,046,000,000|    115,347,000,000|   127.18%|
+#' |cheese    |   501,096,000|  11,450,117,000|     10,949,021,000|  2185.01%|
+#' 
+#' Cheese wins by a landslide. 2100% increase.
+#' 
+#' 
+#' 
+#' ## Question 3: Histogram 
+#' 
+#' **a)** Recreate the histogram in Question 2 of the midterm using the following data:
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+example <- data_frame(
+  x = c(rep(3, 1), rep(4, 4), rep(5, 10), rep(6, 4), rep(7, 1), rep(3:7, each=4)),
+  group = c(rep(1, 20), rep(2, 20))
+)
+
+#' 
+#' ### Solution
+#' 
+## ---- echo=TRUE----------------------------------------------------------
+ggplot(data=example, aes(x=x)) +
+  geom_histogram(bins=5) +
+  facet_wrap(~group)
+
+#' 
+#' We could've also done `geom_histogram(binwidth=1)`
+#' 
+#' 
+#' ## Question 3: Drinks 
+#' 
+#' Let's look at the data set drinks from the `fivethirtyeight` package.
+#' 
+## ------------------------------------------------------------------------
+data(drinks)
+
+#' 
+#' **a)** Which 3 countries drink the most total alcohol according to this data?
+#' 
+#' **b)** The following bit of code uses the `gather()` function from the `tidyr`
+#' package to convert the data to tidy format and then arranges it by country. Do 
+#' Question 3.b) from the midterm using another `geom` besides `boxplot`.
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+drinks_tidy <- drinks %>%
+  gather(type, servings, -c(country, total_litres_of_pure_alcohol)) %>%
+  arrange(country)
+
+ggplot(data=drinks_tidy, aes(x=type, y=servings)) + 
+  geom_boxplot()
+
+#' 
+#' **c)** What type of alcoholic beverage is the most consumed on earth?
+#' 
+#' 
+#' ### Discussion
+#' 
+#' **a)** The easiest way to do this is to use `View(drinks)` and play with the
+#' sorting arrows: Belarus, then Lithuania, then Andorra.
+#' 
+#' **b)** We really want to emphasize the **beer vs spirits vs wine** comparison 
+#' of the numerical variable `servings` above all:
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+ggplot(data=drinks_tidy, aes(x=servings)) + 
+  geom_histogram(binwidth = 50) +
+  facet_wrap(~type)
+
+#' 
+#' **c)** In my opinion, this question is best answered using the boxplot: Overall
+#' beer seems to be the most popular in terms of servings.
+#' 
+#' 
+#' 
+#' ## BONUS
+#' 
+#' In the TED talk [The best stats you've ever
+#' seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen)
+#' Hans Rosling (RIP 2017) presents human and international development data. The 
+#' data seen in the video is accessible in the gapminder data set within the 
+#' gapminder package:
+#' 
+## ------------------------------------------------------------------------
+library(gapminder)
+data(gapminder)
+
+#' 
+#' The next bit of code
+#' 
+#' * Filters the data set to only consider observations for two years: 1952 & 2007
+#' * Renames the "pop" variable to "population"
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+gapminder <- 
+  filter(gapminder, year==1952 | year==2007) %>% 
+  rename(population=pop)
+
+#' 
+#' **a)** Recreate the scatterplot of "Child Survival (%)" over "GDP per capita ($)"
+#' seen at 12:00 in the video, but
+#' 
+#' * Making a comparison between 1952 and 2007
+#' * Displaying "life expectancy" instead of "Child Survival"
+#' 
+#' Do so by changing the code snippet below:
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## ggplot(data=DATASETNAME, aes(AES1=VAR1, AES2=VAR2, AES3=VAR3, AES4=VAR4)) +
+##   geom_point() +
+##   facet_wrap(~VAR5) +
+##   scale_x_log10() +
+##   labs(x="WRITE INFORMATIVE LABEL HERE", y="WRITE INFORMATIVE LABEL HERE", title="WRITE INFORMATIVE TITLE HERE")
+
+#' 
+#' **b)** Describe two facts that would be of interest to international development organizations.
+#' 
+#' 
+#' ### Discussion
+#' 
+#' **a)** 
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, size=population, col=continent)) +
+  geom_point() + 
+  facet_wrap(~year) +
+  scale_x_log10() + 
+  labs(x="GDP per capita ($)", y="Life Expectancy", title="Life Expectancy over GDP per Capita")
+
+#' 
+#' **b)** In my opinion
+#' 
+#' * Overall, there have been gains in both GDP per capita and life expectancy
+#' between 1952 and 2007
+#' * However, broken down by continent:
+#'     + Europe and the Americas have seen modest gains
+#'     + Asia has made massive gains
+#'     + Unfortunately Africa still lags behind
+#' 
+#' 
+#' 
+#' 
+#' <!----------------------------------------------------------------------------->
+#' # Problem Set 03
+#' 
+#' Load needed packages:
+#' 
+## ------------------------------------------------------------------------
+library(ggplot2)
+library(dplyr)
+
+#' 
+#' 
+#' ## Question 1: Movie Ratings
+#' 
+#' The `movies` data set in the `ggplot2movies` package has information and
+#' ratings on 28,819 movies. This many data points is a bit unwieldy, so let's
+#' take a random sample of 1000 of these movies. Furthermore, let's take the
+#' variable `Comedy` and convert it to a `yes` vs `no` (binary) categorical
+#' variable. Note: you don't need to understand this code for now, we'll see this
+#' when we study data manipulation in Chapter 5.
+#' 
+## ------------------------------------------------------------------------
+library(ggplot2movies)
+data(movies)
+movies <- movies %>%
+  sample_n(1000) %>%
+  mutate(Comedy=ifelse(Comedy==1, "yes", "no"))
+
+#' 
+#' a) You want to know for these 1000 randomly chosen movies: What is the
+#' relationship between the year the movie was made and the IMDB rating?
+#' Furthermore, I want to distinguish between comedies and non-comedies. In the
+#' code block below, write the code that generates a graphic that will answer
+#' this for you. Write your code here:
+#' 
+#' 
+#' ### Discussion
+#' 
+#' a) Comedy is a categorical variable we can split on by assigning a color to
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+ggplot(data=movies, aes(x=year, y=rating, color=Comedy)) +
+  geom_point()
+
+#' 
+#' 
+#' b) This is very hard to eye-ball. We can add a **regression line** for Comedies
+#' and Non-Comedies using `geom_smooth()`, which is a kind of `geom_line()`. We'll
+#' see more and more of this as the semester progresses. Is that small difference
+#' **statistically significant**? Hard to tell.
+#' 
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+ggplot(data=movies, aes(x=year, y=rating, col=Comedy)) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+
+#' 
+#' 
+#' 
+#' ## Question 2: Babynames
+#' 
+#' Considering the `babynames` data set in the `babynames` package again, we will
+#' limit consideration to only the name "Casey".
+#' 
+## ------------------------------------------------------------------------
+library(babynames)
+data(babynames)
+babynames <- babynames %>%
+  filter(name=="Casey")
+
+#' 
+#' a) I want to know about popularity trends of the name "Casey" as a male name
+#' and as a female name over the years. In the code block below, write the code
+#' that generates a graphic that will answer this for you. Write your code here:
+#' 
+#' b) Given this graphic, what can you say about the name "Casey"? Don't merely
+#' describe elements on graphic, but make a broader statement. For example, what
+#' would you tell a parent who is interested in naming their child "Casey"?
+#' 
+#' ### Discussion
+#' 
+#' a) While we could've made separate plots, its easier to view things on the same plot:
+#' 
+## ---- cache=TRUE---------------------------------------------------------
+ggplot(data=babynames, aes(x=year, y=prop, col=sex)) +
+  geom_line()
+
+#' 
+#' b) This is a **unisex** name, which interestingly peaked in popularity at the same
+#' time in the early 1980's. Take a look at this article from
+#' [538](http://fivethirtyeight.com/features/there-are-922-unisex-names-in-america-is-yours-one-of-them/)
+#' about unisex names.
