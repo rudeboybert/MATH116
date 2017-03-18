@@ -20,16 +20,17 @@
 #' </style>
 #' 
 ## ----setup, include=FALSE------------------------------------------------
+# Ignore this:
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 set.seed(76)
 library(nycflights13)
 library(dplyr)
 library(ggplot2)
 if(FALSE){
-  rmarkdown::render("slides.Rmd", output_format = c("html_document"))
-  knitr::purl(input="PS/PS.Rmd", output="PS/PS_code.R")
-  }
+  knitr::purl(input="PS/PS.Rmd", output="PS/PS_code.R", documentation=2)
+}
 
+#' 
 #' 
 #' 
 #' <!----------------------------------------------------------------------------->
@@ -103,6 +104,8 @@ ggplot(bechdel_cleaned, aes(x=year, y=prop_pass_bechdel)) +
 #' 
 #' 
 #' 
+#' 
+#' 
 #' ## Question 2: Cheese and Milk Production 
 #' 
 #' Run the code below. It will create a data frame food contains cheese and milk
@@ -113,7 +116,6 @@ ggplot(bechdel_cleaned, aes(x=year, y=prop_pass_bechdel)) +
 #' * <https://www.quandl.com/data/NASS_MILKPRODUCTIONMEASUREDINLB>
 #' 
 ## ------------------------------------------------------------------------
-Quandl.api_key("izVwTt9m5VoEe7TsEzdr")
 cheese <- 
   Quandl("USDANASS/NASS_CHEESEPRODUCTIONMEASUREDINLB", start_date="1925-01-01") %>% 
   mutate(type="cheese", date=ymd(Date), value=Value) %>%
@@ -154,8 +156,10 @@ ggplot(data=cheese, aes(x=date, y=value)) +
 #' Both trend up, but which had the biggest relative increases i.e. which had the **highest percent increase**?
 #' 
 #' $$
-#' \text{% difference} = \frac{\text{Price in 2015} - \text{Price in 1925}}{\text{Price in 1925}} \times 100 \%
+#' \text{Percent difference} = \frac{\text{Price in 2015} - \text{Price in 1925}}{\text{Price in 1925}} \times 100 \%
 #' $$
+#' 
+#' 
 #' 
 ## ---- eval=FALSE, echo=FALSE---------------------------------------------
 ## # Ignore this:
@@ -203,7 +207,7 @@ ggplot(data=example, aes(x=x)) +
 #' We could've also done `geom_histogram(binwidth=1)`
 #' 
 #' 
-#' ## Question 3: Drinks 
+#' ## Question 4: Drinks 
 #' 
 #' Let's look at the data set drinks from the `fivethirtyeight` package.
 #' 
@@ -310,6 +314,12 @@ ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, size=population, col=continen
 #'     + Europe and the Americas have seen modest gains
 #'     + Asia has made massive gains
 #'     + Unfortunately Africa still lags behind
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
 #' 
 #' 
 #' 

@@ -207,7 +207,7 @@ ggplot(data=example, aes(x=x)) +
 We could've also done `geom_histogram(binwidth=1)`
 
 
-## Question 3: Drinks 
+## Question 4: Drinks 
 
 Let's look at the data set drinks from the `fivethirtyeight` package.
 
