@@ -15,6 +15,29 @@ if(FALSE){
 ## ---- eval=FALSE, echo=TRUE----------------------------------------------
 ## DD_vs_SB <- read_csv("~/Problem_Sets/DD_vs_SB.csv")
 
+## ---- echo=FALSE---------------------------------------------------------
+DD_vs_SB <- readr::read_csv("assets/data/DD_vs_SB.csv")
+
+## ---- echo=FALSE, eval=TRUE----------------------------------------------
+library(ggplot2)
+ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
+  geom_point(aes(col=Type)) + 
+  facet_wrap(~Type) +
+  geom_smooth(method="lm", se=FALSE) + 
+  labs(x="Median Household Income", y="# of shops per 1000 people", 
+       title="Coffee/Cafe Comparison in Eastern MA") +
+  scale_color_manual(values=c("orange", "forestgreen"))
+
+## ---- echo=TRUE, eval=FALSE----------------------------------------------
+## library(ggplot2)
+## ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
+##   geom_point(aes(col=Type)) +
+##   facet_wrap(~Type) +
+##   geom_smooth(method="lm", se=FALSE) +
+##   labs(x="Median Household Income", y="# of shops per 1000 people",
+##        title="Coffee/Cafe Comparison in Eastern MA") +
+##   scale_color_manual(values=c("orange", "forestgreen"))
+
 ## ---- eval=FALSE, echo=TRUE----------------------------------------------
 ## library(dplyr)
 ## 

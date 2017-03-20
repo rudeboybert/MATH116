@@ -122,13 +122,10 @@ A `.csv` file [(example)](http://www.sqlshack.com/wp-content/uploads/2015/02/wor
 ## Today's Exercise 1: Load a CSV into R
 
 Today you will load `DD_vs_SB.csv` file that contains the Dunkin Donuts and
-Starbucks data.  Delaney Moran scraped data from the web for
+Starbucks data.  Delaney Moran scraped the web for the following data: For each of 1024 census tracts in Eastern Massachusetts:
 
 * the number of Dunkin Donuts and Starbucks 
 * median income
-
-in each of 1024 census tracts in 6 Eastern Massachusetts counties
-
 
 <center><img src="assets/figure/DD_vs_SB.png" alt="Drawing" style="width: 400px;"/></center>
 
@@ -161,13 +158,51 @@ called `DD_vs_SB`, which you will be working with.
 
 
 
-
 ## Today's Exercise 2: Get Started with R Markdown
 
 > * Start Problem Set 06 in R Markdown format
 > * Biggest source of confusion: R Markdown has it's own **environment**. Just because something exists in your console, doesn't mean it exists in R Markdown.
 > * <a target="_blank" class="page-link"
     href="https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/">R Markdown Debugging</a> first
+
+
+
+## Starbucks vs Dunkin Donuts
+
+```{r, echo=FALSE}
+DD_vs_SB <- readr::read_csv("assets/data/DD_vs_SB.csv")
+```
+
+We add regression lines...
+
+```{r, echo=FALSE, eval=TRUE}
+library(ggplot2)
+ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
+  geom_point(aes(col=Type)) + 
+  facet_wrap(~Type) +
+  geom_smooth(method="lm", se=FALSE) + 
+  labs(x="Median Household Income", y="# of shops per 1000 people", 
+       title="Coffee/Cafe Comparison in Eastern MA") +
+  scale_color_manual(values=c("orange", "forestgreen"))
+```
+
+
+
+## Code
+
+After loading `DD_vs_SB.csv`:
+
+```{r, echo=TRUE, eval=FALSE}
+library(ggplot2)
+ggplot(DD_vs_SB, aes(x=median_income, y=shops_per_1000)) +
+  geom_point(aes(col=Type)) + 
+  facet_wrap(~Type) +
+  geom_smooth(method="lm", se=FALSE) + 
+  labs(x="Median Household Income", y="# of shops per 1000 people", 
+       title="Coffee/Cafe Comparison in Eastern MA") +
+  scale_color_manual(values=c("orange", "forestgreen"))
+```
+
 
 
 

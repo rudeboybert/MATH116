@@ -22,6 +22,7 @@ layout: default
 
 ### d) Importing Data
 
+* Lec17 - Wed 3/22: 
 * Lec16 - Mon 3/20: Importing Data
     + Install `tidyverse` package. Umbrella package of <a href="http://tidyverse.org/" target="_blank">several useful packages</a>.
     + Download <a href="{{ site.baseurl }}/assets/data/DD_vs_SB.csv" target="_blank">`DD_vs_SB.csv`</a>.

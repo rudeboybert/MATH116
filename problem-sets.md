@@ -9,12 +9,39 @@ own answers and not simple rewordings of another's work. Furthermore, **all
 collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
-### Discussions and Solutions
+### General Information
 
-Discussions and solutions on each of the Problem Sets can be found 
+* Discussions and solutions on each of the Problem Sets can be found 
+    + In <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML format</a>
+    + In <a target="_blank" class="page-link" href="https://github.com/rudeboybert/MATH116/blob/gh-pages/PS/PS_code.R">`.R` code format</a>
+* The R Markdown Debugging Sheet is <a target="_blank" class="page-link" href="https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/">here</a>.
 
-* In <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML format</a>
-* In <a target="_blank" class="page-link" href="https://github.com/rudeboybert/MATH116/blob/gh-pages/PS/PS_code.R">`.R` code format</a>
+
+<!--
+<br>
+
+***
+
+<br>
+
+
+
+### Problem Set 07
+
+* **Info:**
+    + Assigned Fri 3/24
+    + Due: Fri 4/7 11:15am
+* **Homework:** 
+    1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-07.Rmd"
+    target="_blank">`PS-07.Rmd`</a>. 
+-->
+
+
+
+
+
+
+
 
 
 
@@ -42,7 +69,10 @@ Discussions and solutions on each of the Problem Sets can be found
     1. **Optional:** If you want reinforcement on `dplyr`, from the "<a target="_blank" class="page-link" href="https://www.datacamp.com/courses/effective-data-storytelling-using-the-tidyverse">Effective Data Storytelling using the tidyverse</a>" DataCamp course, complete Chapter 7 (Filtering, Grouping, & Summarizing) and Chapter 8 (dplyr Review). Notes:
         + Two topics, `%in%` and `geom_col`, have not been covered in our course.
         + If you do complete this course, please help me and Chester out by completing this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1FW2_pW_JvzR0VKHGsUv81vP08p5mh-bVh04mftN-Q7s/viewform">feedback survey</a>.
-    
+* **Learning Goals:**
+    1. Perform data wrangling
+    1. Start answering substantive questions with data
+    1. Get familiar with R Markdown
 
 
 
