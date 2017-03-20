@@ -20,6 +20,14 @@ layout: default
 
 ## 2. Data
 
+### d) Importing Data
+
+* Lec16 - Mon 3/20: Importing Data
+    + Install `tidyverse` package. Umbrella package of <a href="http://tidyverse.org/" target="_blank">several useful packages</a>.
+    + Download <a href="{{ site.baseurl }}/assets/data/DD_vs_SB.csv" target="_blank">`DD_vs_SB.csv`</a>.
+
+
+
 ### c) Manipulation AKA Wrangling
 
 * Lec15 - Fri 3/17: 5MV#5 `arrange()` & `_join`

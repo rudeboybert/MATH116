@@ -9,6 +9,13 @@ if(FALSE){
   }
 
 ## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## library(readxl)
+## example <- read_excel("example.xlsx")
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## DD_vs_SB <- read_csv("~/Problem_Sets/DD_vs_SB.csv")
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
 ## library(dplyr)
 ## 
 ## # Create data frame with two variables
