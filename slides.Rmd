@@ -46,6 +46,84 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
+# Lec17 - Wed 3/22: Intro to Statistical Inference
+
+## Switching Gears
+
+Done with "Tidy" and "Transform", start with "Model":
+
+<img src="assets/figure/pipeline.png" alt="Drawing" style="width: 700px;" border="1"/>
+
+
+
+## Example
+
+Growing up I used to only eat white rice, but now I only eat multigrain rice.
+
+White Rice           |  Multigrain Rice
+:-------------------------:|:-------------------------:
+<img src="assets/figure/white_rice.jpeg" alt="Drawing" style="width: 300px;"/>  |  <img src="assets/figure/japgokbap.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+## Example
+
+What is my spin on multigrain rice made of?
+
+> 1. Brown rice
+> 1. Sweet brown rice
+> 1. Barley
+> 1. Red beans
+> 1. Black beans
+
+
+## Questions
+
+* Of all the kernels in this tub **what percent are red beans**?
+* **Question about question**: How can I answer this question with the minimal amount of effort?
+* Most often heard of example leading up to November 2016.
+
+
+
+## The Paradigm for the Rest of the Class
+
+<center><img src="assets/figure/target-population.jpg" alt="Drawing" style="width: 600px;" border="1"/></center>
+
+Chalk Talk
+
+
+## Learning Check
+
+For each of the following 4 scenarios 
+
+1: Identify
+
+> * The **population** of interest and if applicable the **population parameter**
+> * The **sample** used and if applicable the **statistic**
+
+2: Comment on the **representativeness/generalizability** of the results of the sample to the population.
+
+
+
+## Learning Check
+
+> 1. The Royal Air Force wants to study how resistant their airplanes are to bullets. They study the bullet holes on all the airplanes on the tarmac after an air battle against the Luftwaffe (German Air Force).
+> 1. You want to know the average income of Middlebury graduates in the last 10 years.  So you get the records of 10 randomly chosen Midd Kids.  They all answer and you take the average.
+> 1. Imagine it's 1993 i.e. almost all households have landlines.  You want to know the average number of people in each household in Middlebury.  You randomly pick out 500 phone numbers from the phone book and conduct a phone survey.
+> 1. You want to know the prevalence of illegal downloading of TV shows among Middlebury students.  You get the emails of 100 randomly chosen Midd Kids and ask them "How many times did you download a pirated TV show last week?"
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec16 - Mon 3/20: Importing Data
 
 ## Recall from the First Lecture
