@@ -44,6 +44,104 @@ if(FALSE){
 
 
 
+<!----------------------------------------------------------------------------->
+# Lec18 - Fri 3/24: The Tao of Data Analysis
+
+## Tips for Problem Set 07
+
+Best viewed in HTML mode, not slide deck mode:
+
+1. Define your target
+1. Clean up your workspace
+1. Have a plan
+
+
+
+## 1. Define your target
+
+You should **draw out** what your end data frame should look like **in tidy format**:
+
+* How many columns and what are their names i.e. the variables
+* How many rows will I have?
+* Fill in elements of the table the best you can.
+
+**Why?** If you don't clearly identify this, not only will your work not be focused, but more 
+importantly, how would you know when you're done? 
+
+
+<!--
+In our case since we are 
+comparing capacity (as measured by available seat miles) at the three airports 
+for Virgin America and ExpressJet, we know before even typing a single line of 
+code, our end table should look something like this:
+
+|Airport |Airlines | Available Seat Miles|
+|:------|:-------|----------------:|
+|JFK    |VX      |       some value|
+|JFK    |EV      |       some value|
+|EWR    |VX      |       some value|
+|EWR    |EV      |       some value|
+|LGA    |VX      |       some value|
+|LGA    |EV      |       some value|
+
+
+**Advanced**: A previous student pointed out that a table like this would work too:
+
+|Airport |VX Available Seat Miles | EV Available Seat Miles|
+|:------|:-------|----------------:|
+|JFK    |some value|       some value|
+|EWR    |some value|       some value|
+|EWR    |some value|       some value|
+
+But note this is not in tidy data format (i.e. long format), but in wide format.
+For `ggplot2` and `dplyr` to work, we need to be consistent about the data 
+format: only tidy format. If you do want to switch from tidy/long to wide
+format or vice versa, you can use the `tidyr` package: see the `dplyr`
+cheatsheet, front page, "Reshaping Data" section, `gather()` and `spread()`
+functions. This is for a more advanced class however.
+-->
+
+
+## 2. Clean up your workspace
+
+Before starting any substantive data wrangling using `mutate`, `summarise`, `arrange`, or `_join`, I like
+to pare down the necessary data sets to the minimum of what I need by
+
+* `filter` only the absolutely necessary rows
+* Optional: `select` only the absolutely neccesary columns
+
+**Why?** This has several benefits:
+
+1. It will make it much easier to digest `View()`s of your work as you progress.
+1. It will minimize the chance of weird errors creeping in.
+1. **Most importantly**: It will force you to think
+    + "What variables do I need?" and hence
+    + "Where are they located?" and hence
+    + "What data sets do I need?"
+
+<!--
+In our case, we are going to need the following variables:
+
+* `carrier` and `origin` for the end table, both in the `flights` data set
+* `distance` and `seats` to compute `total_seat_miles`, with `seats` being in the `planes` data set
+* `tailnum` to be able to join/merge `flights`  and `planes`
+-->
+
+
+## 3. Have a plan
+
+1. Explicitly draw out on paper/blackboard what the end data frame should look like.
+1. Based on the variables in this table, reverse-engineer what variables you will need
+from the five `nycflights13` data sets: `flights`, `planes`, `airlines`, `weather`, and `airports`.
+1. Explicitly write out **pseudocode** on paper/blackboard all data wrangling steps you need to get to your goal. i.e. **What** am I doing?
+1. Only after you've done 1-3, then start coding. i.e. **How** am I going to do it?
+
+**Why?** If you confuse the **what** and the **how**, you'll only get doubly lost. Separate them out!
+
+
+
+
+
 
 <!----------------------------------------------------------------------------->
 # Lec17 - Wed 3/22: Intro to Statistical Inference

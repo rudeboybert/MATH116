@@ -1,0 +1,69 @@
+
+---
+title: "Problem Set 07"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, April 7, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+    df_print: kable
+---
+
+
+## Question: Available Seat Miles
+
+```{r, echo=TRUE, message=FALSE}
+# Load all pacakges necessary
+library(ggplot2)
+library(dplyr)
+library(knitr)
+
+# Load all data sets in nycflights
+library(nycflights13)
+data(flights)
+data(planes)
+data(airlines)
+data(weather)
+data(airports)
+```
+
+You are a junior analyst in the airline industry, specifically working for 
+Virgin America. You are tasked with calculating Virgin America's total
+[available seat miles](https://en.wikipedia.org/wiki/Available_seat_miles) for
+all flights leaving each of the three New York Metropolitan area airports
+separately, and comparing these figures with those of ExpressJet Airlines Inc, a
+close rival to your company. Available seat miles are the fundamental units of 
+production for a passenger-carrying airline; it is a measure of **capacity**. 
+
+1. You are asked for two deliverables: Present these results in
+    1. A well-formatted and easy to read table
+    1. A cleanly formatted visualization
+1. Give a two sentence "executive summary" on the comparison in available seat
+miles between Virgin America and ExpressJet Airlines Inc for the three NYC
+airports.
+
+
+## Deliverable 1: Table
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+# Write your R code below:
+
+```
+
+
+
+
+## Deliverable 2: Visualization
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5}
+# Write your R code below:
+
+```
+
+
+
+## Executive Summary
+
+Write your two sentence executive summary here.
+

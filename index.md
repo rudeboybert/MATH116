@@ -24,8 +24,13 @@ layout: default
 
 ## 2. Data
 
-### d) Importing Data
+### e) Putting It All Together
 
+* Lec18 - Fri 3/24: The <a href="https://en.wikipedia.org/wiki/Tao" target="_blank">tao</a> of data analysis.
+
+
+
+### d) Importing Data
 
 * Lec16 - Mon 3/20: Importing Data
     + Install `tidyverse` package. Umbrella package of <a href="http://tidyverse.org/" target="_blank">several useful packages</a>.

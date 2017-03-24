@@ -17,7 +17,6 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * The R Markdown Debugging Sheet is <a target="_blank" class="page-link" href="https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/">here</a>.
 
 
-<!--
 <br>
 
 ***
@@ -34,7 +33,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * **Homework:** 
     1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-07.Rmd"
     target="_blank">`PS-07.Rmd`</a>. 
--->
+* **Learning Goals:**
+    * More getting used to R Markdown.
+    * Working on a **really** substantive data analysis, in the mold of the final project.
+    * Providing **actionable insight** from data.
 
 
 
@@ -73,7 +75,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     1. Perform data wrangling
     1. Start answering substantive questions with data
     1. Get familiar with R Markdown
-
+* **Discussion/Solutions**: Can be found in 
 
 
 
