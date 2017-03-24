@@ -106,10 +106,12 @@ for this project; your scientific question will dictate this need.
 * Suggested Sources: 
     + Whatever you're interested in!
     + Make an appointment with the Middlebury Data Services Librarian Ryan Clement at <a target="_blank" class="page-link" href="http://guides.middlebury.edu/prf.php?account_id=75445">`go/ryan/`</a>
+    + Kaggle.com is a machine learning/prediction website. See their <a target="_blank" class="page-link" href="https://www.kaggle.com/datasets">data set list</a>.
+    + `data.world` is a new <a target="_blank" class="page-link" href="https://data.world/">repository of data</a> from various disciplines.
     + The `fivethirtyeight` R package.  See <a target="_blank" class="page-link" href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/rudeboybert/fivethirtyeight/master/vignettes/fivethirtyeight.html#data-sets">data set list</a>. Not all data sets in this package are allowable, so be sure to consult with me as soon as you can.
 
 
-
+https://data.world/
     
 
 #### Write-Up
