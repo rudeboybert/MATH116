@@ -90,9 +90,7 @@ proportions <- profiles %>%
 proportions
 ```
 
-Now let's try to plot it. Recall from the [Lec12
-Slides](https://rudeboybert.github.io/MATH116/assets/2-Data/barplots.html#8) 
-there are two cases of barplots:
+Now let's try to plot it. Recall when we covered barplots, we saw there are two cases of barplots:
 
 1. Where the counts are not pre-computed. what we've been using
 1. Where the counts are pre-computed. This case.

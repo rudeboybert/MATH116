@@ -12,7 +12,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 ### General Information
 
 * Discussions and solutions on each of the Problem Sets can be found 
-    + In <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML format</a>
+    + In master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>
     + In <a target="_blank" class="page-link" href="https://github.com/rudeboybert/MATH116/blob/gh-pages/PS/PS_code.R">`.R` code format</a>
 * The R Markdown Debugging Sheet is <a target="_blank" class="page-link" href="https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/">here</a>.
 
@@ -30,9 +30,12 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * **Info:**
     + Assigned Fri 3/24
     + Due: Fri 4/7 11:15am
-* **Homework:** 
-    1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-07.Rmd"
-    target="_blank">`PS-07.Rmd`</a>. 
+* **Homework:**
+    1. Read over the slides for <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html#lec18_-_fri_324:_the_tao_of_data_analysis">Lec18</a>.
+    1. Read over the questions in <a href="{{ site.baseurl }}/PS/PS-07.Rmd" target="_blank">`PS-07.Rmd`</a>.
+    1. Sketch out your plan of attack.
+    1. Read over the solutions to Problem Set 06 to make sure you understand the coding part.
+    1. The start coding your answers in `PS-07.Rmd`.
 * **Learning Goals:**
     * More getting used to R Markdown.
     * Working on a **really** substantive data analysis, in the mold of the final project.
@@ -75,7 +78,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     1. Perform data wrangling
     1. Start answering substantive questions with data
     1. Get familiar with R Markdown
-* **Discussion/Solutions**: Can be found in 
+* **Discussion/Solutions**: Can be found in both
+    * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
+    * R Markdown file specific to PS06 <a href="{{ site.baseurl }}/PS/PS-06_discussion.Rmd"
+    target="_blank">`PS-06_discussion.Rmd`</a>
 
 
 
