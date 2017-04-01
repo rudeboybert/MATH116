@@ -246,7 +246,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learning Checks</h1>
 <h4 class="author"><em>Albert Y. Kim</em></h4>
-<h4 class="date"><em>Last updated on 2017-03-17</em></h4>
+<h4 class="date"><em>Last updated on 2017-04-01</em></h4>
 
 </div>
 
@@ -258,12 +258,145 @@ h3{color: #3399ff;}
 slides > slide.backdrop {background: white;}
 </style>
 <!----------------------------------------------------------------------------->
+<div id="lec17---wed-322-intro-to-statistical-inference" class="section level1">
+<h1>Lec17 - Wed 3/22: Intro to Statistical Inference</h1>
+<p>For each of the following 4 scenarios</p>
+<ol style="list-style-type: decimal">
+<li>Identify
+<ul>
+<li>The <strong>population</strong> of interest and if applicable the <strong>population parameter</strong></li>
+<li>The <strong>sample</strong> used and if applicable the <strong>statistic</strong></li>
+</ul></li>
+<li>Comment on the <strong>representativeness/generalizability</strong> of the results of the sample to the population.</li>
+</ol>
+<div id="scenario-1" class="section level2">
+<h2>Scenario 1</h2>
+<p>The Royal Air Force wants to study how resistant their airplanes are to bullets. They study the bullet holes on all the airplanes on the tarmac after an air battle against the Luftwaffe (German Air Force).</p>
+<ol style="list-style-type: decimal">
+<li>Statements about population
+<ul>
+<li><strong>population</strong>: ALL Royal Air Force airplanes</li>
+<li><strong>population parameter</strong>: It wasn’t explicitly defined here, but imagine some aircraft engineering measure of resistance/strength.</li>
+</ul></li>
+<li>Statements about sample
+<ul>
+<li><strong>sample</strong>: Only the airplanes that <strong>returned</strong> from an air battle</li>
+<li><strong>statistic</strong>: The same measure above, but applied only to the returning aircraft:</li>
+</ul></li>
+<li>Representativeness/generalizability:
+<ul>
+<li>The sample suffers from <strong>survivor’s bias</strong> i.e. only planes that didn’t get shot down are included in your sample. You don’t have information on the more important cases of when planes do get shot down. Wald, an American statistician during World War II, suggested that they reinforce parts of the planes where bullet holes <a href="http://clearthinking.co/survivorship-bias/">were not</a> present.</li>
+<li>Also, this was a fight only against the German Air Force. Perhaps the Italian and Japanese Air Forces used different bullets, but we don’t have a sample representative of these groups.</li>
+</ul></li>
+</ol>
+</div>
+<div id="scenario-2" class="section level2">
+<h2>Scenario 2</h2>
+<p>You want to know the average income of Middlebury graduates in the last 10 years. So you get the records of 10 randomly chosen Midd Kids. They all answer and you take the average.</p>
+<ol style="list-style-type: decimal">
+<li>Statements about population
+<ul>
+<li><strong>population</strong>: All Middlebury graduates in the last ten years.</li>
+<li><strong>population parameter</strong>: The population mean <span class="math inline">\(\mu\)</span> (greek letter “mu”): their average income of all these graduates.</li>
+</ul></li>
+<li>Statements about sample
+<ul>
+<li><strong>sample</strong>: Then 10 chosen Midd Kids</li>
+<li><strong>statistic</strong>: The sample mean <span class="math inline">\(\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i\)</span> of their incomes.</li>
+</ul></li>
+<li>Representativeness/generalizability:
+<ul>
+<li>While the sample size is small (i.e. our estimate won’t be very precise and highly variable), it is still representative (i.e. still accurate). We’ll see that accuracy and precision are different concepts.</li>
+</ul></li>
+</ol>
+</div>
+<div id="scenario-3" class="section level2">
+<h2>Scenario 3</h2>
+<p>Imagine it’s 1993 i.e. almost all households have landlines. You want to know the average number of people in each household in Middlebury. You randomly pick out 500 phone numbers from the phone book and conduct a phone survey.</p>
+<ol style="list-style-type: decimal">
+<li>Statements about population
+<ul>
+<li><strong>population</strong>: All Middlebury households</li>
+<li><strong>population parameter</strong>: the population mean <span class="math inline">\(\mu\)</span>: average number of people in a household</li>
+</ul></li>
+<li>Statements about sample
+<ul>
+<li><strong>sample</strong>: Of the 500 households chosen, those <em>who answer the phone</em></li>
+<li><strong>statistic</strong>: The sample mean <span class="math inline">\(\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i\)</span> of the number of people in the households.</li>
+</ul></li>
+<li>Representativeness/generalizability:
+<ul>
+<li>We assumed that all households have landlines, so the real issue of poorer individuals not having phones is not in question here.</li>
+<li>Rather, households with larger numbers of people are more likely to have at least one person at home, and thus someone able to pick up the phone. Our results will be biased towards larger households.</li>
+<li>One way to address this is to keep trying until every house on your list picks up. But especially for single young professionals, this might be very hard to do.</li>
+</ul></li>
+</ol>
+</div>
+<div id="scenario-4" class="section level2">
+<h2>Scenario 4</h2>
+<p>You want to know the prevalence of illegal downloading of TV shows among Middlebury students. You get the emails of 100 randomly chosen Midd Kids and ask them ``How many times did you download a pirated TV show last week?’’</p>
+<ol style="list-style-type: decimal">
+<li>Statements about population
+<ul>
+<li><strong>population</strong>: Current Midd Kids</li>
+<li><strong>population parameter</strong>: the population proportion <span class="math inline">\(p\)</span> of Midd Kids who downloaded a pirated TV show last week.</li>
+</ul></li>
+<li>Statements about sample
+<ul>
+<li><strong>sample</strong>: The 100 randomly chosen Midd kids</li>
+<li><strong>statistic</strong>: The sample proportion <span class="math inline">\(\widehat{p}\)</span> of Midd Kids who <strong>self-report</strong> to have done so</li>
+</ul></li>
+<li>Representativeness/generalizability:
+<ul>
+<li>This study could suffer from <strong>volunteer bias</strong>, where different people might have different probabilities of willingness to report the truth. Since we are asking Midd Kids to fess up to illegal activity, your results might get skewed.</li>
+</ul></li>
+</ol>
+<!----------------------------------------------------------------------------->
+</div>
+</div>
 <div id="lec15---fri-317-5mv5-arrange-_join" class="section level1">
 <h1>Lec15 - Fri 3/17: 5MV#5 <code>arrange()</code> &amp; <code>_join</code></h1>
 <p>In ModernDive, LC5.13 thru 5.17 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html#arrange">Chapters 5.2.5-5.5.3</a>.</p>
 <div id="discussion" class="section level2">
 <h2>Discussion</h2>
+<div id="lc-5.13-5.14" class="section level3">
+<h3>LC 5.13-5.14</h3>
+<ul>
+<li><strong>5.5 Looking at Figure 5.7, when joining <code>flights</code> and <code>weather</code>, or in order words match the hourly weather values with each flight, why do we need to join by all of <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code>, and <code>origin</code>, and not just <code>hour</code>?</strong> Because <code>hour</code> is simply a value between 0 and 23; to identify a <em>specific</em> hour, we need to know which year, month, day and at which airport</li>
+<li><strong>5.6 What surprises you about the top 10 destinations from NYC in 2013?</strong> Subjective! What surprises me is the high number of flights to Boston. Wouldn’t it be easier and quicker to take the train?</li>
+</ul>
+</div>
+<div id="lc-5.15-5.17" class="section level3">
+<h3>LC 5.15-5.17</h3>
+<p><strong>5.15 What are some ways to select all three of the <code>dest</code>, <code>air_time</code>, and <code>distance</code> variables from flights? Give the code showing how to do this in at least three different ways.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(nycflights13)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The regular way:</span>
+flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(dest, air_time, distance)
+
+<span class="co"># Since they are sequential columns in the data set</span>
+flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(dest:distance)
+
+<span class="co"># Not as effective, by removing everything else</span>
+flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(-year, -month, -day, -dep_time, -sched_dep_time, -dep_delay, -arr_time,
+         -sched_arr_time, -arr_delay, -carrier, -flight, -tailnum, -origin, 
+         -hour, -minute, -time_hour)</code></pre></div>
+<p><strong>5.16 How could one use <code>starts_with</code>, <code>ends_with</code>, and <code>contains</code> to select columns from the <code>flights</code> data frame? Provide three different examples in total: one for <code>starts_with</code>, one for <code>ends_with</code>, and one for <code>contains</code>.</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Anything that starts with &quot;d&quot;</span>
+flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;d&quot;</span>))
+<span class="co"># Anything related to delays:</span>
+flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="kw">ends_with</span>(<span class="st">&quot;delay&quot;</span>))
+<span class="co"># Anything related to departures:</span>
+flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;dep&quot;</span>))</code></pre></div>
+<p><strong>5.17 Why might we want to use the <code>select</code> function on a data frame?</strong> To narrow down the data frame, to make it easier to look at. Using <code>View()</code> for example.</p>
 <!----------------------------------------------------------------------------->
+</div>
 </div>
 </div>
 <div id="lec14---thu-316-5mv3-group_by-5mv4-mutate" class="section level1">

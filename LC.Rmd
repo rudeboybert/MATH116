@@ -29,12 +29,142 @@ library(knitr)
 ```
 
 
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec17 - Wed 3/22: Intro to Statistical Inference
+
+For each of the following 4 scenarios 
+
+1. Identify
+    + The **population** of interest and if applicable the **population parameter**
+    + The **sample** used and if applicable the **statistic**
+1. Comment on the **representativeness/generalizability** of the results of the sample to the population.
+
+## Scenario 1
+
+The Royal Air Force wants to study how resistant their airplanes are to bullets. They study the bullet holes on all the airplanes on the tarmac after an air battle against the Luftwaffe (German Air Force).
+
+1. Statements about population 
+    + **population**: ALL Royal Air Force airplanes
+    + **population parameter**: It wasn't explicitly defined here, but imagine some aircraft engineering measure of resistance/strength.
+1. Statements about sample
+    + **sample**: Only the airplanes that **returned**  from an air battle
+    + **statistic**: The same measure above, but applied only to the returning aircraft:
+1. Representativeness/generalizability:
+    + The sample suffers from **survivor's bias** i.e. only planes that didn't get shot down are included in your sample. You don't have information on the more important cases of when planes do get shot down. Wald, an American statistician during World War II, suggested that they reinforce parts of the planes where bullet holes [were not](http://clearthinking.co/survivorship-bias/) present.
+    + Also, this was a fight only against the German Air Force. Perhaps the Italian and Japanese Air Forces used different bullets, but we don't have a sample representative of these groups.
+
+
+
+## Scenario 2
+
+You want to know the average income of Middlebury graduates in the last 10 years.  So you get the records of 10 randomly chosen Midd Kids.  They all answer and you take the average.
+
+1. Statements about population 
+    + **population**: All Middlebury graduates in the last ten years.
+    + **population parameter**: The population mean $\mu$ (greek letter "mu"): their average income of all these graduates.
+1. Statements about sample
+    + **sample**: Then 10 chosen Midd Kids
+    + **statistic**: The sample mean $\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i$ of their incomes.
+1. Representativeness/generalizability:
+    + While the sample size is small (i.e. our estimate won't be very precise and highly variable), it is still representative (i.e. still accurate). We'll see that accuracy and precision are different concepts.
+
+
+
+## Scenario 3
+
+Imagine it's 1993 i.e. almost all households have landlines.  You want to know the average number of people in each household in Middlebury.  You randomly pick out 500 phone numbers from the phone book and conduct a phone survey.
+
+1. Statements about population 
+    + **population**: All Middlebury households
+    + **population parameter**: the population mean $\mu$: average number of people in a household
+1. Statements about sample
+    + **sample**: Of the 500 households chosen, those *who answer the phone*
+    + **statistic**: The sample mean $\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i$ of the number of people in the households.
+1. Representativeness/generalizability:
+    + We assumed that all households have landlines, so the real issue of poorer individuals not having phones is not in question here.
+    + Rather, households with larger numbers of people are more likely to have at least one person at home, and thus someone able to pick up the phone. Our results will be biased towards larger households. 
+    + One way to address this is to keep trying until every house on your list picks up. But especially for single young professionals, this might be very hard to do.
+
+
+## Scenario 4
+
+You want to know the prevalence of illegal downloading of TV shows among Middlebury students.  You get the emails of 100 randomly chosen Midd Kids and ask them ``How many times did you download a pirated TV show last week?''
+
+1. Statements about population 
+    + **population**: Current Midd Kids
+    + **population parameter**: the population proportion $p$ of Midd Kids who downloaded a pirated TV show last week.
+1. Statements about sample
+    + **sample**: The 100 randomly chosen Midd kids
+    + **statistic**: The sample proportion $\widehat{p}$ of Midd Kids who **self-report** to have done so
+1. Representativeness/generalizability:
+    + This study could suffer from **volunteer bias**, where different people might have different probabilities of willingness to report the truth. Since we are asking Midd Kids to fess up to illegal activity, your results might get skewed.
+
+
+
+
+
+
+
+
+
+
 <!----------------------------------------------------------------------------->
 # Lec15 - Fri 3/17: 5MV#5 `arrange()` & `_join`
 
 In ModernDive, LC5.13 thru 5.17 in <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/5-manip.html#arrange">Chapters 5.2.5-5.5.3</a>.
 
 ## Discussion
+
+### LC 5.13-5.14
+
+* **5.5 Looking at Figure 5.7, when joining `flights` and `weather`, or in order words match the hourly weather values with each flight, why do we need to join by all of `year`, `month`, `day`, `hour`, and `origin`, and not just `hour`?** Because `hour` is simply a value between 0 and 23; to identify a *specific* hour, we need to know which year, month, day and at which airport
+* **5.6 What surprises you about the top 10 destinations from NYC in 2013?** Subjective! What surprises me is the high number of flights to Boston. Wouldn't it be easier and quicker to take the train?
+
+### LC 5.15-5.17
+
+**5.15 What are some ways to select all three of the `dest`, `air_time`, and `distance` variables from flights? Give the code showing how to do this in at least three different ways.** 
+
+```{r, echo=TRUE}
+library(dplyr)
+library(nycflights13)
+```
+```{r, echo=TRUE, eval=FALSE}
+# The regular way:
+flights %>% 
+  select(dest, air_time, distance)
+
+# Since they are sequential columns in the data set
+flights %>% 
+  select(dest:distance)
+
+# Not as effective, by removing everything else
+flights %>% 
+  select(-year, -month, -day, -dep_time, -sched_dep_time, -dep_delay, -arr_time,
+         -sched_arr_time, -arr_delay, -carrier, -flight, -tailnum, -origin, 
+         -hour, -minute, -time_hour)
+```
+
+
+**5.16 How could one use `starts_with`, `ends_with`, and `contains` to select columns from the `flights` data frame? Provide three different examples in total: one for `starts_with`, one for `ends_with`, and one for `contains`.** 
+
+```{r, echo=TRUE, eval=FALSE}
+# Anything that starts with "d"
+flights %>% 
+  select(starts_with("d"))
+# Anything related to delays:
+flights %>% 
+  select(ends_with("delay"))
+# Anything related to departures:
+flights %>% 
+  select(contains("dep"))
+```
+
+
+**5.17 Why might we want to use the `select` function on a data frame?** To narrow down the data frame, to make it easier to look at. Using `View()` for example.
+
 
 
 
