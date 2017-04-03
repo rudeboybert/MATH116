@@ -33,6 +33,61 @@ library(knitr)
 
 
 <!----------------------------------------------------------------------------->
+# Lec19 - Mon 4/3: Intro to Probability via Simulation
+
+## Example Code
+
+Go over this code first:
+
+```{r, eval=FALSE, echo=TRUE}
+# Load packages
+library(dplyr)
+library(ggplot2)
+
+# New package
+library(mosaic)
+
+# Flip a coin once. Try this multiple times:
+rflip()
+
+# Flip a coin 10 times. Try this multiple times:
+rflip(10)
+
+# Flip a coin 10 times, but do this 5 times. Try this multiple times
+do(5) * rflip(10)
+
+# Flip a coin 10 times, but do this 500 times
+do(500) * rflip(10)
+
+# Gah! There are too many rows!
+simulations <- do(500) * rflip(10)
+
+# Convert to data frame format; this allows us to better view in console
+simulations <- simulations %>% 
+  as_data_frame()
+
+# We could also View() it
+View(simulations)
+```
+
+
+## Learning Checks
+
+* LC1: Create a histogram of the number illustrating the long-run behavior of flipping a coin 10 times.
+    + Where is it centered?
+    + Describe the shape of the **distribution** of values
+* LC2: Try to replicate the above, but for the sum of two die rolls. Hint: `resample(c(1:6), 2)`
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec17 - Wed 3/22: Intro to Statistical Inference
 
 For each of the following 4 scenarios 

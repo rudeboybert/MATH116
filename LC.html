@@ -246,7 +246,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learning Checks</h1>
 <h4 class="author"><em>Albert Y. Kim</em></h4>
-<h4 class="date"><em>Last updated on 2017-04-01</em></h4>
+<h4 class="date"><em>Last updated on 2017-04-03</em></h4>
 
 </div>
 
@@ -258,6 +258,53 @@ h3{color: #3399ff;}
 slides > slide.backdrop {background: white;}
 </style>
 <!----------------------------------------------------------------------------->
+<div id="lec19---mon-43-intro-to-probability-via-simulation" class="section level1">
+<h1>Lec19 - Mon 4/3: Intro to Probability via Simulation</h1>
+<div id="example-code" class="section level2">
+<h2>Example Code</h2>
+<p>Go over this code first:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load packages</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+
+<span class="co"># New package</span>
+<span class="kw">library</span>(mosaic)
+
+<span class="co"># Flip a coin once. Try this multiple times:</span>
+<span class="kw">rflip</span>()
+
+<span class="co"># Flip a coin 10 times. Try this multiple times:</span>
+<span class="kw">rflip</span>(<span class="dv">10</span>)
+
+<span class="co"># Flip a coin 10 times, but do this 5 times. Try this multiple times</span>
+<span class="kw">do</span>(<span class="dv">5</span>) *<span class="st"> </span><span class="kw">rflip</span>(<span class="dv">10</span>)
+
+<span class="co"># Flip a coin 10 times, but do this 500 times</span>
+<span class="kw">do</span>(<span class="dv">500</span>) *<span class="st"> </span><span class="kw">rflip</span>(<span class="dv">10</span>)
+
+<span class="co"># Gah! There are too many rows!</span>
+simulations &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="dv">500</span>) *<span class="st"> </span><span class="kw">rflip</span>(<span class="dv">10</span>)
+
+<span class="co"># Convert to data frame format; this allows us to better view in console</span>
+simulations &lt;-<span class="st"> </span>simulations %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">as_data_frame</span>()
+
+<span class="co"># We could also View() it</span>
+<span class="kw">View</span>(simulations)</code></pre></div>
+</div>
+<div id="learning-checks" class="section level2">
+<h2>Learning Checks</h2>
+<ul>
+<li>LC1: Create a histogram of the number illustrating the long-run behavior of flipping a coin 10 times.
+<ul>
+<li>Where is it centered?</li>
+<li>Describe the shape of the <strong>distribution</strong> of values</li>
+</ul></li>
+<li>LC2: Try to replicate the above, but for the sum of two die rolls. Hint: <code>resample(c(1:6), 2)</code></li>
+</ul>
+<!----------------------------------------------------------------------------->
+</div>
+</div>
 <div id="lec17---wed-322-intro-to-statistical-inference" class="section level1">
 <h1>Lec17 - Wed 3/22: Intro to Statistical Inference</h1>
 <p>For each of the following 4 scenarios</p>
@@ -1433,19 +1480,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Network</td>
-<td align="right">3.8e+06</td>
-<td align="right">8.0</td>
+<td align="left">Return with Honor</td>
+<td align="right">1000000</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="even">
-<td align="left">Return to Oz</td>
-<td align="right">2.7e+07</td>
-<td align="right">6.3</td>
+<td align="left">Hulk</td>
+<td align="right">120000000</td>
+<td align="right">6.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Hukkle</td>
-<td align="right">1.0e+05</td>
-<td align="right">7.1</td>
+<td align="left">Black Cat, The</td>
+<td align="right">95745</td>
+<td align="right">7.2</td>
 </tr>
 </tbody>
 </table>
@@ -1487,16 +1534,16 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2013-01-04</td>
-<td align="right">915</td>
-</tr>
-<tr class="even">
 <td align="left">2013-01-15</td>
 <td align="right">894</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">2013-01-23</td>
 <td align="right">897</td>
+</tr>
+<tr class="odd">
+<td align="left">2013-01-09</td>
+<td align="right">902</td>
 </tr>
 </tbody>
 </table>
@@ -1540,15 +1587,15 @@ simple_ex &lt;-
 <tbody>
 <tr class="odd">
 <td align="left">m</td>
-<td align="right">65</td>
+<td align="right">75</td>
 </tr>
 <tr class="even">
 <td align="left">m</td>
-<td align="right">71</td>
+<td align="right">67</td>
 </tr>
 <tr class="odd">
-<td align="left">m</td>
-<td align="right">67</td>
+<td align="left">f</td>
+<td align="right">58</td>
 </tr>
 </tbody>
 </table>
@@ -1587,19 +1634,19 @@ simple_ex &lt;-
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2001 Mazda B3000</td>
-<td align="left">Automatic</td>
-<td align="right">20</td>
-</tr>
-<tr class="even">
 <td align="left">2007 Jeep Grand Cherokee 2WD</td>
 <td align="left">Automatic</td>
 <td align="right">23</td>
 </tr>
+<tr class="even">
+<td align="left">2010 Suzuki Kizashi S AWD</td>
+<td align="left">Automatic</td>
+<td align="right">30</td>
+</tr>
 <tr class="odd">
-<td align="left">2013 Suzuki Kizashi S</td>
-<td align="left">Manual</td>
-<td align="right">31</td>
+<td align="left">1986 Toyota Truck 4WD</td>
+<td align="left">Automatic</td>
+<td align="right">20</td>
 </tr>
 </tbody>
 </table>

@@ -18,7 +18,8 @@ layout: default
 
 ## 3. Statistical Inference
 
-* Lec17 - Wed 3/22: Intro to Statistical Inference
+* Lec19 - Mon 4/3: Intro to Probability via Simulation
+* Lec17 - Wed 3/22: Intro to Sampling Terminology
 
 
 
