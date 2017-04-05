@@ -81,7 +81,7 @@ resample(fruit, prob=c(0.495, 0.495, 0.01))
 ## Learning Checks 1-5
 
 1. Rewrite `rflip(10)` using the `resample()` command. Hint: `coin <- c("H", "T")`
-1. Rewrite the `shuffle()` command by changing the minimal number of default settings of `resample()`. Test this on `fruit`
+1. Rewrite `shuffle(fruit)` command by changing the minimal number of default settings of `resample()`. Test this on `fruit`
 1. Write code that will allow you to generate a sample of 15 fruit without replacement.
 1. Write code that will allow you to generate a sample of 15 fruit with replacement.
 1. What's the fastest way to do the above 5 times? Write it out
