@@ -30,6 +30,10 @@ library(mosaic)
 ```
 
 <!--
+Random sampling/ random assignment
+
+
+
 > * Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
 > * You call BS and think they are just guessing.
 > * Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
