@@ -189,7 +189,7 @@ i.e. like a Normal distribution.
 
 ### LC2
 
-Let's unpack `sample(c(1:6), 2)`:
+Let's unpack `resample(c(1:6), 2)`:
 
 * Running `c(1:6)` in the console returns six values, `1 2 3 4 5 6`, one for each possible die roll value.
 * `resample(c(1:6), 2)` says: sample a value from 1 to 6 twice. This is akin to rolling a die twice.
