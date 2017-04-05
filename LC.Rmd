@@ -26,7 +26,80 @@ library(nycflights13)
 library(dplyr)
 library(ggplot2)
 library(knitr)
+library(mosaic)
 ```
+
+<!--
+> * Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
+> * You call BS and think they are just guessing.
+> * Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
+> * Brainstorm all the components of this experiment with your seatmates.
+> * Then think about how you can implement this with `resampl()`ing.
+-->
+
+
+<!----------------------------------------------------------------------------->
+# Lec20 - Wed 4/5: Introduction to Sampling
+
+## Example Code
+
+Go over this code first:
+
+```{r, eval=FALSE, echo=TRUE}
+# Load packages
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+
+# Define vector to sample from
+fruit <- c("apple", "orange", "mango")
+
+# 1. Shuffling works with do()
+# Do this many times to get a feel for it:
+do(5) * shuffle(fruit)
+
+# 2. Shuffling works with mutate as well:
+example_data <- data_frame(
+  name = c("Ilana", "Abbi", "Hannibal"),
+  fruit = c("apple", "orange", "mango")
+)
+# Do this many times to get a feel for it:
+example_data %>% 
+  mutate(fruit = shuffle(fruit))
+
+# 3. Testing the various inputs. Discuss with your peers what each is doing:
+resample(fruit, size=1)
+resample(fruit, replace=FALSE)
+resample(fruit, prob=c(0.495, 0.495, 0.01))
+```
+
+
+## Learning Checks 1-5
+
+1. Rewrite `rflip(10)` using the `resample()` command. Hint: `coin <- c("H", "T")`
+1. Rewrite the `shuffle()` command by changing the minimal number of default settings of `resample()`. Test this on `fruit`
+1. Write code that will allow you to generate a sample of 15 fruit without replacement.
+1. Write code that will allow you to generate a sample of 15 fruit with replacement.
+1. What's the fastest way to do the above 5 times? Write it out
+
+
+## Learning Check 
+
+A medical doctor pours over some his patients' medical records and observes:
+
+People who do this:            |  Wake up with this:
+:-------------------------:|:-------------------------:
+<img src="assets/figure/shoes.jpg" alt="Drawing" style="height: 300px;"/>  |  <img src="assets/figure/headache.jpg" alt="Drawing" style="height: 300px;"/>
+
+He then asserts the following **causal** relationship:
+
+* **Explanatory AKA treatment variable**: sleeping with shoes on 
+* **Response variable**: causes one to wake up with a headache
+
+What's wrong with the doctor's logic? What is **really** going on?
+
+
+
 
 
 
@@ -77,6 +150,93 @@ View(simulations)
     + Where is it centered?
     + Describe the shape of the **distribution** of values
 * LC2: Try to replicate the above, but for the sum of two die rolls. Hint: `resample(c(1:6), 2)`
+
+
+## Discussion
+
+### LC1
+
+```{r, cache=TRUE, echo=TRUE}
+coin_flips <- do(500) * rflip(10)
+coin_flips <- coin_flips %>% 
+  as_data_frame()
+```
+
+If we `View(coin_flips)` the first 6 rows, we see that we have in **tidy format**:
+
+```{r, cache=TRUE}
+coin_flips %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+So we plot a histogram of the `heads` variable with `binwidth=1` since we are
+dealing with integers i.e. whole numbers.
+
+```{r, cache=TRUE, echo=TRUE}
+ggplot(coin_flips, aes(x=heads)) +
+  geom_histogram(binwidth = 1)
+```
+
+* Where is it centered? Answer: At 5 i.e. half of 10.
+* Describe the shape of the **distribution** of values. Answer: bell-shaped.
+i.e. like a Normal distribution.
+
+
+### LC2
+
+Let's unpack `sample(c(1:6), 2)`:
+
+* Running `c(1:6)` in the console returns six values, `1 2 3 4 5 6`, one for each possible die roll value.
+* `resample(c(1:6), 2)` says: sample a value from 1 to 6 twice. This is akin to rolling a die twice.
+
+```{r, cache=TRUE, echo=TRUE}
+two_dice <- do(500) * resample(c(1:6), 2)
+two_dice <- two_dice %>% 
+  as_data_frame() 
+```
+
+If we `View(two_dice)` the first 6 rows, we see that we have in **tidy format**:
+
+```{r, echo=FALSE, cache=TRUE}
+two_dice %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+So to get the sum of the two dice, we `mutate()` a new variable `sum` based on the sum of the two die:
+
+```{r, cache=TRUE, echo=TRUE}
+two_dice <- two_dice %>% 
+  mutate(sum = V1 + V2)
+```
+
+```{r, echo=FALSE, cache=TRUE}
+two_dice %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+And now we plot it:
+
+```{r, echo=TRUE, message=FALSE, cache=TRUE}
+ggplot(two_dice, aes(x=sum)) +
+  geom_histogram(binwidth=1)
+```
+
+
+### Advanced
+
+What's the deal with the ugly axes tick marks? This is again b/c computers are stupid,
+and ggplot does not know we are dealing only with whole numbers i.e. integers. We can:
+
+* Convert the `sum` variable from numerical to categorical using `as.factor(sum)`
+* Then plot using `geom_bar()` (for categorial x-variable) instead of `geom_histogram`
+
+```{r, echo=TRUE, message=FALSE}
+ggplot(two_dice, aes(x=as.factor(sum))) +
+  geom_bar()
+```
 
 
 

@@ -9,6 +9,21 @@ if(FALSE){
   }
 
 ## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## library(mosaic)
+## # Define a vector fruit
+## fruit <- c("apple", "orange", "mango")
+## 
+## # Do this multiple times:
+## shuffle(fruit)
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## resample(fruit)
+
+## ---- eval=FALSE, echo=FALSE---------------------------------------------
+## resample(x=fruit, size=length(fruit), replace=TRUE,
+##          prob=rep(1/length(fruit), length(fruit)) )
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
 ## library(readxl)
 ## example <- read_excel("example.xlsx")
 
