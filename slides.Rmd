@@ -43,11 +43,166 @@ if(FALSE){
 ```
 
 
+<!---
+## Recall
+
+* Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
+* You call BS and think they are just guessing.
+* Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
+* Brainstorm all the components of this experiment with your seatmates. To revisit later: ~~Then think about how you can implement this with `resampl()`ing~~.
+-->
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec21 - Thu 4/6: Confounding Variables and Designed Experiments
+
+<!-- IGNORE THIS
+## Explanatory and Response Variables
+
+A medical doctor pours over some his patients' medical records and observes:
+
+People who do this:            |  Wake up with this:
+:-------------------------:|:-------------------------:
+<img src="../figure/shoes.jpg" alt="Drawing" style="width: 300px;"/>  |  <img src="../figure/headache.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+## Explanatory and Response Variables
+
+He then asserts the following **causal** relationship:
+
+* **Explanatory AKA treatment variable**: sleeping with shoes on 
+* **Response variable**: causes one to wake up with a headache
+
+What's wrong?
+
+-->
+
+
+## Today: Other Use of Randomness
+
+1. **Random sampling**: To obtain a representative sample from a population.
+1. **Random assignment**: To design an experiement.
+
+
+
+## Mantra of Statistics
+
+> * **Correlation is not necessarily causation**
+> * [Spurious correlations](http://tylervigen.com/spurious-correlations)
+
+
+## Chalk Talk
+
+
+> * Confounding variables
+> * Two types of studies
+> * Principles of designing experiments
 
 
 <!--
-Random sampling/ random assignment
+
+## Confounding Variable
+
+Diagram
+
+
+## Two Types of Studies
+
+To study the effect of a treatment there are two types of studies
+
+* **Observational studies**: Researchers have no control over who receives the treatment
+* **Randomized experiments**: Researchers not only have control over who receives the treatment, but also make random assignments
+
+
+## Two Types of Studies
+
+> * Making causal statements with observational studies is harder because you
+need to **control for** (account for) all possible confounding variables; in this case
+alcohol. But you may not have access to all confounding variables.
+
+
+
+## Back to Example
+
+* The treatment, sleeping with shoes on, was NOT assigned at random; we have an 
+**observational study**.
+* We can't assert **causation**, but only **association/correlation**
+> * Say for each patient you have two variables: 1) whether they slept with shoes on and 2) whether they woke up with a headache
+> * To assert causality, we would need a **randomized experiment**!
+
+
+
+## Principles of Designing Experiements
+
+* Controlling:  We want to control i.e. account for differences between the two groups.
+* Control group: A baseline group to compare the treatment group to
+* Randomization: We randomize individuals into treatment vs control so that any differences in variables that are not of interest even out in the long run.  
+* Replication:  The more cases we observe, the more "precise" the results.
+* Blocking:  Researchers sometimes know or suspect that variables, other than the treatment, influence the response. In this case, they may first group individuals based on this variable into blocks and then randomize cases within each block.  
+* Blindedness: When researchers do not inform patients which group they are in
+* Double blinded study:  When the person administering the treatment themselves do not know which group the patient is in.
+* Placebo: Fake treatment.  Sometimes the thought alone of having a treatment is enough to influence behavior/results.  
+
 -->
+
+
+
+
+<!--
+## Learning Check
+
+I went to grad school in Seattle, where Garfield High School is located. Famous
+alums include:
+
+* Quincy Jones: Producer and composer
+* Jimi Hendrix: Guitarist
+* Brandon Roy: Former NBA Rookie of the Year
+* Macklemore: Rapper
+* Minoru Yamasaki: World Trade Center architect
+-->
+
+
+## Learning Check
+
+Ezell's Fried Chicken is a famous chicken restaurant in Seattle. Oprah Winfrey
+has it flown into to Chicago.
+
+<center><img src="assets/figure/ezells.jpg" alt="Drawing" style="width: 400px;"/></center>
+
+
+
+## Learning Check
+
+One day I was raving about Ezell's Chicken, but my friend accused me of "buying into the hype".
+
+So what did we do?
+
+
+
+## Learning Check
+
+Fried Chicken Face Off:
+
+Do people prefer this?            |  Or this?
+:-------------------------:|:-------------------------:
+<img src="assets/figure/ezells2.png" alt="Drawing" style="width: 200px;"/>  |  <img src="assets/figure/KFC.png" alt="Drawing" style="width: 200px;"/>
+
+
+
+## Learning Check
+
+How would you design a taste test to ascertain, independent of hype, which fried chicken tastes better?
+
+Use the relevant principles of designing experiements from above.
+
+
+
+
+
 
 
 

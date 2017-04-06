@@ -32,14 +32,19 @@ library(mosaic)
 <!--
 Random sampling/ random assignment
 
-
-
 > * Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
 > * You call BS and think they are just guessing.
 > * Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
 > * Brainstorm all the components of this experiment with your seatmates.
 > * Then think about how you can implement this with `resampl()`ing.
 -->
+
+
+
+
+
+
+
 
 
 <!----------------------------------------------------------------------------->
@@ -101,6 +106,40 @@ He then asserts the following **causal** relationship:
 * **Response variable**: causes one to wake up with a headache
 
 What's wrong with the doctor's logic? What is **really** going on?
+
+
+## Discussion
+
+```{r, eval=FALSE, echo=TRUE}
+fruit <- c("apple", "orange", "mango")
+
+# LC1: rflip(10)
+coin <- c("H", "T")
+resample(coin, size=10)
+rflip(10)
+
+# LC2: shuffle(fruit)
+resample(fruit, replace=FALSE)
+shuffle(fruit)
+
+# LC3: The following yields an error. You can't sample more elements without
+# replacement than there are in the vertor. In other words, the largest sample
+# without replacement of fruit is of size 3.
+resample(fruit, size=15, replace=FALSE)
+
+# LC4: Note the following two commands are the same because of the way the
+# defaults are set:
+resample(fruit, size=15)
+resample(fruit, size=15, replace=TRUE)
+
+# LC5: Fastest way to repeat 5 times. Use do()!
+do(5) * resample(fruit, size=15)
+```
+
+As for our doctor:
+
+* Shoes do not cause headaches.
+* Alcohol is acting as a confounding variable. 
 
 
 
