@@ -33,14 +33,43 @@ slides > slide:not(.nobackground):after {
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-set.seed(76)
 if(FALSE){
   # Run this line to render the document as running HTML document instead of
   # slides:
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
   knitr::purl("slides.Rmd")
-  }
+}
 ```
+```{r}
+set.seed(76)
+library(dplyr)
+library(ggplot2)
+library(mosaic)
+```
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec23 - Mon 4/10: Hypothesis Testing Framework and Terminology
+
+## Last Time
+
+```{r, echo=FALSE, cache=TRUE}
+single_cup_outcome <- c(1, 0)
+simulation <- do(10000) * resample(single_cup_outcome, size=8)
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct", title="Assuming she is guessing at random")
+```
+
+
+
+
+
+
+
 
 
 
