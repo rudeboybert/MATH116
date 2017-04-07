@@ -40,7 +40,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     * More getting used to R Markdown.
     * Working on a **really** substantive data analysis, in the mold of the final project.
     * Providing **actionable insight** from data.
-
+* **Discussion/Solutions**: Can be found in both
+    * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
+    * R Markdown file specific to PS07 <a href="{{ site.baseurl }}/PS/PS-07_discussion.Rmd"
+    target="_blank">`PS-07_discussion.Rmd`</a>
 
 
 

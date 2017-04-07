@@ -35,6 +35,134 @@ if(FALSE){
 
 
 <!----------------------------------------------------------------------------->
+# Problem Set 07
+
+## Question: `nycflights13` data
+
+```{r, echo=TRUE, message=FALSE}
+# Load all pacakges necessary
+library(ggplot2)
+library(dplyr)
+library(knitr)
+
+# Load all data sets in nycflights
+library(nycflights13)
+data(flights)
+data(planes)
+data(airlines)
+data(weather)
+data(airports)
+```
+
+You are a junior analyst in the airline industry, specifically working for 
+Virgin America. You are tasked with calculating Virgin America's total
+[available seat miles](https://en.wikipedia.org/wiki/Available_seat_miles) for
+all flights leaving each of the three New York Metropolitan area airports
+separately, and comparing these figures with those of ExpressJet Airlines Inc, a
+close rival to your company. Available seat miles are the fundamental units of 
+production for a passenger-carrying airline and it is a measure of capacity. You
+are asked for two deliverables:
+
+1. Present these results in
+    + A well-formatted and easy to read table
+    + A cleanly formatted visualization
+1. Give a two sentence executive summary on the comparison in available seat
+miles between Virgin America and ExpressJet Airlines Inc for the three NYC
+airports.
+
+Please heed the "tao of data analysis" [tips](https://rudeboybert.github.io/MATH116/notes.html#lec18_-_fri_324:_the_tao_of_data_analysis)
+before starting.
+
+
+## Deliverable 1: Table
+
+```{r, cache=TRUE}
+# Clean up our workspace: Reduce both the flights and planes data sets to only
+# those columns and rows we need.
+flights_cleaned <- flights %>%
+  filter(carrier == "VX" | carrier == "EV") %>% 
+  select(tailnum, carrier, distance, origin)
+
+planes_cleaned <- planes %>%
+  select(tailnum, seats)
+
+# Now we join the two by the variable "tailnum". Note, when the variable we are
+# joining along has the same name in both datasets, we don't need to do: 
+# by = c("tailnum" = "tailnum")
+flights_planes_joined <- flights_cleaned %>% 
+  left_join(planes_cleaned, by = "tailnum") 
+
+results <- flights_planes_joined %>% 
+  # Now we can compute ASM:
+  mutate(seat_miles = seats * distance) %>% 
+  # Since we want all 6 possible origin X carrier pairs, we group by
+  # those variables and THEN summarize
+  group_by(origin, carrier) %>% 
+  summarise(total_seat_miles = sum(seat_miles)) %>% 
+  # While not necessary, I decide to sort in descending order of ASM
+  arrange(desc(total_seat_miles))
+
+results
+```
+
+
+## Deliverable 2: Visualization
+
+Now when it comes to plotting, recall me email from Thursday, Oct 27 referencing
+how to plot a `geom_bar()` when you have an explicit variable you want to map to
+the `y` aesthetic. You need to tell `geom_bar()` to override its default
+behavior and use the `y=total_seat_miles` variable by setting
+`geom_bar(stat="identity")`. See the code for Problem Set 05 Discussion -> Q1.c)
+-> second plot comparing proportions for another example.
+
+**Note**: We don't forget the axes labels and title!
+
+```{r, cache=TRUE}
+ggplot(results, aes(x=origin, y=total_seat_miles)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~carrier) +
+  labs(x="NYC Airport", y="Total Available Seat Miles", title="Virgin vs ExpressJet Seat Miles in NYC in 2013")
+```
+
+My executive summary: Overall, we (as in Virgin America) have about the same
+capacity, but definitely spread out over different airports. We've got JFK
+covered, but definitely don't have the capacity that ExpressJet does at Newark 
+and La Guardia. So I suggest we target our marketing so that
+
+* we promote our great number of options to people who tend to fly out of JFK.
+* we start running ads that bad mouth ExpressJet to people who tend to fly out of Newark.
+
+
+## Advanced
+
+Once you get better at these things, you can write code super consisely. Not
+required for this class...
+
+```{r, cache=TRUE}
+flights %>% 
+  left_join(planes, by = "tailnum") %>% 
+  filter(carrier %in% c("VX", "EV")) %>% 
+  mutate(seat_miles = seats*distance) %>% 
+  group_by(origin, carrier) %>% 
+  summarise(total_seat_miles = sum(seat_miles)) %>% 
+  arrange(desc(total_seat_miles))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Problem Set 06
 
 ## Question 1: Drug Use Amongst OkCupid Users

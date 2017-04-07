@@ -43,6 +43,9 @@ production for a passenger-carrying airline; it is a measure of **capacity**.
 miles between Virgin America and ExpressJet Airlines Inc for the three NYC
 airports.
 
+Please heed the "tao of data analysis" [tips](https://rudeboybert.github.io/MATH116/notes.html#lec18_-_fri_324:_the_tao_of_data_analysis)
+before starting.
+
 
 ## Deliverable 1: Table
 
