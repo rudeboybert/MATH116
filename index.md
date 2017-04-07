@@ -18,8 +18,11 @@ layout: default
 
 ## 3. Statistical Inference
 
+
+
 ### a) Probability Background
 
+* Lec22 - Fri 4/7: Lady Tasting Tea
 * Lec21 - Thu 4/6: Confounding Variables and Designed Experiments
 * Lec20 - Wed 4/5: Introduction to Sampling
 * Lec19 - Mon 4/3: Intro to Probability via Simulation

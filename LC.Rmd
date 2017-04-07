@@ -29,17 +29,108 @@ library(knitr)
 library(mosaic)
 ```
 
-<!--
-Random sampling/ random assignment
-
-> * Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
-> * You call BS and think they are just guessing.
-> * Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
-> * Brainstorm all the components of this experiment with your seatmates.
-> * Then think about how you can implement this with `resampl()`ing.
--->
 
 
+
+<!----------------------------------------------------------------------------->
+# Lec22 - Fri 4/7: Lady Tasting Tea
+
+## Scenario
+
+* Say you are a statistician and you meet someone called the "Lady Tasting Tea."
+* She claims she can tell by tasting whether the tea or the milk was added first to a cup.
+* You want to test whether
+    + She can actually tell which came first
+    + She's lying and is really guessing at random
+* Say you have just enough tea/milk to pour into 8 cups.
+
+
+## 1. Background Questions
+
+1. What principles of experimental design should you follow in your test?
+
+**Now let's suppose/assume she really can't tell i.e. she is guessing at random:**
+
+1. What is the probability she guesses one cup right?
+1. If you are counting the number of guesses out of 8 she gets correct, what are the possible outcomes?
+1. What's more likely? That she gets 4 correct or get 7 correct?
+
+## 2. Coding Questions
+
+**Continuing to suppose/assume she really can't tell i.e. is guessing at random**, how would you use
+the `mosaic` (in particular the 4 functions), `dplyr`, and `ggplot2` packages
+
+1. To simulate the Lady Tasting Tea making a guess for a particular cup?
+1. To simulate the Lady Tasting Tea guessing 8 times?
+1. To count the number she got correct out of 8?
+1. To epeat the above procedure many, many, many times? Say 1000 times.
+1. To visualize the statistical distribution of the number out of 8 she gets correct?
+
+Create a new R Script (File -> New File -> R Script) and copy the following starter code:
+
+```{r, eval=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+
+# Single cup outcome, where
+# -1 indicates correct
+# -0 indicates incorrect
+single_cup_outcome <- c(1, 0)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec21 - Thu 4/6: Confounding Variables and Designed Experiments
+
+## Fried Chicken Face Off
+
+Do people prefer this?            |  Or this?
+:-------------------------:|:-------------------------:
+<img src="assets/figure/ezells2.png" alt="Drawing" style="width: 200px;"/>  |  <img src="assets/figure/KFC.png" alt="Drawing" style="width: 200px;"/>
+
+How would you design a taste test to ascertain, independent of hype, which fried
+chicken tastes better? Use the relevant principles of designing experiements
+from above.
+
+
+## Design Principles Put in Place:
+
+* **Single (but not double) blinded**: The taster doesn't know which (Ezell's or KFC) chicken they are eating, but the server does.
+* **Randomizing**:
+    + Which order of chicken you eat:  KFC first or not
+    + Which kind of meat (wing, breast, leg) between tasters.  Each taster would try two kinds of meat. 
+* **Accounting for**:
+    + Which kind of meat within a taster. Ex: if you eat a KFC wing, you will necessarily eat an Ezell's wing
+    + Temperature: We picked a place that is central to both Ezell's and KFC, given the cooling down of the chicken that can occur during travel.
+    + Kind of batter: Wwe can't do KFC crispy chicken b/c Ezell's doesn't have that type of batter. This is a limitation of the study b/c some feel the crispy chicken is better.
+* **Replicates**: Just one replicate of each kind of meat due to finite budget and finite stomach space.
+
+
+## Results:
+
+**Final score:  KFC 8, Ezell's 4**. Some notes:
+
+* Even though people were "blinded", most knew which of the two pieces was from KFC.
+* People generally felt
+    + The meat from Ezell's was better, and this was magnified as the chicken went cold.
+    + The skin was better at KFC.  Given that fried chicken is what it is b/c of the skin, people voted for KFC.
+* Future studies should
+    + Consider the chicken and the skin separately.
+    + Have "overall experience" scores.
+    + **Blocked** users into two groups first: those who've had Ezell's before and those who didn't.
+* This can be viewed as an example of a **pilot study** used to inform how to design a study appropriately.
 
 
 

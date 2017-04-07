@@ -43,14 +43,33 @@ if(FALSE){
 ```
 
 
-<!---
-## Recall
 
-* Say its the early 1900's, and you are a statistician and you meet someone who claims to be able to tell by tasting whether the tea or the milk was added first to a cup.
-* You call BS and think they are just guessing.
-* Say you have 8 cups, tea, and milk handy. How would you **design an experiment** to test whether a) they can really tell which came first or b) they are just guessing?
-* Brainstorm all the components of this experiment with your seatmates. To revisit later: ~~Then think about how you can implement this with `resampl()`ing~~.
--->
+<!----------------------------------------------------------------------------->
+# Lec22 - Fri 4/7: Lady Tasting Tea
+
+## Scenario for Today
+
+* Say you are a statistician and you meet someone called the "Lady Tasting Tea."
+* She claims she can tell by tasting whether the tea or the milk was added first to a cup.
+* You want to test whether
+    + She can actually tell which came first **OR**
+    + She's lying and is only guessing at random
+* Say you have just enough tea/milk to pour into 8 cups.
+
+
+## Coding Note
+
+Binary situations, like
+
+> * True vs False
+> * Correct vs Incorrect
+> * Yes vs No
+
+are often coded as `1` vs `0` in many programming languages.
+
+
+
+
 
 
 
