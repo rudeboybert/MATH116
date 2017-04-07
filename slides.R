@@ -13,15 +13,6 @@ library(dplyr)
 library(ggplot2)
 library(mosaic)
 
-## ---- echo=FALSE, cache=TRUE---------------------------------------------
-single_cup_outcome <- c(1, 0)
-simulation <- do(10000) * resample(single_cup_outcome, size=8)
-simulation <- simulation %>% 
-  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
-ggplot(simulation, aes(x=n_correct)) + 
-  geom_bar() +
-  labs(x="Number of Guesses Correct", title="Assuming she is guessing at random")
-
 ## ---- eval=FALSE, echo=TRUE----------------------------------------------
 ## library(mosaic)
 ## # Define a vector fruit

@@ -32,11 +32,6 @@ library(mosaic)
 
 
 
-<!----------------------------------------------------------------------------->
-# Lec23 - Mon 4/10: Hypothesis Testing Framework and Terminology
-
-
-
 
 
 

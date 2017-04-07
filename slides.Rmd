@@ -50,20 +50,47 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
-# Lec23 - Mon 4/10: Hypothesis Testing Framework and Terminology
+# Lec23 - Mon 4/10: Midterm II Review
 
-## Last Time
+## Administrative
 
-```{r, echo=FALSE, cache=TRUE}
-single_cup_outcome <- c(1, 0)
-simulation <- do(10000) * resample(single_cup_outcome, size=8)
-simulation <- simulation %>% 
-  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
-ggplot(simulation, aes(x=n_correct)) + 
-  geom_bar() +
-  labs(x="Number of Guesses Correct", title="Assuming she is guessing at random")
-```
+> * Evening Exam: Wed 4/7 7pm in Warner 506
+> * Closed book, no calculators
+> * Bring your cheatsheets
 
+
+## Philosophy
+
+* More conceptual in nature
+* Code: you won't need to write code, but you will need to understand it.
+* Normal curve of distribution of difficulty
+
+
+## Sources
+
+* Lectures 01 through 22 inclusive
+    + Slides from each lecture
+    + Corresponding textbook material
+    + Learning Checks
+    + Problem Sets
+
+
+## Major Topics
+
+TBA:
+
+<!--
+* Tidy data. What are the components?
+* What is the Grammar of Graphics? How do they tie in with `ggplot2`?
+* What are the first four of the 5NG? What are their distinguishing features?
+--> 
+
+## Practice Midterm
+
+* Disclaimer, disclaimer, disclaimer
+    + Do not overly interpret the content of this midterm.
+    + Rather, view it to get a rough sense of my exam philosophy.
+* Note: There was no probability in last year's Midterm II
 
 
 

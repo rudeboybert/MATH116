@@ -20,7 +20,7 @@ layout: default
 
 ### b) Hypothesis Testing
 
-* Lec23 - Mon 4/10: Hypothesis Testing Framework and Terminology
+* Lec24 - Wed 4/12: Hypothesis Testing Framework and Terminology
 * Lec22 - Fri 4/7: Lady Tasting Tea
 
 
@@ -80,4 +80,5 @@ layout: default
 ## Other Stuff
 
 * Final project <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html" target="_blank">information</a>.
-* Lec10 - Mon 3/6: Midterm I Review (<a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm</a>). 
+* Lec23 - Mon 4/10: Midterm II Review (<a href="{{ site.baseurl }}/assets/Midterm-II.pdf" target="_blank">Example Midterm II</a>). 
+* Lec10 - Mon 3/6: Midterm I Review (<a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm I</a>). 
