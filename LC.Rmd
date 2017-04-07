@@ -63,7 +63,7 @@ the `mosaic` (in particular the 4 functions), `dplyr`, and `ggplot2` packages
 1. To simulate the Lady Tasting Tea making a guess for a particular cup?
 1. To simulate the Lady Tasting Tea guessing 8 times?
 1. To count the number she got correct out of 8?
-1. To epeat the above procedure many, many, many times? Say 1000 times.
+1. To repeat the above procedure many, many, many times? Say 10000 times.
 1. To visualize the statistical distribution of the number out of 8 she gets correct?
 
 Create a new R Script (File -> New File -> R Script) and copy the following starter code:
