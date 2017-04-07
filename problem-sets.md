@@ -25,6 +25,34 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
+### Problem Set 08
+
+* **Info:**
+    + Assigned 
+    + Due: Fri 4/14 11:15am
+* **Homework:**
+* **Learning Goals:**
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
 ### Problem Set 07
 
 * **Info:**
