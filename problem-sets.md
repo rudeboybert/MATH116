@@ -28,12 +28,28 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 ### Problem Set 08
 
 * **Info:**
-    + Assigned 
-    + Due: Fri 4/14 11:15am
+    + Assigned Sun 4/9
+    + Due Fri 4/14 11:15am
 * **Homework:**
+    1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-08.Rmd"
+    target="_blank">`PS-08.Rmd`</a>.
 * **Learning Goals:**
-
-
+    * Study probability using the `mosaic` packages sampling and simulation
+    capabilities, instead of using mathematical formulae (reserved for MATH 310
+    Probability).
+* **Instructions/Hints**
+    1. Interpreting probability:
+        + *In general*: one interpretation of "the probability of x occuring"
+        is the proportion of the time "x" occurs across many, many, many
+        attempts.
+        + *Example*: "the probability of flipping a coin and getting heads is
+        0.5 = 50%" can be interpreted as the proportion of heads occuring over
+        many, many, many coin flips being one half.
+        + For the purposes of this problem set, let "many, many, many times"
+        mean 10,000 times.
+    1. As always, I recommend you separate out the **what** vs the **how** by
+    first sketching out a plan of what you are going to do for each question on
+    paper.
 
 
 
@@ -57,7 +73,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * **Info:**
     + Assigned Fri 3/24
-    + Due: Fri 4/7 11:15am
+    + Due Fri 4/7 11:15am
 * **Homework:**
     1. Read over the slides for <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html#lec18_-_fri_324:_the_tao_of_data_analysis">Lec18</a>.
     1. Read over the questions in <a href="{{ site.baseurl }}/PS/PS-07.Rmd" target="_blank">`PS-07.Rmd`</a>.
@@ -94,7 +110,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * **Info:**
     + Assigned Sat 3/18
-    + Due: Fri 3/24 11:15am
+    + Due Fri 3/24 11:15am
 * **Homework:** 
     1. Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1FW2_pW_JvzR0VKHGsUv81vP08p5mh-bVh04mftN-Q7s/viewform">feedback survey</a> on the "R Markdown" course on DataCamp from last week.
     1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-06.Rmd"
@@ -132,7 +148,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * **Info:**
     + Assigned Sun 3/12
-    + Due: Fri 3/17 11:15am
+    + Due Fri 3/17 11:15am
 * **Homework:** 
     1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-05.R" target="_blank">`PS-05.R`</a>, saving your work in this file as you will be submitting it.
     1. From the DataCamp course "Reporting with R Markdown", complete the first two Chapters (I anticipate this taking between 90 min and 2 hours):
@@ -166,7 +182,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * **Info:**
     + Assigned Mon 3/6
-    + Due: Fri 3/10 11:15am
+    + Due Fri 3/10 11:15am
 * **Homework:** 
     1. Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/1Z8Dl7Aa80jk7Eur3V64DlFD-emRS8TGu-Y4OTH4wWB4/viewform">feedback survey</a> on "Chapter 2: Tidy Data" of the "Effective Data Storytelling using the tidyverse" DataCamp course.
     1. *Ethics*:
@@ -195,7 +211,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * **Info:**
     + Assigned Sat 2/25
-    + Due: Fri 3/3 11:15am
+    + Due Fri 3/3 11:15am
 * **Homework:** 
     1. Complete this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeYv6TUIKFh9JymvwYGDwzWzsxioUjwSPc9jE34yo7lBbAujQ/viewform">feedback survey</a> on the "Intro to R" and "Intermediate R" courses on DataCamp.
     1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-03.R" target="_blank">`PS-03.R`</a>, saving your work in this file as you will be submitting it. Standby for the submission format.
@@ -235,7 +251,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 * **Info:**
     + Assigned Thu 2/16
-    + Due: Fri 2/24 11:15am
+    + Due Fri 2/24 11:15am
 * **Homework:** Complete the following three chapters (in this order) from the DataCamp course <a target="_blank" class="page-link" href="https://www.datacamp.com/courses/intermediate-r">"Intermediate R"</a>:
     1. Conditionals and Control Flow
     1. Loops
