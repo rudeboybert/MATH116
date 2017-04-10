@@ -40,7 +40,8 @@ if(FALSE){
   knitr::purl("slides.Rmd")
 }
 ```
-```{r}
+
+```{r, echo=FALSE, message=FALSE}
 set.seed(76)
 library(dplyr)
 library(ggplot2)
@@ -49,41 +50,50 @@ library(mosaic)
 
 
 
+
 <!----------------------------------------------------------------------------->
 # Lec23 - Mon 4/10: Midterm II Review
 
 ## Administrative
 
-> * Evening Exam: Wed 4/7 7pm in Warner 506
-> * Closed book, no calculators
-> * Bring your cheatsheets
+* Evening Exam: Wed 4/7 7pm in Warner 506
+* Closed book, no calculators
+* Bring your cheatsheets
 
 
 ## Philosophy
 
 * More conceptual in nature
-* Code: you won't need to write code, but you will need to understand it.
+* Code:
+    + Reading/understanding: Fair game
+    + Writing: No direct code to write, but **pseudocode**
 * Normal curve of distribution of difficulty
 
 
 ## Sources
 
-* Lectures 01 through 22 inclusive
+* Lectures 01 through 21 inclusive and cummulative
     + Slides from each lecture
-    + Corresponding textbook material
+    + Corresponding textbook material (if any)
     + Learning Checks
     + Problem Sets
 
 
-## Major Topics
+## Major Topics: Midterm I
 
-TBA:
-
-<!--
 * Tidy data. What are the components?
 * What is the Grammar of Graphics? How do they tie in with `ggplot2`?
 * What are the first four of the 5NG? What are their distinguishing features?
---> 
+
+
+## Major Topics: Midterm II
+
+* All five of the 5NG
+* Data manipulation/wrangling
+    + 5MV + `join`
+    + Putting it all together: <a target="_blank" class="page-link" href="https://rudeboybert.github.io/MATH116/notes.html#lec18_-_fri_324:_the_tao_of_data_analysis">Lec18 - Fri 3/24: The tao of data analysis</a>.
+* Sampling, probability, confounding variables, and designed experiments.
+
 
 ## Practice Midterm
 

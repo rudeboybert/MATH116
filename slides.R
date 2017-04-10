@@ -7,7 +7,7 @@ if(FALSE){
   knitr::purl("slides.Rmd")
 }
 
-## ------------------------------------------------------------------------
+## ---- echo=FALSE, message=FALSE------------------------------------------
 set.seed(76)
 library(dplyr)
 library(ggplot2)

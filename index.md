@@ -21,6 +21,8 @@ layout: default
 ### b) Hypothesis Testing
 
 * Lec24 - Wed 4/12: Hypothesis Testing Framework and Terminology
+* Lec23 - Mon 4/10: **Midterm II Review**
+    + <a href="{{ site.baseurl }}/assets/Midterm-II.pdf" target="_blank">Example Midterm II</a>.
 * Lec22 - Fri 4/7: Lady Tasting Tea
 
 
@@ -38,7 +40,8 @@ layout: default
 
 ### e) Putting It All Together
 
-* Lec18 - Fri 3/24: The <a href="https://en.wikipedia.org/wiki/Tao" target="_blank">tao</a> of data analysis.
+* **Final Project**: <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html" target="_blank">Guidelines</a>.
+* Lec18 - Fri 3/24: The tao of data analysis.
 
 
 
@@ -61,6 +64,8 @@ layout: default
 ### b) Visualization
 
 * Lec11 - Thu 3/9: 5NG#5 Barplots. We deconstruct boxplots i.e. `geom_bar()`.
+* Lec10 - Mon 3/6: **Midterm I Review**
+    + <a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm I</a>.
 * Lec09 - Thu 3/2: 5NG#4 Boxplots. We deconstruct boxplots i.e. `geom_boxplot()`.
 * Lec08 - Wed 3/1: 5NG#3 Histograms + facets. We deconstruct histograms i.e. `geom_histogram()` + We introduce the technique of faceting.
 * Lec07 - Mon 2/27: 5NG#2 Linegraphs. We deconstruct linegraphs i.e. `geom_line()`.
@@ -76,9 +81,3 @@ layout: default
 
 * Lec02 - Thu 2/16: R Packages. Extending R's base functionality with packages.
 * Lec01 - Mon 2/13: Introduction. We discuss the syllabus, the pedogical thinking behind its design and introduce R, RStudio, and DataCamp.
-
-## Other Stuff
-
-* Final project <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html" target="_blank">information</a>.
-* Lec23 - Mon 4/10: Midterm II Review (<a href="{{ site.baseurl }}/assets/Midterm-II.pdf" target="_blank">Example Midterm II</a>). 
-* Lec10 - Mon 3/6: Midterm I Review (<a href="{{ site.baseurl }}/assets/Midterm-I.pdf" target="_blank">Example Midterm I</a>). 
