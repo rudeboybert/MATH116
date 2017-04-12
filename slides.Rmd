@@ -52,6 +52,63 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
+# Lec24 - Wed 4/12: Hypothesis Testing Framework and Terminology
+
+
+## Recall: Lady Tasting Tea
+
+* Lady Tasting Tea claims she can tell if tea or milk was poured first into a cup
+* You run an experiment with 8 cups if she can tell or if she is bullshitting
+* Let's **assume a hypothetical world where she is guessing at random**.
+
+
+## Recall: Lady Tasting Tea
+
+If guessing at random, here are **hypothetical** outcomes:
+
+```{r, cache=TRUE}
+single_cup_outcome <- c(1, 0)
+simulation <- do(10000) * resample(single_cup_outcome, size=8)
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct")
+```
+
+## Recall: Lady Tasting Tea
+
+She got 8/8 right!
+
+```{r, cache=TRUE}
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct") +
+  geom_vline(xintercept = 8, col="red")
+```
+
+
+## Recall: Lady Tasting Tea
+
+* In our hypothetical world of guessing at random, 8/8 occured 
+`r sum(simulation$n_correct == 8)` times out of `r nrow(simulation)`. i.e. 
+`r round(100*sum(simulation$n_correct == 8)/nrow(simulation), 3)`% of the time. 
+* Can she tell, or is she bullshitting?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec23 - Mon 4/10: Midterm II Review
 
 ## Administrative
