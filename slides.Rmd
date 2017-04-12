@@ -52,7 +52,7 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
-# Lec24 - Wed 4/12: Hypothesis Testing Framework and Terminology
+# Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology
 
 
 ## Recall: Lady Tasting Tea

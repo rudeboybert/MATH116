@@ -20,7 +20,8 @@ layout: default
 
 ### b) Hypothesis Testing
 
-* Lec24 - Wed 4/12: Hypothesis Testing Framework and Terminology
+* Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology + Problem Set 08
+* Lec24 - Wed 4/12: Going over Midterm II
 * Lec23 - Mon 4/10: **Midterm II Review**
     + <a href="{{ site.baseurl }}/assets/Midterm-II.pdf" target="_blank">Example Midterm II</a>.
 * Lec22 - Fri 4/7: Lady Tasting Tea
