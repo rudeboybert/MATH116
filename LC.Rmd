@@ -35,16 +35,19 @@ library(mosaic)
 <!----------------------------------------------------------------------------->
 # Lec26 - Fri 4/14: p-Values
 
-Say you are given a data set with two variables corresponding to 3 students:
+Say you are given a data set where the rows correspond to students who took a test and the columns are two variables:
 
-* Even or odd number of letters in last name i.e. two groups
+* Even or odd number of letters in last name
 * Test score
+
+For example, the first three rows of such a data set might look like:
 
 ```{r, echo=FALSE}
 data_frame(
   num_letters = c("even", "odd", "odd"),
   test_score = c(0.7, 0.6, 0.8)
-)
+) %>% 
+  knitr::kable()
 ```
 
 You want to answer the scientific question: is there a difference in test score
@@ -57,10 +60,6 @@ number of letters in their last time
 1. Identify all 5 components of the hypothesis testing framework to answer this question
 1. **Concept**: If there truly is no difference, then what can you do to the data set?
 
-
-## Discussion
-
-Chalk talk
 
 
 
