@@ -52,8 +52,85 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
-# Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology
+# Lec26 - Fri 4/14: p-Values
 
+## Recall: Framework and Terminology
+
+1. **Null hypothesis $H_0$**: she is guessing at random
+2. **Alternative hypothesis $H_A$**: she is not. i.e. she can really tell which came first
+3. **Test statistic**: # of correct guesses out of 8
+4. **Observed test statistic**: 8 correct
+5. **Null distribution**: the bar chart
+6. **Decision**: compare observed test statistic to null distribution
+
+
+
+
+## Recall: Framework and Terminology
+
+* We going to **assume** $H_0$ is true and see how likely the observed test statistic was as compared to null distribution.
+* How likely was the observed test statistic?
+
+```{r, cache=TRUE}
+set.seed(76)
+single_cup_outcome <- c(1, 0)
+simulation <- do(10000) * resample(single_cup_outcome, size=8)
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) %>% 
+  group_by(n_correct)
+```
+
+
+## Recall: Framework and Terminology
+
+**Not very!** Only occurs `r round(100*sum(simulation$n_correct == 8)/nrow(simulation), 3)`% of the time
+
+```{r, cache=TRUE}
+ggplot(simulation, aes(x=n_correct, y=n_correct)) + 
+  geom_bar(stat="identity") +
+  labs(x="Number of Guesses Correct", y="Count") +
+  geom_vline(xintercept=8, col="red") 
+```
+
+
+## Today's Definition
+
+**p-value**: Chalk Talk
+
+<!--
+
+Definitions:
+
+> * Statistically: the probability of observing a test statistic as extreme as the
+one observed **assuming $H_0$ is true**.
+> * Conceptually: measures our degree of surprise (lower = more surprised) of what we observed **assuming $H_0$ is true**.
+
+Example:
+
+It answers: how unlikely is it that the taster got 8 out of 8 right **assuming she was just guessing at random**
+
+p-Value meaning:
+
+> * Conceptually: **Assuming she was guessing at random**, we are **very surprised** at observing 8 correct guesses
+> * Statistically: probability of observing a test statistic of 8 **assuming $H_0$ is true** is approx. 0.5%.  i.e. TINY
+
+Study Conclusion:
+
+> * Conceptually: She was probably NOT guessing at random; she probably could tell.
+> * Statistically: We reject $H_0$ in favor of $H_A$
+
+-->
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology
 
 ## Recall: Lady Tasting Tea
 
@@ -67,6 +144,7 @@ library(mosaic)
 If guessing at random, here are **hypothetical** outcomes:
 
 ```{r, cache=TRUE}
+set.seed(76)
 single_cup_outcome <- c(1, 0)
 simulation <- do(10000) * resample(single_cup_outcome, size=8)
 simulation <- simulation %>% 
@@ -94,6 +172,11 @@ ggplot(simulation, aes(x=n_correct)) +
 `r sum(simulation$n_correct == 8)` times out of `r nrow(simulation)`. i.e. 
 `r round(100*sum(simulation$n_correct == 8)/nrow(simulation), 3)`% of the time. 
 * Can she tell, or is she bullshitting?
+
+
+## Hypothesis Testing Framework
+
+Critical chalk talk.
 
 
 

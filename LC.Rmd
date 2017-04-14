@@ -32,6 +32,36 @@ library(mosaic)
 
 
 
+<!----------------------------------------------------------------------------->
+# Lec26 - Fri 4/14: p-Values
+
+Say you are given a data set with two variables corresponding to 3 students:
+
+* Even or odd number of letters in last name i.e. two groups
+* Test score
+
+```{r, echo=FALSE}
+data_frame(
+  num_letters = c("even", "odd", "odd"),
+  test_score = c(0.7, 0.6, 0.8)
+)
+```
+
+You want to answer the scientific question: is there a difference in test score
+between people with an even number of letters in their last time vs people with an odd
+number of letters in their last time
+
+
+**Questions**:
+
+1. Identify all 5 components of the hypothesis testing framework to answer this question
+1. **Concept**: If there truly is no difference, then what can you do to the data set?
+
+
+## Discussion
+
+Chalk talk
+
 
 
 
