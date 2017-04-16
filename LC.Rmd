@@ -60,6 +60,8 @@ number of letters in their last time
 1. Identify all 5 components of the hypothesis testing framework to answer this question
 1. **Concept**: If there truly is no difference, then what can you do to the data set?
 
+## Discussion
+
 
 
 

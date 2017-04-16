@@ -1,5 +1,5 @@
 ---
-title: "Intro to Statistial and Data Sciences"
+title: "Intro to Statistical and Data Sciences"
 author: "Albert Y. Kim"
 date: "Last updated on `r Sys.Date()`"
 output:
@@ -47,6 +47,25 @@ library(dplyr)
 library(ggplot2)
 library(mosaic)
 ```
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec27 - Mon 4/17: 
+
+## Recall
+
+
+
+
+
+
+
+
+
+
+
 
 
 

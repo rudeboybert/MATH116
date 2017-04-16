@@ -25,6 +25,38 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
+### Problem Set 09
+
+* **Info:**
+    + Assigned Sun 4/16
+    + Due Fri 4/21 11:15am
+* **Homework:**
+    1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-09.Rmd"
+    target="_blank">`PS-09.Rmd`</a>.
+* **Learning Goals:**
+    * 
+* **Instructions/Hints**
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
 ### Problem Set 08
 
 * **Info:**
@@ -50,7 +82,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     1. As always, I recommend you separate out the **what** vs the **how** by
     first sketching out a plan of what you are going to do for each question on
     paper.
-
+* **Discussion/Solutions**: Can be found in both
+    * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
+    * R Markdown file specific to PS08 <a href="{{ site.baseurl }}/PS/PS-08_discussion.Rmd"
+    target="_blank">`PS-08_discussion.Rmd`</a>
 
 
 
