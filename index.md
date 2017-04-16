@@ -20,9 +20,9 @@ layout: default
 
 ### b) Hypothesis Testing
 
-* Lec27 - Mon 4/17: 
+* Lec27 - Mon 4/17: Constructing the Null Hypothesis
 * Lec26 - Fri 4/14: p-Values
-* Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology + Problem Set 08
+* Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology
 * Lec24 - Wed 4/12: Going over Midterm II
 * Lec23 - Mon 4/10: **Midterm II Review**
     + <a href="{{ site.baseurl }}/assets/Midterm-II.pdf" target="_blank">Example Midterm II</a>.
