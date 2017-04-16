@@ -33,6 +33,22 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
+# Lec27 - Mon 4/17: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec26 - Fri 4/14: p-Values
 
 Say you are given a data set where the rows correspond to students who took a test and the columns are two variables:
@@ -44,7 +60,8 @@ For example, the first three rows of such a data set might look like:
 
 ```{r, echo=FALSE}
 data_frame(
-  num_letters = c("even", "odd", "odd"),
+  id = c(1, 2, 3),
+  num_letters = c("odd", "even", "odd"),
   test_score = c(0.7, 0.6, 0.8)
 ) %>% 
   knitr::kable()
@@ -60,8 +77,53 @@ number of letters in their last time
 1. Identify all 5 components of the hypothesis testing framework to answer this question
 1. **Concept**: If there truly is no difference, then what can you do to the data set?
 
+
+
 ## Discussion
 
+#### Five Components
+
+1. **Null Hypothesis**: $H_0$: no difference in test scores between odd vs even
+1. **Alternative Hypothesis**: $H_A$: there is a difference
+1. **Test Statistic**: the mean test score of odd MINUS the mean test score of
+even
+1. **Observed Test Statistic**: the difference in sample means $\overline{x}_E -
+\overline{x}_O$
+1. **Null distribution**: the typical behavior of the test statistic **assuming
+$H_0$ is true**. That way we can say how likely/unlikely the observed test
+statistic is. We need to construct this. But how?
+
+
+#### Assuming $H_0$ Allows You To...
+
+All hypothesis testing **assumes the null hypothesis is true**. In our case:
+
+1. We assume no difference in test scores between evens and odds
+1. So for each student, it doesn't matter if they have even or odd
+1. In other words, the variable `num_letters` is meaningless
+1. If `num_letters` is meaningless, then we can **permute** its values to no consequence
+
+Thus assuming $H_0$ is true, the above **observed** data is the same as the following **permuted** data
+
+```{r, echo=FALSE, message=FALSE}
+data_frame(
+  id = c(1, 2, 3),
+  num_letters = c("odd", "even", "odd"),
+  test_score = c(0.7, 0.6, 0.8)
+) %>% 
+  knitr::kable()
+```
+
+which is the same as the following **permuted** data
+
+```{r, echo=FALSE, message=FALSE}
+data_frame(
+  id = c(1, 2, 3),
+  num_letters = c("odd", "odd", "even"),
+  test_score = c(0.8, 0.7, 0.6)
+) %>% 
+  knitr::kable()
+```
 
 
 
