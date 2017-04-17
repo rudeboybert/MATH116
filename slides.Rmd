@@ -51,10 +51,26 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
-# Lec27 - Mon 4/17: Constructing the Null Hypothesis
+# Lec28 - Wed 4/19: Constructing the Null Hypothesis
 
-## Recall
+## Two Ways
 
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec27 - Mon 4/17: Tying Hypothesis Testing with Sampling
+
+## Chalk Talk
+
+Only chalk talk today, based on Learning Checks for Lec26.
 
 
 

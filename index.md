@@ -20,7 +20,8 @@ layout: default
 
 ### b) Hypothesis Testing
 
-* Lec27 - Mon 4/17: Constructing the Null Hypothesis
+* Lec28 - Wed 4/19: Constructing the Null Hypothesis
+* Lec27 - Mon 4/17: Tying Hypothesis Testing with Sampling
 * Lec26 - Fri 4/14: p-Values
 * Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology
 * Lec24 - Wed 4/12: Going over Midterm II
