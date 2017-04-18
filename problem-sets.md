@@ -28,14 +28,12 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 ### Problem Set 09
 
 * **Info:**
-    + Assigned Sun 4/16
+    + Assigned Mon 4/17
     + Due Fri 4/21 11:15am
 * **Homework:**
-    1. Complete the work in <a href="{{ site.baseurl }}/PS/PS-09.Rmd"
-    target="_blank">`PS-09.Rmd`</a>.
+    1. Complete the work in <a href="{{ site.baseurl}}/PS/PS-09.Rmd" target="_blank">`PS-09.Rmd`</a>.
 * **Learning Goals:**
-    * 
-* **Instructions/Hints**
+    1. Reinforce the topics covered in Midterm II.
 
 
 

@@ -1,0 +1,61 @@
+
+---
+title: "Problem Set 09"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, April 21, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+---
+
+
+Load necessary packages:
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(nycflights13)
+set.seed(76)
+```
+
+
+
+## Question 1:
+
+### Code
+
+Create the visualization from Question 3.b) of Midterm II:
+
+```{r}
+
+```
+
+### Analysis
+
+1. What is the probability of getting a pair of aces?
+1. What is the probability of getting one or more aces?
+
+
+
+
+## Question 2:
+
+### Code
+
+Do Question 2.d) from Midterm II 
+
+1. by joining `flights` and `weather` by `year`, `month`, `day`, and `hour`
+1. by joining `flights` and `weather` by `year`, `month`, `day`, `hour`, and `origin` as per the diagram at the start of Question 2.
+
+**Hint**: Google is a programmer's best friend.
+
+```{r}
+
+```
+
+
+### Analysis
+
+Why are the answers different?
