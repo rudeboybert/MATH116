@@ -140,7 +140,7 @@ items to be graded on.
 
 #### 3) Three Midterms 45%
 
-* Midterm dates: Wed 3/8 (in-class), Wed 4/12 (evening: location TBD), and during finals week.
+* Midterm dates: Wed 3/8 (in-class), Wed 4/12 (evening), and during finals week Fri 5/19 7-10pm in Warner 506.
 * All midterms are cumulative and may require a scientific calculator, so
 please have access to one (no smartphones).
 * There is no extra-credit work to improve midterm scores after the fact.
