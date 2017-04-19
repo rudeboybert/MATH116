@@ -86,8 +86,15 @@ Analytically           |  Via Simulation
 
 ## Two Ways
 
-* **Analytically/Mathematically**: Necessitates probability background (Covered in MATH 310)
-* **Simulation**: Necessitates random number generator
+> * **Analytically/Mathematically**: Necessitates probability background. Covered in MATH 310.
+> * **Simulation**: Necessitates random number generator. We take this approach.
+
+
+
+## Constructing the Null
+
+* Lady Tasting Tea: Assuming she is guessing at random, we **simulated** many, many, many instances of "the number she got right".
+* Odds vs Evens Test Score: Chalk talk
 
 
 
