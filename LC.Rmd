@@ -45,9 +45,9 @@ library(mosaic)
 <!----------------------------------------------------------------------------->
 # Lec28 - Wed 4/19: Constructing the Null Hypothesis
 
-Copy the following code into a `.R` script
+Copy the following code into a `.R` script in RStudio
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo=TRUE}
 library(ggplot2)
 library(dplyr)
 library(mosaic)
