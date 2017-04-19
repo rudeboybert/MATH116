@@ -21,6 +21,7 @@ layout: default
 ### b) Hypothesis Testing
 
 * Lec28 - Wed 4/19: Constructing the Null Hypothesis
+    + Download <a href="{{ site.baseurl }}/assets/data/grades.csv" target="_blank">`grades.csv`</a>.
 * Lec27 - Mon 4/17: Tying Hypothesis Testing with Sampling
 * Lec26 - Fri 4/14: p-Values
 * Lec25 - Thu 4/13: Hypothesis Testing Framework and Terminology

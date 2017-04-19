@@ -53,7 +53,46 @@ library(mosaic)
 <!----------------------------------------------------------------------------->
 # Lec28 - Wed 4/19: Constructing the Null Hypothesis
 
+## Recall
+
+From last lecture: *How do we construct null distribution?*
+
+
+
+## Lady Tasting Tea
+
+In this case, the null distribution is barplot:
+
+```{r, cache=TRUE}
+set.seed(76)
+single_cup_outcome <- c(1, 0)
+simulation <- do(10000) * resample(single_cup_outcome, size=8)
+simulation <- simulation %>% 
+  mutate(n_correct = V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8) 
+ggplot(simulation, aes(x=n_correct)) + 
+  geom_bar() +
+  labs(x="Number of Guesses Correct")
+```
+
+
+
 ## Two Ways
+
+Analytically           |  Via Simulation
+:-------------------------:|:-------------------------:
+<img src="./assets/figure/formulas.png" alt="Drawing" style="width: 300px;"/>  |  <img src="./assets/figure/coding.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+## Two Ways
+
+* **Analytically/Mathematically**: Necessitates probability background (Covered in MATH 310)
+* **Simulation**: Necessitates random number generator
+
+
+
+
+
 
 
 
