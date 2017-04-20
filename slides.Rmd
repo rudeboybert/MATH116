@@ -42,7 +42,6 @@ if(FALSE){
 ```
 
 ```{r, echo=FALSE, message=FALSE}
-set.seed(76)
 library(tidyverse)
 library(mosaic)
 ```
@@ -59,7 +58,7 @@ and odds) then:
 
 1. Whether you have an even number of letters or odd is *irrelevant*
 1. Hence the categorical variable `even_vs_odd` is *irrelevant*
-1. Hence we can permute it to *no consequence*
+1. Hence we can permute/shuffle it to *no consequence*
 
 ```{r, echo=FALSE}
 grades <- read_csv(file="assets/data/grades.csv") %>% 
@@ -68,78 +67,34 @@ grades <- read_csv(file="assets/data/grades.csv") %>%
   mutate(final = round(final, 2))
 ```
 
-## In Other Words
 
-All these are the same:
-
-```{r, echo=FALSE}
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-```
-
-## In Other Words
-
-All these are the same:
+## In Other Words, All These Are the Same:
 
 ```{r, echo=FALSE}
 grades %>% 
   mutate(even_vs_odd=shuffle(even_vs_odd))
 ```
 
-## In Other Words
-
-All these are the same:
+## In Other Words, All These Are the Same:
 
 ```{r, echo=FALSE}
 grades %>% 
   mutate(even_vs_odd=shuffle(even_vs_odd))
 ```
 
-## In Other Words
-
-All these are the same:
+## In Other Words, All These Are the Same:
 
 ```{r, echo=FALSE}
 grades %>% 
   mutate(even_vs_odd=shuffle(even_vs_odd))
 ```
 
-## In Other Words
-
-All these are the same:
+## In Other Words, All These Are the Same:
 
 ```{r, echo=FALSE}
 grades %>% 
   mutate(even_vs_odd=shuffle(even_vs_odd))
 ```
-
-## In Other Words
-
-All these are the same:
-
-```{r, echo=FALSE}
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-```
-
-## In Other Words
-
-All these are the same:
-
-```{r, echo=FALSE}
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-```
-
-## In Other Words
-
-All these are the same:
-
-```{r, echo=FALSE}
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-```
-
 
 
 

@@ -34,22 +34,6 @@ grades %>%
 grades %>% 
   mutate(even_vs_odd=shuffle(even_vs_odd))
 
-## ---- echo=FALSE---------------------------------------------------------
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-
-## ---- echo=FALSE---------------------------------------------------------
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-
-## ---- echo=FALSE---------------------------------------------------------
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-
-## ---- echo=FALSE---------------------------------------------------------
-grades %>% 
-  mutate(even_vs_odd=shuffle(even_vs_odd))
-
 ## ---- cache=TRUE---------------------------------------------------------
 set.seed(76)
 single_cup_outcome <- c(1, 0)
