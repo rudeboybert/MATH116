@@ -23,8 +23,7 @@ slides > slide.backdrop {background: white;}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 set.seed(76)
 library(nycflights13)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 library(knitr)
 library(mosaic)
 ```
@@ -164,8 +163,91 @@ ggplot(data=SOMETHING , aes(x=SOMETHING)) +
 # 3. Why is the "null distribution" centered where it is?
 ```
 
+## Discussion
+
+```{r, echo=FALSE}
+grades <- read_csv(file="assets/data/grades.csv")
+```
+
+After loading the necessary packages and the `grades.csv` spreadsheet into 
+RStudio:
 
 
+**Step 0: Exploratory Data Analysis**
+
+```{r, echo=TRUE}
+ggplot(grades, aes(x=even_vs_odd, y=final)) + 
+  geom_boxplot()
+```
+
+There seems to be a *slight* difference in the *median* test scores between the
+even and odds, but is this difference statistically significant? Note that while
+we could've also done faceted histograms, boxplots allow us to compare groups
+with a single horizontal line!
+
+**Step 1: Compute the Observed Test Statistic**
+
+```{r, echo=TRUE}
+mean(final ~ even_vs_odd, data=grades)
+mean(final ~ even_vs_odd, data=grades) %>% diff()
+observed_diff <- mean(final ~ even_vs_odd, data=grades) %>% diff()
+```
+
+We observe a difference of -0.073 = -7.3%. Note above that `diff()` does `odd-even` i.e.
+$\overline{x}_O - \overline{x}_E$. While choosing between `odd-even` or
+`even-odd` is inconsequential, it is important to stay *consistent*. Note: this
+is the reverse of what is in the class notes.
+
+
+**Step 2: Simulate the Null Distribution**
+
+Recall that assuming the null hypothesis, we can permute/shuffle the variable
+`even_vs_odd` and it doesn't matter! In the interest of time, let's only do
+1000 simulations, not 100000.
+
+**Crucial**: Note in the `mutate()` we do `odd-even` and not `even-odd` to stay
+consistent.
+
+```{r, echo=TRUE}
+simulations <- do(1000) * mean(final ~ shuffle(even_vs_odd), data=grades)
+simulations <- simulations %>%
+  mutate(difference=odd-even)
+```
+
+Let's look at the first 6 rows of 1000:
+
+```{r, echo=FALSE}
+head(simulations)
+```
+
+Now let's plot the 1000 *simulated* differences in average test scores $\overline{x}_O - \overline{x}_E$:
+
+```{r, echo=TRUE}
+ggplot(data=simulations , aes(x=difference)) +
+  geom_histogram(binwidth=0.025) +
+  labs(x="Avg of Odds - Avg of Evens")
+```
+
+
+**Step 3: Compare Null Distribution to Observed Test Statistic**
+
+Recall from Step 1, the observed difference in average test scores
+$\overline{x}_O - \overline{x}_E$ was -0.073 = 7.3%, which was saved in
+`observed_diff`. Let's draw a red line on the null distribution! How likely is
+this to occur?
+
+```{r, echo=TRUE}
+ggplot(data=simulations , aes(x=difference)) +
+  geom_histogram(binwidth=0.025) +
+  labs(x="Avg of Odds - Avg of Evens") +
+  geom_vline(xintercept = observed_diff, col="red")
+```
+
+* **LC: What is your answer to the question Did students with an even number of letters in their last name do better on the final exam than those who didn't?** IMO:
+if there were no difference between the two groups, observing a difference of -0.073 is
+not implausible. So we see no reason to say $H_0$ is false
+* **LC: Why is the "null distribution" centered where it is?** Because in our hypothetical
+universe of no true difference between even and odds, the typically difference in means $\overline{x}_O - \overline{x}_{E}$ is 0.
 
 
 

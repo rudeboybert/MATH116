@@ -20,6 +20,7 @@ layout: default
 
 ### b) Hypothesis Testing
 
+* Lec29 - Thu 4/20: Permutation Test
 * Lec28 - Wed 4/19: Constructing the Null Hypothesis
     + Download <a href="{{ site.baseurl }}/assets/data/grades.csv" target="_blank">`grades.csv`</a>.
 * Lec27 - Mon 4/17: Tying Hypothesis Testing with Sampling

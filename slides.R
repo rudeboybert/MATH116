@@ -9,9 +9,46 @@ if(FALSE){
 
 ## ---- echo=FALSE, message=FALSE------------------------------------------
 set.seed(76)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 library(mosaic)
+
+## ---- echo=FALSE---------------------------------------------------------
+grades <- read_csv(file="assets/data/grades.csv") %>% 
+  slice(4:8) %>% 
+  select(-major) %>% 
+  mutate(final = round(final, 2))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
+
+## ---- echo=FALSE---------------------------------------------------------
+grades %>% 
+  mutate(even_vs_odd=shuffle(even_vs_odd))
 
 ## ---- cache=TRUE---------------------------------------------------------
 set.seed(76)
