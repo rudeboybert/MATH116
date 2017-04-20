@@ -17,11 +17,40 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * The R Markdown Debugging Sheet is <a target="_blank" class="page-link" href="https://docs.google.com/document/d/1P7IyZ4On9OlrCOhygFxjC7XhQqyw8OludwChz-uFd_o/">here</a>.
 
 
+
+
+
 <br>
 
 ***
 
 <br>
+
+
+
+
+
+### Problem Set 10
+
+* **Info:**
+    + Assigned Fri 4/21 
+    + Due Fri 4/28 11:15am
+* **Homework:**
+    1. Complete the work in <a href="{{ site.baseurl}}/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a>.
+* **Learning Goals:**
+    1. 
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
 
 
 
@@ -39,19 +68,13 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-
-
-
-
-
-
-
-
 <br>
 
 ***
 
 <br>
+
+
 
 
 
@@ -89,16 +112,13 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-
-
-
-
-
 <br>
 
 ***
 
 <br>
+
+
 
 
 
@@ -126,16 +146,13 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-
-
-
-
-
 <br>
 
 ***
 
 <br>
+
+
 
 
 
@@ -167,13 +184,13 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-
-
 <br>
 
 ***
 
 <br>
+
+
 
 
 
@@ -197,6 +214,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * **Notes**:
     + For Question 1.b) I accidentally left the code in the problem set. There is nothing to do here.
     + For Question 4.b) I gave an example of how to show the data using a `geom_boxplot()`. Submit an answer that does it using another `geom`.
+
 
 
 
