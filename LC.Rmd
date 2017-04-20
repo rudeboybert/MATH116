@@ -42,6 +42,24 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
+# Lec29 - Thu 4/20: Permutation Test
+
+1. Compute the p-value from Learning Check below.
+1. Start answering the question "Did Econ majors do better on the intro stats final than non-Econ majors?" This will be a question on Problem Set 10.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec28 - Wed 4/19: Constructing the Null Hypothesis
 
 Copy the following code into a `.R` script in RStudio
