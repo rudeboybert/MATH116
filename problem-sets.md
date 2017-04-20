@@ -32,13 +32,23 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ### Problem Set 10
 
+**Note**: I've only included Question 1 and the reading for Question 2 for now. 
+I will post Question 2 and the rest of the problem set after lecture on Monday 4/24.
+
 * **Info:**
-    + Assigned Fri 4/21 
+    + Assigned Fri 4/21. 
     + Due Fri 4/28 11:15am
 * **Homework:**
+    1. Reading for Question 2 on the *Chi-Squared Test*: Chapters 6.3 through
+    6.3.4 from <a
+    target="_blank" class="page-link"
+    href="https://www.openintro.org/stat/textbook.php">OpenIntro Statistics</a>:
+    click "Free Download" then read bottom of book page 286 through bottom of book page 293. As you read, try to tie everything to the
+    components of the hypothesis testing framework from the chalk talk from Lec25.
     1. Complete the work in <a href="{{ site.baseurl}}/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a>.
 * **Learning Goals:**
-    1. 
+    1. Perform a hypothesis test from start to finish.
+    1. Generalize the lady tasting tea to other hypothesis testing situations.
 
 
 

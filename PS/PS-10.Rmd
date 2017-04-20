@@ -1,0 +1,38 @@
+
+---
+title: "Problem Set 10"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, April 28, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+---
+
+
+Load necessary packages:
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+set.seed(76)
+```
+
+
+
+## Question 1:
+
+Answer the question "Did Econ majors do better on the intro stats final than
+non-Econ majors?" using the `grades.csv` data set from Lec28. Note: save the
+file `grades.csv` in the same folder/directory as `PS-10.Rmd`. Use $\alpha=0.1$.
+
+```{r, message=FALSE}
+grades <- read_csv("grades.csv")
+
+```
+
+
+
+## Question 2:
