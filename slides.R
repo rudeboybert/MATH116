@@ -8,7 +8,6 @@ if(FALSE){
 }
 
 ## ---- echo=FALSE, message=FALSE------------------------------------------
-set.seed(76)
 library(tidyverse)
 library(mosaic)
 

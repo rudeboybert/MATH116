@@ -47,11 +47,92 @@ library(mosaic)
 1. Compute the p-value from Learning Check below.
 1. Start answering the question "Did Econ majors do better on the intro stats final than non-Econ majors?" This will be a question on Problem Set 10.
 
+## Discussion
+
+#### 1. Refresher
+
+Running the code from Lec28 Learning Check discussion below, we get the following
+graph:
+
+```{r}
+set.seed(76)
+grades <- read_csv("assets/data/grades.csv")
+observed_diff <- mean(final ~ even_vs_odd, data=grades) %>% diff()
+simulations <- do(1000) * mean(final ~ shuffle(even_vs_odd), data=grades)
+# Now for each of the 10000 shuffles, let's compute the difference MAKING SURE
+# it matches the order from when we computed the observed_diff. i.e. odd-even
+# and NOT even-odd
+simulations <- simulations %>%
+  mutate(difference=odd-even)
+# Plot
+ggplot(data=simulations , aes(x=difference)) +
+  geom_histogram(binwidth=abs(observed_diff*2)/6, boundary = observed_diff) +
+  labs(x="Avg of Odds - Avg of Evens") +
+  geom_vline(xintercept = observed_diff, col="red")
+simulations <- simulations %>% 
+  mutate(more_extreme = difference < observed_diff  | difference > abs(observed_diff) )
+```
+
+**Recall**
+
+* Since $H_A: \mu_O - \mu_E$, more extreme can mean both
+    1. A more extreme negative difference than -0.073 OR
+    1. A more extreme positive difference than 0.073
+* The **p-value** is the probability of being in the blue areas below
+* In other words: what proportion of the 1000 simulations ended up in the blue areas:
+
+```{r}
+ggplot(data=simulations , aes(x=difference, fill=as.factor(more_extreme))) +
+  geom_histogram(binwidth=abs(observed_diff*2)/6, boundary = observed_diff) +
+  labs(x="Avg of Odds - Avg of Evens") +
+  geom_vline(xintercept = observed_diff, col="red") + 
+  geom_vline(xintercept = -observed_diff, col="red") + 
+  guides(fill=FALSE) +
+  labs(title="p-Value is Proportion of Time Test Statistic is in Blue Area")
+```
 
 
+#### 2. Computing the p-Value
 
+We `mutate()` a new variable based on this using the OR operator `|`:
 
+```{r, echo=TRUE, eval=TRUE}
+simulations <- simulations %>% 
+  mutate(more_extreme = difference < -0.073  | difference > 0.073)
+```
 
+For example, here are the first 6 of 1000 simulations that assumed $H_0: \mu_O - \mu_E$.
+
+```{r, echo=FALSE, eval=TRUE}
+simulations %>% 
+  sample_n(6) %>%  
+  kable(digits=2)
+```
+
+Let's count the number that are "more extreme" by summing the variable `more_extreme`:
+
+```{r, echo=TRUE, eval=FALSE}
+simulations %>% 
+  summarise(n_more_extreme = sum(more_extreme)) 
+```
+
+```{r, echo=FALSE, eval=TRUE}
+simulations %>% 
+  summarise(n_more_extreme = sum(more_extreme)) %>% 
+  print.data.frame()
+```
+
+So 239 times out of 1000 we observed a simulated test statistic either
+
+1. less than -0.073
+1. greater than 0.073
+
+The p-value is 0.239. Note that we add one to the numerator to include the actually
+observed difference of means of -0.073.
+
+$$
+p-\mbox{Value} = \frac{239+1}{1000} = 0.240.
+$$
 
 
 

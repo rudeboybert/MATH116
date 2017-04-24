@@ -49,6 +49,19 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
+# Lec30 - Mon 4/24: Finishing Hypothesis Testing
+
+## Today
+
+> * View Lec29 Learning Check
+> * Chalk talk
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec29 - Thu 4/20: Permutation Test
 
 ## Recall
