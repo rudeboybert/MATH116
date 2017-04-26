@@ -50,9 +50,15 @@ I will post Question 2 and the rest of the problem set after lecture on Monday 4
     1. Perform a hypothesis test from start to finish.
     1. Generalize the lady tasting tea to other hypothesis testing situations.
 
-**Note on Wed 4/26**: Question 2 is:
+**Note on Wed 4/26**: Question 2 is here.
+
+* If you've already started `PS-10` prior to today, copy and
+paste the code below:
+* If you haven't, then you can just download <a href="{{ site.baseurl}}/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a> directly.
 
 ```
+## Question 2:
+
 **To be handed in on paper**: Say we have a population where the racial
 breakdown of the juror pool (registered voters) is:
 
