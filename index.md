@@ -18,6 +18,11 @@ layout: default
 
 ## 3. Statistical Inference
 
+### c) Confidence Intervals
+
+* Lec31 - Wed 4/26: Background Statistical Theory
+
+
 ### b) Hypothesis Testing
 
 * Lec30 - Mon 4/24: Finishing Hypothesis Testing
