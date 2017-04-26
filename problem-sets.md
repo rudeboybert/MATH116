@@ -50,8 +50,38 @@ I will post Question 2 and the rest of the problem set after lecture on Monday 4
     1. Perform a hypothesis test from start to finish.
     1. Generalize the lady tasting tea to other hypothesis testing situations.
 
+**Note on Wed 4/26**: Question 2 is:
 
+```
+**To be handed in on paper**: Say we have a population where the racial
+breakdown of the juror pool (registered voters) is:
 
+Race | White | Black | Hispanic | Other | Total
+----- | -----: | -----: | -----: | -----: | -----: | -----
+Proportion | 72% | 7% | 12% | 9% | 100%
+
+Social scientists want to know if there is a racial bias as to who gets selected
+for jury duty in this population. They collect data on three scenarios of jury
+selection, where each time 100 potential jurors are selected from the
+population.
+
+Scenario | White Count | Black Count | Hispanic Count | Other Count | Total Count
+----- | -----: | -----: | -----: | -----: | -----: | -----
+A | 72 | 7 | 12 | 9 | 100
+B | 0 | 0 | 100 | 0 | 100
+C | 75 | 6 | 11 | 8 | 100
+
+1. What is $H_0$ and $H_A$ for this study?
+1. What is the test statistic for this study? Write it out in general.
+1. What is the null distribution for this study? 
+1. For each of these three scenarios individually, use the chi-squared test with $\alpha=0.1$ to answer the question
+"is there racial bias in jury selection?" being sure to:
+    a) Compute the *observed test statistic*
+    a) Draw the null distribution and indicate the observed test statistic
+    a) Compute the p-value. [Hint](https://beta.rstudioconnect.com/connect/#/apps/2719/access).
+    a) Complete the test
+    a) Write down you conclusion in non-statistical language
+```
 
 
 <br>

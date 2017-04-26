@@ -1,0 +1,51 @@
+---
+title: "Chi-Square Distribution"
+author: "Albert Y. Kim"
+date: "4/26/2017"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+## Chi-Square Distribution
+
+
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  textInput("df", label = "Degrees of Freedom:", value=5),
+  textInput("test_stat", label = "Observed Test Statistic:", value=4)
+  #sliderInput("test_stat", label = "Observed Test Statistic:", 0, 100, 2, step=0.01)
+)
+
+renderPlot({
+  df <- as.numeric(input$df)
+  obs_test_stat <- as.numeric(input$test_stat)
+  area <- 1-pchisq(q=obs_test_stat, df=df) %>% 
+    round(3)
+  title <- paste("Area to the right of red line is", area)
+  
+  xlim <- qchisq(c(0, 0.99), df=df)
+  dchisq_limit <- function(x, obs_test_stat, df) {
+    y <- dchisq(x, df=df)
+    y[x < obs_test_stat] <- NA
+    return(y)
+  }
+  
+  ggplot(data = data_frame(x = xlim), aes(x)) +
+    stat_function(fun = dchisq_limit, n = 1000,geom="area", fill="blue", alpha=0.2, args = list(obs_test_stat=obs_test_stat, df=df)) + 
+    stat_function(fun = dchisq, n = 1000, args = list(df = df)) +
+    ylim(c(0, NA)) + 
+    labs(x="Chi-Squared Value", y="", title=title) +
+    geom_vline(xintercept = obs_test_stat, col="red") + 
+    theme(axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+})
+
+
+```
