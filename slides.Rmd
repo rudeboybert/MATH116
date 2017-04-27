@@ -95,8 +95,8 @@ mean(ages)
 
 **Questions**: 
 
-> 1. Why is the mean age different each time?
-> 1. What numerical summary quantifies how mean these averages vary?
+> 1. Why is the mean (AKA) age different each time?
+> 1. What numerical summary quantifies how these means vary?
 
 Chalk talk...
 
