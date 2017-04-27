@@ -1,0 +1,124 @@
+
+---
+title: "Problem Set 10"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, April 28, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+---
+
+Load necessary packages:
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+set.seed(76)
+```
+
+
+
+## Question 1:
+
+Answer the question "Did Econ majors do better on the intro stats final than
+non-Econ majors?" using the `grades.csv` data set from Lec28. Note: save the
+file `grades.csv` in the same folder/directory as `PS-10.Rmd`.
+
+
+#### Hypothesis Test Setup
+
+We have
+
+* $H_0: \mu_E - \mu_O = 0$ vs
+* $H_A: \mu_E - \mu_O > 0$
+
+or equivalently
+
+* $H_0: \mu_O - \mu_E = 0$ vs
+* $H_A: \mu_O - \mu_E < 0$
+
+Note the *one-sided* alternative of did Econ majors do better!
+
+
+#### Observed Test Statistic
+
+First, we compute the observed test statistic, noting carefully that it's the
+mean of the other students minus the mean of the econ students: 
+$\overline{x}_O - \overline{x}_E$:
+
+```{r, message=FALSE}
+grades <- read_csv("grades.csv")
+mean(final ~ major, data=grades)
+mean(final ~ major, data=grades) %>% diff()
+observed_diff <- mean(final ~ major, data=grades) %>% diff()
+```
+
+It seems that Econ majors did 7.76% better, but is this difference **statistically** significant?
+
+#### Null Distribution
+
+Next, we construct the null distribution of the difference in means *assuming* there
+is no true difference. Note when computing `difference`, we make sure that we
+subtract in the correct order:
+
+```{r, message=FALSE}
+simulations <- do(1000) * mean(final ~ shuffle(major), data=grades)
+simulations <- simulations %>%
+  mutate(difference=Other-Economics)
+```
+
+#### Comparison
+
+Finally, we compare the
+
+* observed test statistic
+* null distribution of the test statistic
+
+```{r, message=FALSE}
+ggplot(data=simulations , aes(x=difference)) +
+  geom_histogram() +
+  labs(x="Avg of Others - Avg of Economics") +
+  geom_vline(xintercept = observed_diff, col="red")
+```
+
+The observed difference of -0.076 = -7.6% doesn't seem all that extreme. i.e.
+it seems plausible 
+
+
+
+
+
+
+## Question 2:
+
+**To be handed in on paper**: Say we have a population where the racial
+breakdown of the juror pool (registered voters) is:
+
+Race | White | Black | Hispanic | Other | Total
+----- | -----: | -----: | -----: | -----: | -----: | -----
+Proportion | 72% | 7% | 12% | 9% | 100%
+
+Social scientists want to know if there is a racial bias as to who gets selected
+for jury duty in this population. They collect data on three scenarios of jury
+selection, where each time 100 potential jurors are selected from the
+population.
+
+Scenario | White Count | Black Count | Hispanic Count | Other Count | Total Count
+----- | -----: | -----: | -----: | -----: | -----: | -----
+A | 72 | 7 | 12 | 9 | 100
+B | 0 | 0 | 100 | 0 | 100
+C | 75 | 6 | 11 | 8 | 100
+
+1. What is $H_0$ and $H_A$ for this study?
+1. What is the test statistic for this study? Write it out in general.
+1. What is the null distribution for this study? 
+1. For each of these three scenarios individually, use the chi-squared test with $\alpha=0.1$ to answer the question
+"is there racial bias in jury selection?" being sure to:
+    a) Compute the *observed test statistic*
+    a) Draw the null distribution and indicate the observed test statistic
+    a) Compute the p-value. [Hint](https://beta.rstudioconnect.com/connect/#/apps/2719/access).
+    a) Complete the test
+    a) Write down you conclusion in non-statistical language
