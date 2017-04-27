@@ -24,8 +24,7 @@ slides > slide.backdrop {background: white;}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 set.seed(76)
 library(nycflights13)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 library(mosaic)
 if(FALSE){
   knitr::purl(input="PS/PS.Rmd", output="PS/PS_code.R", documentation=2)
@@ -44,6 +43,275 @@ if(FALSE){
 <!----------------------------------------------------------------------------->
 # Problem Set 10
 
+## Question 1:
+
+Answer the question "Did Econ majors do better on the intro stats final than
+non-Econ majors?" using the `grades.csv` data set from Lec28. Note: save the
+file `grades.csv` in the same folder/directory as `PS-10.Rmd`.
+
+
+#### Hypothesis Test Setup
+
+We have
+
+* $H_0: \mu_E - \mu_O = 0$ vs
+* $H_A: \mu_E - \mu_O > 0$
+
+or equivalently
+
+* $H_0: \mu_O - \mu_E = 0$ vs
+* $H_A: \mu_O - \mu_E < 0$
+
+Note we are dealing with a  *one-sided* alternative!
+
+
+#### Observed Test Statistic
+
+First, we compute the observed test statistic, noting carefully that it's the
+mean of the other students minus the mean of the econ students: 
+$\overline{x}_O - \overline{x}_E$:
+
+```{r, message=FALSE}
+set.seed(76)
+grades <- read_csv("grades.csv")
+mean(final ~ major, data=grades)
+mean(final ~ major, data=grades) %>% diff()
+observed_diff <- mean(final ~ major, data=grades) %>% diff()
+```
+
+It seems that Econ majors did 7.76% better, but is this difference **statistically** significant?
+
+#### Null Distribution
+
+Next, we construct the null distribution of the difference in means *assuming* there
+is no true difference. Note when computing `difference`, we make sure that we
+subtract in the correct order:
+
+```{r, message=FALSE}
+simulations <- do(10000) * mean(final ~ shuffle(major), data=grades)
+simulations <- simulations %>%
+  mutate(difference=Other-Economics)
+```
+
+#### Comparison
+
+Finally, we compare the
+
+* observed test statistic
+* null distribution of the test statistic
+
+```{r, message=FALSE}
+ggplot(data=simulations , aes(x=difference)) +
+  geom_histogram() +
+  labs(x="Avg of Others - Avg of Economics") +
+  geom_vline(xintercept = observed_diff, col="red")
+```
+
+The observed difference of -0.0776 = -7.76% doesn't seem all that extreme. i.e.
+it seems plausible 
+
+#### p-Value
+
+In this case, since $H_A: \mu_O - \mu_E < 0$, more extreme means *more negative*!
+
+So the p-value is the proportion of time
+
+```{r, eval=FALSE}
+simulations %>% 
+  mutate(more_extreme = difference < -0.0776) %>% 
+  summarise(n_more_extreme = sum(more_extreme))
+```
+```{r, echo=FALSE}
+simulations %>% 
+  mutate(more_extreme = difference < -0.0776) %>% 
+  summarise(n_more_extreme = sum(more_extreme)) %>% 
+  .[["n_more_extreme"]]
+```
+So 1159 times out of 10000 we observed a simulated test statistic less than -0.0776.
+The p-value is 0.264. Note that we add one to the numerator to include the actually
+observed difference of means of -0.0776.
+
+$$
+p-\mbox{Value} = \frac{1159+1}{10000} = 0.116.
+$$
+
+
+
+
+## Question 2:
+
+**To be handed in on paper**: Say we have a population where the racial
+breakdown of the juror pool (registered voters) is:
+
+Race | Caucasian | African-American | Latino | Other | Total
+----- | -----: | -----: | -----: | -----: | -----: | -----
+Proportion | 72% | 7% | 12% | 9% | 100%
+
+Social scientists want to know if there is a racial bias as to who gets selected
+for jury duty in this population. They collect data on three scenarios of jury
+selection, where each time 100 potential jurors are selected from the
+population.
+
+Scenario | Caucasian | African-American | Latino Count | Other Count | Total Count
+----- | -----: | -----: | -----: | -----: | -----: | -----
+A | 72 | 7 | 12 | 9 | 100
+B | 0 | 0 | 100 | 0 | 100
+C | 75 | 6 | 11 | 8 | 100
+
+1. What is $H_0$ and $H_A$ for this study?
+1. What is the test statistic for this study? Write it out in general.
+1. What is the null distribution for this study? 
+1. For each of these three scenarios individually, use the chi-squared test with $\alpha=0.1$ to answer the question
+"is there racial bias in jury selection?" being sure to:
+    a) Compute the *observed test statistic*
+    a) Draw the null distribution and indicate the observed test statistic
+    a) Compute the p-value. [Hint](https://beta.rstudioconnect.com/connect/#/apps/2719/access).
+    a) Complete the test
+    a) Write down your conclusion in non-statistical language
+
+
+#### 1. Hypothesis Test Setup
+
+* $H_0$: the selection was done randomly
+* $H_A$: the selection was done with racial bias
+
+Note: chi-square tests do **not** involve a population parameter
+
+
+#### 2. Test Statistic
+
+The test statistic in general is the **chi-squared test statistic**:
+
+$$
+\chi^2 = \sum_{i=1}^k \frac{(\mbox{Observed Count}_i - \mbox{Expected Count}_i)^2}{\mbox{Expected Count}_i}
+$$
+Note that when we observe exactly what we expect, the numertor is 0. So:
+
+* Smaller values of $\chi^2$ indicates more evidence in favor of $H_0$
+* Larger values of $\chi^2$ indicates more evidence in favor of $H_A$
+
+In our case, we have $k=4$ groups; each of the 4 ethnic groups, so
+
+$$
+\chi^2 = \frac{(\mbox{Observed Caucasian Count} - \mbox{Expected Caucasian Count})^2}{\mbox{Expected Caucasian Count}} + \ldots + \frac{(\mbox{Observed Other Count} - \mbox{Expected Other Count})^2}{\mbox{Expected Other Count}}
+$$
+
+#### 3. Null Distribution
+
+In general, the null distribution is not the normal distribution but rather
+the $\chi^2$ distribution with $k-1$ degrees of freedom. Note: its values are
+from 0 to $\infty$. In our case, since $k=4$, the degrees of freedom are $4-1=3$
+
+```{r, echo=FALSE}
+df <- 3
+xlim <- qchisq(c(0, 0.99), df=df)
+dchisq_limit <- function(x, obs_test_stat, df) {
+  y <- dchisq(x, df=df)
+  y[x < obs_test_stat] <- NA
+  return(y)
+}
+
+base_plot <- ggplot(data = data_frame(x = xlim), aes(x)) +
+  stat_function(fun = dchisq, n = 1000, args = list(df = df)) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks = element_blank())
+
+base_plot + 
+  labs(x="Chi-Squared Value", y="", title="Chi-Squared with df=3")
+```
+
+#### 4. Each Scenario
+
+**Scenario 1:** In this case, the observed test statistic is 
+
+```{r}
+observed <- c(72, 7, 12, 9)
+expected <- c(72, 7, 12, 9)
+sum((observed-expected)^2/expected)
+```
+
+$$
+\chi^2 = \frac{(72-72)^2}{72} + \frac{(7-7)^2}{7} + \frac{(12-12)^2}{12} + \frac{(9-9)^2}{9} = 0
+$$
+
+```{r, echo=FALSE}
+obs_test_stat <- 0
+area <- 1-pchisq(q=obs_test_stat, df=df) %>% 
+  round(3)
+title <- paste("Area to the right of red line is", area)
+
+base_plot + 
+  stat_function(fun = dchisq_limit, n = 1000, geom="area", fill="blue", alpha=0.2, args = list(obs_test_stat=obs_test_stat, df=df)) + 
+  ylim(c(0, NA)) + 
+  labs(x="Chi-Squared Value", y="", title=title) +
+  geom_vline(xintercept = obs_test_stat, col="red")
+```
+
+Since the p-value is 1, for ANY $\alpha$ we'd have p-value $> \alpha$, so we do
+not reject. Of course we do not reject the hypothesis of no racial bias; we
+observed exactly what we'd expect!
+
+
+**Scenario 2:** In this case, the observed test statistic is 
+
+```{r}
+observed <- c(0, 0, 100, 0)
+expected <- c(72, 7, 12, 9)
+sum((observed-expected)^2/expected)
+```
+
+$$
+\chi^2 = \frac{(0-72)^2}{72} + \frac{(0-7)^2}{7} + \frac{(100-12)^2}{12} + \frac{(0-9)^2}{9} = 733.3333
+$$
+
+
+```{r, echo=FALSE}
+obs_test_stat <- 733.3333
+area <- 1-pchisq(q=obs_test_stat, df=df) %>% 
+  round(3)
+title <- paste("Area to the right of red line is", area)
+
+base_plot + 
+  stat_function(fun = dchisq_limit, n = 1000, geom="area", fill="blue", alpha=0.2, args = list(obs_test_stat=obs_test_stat, df=df)) + 
+  ylim(c(0, NA)) + 
+  labs(x="Chi-Squared Value", y="", title=title) +
+  geom_vline(xintercept = obs_test_stat, col="red")
+```
+
+The p-value is 0; this is **very** extreme. So for ANY $\alpha$ we'd have p-value $< \alpha$, so 
+we reject $H_0$ in favor of $H_A$. Of course we reject the hypothesis of no racial bias; how
+could we have 100 out of 100 Latinos when they are only 12% of the population?
+
+
+**Scenario 3:** Now things aren't as clear cut!
+
+```{r}
+observed <- c(75, 6, 11, 8)
+expected <- c(72, 7, 12, 9)
+sum((observed-expected)^2/expected)
+```
+
+$$
+\chi^2 = \frac{(75-72)^2}{72} + \frac{(6-7)^2}{7} + \frac{(11-12)^2}{12} + \frac{(8-9)^2}{9} = 0.4623016
+$$
+
+
+```{r, echo=FALSE}
+obs_test_stat <- 0.4623016
+area <- 1-pchisq(q=obs_test_stat, df=df) %>% 
+  round(3)
+title <- paste("Area to the right of red line is", area)
+
+base_plot + 
+  stat_function(fun = dchisq_limit, n = 1000, geom="area", fill="blue", alpha=0.2, args = list(obs_test_stat=obs_test_stat, df=df)) + 
+  ylim(c(0, NA)) + 
+  labs(x="Chi-Squared Value", y="", title=title) +
+  geom_vline(xintercept = obs_test_stat, col="red")
+```
+
+The p-value 0.927 is $> \alpha=0.1$, so we do not reject $H_0$. In other words
+**while there still may exist racial discrimination, the data/evidence we
+observed in Scenario 3 doesn't support this**.
 
 
 

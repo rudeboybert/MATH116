@@ -44,7 +44,7 @@ renderPlot({
     labs(x="Chi-Squared Value", y="", title=title) +
     geom_vline(xintercept = obs_test_stat, col="red") + 
     theme(axis.text.y = element_blank(),
-  axis.ticks = element_blank())
+          axis.ticks = element_blank())
 })
 
 
