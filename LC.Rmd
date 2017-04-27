@@ -30,6 +30,17 @@ library(mosaic)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <!----------------------------------------------------------------------------->
 # Lec32 - Thu 4/27: Back to Sampling
 
@@ -56,16 +67,75 @@ resample(profiles$height, size=n, replace=TRUE)
 mean(resample(profiles$height, size=n, replace=TRUE))
 
 # Part 3:
-samples <- do(10000) * mean(resample(profiles$height, size=n, replace=TRUE))
+samples <- do(10000) * mean(resample(profiles$height, size=n, replace=TRUE), na.rm=TRUE)
 View(samples)
 
 # Part 4:
 ggplot(samples, aes(x=mean)) +
   geom_histogram(binwidth = 1) +
+  labs(x="sample mean height") + 
   xlim(c(50,80)) +
   geom_vline(xintercept=50, col="red")
 ```
 
+
+## Discussion
+
+**Note**:
+
+<!--
+* This is a **rhetorical/hypothetical** situations of taking a sample and computing the sample mean $\overline{x}$ to estimate the
+**true population mean height $\mu$** of all ~60K users **even though we can compute the true value**
+-->
+* The code originally had `replace=TRUE`, but we should `replace=FALSE`.
+Think of a poll; once you've polled someone you shouldn't call them again.
+    + **Question**: Does the difference of sampling with vs without replacement matter?
+    + **Answer**: Not for relatively small samples for a population as
+large as this one (~60K users); think back to the stadium vs room question from <a target="_blank" class="page-link" href="https://rudeboybert.github.io/MATH116/PS/PS.html#problem_set_08">`PS-08`</a>.
+* To calculate the $\mu$, there was the issue of missing data, so you had to run
+`mean(profiles$height, na.rm=TRUE)` to get 68.29 inches = 5'8'' = 172cm. But beware:
+    + If there is a systematic reason why some values are missing (like really short individuals being reluctant to post their height), then
+    remove these missing values will *bias* your results.
+    + If there is no systematic reason, then removing them won't bias your results.
+    + In this case, running `sum(is.na(profiles$height))` will show there are only 3 missing values, so ignoring them doesn't influence the results much.
+
+**Learning Checks**:
+
+1. Parts
+    + 1 & 2: Demonstrate sampling `n` people from the population and computing their sample mean height $\overline{x}$
+    + 3: Does Parts 1 & 2 many, many, many times
+    + 4: Plots these so we can observed the effect of **sampling variability** on $\overline{x}$
+1. See plot below facetted for `n=5, 50, 100`
+1. This corresponds to sampling a larger number of people from the population.
+1. See below; As you increase the sample size `n`, the histogram of $\overline{x}$ narrows.
+1. As you increase the sample size `n`
+    + The sampled $\overline{x}$ vary less *about/around* $\mu$
+    + The $\overline{x}$'s estimate $\mu$ more precisely.
+
+```{r, eval=TRUE, echo=FALSE}
+library(okcupiddata)
+data(profiles)
+
+samples_5 <- do(1000) * mean(resample(profiles$height, size=5, replace=TRUE))
+samples_10 <- do(1000) * mean(resample(profiles$height, size=10, replace=TRUE))
+samples_100 <- do(1000) * mean(resample(profiles$height, size=100, replace=TRUE))
+
+results <- data_frame(
+  n = c(rep(5, 1000), rep(10, 1000), rep(100, 1000))
+)
+results <- results %>% 
+  bind_cols(
+    bind_rows(samples_5, samples_10, samples_100)
+  )
+
+# Part 4:
+ggplot(results, aes(x=mean)) +
+  geom_histogram(binwidth = 0.75) +
+  labs(x="sample mean height") + 
+  facet_wrap(~n) + 
+  xlim(c(50,80)) +
+  geom_vline(xintercept=mean(profiles$height, na.rm=TRUE), col="red")
+```
 
 
 

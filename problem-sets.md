@@ -30,12 +30,34 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
-### Problem Set 10
-
-
+### Problem Set 11
 
 * **Info:**
-    + Assigned Fri 4/21. 
+    + Assigned Fri 4/28
+    + Due Fri 5/5 11:15am
+* **Homework:**
+    1. 
+* **Learning Goals:**
+    1. 
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
+
+
+### Problem Set 10
+
+* **Info:**
+    + Assigned Fri 4/21
     + Due Fri 4/28 11:15am
 * **Homework:**
     1. Reading for Question 2 on the *Chi-Squared Test*: Chapters 6.3 through
@@ -91,6 +113,9 @@ C        | 75          | 6           | 11           | 8           | 100
 ```
 
 
+
+
+
 <br>
 
 ***
@@ -114,6 +139,7 @@ C        | 75          | 6           | 11           | 8           | 100
     * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
     * R Markdown file specific to PS09 <a href="{{ site.baseurl }}/PS/PS-09_discussion.Rmd"
     target="_blank">`PS-09_discussion.Rmd`</a>
+
 
 
 

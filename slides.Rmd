@@ -51,6 +51,21 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
+# Lec33 - Fri 4/28: Sampling Distributions and Standard Errors
+
+## Recall
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec32 - Thu 4/27: Back to Sampling
 
 ## Recall: Point of Statistics

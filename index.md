@@ -13,14 +13,17 @@ layout: default
 * <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/">ModernDive</a> textbook. Feedback form <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSd28dfQ6r9DwIBPEErWE4PIxrDOSerhPYSoXmONiUHfrbo2ww/viewform">here</a>.
 
 
-
 ## 4. Regression
+
+
+
+
 
 ## 3. Statistical Inference
 
 ### c) Confidence Intervals
 
-
+* Lec33 - Fri 4/28: Sampling Distributions and Standard Errors
 * Lec32 - Thu 4/27: Back to Sampling
     + Handout: The Economist Article <a href="http://www.economist.com/blogs/economist-explains/2016/11/economist-explains-3" target="_blank">How did the polls get it wrong?</a>.
 * Lec31 - Wed 4/26: Background Statistical Theory
@@ -41,13 +44,14 @@ layout: default
 * Lec22 - Fri 4/7: Lady Tasting Tea
 
 
-
 ### a) Probability Background
 
 * Lec21 - Thu 4/6: Confounding Variables and Designed Experiments
 * Lec20 - Wed 4/5: Introduction to Sampling
 * Lec19 - Mon 4/3: Intro to Probability via Simulation
 * Lec17 - Wed 3/22: Intro to Sampling Terminology
+
+
 
 
 
@@ -59,13 +63,11 @@ layout: default
 * Lec18 - Fri 3/24: The tao of data analysis.
 
 
-
 ### d) Importing Data
 
 * Lec16 - Mon 3/20: Importing Data
     + Install `tidyverse` package. Umbrella package of <a href="http://tidyverse.org/" target="_blank">several useful packages</a>.
     + Download <a href="{{ site.baseurl }}/assets/data/DD_vs_SB.csv" target="_blank">`DD_vs_SB.csv`</a>.
-
 
 
 ### c) Manipulation AKA Wrangling
@@ -88,9 +90,14 @@ layout: default
 * Lec05 - Thu 2/23: More 5NG. Instead of reverse engineering graphics using the grammar, we now forward engineer them.
 * Lec04 - Wed 2/22: 5NG. Constructing statistical graphics in a 'grammatical' fashion and introducing the Five Named Graphs.
 
+
 ### a) Representation
 
 * Lec03 - Mon 2/20: Tidy Data. A common way of representing data
+
+
+
+
 
 ## 1. Introduction & Tools
 
