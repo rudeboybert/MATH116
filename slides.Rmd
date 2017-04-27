@@ -51,6 +51,78 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
+# Lec32 - Thu 4/27: Back to Sampling
+
+## Recall: Point of Statistics
+
+Taking a **sample** in order to **infer** about a **population**:
+
+<center><img src="assets/figure/target-population.jpg" alt="Drawing" style="width: 600px;" border="1"/></center>
+
+</br>
+
+Let's Google "define infer"...
+
+
+## Demo for Today
+
+```{r, eval=FALSE, echo=TRUE}
+library(lubridate)
+library(mosaic)
+library(dplyr)
+
+# Randomly sample three people:
+students <- 
+  c("Arthur", "Caroline", "Claire", "Clare", "Conor", "Daniel", 
+    "Dylan", "Elana", "Jacob", "Jay", "Joe", "Julian", "Kelsie", 
+    "Lisa", "Maya", "Naing", "Parker", "Rebecca", "Ry", "Theodora", 
+    "Zebediah", "Albert")
+resample(students, size=3, replace=FALSE)
+
+# Get average age:
+birthdays <- c("1980-11-05", "2000-01-01", "1955-08-05")
+ages <- as.numeric(as.Date("2017-04-27") - as.Date(birthdays))/365.25
+ages
+mean(ages)
+```
+
+
+## Demo for Today
+
+> * We randomly sample 3 students and get mean age
+> * We randomly sample 3 students and get mean age
+> * We randomly sample 3 students and get mean age...
+
+**Questions**: 
+
+> 1. Why is the mean age different each time?
+> 1. What numerical summary quantifies how mean these averages vary?
+
+Chalk talk...
+
+<!---
+**Sample statistics** estimate unknown population parameters. From last lecture:
+
+Population Parameter | Sample Statistic
+------------- | -------------
+Mean $\mu$ | Sample Mean $\overline{x}$
+Proportion $p$ | Sample Proportion $\widehat{p}$
+Diff of Means $\mu_1 - \mu_2$ | $\overline{x}_1 - \overline{x}_2$
+Diff of Proportions $p_1 - p_2$ | $\widehat{p}_1 - \widehat{p}_2$
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec31 - Wed 4/26: Background Statistical Theory
 
 ## There is Only One Test

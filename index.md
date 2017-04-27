@@ -20,6 +20,8 @@ layout: default
 
 ### c) Confidence Intervals
 
+
+* Lec32 - Thu 4/27: Back to Sampling
 * Lec31 - Wed 4/26: Background Statistical Theory
 
 

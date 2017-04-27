@@ -30,6 +30,45 @@ library(mosaic)
 
 
 
+<!----------------------------------------------------------------------------->
+# Lec32 - Thu 4/27: Back to Sampling
+
+Let's revisit the OkCupid profile data. Note the command `xlim(c(40,90))` fixes
+the x-axis range to be between 
+
+1. Discuss with your seatmates what all 4 code parts below are doing.
+1. Change the `xintercept` in the `geom_vline()` to be the **true population mean $\mu$**
+1. Try increasing `n` and repeating. What does this correspond to doing in real life?
+1. How does the histogram change?
+1. Describe using statistical language the role `n` plays when it comes to estimating $\mu$.
+
+```{r, eval=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(okcupiddata)
+data(profiles)
+
+n <- 5
+
+# Parts 1 & 2:
+resample(profiles$height, size=n, replace=TRUE)
+mean(resample(profiles$height, size=n, replace=TRUE))
+
+# Part 3:
+samples <- do(10000) * mean(resample(profiles$height, size=n, replace=TRUE))
+View(samples)
+
+# Part 4:
+ggplot(samples, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  xlim(c(50,80)) +
+  geom_vline(xintercept=50, col="red")
+```
+
+
+
+
 
 
 

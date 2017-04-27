@@ -1,7 +1,10 @@
 ## ----setup, include=FALSE------------------------------------------------
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 if(FALSE){
-  # Run this line to render the document as running HTML document instead of
+  #
+  # HEADS UP
+  #
+  # Run these lines to render the document as running HTML document instead of
   # slides:
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
   knitr::purl("slides.Rmd")
@@ -10,6 +13,25 @@ if(FALSE){
 ## ---- echo=FALSE, message=FALSE------------------------------------------
 library(tidyverse)
 library(mosaic)
+
+## ---- eval=FALSE, echo=TRUE----------------------------------------------
+## library(lubridate)
+## library(mosaic)
+## library(dplyr)
+## 
+## # Randomly sample three people:
+## students <-
+##   c("Arthur", "Caroline", "Claire", "Clare", "Conor", "Daniel",
+##     "Dylan", "Elana", "Jacob", "Jay", "Joe", "Julian", "Kelsie",
+##     "Lisa", "Maya", "Naing", "Parker", "Rebecca", "Ry", "Theodora",
+##     "Zebediah", "Albert")
+## resample(students, size=3, replace=FALSE)
+## 
+## # Get average age:
+## birthdays <- c("1980-11-05", "2000-01-01", "1955-08-05")
+## ages <- as.numeric(as.Date("2017-04-27") - as.Date(birthdays))/365.25
+## ages
+## mean(ages)
 
 ## ---- echo=FALSE---------------------------------------------------------
 grades <- read_csv(file="assets/data/grades.csv") %>% 
