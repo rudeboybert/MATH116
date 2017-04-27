@@ -32,8 +32,7 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 ### Problem Set 10
 
-**Note**: I've only included Question 1 and the reading for Question 2 for now. 
-I will post Question 2 and the rest of the problem set after lecture on Monday 4/24.
+
 
 * **Info:**
     + Assigned Fri 4/21. 
@@ -57,29 +56,29 @@ paste the code below:
 * If you haven't, then you can just download <a href="{{ site.baseurl}}/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a> directly.
 
 
+
+
+
 ## Question 2:
 
 **To be handed in on paper**: Say we have a population where the racial
 breakdown of the juror pool (registered voters) is:
 
-```
 Race | White | Black | Hispanic | Other | Total
 ----- | -----: | -----: | -----: | -----: | -----: | -----
 Proportion | 72% | 7% | 12% | 9% | 100%
-```
 
 Social scientists want to know if there is a racial bias as to who gets selected
 for jury duty in this population. They collect data on three scenarios of jury
 selection, where each time 100 potential jurors are selected from the
 population.
 
-```
+
 Scenario | White Count | Black Count | Hispanic Count | Other Count | Total Count
 ----- | -----: | -----: | -----: | -----: | -----: | -----
 A | 72 | 7 | 12 | 9 | 100
 B | 0 | 0 | 100 | 0 | 100
 C | 75 | 6 | 11 | 8 | 100
-```
 
 1. What is $H_0$ and $H_A$ for this study?
 1. What is the test statistic for this study? Write it out in general.
