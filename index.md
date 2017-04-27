@@ -22,6 +22,7 @@ layout: default
 
 
 * Lec32 - Thu 4/27: Back to Sampling
+    + Handout: The Economist Article <a href="http://www.economist.com/blogs/economist-explains/2016/11/economist-explains-3" target="_blank">How did the polls get it wrong?</a>.
 * Lec31 - Wed 4/26: Background Statistical Theory
 
 
