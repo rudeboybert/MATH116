@@ -56,26 +56,30 @@ I will post Question 2 and the rest of the problem set after lecture on Monday 4
 paste the code below:
 * If you haven't, then you can just download <a href="{{ site.baseurl}}/PS/PS-10.Rmd" target="_blank">`PS-10.Rmd`</a> directly.
 
-```
+
 ## Question 2:
 
 **To be handed in on paper**: Say we have a population where the racial
 breakdown of the juror pool (registered voters) is:
 
+```
 Race | White | Black | Hispanic | Other | Total
 ----- | -----: | -----: | -----: | -----: | -----: | -----
 Proportion | 72% | 7% | 12% | 9% | 100%
+```
 
 Social scientists want to know if there is a racial bias as to who gets selected
 for jury duty in this population. They collect data on three scenarios of jury
 selection, where each time 100 potential jurors are selected from the
 population.
 
+```
 Scenario | White Count | Black Count | Hispanic Count | Other Count | Total Count
 ----- | -----: | -----: | -----: | -----: | -----: | -----
 A | 72 | 7 | 12 | 9 | 100
 B | 0 | 0 | 100 | 0 | 100
 C | 75 | 6 | 11 | 8 | 100
+```
 
 1. What is $H_0$ and $H_A$ for this study?
 1. What is the test statistic for this study? Write it out in general.
@@ -87,7 +91,7 @@ C | 75 | 6 | 11 | 8 | 100
     a) Compute the p-value. [Hint](https://beta.rstudioconnect.com/connect/#/apps/2719/access).
     a) Complete the test
     a) Write down you conclusion in non-statistical language
-```
+
 
 
 <br>
@@ -109,7 +113,10 @@ C | 75 | 6 | 11 | 8 | 100
     1. Complete the work in <a href="{{ site.baseurl}}/PS/PS-09.Rmd" target="_blank">`PS-09.Rmd`</a>.
 * **Learning Goals:**
     1. Reinforce the topics covered in Midterm II.
-
+* **Discussion/Solutions**: Can be found in both
+    * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
+    * R Markdown file specific to PS09 <a href="{{ site.baseurl }}/PS/PS-09_discussion.Rmd"
+    target="_blank">`PS-09_discussion.Rmd`</a>
 
 
 

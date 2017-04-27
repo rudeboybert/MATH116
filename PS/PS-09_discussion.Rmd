@@ -1,0 +1,128 @@
+
+---
+title: "Problem Set 09"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, April 21, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+---
+
+
+Load necessary packages:
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(nycflights13)
+set.seed(76)
+```
+
+
+
+## Question 1:
+
+### Code
+
+Create the visualization from Question 3.b) of Midterm II:
+
+**Answer**: 
+
+* We only care about the 4 aces out of 52. Let `1` denote the 4 aces, and `0` denote the remaining
+48 cards. Note `rep()` is a command to repeat a certain value the specified number of times.
+* We sample 5 cards *without* replacement
+
+We plot the results:
+
+```{r}
+deck <- c(rep(1, times=4), rep(0, times=48))
+simulation <- do(10000) * resample(deck, size=5, replace=FALSE)
+simulation <- simulation %>% 
+  mutate(num_aces = V1 + V2 + V3 + V4 + V5)
+ggplot(simulation, aes(x=num_aces)) +
+  geom_bar()
+```
+
+
+```{r}
+simulation %>% 
+  group_by(num_aces) %>% 
+  summarise(count=n())
+```
+
+
+
+
+
+
+
+### Analysis
+
+1. What is the probability of getting a pair of aces? 
+1. What is the probability of getting one or more aces?
+
+**Answer**:
+
+1. This occured 368 out of 10000 times, so roughly 0.0368 = 3.68% of the time.
+1. No aces occured 6601 out of 10000 times, so roughly 0.6601 = 66.01%. This getting 1 or more is
+1-0.6601=0.3399 = 33.99%.
+
+
+**Note**:
+
+* How rare getting 4 aces is! If you're playing poker and get 4 aces, bet your house!
+* This question can also be solved mathematically using the [hypergeometric
+distribution](https://en.wikipedia.org/wiki/Hypergeometric_distribution), which
+gives the *exact* quantity we could repeat the above experiment infinitely. So
+the probability of picking `x=2` aces out of `k=5` cards sampled without
+replacement, from a deck with `m=4` total aces and `n=48` other cards is
+*exactly*:
+
+```{r}
+dhyper(x=2, m=4, n=48, k=5)
+```
+
+Our simulated answer is pretty close from part 1!
+
+
+
+## Question 2:
+
+### Code
+
+Do Question 2.d) from Midterm II 
+
+1. by joining `flights` and `weather` by year, month, day, hour
+1. by joining `flights` and `weather` by year, month, day, hour, and origin as
+per the diagram at the start of Question 2.
+
+**Hint**: Google is a programmer's best friend.
+
+**Answer**: In order to join by multiple variables, we use the `c()` for
+"concatenate" function in the `by` argument:
+
+```{r}
+flights %>% 
+  left_join(weather, by=c("year", "month", "day", "hour")) %>% 
+  filter(month==7) %>% 
+  summarise(mean_humid = mean(humid, na.rm=TRUE))
+
+flights %>% 
+  left_join(weather, by=c("year", "month", "day", "hour", "origin")) %>% 
+  filter(month==7) %>% 
+  summarise(mean_humid = mean(humid, na.rm=TRUE))
+```
+
+
+### Analysis
+
+Why are the answers different?
+
+**Answer**: Because the data are linked for a specific time *for each airport*. 
+For example the temperature at Newark may be different than at JFK. If we don't 
+make it absolutely clear that the join needs to happen along `origin` as well,
+we may end up joining weather at a time at one airport with flight information
+for the same time *but at a different airport*.
+ 
