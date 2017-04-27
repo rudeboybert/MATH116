@@ -33,8 +33,8 @@ library(mosaic)
 <!----------------------------------------------------------------------------->
 # Lec32 - Thu 4/27: Back to Sampling
 
-Let's revisit the OkCupid profile data. Note the command `xlim(c(40,90))` fixes
-the x-axis range to be between 
+Let's revisit the OkCupid profile data. Note the command `xlim(c(50,80))` fixes
+the x-axis range to be between 50 and 80 inches.
 
 1. Discuss with your seatmates what all 4 code parts below are doing.
 1. Change the `xintercept` in the `geom_vline()` to be the **true population mean $\mu$**
