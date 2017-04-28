@@ -42,6 +42,64 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
+# Lec33 - Fri 4/28: Sampling Distributions and Standard Errors
+
+1. Change `left_value` and `right_value` below so that the dashed vertical lines
+in the plot capture 95% of sample means. Note these two values.
+1. Change `n=5` to `n=50`. What happens to `left_value` and `right_value`? Compare
+to above.
+
+```{r, eval=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(okcupiddata)
+data(profiles)
+
+# Let's make our lives easier by removing all 3 users who did not list their
+# height:
+# -is.na() returns true if a value is NA missing.
+# -!is.na() returns true if a value is NOT NA missing.
+profiles <- profiles %>% 
+  select(height) %>% 
+  filter(!is.na(height))
+
+# Recall, this is the true population mean. In a typical real-life situation,
+# you won't know this value! This is a rhetorical/theoretical exercise to show
+# how sampling influences our estimates.
+mu <- mean(profiles$height)
+
+# Same as Lec32 LC Part 3, but with replace=FALSE as is more realistic
+n <- 5
+samples <- do(10000) * mean(resample(profiles$height, size=n, replace=FALSE))
+View(samples)
+
+# Change these two values
+left_value <- 60
+right_value <- 80
+
+# Plot!
+title <- paste("10000 Simulations of Sample Mean Height Based on n =", n)
+ggplot(samples, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="Sample Mean xbar", title=title) + 
+  geom_vline(xintercept=mu, col="red") + 
+  geom_vline(xintercept=left_value, linetype="dashed") + 
+  geom_vline(xintercept=right_value, linetype="dashed")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec32 - Thu 4/27: Back to Sampling
 
 Let's revisit the OkCupid profile data. Note the command `xlim(c(50,80))` fixes
@@ -67,7 +125,7 @@ resample(profiles$height, size=n, replace=TRUE)
 mean(resample(profiles$height, size=n, replace=TRUE))
 
 # Part 3:
-samples <- do(10000) * mean(resample(profiles$height, size=n, replace=TRUE), na.rm=TRUE)
+samples <- do(10000) * mean(resample(profiles$height, size=n, replace=TRUE))
 View(samples)
 
 # Part 4:
