@@ -109,6 +109,12 @@ ggplot(results, aes(x=mean)) +
 ```
 
 
+## Accuracy vs Precision
+
+<center><img src="assets/figure/accuracy_vs_precision.png" alt="Drawing" style="width: 500px;" border="1"/></center>
+
+
+
 
 
 
