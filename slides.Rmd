@@ -55,7 +55,58 @@ library(mosaic)
 
 ## Recall
 
+Age example:
 
+> 1. I picked a random sample of `n=3` students
+> 1. I computed sample mean age $\overline{x}$
+> 1. I did this three times
+
+Note:
+
+> 1. They are not the same because of sampling variability
+> 1. What quantifies how much these point estimates vary? 
+
+
+
+## Lec32 Learning Check
+
+From the OkCupid population:
+
+> 1. Take samples of size `n`
+> 1. Compute sample mean height $\overline{x}$
+> 1. Do this many, many, many times (10000)
+> 1. Visualize distribution of these sample means
+
+
+
+## Lec32 Learning Check
+
+```{r, eval=TRUE, echo=FALSE}
+library(okcupiddata)
+data(profiles)
+```
+
+```{r, eval=TRUE, echo=FALSE, cache=TRUE}
+samples_5 <- do(1000) * mean(resample(profiles$height, size=5, replace=TRUE))
+samples_10 <- do(1000) * mean(resample(profiles$height, size=10, replace=TRUE))
+samples_100 <- do(1000) * mean(resample(profiles$height, size=100, replace=TRUE))
+
+results <- data_frame(
+  n = c(rep(5, 1000), rep(10, 1000), rep(100, 1000))
+)
+results <- results %>% 
+  bind_cols(
+    bind_rows(samples_5, samples_10, samples_100)
+  )
+
+# Part 4:
+ggplot(results, aes(x=mean)) +
+  geom_histogram(binwidth = 0.75) +
+  labs(x="sample mean height") + 
+  facet_wrap(~n) + 
+  xlim(c(50,80)) +
+  geom_vline(xintercept=mean(profiles$height, na.rm=TRUE), col="red")
+```
 
 
 
@@ -262,8 +313,11 @@ From last lecture: *How do we construct null distribution?*
 
 In this case, the null distribution is barplot:
 
-```{r, cache=TRUE}
+```{r}
 set.seed(76)
+```
+
+```{r, cache=TRUE}
 single_cup_outcome <- c(1, 0)
 simulation <- do(10000) * resample(single_cup_outcome, size=8)
 simulation <- simulation %>% 
@@ -350,8 +404,11 @@ Only chalk talk today, based on Learning Checks for Lec26.
 * We going to **assume** $H_0$ is true and see how likely the observed test statistic was as compared to null distribution.
 * How likely was the observed test statistic?
 
-```{r, cache=TRUE}
+
+```{r}
 set.seed(76)
+```
+```{r, cache=TRUE}
 single_cup_outcome <- c(1, 0)
 simulation <- do(10000) * resample(single_cup_outcome, size=8)
 simulation <- simulation %>% 
@@ -422,8 +479,11 @@ Study Conclusion:
 
 If guessing at random, here are **hypothetical** outcomes:
 
-```{r, cache=TRUE}
+
+```{r}
 set.seed(76)
+```
+```{r, cache=TRUE}
 single_cup_outcome <- c(1, 0)
 simulation <- do(10000) * resample(single_cup_outcome, size=8)
 simulation <- simulation %>% 

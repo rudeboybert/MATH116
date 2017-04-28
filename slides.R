@@ -14,6 +14,31 @@ if(FALSE){
 library(tidyverse)
 library(mosaic)
 
+## ---- eval=TRUE, echo=FALSE----------------------------------------------
+library(okcupiddata)
+data(profiles)
+
+## ---- eval=TRUE, echo=FALSE, cache=TRUE----------------------------------
+samples_5 <- do(1000) * mean(resample(profiles$height, size=5, replace=TRUE))
+samples_10 <- do(1000) * mean(resample(profiles$height, size=10, replace=TRUE))
+samples_100 <- do(1000) * mean(resample(profiles$height, size=100, replace=TRUE))
+
+results <- data_frame(
+  n = c(rep(5, 1000), rep(10, 1000), rep(100, 1000))
+)
+results <- results %>% 
+  bind_cols(
+    bind_rows(samples_5, samples_10, samples_100)
+  )
+
+# Part 4:
+ggplot(results, aes(x=mean)) +
+  geom_histogram(binwidth = 0.75) +
+  labs(x="sample mean height") + 
+  facet_wrap(~n) + 
+  xlim(c(50,80)) +
+  geom_vline(xintercept=mean(profiles$height, na.rm=TRUE), col="red")
+
 ## ---- eval=FALSE, echo=TRUE----------------------------------------------
 ## library(lubridate)
 ## library(mosaic)
@@ -55,8 +80,10 @@ grades %>%
 grades %>% 
   mutate(even_vs_odd=shuffle(even_vs_odd))
 
-## ---- cache=TRUE---------------------------------------------------------
+## ------------------------------------------------------------------------
 set.seed(76)
+
+## ---- cache=TRUE---------------------------------------------------------
 single_cup_outcome <- c(1, 0)
 simulation <- do(10000) * resample(single_cup_outcome, size=8)
 simulation <- simulation %>% 
@@ -65,8 +92,10 @@ ggplot(simulation, aes(x=n_correct)) +
   geom_bar() +
   labs(x="Number of Guesses Correct")
 
-## ---- cache=TRUE---------------------------------------------------------
+## ------------------------------------------------------------------------
 set.seed(76)
+
+## ---- cache=TRUE---------------------------------------------------------
 single_cup_outcome <- c(1, 0)
 simulation <- do(10000) * resample(single_cup_outcome, size=8)
 simulation <- simulation %>% 
@@ -79,8 +108,10 @@ ggplot(simulation, aes(x=n_correct, y=n_correct)) +
   labs(x="Number of Guesses Correct", y="Count") +
   geom_vline(xintercept=8, col="red") 
 
-## ---- cache=TRUE---------------------------------------------------------
+## ------------------------------------------------------------------------
 set.seed(76)
+
+## ---- cache=TRUE---------------------------------------------------------
 single_cup_outcome <- c(1, 0)
 simulation <- do(10000) * resample(single_cup_outcome, size=8)
 simulation <- simulation %>% 
