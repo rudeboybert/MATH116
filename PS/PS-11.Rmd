@@ -1,0 +1,107 @@
+
+---
+title: "Problem Set 11"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, May 5, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+---
+
+Load necessary packages:
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(fivethirtyeight)
+data(congress_age)
+set.seed(76)
+```
+
+
+## Scenario:
+
+You are charged with studying the average age of members of congress (House of
+Representatives and Senate) at the start of their term for all sessions of
+Congress between:
+
+* The [80th United States Congress](https://en.wikipedia.org/wiki/80th_United_States_Congress) 
+from January 3, 1947 to January 3, 1949
+* The [113th United States Congress](https://en.wikipedia.org/wiki/113th_United_States_Congress) 
+from January 3, 2013 to January 3, 2015
+
+In particular, you are interested in answering the following question: comparing
+just the 80th and the 113th sessions, are members of congress on average younger
+now (in 2013) or then (in 1947)? 
+
+However, researching birthdays and age at the start of the terms for all 18,635
+members of congress between the 80th and 113th sessions of Congress is boring
+work. So you decide to compute ages only for a random sample of members of
+congress instead.
+
+
+
+
+
+## Question 1: CI for Difference of Population Means
+
+Run these lines to get your random sample of
+
+* $n_{80}$ = 40 members of congress from the 80th session
+* $n_{113}$ = 35 members of congress from the 113th session
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+congress_age_80 <- congress_age %>% 
+  filter(congress == 80) %>% 
+  sample_n(40)
+congress_age_113 <- congress_age %>% 
+  filter(congress == 113) %>% 
+  sample_n(35)
+congress_80_and_113 <- bind_rows(congress_age_80, congress_age_113)
+```
+
+
+#### a) EDA
+
+Create one plot of exploratory data analysis.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+
+
+#### b) 95% CI
+
+Create a 95% confidence interval for $\mu_{80}-\mu_{113}$, the true **population
+difference in means** of the average age in the 80th session minus the average 
+age in the 113th session. **Hint**: The formula to approximate the standard error for a difference of means 
+$\overline{x}_1 - \overline{x}_2$ is
+
+$$
+SE_{\overline{x}_1 - \overline{x}_2} = \sqrt{ 
+\left( \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2} \right) 
+\left( \frac{1}{n_1} + \frac{1}{n_2} \right) 
+}
+$$
+
+Note that the formula involves $s^2$ and not $s$ i.e. the sample variance $s^2$
+= the sample standard deviation $s$ squared.
+
+```{r, message=FALSE, echo=TRUE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+```
+
+
+
+#### c) Interpretation
+
+Interpret this confidence interval.
+
+
+
+#### d) Success or Failure
+
+Did you generated confidence interval capture the true population parameter?

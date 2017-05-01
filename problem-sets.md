@@ -36,9 +36,11 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     + Assigned Fri 4/28
     + Due Fri 5/5 11:15am
 * **Homework:**
-    1. 
+    1. Read the following 538 article: <a target="_blank" class="page-link" href="http://fivethirtyeight.com/features/both-republicans-and-democrats-have-an-age-problem/">Both Republicans And Democrats Have an Age Problem</a>
+    1. After loading the `library(fivethirtyeight)` package and loading the `data(congress_age)` data, scan over the help file `?congress_age`.
+    1. Complete the work in <a href="{{ site.baseurl}}/PS/PS-11.Rmd" target="_blank">`PS-11.Rmd`</a>.
 * **Learning Goals:**
-    1. 
+    1. Study a confidence interval for something *other* than the population mean \\(\mu\\).
 
 
 
