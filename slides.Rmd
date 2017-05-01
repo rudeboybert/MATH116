@@ -50,6 +50,55 @@ library(mosaic)
 
 
 
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec34 - Mon 5/1: Confidence Intervals
+
+## Recall
+
+We are estimating a *population parameter* using a *point estimate* based on a sample.
+
+Example: means
+
+<!--
+Think of
+
+> * Population mean $\mu$: the target
+> * Sample mean $\overline{x}$: the shot at target
+> * Sampling distribution: the distribution of the shots
+> * Standard error: the varibility/consistency of the shots
+-->
+
+
+## Accuracy vs Precision
+
+<center><img src="assets/figure/accuracy_vs_precision.png" alt="Drawing" style="width: 500px;" border="1"/></center>
+
+
+
+## Confidence Intervals
+
+Imagine the $\mu$ is a fish:
+
+Point Estimate $\overline{x}$            |  Confidence Interval
+:-------------------------:|:-------------------------:
+<img src="assets/figure/spear.jpg" alt="Drawing" style="width: 300px;"/>  |  <img src="assets/figure/net.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+
+
+
+
+
+
+
 <!----------------------------------------------------------------------------->
 # Lec33 - Fri 4/28: Sampling Distributions and Standard Errors
 

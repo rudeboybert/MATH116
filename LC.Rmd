@@ -26,6 +26,7 @@ library(nycflights13)
 library(tidyverse)
 library(knitr)
 library(mosaic)
+library(okcupiddata)
 ```
 
 
@@ -88,6 +89,45 @@ ggplot(samples, aes(x=mean)) +
   geom_vline(xintercept=right_value, linetype="dashed")
 ```
 
+## Discussion
+
+```{r, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(okcupiddata)
+data(profiles)
+```
+
+```{r, echo=TRUE, cache=TRUE}
+profiles <- profiles %>% 
+  select(height) %>% 
+  filter(!is.na(height))
+
+# Center of sampling distribution
+mu <- mean(profiles$height)
+
+# Same as Lec32 LC Part 3, but with replace=FALSE as is more realistic
+n <- 5
+samples <- do(10000) * mean(resample(profiles$height, size=n, replace=FALSE))
+
+# Standard error = sd of sampling distribution
+SE <- sd(samples$mean)
+
+# Use +/- 2 standard deviations of the mean rule-of-thumb for bell-shaped
+# data
+left_value <- mu - 2*SE
+right_value <- mu + 2*SE
+
+# Plot!
+title <- paste("10000 Simulations of Sample Mean Height Based on n =", n)
+ggplot(samples, aes(x=mean)) +
+  geom_histogram(binwidth = 1) +
+  labs(x="Sample Mean xbar", title=title) + 
+  geom_vline(xintercept=mu, col="red") + 
+  geom_vline(xintercept=left_value, linetype="dashed") + 
+  geom_vline(xintercept=right_value, linetype="dashed")
+```
 
 
 
