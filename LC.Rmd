@@ -118,6 +118,7 @@ SE <- sd(samples$mean)
 # data
 left_value <- mu - 2*SE
 right_value <- mu + 2*SE
+c(left_value, right_value)
 
 # Plot!
 title <- paste("10000 Simulations of Sample Mean Height Based on n =", n)

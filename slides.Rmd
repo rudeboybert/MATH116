@@ -62,9 +62,8 @@ library(mosaic)
 
 ## Recall
 
-We are estimating a *population parameter* using a *point estimate* based on a sample.
-
-Example: means
+We are estimating a *population parameter* using a *point estimate* based on a
+sample. Example: Mean (Chalk Talk)
 
 <!--
 Think of
@@ -82,6 +81,7 @@ Think of
 
 
 
+
 ## Confidence Intervals
 
 Imagine the $\mu$ is a fish:
@@ -89,6 +89,14 @@ Imagine the $\mu$ is a fish:
 Point Estimate $\overline{x}$            |  Confidence Interval
 :-------------------------:|:-------------------------:
 <img src="assets/figure/spear.jpg" alt="Drawing" style="width: 300px;"/>  |  <img src="assets/figure/net.jpg" alt="Drawing" style="width: 300px;"/>
+
+
+
+
+## Learning Check Discussion
+
+> * <a target="_blank" class="page-link" href="https://rudeboybert.github.io/MATH116/LC.html#lec33_-_fri_428:_sampling_distributions_and_standard_errors">Lec33 Learning Check Discussion</a>
+> * Chalk Talk.
 
 
 
