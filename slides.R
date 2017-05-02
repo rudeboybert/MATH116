@@ -1,9 +1,7 @@
 ## ----setup, include=FALSE------------------------------------------------
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 if(FALSE){
-  #
   # HEADS UP
-  #
   # Run these lines to render the document as running HTML document instead of
   # slides:
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))

@@ -23,6 +23,7 @@ layout: default
 
 ### c) Confidence Intervals
 
+* Lec35 - Wed 5/3: Confidence Intervals Part II
 * Lec34 - Mon 5/1: Confidence Intervals
 * Lec33 - Fri 4/28: Sampling Distributions and Standard Errors
 * Lec32 - Thu 4/27: Back to Sampling

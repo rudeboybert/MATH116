@@ -33,9 +33,7 @@ slides > slide:not(.nobackground):after {
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width=8, fig.height=4.5)
 if(FALSE){
-  #
   # HEADS UP
-  #
   # Run these lines to render the document as running HTML document instead of
   # slides:
   rmarkdown::render("slides.Rmd", output_format = c("html_document"))
@@ -51,6 +49,42 @@ library(mosaic)
 
 
 
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec35 - Wed 5/3: Confidence Intervals Part II
+
+## Recall
+
+
+## In General
+
+If $n$ is large, the sampling distribution for these sample statistics are 
+bell-shaped, thus a 95% C.I. is $\mbox{PE} \pm 1.96\times \mbox{SE}$.
+
+Population Parameter | Sample Statistic
+------------- | -------------
+Mean $\mu$ | Sample Mean $\overline{x}$
+Proportion $p$ | Sample Proportion $\widehat{p}$
+Diff of Means $\mu_1 - \mu_2$ | $\overline{x}_1 - \overline{x}_2$
+Diff of Proportions $p_1 - p_2$ | $\widehat{p}_1 - \widehat{p}_2$
+
+
+## Example: Polls
+
+<a target="_blank" class="page-link" href="http://n.pr/1f3TnW8">NPR report on Obama</a> from 2013. Chalk talk...
+
+<!--
+> * According to a Harvard University Institute of Politics poll, 41
+percent of millennials approve of Obama's job performance
+> * The online survey of 2089 adults was conducted from 10/30 to 11/11...
+The poll's **margin of error** was plus or minus 2.1 percentage points.
+> * Chalk talk...
+-->
 
 
 
