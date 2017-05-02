@@ -56,9 +56,10 @@ library(mosaic)
 
 
 <!----------------------------------------------------------------------------->
-# Lec35 - Wed 5/3: Confidence Intervals Part II
+# Lec35 - Wed 5/3: Confidence Intervals in General
 
 ## Recall
+
 
 
 ## In General

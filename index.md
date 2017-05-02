@@ -15,6 +15,13 @@ layout: default
 
 ## 4. Regression
 
+* Lec41 - Mon 5/15: **Midterm III Review** + Course Response Evals
+* Lec40 - Fri 5/12: Multiple Regression Part II
+* Lec39 - Thu 5/11: Multiple Regression
+* Lec38 - Wed 5/10: Interpretation + Categorical Predictors
+* Lec37 - Mon 5/8: Least-Squares Line
+* Lec36 - Thu 5/4: Correlation
+
 
 
 
@@ -23,7 +30,7 @@ layout: default
 
 ### c) Confidence Intervals
 
-* Lec35 - Wed 5/3: Confidence Intervals Part II
+* Lec35 - Wed 5/3: Confidence Intervals in General
 * Lec34 - Mon 5/1: Confidence Intervals
 * Lec33 - Fri 4/28: Sampling Distributions and Standard Errors
 * Lec32 - Thu 4/27: Back to Sampling
