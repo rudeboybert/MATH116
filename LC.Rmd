@@ -69,7 +69,7 @@ data(profiles)
 
 profiles <- profiles %>% 
   mutate(is_female = ifelse(sex == "f", 1, 0)) %>% 
-  select(sex, is_female)
+  select(sex, is_female, height)
 View(profiles)
 
 n <- 5
