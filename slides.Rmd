@@ -64,21 +64,24 @@ library(mosaic)
 Chalk talk
 
 <!--
-> * Using OkCupid heights in Lec 32-34, we did a **theoretical** exercise 
+* Using OkCupid heights in Lec 32-34, we did a **theoretical** exercise 
 showing how $\overline{x}$ behaves over many, many, many samples of size `n=5`,
 `n=10`, and `n=100`.
-> * As `n` increases, *sampling distribution* gets narrow. In other words,
+* As `n` increases, *sampling distribution* gets narrow. In other words,
 *standard* error goes down.
-> * In real life
-> + We won't know the true population parameter
-> + We take only one sample, not many, many, many
-> + Hence we can't use sd(something) to get SE, rather use mathematical approximation
+* In real life
+    + We won't know the true population parameter
+    + We take only one sample, not many, many, many
+    + Hence we can't use sd(something) to get SE, rather use mathematical approximation
 
 ## In General
 
-* If sampling distribution is normally distributed $\mbox{PE} \pm 1.96\times \mbox{SE}$
+* If n is large, the sampling distribution is normally distributed. Why?
+Central Limit Theorem from MATH 310 Probability
+* Then we can use the 95% +/- 2 SD rule
+* A 95% $\mbox{PE} \pm 1.96\times \mbox{SE}$
 * Interpretation
-* What is a 100% confidence interval?
+
 -->
 
 
@@ -105,7 +108,13 @@ Obama</a> from 2013. Chalk talk...
 percent of millennials approve of Obama's job performance
 > * The online survey of 2089 adults was conducted from 10/30 to 11/11...
 The poll's **margin of error** was plus or minus 2.1 percentage points.
-> * Chalk talk...
+
+n = 2089
+p_hat = 0.41
+SE for p_hat = 0.0108
+Margin of Error = 1.96*0.0108 = 0.02109137
+95% CI = [0.389, 0.431]
+crucial question
 -->
 
 
