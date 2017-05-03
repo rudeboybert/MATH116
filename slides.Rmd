@@ -58,13 +58,33 @@ library(mosaic)
 <!----------------------------------------------------------------------------->
 # Lec35 - Wed 5/3: Confidence Intervals in General
 
+
 ## Recall
 
+Chalk talk
 
+<!--
+> * Using OkCupid heights in Lec 32-34, we did a **theoretical** exercise 
+showing how $\overline{x}$ behaves over many, many, many samples of size `n=5`,
+`n=10`, and `n=100`.
+> * As `n` increases, *sampling distribution* gets narrow. In other words,
+*standard* error goes down.
+> * In real life
+> + We won't know the true population parameter
+> + We take only one sample, not many, many, many
+> + Hence we can't use sd(something) to get SE, rather use mathematical approximation
 
 ## In General
 
-If $n$ is large, the sampling distribution for these sample statistics are 
+* If sampling distribution is normally distributed $\mbox{PE} \pm 1.96\times \mbox{SE}$
+* Interpretation
+* What is a 100% confidence interval?
+-->
+
+
+## Point Estimates
+
+For large $n$, the sampling distribution for these point estimates are 
 bell-shaped, thus a 95% C.I. is $\mbox{PE} \pm 1.96\times \mbox{SE}$.
 
 Population Parameter | Sample Statistic
@@ -77,7 +97,8 @@ Diff of Proportions $p_1 - p_2$ | $\widehat{p}_1 - \widehat{p}_2$
 
 ## Example: Polls
 
-<a target="_blank" class="page-link" href="http://n.pr/1f3TnW8">NPR report on Obama</a> from 2013. Chalk talk...
+<a target="_blank" class="page-link" href="http://n.pr/1f3TnW8">NPR report on
+Obama</a> from 2013. Chalk talk...
 
 <!--
 > * According to a Harvard University Institute of Politics poll, 41
@@ -86,6 +107,10 @@ percent of millennials approve of Obama's job performance
 The poll's **margin of error** was plus or minus 2.1 percentage points.
 > * Chalk talk...
 -->
+
+
+
+
 
 
 

@@ -43,6 +43,105 @@ library(okcupiddata)
 
 
 <!----------------------------------------------------------------------------->
+# Lec35 - Wed 5/3: Confidence Intervals in General
+
+We are revisiting the Lec33 LC where
+
+* We estimated the population mean height $\mu$ of OkCupid users using the sample
+mean $\overline{x}$ as a point estimate based on samples of size `n=5`.
+* We did this many, many, many times to create the *sampling distribution*.
+* Using the *standard error*, we created `left_value` and `right_value` such that it captured 95% of $\overline{x}$ values.
+
+Today you will do the same but for a different set up:
+
+* Population parameter: the population proportion $p$ that is female. Spoiler alert: it's 40.2%.
+* Point estimate: the sample proportion $\widehat{p}$ i.e. the proportion of the sample that is female.
+    + To this end we create a new variable `is_female` below.
+    + Note: A proportion is just a mean of 0's and 1's. Ex: Try running `mean(c(0,0,0,1))` in your console.
+    
+
+```{r, eval=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(okcupiddata)
+data(profiles)
+
+profiles <- profiles %>% 
+  mutate(is_female = ifelse(sex == "f", 1, 0)) %>% 
+  select(sex, is_female)
+View(profiles)
+
+n <- 5
+```
+
+Using the starter code above
+
+1. Recreate the plot from Lec32 LC Discussion below for `n=5` and interpret it.
+1. Recreate the plot from Lec32 LC Discussion below for `n=100` and interpret it. Compare it to the plot for `n=100`. What is different?
+1. Now switch gears to the more realistic situation where
+    a) We don't know the true population proportion $p$. So pretend you don't know its 40.2%
+    a) We take a *single sample* of size `n=100`, and not many, many, many samples.
+    a) Compute a 95% confidence interval. You will we need to use the mathematical approximation to the standard error for $\widehat{p}$, which is below.
+    a) Fill out this <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeReythIifiK4qJ7QE7udYErJy3vqW0uWuGlRT-YV7nAm2j7A/viewform">Google Form</a> with your resulting values.
+
+$$
+\mbox{SE}_{\widehat{p}} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}
+$$
+
+
+```{r, echo=FALSE}
+# library(ggplot2)
+# library(dplyr)
+# library(mosaic)
+# library(okcupiddata)
+# data(profiles)
+```
+
+```{r, echo=FALSE, cache=TRUE}
+# profiles <- profiles %>%
+#   mutate(is_female = ifelse(sex == "f", 1, 0)) %>%
+#   select(is_female)
+# 
+# # Center of sampling distribution
+# p <- mean(profiles$is_female)
+# 
+# # Same as Lec32 LC Part 3, but with replace=FALSE as is more realistic
+# n <- 5
+# samples <- do(10000)*mean(resample(profiles$is_female, size=n, replace=FALSE))
+# 
+# # Standard error = sd of sampling distribution
+# SE <- sd(samples$mean)
+# 
+# # Use +/- 2 standard deviations of the mean rule-of-thumb for bell-shaped
+# # data
+# left_value <- p - 2*SE
+# right_value <- p + 2*SE
+# c(left_value, right_value)
+# 
+# # Plot!
+# title <- paste("10000 Simulations of Sample Proportion Height Based on n =", n)
+# ggplot(samples, aes(x=mean)) +
+#   geom_histogram(binwidth = 0.01) +
+#   labs(x="Sample Mean xbar", title=title) +
+#   geom_vline(xintercept=p, col="red") +
+#   geom_vline(xintercept=left_value, linetype="dashed") +
+#   geom_vline(xintercept=right_value, linetype="dashed")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec33 - Fri 4/28: Sampling Distributions and Standard Errors
 
 1. Change `left_value` and `right_value` below so that the dashed vertical lines
