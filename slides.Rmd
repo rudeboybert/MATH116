@@ -44,11 +44,280 @@ if(FALSE){
 ```{r, echo=FALSE, message=FALSE}
 library(tidyverse)
 library(mosaic)
+library(stringr)
+library(okcupiddata)
+library(knitr)
 ```
 
 
 
 
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec36 - Thu 5/4: Correlation
+
+## Recall
+
+* In Lec35 LC you all created your own 95% C.I. to estimate
+the proportion $p$ of the OkCupid dataset which is female
+* We took a single sample of size `n=100`
+* We pretended we didn't know the true $p = 0.4023$ = 40.23%
+
+```{r, echo=FALSE, message=FALSE}
+data(profiles)
+profiles <- profiles %>% 
+  mutate(is_female = ifelse(sex == "f", 1, 0))
+
+p <- mean(profiles$is_female)
+
+set.seed(76)
+samples <- do(8)*mean(resample(profiles$is_female, size=500, replace=FALSE))
+aykim_phat <- data_frame(
+  email = "aykim",
+  p_hat = samples$mean
+)
+```
+
+## Results 1
+
+Here are your 12 resulting $\widehat{p}$'s...
+
+```{r, message=FALSE}
+p_hat <- read_csv("assets/data/Lec35_LC.csv") %>% 
+  select(`What is your Midd Email?`, `Sample proportion p-hat`) %>% 
+  rename(email = `What is your Midd Email?`, p_hat = `Sample proportion p-hat`) %>% 
+  mutate(email = str_sub(email, end=-16)) %>% 
+  arrange(email)
+p_hat %>% 
+  kable(digits=3)
+```
+
+## Results 2
+
+Let me add 8 of my own so we have 20...
+
+```{r, message=FALSE}
+p_hat <- p_hat %>% 
+  bind_rows(aykim_phat) 
+p_hat %>% 
+  kable(digits=3)
+```
+
+## Results 3
+
+Let's compute $\mbox{SE} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}$...
+
+```{r, message=FALSE, echo=TRUE}
+p_hat <- p_hat %>% 
+  mutate(
+    n = 500,
+    SE = sqrt(p_hat*(1-p_hat)/n)
+  )
+```
+```{r, message=FALSE, echo=FALSE}
+p_hat %>% 
+  kable(digits=3)
+```
+
+
+
+## Results 4
+
+Finally the left and right end points of the 95% confidence interval. Whose
+CI's captured the true $p=0.4023$?
+
+```{r, message=FALSE, echo=TRUE}
+p_hat <- p_hat %>% 
+  mutate(
+    left = p_hat - 1.96*SE,
+    right = p_hat + 1.96*SE
+  )
+```
+```{r, message=FALSE, echo=FALSE}
+p_hat %>% 
+  kable(digits=3)
+```
+
+
+## Results 5
+
+> * Dots are $\widehat{p}$
+> * Dashed line is true $p=0.4023$
+
+```{r, message=FALSE}
+p_hat <- p_hat %>% 
+  tibble::rownames_to_column() %>% 
+  select(rowname, email, p_hat, left, right) %>% 
+  mutate(`Captured True p?` = left <= p & p <= right) %>% 
+  gather(endpoint, value, -c(rowname, email, p_hat, `Captured True p?`)) %>% 
+  arrange(desc(email), rowname) %>% 
+  mutate(rowname = rep(1:20, each=2))
+
+ggplot(data=p_hat) +
+  geom_line(aes(x=value, y=rowname, group=rowname, col=`Captured True p?`)) +
+  geom_point(aes(x=p_hat, y=rowname, group=rowname)) +
+  geom_vline(xintercept = p, linetype="dashed") +
+  labs(x="Proportion Female", y="", title="Confidence Intervals Based on n=100") +
+  geom_text(aes(x=0.3, y=rowname, label=email)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
+```
+
+
+
+## Regression
+
+> * Final topic for this course!
+> * Correlation Coefficient
+
+
+
+<!--
+## Correlation Coefficient
+
+* Measures the strength of linear association between two variables
+* Always between [-1, 1] where
+    + -1 indicates perfect negative relationship
+    + 0 indicates no relationship
+    + +1 indicates perfect positive relationship
+-->
+
+
+## Correlation Coefficient
+
+```{r, echo=FALSE, warning=FALSE}
+library(mvtnorm) 
+correlation <- c(-0.9999, -0.9, -0.75, -0.3, 0, 0.3, 0.75, 0.9, 0.9999)
+n_sim <- 100
+
+values <- NULL
+for(i in 1:length(correlation)){
+  rho <- correlation[i]
+  sigma <- matrix(c(5, rho*sqrt(50), rho*sqrt(50), 10), 2, 2) 
+  sim <- rmvnorm(
+    n=n_sim,
+    mean=c(20,40),
+    sigma=sigma
+    ) %>%
+    as_data_frame() %>% 
+    mutate(correlation=round(rho,2))
+  
+  values <- bind_rows(values, sim)
+}
+
+ggplot(data=values, aes(V1,V2)) +
+  geom_point() +
+  facet_wrap(~correlation, ncol=5) +
+  labs(x="", y="", title="Different Correlation Coefficients") + 
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank()
+  )
+```
+
+
+<!--
+## Correlation Coefficient
+
+Two versions: Just like with $\mu$ and $\overline{x}$
+
+* **Population correlation coefficient** $\rho$
+* **Sample correlation coefficent** $r$ based on a sample of n **pairs** of observations
+-->
+
+
+## Example
+
+Recall the `nycflights` data set. For Alaska Air flights, let's explore the **relationship** between
+
+* Departure delay
+* Arrival delay
+
+```{r, warning=FALSE, eval=FALSE}
+library(nycflights13)
+data(flights)
+
+# Load Alaska data, deleting rows that have missing dep or arr data
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+   geom_point()
+```
+
+
+
+## Example
+
+```{r, warning=FALSE, echo=FALSE}
+library(nycflights13)
+data(flights)
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+   geom_point()
+```
+
+
+
+## Example
+
+The correlation coefficient is computed as follows:
+
+```{r, warning=FALSE, echo=TRUE}
+cor(alaska_flights$dep_delay, alaska_flights$arr_delay)
+```
+
+83.7% is fairly strongly **positively associated**!
+
+
+
+## Bored? 
+
+Play [Guess the Correlation](http://guessthecorrelation.com/)
+
+
+
+<!--
+## Important Note
+
+**Correlation coefficent $\neq$ slope of regression line.**
+Example: Say we have 3 group of points
+
+```{r, echo=FALSE, warning=FALSE, eval=FALSE}
+vals <- seq(-2, 2, length=20)
+example <- data_frame(
+  x=rep(vals, 3),
+  y=c(0.01*vals, 1*vals, 3*vals),
+  slope=factor(rep(c(0.01, 1, 3), each=length(vals)))
+)
+ggplot(example, aes(x=x, y=y, col=slope)) +
+  geom_point(size=2) +
+  theme(legend.position="none")
+```
+
+
+
+## Important Note
+
+Their regression lines have different slopes, but $r= 1$ for all 3. i.e. perfect (positive) linear relationship.
+
+```{r, echo=FALSE, warning=FALSE, eval=FALSE}
+ggplot(example, aes(x=x, y=y, col=slope)) +
+  geom_point(size=2) + 
+  geom_smooth(method="lm", se=FALSE)
+```
+-->
 
 
 

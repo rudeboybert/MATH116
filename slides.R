@@ -11,6 +11,130 @@ if(FALSE){
 ## ---- echo=FALSE, message=FALSE------------------------------------------
 library(tidyverse)
 library(mosaic)
+library(stringr)
+library(okcupiddata)
+library(knitr)
+
+## ---- echo=FALSE, message=FALSE------------------------------------------
+data(profiles)
+profiles <- profiles %>% 
+  mutate(is_female = ifelse(sex == "f", 1, 0))
+
+p <- mean(profiles$is_female)
+
+set.seed(76)
+samples <- do(8)*mean(resample(profiles$is_female, size=500, replace=FALSE))
+aykim_phat <- data_frame(
+  email = "aykim",
+  p_hat = samples$mean
+)
+
+## ---- message=FALSE------------------------------------------------------
+p_hat <- read_csv("assets/data/Lec35_LC.csv") %>% 
+  select(`What is your Midd Email?`, `Sample proportion p-hat`) %>% 
+  rename(email = `What is your Midd Email?`, p_hat = `Sample proportion p-hat`) %>% 
+  mutate(email = str_sub(email, end=-16)) %>% 
+  arrange(email)
+p_hat %>% 
+  kable(digits=3)
+
+## ---- message=FALSE------------------------------------------------------
+p_hat <- p_hat %>% 
+  bind_rows(aykim_phat) 
+p_hat %>% 
+  kable(digits=3)
+
+## ---- message=FALSE, echo=TRUE-------------------------------------------
+p_hat <- p_hat %>% 
+  mutate(
+    n = 500,
+    SE = sqrt(p_hat*(1-p_hat)/n)
+  )
+
+## ---- message=FALSE, echo=FALSE------------------------------------------
+p_hat %>% 
+  kable(digits=3)
+
+## ---- message=FALSE, echo=TRUE-------------------------------------------
+p_hat <- p_hat %>% 
+  mutate(
+    left = p_hat - 1.96*SE,
+    right = p_hat + 1.96*SE
+  )
+
+## ---- message=FALSE, echo=FALSE------------------------------------------
+p_hat %>% 
+  kable(digits=3)
+
+## ---- echo=FALSE, warning=FALSE------------------------------------------
+library(mvtnorm) 
+correlation <- c(-0.9999, -0.9, -0.75, -0.3, 0, 0.3, 0.75, 0.9, 0.9999)
+n_sim <- 100
+
+values <- NULL
+for(i in 1:length(correlation)){
+  rho <- correlation[i]
+  sigma <- matrix(c(5, rho*sqrt(50), rho*sqrt(50), 10), 2, 2) 
+  sim <- rmvnorm(
+    n=n_sim,
+    mean=c(20,40),
+    sigma=sigma
+    ) %>%
+    as_data_frame() %>% 
+    mutate(correlation=round(rho,2))
+  
+  values <- bind_rows(values, sim)
+}
+
+ggplot(data=values, aes(V1,V2)) +
+  geom_point() +
+  facet_wrap(~correlation, ncol=5) +
+  labs(x="", y="", title="Different Correlation Coefficients") + 
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank()
+  )
+
+## ---- warning=FALSE, eval=FALSE------------------------------------------
+## library(nycflights13)
+## data(flights)
+## 
+## # Load Alaska data, deleting rows that have missing dep or arr data
+## alaska_flights <- flights %>%
+##   filter(carrier == "AS") %>%
+##   filter(!is.na(dep_delay) & !is.na(arr_delay))
+## 
+## ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) +
+##    geom_point()
+
+## ---- warning=FALSE, echo=FALSE------------------------------------------
+library(nycflights13)
+data(flights)
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+   geom_point()
+
+## ---- warning=FALSE, echo=TRUE-------------------------------------------
+cor(alaska_flights$dep_delay, alaska_flights$arr_delay)
+
+## ---- echo=FALSE, warning=FALSE, eval=FALSE------------------------------
+## vals <- seq(-2, 2, length=20)
+## example <- data_frame(
+##   x=rep(vals, 3),
+##   y=c(0.01*vals, 1*vals, 3*vals),
+##   slope=factor(rep(c(0.01, 1, 3), each=length(vals)))
+## )
+## ggplot(example, aes(x=x, y=y, col=slope)) +
+##   geom_point(size=2) +
+##   theme(legend.position="none")
+
+## ---- echo=FALSE, warning=FALSE, eval=FALSE------------------------------
+## ggplot(example, aes(x=x, y=y, col=slope)) +
+##   geom_point(size=2) +
+##   geom_smooth(method="lm", se=FALSE)
 
 ## ---- eval=TRUE, echo=FALSE----------------------------------------------
 library(okcupiddata)
