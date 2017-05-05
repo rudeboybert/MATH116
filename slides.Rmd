@@ -75,8 +75,8 @@ profiles <- profiles %>%
 
 p <- mean(profiles$is_female)
 
-set.seed(76)
-samples <- do(8)*mean(resample(profiles$is_female, size=500, replace=FALSE))
+set.seed(89)
+samples <- do(8)*mean(resample(profiles$is_female, size=100, replace=FALSE))
 aykim_phat <- data_frame(
   email = "aykim",
   p_hat = samples$mean
@@ -115,7 +115,7 @@ Let's compute $\mbox{SE} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}$...
 ```{r, message=FALSE, echo=TRUE}
 p_hat <- p_hat %>% 
   mutate(
-    n = 500,
+    n = 100,
     SE = sqrt(p_hat*(1-p_hat)/n)
   )
 ```
@@ -163,7 +163,7 @@ ggplot(data=p_hat) +
   geom_point(aes(x=p_hat, y=rowname, group=rowname)) +
   geom_vline(xintercept = p, linetype="dashed") +
   labs(x="Proportion Female", y="", title="Confidence Intervals Based on n=100") +
-  geom_text(aes(x=0.3, y=rowname, label=email)) +
+  geom_text(aes(x=0.15, y=rowname, label=email)) +
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank())

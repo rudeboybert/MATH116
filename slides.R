@@ -22,8 +22,8 @@ profiles <- profiles %>%
 
 p <- mean(profiles$is_female)
 
-set.seed(76)
-samples <- do(8)*mean(resample(profiles$is_female, size=500, replace=FALSE))
+set.seed(89)
+samples <- do(8)*mean(resample(profiles$is_female, size=100, replace=FALSE))
 aykim_phat <- data_frame(
   email = "aykim",
   p_hat = samples$mean
@@ -47,7 +47,7 @@ p_hat %>%
 ## ---- message=FALSE, echo=TRUE-------------------------------------------
 p_hat <- p_hat %>% 
   mutate(
-    n = 500,
+    n = 100,
     SE = sqrt(p_hat*(1-p_hat)/n)
   )
 
@@ -65,6 +65,26 @@ p_hat <- p_hat %>%
 ## ---- message=FALSE, echo=FALSE------------------------------------------
 p_hat %>% 
   kable(digits=3)
+
+## ---- message=FALSE------------------------------------------------------
+p_hat <- p_hat %>% 
+  tibble::rownames_to_column() %>% 
+  select(rowname, email, p_hat, left, right) %>% 
+  mutate(`Captured True p?` = left <= p & p <= right) %>% 
+  gather(endpoint, value, -c(rowname, email, p_hat, `Captured True p?`)) %>% 
+  arrange(desc(email), rowname) %>% 
+  mutate(rowname = rep(1:20, each=2))
+
+ggplot(data=p_hat) +
+  geom_line(aes(x=value, y=rowname, group=rowname, col=`Captured True p?`)) +
+  geom_point(aes(x=p_hat, y=rowname, group=rowname)) +
+  geom_vline(xintercept = p, linetype="dashed") +
+  labs(x="Proportion Female", y="", title="Confidence Intervals Based on n=100") +
+  geom_text(aes(x=0.15, y=rowname, label=email)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
 
 ## ---- echo=FALSE, warning=FALSE------------------------------------------
 library(mvtnorm) 
