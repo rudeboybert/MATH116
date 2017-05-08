@@ -110,8 +110,6 @@ for this project; your scientific question will dictate this need.
     + `data.world` is a new <a target="_blank" class="page-link" href="https://data.world/">repository of data</a> from various disciplines.
     + The `fivethirtyeight` R package.  See <a target="_blank" class="page-link" href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/rudeboybert/fivethirtyeight/master/vignettes/fivethirtyeight.html#data-sets">data set list</a>. Not all data sets in this package are allowable, so be sure to consult with me as soon as you can.
 
-
-https://data.world/
     
 
 #### Write-Up
@@ -150,13 +148,15 @@ All done!
 Electronic-Only Final Project Submission:
 
 * Due Tuesday 5/23 at 12pm on group Slack Direct Message:
-    + As a group via Slack direct message to group and me:
-        + A <a href="https://rudeboybert.github.io/MATH116/PS/final_project/final_project.Rmd" target="_blank">`final_project.Rmd`</a> file that completely reproduces your analysis i.e. I should have to press Knit only once to recreate the entire HTML page.
-        + All necessary data files.
-        + An <a href="http://rpubs.com/" target="_blank">Rpubs.com</a> link of your R Markdown HTML document published on the web.
-    + Individually:
-        + A Google Forms survey, which I will Slack on Monday 5/22 at 11am
-    + **Note**: Your project won’t be considered submitted until I give you confirmation that everything looks good.
+    1. As a group via Slack direct message to group and me:
+        a) A <a href="https://rudeboybert.github.io/MATH116/PS/final_project/Final_Project.Rmd" target="_blank">`Final_Project.Rmd`</a> file that completely reproduces your analysis i.e. I should have to press Knit only once to recreate the entire HTML page.
+        a) All necessary data files.
+        a) An <a href="http://rpubs.com/" target="_blank">Rpubs.com</a> link of your R Markdown HTML document published on the web.
+    1. Individually:
+        a) A Google Forms survey, which I will post on Slack under `#announcements` on Monday 5/22 at 11am
+* **Important**: Your project won’t be considered submitted until
+    1. All the above components are submitted
+    1. I give you confirmation on Slack that everything looks good.
 * **Honor Code**: This is the equivalent of an academic term paper; all honor code rules about plagarism and citations apply.
 
 
