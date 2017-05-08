@@ -140,14 +140,24 @@ data. Be as specific as you can, listing URLs and file formats if possible.
 
 ## 2. Feedback Session
 
-Standby for more details.
+All done!
 
 
 
 
 ## 3. Final Project Submission
 
-Standby for more details.
+Electronic-Only Final Project Submission:
+
+* Due Tuesday 5/23 at 12pm on group Slack Direct Message:
+    + As a group via Slack direct message to group and me:
+        + A <a href="https://rudeboybert.github.io/MATH116/PS/final_project/final_project.Rmd" target="_blank">`final_project.Rmd`</a> file that completely reproduces your analysis i.e. I should have to press Knit only once to recreate the entire HTML page.
+        + All necessary data files.
+        + An <a href="http://rpubs.com/" target="_blank">Rpubs.com</a> link of your R Markdown HTML document published on the web.
+    + Individually:
+        + A Google Forms survey, which I will Slack on Monday 5/22 at 11am
+    + **Note**: Your project won’t be considered submitted until I give you confirmation that everything looks good.
+* **Honor Code**: This is the equivalent of an academic term paper; all honor code rules about plagarism and citations apply.
 
 
 
