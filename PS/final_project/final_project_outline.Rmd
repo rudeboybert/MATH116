@@ -149,23 +149,23 @@ Electronic-Only Final Project Submission:
 
 * **Due Tuesday 5/23 at 12pm**:
     1. One group member should Slack direct message me and all group members:
-        1. A link to a <a
+        a) A link to a <a
             href="https://www.dropbox.com/help/files-folders/share-with-others"
             target="_blank">Dropbox shared folder</a> that
-            a) Is shared with me: `albert.ys.kim@gmail.com`. You can share this
+            * Is shared with me: `albert.ys.kim@gmail.com`. You can share this
             with me before the project is due.
-            a) Contains A <a
+            * Contains A <a
             href="https://rudeboybert.github.io/MATH116/PS/final_project/Final_Project.Rmd"
             target="_blank">`Final_Project.Rmd`</a> file that completely
             reproduces your analysis i.e. I should have to press Knit only once
             to recreate the entire HTML page.
-            a) All necessary data files.
-        1. An <a href="http://rpubs.com/" target="_blank">Rpubs.com</a> link of 
+            * All necessary data files.
+        a) An <a href="http://rpubs.com/" target="_blank">Rpubs.com</a> link of 
         your R Markdown HTML document published on the web. Instructions: After
         Knitting your HTML file, click the blue "Publish" button on the top
         right of the HTML page and follow all instructions.
     1. Individually:
-        1. A Google Forms survey, which I will post both here and on Slack under
+        a) A Google Forms survey, which I will post both here and on Slack under
         `#announcements` on Monday 5/22 at 11am
 * **Important**: Your project won’t be considered submitted until
     1. All the above components are submitted
