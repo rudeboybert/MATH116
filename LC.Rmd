@@ -184,6 +184,10 @@ $$
 
 ## Discussion
 
+```{r, echo=FALSE}
+set.seed(76)
+```
+
 ```{r, echo=TRUE, cache=TRUE}
 profiles <- profiles %>%
   mutate(is_female = ifelse(sex == "f", 1, 0)) %>%
@@ -193,7 +197,7 @@ profiles <- profiles %>%
 p <- mean(profiles$is_female)
 ```
 
-#### `n=5`
+### 1) `n=5`
 
 Let's do this for `n = 5` first.
 
@@ -204,6 +208,7 @@ samples <- do(10000)*mean(resample(profiles$is_female, size=n, replace=FALSE))
 
 # Standard error = sd of sampling distribution
 SE <- sd(samples$mean)
+SE
 
 # Use +/- 2 standard deviations of the mean rule-of-thumb for bell-shaped
 # data
@@ -221,12 +226,13 @@ ggplot(samples, aes(x=mean)) +
   geom_vline(xintercept=right_value, linetype="dashed")
 ```
 
-#### `n=100`
-
 Looks kind of choppy! Why? Because if we sample only 5 people, there are only 6
 possible proportions: $\frac{0}{6}, \frac{1}{6}, \ldots, \frac{6}{6}$. We need
-to boost this to get a smooth sampling distribution. Let's do this for `n = 100`
-instead.
+to boost `n` to get a smoother sampling distribution. 
+
+### 2) `n=100`
+
+Let's do this for `n = 100` instead.
 
 ```{r, echo=TRUE, cache=TRUE}
 # Same as Lec32 LC Part 3, but with replace=FALSE as is more realistic
@@ -235,6 +241,7 @@ samples <- do(10000)*mean(resample(profiles$is_female, size=n, replace=FALSE))
 
 # Standard error = sd of sampling distribution
 SE <- sd(samples$mean)
+SE
 
 # Use +/- 2 standard deviations of the mean rule-of-thumb for bell-shaped
 # data
@@ -252,10 +259,56 @@ ggplot(samples, aes(x=mean)) +
   geom_vline(xintercept=right_value, linetype="dashed")
 ```
 
-#### Realistic Situation
+Much better! Also, notice that since
+
+* the sample size went from `n=10` to `n=100`
+* the standard error `SE` went down from 0.221 to 0.049
+* so the confidence interval got narrower!
 
 
+### 3) Realistic Situation
 
+There is no many, many, many times; we take ONE sample.
+
+```{r, echo=TRUE}
+n <- 100
+sample <- resample(profiles$is_female, size=n, replace=FALSE)
+```
+
+The point estimate $\widehat{p}$ of $p$ is:
+
+```{r, echo=TRUE}
+p_hat <- mean(sample)
+p_hat
+```
+
+Since there is only one sample, and not many, many, many samples, we use the 
+mathematical approximation to the standard error of $\widehat{p}$
+
+$$
+\mbox{SE}_{\widehat{p}} = \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}
+$$
+
+```{r, echo=TRUE}
+SE <- sqrt(p_hat*(1-p_hat)/n)
+SE
+```
+
+**Key Observation**: Look how similar this value is to the `SE <- sd(samples$mean)`
+value above!
+
+We now use this to build our confidence interval using the rule 
+$\mbox{PE} \pm 1.96\times\mbox{SE}$ since `n` is large
+
+```{r, echo=TRUE}
+c(p_hat -1.96*SE, p_hat + 1.96*SE)
+```
+
+Our confidence interval is (0.257, 0.443), which in this case contains the true
+$p=0.402$. Remember: 95% confidence intervals will 
+
+* Capture the true population parameter 95% of the time
+* Not capture it, i.e. fail, 5% of the time
 
 
 
