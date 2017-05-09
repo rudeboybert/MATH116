@@ -68,7 +68,7 @@ layout: default
 
 ### e) Putting It All Together
 
-* **Final Project**: <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html" target="_blank">Guidelines</a>.
+* **Final Project**: <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html#3_final_project_submission" target="_blank">Guidelines</a>.
 * Lec18 - Fri 3/24: The tao of data analysis.
 
 
