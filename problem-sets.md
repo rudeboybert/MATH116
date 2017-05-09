@@ -30,6 +30,32 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 
 
 
+### Problem Set 12
+
+* **Info:**
+    + Assigned Mon 5/8
+    + Due Fri 5/12 11:15am
+* **Homework:**
+    1. Complete the work in <a href="{{ site.baseurl}}/PS/PS-12.Rmd" target="_blank">`PS-12.Rmd`</a>.
+* **Learning Goals:**
+    1. Simple linear regression viewed through the lens of sampling:
+        + Confidence intervals
+        + Hypothesis testing
+
+
+
+
+
+<br>
+
+***
+
+<br>
+
+
+
+
+
 ### Problem Set 11
 
 * **Info:**

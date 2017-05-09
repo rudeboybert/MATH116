@@ -1,0 +1,41 @@
+
+---
+title: "Problem Set 12"
+author: "WRITE YOUR NAME HERE"
+date: "Due Friday, May 12, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+    df_print: kable
+---
+
+Load necessary packages:
+
+```{r, message=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(broom)
+library(nycflights13)
+```
+
+
+## Question 1
+
+American Airlines is concerned with the temperature and humidity recorded for
+its daily flight AA 59 from JFK to San Francisco, CA. In particular they want to 
+study the relationship between temperature and humidity with humidity as the $y$
+variable. 
+
+1. Create an appropriate visualization for this data.
+1. Fit a linear regression and interpret
+    a) The estimate of the slope
+    a) The 95% confidence interval for the slope
+    a) The conclusion of the hypothesis test using non-statisticial language
+1. Visualize the *residuals* and comment on their distribution
+
+```{r, warning=FALSE}
+
+```
+
