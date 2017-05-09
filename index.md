@@ -13,6 +13,20 @@ layout: default
 * <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/">ModernDive</a> textbook. Feedback form <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSd28dfQ6r9DwIBPEErWE4PIxrDOSerhPYSoXmONiUHfrbo2ww/viewform">here</a>.
 
 
+
+
+## Exam Week Schedule
+
+* Office Hours: Mon 5/15 1pm-4pm
+* Office Hours: Tue 5/16 9am-2pm. Only sporadic access to Slack until Midterm III.
+* Midterm III: Fri 5/19 7pm-10pm in Warner 506
+* Office Hours: Sun 5/21 1pm-5pm
+* Office Hours: Mon 5/22 1pm-5pm
+* Final Project Due: Tue 5/23 12pm. See Final Project <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html#3_final_project_submission" target="_blank">Guidelines</a>.
+
+
+
+
 ## 4. Regression
 
 * Lec41 - Mon 5/15: **Midterm III Review** + Course Response Evals
