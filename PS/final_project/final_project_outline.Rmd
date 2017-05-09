@@ -171,29 +171,3 @@ Electronic-Only Final Project Submission:
     1. All the above components are submitted
     1. I give you confirmation on Slack that everything looks good.
 * **Honor Code**: This is the equivalent of an academic term paper; all honor code rules about plagarism and citations apply.
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-## Electronic-Only Final Project Submission
-
-Roughly speaking, your final project submission will have two major components:
-
-* The actual journalism article. As to knowing the guidelines (length, format,
-tone), just ask yourself: "What does a newspaper/online news story sound like?"
-* A supplementary materials section that goes more in depth about the
-nitty-gritty details, that one might want to spare casual readers from, but
-include for people wanting to learn more.
-* I will post the template `final_project.Rmd` file in the Problem Sets section
-of the course webpage by Monday Nov 14th.
--->
