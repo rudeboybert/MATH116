@@ -67,6 +67,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     1. Complete the work in <a href="{{ site.baseurl}}/PS/PS-11.Rmd" target="_blank">`PS-11.Rmd`</a>.
 * **Learning Goals:**
     1. Study a confidence interval for something *other* than the population mean \\(\mu\\).
+* **Discussion/Solutions**: Can be found in both
+    * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
+    * R Markdown file specific to PS11 <a href="{{ site.baseurl }}/PS/PS-11_discussion.Rmd"
+    target="_blank">`PS-11_discussion.Rmd`</a>
 
 
 
@@ -98,7 +102,12 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
 * **Learning Goals:**
     1. Perform a hypothesis test from start to finish.
     1. Generalize the lady tasting tea to other hypothesis testing situations.
+* **Discussion/Solutions**: Can be found in both
+    * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
+    * R Markdown file specific to PS10 <a href="{{ site.baseurl }}/PS/PS-10_discussion.Rmd"
+    target="_blank">`PS-10_discussion.Rmd`</a>
 
+<!--
 **Note on Wed 4/26**: Question 2 is here.
 
 * If you've already started `PS-10` prior to today, copy and
@@ -139,6 +148,7 @@ C        | 75          | 6           | 11           | 8           | 100
     a) Complete the test
     a) Write down you conclusion in non-statistical language
 ```
+-->
 
 
 
