@@ -53,6 +53,95 @@ library(knitr)
 
 
 
+<!----------------------------------------------------------------------------->
+# Lec37 - Mon 5/8: Least-Squares Line
+
+## Best Fitting Ling
+
+What does "best fitting line"" mean?
+
+<center><img src="assets/figure/residuals/lec24-002.png" alt="Drawing" style="width: 400px;"/></center>
+
+
+## Best Fitting Ling
+
+Consider ANY point (in blue). 
+
+<center><img src="assets/figure/residuals/lec24-004.png" alt="Drawing" style="width: 400px;"/></center>
+
+
+## Best Fitting Ling
+
+Now consider this point's deviation from the regression line.
+
+<center><img src="assets/figure/residuals/lec24-005.png" alt="Drawing" style="width: 400px;"/></center>
+
+
+## Best Fitting Ling
+
+Do this for another point...
+
+<center><img src="assets/figure/residuals/lec24-006.png" alt="Drawing" style="width: 400px;"/></center>
+
+
+## Best Fitting Ling
+
+Do this for another point...
+
+<center><img src="assets/figure/residuals/lec24-007.png" alt="Drawing" style="width: 400px;"/></center>
+
+
+## Best Fitting Ling
+
+Regression line minimizes the sum of **squared** arrow lengths.  
+
+<center><img src="assets/figure/residuals/lec24-008.png" alt="Drawing" style="width: 400px;"/></center>
+
+
+
+## Chalk Talk
+
+> * Residuals
+> * Review of Lec36 Learning Check outputs
+> * Regression viewed through the lens of *sampling*
+
+
+<!--
+
+## Residuals
+
+> * $y_i$ observed value: blue point
+> * $\widehat{y}_i$ fitted value: value on red line
+> * **Residual** $\epsilon_i = y_i - \widehat{y}_i$: length of arrow
+
+
+## Residuals
+
+* They're the error, the lack of fit, what's leftover.
+* It's the **noise** around the signal (regression line).
+* Punchline: We want there to be no systematic pattern in the residuals.
+
+> * The (population) regression line: $y = \beta_0 + \beta_1 x + \epsilon$
+> * When $\beta_1=0 \Longrightarrow$ no relationship between variables x and y
+> * The p-value for $\beta_1$ is based on:
+>     + $H_0: \beta_1=0$ vs
+>     + $H_A: \beta_1\neq 0$ 
+> * If CI for $\beta_1$ does not contain 0, it suggests a significant relationship between x and y.
+
+* Population regression line: 
+$$y = \beta_0 + \beta_1 x + \epsilon$$
+* Sample AKA fitted regression line based on points $(x_i, y_i)$ for $i=1, \ldots, n$:
+$$
+\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i
+$$
+
+-->
+
+
+
+
+
+
 
 
 
