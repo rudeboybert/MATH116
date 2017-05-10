@@ -54,7 +54,27 @@ library(knitr)
 
 
 <!----------------------------------------------------------------------------->
-# Lec37 - Mon 5/8: Least-Squares Line
+# Lec38 - Wed 5/10: Interpretation + Categorical Predictors
+
+## Chalk Talk for Today
+
+> * Continuing Regression Outputs: Lec36 Learning Check
+> * Categorical Predictors
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+# Lec37 - Mon 5/8: Least-Squares Line + Regression Output
 
 ## Best Fitting Ling
 

@@ -32,8 +32,8 @@ layout: default
 * Lec41 - Mon 5/15: **Midterm III Review** + Course Response Evals
 * Lec40 - Fri 5/12: Multiple Regression Part II
 * Lec39 - Thu 5/11: Multiple Regression
-* Lec38 - Wed 5/10: Interpretation + Categorical Predictors
-* Lec37 - Mon 5/8: Least-Squares Line
+* Lec38 - Wed 5/10: Categorical Predictors
+* Lec37 - Mon 5/8: Least-Squares Line + Regression Output
 * Lec36 - Thu 5/4: Correlation
 
 

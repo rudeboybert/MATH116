@@ -44,6 +44,65 @@ library(okcupiddata)
 
 
 <!----------------------------------------------------------------------------->
+# Lec38 - Wed 5/10: Categorical Predictors
+
+United Airlines is in the news a lot lately. Do they have bigger departure
+delays than their rivals? 
+
+```{r, eval=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(broom)
+library(nycflights13)
+data(flights)
+
+jan_31_flights <- flights
+```
+
+Using the starter code above
+
+1. Create a data frame `jan_31_flights` that consists of flights
+    + Only on January 31st
+    + Only flights for the following airlines: United Airlines (UA), American Airlines (AA)
+1. Create a visualization that illustrates the difference in departure delays
+between UA and AA. Which initially appears to have larger delays?
+1. What are the mean departure delays for both airlines?
+1. Run a linear regression with
+    + $y$ = departure delay (continuous/numerical variable)
+    + $x$ = carrier (categorical variable with two levels)
+1. Compare the two means in Step 3 with the regression results.
+
+```{r, eval=FALSE, echo=FALSE}
+jan_31_flights <- flights %>% 
+  filter(month == 1 & day == 31 & (carrier == "UA" | carrier == "AA"))
+
+ggplot(jan_31_flights, aes(x=carrier, y=dep_delay)) + 
+  geom_boxplot()
+
+jan_31_flights %>% 
+  group_by(carrier) %>% 
+  summarise(mean_dep_delay=mean(dep_delay, na.rm=TRUE))
+
+model <- lm(dep_delay~carrier, data=jan_31_flights)
+tidy(model)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec36 - Thu 5/4: Correlation
 
 ```{r, eval=FALSE, echo=TRUE}
