@@ -54,6 +54,96 @@ library(knitr)
 
 
 <!----------------------------------------------------------------------------->
+# Lec39 - Thu 5/11: Multiple Regression
+
+## Recall
+
+So far we've seen simple linear regression
+
+> * Simple means only one predictor/independent variable $x$
+> * Outcome/depedendent variable $y$
+> * $x$ can be either numerical or categorical
+
+
+
+## Recall
+
+In Lec 36 LC we saw the relationship between $x =$ dep delay &
+$y =$ arr delay for Alaska Airlines flights.
+
+```{r, echo=FALSE}
+library(nycflights13)
+data(flights)
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+```
+
+
+
+## Today
+
+> * Since we only have Alaska flights, the variable `carrier` doesn't vary.
+> * But now let's also consider Frontier Airlines (`carrier == F9`)
+
+So we have:
+
+> * $y =$ arrival delay
+> * $x_1 =$ departure delay (numerical variable)
+> * $x_2 =$ carrier (categorical variable with $k=2$ levels. In other words, carrier now varies.)
+
+
+
+## Today
+
+Is there a **difference in delays** between Alaska and Frontier?
+
+```{r, echo=FALSE}
+alaska_frontier_flights <- flights %>% 
+  filter(carrier == "AS" | carrier == "F9") %>% 
+  filter(dep_delay<250)
+
+ggplot(alaska_frontier_flights, aes(x=dep_delay, y=arr_delay, col=carrier)) +
+  geom_point()
+```
+
+
+
+## Today
+
+Is there a **difference in delays** between Alaska and Frontier?
+
+```{r, echo=FALSE}
+alaska_frontier_flights <- flights %>% 
+  filter(carrier == "AS" | carrier == "F9") %>% 
+  filter(dep_delay<250)
+
+ggplot(alaska_frontier_flights, aes(x=dep_delay, y=arr_delay, col=carrier)) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE, fullrange=TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec38 - Wed 5/10: Interpretation + Categorical Predictors
 
 ## Chalk Talk for Today

@@ -15,6 +15,33 @@ library(stringr)
 library(okcupiddata)
 library(knitr)
 
+## ---- echo=FALSE---------------------------------------------------------
+library(nycflights13)
+data(flights)
+alaska_flights <- flights %>% 
+  filter(carrier == "AS") %>% 
+  filter(!is.na(dep_delay) & !is.na(arr_delay))
+ggplot(data=alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+
+## ---- echo=FALSE---------------------------------------------------------
+alaska_frontier_flights <- flights %>% 
+  filter(carrier == "AS" | carrier == "F9") %>% 
+  filter(dep_delay<250)
+
+ggplot(alaska_frontier_flights, aes(x=dep_delay, y=arr_delay, col=carrier)) +
+  geom_point()
+
+## ---- echo=FALSE---------------------------------------------------------
+alaska_frontier_flights <- flights %>% 
+  filter(carrier == "AS" | carrier == "F9") %>% 
+  filter(dep_delay<250)
+
+ggplot(alaska_frontier_flights, aes(x=dep_delay, y=arr_delay, col=carrier)) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE, fullrange=TRUE)
+
 ## ---- echo=FALSE, message=FALSE------------------------------------------
 data(profiles)
 profiles <- profiles %>% 

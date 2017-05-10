@@ -44,6 +44,56 @@ library(okcupiddata)
 
 
 <!----------------------------------------------------------------------------->
+# Lec39 - Thu 5/11: Multiple Regression
+
+Using the starter code below, run a multiple regression of
+
+> * $y =$ arrival delay
+> * $x_1 =$ departure delay (numerical variable)
+> * $x_2 =$ carrier (categorical variable with $k=2$ levels. In other words, carrier now varies.)
+
+1. Interpret the resulting coefficients.
+1. Come up with an airline industry explanation on why the arrival delays for Alaska and Frontier may differ.
+
+```{r, eval=FALSE, echo=TRUE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(broom)
+library(nycflights13)
+data(flights)
+
+alaska_frontier_flights <- flights %>% 
+  filter(carrier == "AS" | carrier == "F9") %>% 
+  filter(dep_delay < 250)
+
+ggplot(alaska_frontier_flights, aes(x=dep_delay, y=arr_delay, col=carrier)) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE)
+```
+
+
+
+```{r, eval=FALSE, echo=FALSE}
+data(flights)
+
+alaska_frontier_flights <- flights %>% 
+  filter(carrier == "AS" | carrier == "F9") %>% 
+  filter(dep_delay < 250)
+
+model <- lm(arr_delay~dep_delay+carrier, data=alaska_frontier_flights)
+tidy(model, conf.int = TRUE)
+```
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------------------------------------->
 # Lec38 - Wed 5/10: Categorical Predictors
 
 United Airlines is in the news a lot lately. Do they have bigger departure
@@ -73,22 +123,61 @@ between UA and AA. Which initially appears to have larger delays?
     + $x$ = carrier (categorical variable with two levels)
 1. Compare the two means in Step 3 with the regression results.
 
-```{r, eval=FALSE, echo=FALSE}
-jan_31_flights <- flights %>% 
-  filter(month == 1 & day == 31 & (carrier == "UA" | carrier == "AA"))
 
+## Discussion
+
+Remember, to pick out UA and AA flights, you need the OR operator: for all rows
+where `carrier == UA` or  `carrier == AA`.
+
+```{r, eval=TRUE, echo=TRUE}
+jan_31_flights <- flights %>% 
+  filter(month == 1 & day == 31) %>% 
+  filter(carrier == "UA" | carrier == "AA")
+```
+
+As you now know, I'm a big fan of boxplots: comparisons across groups with a
+single line! In this case, the median delay for United appears to be higher!
+
+```{r, eval=TRUE, echo=TRUE}
 ggplot(jan_31_flights, aes(x=carrier, y=dep_delay)) + 
   geom_boxplot()
+```
 
+The mean departure delays below. We see that United is on average 15.665 -
+15.057 = 0.608 minutes later in their departures.
+
+```{r, eval=FALSE, echo=TRUE}
 jan_31_flights %>% 
   group_by(carrier) %>% 
   summarise(mean_dep_delay=mean(dep_delay, na.rm=TRUE))
-
-model <- lm(dep_delay~carrier, data=jan_31_flights)
-tidy(model)
-
+```
+```{r, eval=TRUE, echo=FALSE}
+jan_31_flights %>% 
+  group_by(carrier) %>% 
+  summarise(mean_dep_delay=mean(dep_delay, na.rm=TRUE)) %>% 
+  kable(digits=3)
 ```
 
+Let's fit the regression using a categorical predictor $x$
+
+```{r, eval=FALSE, echo=TRUE}
+model <- lm(dep_delay~carrier, data=jan_31_flights)
+tidy(model, conf.int = TRUE)
+```
+```{r, eval=TRUE, echo=FALSE}
+model <- lm(dep_delay~carrier, data=jan_31_flights)
+tidy(model, conf.int = TRUE) %>% 
+  kable(digits=3)
+```
+
+$\beta_{\mbox{carrierUA}}$ is 0.608! i.e. United has on average 0.608 minute
+bigger delays, just like we computed above! However notice:
+
+* The 95% confidence interval [-8.510, 9.726] includes 0! In other words, a
+differential of 0 is still plausible!
+* The p-value is very high! In other words, we would not reject $H_0$ i.e. there
+may still be a true difference in delays between United and American, but this
+data on January 31st doesn't suppor this claim.
 
 
 
