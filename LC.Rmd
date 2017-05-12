@@ -72,9 +72,16 @@ ggplot(alaska_frontier_flights, aes(x=dep_delay, y=arr_delay, col=carrier)) +
   geom_smooth(method="lm", se=FALSE)
 ```
 
+## Discussion 1
 
+Note: We are only investigating flights where the delay was not extreme (less
+than 250min). Let's look at the regression output:
 
-```{r, eval=FALSE, echo=FALSE}
+```{r, eval=FALSE, echo=TRUE}
+model <- lm(arr_delay~dep_delay+carrier, data=alaska_frontier_flights)
+tidy(model, conf.int = TRUE)
+```
+```{r, eval=TRUE, echo=FALSE}
 data(flights)
 
 alaska_frontier_flights <- flights %>% 
@@ -82,12 +89,85 @@ alaska_frontier_flights <- flights %>%
   filter(dep_delay < 250)
 
 model <- lm(arr_delay~dep_delay+carrier, data=alaska_frontier_flights)
-tidy(model, conf.int = TRUE)
+tidy(model, conf.int = TRUE) %>% 
+  kable(digits=3)
+```
+
+It appears that Frontier is on average 17min later than Alaska. Why? Let's dig
+deeper:
+
+```{r, eval=FALSE, echo=TRUE}
+alaska_frontier_flights %>% 
+  group_by(carrier, origin, dest) %>% 
+  summarise(count=n())
+```
+```{r, eval=TRUE, echo=FALSE}
+alaska_frontier_flights %>% 
+  group_by(carrier, origin, dest) %>% 
+  summarise(count=n()) %>% 
+  kable(digits=3)
 ```
 
 
 
+## Discussion 2
 
+What about `temp`? Does that impact `arr_delay`?
+
+```{r, eval=FALSE, echo=TRUE}
+data("weather")
+alaska_frontier_flights <- alaska_frontier_flights %>% 
+  left_join(weather, by=c("year", "month", "day", "hour", "origin"))
+
+model_2 <- lm(arr_delay~dep_delay+carrier+temp, data=alaska_frontier_flights)
+tidy(model_2, conf.int = TRUE)
+```
+
+```{r, eval=FALSE, echo=FALSE}
+alaska_frontier_flights <- alaska_frontier_flights %>% 
+  left_join(weather, by=c("year", "month", "day", "hour", "origin")) 
+
+med <- median(alaska_frontier_flights$temp, na.rm = TRUE)
+alaska_frontier_flights %>% 
+  mutate(high_temp = ifelse(temp > med, "Above Median Temp of 57F/13C", "Below Median Temp of 57F/13C")) %>% 
+  filter(!is.na(high_temp)) %>% 
+  ggplot(aes(x=dep_delay, y=arr_delay, col=carrier)) +
+  geom_point() +
+  facet_wrap(~high_temp)
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+data("weather")
+alaska_frontier_flights <- alaska_frontier_flights %>% 
+  left_join(weather, by=c("year", "month", "day", "hour", "origin")) 
+
+
+
+model_2 <- lm(arr_delay~dep_delay+carrier+temp, data=alaska_frontier_flights)
+tidy(model_2, conf.int = TRUE) %>% 
+  kable(digits=3)
+```
+
+
+
+## Discussion 3
+
+What about `temp` AND `humid`? Does that impact `arr_delay`?
+
+* **Recall**: In PS12, we showed that `temp` and `humid` are highly correlated.
+* In other words, they provide somewhat similar information.
+* **Question**: How much new information is added by considering `humid`?
+
+```{r, eval=FALSE, echo=TRUE}
+model_3 <- lm(arr_delay~dep_delay+carrier+temp+humid, data=alaska_frontier_flights)
+tidy(model_3, conf.int = TRUE)
+```
+```{r, eval=TRUE, echo=FALSE}
+model_3 <- lm(arr_delay~dep_delay+carrier+temp+humid, data=alaska_frontier_flights)
+tidy(model_3, conf.int = TRUE) %>% 
+  kable(digits=3)
+```
 
 
 
