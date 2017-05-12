@@ -128,12 +128,26 @@ alaska_frontier_flights <- alaska_frontier_flights %>%
   left_join(weather, by=c("year", "month", "day", "hour", "origin")) 
 
 med <- median(alaska_frontier_flights$temp, na.rm = TRUE)
-alaska_frontier_flights %>% 
+
+
+
+alaska_frontier_flights <- alaska_frontier_flights %>% 
   mutate(high_temp = ifelse(temp > med, "Above Median Temp of 57F/13C", "Below Median Temp of 57F/13C")) %>% 
-  filter(!is.na(high_temp)) %>% 
-  ggplot(aes(x=dep_delay, y=arr_delay, col=carrier)) +
-  geom_point() +
-  facet_wrap(~high_temp)
+  filter(!is.na(high_temp)) 
+
+means <- alaska_frontier_flights %>% 
+  group_by(carrier, high_temp) %>% 
+  summarise(mean=mean(arr_delay, na.rm=TRUE))
+
+means2 <- alaska_frontier_flights %>% 
+  group_by(high_temp) %>% 
+  summarise(mean=mean(arr_delay, na.rm=TRUE))
+
+ggplot(alaska_frontier_flights, aes(col=carrier)) +
+  geom_point(aes(x=dep_delay, y=arr_delay)) +
+  geom_hline(data=means, aes(col=carrier, yintercept=mean)) +
+  geom_hline(data=means2, aes(yintercept=mean), linetype="dashed") +
+    facet_wrap(~high_temp)
 ```
 
 
@@ -141,8 +155,6 @@ alaska_frontier_flights %>%
 data("weather")
 alaska_frontier_flights <- alaska_frontier_flights %>% 
   left_join(weather, by=c("year", "month", "day", "hour", "origin")) 
-
-
 
 model_2 <- lm(arr_delay~dep_delay+carrier+temp, data=alaska_frontier_flights)
 tidy(model_2, conf.int = TRUE) %>% 
