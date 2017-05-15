@@ -171,3 +171,22 @@ Electronic-Only Final Project Submission:
     1. All the above components are submitted
     1. I give you confirmation on Slack that everything looks good.
 * **Honor Code**: This is the equivalent of an academic term paper; all honor code rules about plagarism and citations apply.
+
+**Hint**: The `kable()` function from the `knitr` package is useful for outputting tables in a clean format. For example:
+
+```{r, echo=TRUE}
+library(knitr)
+example <- data_frame(
+  x = c("A", "B", "C"),
+  y = c(1, 2, 3),
+  z = c(2, 3, 4)
+)
+example %>% 
+  kable(digits=3)
+```
+
+instead of raw code output
+
+```{r, echo=TRUE}
+example
+```
