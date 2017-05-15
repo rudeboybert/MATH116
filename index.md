@@ -18,7 +18,7 @@ layout: default
 ## Exam Week Schedule
 
 * Office Hours: Mon 5/15 1pm-4pm
-* Office Hours: Tue 5/16 9am-2pm. Only sporadic access to Slack until Midterm III.
+* Office Hours: Tue 5/16 9am-12pm and 1pm-2pm. Only sporadic access to Slack until Midterm III.
 * Midterm III: Fri 5/19 7pm-10pm in Warner 506
 * Office Hours: Sun 5/21 1pm-5pm
 * Office Hours: Mon 5/22 1pm-5pm
