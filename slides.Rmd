@@ -52,6 +52,81 @@ library(knitr)
 
 
 
+<!----------------------------------------------------------------------------->
+# Lec41 - Mon 5/15: Midterm III Review
+
+## Administrative
+
+* Fri 5/19 7pm-10pm in Warner 506
+* Not a final, but 3rd midterm. Timed at ~1h15m to 1h30m
+* Bring your cheatsheets
+* Bring a calculator or your smart phone with calculator app
+
+
+## Philosophy
+
+* More conceptual in nature
+* Code:
+    + Reading/understanding: Fair game
+    + Writing: No direct code to write, but **pseudocode**
+* Normal curve of distribution of difficulty
+
+
+## Sources
+
+* Lectures 01 through 38 inclusive and cummulative
+    + Slides from each lecture
+    + Learning Checks
+    + Problem set solutions!
+
+
+## Major Topics: Midterm I
+
+* Tidy data. What are the components?
+* What is the Grammar of Graphics? How do they tie in with `ggplot2`?
+* What are the first four of the 5NG? What are their distinguishing features?
+
+
+## Major Topics: Midterm II
+
+* All five of the 5NG
+* Data manipulation/wrangling
+    + 5MV + `join`
+    + Putting it all together: <a target="_blank" class="page-link" href="https://rudeboybert.github.io/MATH116/notes.html#lec18_-_fri_324:_the_tao_of_data_analysis">Lec18 - Fri 3/24: The tao of data analysis</a>.
+* Sampling, probability, confounding variables, and designed experiments.
+
+
+## Major Topics: Midterm III
+
+* Hypothesis testing
+    + Lady tasting tea.
+    + There is only one test; it has 5 components.
+* Confidence intervals
+    + Theory: Sampling distribution and standard errors
+    + Interpretation of CI
+    + If sampling distribution is normal, the general formula for creating a 95% C.I.
+
+
+## Major Topics: Midterm III
+
+* Regression
+    + Regression line is best fitting line in what sense?
+    + Interpret ALL regression table outputs
+    + Study residuals
+    + Categorical variables
+    + ~~Multiple Regression~~
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!----------------------------------------------------------------------------->
 # Lec39 - Thu 5/11: Multiple Regression

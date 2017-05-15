@@ -41,7 +41,10 @@ collaborations must be explicitly acknowledged at the top of your submissions**.
     1. Simple linear regression viewed through the lens of sampling:
         + Confidence intervals
         + Hypothesis testing
-
+* **Discussion/Solutions**: Can be found in both
+    * The master <a target="_blank" class="page-link" href="{{ site.baseurl }}/PS/PS.html">HTML file</a>.
+    * R Markdown file specific to PS12 <a href="{{ site.baseurl }}/PS/PS-12_discussion.Rmd"
+    target="_blank">`PS-12_discussion.Rmd`</a>
 
 
 
