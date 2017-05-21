@@ -165,8 +165,7 @@ Electronic-Only Final Project Submission:
         Knitting your HTML file, click the blue "Publish" button on the top
         right of the HTML page and follow all instructions.
     1. Individually:
-        a) A Google Forms survey, which I will post both here and on Slack under
-        `#announcements` on Monday 5/22 at 11am
+        a) A Google Forms exit survey, posted <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSc_B1J1bayDXp0IOv4UM6yBY_6ELj4qroZOD99PJt7M-9pLSA/viewform">here</a>.
 * **Important**: Your project won’t be considered submitted until
     1. All the above components are submitted
     1. I give you confirmation on Slack that everything looks good.

@@ -23,6 +23,11 @@ layout: default
 * Office Hours: Sun 5/21 1pm-5pm
 * Office Hours: Mon 5/22 1pm-5pm
 * Final Project Due: Tue 5/23 12pm. See Final Project <a href="{{ site.baseurl }}/PS/final_project/final_project_outline.html#3_final_project_submission" target="_blank">Guidelines</a>.
+* Exit survey posted <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSc_B1J1bayDXp0IOv4UM6yBY_6ELj4qroZOD99PJt7M-9pLSA/viewform">here</a>.
+
+
+
+
 
 
 
