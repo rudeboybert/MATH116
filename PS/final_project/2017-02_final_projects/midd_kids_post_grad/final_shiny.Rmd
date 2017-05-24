@@ -1,0 +1,443 @@
+---
+title: "Where Should MiddKidds Live After Graduation?"
+author: "Claire White-Dzuro, Clare Robinson and Dylan Mortimer"
+date: "5/20/2017"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(stringr)
+library(tidyr)
+library(mosaic)
+library(knitr)
+library(stringr)
+library(lubridate)
+```
+
+So you just graduated from college. Congrats! Now what? Unless you found a sweet job on campus, so you never have to leave, you are probably looking to relocate. But where should you go? There are a number of different factors to consider when deciding where to live including the age of the city, cost of rent, unemployment rate and the amount of nightlife. To help make this decision, we chose eight big cities across the US that MiddKidds often live in (Boston, Chicago, Houston, Los Angeles, New York City, Philadelphia, San Francisco and Seattle) and compared them using the criteria listed above and a few others to determine which city really is the best place to live in after you graduate from college. 
+
+# Education
+
+In any city, it may be important to you to be surrounded by individuals that are equally as educated as you are (or more educated!). Across all the cities, we compared the proportion of individuals 25 and older that have at least some college education.
+
+__Proportion of Population 25 and Older with Some College__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+civdata_stats <- read_csv("civdata_stats.csv")
+drinkingdata <- read_csv("drinkingdata.csv")
+crimedata <- read_csv("crimedata.csv")
+
+civdata_stats <- civdata_stats %>% 
+  mutate(some_college_or_more= `Population 25 Years and Over: Some college` +`Population 25 Years and Over: Bachelor's degree`+ `Population 25 Years and Over: Master's degree` + `Population 25 Years and Over: Professional school degree` + `Population 25 Years and Over: Doctorate degree`) %>% 
+  mutate(`Proportion of Population 25 Years and Over: At Least Some college`= some_college_or_more/ `Population 25 Years and Over:`)
+
+education_graph <- civdata_stats %>% 
+  ggplot(aes(x=reorder(`Qualifying Name`, `Proportion of Population 25 Years and Over: At Least Some college`), y=`Proportion of Population 25 Years and Over: At Least Some college`,fill = `Qualifying Name`)) + geom_col()+ labs(y="Proportion") +labs (x="") + guides(fill=FALSE)
+
+education_graph
+
+```
+
+From the graph above, it is evident that Seattle, San Francisco and New York City (Manhattan) are the most educated cities with 76.9%, 74.8% and 74.7% of their 25 and older population having obtained at least some college education respectively. Philadelphia is the least educated with only half of their 25 and older population having obtained some college education. This is not suprising seeing as Philadelphia is a poorer city in comparison to Manhattan and Seattle with cheaper property value and a lower median income. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+education_table <- civdata_stats %>% 
+  select(`Qualifying Name`, `Proportion of Population 25 Years and Over: At Least Some college`) %>% 
+  arrange(desc(`Proportion of Population 25 Years and Over: At Least Some college`))
+
+kable(education_table, digits=3)
+```
+
+# Age Data
+
+If you just graduated from college, you are likely in your early 20s (or late 20s- no judgement here). When moving to a new city, you may want to consider finding other people who are in the same stage of life/same age. For this reason, we decided to compare the amount of individuals in each city in four different age brackets: 18-24, 25-34, 35-44 and 45-54 years old.  Feel free to scroll through the different age brackets to see how the cities compare at each age range.
+
+__Graph of Age Bracket Totals__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+civdata_stats_2 <- civdata_stats %>% 
+  select(`Qualifying Name`,`Total Population: 18 to 24 Years`,`Total Population: 25 to 34 Years`, `Total Population: 35 to 44 Years`, `Total Population: 45 to 54 Years`) %>% 
+  gather("age_bracket", "counts", -`Qualifying Name`) %>% 
+  arrange(`Qualifying Name`, age_bracket)
+
+inputPanel(
+ selectInput("age_bracket", label = "Age Bracket:",
+              choices = c("Total Population: 18 to 24 Years","Total Population: 25 to 34 Years", "Total Population: 35 to 44 Years", "Total Population: 45 to 54 Years"), selected = "Total Population: 18 to 24 Years"))
+
+renderPlot({
+  civdata_stats_2 %>%
+    filter(age_bracket == input$age_bracket) %>%
+    ggplot(aes(x=`Qualifying Name`, y=counts, fill=`Qualifying Name`)) +
+    geom_col(position="dodge") + 
+    labs(y = "Age Counts") + labs(x = "") + 
+    theme(legend.position="none") + 
+    coord_flip()
+  })
+
+```
+
+This graph shows the counts of the population of each city in age brackets from 18-24 through to 45-54 years old. Since it has not been manipulated to take into account population size, essentially all this graph can really show us is that the county we looked at in Los Angeles has a very large population. We can adjust our x variable to a proportion rather than a count in order to get a better idea of how the cities compare.
+
+
+
+__Graph of Age Bracket Percentages__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+civdata_stats_3 <- civdata_stats %>% 
+  select(`Qualifying Name`,`Total Population:`,`Total Population: 18 to 24 Years`,`Total Population: 25 to 34 Years`, `Total Population: 35 to 44 Years`, `Total Population: 45 to 54 Years`) %>% 
+  gather("age_bracket", "counts", -`Qualifying Name`,-`Total Population:`) %>% 
+  arrange(`Qualifying Name`, age_bracket) %>% 
+  mutate(age_pct = counts/`Total Population:`)
+
+
+inputPanel(
+ selectInput("age_bracket2", label = "Age Bracket:",
+              choices = c("Total Population: 18 to 24 Years","Total Population: 25 to 34 Years", "Total Population: 35 to 44 Years", "Total Population: 45 to 54 Years"), selected = "Total Population: 18 to 24 Years"))
+
+renderPlot({
+  civdata_stats_3 %>%
+    filter(age_bracket == input$age_bracket2) %>%
+    ggplot(aes(x=`Qualifying Name`, y=age_pct, fill=`Qualifying Name`)) +
+    geom_col(position="dodge") + 
+    labs(y = "Age Percentages") + 
+    labs(x = "") +
+    theme(legend.position="none") + 
+    coord_flip()
+  })
+```
+In this graph we can see that Los Angeles is actually considerably older than the rest of the cities. Boston, New York, and San Francisco look to be the youngest cities, at least in the 25-34 age bracket. We can confirm our visual interpretation with the following table.
+
+
+__Table of Cities ordered by Percentage of Population in 25 to 34 Age Bracket__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+conclusion_table <- civdata_stats %>% 
+  mutate(`Percentage Aged 18 to 34` = (`Total Population: 25 to 34 Years` + 
+           `Total Population: 18 to 24 Years`)/`Total Population:`) %>% 
+  mutate(`Percentage Aged 25 to 34` = (`Total Population: 25 to 34 Years`/`Total Population:`)) %>% 
+  select(`Qualifying Name`, `Percentage Aged 18 to 34`,`Percentage Aged 25 to 34`) %>% 
+  arrange(desc(`Percentage Aged 25 to 34`))
+
+kable(conclusion_table)
+
+
+
+```
+
+
+This table shows the cities ranked descending by the percentage of the population 25-34 years old. It also shows the percentages of the population of each city in between 18 and 34 years old. San Francisco, Boston, and New York are the youngest, with about a third of the population in that range and 4% more of their population in the 25-34 age bracket than the next closest city. As well, the cities' 25-34 age bracket percentage is also about 8% greater than the lowest value, belonging to Los Angeles. 
+
+# Commute Data
+
+When deciding where to move to after college, the commute to work plays a big role for some graduates. You can see in the graph below that depending on the city you’re interested in there is a variety of commuters that commute anywhere from less than 10 minutes, to more than 90 minutes. For the majority of graduates, we are assuming that the goal is to have the shortest commute possible (but understand that this does not hold true for everyone). 
+
+__Graph of Lengths of Commute by City__
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+commute_data <- read_csv("commute_data.csv")
+
+commute_join <- commute_data %>% 
+  select(`Qualifying Name`,`Less than 10 Minutes`, `20 to 29 minutes`, `60 to 89 Minutes`, `90 or more minutes`) %>% 
+  gather("Commute", "Number of Commuters", -`Qualifying Name`) %>% 
+  arrange(`Qualifying Name`, `Commute`)
+
+commute_join2 <- commute_join %>% 
+  group_by(`Qualifying Name`) %>% 
+  summarize(`Total Commuters`= sum(`Number of Commuters`))
+
+full_commute <- commute_join2 %>% 
+  left_join(commute_join, by = "Qualifying Name") %>% 
+  mutate(prop_commute= `Number of Commuters`/`Total Commuters`)
+  
+
+ggplot(full_commute, aes(x = `Qualifying Name`, y = prop_commute, fill = `Commute`)) +
+  geom_col(position="dodge") + coord_flip() + labs(y= "Proportion of Commuters")
+
+```
+
+This graph shows that each city has a number of individuals in each commute time category. In Seattle or New York for instance, the majority of people only commute about 20 to 29 minutes, and a very small percentage commutes more than 90 minutes. Across the board, however, all the cities are relatively comparable and almost all follow the same pattern, having the highest proportion of commuters in the 20-29 min range, fewer in the 60 to 89 min range, even less with of a commute of fewer than 10 mins and the lowest proportion having a commute of 90 or more minutes. If you are looking for a city with a shorter commute, Seattle, New York or Houston is the place for you. On the other hand, if commuting is not something that stresses you out in the morning or you even enjoy, San Francisco has the highest proportion of commuters that travel for 90 minutes or more.
+
+However, in 2016 Forbes published an article of the Top 20 Cities for Commuters and none of the cities we are comparing were on the list. So while relatively we can rank the cities, it is important to understand that in the bigger picture, none of them are considered ideal for commuters.
+
+__Table of Cities ordered by Percentage of Commutes less than 30 Minutes Long__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+commute_table <- commute_data %>% 
+  left_join(full_commute,by = "Qualifying Name") %>% 
+  select(`Qualifying Name`,`Less than 10 Minutes`, `20 to 29 minutes`,`Total Commuters`) %>%
+  distinct()%>% 
+  mutate(`Proportion of Commuters with Commutes Under 30 Minutes` = (`Less than 10 Minutes` + `20 to 29 minutes`)/`Total Commuters`) %>% 
+  arrange(desc(`Proportion of Commuters with Commutes Under 30 Minutes`))
+
+kable(commute_table)
+
+```
+
+This table summarizes the number of commuters with both a commute of less than 10 mins and a commute of 20-29 minutes as well as the total number of commuters. This can show you the sheer number of people that will be commuting with you, which could be an indication of the amount of traffic or congestion on both the roads or train/subway! Lastly, it is ranked in descending order of the proportion of the commuters that have a commute of less than 30 minutes. 
+
+# Nightlife Data
+
+For many, a prime consideration when deciding where to live is what a city has to offer in terms of nightlife. The following visual shows the number of establishments with certain ranges of employees, providing infomation about the club or bar's size and popularity. This can show both how many establishments there are for drinking, as well as how frequented they are. 
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+nightlife_data <- drinkingdata %>%
+  rename(qualifying_name=`Qualifying Name`, 
+         `1-4`= `Number of Establishments with 1 to 4 Employees: Food Services and Drinking Places`,
+         `5-9`= `Number of Establishments with 5 to 9 Employees: Food Services and Drinking Places`, 
+         `10-19`= `Number of Establishments with 10 to 19 Employees: Food Services and Drinking Places`,
+         `20-49`= `Number of Establishments with 20 to 49 Employees: Food Services and Drinking Places`,
+         `50-99`= `Number of Establishments with 50 to 99 Employees: Food Services and Drinking Places`,
+         `100-249`= `Number of Establishments with 100 to 249 Employees: Food Services and Drinking Places`,
+         `250-499`= `Number of Establishments with 250 to 499 Employees: Food Services and Drinking Places`,
+         `500-999`= `Number of Establishments with 500 to 999 Employees: Food Services and Drinking Places`) %>% 
+  select(qualifying_name, `1-4`, `5-9`, `10-19`, `20-49`, `50-99`, 
+         `100-249`) %>% 
+  gather('num_employees', "count", -qualifying_name) %>% 
+  arrange(qualifying_name, num_employees) %>% 
+  mutate(
+    num_employees = factor(num_employees, 
+                           levels =c("1-4", "5-9", "10-19", "20-49", "50-99", "100-249"))
+  )
+
+
+ggplot(nightlife_data, aes(x=num_employees, y=count, fill=qualifying_name)) + geom_col(position="dodge") + labs(x="Number of Employees")
+
+```
+
+If you are a partier at heart and aren't ready to give it up post-college, Los Angeles or Chicago is the city for you. LA specifically has almost double the number of places available in each number of employees range in comparison to the other cities. 
+
+However, if you are ready to leave those days behind you once you receieve your diploma and are looking for a quieter city to post up in, then Philadelphia, Boston or San Francisco may be the best fit since they seem to have fewer places available for drinking than the other cities. 
+
+# Entertainment Data
+
+Much in the same vain as nightlife, the amount of things to do for fun in a city during the day should be an important consideration in deciding where to live. The following graph shows the same data as above but for Art, Entertainment, and Recreation.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+entertainment_data <- drinkingdata %>%
+  rename(qualifying_name=`Qualifying Name`, `1-4`= `Number of Establishments with 1 to 4 Employees: Arts, Entertainment, and Recreation`,
+         `5-9`= `Number of Establishments with 5 to 9 Employees: Arts, Entertainment, and Recreation`, 
+         `10-19`= `Number of Establishments with 10 to 19 Employees: Arts, Entertainment, and Recreation`,
+         `20-49`= `Number of Establishments with 20 to 49 Employees: Arts, Entertainment, and Recreation`,
+         `50-99`= `Number of Establishments with 50 to 99 Employees: Arts, Entertainment, and Recreation`) %>% 
+  select(qualifying_name, `1-4`, `5-9`, `10-19`, `20-49`, `50-99`) %>% 
+  gather("num_employees", "count", c(2:6)) %>% 
+  arrange(qualifying_name, num_employees) %>% 
+  mutate(num_employees = factor(num_employees, 
+                         levels =c("1-4", "5-9", "10-19", "20-49", "50-99")))
+
+
+ggplot(entertainment_data, aes(x=num_employees, y=count, fill= qualifying_name)) + geom_col(position="dodge") + labs(x= "Number of Employees")
+
+```
+
+According to our results, Los Angeles, once again, looks to significantly lead the way in Entertainment with New York (Broadway!) and Chicago following. This is not suprising as Los Angeles is known an integral city for the film and music industry. Forbes ranked it the number one city for Entertainment, Media and PR jobs.  Apart from those three cities, the differences in entertainment options between the rest of the cities appears to be fairly negligible.
+
+# Unemployment
+
+
+
+As we leave college, we all hope to have a number of job offers lined up to pick from, but I'm sure many of you know that this is more often a dream than a reality. If you don't have a job, this section may be an important one to consider. Even if you do have a job, unemployment is a very important factor in choosing a city because it often is a good indicator for quality of life. As well, you don't want to end up in a city with a dried up job market in case your job falls through or you chose to change fields. 
+
+__Graph of City Unemployment Rates__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+civ_data_employment <- civdata_stats %>% 
+  mutate(unemployment_rate = `Civilian Population in Labor Force 16 Years and Over: Unemployed`/`Total Population:`) %>% 
+  arrange(unemployment_rate)
+
+unemployment <- ggplot(data = civ_data_employment, aes(x = reorder(`Qualifying Name`,unemployment_rate),y = unemployment_rate,fill = `Qualifying Name`)) + geom_col()
+unemployment + labs(x = "") + labs(y = "Unemployment Rate") + guides(fill=FALSE)
+
+```
+
+
+This graph shows the cities ranked in terms of Unemployment Rate. Seattle, Houston and San Francisco have the lowest unemployment rates around or just under 0.3 while Philadelphia has the highest at a rate of over 0.05.
+
+
+# Rent/Property Value
+
+
+
+Being a recent graduate, you are likely looking to rent a place in whatever city you live in. Rent costs can vary dramatically depending on the city. 
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+Rent_2006 <- read_csv("Rent_2006.csv")
+Rent_2008 <- read_csv("Rent_2008.csv")
+Rent_2010 <-  read_csv("Rent_2010.csv")
+Rent_2012<- read_csv("Rent_2012.csv")
+
+rent_full <- Rent_2006 %>%
+  left_join(Rent_2008, by = "Name of Area")
+rent_one <- rent_full %>%
+  left_join(Rent_2010, by = "Name of Area")
+rent_two <- rent_one %>%
+  left_join(Rent_2012, by = "Name of Area")
+
+rent_three <- civdata_stats %>%
+  left_join(rent_two, by = "Name of Area") %>%
+  rename(`Median Gross Rent 2015` = `Median Gross Rent`)
+
+rent_join <- rent_three %>% 
+  select(`Qualifying Name`,`Median Gross Rent 2015`,`Median Gross Rent 2012`, `Median Gross Rent 2010`, `Median Gross Rent 2008`, `Median Gross Rent 2006`) %>% 
+  gather("Year", "Median Rent", -`Qualifying Name`) %>% 
+  arrange(`Qualifying Name`, `Year`)
+
+
+rent_join <- rent_join %>% 
+  mutate(
+    Date = str_sub(Year, start=-5),
+    Date = paste(Date, "-01-01", sep=""),
+    Date = ymd(Date)
+    )
+
+ggplot(data = rent_join, mapping = aes(x = Date, y = `Median Rent`, col=`Qualifying Name`)) + geom_line() + labs(x = "Year") + labs(y= "Median Rent per Month")
+
+```
+ 
+After looking at each city and their median rent prices between 2006 and 2015, it is clear that the median rent price in all cities has been steadily increasing since 2006. If you’re looking for a relatively less expensive city, some notable cities include Philadelphia, Houston, and Chicago since their median gross rent has only increased slightly and they had the lowest average rent in 2015. This is directly related to the fact that these cities have lower property value on average. If rent is not a concern adn you’re looking for a higher end city, San Francisco, New York or Boston have all experienced a large increase in median gross rent and as of 2015 had the highest average rent.
+
+Time Magazine confirmed these findings in an article posted in 2016 called "10 Most Expensive Cities to be a Renter". In the article, San Fransisco was ranked number 1, followed by New York and then Boston. At the #7 posistion was LA, followed by Chicago at #9 and Seattle at #10. This ranking is almost identical to the ranking of our data except for Chicago and Seattle. As well, it is important to note that the median cost is much higher than in the data we observed; however, this makes sense since the data used for the article was taken a year later as housing prices continued to increase. 
+
+
+
+
+In 2015, the median rent values were as follows:
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+rent_table <- rent_join%>% 
+  filter(Year== "Median Gross Rent 2015") %>% 
+  select(`Qualifying Name`, `Median Rent`) %>% 
+  arrange((`Median Rent`))
+
+kable(rent_table)
+```
+
+# Crime Data
+
+Our final criteria to consider is crime. In any city that you live in, it is important that you feel safe and comfortable. The graph below shows both the Violent and Property Crime Rate in each city per 100,000 people. 
+
+__Graph of Crime Rates (per 100,000 people) by City__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+crime_data_better <- crimedata %>%
+  rename(qualifying_name  = `Qualifying Name`, violent_crimes =`Total Violent Crimes Rate`, property_crimes =
+           `Total Property Crimes Rate`) %>% 
+  select(qualifying_name, violent_crimes, property_crimes) %>% 
+  rename(`Violent Crimes` = violent_crimes,`Property Crimes` = property_crimes) %>% 
+  gather("type", "count", c(2:3)) %>% 
+  mutate(rate=count/100000)
+
+inputPanel(
+ selectInput("type", label = "Type of Crime:",
+              choices = c("Property Crimes", "Violent Crimes"), selected = "Property Crimes"))
+
+renderPlot({
+  crime_data_better %>% 
+    filter(type == input$type) %>% 
+    ggplot(aes(x=reorder(qualifying_name, rate), y=rate, fill=qualifying_name)) +
+    geom_col(position="dodge") + labs(y = "Rate") + labs(x = "") + guides(fill=guide_legend(title="Crime Type"))})
+```
+
+Our results show that property crimes are much more prominent than violent crimes in all cities. The cities with the highest property crime rate are San Francisco, Seattle and Houston while the cities with the lowest were New York and Los Angeles. For violent crime, Philadelphia, San Francisco and Boston have the highest rates while Seattle and LA have the lowest. However, across all cities, the violent crime rates are significantly more similar, with a difference of around 0.007 between Seattle (lowest) and Philadelphia (highest) than the propery crime rates, with a difference of 0.04 between New York City (lowest) and San Francisco (highest). 
+
+As well, with the number of crime televison shows based in New York, you may be suprised by this data. However, we are only looking at New York County in New York which consists of only one of the five buroughs: Manhattan, which likely has the best security in buildings, limiting the number of property crimes.   
+
+Since violent crime rates were so similar across the cities, it was not a significant factor in ranking the cities based on how safe they were. In future years, however, violent crime rates may become a more important factor when choosing a place to live as both The Economist and Time article indicated that violent crime rates have been steadily increasing since 2015 when the "national homicide rate jumped by 11%" (The Economist). In this change, some cities, for example, Chicago, were affected more and have become increasingly unsafe as compared to others. This would likely become a more important factor to consider when choosing a home in future years, even though 2015 data does not show it to be. 
+
+
+The tables below shows the particular crime rate values. 
+
+__Table of Cities ordered by Property Crime Rates (per 100,000 people)__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+property_table <- crimedata %>% 
+  select(`Qualifying Name`,`Total Property Crimes Rate`) %>% 
+  mutate(`Property Crimes Rate` = `Total Property Crimes Rate`/100000) %>% 
+  select(`Qualifying Name`,`Property Crimes Rate`) %>% 
+  arrange(`Property Crimes Rate`)
+kable(property_table)
+```
+
+__Table of Cities ordered by Violent Crime Rates (per 100,000 people)__
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+violent_table <- crimedata %>% 
+  select(`Qualifying Name`,`Total Violent Crimes Rate`) %>% 
+  mutate(`Violent Crimes Rate` = `Total Violent Crimes Rate`/100000) %>% 
+  select(`Qualifying Name`,`Violent Crimes Rate`) %>% 
+  arrange(`Violent Crimes Rate`)
+kable(violent_table)
+
+```
+
+# Summary
+
+Below is a summary of all of our results. We have chosen weights for each criteria based on our own ideology about what the most important factors are when choosing a city and ranked the cities based on the data of each criteria. 
+
+Here are a list of the assumptions we used when making this chart:
+
+    1. A more educated city is better
+    
+    2. A younger city (25-34 yr old range) is preferable
+    
+    3. A shorter commute is ideal
+    
+    4. The more nightlife (clubs/bars) the better
+    
+    5. The more entertainment the more enjoyable the city
+    
+    6. A city with less unemployment is superior
+    
+    7. Cheaper rent is desirable
+    
+    8. Lower crime is preferred
+    
+If any of these assumptions do not hold true for you then this chart may not be able to accurately depict the best city for you!
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+
+weighted_table <- read_csv("data_table.csv")
+
+kable(weighted_table)
+```
+
+Based on these results, New York is the best place to live, followed closely by Seattle and Los Angeles. While New York was only ranked #1 in one category (crime or lack there of), it was highly ranked across almost all criteria, rent excluded, resulting in its high score. 
+
+
+If you do not agree with the weights we assigned to the different criteria, feel free to click on the following Google Spreadsheet and change the weightings so that they fit your own ideas about what is important in a city. The totals will be recalculated based on those weightings. 
+    
+https://docs.google.com/spreadsheets/d/1LP2ZY4i-29b_7tqAGl_gAHxAjrE0yciMCKBrKy2DhfY/edit?usp=sharing
+
+# Supplementary Information
+
+The majority of the data used was collected from 2015, exluding the rent data which spanned over multiple years, using Social Explorer. Since the data was in county form and there was no way to get information about the entire city, we chose one county in each city that we felt was a best representation of the downtown portion of the city and analyzed the data specific to that county.
+
+Here are the following city-county pairings we chose: Los Angeles-Los Angeles County; San Fransisco-San Francisco county; Chicago-Cook County; Boston-Suffolk County; New York City-New York County (Manhattan); Philadelphia-Philadelphia County; Houston-Harris County; and Seattle-King County.   
+
+
+# Sources
+
+1. Forbes Article About Entertainment https://www.forbes.com/sites/jeffkauflin/2017/03/21/the-best-cities-for-entertainment-media-and-p-r-jobs/#1f733094d508
+
+2. Time Magazine Article About Rent http://time.com/money/4287132/most-expensive-cities-to-rent/
+
+3. Forbes Article About Commuting https://www.forbes.com/sites/katiesola/2016/04/08/here-are-the-20-best-cities-for-commuters/#52d6cb2c5cea
+
+4. The Economist Article About Violent Crime http://www.economist.com/blogs/graphicdetail/2017/02/daily-chart-3
+
+5. Time Article About Violent Crime http://time.com/4651122/homicides-increase-cities-2016/
+
+6. Population and Age Data Table Source http://www.socialexplorer.com/tables/ACS2015
+
+7. Crime Data Table Source http://www.socialexplorer.com/tables/FBI15
+
+

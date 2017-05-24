@@ -1,0 +1,30 @@
+County Code,County,# Days with AQI,Good,Moderate,Unhealthy for Sensitive Groups,Unhealthy,Very Unhealthy,AQI Maximum,AQI 90th Percentile,AQI Median,# Days CO,# Days NO2,# Days O3,# Days SO2,# Days PM25,# Days PM10,State
+36001,"Albany County, NY",365,297,67,1,,,107,56,37,1,,239,,125,,NY
+36005,Bronx,365,217,142,6,,,136,71,46,,75,148,,142,,NY
+36013,"Chautauqua County, NY",364,304,55,5,,,126,58,38,,,333,2,29,,NY
+36027,"Dutchess County, NY",365,344,19,2,,,133,46,33,,,358,7,,,NY
+36029,"Erie County, NY",365,238,123,4,,,119,65,45,,20,155,,190,,NY
+36031,"Essex County, NY",365,336,29,,,,100,49,39,,,344,,21,,NY
+36033,"Franklin County, NY",359,342,13,4,,,119,45,27,,61,200,98,,,NY
+36041,"Hamilton County, NY",362,345,17,,,,90,46,33,,,359,3,,,NY
+36043,"Herkimer County, NY",364,355,9,,,,84,44,33,,,360,4,,,NY
+36045,"Jefferson County, NY",364,345,19,,,,90,47,32,,,364,,,,NY
+36047,Kings,365,289,76,,,,86,56,32,,,,,365,,NY
+36055,"Monroe County, NY",365,294,71,,,,93,58,37,,13,182,1,169,,NY
+36059,"Nassau County, NY",364,310,54,,,,78,54,25,,,,11,353,,NY
+36061,New York,365,215,146,4,,,122,68,46,,,131,,234,,NY
+36063,"Niagara County, NY",222,202,19,1,,,101,50,36,,,222,,,,NY
+36065,"Oneida County, NY",365,316,49,,,,71,54,27,,,,,365,,NY
+36067,"Onondaga County, NY",365,309,56,,,,93,55,35,,,264,1,100,,NY
+36071,"Orange County, NY",365,308,53,4,,,147,56,36,,,237,,128,,NY
+36075,"Oswego County, NY",305,293,11,1,,,115,45,32,,,305,,,,NY
+36079,"Putnam County, NY",365,338,25,2,,,140,47,33,,,362,3,,,NY
+36081,Queens,365,251,109,5,,,136,68,42,,66,166,,133,,NY
+36085,Richmond,365,243,112,10,,,150,74,43,,,181,,184,,NY
+36087,"Rockland County, NY",365,293,67,5,,,143,61,38,,,255,,110,,NY
+36091,"Saratoga County, NY",359,342,16,1,,,105,46,32,,,359,,,,NY
+36101,"Steuben County, NY",356,323,33,,,,80,50,34,1,,252,,103,,NY
+36103,"Suffolk County, NY",365,279,72,14,,,150,67,41,,,257,,108,,NY
+36109,"Tompkins County, NY",351,332,19,,,,93,48,35,,,351,,,,NY
+36117,"Wayne County, NY",357,345,12,,,,93,44,33,,,357,,,,NY
+36119,"Westchester County, NY",365,290,66,9,,,140,61,38,,,228,,137,,NY

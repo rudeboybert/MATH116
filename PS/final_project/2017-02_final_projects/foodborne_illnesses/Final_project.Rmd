@@ -1,0 +1,516 @@
+---
+title: "Foodborne Illness Trends in America: To Fear or not to Fear?"
+author: "Joe O'Brien, Conor Himstead, Rebecca Lightman"
+output: html_document
+---
+
+As the school year winds to a close, students look forward to one particular joy of home: food. The foods of home, of vacation locations, and of favorite restaurants all offer motivation to get through finals. One of these old favorite restaurants is Chipotle. With only one Vermont location, many students are unable to get their Chipotle fix until they get home. However, the ghosts of its 2015 foodborne illness outbreaks still haunt it as some old patrons still refuse to dine there. Some might say that the response to these outbreaks, a relatively common problem, was overblown. They occur in all kinds of restaurants as well as at home, in the office, and at community events. This brings one to question how common are these outbreaks really, both now and in the past? Are any Middkids going home or on vacation for the summer to an especially high-risk state? As seniors graduate and head off into the real world, which states should they dine most warily in? And how has foodborne illness and the response to it changed?
+
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+library(dplyr)
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(broom)
+library(knitr)
+library(stringr)
+
+outbreaks <- read_csv("outbreaks.csv")
+
+population<-read_csv('pop_data.csv')
+ 
+
+pop2<-read_csv('pop_data.csv') # %>% 
+
+
+# To analyze foodborne illness trends throughout the country from 1998-2015
+
+population<-population %>% 
+  gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+
+pop2<-pop2 %>% 
+   gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+pop2[2]<-NULL
+population[2]<-NULL
+
+population<-population%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+
+pop2<- pop2 %>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+```
+
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE}
+
+
+population<-left_join(population,outbreaks,by=c('State', 'Year'))
+
+p <- population %>% 
+  group_by(Month, Year, State) %>% 
+   summarise(total_cases = sum(Illnesses))
+    
+s <- left_join(pop2,p, by=c('State','Year')) %>% 
+  mutate(outbreak_incidence = total_cases / pop)
+
+t <- s %>% 
+  group_by(State,Year) %>% 
+    summarise(total_cases = sum(total_cases, na.rm=TRUE))
+
+o <- left_join(pop2,t, by=c('State','Year')) %>% 
+  mutate(outbreak_prop = total_cases/pop)
+
+
+Northeast <- o %>% 
+  filter(State %in% c('Maine','Vermont','New Hampshire',"Massachusetts",'Connecticut','Rhode Island','New York', "Delaware","New Jersey","Pennsylvania")) %>% 
+  group_by(Year) %>% 
+   summarise(outbreak_prevalence= sum(total_cases)/sum(pop)) %>% 
+      mutate(Region="Northeast")
+
+
+Midwest <- o %>% 
+  filter(State %in% c('Illnois', 'Ohio', "Michigan", "Wisconsin", "Indiania", 'Iowa', "Kansas","Minnesota","Nebraska", "Missouri","North Dakota","South Dakota")) %>%  
+  group_by(Year) %>% 
+    summarise(outbreak_prevalence= sum(total_cases)/sum(pop)) %>% 
+      mutate(Region="Midwest")
+
+South <- o %>% 
+  filter(State %in% c("Florida","Georgia","North Carolina","South Carolina","Virginia","Maryland","Kentucky","Tennesee","West Virginia","DC","Alabama","Mississippi","Arkansas","Texas","Oklahoma","Louisana")) %>% 
+  group_by(Year) %>% 
+    summarise(outbreak_prevalence= sum(total_cases)/sum(pop)) %>% 
+       mutate(Region="South")
+
+West<- o %>% 
+  filter(State %in% c("California","Washington","Nevada","Oregon","Wyoming","Colorado","Alaska","Montana","Utah","New Mexico","Hawaii","Idaho")) %>% 
+  group_by(Year) %>% 
+    summarise(outbreak_prevalence= sum(total_cases)/sum(pop)) %>% 
+      mutate(Region="West")
+
+
+outbreaks_by_region<-bind_rows(West,South)
+outbreaks_by_region <-bind_rows(outbreaks_by_region,Northeast)
+outbreaks_by_region <-  bind_rows(outbreaks_by_region,Midwest)
+
+
+
+illness_by_region <- ggplot(data=outbreaks_by_region, mapping = aes(x=Year, y= outbreak_prevalence, color =Region))+ 
+  labs(y="Outbreak Incidence (Cases / Population)", title="Foodborne Illnesses by Region")+
+  geom_line()
+illness_by_region
+
+
+```
+
+It appears that foodborne illness in America is on the decline. In general, there has been a significant decrease in foodborne illnesses in all regions from 1998 to 2015 (p < 0.001). In 2006, a spike of foodborne illnesses occured across the Midwest and West. Uncoincidentally, an outbreak of *Salmonella* infections linked tomatoes grown and sold to resturants in the Midwest occured in November of 2006. The Centers for Disease Control (CDC) also reported an *E. coli* outbreak traced to spinach largely sold in the West and Midwestern states, infecting 199 persons in October of 2006. Despite these spikes, the decrease of overall outbreaks is likely due to stricter food preparation and storage regulations, better sanitation technology, and increased public awareness about foodborne diseases (leading to increased public knowledge food preparation and storage safety at home). 
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+library(USAboundaries)
+library(rgeos)
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(USAboundaries)
+library(stringr)
+library(maps)
+library(broom)
+library(maptools)
+
+outbreaks <- read_csv("outbreaks.csv")
+population<-read_csv('pop_data.csv')
+population<-population %>% 
+  gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+population[2]<-NULL
+population<-population%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+population<-left_join(population,outbreaks,by=c('State', 'Year'))
+
+```
+
+```{r, echo=FALSE}
+po<-population
+all_states <- map_data("state")
+po<-population%>%
+  filter(Year>2013)%>%
+  rename(region=State)%>%
+  mutate(region=tolower(region))%>%
+  group_by(region)%>%
+  summarise(Cases=sum(Illnesses, Hospitalizations, Fatalities, na.rm=TRUE)/mean(pop))
+
+all_states<-all_states%>%
+  left_join(po, by='region')
+p <- ggplot()
+p <- p + geom_polygon( data=all_states, aes(x=long, y=lat, group = group, fill=Cases) ,colour="grey")+coord_equal(ratio = 1) + labs(x="Latitude", y="Longitude", title="Illnesses, Hospitalizations, and Fatalities by State")+theme_bw()+theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+p
+```
+Shown above is a geographical representation of all cases of illnesses, hospitalizations, and fatalities caused by foodborne illnesses in each state from 2014-2015. A lighter blue hue indicates states that have a higher rate of foodborne illness cases. We'd advise any Middkids cross-country road tripping this summer to avoid stopping for food in North Dakota, if possible. In fact, this map reinforces the previous graph that showed the Midwest had the highest rate of foodborne illnesses in the recent years. If you are staying in the Midwest this summer, make sure to prepare your own food carefully and to only dine in restaurants with high marks for health and sanitation.
+
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+
+outbreaks <- read_csv("outbreaks.csv")
+population<-read_csv('pop_data.csv')
+pop2<-read_csv('pop_data.csv')
+
+population<-population %>% 
+  gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+pop2<-pop2 %>% 
+   gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+pop2[2]<-NULL
+population[2]<-NULL
+population<-population%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+pop2<-pop2%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+```
+
+
+```{r,echo=FALSE}
+# Analyzes the food trends across the seasons
+
+
+population<-left_join(population,outbreaks,by=c('State', 'Year'))
+p <- population %>% 
+  group_by(Month, Year, State) %>% 
+   summarise(total_cases = sum(Illnesses))
+    
+s <- left_join(pop2,p, by=c('State','Year')) 
+
+Summer <- s %>% 
+  filter(Month %in% c('June', 'July',"August")) %>% 
+    transmute(Year,pop,total_cases) %>% 
+      group_by(Year) %>% 
+        summarise(outbreak_incidence = sum(total_cases) / sum(pop)) %>% 
+          mutate(Season = "Summer")
+  
+Fall <- s %>% 
+  filter(Month %in% c('September', 'October',"November")) %>% 
+    transmute(Year,pop,total_cases) %>% 
+      group_by(Year) %>% 
+        summarise(outbreak_incidence = sum(total_cases) / sum(pop)) %>% 
+          mutate(Season = "Fall")
+
+Winter <- s %>% 
+  filter(Month %in% c('December', 'January',"February")) %>% 
+    transmute(Year,pop,total_cases) %>% 
+      group_by(Year) %>% 
+        summarise(outbreak_incidence = sum(total_cases) / sum(pop)) %>% 
+          mutate(Season = "Winter")
+
+Spring <- s %>% 
+  filter(Month %in% c('March', 'April',"May")) %>% 
+    transmute(Year,pop,total_cases) %>% 
+      group_by(Year) %>% 
+        summarise(outbreak_incidence = sum(total_cases) / sum(pop)) %>% 
+          mutate(Season = "Spring")
+
+outbreaks_by_season<-bind_rows(Summer,Fall)
+outbreaks_by_season <-bind_rows(outbreaks_by_season,Winter)
+outbreaks_by_season <-  bind_rows(outbreaks_by_season,Spring)
+
+ggplot(data=outbreaks_by_season, mapping = aes(x=Year, y= outbreak_incidence, color =Season))+ 
+  labs(y="Outbreak Incidence (Cases / Population)", title="Foodborne Illnesses Throughout the Seasons")+
+  geom_line()
+
+
+
+```
+
+We also examined the outbreaks by seasons to discern if some underyling factor associated with seasons would lead to a difference in outbreaks. We initially presumed that the hotter temperatures of summer would lead to more food spoiling and therefore more foodborne illnesses. To our surprise, summer only led the outbreaks in the 1998-99, suggesting that an improvement in food storage (perhaps better or cheaper refrigeration) occured around the turn of the millenium which reduced the outbreaks in summer. The large spike of outbreaks in the winter of 2004 is due to a pervasive spread of *Norovirus*, commonly called the "winter vomitting bug." Moreover, the large increase of spring outbreaks in 2006 coincides with a multistate outbreak of *E. coli* in the meat of Taco Bell products. In concordance with our previous graph, we see that the outbreak incidence has typically decreased for all four seasons from 1998 to 2015. 
+
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+
+outbreaks <- read_csv("outbreaks.csv")
+population<-read_csv('pop_data.csv')
+pop2<-read_csv('pop_data.csv')
+
+population<-population %>% 
+  gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+pop2<-pop2 %>% 
+   gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+pop2[2]<-NULL
+population[2]<-NULL
+population<-population%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+pop2<-pop2%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+```
+
+```{r, echo=FALSE}
+
+population<-left_join(population,outbreaks,by=c('State', 'Year'))
+
+p <- population %>% 
+  mutate(
+    Species = ifelse(str_sub(Species, 1, 17) == "Escherichia coli,", "Escherichia coli", Species),
+    Species = ifelse(str_sub(Species, 1, 10) == "Salmonella", "Salmonella", Species),
+    Species = ifelse(str_sub(Species, 1, 9) == "Norovirus", "Norovirus", Species),
+    Species = ifelse(str_sub(Species, 1, 3) == "Cam", "Campylobacter", Species),
+    Species = ifelse(str_sub(Species, 1, 8) == "Bacillus", "Bacillus cereus", Species),
+    Species = ifelse(str_sub(Species, 1, 4) == "Clos", "Clostridium perfringens", Species)
+  ) %>%   
+  group_by(Species,Year) %>%
+  summarise(total_illnesses = sum(Illnesses)) 
+
+
+
+
+most_common_pathogens <- p %>% 
+  filter(Species %in% c('Salmonella','Norovirus', "Campylobacter","Bacillus cereus","Clostridium perfringens","Escherichia coli")) %>% 
+  group_by(Year) 
+   
+ggplot(data = most_common_pathogens, mapping = aes(x=Year, y=total_illnesses, color = Species))+
+  labs(y="Total Illnesses", title="The Six Most Common Offenders")+
+  geom_line()
+
+
+
+
+
+```
+We also looked at the six most common offenders of foodborne illness in the United States. Other than *E. coli*, the infectivity of these pathogens did not tend to decrease from 1998 to 2015. We speculate that the large media coverage of *E. coli* outbreaks in major fast food chains (Taco Bell and Chipotle) may explain why *E. coli* saw the only decrease in foodborne illnesses. *Norovirus* remains the most common cause of gastroenteritis (foodborne illness) in the United States. *Norovirus* becomes aerosolized when a person vomits and the aerosolized virus can remain active in the area for several days after the vomit is cleaned up. In addition, as few as 20 *Norovirus* particles are enough to cause infection--illustrating how easily this virus could spread in a resturant, camp, hotel, or dormitories. It is also important to note that the 2004 and 2006 spikes in illnesses caused by *Norovirus* coincide with similar increases in the winters of 2004 and 2006, demonstrating why the virus is dubbed the "winter vomitting bug". In conclusion, the most common offenders of foodborne illness have generally stayed constant from 1998-2015. Our previous graphs, however, show that foodborne illnesses overall have decreased during this period. We can infer that better sanitation and stricter regulations have only been effective against the less common pathogens, such as *Staphylococcus aureus*. The most common offenders are hardy pathogens that can survive extreme temperature changes and are generalists that can grow in water, thrive on surfaces, and resist sanitation methods. Unfortunately, it does not seem likely that foodborne illnesses will decrease from these pathogens in the forseeable future. 
+
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+
+outbreaks <- read_csv("outbreaks.csv")
+population<-read_csv('pop_data.csv')
+pop2<-read_csv('pop_data.csv')
+
+population<-population %>% 
+  gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+pop2<-pop2 %>% 
+   gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+pop2[2]<-NULL
+population[2]<-NULL
+population<-population%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+pop2<-pop2%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+```
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+library(USAboundaries)
+library(rgeos)
+library(maps)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(USAboundaries)
+library(stringr)
+library(maps)
+library(broom)
+library(maptools)
+
+outbreaks <- read_csv("outbreaks.csv")
+population<-read_csv('pop_data.csv')
+population<-population %>% 
+  gather(`1998`, `2000`,`1999`, `2001`,`2002`, `2003`,`2004`, `2005`,`2006`, `2007`,`2008`, `2009`,`2010`, `2011`,`2012`, `2013`,`2014`, `2015`, key = "year", value = "pop")
+population[2]<-NULL
+population<-population%>%
+  rename(Year=year)%>%
+  mutate(Year=as.numeric(Year))
+population<-left_join(population,outbreaks,by=c('State', 'Year'))
+
+
+```
+
+
+```{r, echo=FALSE}
+
+foods<-population%>%
+  mutate(isMeat=(str_detect(tolower(Food), 'chicken'))|
+                (str_detect(tolower(Food), 'beef'))|
+                (str_detect(tolower(Food), 'steak'))|
+                (str_detect(tolower(Food), 'ham'))|
+                (str_detect(tolower(Food), 'meat'))|
+                (str_detect(tolower(Food), 'tri-tip'))|
+                (str_detect(tolower(Food), 'carne'))|
+                (str_detect(tolower(Food), 'brisket'))|
+                (str_detect(tolower(Food), 'ribs'))|
+                (str_detect(tolower(Food), 'pork'))|
+                (str_detect(tolower(Food), 'hot dog'))|
+                (str_detect(tolower(Food), 'turkey'))|
+                (str_detect(tolower(Food), 'duck'))|
+                (str_detect(tolower(Food), 'liver'))|
+                (str_detect(tolower(Food), 'goat'))|
+                (str_detect(tolower(Food), 'hog'))|
+                (str_detect(tolower(Food), 'sausage'))|
+                (str_detect(tolower(Food), 'venison')),
+         isSeafood=(str_detect(tolower(Food), 'fish'))|
+           (str_detect(tolower(Food), 'clams'))|
+           (str_detect(tolower(Food), 'oyster'))|
+           (str_detect(tolower(Food), 'crab'))|
+           (str_detect(tolower(Food), 'crawfish'))|
+           (str_detect(tolower(Food), 'crayfish'))|
+           (str_detect(tolower(Food), 'shrimp'))|
+           (str_detect(tolower(Food), 'scallops'))|
+           (str_detect(tolower(Food), 'seafood'))|
+           (str_detect(tolower(Food), 'eel'))|
+           (str_detect(tolower(Food), 'grouper'))|
+           (str_detect(tolower(Food), 'snapper'))|
+           (str_detect(tolower(Food), 'tuna'))|
+           (str_detect(tolower(Food), 'seabass'))|
+           (str_detect(tolower(Food), 'salmon'))|
+           (str_detect(tolower(Food), 'barracuda'))|
+           (str_detect(tolower(Food), 'ceviche'))|
+           (str_detect(tolower(Food), 'squid'))|
+           (str_detect(tolower(Food), 'octopus')),
+         isSalad=(str_detect(tolower(Food), 'salad'))|
+           (str_detect(tolower(Food), 'leafy'))|
+           (str_detect(tolower(Food), 'lettuce'))|
+           (str_detect(tolower(Food), 'kale')),
+         isFruit=((str_detect(tolower(Food), 'pineapple'))|
+                 (str_detect(tolower(Food), 'fruit'))|
+                   (str_detect(tolower(Food), 'pear'))|
+                   (str_detect(tolower(Food), 'grape'))|
+                   (str_detect(tolower(Food), 'watermelon'))|
+                   (str_detect(tolower(Food), 'cantaloupe'))|
+                   (str_detect(tolower(Food), 'honeydew'))|
+                   (str_detect(tolower(Food), 'apple'))|
+                   (str_detect(tolower(Food), 'banana'))|
+                   (str_detect(tolower(Food), 'berr'))),
+         isPoultryDairy=(str_detect(tolower(Food), 'squid'))|
+           (str_detect(tolower(Food), 'milk'))|
+           (str_detect(tolower(Food), 'cheese'))|
+           (str_detect(tolower(Food), 'egg'))|
+           (str_detect(tolower(Food), 'yogurt'))|
+           (str_detect(tolower(Food), 'cream'))|
+           (str_detect(tolower(Food), 'butter'))|
+           (str_detect(tolower(Ingredient), 'egg')))
+           
+foodgraph<-foods%>%
+  group_by(Year,State)%>%
+  summarise(meat=sum(isMeat, na.rm=TRUE),
+            seafood=sum(isSeafood, na.rm=TRUE),
+            fruit=sum(isFruit, na.rm=TRUE),
+            salad=sum(isSalad, na.rm=TRUE),
+            poultrydairy=sum(isPoultryDairy, na.rm=TRUE),
+            pop=mean(pop))
+foodgraph<-foodgraph%>%
+  group_by(Year)%>%
+  summarise(meat=sum(meat, na.rm=TRUE),
+            seafood=sum(seafood, na.rm=TRUE),
+            fruit=sum(fruit, na.rm=TRUE),
+            salad=sum(salad, na.rm=TRUE),
+            poultrydairy=sum(poultrydairy, na.rm=TRUE),
+            pop=sum(pop))%>%
+  gather(`meat`, `seafood`, `fruit`, `salad`, `poultrydairy`, key = "Type", value = "Cases")
+ggplot(foodgraph, aes(x=Year, y=Cases/pop, color=Type))+
+  geom_line()+
+  ylab("Cases per Capita")+
+  labs(title='Cases per Capita by Year and Food Type')
+
+
+
+```
+As we continued our investigation, we were curious to see how the various food types contributed to outbreaks of foodborne illness. In general, all types of food have shown decreased incidence of illness from 1998-2015, which agrees with our previous assertions that foodborne illness has decreased overall. Foodborne illness in meat has demonstrated a dramatic decline in the past fifteen years, suggesting recent innovations in fields such as refrigeration or food storage have been extremely effective in reducing pathogenic agents. In fact, the meat packaging industry has recently started to package meat under high oxygen conditions and with natural antioxidants, which has been shown to significantly increase the shelf life of meats, as well as making them appear more red and appetizing. We speculate that this new combination of antioxidants and high oxygen packing conditions has been the main factor in the meat's decline in foodborne illnesses. Despite the progress, meat remains the most likely food item in the United States to make you sick. So if you want to avoid getting sick, stick to a piece of fruit or a salad. 
+
+```{r, echo=FALSE}
+
+outbreak_results <- outbreaks %>% 
+  select(Year, Illnesses, Hospitalizations, Fatalities) %>% 
+  group_by(Year) %>% 
+  summarize(Total_Illnesses = sum(Illnesses), Total_Hospitalizations = sum(Hospitalizations, na.rm = TRUE), Total_Fatalities = sum(Fatalities, na.rm = TRUE)) %>% 
+  mutate(percent_hospitalizations = ((Total_Hospitalizations / Total_Illnesses) *100)) %>% 
+  mutate(percent_fatalities = ((Total_Fatalities / Total_Illnesses) *100)) %>% 
+  select(Year, percent_hospitalizations, percent_fatalities)
+  
+
+
+moving_beyond_illness <- ggplot(data = outbreak_results, aes(x = Year)) + 
+    geom_line(aes(y = percent_hospitalizations, color = "hospitalizations")) + 
+    geom_line(aes(y = percent_fatalities, color = "fatalities")) +
+    labs(title = "Moving Beyond Illness", y = "Percent of Cases")
+
+moving_beyond_illness
+
+
+```
+As is seen in the graph, the percent of cases resulting in hospitalizations has increased. We see a spike in the graph after 2010, which may be due to the implementation of Obamacare causing more people to seek treatment rather than wait out their illness. The general upward trend may be due also to a general increased awareness and understanding of foodborne illness. However, the relative percent of fatalities has not changed. The protocol for many foodborne illnesses generally relies on replacing fluids. It is unclear in the data if those who died from their illnesses also went to the hospital before, but if not, it is likely that they were unable to replenish their fluids on their own. Still, this is the outcome in an incredibly small percent of cases and is highly unlikely especially if a person receives treatment.
+
+Getting sick from food is an especially cruel outcome, since we never expect the things we love to hurt us. When a beloved restaurant like Chipotle gets bad press for this, it can be hard to regain customers' trust. However, our investigation of foodborne illness is promising. Foodborne illness in all regions of America is on the decline overall. It is clear in these declines that improving food safety has been a priority for food providers and vendors across the nation. While there are some especially high-risk states, the overall incidence of foodborne illness is still pretty low. In addition, people appear increasingly willing to seek serious medical attention when they need it; this is always a good option if you fear about the severity of your illness. As long as you are careful when preparing your own food and make informed choices about where to dine, foodborne illness is not something to have major fears about anywhere in the United States.
+
+# Limitations
+The first thing to note is that the data can never be a complete record of every case of foodborne illness in the United States. Data like this is very dependent on self reporting, and there are always a number of people who do not report their illnesses. It is likely that the more severe cases were the ones that were reported, and this may cause our conclusions regarding severity to be differ from the truth, but we continued with what data we had.
+
+Another important thing to note is that the population data we originally had was census data, meaning it was not available for each year. We used statistical methods to interpolate population counts for the years in between. Thus, while the population data might not be completely accurate for those years, it should be close to the actual values.
+
+When considering the kinds of pathogens, it is important to note that for some cases, information on which pathogen caused the infection was unavailable. It is likely that the information was not reported, or reported so much later than the illness that the type of pathogen could not be determined. With this in mind, we examined what data we did have.
+
+# Extra Information:
+We defined the various regions according to the US Census Burea. The Northeast includes Maine, Vermont, New Hampshire, Massachusetts, Connecticut, Rhode Island, New York, Delaware, New Jersey, Pennsylvania; the Midwest includes Illnois, Ohio, Michigan, Wisconsin, Indiania, Iowa, Kansas, Minnesota, Nebraska, Missouri, North Dakota, South Dakota; the South includes Florida, Georgia, North Carolina, South Carolina, Virginia, Maryland, Kentucky, Tennesee, West Virginia, DC, Alabama, Mississippi, Arkansas, Texas, Oklahoma, Louisana; and the West includes California, Washington, Nevada, Oregon, Wyoming, Colorado, Alaska, Montana, Utah, New Mexico, Hawaii, Idaho. To account for population fluctuations, we intrapolated the state populations using the 1990, 2000, and 2010 Census data. 
+
+
+
+#### Hypothesis test and regression for outbreaks vs year
+```{r, echo=FALSE}
+# hypothesis test and regression for outbreaks and year
+
+model1 <- lm(outbreak_prevalence ~ Year, data = outbreaks_by_region)
+model_table1 <- tidy(model1, conf.int=TRUE) %>% kable(digits=3)
+model_table1
+
+
+```
+
+
+#### Hypothesis test and regression for outbreaks vs season
+```{r, echo=FALSE}
+model2 <- lm(outbreak_incidence ~ Year, data = outbreaks_by_season)
+# typo here:
+model_table2 <- tidy(model2, conf.int=TRUE) %>% kable(digits=3)
+model_table2
+```
+
+
+#### Hypothesis test for most common pathogens vs year 
+```{r, echo=FALSE}
+model <- lm(total_illnesses ~ Year, data = most_common_pathogens)
+model_table <- tidy(model, conf.int=TRUE) %>% kable(digits=3)
+model_table
+```
+
+#### Hypothesis test and regression for pathogen species vs total illness 
+```{r, echo=FALSE}
+model3 <- lm(total_illnesses ~ Species, data = most_common_pathogens)
+model_table3 <- tidy(model3, conf.int=TRUE) %>% kable(digits=3)
+model_table3
+```
+
+#### Hypothesis test and regression for hospitalizations vs year
+```{r, echo=FALSE}
+model4 <- lm(percent_hospitalizations~Year, data=outbreak_results)
+tidy(model4, conf.int = TRUE) %>% kable(digits=3)
+```
+
+#### Hypothesis test and regression for fatalities vs year
+```{r, echo=FALSE}
+model5 <- lm(percent_fatalities~Year, data=outbreak_results)
+tidy(model5, conf.int = TRUE) %>% kable(digits=3)
+
+```
+
+# Sources
+[Center for Disease Control](https://www.cdc.gov/foodsafety/outbreaks/multistate-outbreaks/outbreaks-list.html)
+
+[Norovirus Facts](https://www.cdc.gov/norovirus/)
+
+[Outbreak Data Set](https://www.kaggle.com/cdc/foodborne-diseases)
+
+[US Census Data Set](https://www.census.gov/data/tables/2016/demo/popest/state-total.html)
+
+[Improving Shelf Life of Meats](https://www.hindawi.com/journals/ijfs/2014/629062/)
+

@@ -1,0 +1,187 @@
+
+---
+title: "Watch Out: Patterns in Drunk Driving Fatalities"
+author: "Kelsie Hoppes and Parker Peltzer"
+date: "Tuesday May 23, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+library(USAboundaries)
+library(broom)
+library(knitr)
+
+#Options
+options( scipen = 20)
+
+#CSVsToLoad
+accident <- read_csv("accident.csv")
+# person <- read_csv("person.csv")
+State_Codes_Sheet1 <- read_csv("State Codes - Sheet1.csv")
+Rurality_Code_Sheet_Sheet1 <- read_csv("Rurality Code Sheet - Sheet1.csv")
+Day_of_Week_Sheet_Sheet1 <- read_csv("Day of Week Sheet - Sheet1.csv")
+
+```
+
+
+
+
+Instances of drunk driving accidents occasionally appear in news coverage all across the United States. Despite strict laws made to prevent individuals from consuming alcohol before getting behind the wheel, accidents caused by drunk driving still regularly occur, harming many and sometimes resulting in death. In this statistical analysis, we will explore when and where these accidents occur based on the 2015 National Highway and Traffic Safety Administration's annual accident report.
+
+
+
+#### Patterns in Time
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+OnlyDDAndFatal<-accident %>% 
+  filter(DRUNK_DR>=1) %>% 
+  filter(FATALS>=1)
+
+OnlyDDAndFatal <- left_join(OnlyDDAndFatal, Day_of_Week_Sheet_Sheet1, by = "DAY_WEEK")
+
+#byDayOfWeek
+
+ByDayOfWeek<-OnlyDDAndFatal %>% 
+  group_by(DAY_WEEK, DayName) %>% 
+  summarize(FatalsByDayOfWeek=sum(FATALS))
+
+ggplot(ByDayOfWeek,aes(x=DayName, y=FatalsByDayOfWeek))+
+  geom_bar(stat="identity")
+```
+
+Overall, accidents with intoxicated drivers occur most frequently during the weekends- spikes in total numbers of accidents are observed on the weekends, with the two highest days being Saturday and Sunday. Starting on Monday, the amount of accidents increases by day throughout the week.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+OnlyDDAndFatal<-accident %>% 
+  filter(DRUNK_DR>=1) %>% 
+  filter(FATALS>=1)
+
+OnlyDDAndFatal <- left_join(OnlyDDAndFatal, Day_of_Week_Sheet_Sheet1, by = "DAY_WEEK")
+
+#ComparingByHourOfDayAcrossDays
+
+ByHourOfDayAllDays<-OnlyDDAndFatal %>%
+  filter(HOUR<24) %>% 
+  group_by(HOUR,DAY_WEEK,DayName) %>%
+  summarize(FatalsByHourOfDay=sum(FATALS))
+
+
+ggplot(ByHourOfDayAllDays,aes(x=as.factor(HOUR), y=FatalsByHourOfDay))+
+  geom_col()+
+  facet_wrap(~DayName, ncol = 2)
+```
+
+The reason for Sunday's high rate becomes more clear when looking at the breakdown of time of day for the accidents- most accidents occur late in the night orearly in the morning, so the high observation of accidents occurring at 12 AM - 2 AM on Saturday and Sunday mornings are most likely a result of drinking on the weekend nights of Friday and Saturday, respectively. Interestingly, people are killed by drunk driving in similar numbers on Sunday afternoons as on Friday and Saturday afternoons, representing the fact that not all weekend crashes are associated with nighttime drinking. 
+
+
+
+#### Patterns across States
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+accident_fatal <- accident %>% 
+  filter(DRUNK_DR >= 1) %>% 
+  select(STATE, FATALS) %>% 
+  group_by(STATE) %>% 
+  summarize(count=sum(FATALS)) %>% 
+  left_join(State_Codes_Sheet1, by = "STATE")
+
+perCapita_accident_fatal<-accident_fatal %>% 
+  mutate(perCapitaFatals=count/Population) %>% 
+  mutate(FatalsPer100000Residents=perCapitaFatals*100000)
+
+
+#MakeAMap
+USA_map <- USAboundaries::us_states() %>%
+  broom::tidy(region="name") %>%
+  tbl_df() %>%
+  filter(!id %in% c("Puerto Rico", "Hawaii", "Alaska"))
+
+# change the values here:
+
+values <- perCapita_accident_fatal %>% 
+  select(`State Name`, FatalsPer100000Residents) %>% 
+  rename(state=`State Name`, value = FatalsPer100000Residents)
+
+
+USA_map <- USA_map %>%
+  left_join(values, by=c("id" = "state"))
+
+ggplot(USA_map, aes(x=long, y=lat, group=group)) +
+  geom_polygon(aes(fill=value)) +
+  scale_fill_gradient(low="white", high="darkred") +
+  geom_path(col="black", size=0.5) +
+  coord_map()
+```
+
+
+Across state lines, there are significant differences in the rate of drunk driving fatalities. The three states with the highest fatality rates per capita all occur in the northern central United States, being Wyoming, Montana, and North Dakota, where the total number of deaths are all over 7 people per 100,000 in the population. The five lowest per capita states being the District of Columbia, New Jersey, Massachusetts, New York, and Utah, which represents some diversity- D.C., New Jersey, and Massachusetts all contain predominately urban areas, which makes sense when comparing total drunk driving accident rates to rurality (see below). Though New York obviously has the country's most populated city, New York City, it also has a fair amount of rural area upstate- so its low rate implies that the higher population of the city is enough to offset the rate of accidents upstate, and it would be interesting to view the per capita rate of upstate New York and New York City area separately in a future study. Additionally, Utah's inclusion at the lower end of states represents the only state of the five that is both western and rural. Utah's low rate of drunk driving fatalities is likely due to its high Church of Latter-Day Saints population- a religion which prohibits alcohol consumption. A detailed breakdown of states can be viewed in a table in the "Supplementary Materials" section.
+
+#### Patterns of Rurality
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+OnlyDDAndFatal<-accident %>% 
+  filter(DRUNK_DR>=1) %>% 
+  filter(FATALS>=1)
+
+ByRurality<-OnlyDDAndFatal %>% 
+  group_by(RUR_URB) %>% 
+  summarize(FatalsByRurality=sum(FATALS))
+
+ByRurality<-left_join(ByRurality, Rurality_Code_Sheet_Sheet1, by = "RUR_URB")
+
+ggplot(ByRurality, aes(x=LandUse, y=FatalsByRurality))+
+  geom_bar(stat="identity")
+
+```
+
+
+
+Drunk driving fatalities are a rural problem, to a high degree. This is partly shown by the statistic that 5,000 out of 9,000 fatalities with known rural or urban statuses happened in rural places. This statistic alone, however, vastly understates the rurality of the problem. The dataset's rural or urban classification is the same as the US Census'. According to the 2010 Census, the one that immediately preceded 2015, 80.7% of Americans lived in either Urban Areas or Urban Clusters, the categories counted as urban by the dataset. Therefore, rural places, where only 19.3% of Americans live, had more than half of the fatal accidents. There are two caveats to note. The first is that the dataset records where the crashes happened, not where the victims lived. The second is that any place listed as an Urban Area is firmly urban, being a densely settled area with more than 50,000 people, the definition of an Urban Cluster is far less certainly urban. An Urban Cluster might have as few as 2,500 people, with a built up area at its core. Residents of Urban Clusters, 9.5% of the population, could conceivably be involved in crashes in the rural places between and around these clusters. While these factors slightly reduce the severity of our findings, the core truth of a rural-urban divide remains.
+
+#### Conclusion
+
+There are spatial and temporal patterns to drunk driving fatalities. They are more likely to occur on weekend days, more likely to occur in the last hours of one day or the first hours of the next, more likely to occur in certain states perhaps due to cultural differences, and more likely to occur in rural areas. This information could help policy makers and law enforcement act to reduce fatalities.
+
+
+
+## Supplementary Materials
+
+
+#### Aggregated Hourly Fatalities
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+#ByHourOfDay
+
+ByHourOfDay<-OnlyDDAndFatal %>%
+  filter(HOUR<24) %>% 
+  group_by(HOUR) %>%
+  summarize(FatalsByHourOfDay=sum(FATALS))
+
+ggplot(ByHourOfDay,aes(x=as.factor(HOUR), y=FatalsByHourOfDay))+
+  geom_bar(stat="identity")
+
+```
+
+While, as shown in our main section above, there are differences between early-week weekdays and late-week weekdays and weekends, the concentration of fatalities in the latter two categories cause an aggregation of all fatalities to mirror their patterns. This information would be useful for policy and planning purposes. Perhaps restricting the sale of alcohol late at night or concentrating law enforcement efforts on these times could reduce crashes.
+
+#### Table of Fatalities by State
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+perCapita_accident_fatal %>% 
+  select(-perCapitaFatals, -STATE) %>% 
+  arrange(desc(FatalsPer100000Residents)) %>% 
+  kable(digits=2)
+
+```
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+```

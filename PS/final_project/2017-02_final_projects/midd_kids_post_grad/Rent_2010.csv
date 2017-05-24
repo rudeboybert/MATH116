@@ -1,0 +1,10 @@
+Geo_FIPS,Geo_GEOID,Name of Area,Qualifying Name,Geo_STUSAB,Geo_SUMLEV,Geo_GEOCOMP,Geo_FILEID,Geo_LOGRECNO,Median Gross Rent 2010
+6037,05000US06037,"Los Angeles County, California","Los Angeles, California",ca,50,0,ACSSF,23,1147
+6075,05000US06075,"San Francisco County, California","San Francisco, California",ca,50,0,ACSSF,37,1385
+17031,05000US17031,"Cook County, Illinois","Chicago, Illinois",il,50,0,ACSSF,15,917
+25025,05000US25025,"Suffolk County, Massachusetts","Boston, Massachusetts",ma,50,0,ACSSF,18,1223
+36061,05000US36061,"New York County, New York","New York, New York",ny,50,0,ACSSF,29,1305
+42101,05000US42101,"Philadelphia County, Pennsylvania","Philadelphia, Pennsylvania",pa,50,0,ACSSF,47,836
+48201,05000US48201,"Harris County, Texas","Houston, Texas",tx,50,0,ACSSF,34,834
+53033,05000US53033,"King County, Washington","Seattle, Washington",wa,50,0,ACSSF,22,1036
+,,,,,,,,,

@@ -1,0 +1,193 @@
+---
+title: "Olympic Medals vs. GDP"
+author: "Jacob Volz, Zeb Millslagle"
+date: "5/23/2017"
+output: html_document
+---
+
+```{r, message=FALSE, echo=FALSE}
+#Load packages
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(tidyr)
+library(quantreg)
+library(maps)
+library(mapdata)
+library(ggmap)
+library(plotly)
+
+library(knitr)
+library(broom)
+```
+
+For most, the Olympics are the ultimate test of someone's proficiency at their sport. You aren't considered one of the best until you have won a medal, or at least competed, in the Olympic Games. We wanted to look at whether there were other factors that influenced if someone won a medal at the Olympics besides being good at their sport. The main factor we studied was wealth of the country an athlete was from using the GDP of the country.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+#Load in all the data
+winter <- read_csv("winter.csv") %>% 
+  mutate(winter_vs_summer = "Winter")
+summer <- read_csv("summer.csv") %>% 
+  mutate(winter_vs_summer = "Summer")
+dictionary <- read_csv("dictionary.csv") %>% 
+  select(Country:Code) %>% 
+  rename(IOC = Code)
+CountryCodes <- read_csv("CountryCodes.csv", col_types = cols(`*` = col_skip(), Country = col_skip(), FIFA = col_skip(), Flag = col_skip()), skip = 15)
+Country_to_Region <- read_csv("Country_to_Region.csv", skip = 31) %>% 
+  subset(select=c("alpha-3", "region", "sub-region"))
+colnames(Country_to_Region) <- c("IOC","Region","SubRegion")
+olympics = full_join(summer, winter, by = c("Year","City","Sport","Discipline","Athlete","Country","Gender","Event","Medal","winter_vs_summer")) %>% 
+  rename(year = Year) %>% 
+  rename(IOC = Country) %>% 
+  inner_join(dictionary, by = "IOC") %>% 
+  inner_join(CountryCodes, by = "IOC") %>%
+  inner_join(Country_to_Region, by = "IOC") %>%
+  select(-IOC) %>% 
+  rename(country = Country) 
+gdp <- read_csv("GDP.csv", skip = 4) %>%
+  gather(year,gdp,5:60) %>% 
+  select(one_of(c("Country Code", "year", "gdp"))) %>% 
+  transform(year = as.integer(year))
+names(gdp)[1] <- "ISO"
+olympicgdp <- left_join(olympics, gdp, by = c("ISO", "year")) %>% 
+  mutate(era = 10*floor(year/10))
+```
+
+Before we compare GDP to number of medals won, we decided to eliminate data for medals won from the Winter Olympics because it wasn't representative of the whole world. The medals won at the Winter Olympics are pretty clearly more often awarded to people from countries that are further from the equator:
+
+```{r, echo=FALSE}
+olympicgdp1 <- olympicgdp %>% 
+  mutate(country = ifelse(country =="United States", "USA", country)) %>% 
+  mutate(country = ifelse(country =="United Kingdom", "UK", country)) %>%
+  mutate(country = ifelse(country =="Korea, South", "South Korea", country)) %>%
+  mutate(country = ifelse(country =="Korea, North", "North Korea", country)) %>%
+  mutate(country = ifelse(country =="Cote d'Ivoire", "Ivory Coast", country))
+ditch_the_axes <- theme(
+  axis.text = element_blank(),
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),
+  panel.border = element_blank(),
+  panel.grid = element_blank(),
+  axis.title = element_blank()
+  )
+
+lat_vs_long_winter <- olympicgdp1 %>% 
+  group_by(country, winter_vs_summer) %>% 
+  summarize(count = n()) %>% 
+  filter(winter_vs_summer == "Winter")
+world_winter <- map_data("world") %>% 
+  rename(country = region) %>% 
+  inner_join(lat_vs_long_winter, by = "country")
+world_base_winter <- ggplot() + geom_polygon(data = world_winter, aes(x=long, y = lat, fill = count,  group = group), color = "black") + coord_fixed(1.3) +
+  geom_polygon(data = map_data("world"), aes(x=long, y = lat, group = group),fill= NA, color = "black")+
+  scale_fill_gradient(trans = "log10") +
+  ditch_the_axes
+world_base_winter
+```
+
+This means that latitude is a bit of a confounding variable in our results. To eliminate this as much as possible we will only use the data from the summer Olympics, which is much more evenly distributed:
+
+```{r, echo=FALSE}
+lat_vs_long_summer <- olympicgdp1 %>% 
+  group_by(country, winter_vs_summer) %>% 
+  summarize(count = n())%>% 
+  filter(winter_vs_summer == "Summer")
+world_summer <- map_data("world") %>% 
+  rename(country = region) %>% 
+  inner_join(lat_vs_long_summer, by = "country")
+world_base_summer <- ggplot() + 
+  geom_polygon(data = world_summer, aes(x=long, y = lat, fill = count,  group = group), color = "black")+ 
+  coord_fixed(1.3) +
+  geom_polygon(data = map_data("world"), aes(x=long, y = lat, group = group),fill= NA, color = "black")+
+  scale_fill_gradient(low= "yellow", high= "red", trans = "log10") +
+  ditch_the_axes
+world_base_summer
+```
+
+After somewhat reducing the size of our data, we have the following:
+
+```{r, warning= FALSE, echo=FALSE}
+medalcount = olympicgdp %>% 
+  filter(winter_vs_summer == "Summer") %>% 
+  group_by(country,gdp,year, Medal) %>% 
+  summarize(count = n()) %>% 
+  filter(year > 1950)
+gdperagraph <- ggplot(data=medalcount, aes(x = gdp, y = count)) +
+  geom_point(aes(text = paste("Country:", country,"\n","Year:", year)),alpha = .4) + 
+  geom_smooth(method="lm", se=FALSE) +
+  facet_wrap(~Medal)+
+  scale_x_log10() +
+  labs(x="GDP Per Capita", y="Medal Count") 
+p_gdperagraph <- plotly_build(gdperagraph)
+p_gdperagraph
+
+model <- lm(count~gdp, data=medalcount)
+tidy(model, conf.int = TRUE) %>% 
+  kable(digits=6)
+```
+
+This graph shows that there is a clear correlation between GDP and medals won. We can see that for all but two points, if a country won over 50 medals their GDP was in the top 60%. This could lead us to believe that the Olympics aren't the best test on who the greatest athletes in the world are. However, we must be careful to not say that GDP causes a country to win more medals; all we know for sure is that they are correlated.
+
+***
+
+#Supplementary Materials
+
+Another interesting thing thing we can look at with this data is the proportion of medals won by each region over time.
+
+```{r, echo=FALSE}
+regions <- olympicgdp %>% 
+  group_by(year, Region) %>% 
+  summarize(count = n())
+
+temp <- expand.grid(year = unique(regions$year), Region = unique(regions$Region))
+regions <- merge(temp,regions,all = TRUE)
+regions[is.na(regions)] <- 0
+
+ggplot(regions, aes(x=year, y=count, group=Region, fill=Region)) +
+  geom_area(position = "fill", alpha = .7, color="black") +
+  labs(x = "Year", y = "Proportion of Medals Won")
+```
+
+Some interesting things to note:
+
+* In the 1904 Summer Olympics, we can see that a large majority of medal winners were from the Americas. This was the first Olympics held outside of Europe, and about 80% of the competitors were from the U.S. The next two times the U.S. hosted the Summer Olympics (1932 and 1984, both in Los Angeles), there is a noticeable spike in medal winners from the Americas.
+
+* The 1980 Summer Olympics were held in Eastern Europe. Because of the Soviet war in Afghanistan, 65 countries boycotted the games which meant that the majority of medal winners were from Europe.
+
+* The 1994 Olympics in Lillehammer was the first time the Winter and Summer Games were split up. After this point, we can see that Europe wins more medals during the Winter Games, and Africa, Asia, and Oceania win more medals during the Summer Games.
+
+Here, we are looking at the top 4 sports each year with the highest average GDP after 1992 when the Games were split by summer and winter (hover over bars to see sports):
+```{r, warning= FALSE, echo=FALSE}
+gdp_per_sport <- olympicgdp %>% 
+  group_by(Sport, year, winter_vs_summer) %>% 
+  summarize(avg_gdp = mean(gdp, na.rm=TRUE)) %>% 
+  filter(avg_gdp>0, year > 1992)
+
+#take top four from each year
+temp <- gdp_per_sport[order(gdp_per_sport$avg_gdp), ]
+test <- by(temp, temp["year"], head, n=4)
+test <- Reduce(rbind, test)
+
+test_graph <- ggplot(test, aes(x = year, y = avg_gdp, fill = Sport)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~winter_vs_summer) +
+  labs(x = "Year", y = "Average GDP") +
+  theme(legend.position="none")
+plotly_build(test_graph)
+```
+
+Some sports, such as Table Tennis and Biathlon, are in the top 4 every year, which tells us that these sports are somewhat confined to countries with a high GDP year after year. 
+
+***
+
+#Citations:
+
+[Making Maps with R](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
+
+[Olympic Sports and Medals, 1896 - 2014](https://www.kaggle.com/the-guardian/olympic-games)
+
+[GDP per capita (current US$)](http://data.worldbank.org/indicator/NY.GDP.PCAP.CD)
+
+[Comparison of alphabetic country codes](https://en.wikipedia.org/wiki/Comparison_of_alphabetic_country_codes)
+
+[ISO Countries with Reginal Codes](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv)

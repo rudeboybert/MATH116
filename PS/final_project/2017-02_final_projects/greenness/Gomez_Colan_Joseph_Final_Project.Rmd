@@ -1,0 +1,282 @@
+
+---
+title: "Testing GREEN: Comparing the Enviromental Impact of New York City and Vermont"
+author: "Maya Gomez, Caroline Colan & Julian Joseph"
+
+date: "May 23, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+    df_print: kable
+---
+
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(broom)
+library(tidyr)
+library(knitr)
+library(readr)
+library(png)
+```
+
+Vermont is generally thought to be an extremely "green" state for its plethora of trees, image of a pastoral countryside, environmentally conscious citizens, and a lack of polluted cities. In fact, Vermont was ranked the "greenest" state by Forbes in 2007 for these reasons. However, the environmental impact of Vermonters may not be as slim as previously thought. This is because the spread out style of living exhibited in Vermont is not very efficient as it increases travel time and decreases the use of public transportation. The question arises then, do more condensed cities that emphasize public transportation have a smaller environmental impact? Specifically, is New York City "greener" than Vermont?
+
+To compare the relative "greeness" of people in Vermont versus people in New York City, we used data from the U.S. Census American Community Survey (ACS) 2015 5-year estimate, and data collected from the Environmental Protection Agency's (EPA) state and local agency monitoring stations.
+
+ACS data is collected by randomly sampling addresses in every data, Washington, D.C., and Puerto Rico throughout the year. Interviews are conducted by internet, mail, telephone, or personal visit in order to increase accessibility and coverage rates. The 2015 data had a country-wide coverage rate of 98.6% of total households, and 92.4% of the total population. The state of Vermont had a coverage rate of 99.1% of total households, and 95.9% of the total population. New York state had a coverage rate of 98.6% of total households, and 92.2% of the population. The sample size nationwide included 3,540,307 initial households selected and 2,305,707 final interviews. Vermont had 15,115 initial households selected with 8,924 final interviews while New York state had 218,433 initial households selected with 137,665 final interviews. Final ACS population estimates are adjusted for coverage error by controlling specific survey estimates to independent population controls by sex, age, race, and Hispanic origin.
+  
+
+## Transportation Use
+
+As transportation is a major contributor to pollution and greenhouse gases, we made a graph comparing the ways in which Vermonters versus those who live in New York City get to work and normalized it by the working population 16 years and older. In Vermont, more than 75% of workers traveled to work by car, truck, or van, or drove alone, while in New York City the most common form of transportation to work was public transportation. This is not particularly surprising as public transportation is much less accessible in Vermont due to its rural nature. Public transportation networks can greatly decrease an individual's carbon footprint, and reduce congestion in city streets.
+
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+
+
+Selected_Census<- read_csv("C:/Users/Caroline Colan/Desktop/Stats_Final/R11402795_SL050-2.csv", 
+    col_names = FALSE)%>% 
+  select(X1, X2, X3, X5, X56, X58, X60, X61, X62, X63, X64, X65, X66, 
+         X67, X68, X69, X70, X71, X72, X73, X74, X75, X76, X78, X80,
+         X81, X82, X83, X84,X85, X86, X87) %>% 
+  slice(-c(1:2))
+
+Transportation<- Selected_Census %>% 
+  rename(
+    FIPS = X1,
+    GEOID = X2,
+    Name = X3,
+    State = X5,
+    Total_pop = X56,
+    Car_Truck_van = X69,
+    Drove_alone = X70,
+    Carpool = X71,
+    Public_Transit = X72,
+    Motorcycle = X73,
+    bicycle = X74,
+    Walked = X75,
+    Other = X76) %>% 
+  mutate(Total_pop = as.numeric(Total_pop),
+    Car_Truck_van = as.numeric(Car_Truck_van),
+    Drove_alone = as.numeric(Drove_alone),
+    Carpool = as.numeric(Carpool),
+    Public_Transit = as.numeric(Public_Transit),
+    Motorcycle = as.numeric(Motorcycle),
+    bicycle = as.numeric(bicycle),
+    Walked = as.numeric(Walked),
+    Other = as.numeric(Other))%>% 
+  select(State, Total_pop,Car_Truck_van, Drove_alone, Carpool, Public_Transit, Motorcycle,
+         bicycle, Walked, Other) %>% 
+  group_by(State) %>% 
+  summarise(Car_Truck_van=sum(Car_Truck_van), Drove_alone=sum(Drove_alone), 
+            Carpool=sum(Carpool), Public_Transit=sum(Public_Transit),
+            Motorcycle=sum(Motorcycle), bicycle=sum(bicycle), Walked=sum(Walked),
+            Other=sum(Other), Total_pop=sum(Total_pop)) %>% 
+  gather(type, count, 2:9) %>% 
+  mutate(Percent_ofPop= (count/Total_pop)*100)
+
+
+ggplot(Transportation, aes(x=type, y=Percent_ofPop, fill=State))+
+  geom_bar(stat="identity", position="dodge")+
+  scale_fill_manual("State", values = c("ny" = "orange", "vt" = "blue"))+
+  labs(x="", y= "Percent of Population", title="Type of Transportation Taken to Work")
+
+
+```
+
+## Commute Time
+
+Next we looked at the amount of time it took for people to commute to work in New York City and Vermont. While we initially hypothesized that Vermonters would have longer commutes due to houses and towns being more spread out, workers in New York City seem to actually have longer commutes. There are a couple reasons this might be true. Maybe in Vermont more people live closer to where they work. Many more people in Vermont work on farms and either live there or live close to their farm. One reason commute time in New York City is probably much longer than in Vermont is due to a high density of cars moving in and out of the city in the morning and in the evening, creating long traffic jams. In this case, New York City's long commutes due to traffic jams may result in greater emissions from idling engines.
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=22/2, fig.height=9/2}
+Commute<- Selected_Census %>% 
+  rename(
+    FIPS = X1,
+    GEOID = X2,
+    Name = X3,
+    State = X5,
+    Workers_16_Over = X78,
+    Commute_Less_Than_10mins = X80,
+    Commute_10to19mins = X81,
+    Commute_20to29mins = X82,
+    Commute_30to39mins = X83,
+    Commute_40to59mins = X84,
+    Commute_60to89mins = X85,
+    Commute_90mins_greater = X86,
+    Work_at_Home = X87) %>% 
+  mutate(Workers_16_Over = as.numeric(Workers_16_Over),
+         Commute_Less_Than_10mins = as.numeric(Commute_Less_Than_10mins),
+         Commute_10to19mins = as.numeric(Commute_10to19mins),
+         Commute_20to29mins = as.numeric(Commute_20to29mins),
+         Commute_30to39mins = as.numeric(Commute_30to39mins),
+         Commute_40to59mins = as.numeric(Commute_40to59mins),
+         Commute_60to89mins = as.numeric(Commute_60to89mins),
+         Commute_90mins_greater = as.numeric(Commute_90mins_greater),
+         Work_at_Home = as.numeric(Work_at_Home))%>% 
+  select(State, Workers_16_Over,Commute_10to19mins, Commute_20to29mins, Commute_30to39mins, Commute_40to59mins, Commute_60to89mins,
+         Commute_90mins_greater, Work_at_Home) %>% 
+  group_by(State) %>% 
+  summarise(Commute_10to19mins=sum(Commute_10to19mins), Commute_20to29mins=sum(Commute_20to29mins), 
+            Commute_30to39mins=sum(Commute_30to39mins), Commute_40to59mins=sum(Commute_40to59mins),
+            Commute_60to89mins=sum(Commute_60to89mins), Commute_90mins_greater=sum(Commute_90mins_greater), Work_at_Home=sum(Work_at_Home),
+  Workers_16_Over=sum(Workers_16_Over)) %>% 
+  gather(type, count, 2:8) %>% 
+  mutate(Percent_ofWorkers= (count/Workers_16_Over)*100)
+
+
+ggplot(Commute, aes(x=type, y=Percent_ofWorkers, fill=State))+
+  geom_bar(stat="identity", position="dodge")+
+  scale_fill_manual("State", values = c("ny" = "orange", "vt" = "blue"))+
+  labs(x="", y= "Percent of Workers", title="Length of Commute to Work")
+```
+
+## Housing Fuel
+
+Finally, using the ACS data we looked at the type of fuel people used to power their homes. While this graph didn't necessarily clearly point out to us whether Vermont or New York City was more green, two interesting things stood out. For one, Vermont households use a lot more wood to power their homes. The EPA lists on its website that wood smoke can cause various health effects from both long and short-term exposure to the particle pollution it produces. People who are particularly at risk are those with lung disease, asthma, and sensitive respiratory systems. As a counterpoint to the health and environmental effects of wood use, it is usually locally sourced, reducing the overall carbon footprint of the energy source in comparison to fuel oil for example, which may come from abroad. Another interesting part of this figure is that solar power used by individual households for energy was so insignificant that it barely shows up on the graph. This was surprising because we see solar panels quite often while driving around the state of Vermont. This may suggest that while commercial businesses and the state of Vermont have begun to use solar power as a major energy source, its use has not yet trickled down to individual households.
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+Household_Fuel<- Selected_Census %>% 
+  rename(
+    FIPS = X1,
+    GEOID = X2,
+    Name = X3,
+    State = X5,
+    Occupied_Housing_Units = X60,
+    Gas = X61,
+    Electricity = X62,
+    FuelOil_Kerosene = X63,
+    Coal_Wood = X64,
+    Solar = X65,
+    Other_Fuel = X66,
+    No_Fuel_Use = X67)%>% 
+  mutate(Occupied_Housing_Units = as.numeric(Occupied_Housing_Units),
+         Gas = as.numeric(Gas),
+         Electricity = as.numeric(Electricity),
+         FuelOil_Kerosene = as.numeric(FuelOil_Kerosene),
+         Coal_Wood = as.numeric(Coal_Wood),
+         Solar = as.numeric(Solar),
+         Other_Fuel = as.numeric(Other_Fuel),
+         No_Fuel_Use = as.numeric(No_Fuel_Use))%>% 
+  select(State, Occupied_Housing_Units, Gas, Electricity, FuelOil_Kerosene,
+         Coal_Wood, Solar, Other_Fuel, No_Fuel_Use) %>% 
+  group_by(State) %>% 
+  summarise(Gas=sum(Gas), 
+            Electricity=sum(Electricity), FuelOil_Kerosene=sum(FuelOil_Kerosene),
+            Coal_Wood=sum(Coal_Wood), Solar=sum(Solar), Other_Fuel=sum(Other_Fuel),
+            No_Fuel_Use=sum(No_Fuel_Use), Occupied_Housing_Units=sum(Occupied_Housing_Units))%>% 
+  gather(type, count, 2:8) %>% 
+  mutate(Percent_of_Housing_Units= (count/Occupied_Housing_Units)*100)
+
+ggplot(Household_Fuel, aes(x=type, y=Percent_of_Housing_Units, fill=State))+
+  geom_bar(stat="identity", position="dodge")+
+  scale_fill_manual("State", values = c("ny" = "orange", "vt" = "blue"))+
+  labs(x="", y= "Percent of Housing Units", title="Type of Housing Fuel")
+```
+
+## Air Quality Index
+
+
+Air Quality Index, or AQI, indicates the overall air quality of a location. This is computed by taking all air pollutants into account, assuming that the area has the necessary monitoring stations for each. A day is recorded as having a "good" AQI if the value falls between 0 and 50. The AQI is considered "moderate" if it is recorded between 51 and 100, and then "unheathy for sensitive groups" if the AQI is between 101 and 150. The figure below illustrates the percentage of days per year that were recorded having AQI levels of "good", "moderate", and "unhealthy for sensitive groups" in 2015. No days were recorded having "unhealthy" (AQI: 151-200) or "very unhealthy" (AQI: 201 or higher) levels of air quality in either New York or Vermont. Unfortunately, stations that measure air quality in Vermont are only located in three of the fourteen counties which makes the data slightly less representative of the entire state.
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+green <- read_csv("C:/Users/Caroline Colan/Desktop/Stats_Final//R11402795_SL050-2.csv") %>% 
+  slice(-1) %>%
+  select(-c(`County Subdivision (FIPS)`:`Public Use Microdata Area - 1% File`)) %>% 
+  select(-c(`US`:`State (Census Code)`)) %>%
+  mutate(FIPS = as.numeric(FIPS))
+
+aqi_nyc <- read_csv("C:/Users/Caroline Colan/Desktop/Stats_Final/aqireport2015-2.csv") %>%
+  slice(c(2, 11, 14, 21, 22))
+
+aqi_vt <- read_csv("C:/Users/Caroline Colan/Desktop/Stats_Final/aqireport2015.csv") %>%
+  slice(-c(4))
+
+aqi_both <- bind_rows(aqi_nyc, aqi_vt) %>% 
+  rename(FIPS = `County Code`)
+
+
+aqi_both2 <- bind_rows(aqi_nyc, aqi_vt) %>% 
+  rename(FIPS = `County Code`) %>%
+  select(-c(`AQI Maximum`:`# Days PM10`)) %>%
+  gather(AQI, count, 4:8) %>%
+  mutate(count= as.numeric(count)) %>%
+  mutate(Percentage = (`count`/365)*100)
+
+green_aqi <- green %>%
+  inner_join(aqi_both2, by = "FIPS")
+
+ggplot(data=aqi_both2, aes(x=County, y=Percentage, fill=AQI)) +
+  geom_bar(stat="identity", position="fill") +
+  facet_wrap(~`State`) +
+  scale_fill_manual("AQI", values=c("Good"="chartreuse3", "Moderate"="gold", "Unhealthy for Sensitive Groups"="tomato")) +
+  labs(x="County", y="Percentage of Days per Year", title="2015 Air Quality Index") +
+  coord_flip()
+
+
+```
+
+This figure shows that the air quality of the counties in NYC and Vermont do differ, but not as signficantly as one might expect. In 2015, both Chittenden and Bennington did not record any days that were "unhealthy for sensitive groups" and the days recorded as "moderate" are minimal. The air quality index of Kings County in NYC is comparable to Chittenden and Bennington, however it has a slightly larger percentage of days labeled as "moderate". The third county recorded in Vermont, Rutland, appears to have worse air quality than Chittenden, Bennington, and Kings. The other four NYC counties, Richmond, Queens, New York, and Bronx do exhibit worse air quality levels than Chittenden and Bennington because they have more days labeled as "moderate" and "unhealthy for sensitive groups". With that said, the difference in air quality between NYC and the three Vermont counties examined is not as drastic as one might think. 
+
+A more representative comparison could be made if the AQI was measured for every county in Vermont. This is because Chittenden and Rutland are the counties with the two largest cities in Vermont which makes them most similar to the counties in NYC. It is likely that the other counties of Vermont have even better air quality than the larger counties measured.
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+vermont_data <- read_csv("C:/Users/Caroline Colan/Desktop/Stats_Final/conreport2015-2.csv")
+nyc_data <- read_csv("C:/Users/Caroline Colan/Desktop/Stats_Final/conreport2015.csv")
+
+R11402795_SL050_2 <- read_csv("C:/Users/Caroline Colan/Desktop/Stats_Final/R11402795_SL050-2.csv") %>% 
+  mutate(FIPS = as.numeric(FIPS))
+enviromental_data <- (R11402795_SL050_2)
+
+nyc_data<-nyc_data %>% 
+  rename(county_code = `County Code`) %>%
+  filter(county_code %in% c(36047, 36061, 36081,36085,36005)) %>% 
+  inner_join(enviromental_data, by = c("county_code" = "FIPS"))
+
+nyc_data <- nyc_data %>%
+  mutate(`Total Population`= as.numeric(`Total Population`)) %>%
+  mutate(PerCapita = (`CO 2nd Max 8-hr`/`Total Population`)*100000 )
+
+vermont_data <- vermont_data %>% 
+  rename(county_code = `County Code`) %>%
+  inner_join(enviromental_data, by = c("county_code" = "FIPS"))
+
+vermont_data <- vermont_data %>%
+  mutate(`Total Population`= as.numeric(`Total Population`)) %>%
+  mutate(PerCapita = (`CO 2nd Max 8-hr`/`Total Population`)*100000 )
+
+new_vermont_data <- vermont_data %>% select(County.x,PerCapita) %>% mutate(State="VT")
+new_newyork_data <- nyc_data %>% select(County.x,PerCapita) %>% mutate(State="NY")
+all_data <- bind_rows(new_newyork_data,new_vermont_data)
+
+ggplot(all_data, aes(x= County.x, y=PerCapita, fill=State)) +
+  geom_bar(stat="identity") +
+  scale_fill_manual("State", values = c("NY" = "orange", "VT" = "blue"))+
+  labs(x="County", y="PerCapita CO2 Emission (PPM)", title="CO2 Emission Per Capita in Vermont and NYC (Per 100,000 People)")+
+  coord_flip()
+```
+
+So the question is: Why does Rutland have such high per capita CO2 emissions compared to New York? There could be a few reasons. One major reason is likely the available means of transportation. Rutland does not have anywhere near the same public transportation system that New York City has. There, most people can almost exclusively only travel by bus or car, whereas the average New Yorker travels a considerable amount with the convenient subway system. A U.S. Centers for Disease Control and Prevention study ranks Rutland as having the highest per capita rate of adult asthma among all studied metropolitan or "micropolitan" areas. Apparently, some of that is due to prevailing wind patterns that bring in particulates from coal-burning plants in the midwest. Some is due to agricultural dust, or problems with mold. Burning wood with old equipment or at an inefficient temperature may also contribute. In general, more rural states like Vermont lack areas which require the same level of infrastructure to limit environmental impact. So while as a whole these areas do not produce large amounts of pollution, on an individual level people may produce more CO2 than in a large city like New York.
+
+## Conclusion
+
+While Vermont is heralded by many including publications like Forbes as one of the "Greenest" states in America, it is important to look deeper. Vermont is the state with the second smallest population. The state is rural and people and services are far apart. The winters are also long and cold. Much of the state's economy is based in agriculture. People see New York City as crowded, loud, and polluted. The population of New York City is 13 times larger than the entire state of Vermont. While these figures point to NYC as more of a "black" city in terms of its environmental impact, we have seen that when you look at individual behavior, the people of New York City have a much smaller environmental impact than Vermonters. We hope that this analysis might encourage Vermonters and students at Middlebury to use the public transportation that is available whenever they can, to carpool to events, and to be smarter about their individual choices-- because they can certainly add up.
+
+# Sources
+https://www.epa.gov/outdoor-air-quality-data/air-quality-statistics-report
+
+https://www.epa.gov/outdoor-air-quality-data/air-quality-index-report
+
+https://www.epa.gov/outdoor-air-quality-data/about-air-data-reports
+
+https://www.epa.gov/burnwise/wood-smoke-and-your-health
+
+http://e360.yale.edu/features/greenest_place_in_the_us_its_not_where_you_think
+
+https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/
+
+https://www.sevendaysvt.com/vermont/biomass-or-biomess-activists-protest-latest-biomass-development/Content?oid=2176946
+

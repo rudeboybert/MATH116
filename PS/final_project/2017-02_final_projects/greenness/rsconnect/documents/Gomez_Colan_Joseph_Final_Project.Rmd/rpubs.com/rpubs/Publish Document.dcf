@@ -1,0 +1,8 @@
+name: Publish Document
+title:
+account: rpubs
+server: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/278974/521c14c1345344b1b7cfe2aba0c53ed4
+bundleId: https://api.rpubs.com/api/v1/document/278974/521c14c1345344b1b7cfe2aba0c53ed4
+url: http://rpubs.com/ccolan/278974
+when: 1495495076.3967

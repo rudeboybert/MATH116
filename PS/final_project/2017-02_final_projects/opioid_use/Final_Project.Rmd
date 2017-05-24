@@ -1,0 +1,131 @@
+---
+title: Opioid Use in the US
+author: Daniel Turpin and Naing Thant Phyo
+date: Tuesday May 23, 2017
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(mosaic)
+library(USAboundaries)
+library(broom)
+library(readr)
+library(gpclib)
+library(mapproj)
+library(rgdal)
+library(rgeos)
+Multiple_Cause_of_Death_1999_2014_v1_1 <- read_csv("Multiple Cause of Death, 1999-2014 v1.1.csv")
+Deaths_by_heroin_1999_2015 <- read_tsv("Multiple Cause of Death, 1999-2015.txt")
+```
+
+
+
+
+
+## Main Article
+
+As the traditional War on Drugs has come under scrutiny over the past few years, a rising concern regarding drugs has become the recent opium epidemic that has swept the nation. Opioids are a class of drug that include prescribed, pain-relieving medications such as oxycodone and codeine, as well as the illegal drug heroin. Although prescription opioids do not produce as intense of a high as heroin, they still have the side effect of euphoria, so it has become increasingly common to use them recreationally, which can lead to addiction and even death by overdose. Even with a doctor's recommendation and prescription, users can become dependent on the drug especially if they are dealing with chronic pain. In this article, we set out to find how much the use of opioids has increased over time in the US. Additionally, we wanted to find out if there is a correlation between the number of prescriptions given in the US and the number of deaths by prescribed opioid overdose as well as heroin overdose in the US. In the following graph, we can see that the number of deaths due to prescribed opioid overdose across all states in the US have risen steadily between 1999 and 2014.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+Multiple_Cause_of_Death_1999_2014_v1_1$Deaths <- as.integer(Multiple_Cause_of_Death_1999_2014_v1_1$Deaths)
+
+Deaths_by_year_opioids <- Multiple_Cause_of_Death_1999_2014_v1_1 %>%
+  group_by(Year) %>%
+  summarize(Total_Deaths = sum(Deaths, na.rm = TRUE))
+
+ggplot(data = Deaths_by_year_opioids, aes (x = Year, y = Total_Deaths)) +
+  geom_bar(stat = "Identity", fill="#CC0000") +
+  labs( y = "Total Deaths by Opioid Overdose")
+
+```
+
+Much of the opioid epidemic has been tied to the rising number of prescriptions for opioids given by doctors to patients. Drugs such as oxycodone and hydrocodone have become increasingly common analgesic medications in the US, being prescribed for things ranging from post-heart surgery to post-wisdom teeth removal. The graph below shows the rapid rise in opioid prescriptions across the US as well as a correlation with the death rates shown above.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+prescriptions <- Multiple_Cause_of_Death_1999_2014_v1_1 %>%
+ filter(State == "Alabama") %>%
+  select(Year,`Prescriptions Dispensed by US Retailers in that year (millions)`)
+
+ggplot(data = prescriptions, aes(x = Year, y= `Prescriptions Dispensed by US Retailers in that year (millions)`)) +
+ geom_line(color="blue")
+```
+
+Finally, in the graph below we take a look at the number of deaths by heroin overdose in the US from 1999 to 2014. People who become addicted to their prescription opioid medications will occasionally move to heroin as a cheaper, more intense mode of getting the opioid high. The graph below shows a consistent overdose rate between the years 1999 and 2010, but starting in  2011 up until our most recent date, 2014, a rapid increase in the number of deaths by heroin overdose can be seen. Although this data does not necessarily correlate with the number of prescriptions distributed in the US, it is still interesting to see this rapid spike in heroin overdoses while keeping in the mind the steady rise in opioid prescriptions in the US.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+Deaths_by_heroin <- Deaths_by_heroin_1999_2015 %>%
+  group_by(Year) %>%
+  filter(Year != 2015) %>%
+  summarize(Total_Deaths = sum(Deaths))
+
+ggplot(data = Deaths_by_heroin, aes(x=Year, y=Total_Deaths)) +
+  geom_bar(stat = "Identity", fill="darkgreen") +
+  labs(y = "Total Deaths by Heroin Overdose")
+```
+
+Conclusions: The opioid epidemic has become a prominent issue in recent politics and more and more media outlets are beginning to address the crisis that the US faces in terms of prescription opioid addiction, heroin addiction, and the ever-rising number of prescriptions written by doctors. The data we examined reveals not only rising rates of fatal overdose by prescription and illegal opioid, but also an overall upwards trend in amount of prescriptions written for opioids. Like many rural states, Vermont have suffered from this epidemic more than most and it is essential for people to understand the problem that cities like Rutland face if they want to make a difference. 
+
+## Supplementary Materials
+
+The map below shows the number of deaths per capita by non-heroin opioid overdose by state from 2014.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+USA_map <- USAboundaries::us_states() %>%
+  broom::tidy(region = "name") %>%
+  tbl_df() %>%
+  filter(!id %in% c("Puerto Rico", "Hawaii", "Alaska"))
+
+
+COD <- Multiple_Cause_of_Death_1999_2014_v1_1 %>%
+  filter(Year==2014) %>%
+  filter(State != "Hawaii") %>%
+  filter(State != "Alaska") %>% 
+  mutate(per_capita = Deaths/Population)
+
+# change the values here:
+values <- data_frame(
+  state = unique(USA_map$id),
+  value = COD$per_capita
+)
+dim(values)
+
+USA_map <- USA_map %>%
+  left_join(values, by=c("id" = "state")) %>% 
+  rename(`Fatal Opioid Overdoses per capita` = value)
+
+ggplot(USA_map, aes(x=long, y=lat, group=group)) +
+  geom_polygon(aes(fill=`Fatal Opioid Overdoses per capita`)) +
+  scale_fill_gradient(low="white", high="red") +
+  geom_path(col="black", size=0.5) +
+  coord_map() +
+  labs(x="Longitude", y="Latitude")
+```
+
+## Sources
+
+Basic information on opioids:
+https://www.drugabuse.gov/drugs-abuse/opioids
+
+
+Initial data file source:
+https://data.world/health/opioid-overdose-deaths
+
+
+Original data file source, which we used to find additional information:
+https://wonder.cdc.gov/controller/datarequest/D77
+
+
+
+
+
+
+
+
+
+

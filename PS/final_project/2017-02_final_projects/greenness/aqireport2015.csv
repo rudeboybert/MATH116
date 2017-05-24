@@ -1,0 +1,5 @@
+County Code,County,# Days with AQI,Good,Moderate,Unhealthy for Sensitive Groups,Unhealthy,Very Unhealthy,AQI Maximum,AQI 90th Percentile,AQI Median,# Days CO,# Days NO2,# Days O3,# Days SO2,# Days PM25,# Days PM10,State
+50003,Bennington,365,318,47,,,,97,52,37,,,274,,91,,VT
+50007,Chittenden,365,318,47,,,,100,54,36,,4,272,,89,,VT
+50021,Rutland,365,277,85,3,,,121,65,30,,48,,,317,,VT
+50025,Windham,112,111,1,,,,62,32,13,,,,,112,,VT

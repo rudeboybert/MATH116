@@ -1,0 +1,538 @@
+"Notes"	"State"	"State Code"	"Year"	"Year Code"	"Multiple Cause of death"	"Multiple Cause of death Code"	Deaths	Population	Crude Rate
+	"Alabama"	"01"	"2009"	"2009"	"Heroin"	"T40.1"	12	4757938	Unreliable
+	"Alabama"	"01"	"2011"	"2011"	"Heroin"	"T40.1"	14	4802740	Unreliable
+	"Alabama"	"01"	"2012"	"2012"	"Heroin"	"T40.1"	36	4822023	0.7
+	"Alabama"	"01"	"2013"	"2013"	"Heroin"	"T40.1"	42	4833722	0.9
+	"Alabama"	"01"	"2014"	"2014"	"Heroin"	"T40.1"	125	4849377	2.6
+	"Alabama"	"01"	"2015"	"2015"	"Heroin"	"T40.1"	111	4858979	2.3
+	"Alaska"	"02"	"2011"	"2011"	"Heroin"	"T40.1"	12	722718	Unreliable
+	"Alaska"	"02"	"2012"	"2012"	"Heroin"	"T40.1"	23	731449	3.1
+	"Alaska"	"02"	"2013"	"2013"	"Heroin"	"T40.1"	24	735132	3.3
+	"Alaska"	"02"	"2014"	"2014"	"Heroin"	"T40.1"	25	736732	3.4
+	"Alaska"	"02"	"2015"	"2015"	"Heroin"	"T40.1"	39	738432	5.3
+	"Arizona"	"04"	"1999"	"1999"	"Heroin"	"T40.1"	27	5023823	0.5
+	"Arizona"	"04"	"2000"	"2000"	"Heroin"	"T40.1"	15	5130632	Unreliable
+	"Arizona"	"04"	"2001"	"2001"	"Heroin"	"T40.1"	24	5273477	0.5
+	"Arizona"	"04"	"2002"	"2002"	"Heroin"	"T40.1"	26	5396255	0.5
+	"Arizona"	"04"	"2003"	"2003"	"Heroin"	"T40.1"	65	5510364	1.2
+	"Arizona"	"04"	"2004"	"2004"	"Heroin"	"T40.1"	42	5652404	0.7
+	"Arizona"	"04"	"2005"	"2005"	"Heroin"	"T40.1"	33	5839077	0.6
+	"Arizona"	"04"	"2006"	"2006"	"Heroin"	"T40.1"	52	6029141	0.9
+	"Arizona"	"04"	"2007"	"2007"	"Heroin"	"T40.1"	52	6167681	0.8
+	"Arizona"	"04"	"2008"	"2008"	"Heroin"	"T40.1"	63	6280362	1.0
+	"Arizona"	"04"	"2009"	"2009"	"Heroin"	"T40.1"	84	6343154	1.3
+	"Arizona"	"04"	"2010"	"2010"	"Heroin"	"T40.1"	91	6392017	1.4
+	"Arizona"	"04"	"2011"	"2011"	"Heroin"	"T40.1"	118	6482505	1.8
+	"Arizona"	"04"	"2012"	"2012"	"Heroin"	"T40.1"	102	6553255	1.6
+	"Arizona"	"04"	"2013"	"2013"	"Heroin"	"T40.1"	147	6626624	2.2
+	"Arizona"	"04"	"2014"	"2014"	"Heroin"	"T40.1"	199	6731484	3.0
+	"Arizona"	"04"	"2015"	"2015"	"Heroin"	"T40.1"	252	6828065	3.7
+	"California"	"06"	"1999"	"1999"	"Heroin"	"T40.1"	489	33499204	1.5
+	"California"	"06"	"2000"	"2000"	"Heroin"	"T40.1"	346	33871648	1.0
+	"California"	"06"	"2001"	"2001"	"Heroin"	"T40.1"	232	34479458	0.7
+	"California"	"06"	"2002"	"2002"	"Heroin"	"T40.1"	383	34871843	1.1
+	"California"	"06"	"2003"	"2003"	"Heroin"	"T40.1"	369	35253159	1.0
+	"California"	"06"	"2004"	"2004"	"Heroin"	"T40.1"	312	35574576	0.9
+	"California"	"06"	"2005"	"2005"	"Heroin"	"T40.1"	269	35827943	0.8
+	"California"	"06"	"2006"	"2006"	"Heroin"	"T40.1"	289	36021202	0.8
+	"California"	"06"	"2007"	"2007"	"Heroin"	"T40.1"	299	36250311	0.8
+	"California"	"06"	"2008"	"2008"	"Heroin"	"T40.1"	333	36604337	0.9
+	"California"	"06"	"2009"	"2009"	"Heroin"	"T40.1"	364	36961229	1.0
+	"California"	"06"	"2010"	"2010"	"Heroin"	"T40.1"	334	37253956	0.9
+	"California"	"06"	"2011"	"2011"	"Heroin"	"T40.1"	372	37691912	1.0
+	"California"	"06"	"2012"	"2012"	"Heroin"	"T40.1"	368	38041430	1.0
+	"California"	"06"	"2013"	"2013"	"Heroin"	"T40.1"	497	38332521	1.3
+	"California"	"06"	"2014"	"2014"	"Heroin"	"T40.1"	578	38802500	1.5
+	"California"	"06"	"2015"	"2015"	"Heroin"	"T40.1"	609	39144818	1.6
+	"Colorado"	"08"	"1999"	"1999"	"Heroin"	"T40.1"	43	4226018	1.0
+	"Colorado"	"08"	"2000"	"2000"	"Heroin"	"T40.1"	38	4301261	0.9
+	"Colorado"	"08"	"2001"	"2001"	"Heroin"	"T40.1"	23	4425687	0.5
+	"Colorado"	"08"	"2002"	"2002"	"Heroin"	"T40.1"	28	4490406	0.6
+	"Colorado"	"08"	"2003"	"2003"	"Heroin"	"T40.1"	23	4528732	0.5
+	"Colorado"	"08"	"2004"	"2004"	"Heroin"	"T40.1"	23	4575013	0.5
+	"Colorado"	"08"	"2005"	"2005"	"Heroin"	"T40.1"	42	4631888	0.9
+	"Colorado"	"08"	"2006"	"2006"	"Heroin"	"T40.1"	39	4720423	0.8
+	"Colorado"	"08"	"2007"	"2007"	"Heroin"	"T40.1"	39	4803868	0.8
+	"Colorado"	"08"	"2008"	"2008"	"Heroin"	"T40.1"	48	4889730	1.0
+	"Colorado"	"08"	"2009"	"2009"	"Heroin"	"T40.1"	73	4972195	1.5
+	"Colorado"	"08"	"2010"	"2010"	"Heroin"	"T40.1"	46	5029196	0.9
+	"Colorado"	"08"	"2011"	"2011"	"Heroin"	"T40.1"	80	5116796	1.6
+	"Colorado"	"08"	"2012"	"2012"	"Heroin"	"T40.1"	91	5187582	1.8
+	"Colorado"	"08"	"2013"	"2013"	"Heroin"	"T40.1"	120	5268367	2.3
+	"Colorado"	"08"	"2014"	"2014"	"Heroin"	"T40.1"	159	5355866	3.0
+	"Colorado"	"08"	"2015"	"2015"	"Heroin"	"T40.1"	164	5456574	3.0
+	"Connecticut"	"09"	"1999"	"1999"	"Heroin"	"T40.1"	98	3386401	2.9
+	"Connecticut"	"09"	"2000"	"2000"	"Heroin"	"T40.1"	113	3405565	3.3
+	"Connecticut"	"09"	"2001"	"2001"	"Heroin"	"T40.1"	98	3432835	2.9
+	"Connecticut"	"09"	"2002"	"2002"	"Heroin"	"T40.1"	90	3458749	2.6
+	"Connecticut"	"09"	"2003"	"2003"	"Heroin"	"T40.1"	109	3484336	3.1
+	"Connecticut"	"09"	"2004"	"2004"	"Heroin"	"T40.1"	94	3496094	2.7
+	"Connecticut"	"09"	"2005"	"2005"	"Heroin"	"T40.1"	82	3506956	2.3
+	"Connecticut"	"09"	"2006"	"2006"	"Heroin"	"T40.1"	93	3517460	2.6
+	"Connecticut"	"09"	"2007"	"2007"	"Heroin"	"T40.1"	120	3527270	3.4
+	"Connecticut"	"09"	"2008"	"2008"	"Heroin"	"T40.1"	109	3545579	3.1
+	"Connecticut"	"09"	"2009"	"2009"	"Heroin"	"T40.1"	100	3561807	2.8
+	"Connecticut"	"09"	"2010"	"2010"	"Heroin"	"T40.1"	77	3574097	2.2
+	"Connecticut"	"09"	"2011"	"2011"	"Heroin"	"T40.1"	85	3580709	2.4
+	"Connecticut"	"09"	"2012"	"2012"	"Heroin"	"T40.1"	98	3590347	2.7
+	"Connecticut"	"09"	"2013"	"2013"	"Heroin"	"T40.1"	229	3596080	6.4
+	"Connecticut"	"09"	"2014"	"2014"	"Heroin"	"T40.1"	300	3596677	8.3
+	"Connecticut"	"09"	"2015"	"2015"	"Heroin"	"T40.1"	392	3590886	10.9
+	"Delaware"	"10"	"1999"	"1999"	"Heroin"	"T40.1"	14	774990	Unreliable
+	"Delaware"	"10"	"2002"	"2002"	"Heroin"	"T40.1"	15	806169	Unreliable
+	"Delaware"	"10"	"2007"	"2007"	"Heroin"	"T40.1"	10	871749	Unreliable
+	"Delaware"	"10"	"2010"	"2010"	"Heroin"	"T40.1"	17	897934	Unreliable
+	"Delaware"	"10"	"2011"	"2011"	"Heroin"	"T40.1"	15	907135	Unreliable
+	"Delaware"	"10"	"2012"	"2012"	"Heroin"	"T40.1"	20	917092	2.2
+	"Delaware"	"10"	"2013"	"2013"	"Heroin"	"T40.1"	39	925749	4.2
+	"Delaware"	"10"	"2014"	"2014"	"Heroin"	"T40.1"	54	935614	5.8
+	"Delaware"	"10"	"2015"	"2015"	"Heroin"	"T40.1"	66	945934	7.0
+	"District of Columbia"	"11"	"1999"	"1999"	"Heroin"	"T40.1"	19	570213	Unreliable
+	"District of Columbia"	"11"	"2010"	"2010"	"Heroin"	"T40.1"	16	601723	Unreliable
+	"District of Columbia"	"11"	"2011"	"2011"	"Heroin"	"T40.1"	24	617996	3.9
+	"District of Columbia"	"11"	"2012"	"2012"	"Heroin"	"T40.1"	25	632323	4.0
+	"District of Columbia"	"11"	"2013"	"2013"	"Heroin"	"T40.1"	35	646449	5.4
+	"District of Columbia"	"11"	"2014"	"2014"	"Heroin"	"T40.1"	38	658893	5.8
+	"District of Columbia"	"11"	"2015"	"2015"	"Heroin"	"T40.1"	67	672228	10.0
+	"Florida"	"12"	"1999"	"1999"	"Heroin"	"T40.1"	127	15759421	0.8
+	"Florida"	"12"	"2000"	"2000"	"Heroin"	"T40.1"	171	15982378	1.1
+	"Florida"	"12"	"2001"	"2001"	"Heroin"	"T40.1"	210	16356966	1.3
+	"Florida"	"12"	"2002"	"2002"	"Heroin"	"T40.1"	210	16689370	1.3
+	"Florida"	"12"	"2003"	"2003"	"Heroin"	"T40.1"	211	17004085	1.2
+	"Florida"	"12"	"2004"	"2004"	"Heroin"	"T40.1"	146	17415318	0.8
+	"Florida"	"12"	"2005"	"2005"	"Heroin"	"T40.1"	110	17842038	0.6
+	"Florida"	"12"	"2006"	"2006"	"Heroin"	"T40.1"	90	18166990	0.5
+	"Florida"	"12"	"2007"	"2007"	"Heroin"	"T40.1"	79	18367842	0.4
+	"Florida"	"12"	"2008"	"2008"	"Heroin"	"T40.1"	110	18527305	0.6
+	"Florida"	"12"	"2009"	"2009"	"Heroin"	"T40.1"	98	18652644	0.5
+	"Florida"	"12"	"2010"	"2010"	"Heroin"	"T40.1"	52	18801310	0.3
+	"Florida"	"12"	"2011"	"2011"	"Heroin"	"T40.1"	64	19057542	0.3
+	"Florida"	"12"	"2012"	"2012"	"Heroin"	"T40.1"	104	19317568	0.5
+	"Florida"	"12"	"2013"	"2013"	"Heroin"	"T40.1"	186	19552860	1.0
+	"Florida"	"12"	"2014"	"2014"	"Heroin"	"T40.1"	351	19893297	1.8
+	"Florida"	"12"	"2015"	"2015"	"Heroin"	"T40.1"	570	20271272	2.8
+	"Georgia"	"13"	"2007"	"2007"	"Heroin"	"T40.1"	11	9349988	Unreliable
+	"Georgia"	"13"	"2008"	"2008"	"Heroin"	"T40.1"	24	9504843	0.3
+	"Georgia"	"13"	"2009"	"2009"	"Heroin"	"T40.1"	21	9620846	0.2
+	"Georgia"	"13"	"2010"	"2010"	"Heroin"	"T40.1"	10	9687653	Unreliable
+	"Georgia"	"13"	"2011"	"2011"	"Heroin"	"T40.1"	30	9815210	0.3
+	"Georgia"	"13"	"2012"	"2012"	"Heroin"	"T40.1"	40	9919945	0.4
+	"Georgia"	"13"	"2013"	"2013"	"Heroin"	"T40.1"	67	9992167	0.7
+	"Georgia"	"13"	"2014"	"2014"	"Heroin"	"T40.1"	153	10097343	1.5
+	"Georgia"	"13"	"2015"	"2015"	"Heroin"	"T40.1"	224	10214860	2.2
+	"Hawaii"	"15"	"2013"	"2013"	"Heroin"	"T40.1"	10	1404054	Unreliable
+	"Hawaii"	"15"	"2014"	"2014"	"Heroin"	"T40.1"	13	1419561	Unreliable
+	"Hawaii"	"15"	"2015"	"2015"	"Heroin"	"T40.1"	15	1431603	Unreliable
+	"Idaho"	"16"	"2014"	"2014"	"Heroin"	"T40.1"	11	1634464	Unreliable
+	"Idaho"	"16"	"2015"	"2015"	"Heroin"	"T40.1"	16	1654930	Unreliable
+	"Illinois"	"17"	"1999"	"1999"	"Heroin"	"T40.1"	31	12359020	0.3
+	"Illinois"	"17"	"2000"	"2000"	"Heroin"	"T40.1"	35	12419293	0.3
+	"Illinois"	"17"	"2001"	"2001"	"Heroin"	"T40.1"	40	12488445	0.3
+	"Illinois"	"17"	"2002"	"2002"	"Heroin"	"T40.1"	49	12525556	0.4
+	"Illinois"	"17"	"2003"	"2003"	"Heroin"	"T40.1"	22	12556006	0.2
+	"Illinois"	"17"	"2004"	"2004"	"Heroin"	"T40.1"	36	12589773	0.3
+	"Illinois"	"17"	"2005"	"2005"	"Heroin"	"T40.1"	56	12609903	0.4
+	"Illinois"	"17"	"2006"	"2006"	"Heroin"	"T40.1"	66	12643955	0.5
+	"Illinois"	"17"	"2007"	"2007"	"Heroin"	"T40.1"	65	12695866	0.5
+	"Illinois"	"17"	"2008"	"2008"	"Heroin"	"T40.1"	107	12747038	0.8
+	"Illinois"	"17"	"2009"	"2009"	"Heroin"	"T40.1"	118	12796778	0.9
+	"Illinois"	"17"	"2010"	"2010"	"Heroin"	"T40.1"	153	12830632	1.2
+	"Illinois"	"17"	"2011"	"2011"	"Heroin"	"T40.1"	171	12869257	1.3
+	"Illinois"	"17"	"2012"	"2012"	"Heroin"	"T40.1"	275	12875255	2.1
+	"Illinois"	"17"	"2013"	"2013"	"Heroin"	"T40.1"	596	12882135	4.6
+	"Illinois"	"17"	"2014"	"2014"	"Heroin"	"T40.1"	734	12880580	5.7
+	"Illinois"	"17"	"2015"	"2015"	"Heroin"	"T40.1"	855	12859995	6.6
+	"Indiana"	"18"	"2001"	"2001"	"Heroin"	"T40.1"	10	6127760	Unreliable
+	"Indiana"	"18"	"2005"	"2005"	"Heroin"	"T40.1"	16	6278616	Unreliable
+	"Indiana"	"18"	"2006"	"2006"	"Heroin"	"T40.1"	10	6332669	Unreliable
+	"Indiana"	"18"	"2007"	"2007"	"Heroin"	"T40.1"	18	6379599	Unreliable
+	"Indiana"	"18"	"2008"	"2008"	"Heroin"	"T40.1"	58	6424806	0.9
+	"Indiana"	"18"	"2009"	"2009"	"Heroin"	"T40.1"	65	6459325	1.0
+	"Indiana"	"18"	"2010"	"2010"	"Heroin"	"T40.1"	59	6483802	0.9
+	"Indiana"	"18"	"2011"	"2011"	"Heroin"	"T40.1"	69	6516922	1.1
+	"Indiana"	"18"	"2012"	"2012"	"Heroin"	"T40.1"	118	6537334	1.8
+	"Indiana"	"18"	"2013"	"2013"	"Heroin"	"T40.1"	164	6570902	2.5
+	"Indiana"	"18"	"2014"	"2014"	"Heroin"	"T40.1"	174	6596855	2.6
+	"Indiana"	"18"	"2015"	"2015"	"Heroin"	"T40.1"	242	6619680	3.7
+	"Iowa"	"19"	"2008"	"2008"	"Heroin"	"T40.1"	10	3016734	Unreliable
+	"Iowa"	"19"	"2009"	"2009"	"Heroin"	"T40.1"	10	3032870	Unreliable
+	"Iowa"	"19"	"2011"	"2011"	"Heroin"	"T40.1"	14	3062309	Unreliable
+	"Iowa"	"19"	"2012"	"2012"	"Heroin"	"T40.1"	14	3074186	Unreliable
+	"Iowa"	"19"	"2013"	"2013"	"Heroin"	"T40.1"	32	3090416	1.0
+	"Iowa"	"19"	"2014"	"2014"	"Heroin"	"T40.1"	37	3107126	1.2
+	"Iowa"	"19"	"2015"	"2015"	"Heroin"	"T40.1"	46	3123899	1.5
+	"Kansas"	"20"	"2009"	"2009"	"Heroin"	"T40.1"	11	2832704	Unreliable
+	"Kansas"	"20"	"2012"	"2012"	"Heroin"	"T40.1"	16	2885905	Unreliable
+	"Kansas"	"20"	"2013"	"2013"	"Heroin"	"T40.1"	13	2893957	Unreliable
+	"Kansas"	"20"	"2014"	"2014"	"Heroin"	"T40.1"	19	2904021	Unreliable
+	"Kansas"	"20"	"2015"	"2015"	"Heroin"	"T40.1"	21	2911641	0.7
+	"Kentucky"	"21"	"2008"	"2008"	"Heroin"	"T40.1"	12	4289878	Unreliable
+	"Kentucky"	"21"	"2009"	"2009"	"Heroin"	"T40.1"	24	4317074	0.6
+	"Kentucky"	"21"	"2010"	"2010"	"Heroin"	"T40.1"	37	4339367	0.9
+	"Kentucky"	"21"	"2011"	"2011"	"Heroin"	"T40.1"	55	4369356	1.3
+	"Kentucky"	"21"	"2012"	"2012"	"Heroin"	"T40.1"	147	4380415	3.4
+	"Kentucky"	"21"	"2013"	"2013"	"Heroin"	"T40.1"	216	4395295	4.9
+	"Kentucky"	"21"	"2014"	"2014"	"Heroin"	"T40.1"	232	4413457	5.3
+	"Kentucky"	"21"	"2015"	"2015"	"Heroin"	"T40.1"	311	4425092	7.0
+	"Louisiana"	"22"	"2006"	"2006"	"Heroin"	"T40.1"	15	4302665	Unreliable
+	"Louisiana"	"22"	"2008"	"2008"	"Heroin"	"T40.1"	14	4435586	Unreliable
+	"Louisiana"	"22"	"2009"	"2009"	"Heroin"	"T40.1"	12	4491648	Unreliable
+	"Louisiana"	"22"	"2010"	"2010"	"Heroin"	"T40.1"	15	4533372	Unreliable
+	"Louisiana"	"22"	"2011"	"2011"	"Heroin"	"T40.1"	17	4574836	Unreliable
+	"Louisiana"	"22"	"2012"	"2012"	"Heroin"	"T40.1"	52	4601893	1.1
+	"Louisiana"	"22"	"2013"	"2013"	"Heroin"	"T40.1"	121	4625470	2.6
+	"Louisiana"	"22"	"2014"	"2014"	"Heroin"	"T40.1"	109	4649676	2.3
+	"Louisiana"	"22"	"2015"	"2015"	"Heroin"	"T40.1"	127	4670724	2.7
+	"Maine"	"23"	"2012"	"2012"	"Heroin"	"T40.1"	12	1329192	Unreliable
+	"Maine"	"23"	"2013"	"2013"	"Heroin"	"T40.1"	17	1328302	Unreliable
+	"Maine"	"23"	"2014"	"2014"	"Heroin"	"T40.1"	39	1330089	2.9
+	"Maine"	"23"	"2015"	"2015"	"Heroin"	"T40.1"	53	1329328	4.0
+	"Maryland"	"24"	"2002"	"2002"	"Heroin"	"T40.1"	27	5440389	0.5
+	"Maryland"	"24"	"2003"	"2003"	"Heroin"	"T40.1"	29	5496269	0.5
+	"Maryland"	"24"	"2004"	"2004"	"Heroin"	"T40.1"	75	5546935	1.4
+	"Maryland"	"24"	"2005"	"2005"	"Heroin"	"T40.1"	80	5592379	1.4
+	"Maryland"	"24"	"2006"	"2006"	"Heroin"	"T40.1"	112	5627367	2.0
+	"Maryland"	"24"	"2007"	"2007"	"Heroin"	"T40.1"	131	5653408	2.3
+	"Maryland"	"24"	"2008"	"2008"	"Heroin"	"T40.1"	108	5684965	1.9
+	"Maryland"	"24"	"2009"	"2009"	"Heroin"	"T40.1"	157	5730388	2.7
+	"Maryland"	"24"	"2010"	"2010"	"Heroin"	"T40.1"	95	5773552	1.6
+	"Maryland"	"24"	"2011"	"2011"	"Heroin"	"T40.1"	104	5828289	1.8
+	"Maryland"	"24"	"2012"	"2012"	"Heroin"	"T40.1"	174	5884563	3.0
+	"Maryland"	"24"	"2013"	"2013"	"Heroin"	"T40.1"	219	5928814	3.7
+	"Maryland"	"24"	"2014"	"2014"	"Heroin"	"T40.1"	316	5976407	5.3
+	"Maryland"	"24"	"2015"	"2015"	"Heroin"	"T40.1"	406	6006401	6.8
+	"Massachusetts"	"25"	"1999"	"1999"	"Heroin"	"T40.1"	19	6317345	Unreliable
+	"Massachusetts"	"25"	"2001"	"2001"	"Heroin"	"T40.1"	21	6397634	0.3
+	"Massachusetts"	"25"	"2002"	"2002"	"Heroin"	"T40.1"	17	6417206	Unreliable
+	"Massachusetts"	"25"	"2003"	"2003"	"Heroin"	"T40.1"	23	6422565	0.4
+	"Massachusetts"	"25"	"2004"	"2004"	"Heroin"	"T40.1"	14	6412281	Unreliable
+	"Massachusetts"	"25"	"2005"	"2005"	"Heroin"	"T40.1"	20	6403290	0.3
+	"Massachusetts"	"25"	"2006"	"2006"	"Heroin"	"T40.1"	37	6410084	0.6
+	"Massachusetts"	"25"	"2007"	"2007"	"Heroin"	"T40.1"	69	6431559	1.1
+	"Massachusetts"	"25"	"2008"	"2008"	"Heroin"	"T40.1"	59	6468967	0.9
+	"Massachusetts"	"25"	"2009"	"2009"	"Heroin"	"T40.1"	63	6517613	1.0
+	"Massachusetts"	"25"	"2010"	"2010"	"Heroin"	"T40.1"	73	6547629	1.1
+	"Massachusetts"	"25"	"2011"	"2011"	"Heroin"	"T40.1"	145	6587536	2.2
+	"Massachusetts"	"25"	"2012"	"2012"	"Heroin"	"T40.1"	246	6646144	3.7
+	"Massachusetts"	"25"	"2013"	"2013"	"Heroin"	"T40.1"	289	6692824	4.3
+	"Massachusetts"	"25"	"2014"	"2014"	"Heroin"	"T40.1"	474	6745408	7.0
+	"Massachusetts"	"25"	"2015"	"2015"	"Heroin"	"T40.1"	639	6794422	9.4
+	"Michigan"	"26"	"1999"	"1999"	"Heroin"	"T40.1"	48	9897116	0.5
+	"Michigan"	"26"	"2000"	"2000"	"Heroin"	"T40.1"	99	9938444	1.0
+	"Michigan"	"26"	"2001"	"2001"	"Heroin"	"T40.1"	88	9991120	0.9
+	"Michigan"	"26"	"2002"	"2002"	"Heroin"	"T40.1"	75	10015710	0.7
+	"Michigan"	"26"	"2003"	"2003"	"Heroin"	"T40.1"	79	10041152	0.8
+	"Michigan"	"26"	"2004"	"2004"	"Heroin"	"T40.1"	110	10055315	1.1
+	"Michigan"	"26"	"2005"	"2005"	"Heroin"	"T40.1"	178	10051137	1.8
+	"Michigan"	"26"	"2006"	"2006"	"Heroin"	"T40.1"	166	10036081	1.7
+	"Michigan"	"26"	"2007"	"2007"	"Heroin"	"T40.1"	115	10001284	1.1
+	"Michigan"	"26"	"2008"	"2008"	"Heroin"	"T40.1"	216	9946889	2.2
+	"Michigan"	"26"	"2009"	"2009"	"Heroin"	"T40.1"	251	9901591	2.5
+	"Michigan"	"26"	"2010"	"2010"	"Heroin"	"T40.1"	218	9883640	2.2
+	"Michigan"	"26"	"2011"	"2011"	"Heroin"	"T40.1"	273	9876187	2.8
+	"Michigan"	"26"	"2012"	"2012"	"Heroin"	"T40.1"	264	9883360	2.7
+	"Michigan"	"26"	"2013"	"2013"	"Heroin"	"T40.1"	424	9895622	4.3
+	"Michigan"	"26"	"2014"	"2014"	"Heroin"	"T40.1"	529	9909877	5.3
+	"Michigan"	"26"	"2015"	"2015"	"Heroin"	"T40.1"	654	9922576	6.6
+	"Minnesota"	"27"	"2009"	"2009"	"Heroin"	"T40.1"	16	5281203	Unreliable
+	"Minnesota"	"27"	"2010"	"2010"	"Heroin"	"T40.1"	16	5303925	Unreliable
+	"Minnesota"	"27"	"2011"	"2011"	"Heroin"	"T40.1"	44	5344861	0.8
+	"Minnesota"	"27"	"2012"	"2012"	"Heroin"	"T40.1"	46	5379139	0.9
+	"Minnesota"	"27"	"2013"	"2013"	"Heroin"	"T40.1"	94	5420380	1.7
+	"Minnesota"	"27"	"2014"	"2014"	"Heroin"	"T40.1"	102	5457173	1.9
+	"Minnesota"	"27"	"2015"	"2015"	"Heroin"	"T40.1"	116	5489594	2.1
+	"Mississippi"	"28"	"2013"	"2013"	"Heroin"	"T40.1"	11	2991207	Unreliable
+	"Mississippi"	"28"	"2014"	"2014"	"Heroin"	"T40.1"	23	2994079	0.8
+	"Mississippi"	"28"	"2015"	"2015"	"Heroin"	"T40.1"	40	2992333	1.3
+	"Missouri"	"29"	"1999"	"1999"	"Heroin"	"T40.1"	48	5561948	0.9
+	"Missouri"	"29"	"2000"	"2000"	"Heroin"	"T40.1"	48	5595211	0.9
+	"Missouri"	"29"	"2001"	"2001"	"Heroin"	"T40.1"	24	5641142	0.4
+	"Missouri"	"29"	"2002"	"2002"	"Heroin"	"T40.1"	57	5674825	1.0
+	"Missouri"	"29"	"2003"	"2003"	"Heroin"	"T40.1"	43	5709403	0.8
+	"Missouri"	"29"	"2004"	"2004"	"Heroin"	"T40.1"	58	5747741	1.0
+	"Missouri"	"29"	"2005"	"2005"	"Heroin"	"T40.1"	53	5790300	0.9
+	"Missouri"	"29"	"2006"	"2006"	"Heroin"	"T40.1"	62	5842704	1.1
+	"Missouri"	"29"	"2007"	"2007"	"Heroin"	"T40.1"	70	5887612	1.2
+	"Missouri"	"29"	"2008"	"2008"	"Heroin"	"T40.1"	122	5923916	2.1
+	"Missouri"	"29"	"2009"	"2009"	"Heroin"	"T40.1"	167	5961088	2.8
+	"Missouri"	"29"	"2010"	"2010"	"Heroin"	"T40.1"	185	5988927	3.1
+	"Missouri"	"29"	"2011"	"2011"	"Heroin"	"T40.1"	251	6010688	4.2
+	"Missouri"	"29"	"2012"	"2012"	"Heroin"	"T40.1"	216	6021988	3.6
+	"Missouri"	"29"	"2013"	"2013"	"Heroin"	"T40.1"	264	6044171	4.4
+	"Missouri"	"29"	"2014"	"2014"	"Heroin"	"T40.1"	344	6063589	5.7
+	"Missouri"	"29"	"2015"	"2015"	"Heroin"	"T40.1"	310	6083672	5.1
+	"Nevada"	"32"	"1999"	"1999"	"Heroin"	"T40.1"	44	1934718	2.3
+	"Nevada"	"32"	"2000"	"2000"	"Heroin"	"T40.1"	42	1998257	2.1
+	"Nevada"	"32"	"2001"	"2001"	"Heroin"	"T40.1"	25	2098399	1.2
+	"Nevada"	"32"	"2002"	"2002"	"Heroin"	"T40.1"	39	2173791	1.8
+	"Nevada"	"32"	"2003"	"2003"	"Heroin"	"T40.1"	36	2248850	1.6
+	"Nevada"	"32"	"2004"	"2004"	"Heroin"	"T40.1"	30	2346222	1.3
+	"Nevada"	"32"	"2005"	"2005"	"Heroin"	"T40.1"	48	2432143	2.0
+	"Nevada"	"32"	"2006"	"2006"	"Heroin"	"T40.1"	37	2522658	1.5
+	"Nevada"	"32"	"2007"	"2007"	"Heroin"	"T40.1"	44	2601072	1.7
+	"Nevada"	"32"	"2008"	"2008"	"Heroin"	"T40.1"	31	2653630	1.2
+	"Nevada"	"32"	"2009"	"2009"	"Heroin"	"T40.1"	22	2684665	0.8
+	"Nevada"	"32"	"2010"	"2010"	"Heroin"	"T40.1"	19	2700551	Unreliable
+	"Nevada"	"32"	"2011"	"2011"	"Heroin"	"T40.1"	41	2723322	1.5
+	"Nevada"	"32"	"2012"	"2012"	"Heroin"	"T40.1"	45	2758931	1.6
+	"Nevada"	"32"	"2013"	"2013"	"Heroin"	"T40.1"	49	2790136	1.8
+	"Nevada"	"32"	"2014"	"2014"	"Heroin"	"T40.1"	65	2839099	2.3
+	"Nevada"	"32"	"2015"	"2015"	"Heroin"	"T40.1"	87	2890845	3.0
+	"New Hampshire"	"33"	"2008"	"2008"	"Heroin"	"T40.1"	11	1315906	Unreliable
+	"New Hampshire"	"33"	"2009"	"2009"	"Heroin"	"T40.1"	24	1316102	1.8
+	"New Hampshire"	"33"	"2010"	"2010"	"Heroin"	"T40.1"	13	1316470	Unreliable
+	"New Hampshire"	"33"	"2011"	"2011"	"Heroin"	"T40.1"	43	1318194	3.3
+	"New Hampshire"	"33"	"2012"	"2012"	"Heroin"	"T40.1"	39	1320718	3.0
+	"New Hampshire"	"33"	"2013"	"2013"	"Heroin"	"T40.1"	69	1323459	5.2
+	"New Hampshire"	"33"	"2014"	"2014"	"Heroin"	"T40.1"	100	1326813	7.5
+	"New Hampshire"	"33"	"2015"	"2015"	"Heroin"	"T40.1"	82	1330608	6.2
+	"New Jersey"	"34"	"1999"	"1999"	"Heroin"	"T40.1"	216	8359592	2.6
+	"New Jersey"	"34"	"2000"	"2000"	"Heroin"	"T40.1"	215	8414350	2.6
+	"New Jersey"	"34"	"2001"	"2001"	"Heroin"	"T40.1"	206	8492671	2.4
+	"New Jersey"	"34"	"2002"	"2002"	"Heroin"	"T40.1"	246	8552643	2.9
+	"New Jersey"	"34"	"2003"	"2003"	"Heroin"	"T40.1"	223	8601402	2.6
+	"New Jersey"	"34"	"2004"	"2004"	"Heroin"	"T40.1"	123	8634561	1.4
+	"New Jersey"	"34"	"2005"	"2005"	"Heroin"	"T40.1"	174	8651974	2.0
+	"New Jersey"	"34"	"2006"	"2006"	"Heroin"	"T40.1"	106	8661679	1.2
+	"New Jersey"	"34"	"2007"	"2007"	"Heroin"	"T40.1"	105	8677885	1.2
+	"New Jersey"	"34"	"2008"	"2008"	"Heroin"	"T40.1"	118	8711090	1.4
+	"New Jersey"	"34"	"2009"	"2009"	"Heroin"	"T40.1"	19	8755602	Unreliable
+	"New Jersey"	"34"	"2010"	"2010"	"Heroin"	"T40.1"	98	8791894	1.1
+	"New Jersey"	"34"	"2011"	"2011"	"Heroin"	"T40.1"	135	8821155	1.5
+	"New Jersey"	"34"	"2012"	"2012"	"Heroin"	"T40.1"	307	8864590	3.5
+	"New Jersey"	"34"	"2013"	"2013"	"Heroin"	"T40.1"	395	8899339	4.4
+	"New Jersey"	"34"	"2014"	"2014"	"Heroin"	"T40.1"	436	8938175	4.9
+	"New Jersey"	"34"	"2015"	"2015"	"Heroin"	"T40.1"	513	8958013	5.7
+	"New Mexico"	"35"	"1999"	"1999"	"Heroin"	"T40.1"	23	1808082	1.3
+	"New Mexico"	"35"	"2000"	"2000"	"Heroin"	"T40.1"	41	1819046	2.3
+	"New Mexico"	"35"	"2001"	"2001"	"Heroin"	"T40.1"	22	1831690	1.2
+	"New Mexico"	"35"	"2002"	"2002"	"Heroin"	"T40.1"	23	1855309	1.2
+	"New Mexico"	"35"	"2003"	"2003"	"Heroin"	"T40.1"	26	1877574	1.4
+	"New Mexico"	"35"	"2004"	"2004"	"Heroin"	"T40.1"	34	1903808	1.8
+	"New Mexico"	"35"	"2005"	"2005"	"Heroin"	"T40.1"	47	1932274	2.4
+	"New Mexico"	"35"	"2006"	"2006"	"Heroin"	"T40.1"	21	1962137	1.1
+	"New Mexico"	"35"	"2007"	"2007"	"Heroin"	"T40.1"	30	1990070	1.5
+	"New Mexico"	"35"	"2008"	"2008"	"Heroin"	"T40.1"	65	2010662	3.2
+	"New Mexico"	"35"	"2009"	"2009"	"Heroin"	"T40.1"	51	2036802	2.5
+	"New Mexico"	"35"	"2010"	"2010"	"Heroin"	"T40.1"	22	2059179	1.1
+	"New Mexico"	"35"	"2011"	"2011"	"Heroin"	"T40.1"	68	2082224	3.3
+	"New Mexico"	"35"	"2012"	"2012"	"Heroin"	"T40.1"	105	2085538	5.0
+	"New Mexico"	"35"	"2013"	"2013"	"Heroin"	"T40.1"	91	2085287	4.4
+	"New Mexico"	"35"	"2014"	"2014"	"Heroin"	"T40.1"	146	2085572	7.0
+	"New Mexico"	"35"	"2015"	"2015"	"Heroin"	"T40.1"	159	2085109	7.6
+	"New York"	"36"	"1999"	"1999"	"Heroin"	"T40.1"	43	18882725	0.2
+	"New York"	"36"	"2000"	"2000"	"Heroin"	"T40.1"	29	18976457	0.2
+	"New York"	"36"	"2001"	"2001"	"Heroin"	"T40.1"	59	19082838	0.3
+	"New York"	"36"	"2002"	"2002"	"Heroin"	"T40.1"	50	19137800	0.3
+	"New York"	"36"	"2003"	"2003"	"Heroin"	"T40.1"	52	19175939	0.3
+	"New York"	"36"	"2004"	"2004"	"Heroin"	"T40.1"	34	19171567	0.2
+	"New York"	"36"	"2005"	"2005"	"Heroin"	"T40.1"	35	19132610	0.2
+	"New York"	"36"	"2006"	"2006"	"Heroin"	"T40.1"	116	19104631	0.6
+	"New York"	"36"	"2007"	"2007"	"Heroin"	"T40.1"	195	19132335	1.0
+	"New York"	"36"	"2008"	"2008"	"Heroin"	"T40.1"	222	19212436	1.2
+	"New York"	"36"	"2009"	"2009"	"Heroin"	"T40.1"	256	19307066	1.3
+	"New York"	"36"	"2010"	"2010"	"Heroin"	"T40.1"	198	19378102	1.0
+	"New York"	"36"	"2011"	"2011"	"Heroin"	"T40.1"	341	19465197	1.8
+	"New York"	"36"	"2012"	"2012"	"Heroin"	"T40.1"	525	19570261	2.7
+	"New York"	"36"	"2013"	"2013"	"Heroin"	"T40.1"	678	19651127	3.5
+	"New York"	"36"	"2014"	"2014"	"Heroin"	"T40.1"	837	19746227	4.2
+	"New York"	"36"	"2015"	"2015"	"Heroin"	"T40.1"	1072	19795791	5.4
+	"North Carolina"	"37"	"1999"	"1999"	"Heroin"	"T40.1"	43	7949361	0.5
+	"North Carolina"	"37"	"2000"	"2000"	"Heroin"	"T40.1"	41	8049313	0.5
+	"North Carolina"	"37"	"2001"	"2001"	"Heroin"	"T40.1"	50	8210122	0.6
+	"North Carolina"	"37"	"2002"	"2002"	"Heroin"	"T40.1"	47	8326201	0.6
+	"North Carolina"	"37"	"2003"	"2003"	"Heroin"	"T40.1"	52	8422501	0.6
+	"North Carolina"	"37"	"2004"	"2004"	"Heroin"	"T40.1"	51	8553152	0.6
+	"North Carolina"	"37"	"2005"	"2005"	"Heroin"	"T40.1"	62	8705407	0.7
+	"North Carolina"	"37"	"2006"	"2006"	"Heroin"	"T40.1"	58	8917270	0.7
+	"North Carolina"	"37"	"2007"	"2007"	"Heroin"	"T40.1"	50	9118037	0.5
+	"North Carolina"	"37"	"2008"	"2008"	"Heroin"	"T40.1"	64	9309449	0.7
+	"North Carolina"	"37"	"2009"	"2009"	"Heroin"	"T40.1"	76	9449566	0.8
+	"North Carolina"	"37"	"2010"	"2010"	"Heroin"	"T40.1"	39	9535483	0.4
+	"North Carolina"	"37"	"2011"	"2011"	"Heroin"	"T40.1"	83	9656401	0.9
+	"North Carolina"	"37"	"2012"	"2012"	"Heroin"	"T40.1"	153	9752073	1.6
+	"North Carolina"	"37"	"2013"	"2013"	"Heroin"	"T40.1"	190	9848060	1.9
+	"North Carolina"	"37"	"2014"	"2014"	"Heroin"	"T40.1"	266	9943964	2.7
+	"North Carolina"	"37"	"2015"	"2015"	"Heroin"	"T40.1"	394	10042802	3.9
+	"Ohio"	"39"	"1999"	"1999"	"Heroin"	"T40.1"	55	11335454	0.5
+	"Ohio"	"39"	"2000"	"2000"	"Heroin"	"T40.1"	81	11353140	0.7
+	"Ohio"	"39"	"2001"	"2001"	"Heroin"	"T40.1"	88	11387404	0.8
+	"Ohio"	"39"	"2002"	"2002"	"Heroin"	"T40.1"	122	11407889	1.1
+	"Ohio"	"39"	"2003"	"2003"	"Heroin"	"T40.1"	95	11434788	0.8
+	"Ohio"	"39"	"2004"	"2004"	"Heroin"	"T40.1"	137	11452251	1.2
+	"Ohio"	"39"	"2005"	"2005"	"Heroin"	"T40.1"	138	11463320	1.2
+	"Ohio"	"39"	"2006"	"2006"	"Heroin"	"T40.1"	128	11481213	1.1
+	"Ohio"	"39"	"2007"	"2007"	"Heroin"	"T40.1"	162	11500468	1.4
+	"Ohio"	"39"	"2008"	"2008"	"Heroin"	"T40.1"	242	11515391	2.1
+	"Ohio"	"39"	"2009"	"2009"	"Heroin"	"T40.1"	216	11528896	1.9
+	"Ohio"	"39"	"2010"	"2010"	"Heroin"	"T40.1"	368	11536504	3.2
+	"Ohio"	"39"	"2011"	"2011"	"Heroin"	"T40.1"	447	11544951	3.9
+	"Ohio"	"39"	"2012"	"2012"	"Heroin"	"T40.1"	700	11544225	6.1
+	"Ohio"	"39"	"2013"	"2013"	"Heroin"	"T40.1"	1010	11570808	8.7
+	"Ohio"	"39"	"2014"	"2014"	"Heroin"	"T40.1"	1223	11594163	10.5
+	"Ohio"	"39"	"2015"	"2015"	"Heroin"	"T40.1"	1458	11613423	12.6
+	"Oklahoma"	"40"	"2000"	"2000"	"Heroin"	"T40.1"	12	3450654	Unreliable
+	"Oklahoma"	"40"	"2009"	"2009"	"Heroin"	"T40.1"	17	3717572	Unreliable
+	"Oklahoma"	"40"	"2011"	"2011"	"Heroin"	"T40.1"	14	3791508	Unreliable
+	"Oklahoma"	"40"	"2012"	"2012"	"Heroin"	"T40.1"	26	3814820	0.7
+	"Oklahoma"	"40"	"2013"	"2013"	"Heroin"	"T40.1"	22	3850568	0.6
+	"Oklahoma"	"40"	"2014"	"2014"	"Heroin"	"T40.1"	26	3878051	0.7
+	"Oklahoma"	"40"	"2015"	"2015"	"Heroin"	"T40.1"	37	3911338	0.9
+	"Oregon"	"41"	"1999"	"1999"	"Heroin"	"T40.1"	136	3393941	4.0
+	"Oregon"	"41"	"2000"	"2000"	"Heroin"	"T40.1"	94	3421399	2.7
+	"Oregon"	"41"	"2001"	"2001"	"Heroin"	"T40.1"	80	3467937	2.3
+	"Oregon"	"41"	"2002"	"2002"	"Heroin"	"T40.1"	91	3513424	2.6
+	"Oregon"	"41"	"2003"	"2003"	"Heroin"	"T40.1"	83	3547376	2.3
+	"Oregon"	"41"	"2004"	"2004"	"Heroin"	"T40.1"	92	3569463	2.6
+	"Oregon"	"41"	"2005"	"2005"	"Heroin"	"T40.1"	79	3613202	2.2
+	"Oregon"	"41"	"2006"	"2006"	"Heroin"	"T40.1"	84	3670883	2.3
+	"Oregon"	"41"	"2007"	"2007"	"Heroin"	"T40.1"	110	3722417	3.0
+	"Oregon"	"41"	"2008"	"2008"	"Heroin"	"T40.1"	94	3768748	2.5
+	"Oregon"	"41"	"2009"	"2009"	"Heroin"	"T40.1"	120	3808600	3.2
+	"Oregon"	"41"	"2010"	"2010"	"Heroin"	"T40.1"	81	3831074	2.1
+	"Oregon"	"41"	"2011"	"2011"	"Heroin"	"T40.1"	133	3871859	3.4
+	"Oregon"	"41"	"2012"	"2012"	"Heroin"	"T40.1"	132	3899353	3.4
+	"Oregon"	"41"	"2013"	"2013"	"Heroin"	"T40.1"	106	3930065	2.7
+	"Oregon"	"41"	"2014"	"2014"	"Heroin"	"T40.1"	124	3970239	3.1
+	"Oregon"	"41"	"2015"	"2015"	"Heroin"	"T40.1"	103	4028977	2.6
+	"Pennsylvania"	"42"	"1999"	"1999"	"Heroin"	"T40.1"	183	12263805	1.5
+	"Pennsylvania"	"42"	"2000"	"2000"	"Heroin"	"T40.1"	147	12281054	1.2
+	"Pennsylvania"	"42"	"2001"	"2001"	"Heroin"	"T40.1"	123	12298970	1.0
+	"Pennsylvania"	"42"	"2002"	"2002"	"Heroin"	"T40.1"	142	12331031	1.2
+	"Pennsylvania"	"42"	"2003"	"2003"	"Heroin"	"T40.1"	166	12374658	1.3
+	"Pennsylvania"	"42"	"2004"	"2004"	"Heroin"	"T40.1"	131	12410722	1.1
+	"Pennsylvania"	"42"	"2005"	"2005"	"Heroin"	"T40.1"	142	12449990	1.1
+	"Pennsylvania"	"42"	"2006"	"2006"	"Heroin"	"T40.1"	96	12510809	0.8
+	"Pennsylvania"	"42"	"2007"	"2007"	"Heroin"	"T40.1"	86	12563937	0.7
+	"Pennsylvania"	"42"	"2008"	"2008"	"Heroin"	"T40.1"	158	12612285	1.3
+	"Pennsylvania"	"42"	"2009"	"2009"	"Heroin"	"T40.1"	177	12666858	1.4
+	"Pennsylvania"	"42"	"2010"	"2010"	"Heroin"	"T40.1"	131	12702379	1.0
+	"Pennsylvania"	"42"	"2011"	"2011"	"Heroin"	"T40.1"	240	12742886	1.9
+	"Pennsylvania"	"42"	"2012"	"2012"	"Heroin"	"T40.1"	325	12763536	2.5
+	"Pennsylvania"	"42"	"2013"	"2013"	"Heroin"	"T40.1"	410	12773801	3.2
+	"Pennsylvania"	"42"	"2014"	"2014"	"Heroin"	"T40.1"	507	12787209	4.0
+	"Pennsylvania"	"42"	"2015"	"2015"	"Heroin"	"T40.1"	667	12802503	5.2
+	"Rhode Island"	"44"	"2006"	"2006"	"Heroin"	"T40.1"	10	1063096	Unreliable
+	"Rhode Island"	"44"	"2011"	"2011"	"Heroin"	"T40.1"	13	1051302	Unreliable
+	"Rhode Island"	"44"	"2012"	"2012"	"Heroin"	"T40.1"	30	1050292	2.9
+	"Rhode Island"	"44"	"2013"	"2013"	"Heroin"	"T40.1"	67	1051511	6.4
+	"Rhode Island"	"44"	"2014"	"2014"	"Heroin"	"T40.1"	68	1055173	6.4
+	"Rhode Island"	"44"	"2015"	"2015"	"Heroin"	"T40.1"	46	1056298	4.4
+	"South Carolina"	"45"	"2000"	"2000"	"Heroin"	"T40.1"	11	4012012	Unreliable
+	"South Carolina"	"45"	"2008"	"2008"	"Heroin"	"T40.1"	11	4528996	Unreliable
+	"South Carolina"	"45"	"2009"	"2009"	"Heroin"	"T40.1"	19	4589872	Unreliable
+	"South Carolina"	"45"	"2010"	"2010"	"Heroin"	"T40.1"	15	4625364	Unreliable
+	"South Carolina"	"45"	"2011"	"2011"	"Heroin"	"T40.1"	13	4679230	Unreliable
+	"South Carolina"	"45"	"2012"	"2012"	"Heroin"	"T40.1"	19	4723723	Unreliable
+	"South Carolina"	"45"	"2013"	"2013"	"Heroin"	"T40.1"	32	4774839	0.7
+	"South Carolina"	"45"	"2014"	"2014"	"Heroin"	"T40.1"	66	4832482	1.4
+	"South Carolina"	"45"	"2015"	"2015"	"Heroin"	"T40.1"	102	4896146	2.1
+	"Tennessee"	"47"	"1999"	"1999"	"Heroin"	"T40.1"	11	5638706	Unreliable
+	"Tennessee"	"47"	"2005"	"2005"	"Heroin"	"T40.1"	13	5991057	Unreliable
+	"Tennessee"	"47"	"2009"	"2009"	"Heroin"	"T40.1"	22	6306019	0.3
+	"Tennessee"	"47"	"2010"	"2010"	"Heroin"	"T40.1"	17	6346105	Unreliable
+	"Tennessee"	"47"	"2011"	"2011"	"Heroin"	"T40.1"	19	6403353	Unreliable
+	"Tennessee"	"47"	"2012"	"2012"	"Heroin"	"T40.1"	50	6456243	0.8
+	"Tennessee"	"47"	"2013"	"2013"	"Heroin"	"T40.1"	69	6495978	1.1
+	"Tennessee"	"47"	"2014"	"2014"	"Heroin"	"T40.1"	149	6549352	2.3
+	"Tennessee"	"47"	"2015"	"2015"	"Heroin"	"T40.1"	205	6600299	3.1
+	"Texas"	"48"	"1999"	"1999"	"Heroin"	"T40.1"	111	20558220	0.5
+	"Texas"	"48"	"2000"	"2000"	"Heroin"	"T40.1"	132	20851820	0.6
+	"Texas"	"48"	"2001"	"2001"	"Heroin"	"T40.1"	186	21319622	0.9
+	"Texas"	"48"	"2002"	"2002"	"Heroin"	"T40.1"	183	21690325	0.8
+	"Texas"	"48"	"2003"	"2003"	"Heroin"	"T40.1"	197	22030931	0.9
+	"Texas"	"48"	"2004"	"2004"	"Heroin"	"T40.1"	204	22394023	0.9
+	"Texas"	"48"	"2005"	"2005"	"Heroin"	"T40.1"	207	22778123	0.9
+	"Texas"	"48"	"2006"	"2006"	"Heroin"	"T40.1"	219	23359580	0.9
+	"Texas"	"48"	"2007"	"2007"	"Heroin"	"T40.1"	219	23831983	0.9
+	"Texas"	"48"	"2008"	"2008"	"Heroin"	"T40.1"	258	24309039	1.1
+	"Texas"	"48"	"2009"	"2009"	"Heroin"	"T40.1"	312	24801761	1.3
+	"Texas"	"48"	"2010"	"2010"	"Heroin"	"T40.1"	263	25145561	1.0
+	"Texas"	"48"	"2011"	"2011"	"Heroin"	"T40.1"	372	25674681	1.4
+	"Texas"	"48"	"2012"	"2012"	"Heroin"	"T40.1"	369	26059203	1.4
+	"Texas"	"48"	"2013"	"2013"	"Heroin"	"T40.1"	377	26448193	1.4
+	"Texas"	"48"	"2014"	"2014"	"Heroin"	"T40.1"	441	26956958	1.6
+	"Texas"	"48"	"2015"	"2015"	"Heroin"	"T40.1"	534	27469114	1.9
+	"Utah"	"49"	"1999"	"1999"	"Heroin"	"T40.1"	57	2203482	2.6
+	"Utah"	"49"	"2000"	"2000"	"Heroin"	"T40.1"	47	2233169	2.1
+	"Utah"	"49"	"2001"	"2001"	"Heroin"	"T40.1"	40	2283715	1.8
+	"Utah"	"49"	"2002"	"2002"	"Heroin"	"T40.1"	28	2324815	1.2
+	"Utah"	"49"	"2003"	"2003"	"Heroin"	"T40.1"	32	2360137	1.4
+	"Utah"	"49"	"2004"	"2004"	"Heroin"	"T40.1"	23	2401580	1.0
+	"Utah"	"49"	"2005"	"2005"	"Heroin"	"T40.1"	44	2457719	1.8
+	"Utah"	"49"	"2006"	"2006"	"Heroin"	"T40.1"	47	2525507	1.9
+	"Utah"	"49"	"2007"	"2007"	"Heroin"	"T40.1"	51	2597746	2.0
+	"Utah"	"49"	"2008"	"2008"	"Heroin"	"T40.1"	69	2663029	2.6
+	"Utah"	"49"	"2009"	"2009"	"Heroin"	"T40.1"	55	2723421	2.0
+	"Utah"	"49"	"2010"	"2010"	"Heroin"	"T40.1"	57	2763885	2.1
+	"Utah"	"49"	"2011"	"2011"	"Heroin"	"T40.1"	73	2817222	2.6
+	"Utah"	"49"	"2012"	"2012"	"Heroin"	"T40.1"	88	2855287	3.1
+	"Utah"	"49"	"2013"	"2013"	"Heroin"	"T40.1"	124	2900872	4.3
+	"Utah"	"49"	"2014"	"2014"	"Heroin"	"T40.1"	114	2942902	3.9
+	"Utah"	"49"	"2015"	"2015"	"Heroin"	"T40.1"	131	2995919	4.4
+	"Vermont"	"50"	"2012"	"2012"	"Heroin"	"T40.1"	10	626011	Unreliable
+	"Vermont"	"50"	"2013"	"2013"	"Heroin"	"T40.1"	20	626630	3.2
+	"Vermont"	"50"	"2014"	"2014"	"Heroin"	"T40.1"	35	626562	5.6
+	"Vermont"	"50"	"2015"	"2015"	"Heroin"	"T40.1"	34	626042	5.4
+	"Virginia"	"51"	"1999"	"1999"	"Heroin"	"T40.1"	67	7000174	1.0
+	"Virginia"	"51"	"2000"	"2000"	"Heroin"	"T40.1"	67	7078515	0.9
+	"Virginia"	"51"	"2001"	"2001"	"Heroin"	"T40.1"	96	7198362	1.3
+	"Virginia"	"51"	"2002"	"2002"	"Heroin"	"T40.1"	91	7286873	1.2
+	"Virginia"	"51"	"2003"	"2003"	"Heroin"	"T40.1"	94	7366977	1.3
+	"Virginia"	"51"	"2004"	"2004"	"Heroin"	"T40.1"	70	7475575	0.9
+	"Virginia"	"51"	"2005"	"2005"	"Heroin"	"T40.1"	64	7577105	0.8
+	"Virginia"	"51"	"2006"	"2006"	"Heroin"	"T40.1"	72	7673725	0.9
+	"Virginia"	"51"	"2007"	"2007"	"Heroin"	"T40.1"	96	7751000	1.2
+	"Virginia"	"51"	"2008"	"2008"	"Heroin"	"T40.1"	88	7833496	1.1
+	"Virginia"	"51"	"2009"	"2009"	"Heroin"	"T40.1"	106	7925937	1.3
+	"Virginia"	"51"	"2010"	"2010"	"Heroin"	"T40.1"	45	8001024	0.6
+	"Virginia"	"51"	"2011"	"2011"	"Heroin"	"T40.1"	103	8096604	1.3
+	"Virginia"	"51"	"2012"	"2012"	"Heroin"	"T40.1"	124	8185867	1.5
+	"Virginia"	"51"	"2013"	"2013"	"Heroin"	"T40.1"	206	8260405	2.5
+	"Virginia"	"51"	"2014"	"2014"	"Heroin"	"T40.1"	255	8326289	3.1
+	"Virginia"	"51"	"2015"	"2015"	"Heroin"	"T40.1"	353	8382993	4.2
+	"Washington"	"53"	"1999"	"1999"	"Heroin"	"T40.1"	61	5842564	1.0
+	"Washington"	"53"	"2000"	"2000"	"Heroin"	"T40.1"	61	5894121	1.0
+	"Washington"	"53"	"2001"	"2001"	"Heroin"	"T40.1"	49	5985722	0.8
+	"Washington"	"53"	"2002"	"2002"	"Heroin"	"T40.1"	75	6052349	1.2
+	"Washington"	"53"	"2003"	"2003"	"Heroin"	"T40.1"	66	6104115	1.1
+	"Washington"	"53"	"2004"	"2004"	"Heroin"	"T40.1"	62	6178645	1.0
+	"Washington"	"53"	"2005"	"2005"	"Heroin"	"T40.1"	59	6257305	0.9
+	"Washington"	"53"	"2006"	"2006"	"Heroin"	"T40.1"	58	6370753	0.9
+	"Washington"	"53"	"2007"	"2007"	"Heroin"	"T40.1"	76	6461587	1.2
+	"Washington"	"53"	"2008"	"2008"	"Heroin"	"T40.1"	68	6562231	1.0
+	"Washington"	"53"	"2009"	"2009"	"Heroin"	"T40.1"	68	6667426	1.0
+	"Washington"	"53"	"2010"	"2010"	"Heroin"	"T40.1"	61	6724540	0.9
+	"Washington"	"53"	"2011"	"2011"	"Heroin"	"T40.1"	150	6830038	2.2
+	"Washington"	"53"	"2012"	"2012"	"Heroin"	"T40.1"	179	6897012	2.6
+	"Washington"	"53"	"2013"	"2013"	"Heroin"	"T40.1"	211	6971406	3.0
+	"Washington"	"53"	"2014"	"2014"	"Heroin"	"T40.1"	294	7061530	4.2
+	"Washington"	"53"	"2015"	"2015"	"Heroin"	"T40.1"	309	7170351	4.3
+	"West Virginia"	"54"	"2004"	"2004"	"Heroin"	"T40.1"	10	1816438	Unreliable
+	"West Virginia"	"54"	"2007"	"2007"	"Heroin"	"T40.1"	21	1834052	1.1
+	"West Virginia"	"54"	"2008"	"2008"	"Heroin"	"T40.1"	37	1840310	2.0
+	"West Virginia"	"54"	"2009"	"2009"	"Heroin"	"T40.1"	19	1847775	Unreliable
+	"West Virginia"	"54"	"2010"	"2010"	"Heroin"	"T40.1"	30	1852994	1.6
+	"West Virginia"	"54"	"2011"	"2011"	"Heroin"	"T40.1"	35	1855364	1.9
+	"West Virginia"	"54"	"2012"	"2012"	"Heroin"	"T40.1"	65	1855413	3.5
+	"West Virginia"	"54"	"2013"	"2013"	"Heroin"	"T40.1"	144	1854304	7.8
+	"West Virginia"	"54"	"2014"	"2014"	"Heroin"	"T40.1"	165	1850326	8.9
+	"West Virginia"	"54"	"2015"	"2015"	"Heroin"	"T40.1"	197	1844128	10.7
+	"Wisconsin"	"55"	"1999"	"1999"	"Heroin"	"T40.1"	16	5332666	Unreliable
+	"Wisconsin"	"55"	"2000"	"2000"	"Heroin"	"T40.1"	31	5363675	0.6
+	"Wisconsin"	"55"	"2001"	"2001"	"Heroin"	"T40.1"	24	5406835	0.4
+	"Wisconsin"	"55"	"2002"	"2002"	"Heroin"	"T40.1"	27	5445162	0.5
+	"Wisconsin"	"55"	"2003"	"2003"	"Heroin"	"T40.1"	26	5479203	0.5
+	"Wisconsin"	"55"	"2004"	"2004"	"Heroin"	"T40.1"	22	5514026	0.4
+	"Wisconsin"	"55"	"2005"	"2005"	"Heroin"	"T40.1"	33	5546166	0.6
+	"Wisconsin"	"55"	"2006"	"2006"	"Heroin"	"T40.1"	29	5577655	0.5
+	"Wisconsin"	"55"	"2007"	"2007"	"Heroin"	"T40.1"	37	5610775	0.7
+	"Wisconsin"	"55"	"2008"	"2008"	"Heroin"	"T40.1"	70	5640996	1.2
+	"Wisconsin"	"55"	"2009"	"2009"	"Heroin"	"T40.1"	77	5669264	1.4
+	"Wisconsin"	"55"	"2010"	"2010"	"Heroin"	"T40.1"	92	5686986	1.6
+	"Wisconsin"	"55"	"2011"	"2011"	"Heroin"	"T40.1"	135	5711767	2.4
+	"Wisconsin"	"55"	"2012"	"2012"	"Heroin"	"T40.1"	187	5726398	3.3
+	"Wisconsin"	"55"	"2013"	"2013"	"Heroin"	"T40.1"	233	5742713	4.1
+	"Wisconsin"	"55"	"2014"	"2014"	"Heroin"	"T40.1"	271	5757564	4.7
+	"Wisconsin"	"55"	"2015"	"2015"	"Heroin"	"T40.1"	290	5771337	5.0
+	"Wyoming"	"56"	"2014"	"2014"	"Heroin"	"T40.1"	10	584153	Unreliable

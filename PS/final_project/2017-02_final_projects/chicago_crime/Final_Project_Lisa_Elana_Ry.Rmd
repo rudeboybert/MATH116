@@ -1,0 +1,372 @@
+ 
+---
+title: "An Analysis of Crime in Chicago"
+author: "Ry Storey-Fisher, Elana Feldman and Lisa Schroer"
+date: "Tuesday May 23, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load all necessary packages here
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(readr)
+library(lubridate)
+library(broom)
+library(knitr)
+
+crimes <- read_csv("Chicago_Crimes_2012_to_2017.csv")
+census <- read_csv("Census_Data_2008_2012.csv")
+pop <- read_csv("2010_pop.csv")
+lat_long <- read_csv("CA_lat_long.csv")
+
+
+#pop is a messy spreadsheet so just gonna clean it up
+colnames(pop) <- pop[1, 1:67]
+pop <- pop[2:78, 1:67]
+pop[64] <- NULL
+pop_simple <- pop[1:3]
+
+#to get month and day variables
+crimes <- crimes %>% 
+  mutate(
+    # date_time is a a continuous variable you can plot:
+    Date = parse_date_time(Date, "mdy HMS"),
+    Date = ceiling_date(Date, unit="days"),
+    # broken down
+    month = month(Date),
+    day = day(Date)
+  )
+
+crimes_core <- crimes %>%
+  select(Date, `Primary Type`, Description, `Location Description`, Arrest, Domestic, `Community Area`, Year, month, day, Latitude, Longitude)
+
+```
+
+
+## Introduction
+In early January 2017, President Trump tweeted "If Chicago doesn't fix the horrible 'carnage' going on... I will send in the Feds!" (A.O.L. Staff), highlighting his fixation on the crime within the city of Chicago, particularly the recent increase in murders. However, this view of Chicago experiencing 'carnage' from murders is a simplification of the crime dynamics within the city. Although the murder rate in Chicago has increased since 2015 (Chicago Tribune Editorial Board) and the city has the highest number of killings of any city in the US (Berman; Chicago Tribune Editorial Board), Chicago is not in fact the most dangerous city in the United States (Berman), nor is this murder rate unprecedented (Arthur). 
+
+This vision of Chicago simplifies the crime within the city in two key ways. First, it assumes that murder is the largest crime within the city, ignoring all other forms of crime that may be occurring. Second, it assumes that the city as a whole is experiencing crime, ignoring the fact that crimes do not occur equally across space. In truth, certain areas can experience more crime than others. Furthermore, type of crime can also be specific to the socioeconomic realities of a place. Economic factors, such as per capita income, can influence crime rates and types of crime in cities. Given that Chicago is a large city with a variety of neighborhoods, it is likely that different areas of the city are experiencing different forms of crime. For this article, we examined the types of crime, the locations of crime, and the relationship between crime rates and various economic indicators (all using data from the year 2012) to identify the relationship between economic factors and crime patterns within Chicago.
+
+
+## I. Visualizing Crime in Chicago
+
+The city of Chicago is comprised of 77 community areas, which can be analyzed to give information about data such as census information and crime. An analysis of crime within the 77 comunity areas of Chicago revealed that Fuller Park, West Garfield Park, and East Garfield Park recorded the highest crime rates in 2012. When normalized for population, 425 crimes occurred per 1,000 persons in the Fuller Park community area. 371 and 300 crimes per 1,000 persons occurred in West Garfield and East Garfield Parks. On average in 2012, 134 crimes occured per community area. As shown in the histogram below, the community area crime rate distribution is skewed to the right. Therefore, several community areas with high crime rates do not fully represent the Chicago area. 
+
+On the map below, the 5 community areas with the highest crime rates are highlighted. Note how these community areas are clustered near each other. High crime rates in Chicago, therefore, do not occur randomly or evenly across space. Rather, certain areas of Chicago experience more crime than others. 
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+crimes_half_joined <- left_join(crimes_core, census, by=c("Community Area" = "Community Area Number"))
+
+crimes_joined <- left_join(crimes_half_joined, pop_simple, by=c("COMMUNITY AREA NAME" = "Geog"))
+
+#map of the amount of crime in each area
+
+# Install ggmap using the command below:
+#devtools::install_github("dkahle/ggmap")
+library(ggmap)
+library(tidyverse)
+
+chicago_basemap <- ggmap::qmap(location = "chicago", zoom = 11)
+#chicago_basemap
+
+#Calculate rate of crime in each area
+crime_rate_per_CA <- crimes_joined %>% 
+  filter(Year == 2012) %>% 
+  group_by(`COMMUNITY AREA NAME`) %>% 
+  summarise(total_crime=n()) %>% 
+  left_join(pop_simple, by=c(`COMMUNITY AREA NAME` = "Geog")) %>% 
+  mutate(crime_rate_per_1000_individuals = (total_crime/as.numeric(`Total Population`))*1000) %>% 
+  mutate(`Top Crime Rates`=ifelse(crime_rate_per_1000_individuals>290, "5 Community Areas with the highest crime rate", "Remaining Community Areas"))
+
+crime_rate_per_CA <- na.omit(crime_rate_per_CA)
+
+
+
+crime_rate_per_CA$GeogKey <- as.numeric(crime_rate_per_CA$GeogKey)
+
+crime_rate_map <- left_join(crime_rate_per_CA, lat_long, by=c("GeogKey" = "CA"))
+
+
+crime_rate_map <- crime_rate_map %>% 
+  rename(`Crime Rate per 1000 Individuals` = crime_rate_per_1000_individuals)
+
+
+chicago_basemap +
+  geom_point(data=crime_rate_map, aes(x=Long, y=Lat, size=`Crime Rate per 1000 Individuals`, color=`Top Crime Rates`)) +
+  labs(title="Crime Rate in Chicago's 77 Community Areas")
+
+mean_crimes = mean(crime_rate_per_CA$crime_rate_per_1000_individuals)
+
+crime_rate_per_CA <- crime_rate_per_CA %>% #delete?
+  rename(`Crime Rate per 1000 Individuals` = crime_rate_per_1000_individuals)
+
+ggplot(crime_rate_per_CA, aes(`Crime Rate per 1000 Individuals`))+ #he changed
+  geom_histogram(binwidth = 25) +
+  labs(x="Crime Rate Per 1,000 Persons by Community Area", y="Count", title=
+         "Distribution of Total Crimes Commited in 2012")+
+  geom_vline(xintercept= mean_crimes, color="blue")
+```
+
+### Most Common Crime Types
+In 2012, theft was the most commonly committed crime in Chicago. As shown in the table below, battery, criminal damage, narcotics and burglary were also commonly committed crimes throughout Chicago’s community areas. In comparison to minor criminal offenses, instances of homicide are much less frequent. However in recent years, Chicago has recorded one of the highest homicide rates in the United States. Popular perceptions about the nature of inner city Chicago are often influenced by homicide. In the next section, we explore the relationship between economic indicators and types of crime.
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+library(knitr)
+#crime overview part 1, 5 most frequent crimes
+chicago_2012 <- crimes_core %>% 
+  filter(Year==2012) %>% 
+  group_by(`Primary Type`) %>% 
+  summarise(`Total Crime`=n()) %>% 
+  arrange(desc(`Total Crime`)) %>% 
+  top_n(5) %>% 
+  mutate(crime= `Primary Type`)
+#Here, we see the top 5 crime types are THEFT, BATTERY, CRIMINAL DAMAGE, NARCOTICS, and BURGLARY.
+
+top5_and_homicide <- crimes_core %>% 
+  filter(Year==2012) %>% 
+  group_by(`Primary Type`) %>% 
+  summarise(`Total Crime`=n()) %>%
+  filter(`Primary Type`=="THEFT" | `Primary Type`=="BATTERY" | `Primary Type`=="CRIMINAL DAMAGE" | `Primary Type`=="NARCOTICS" | `Primary Type`=="BURGLARY" | `Primary Type`=="HOMICIDE") %>%
+  arrange(desc(`Total Crime`))
+
+kable(top5_and_homicide[1:6, ], caption = "5 Most Common Crime Types Compared to Homicides")
+  
+
+#ggplot(top5_and_homicide, aes(x=`Primary Type` , y=total_crime)) +
+         #geom_bar(stat="identity") +
+  #labs(x="Type of Crime", y="Total Reported Crime in 2012")
+
+battery <- crimes_core %>% 
+  filter(Year==2012 & `Primary Type`=="BATTERY") %>% 
+  group_by(`Location Description`) %>% 
+  summarise(`Total Crime`=n()) %>% 
+  arrange(desc(`Total Crime`)) %>% 
+  top_n(5)
+
+
+
+
+
+
+```
+
+## II. Understanding Crimes in Relation to Economic Indicators
+
+Crime data does not exist within a vacuum: crime distributions can be intimately connected with social and economic patterns. Using crime data broken down by Chicago's 77 community areas, we decided to examine the relationship between various crime types and the per capita income (as an economic indicator) within the community areas. In doing so, we hope to confirm or deny popular conceptions of urban crime distribution.
+
+It should be noted, however, that police data of crimes and arrests is not necessarily representative of actual crime occurences. Rather, it reflects the crimes that police were involved with, which can be influenced by the distribution of the Chicago Police as much as by the distribution of the crimes themselves.
+
+### Drug-related Arrests
+
+Narcotics-related crimes are among the most common in Chicago. Here, we attempt to answer the question: do more drug arrests occur in low-income areas? To answer this question, we compared drug-related arrests (per 1000 residents) in 2012 to per-capita income in each of the 77 community areas.
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Drug-related arrests
+drug_arrests <- crimes_core %>%
+  filter(Year==2012) %>%
+  filter(`Primary Type`=="NARCOTICS" & Arrest=="True") %>%
+  filter(`Community Area`>=1 & `Community Area`<=77) %>% #gets rid of 2 NA values and 1 likely data-entry error
+  group_by(`Community Area`) %>%
+  summarise(num_drug_arrests = n())
+
+drug_arrests_econ <- left_join(drug_arrests, census, by=c("Community Area" = "Community Area Number"))
+
+drug_arrests_final <-  left_join(drug_arrests_econ, pop_simple, by=c("COMMUNITY AREA NAME" = "Geog"))
+drug_arrests_final <- drug_arrests_final %>%
+  mutate(total_pop=as.numeric(`Total Population`)) %>%
+  mutate(`Drug Arrests per 1000 Residents`=1000*num_drug_arrests/total_pop) %>%
+  mutate(`Per Capita Income (Thousands of Dollars)`=`PER CAPITA INCOME`/1000)
+
+#drug_arrests_final$`PER CAPITA INCOME`<-as.numeric(drug_arrests_econ$`PER CAPITA INCOME`)
+ggplot(data=drug_arrests_final, aes(x=`Per Capita Income (Thousands of Dollars)`, y=`Drug Arrests per 1000 Residents`)) + geom_point() + geom_smooth(method="lm", se=FALSE)
+
+
+#model <- lm(`Drug Arrests per 1000 Residents` ~ `Per Capita Income (Thousands of Dollars)`, data=drug_arrests_final)
+#summary(model)
+
+# Summary table + confidence intervals
+#model_table <- tidy(model, conf.int = TRUE)
+#model_table
+
+#doesnt include 0 and small p-value
+```
+
+Our study found a statistically significant negative correlation between drug-related arrest rates and per capita incomes in Chicago's 77 community areas. Higher rates of drug arrests occured in lower-income neighborhoods, while neighborhood drug arrest rates tended to be lower the higher its per capita income. {*The 95% confidence interval for the slope was [-0.7028, -0.2362], which falls entirely below 0 and thus indicates a statistically significant negative relationship*}. On average, there were 4.7 fewer drug-related arrests per 1000 residents for every additional $10,000 in a community area's per capita income.
+
+It should be noted that while this data may at first appear to confirm that low-income areas use drugs at higher rates, in reality it only reflects that lower-income areas in Chicago tend to have higher rates of drug-related arrests. Such a phenomenon could be caused by differing rates of drug use, differing rates of police presence, and/or differing arrest or search rates in Chicago's neighborhoods.
+
+### Stealing Crimes
+
+Given that drug arrests are related to neighborhood income, are stealing crimes also related to income? Two of the most common crimes in the city of Chicago are burglary and theft. (Burglary is entry into an area with the intent of committing a crime, while theft is the taking of property).
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+stealing <- crimes_core %>%
+  filter(`Primary Type`=="THEFT" | `Primary Type`=="BURGLARY") %>%
+  filter(`Community Area`>=1 & `Community Area`<=77) %>% #gets rid of 2 NA values and 1 likely data-entry error
+  group_by(`Community Area`, `Primary Type`) %>%
+  summarise(crime_count = n())
+
+
+stealing_econ <- left_join(stealing, census, by=c("Community Area" = "Community Area Number")) %>%
+  mutate(income_range=floor(`PER CAPITA INCOME`/10000)*10000)
+
+stealing_final <- left_join(stealing_econ, pop_simple, by=c("COMMUNITY AREA NAME" = "Geog")) 
+
+stealing_final <- stealing_final %>%
+  mutate(total_pop=as.numeric(`Total Population`)) %>%
+  mutate(`Theft per 1000 Residents`=1000*crime_count/total_pop) %>%
+  mutate(`Per Capita Income (Thousands of Dollars)`=`PER CAPITA INCOME`/1000)
+
+
+ggplot(data=stealing_final, aes(x=`Per Capita Income (Thousands of Dollars)`, y=`Theft per 1000 Residents`)) + geom_point() + geom_smooth(method="lm", se=FALSE) + facet_wrap(~`Primary Type`)
+
+#just theft
+theft <- crimes_core %>%
+  filter(`Primary Type`=="THEFT") %>%
+  filter(`Community Area`>=1 & `Community Area`<=77) %>% #gets rid of 2 NA values and 1 likely data-entry error
+  group_by(`Community Area`, `Primary Type`) %>%
+  summarise(crime_count = n())
+
+
+theft_econ <- left_join(theft, census, by=c("Community Area" = "Community Area Number")) %>%
+  mutate(income_range=floor(`PER CAPITA INCOME`/10000)*10000)
+
+theft_final <- left_join(theft_econ, pop_simple, by=c("COMMUNITY AREA NAME" = "Geog")) 
+
+theft_final <- theft_final %>%
+  mutate(total_pop=as.numeric(`Total Population`)) %>%
+  mutate(`Theft per 1000 Residents`=1000*crime_count/total_pop) %>%
+  mutate(`Per Capita Income (Thousands of Dollars)`=`PER CAPITA INCOME`/1000)
+
+#No relationship with income level
+#ggplot(data=theft_final, aes(x=`Per Capita Income (Thousands of Dollars)`, y=`Theft per 1000 Residents`)) + geom_point() + geom_smooth(method="lm", se=FALSE)
+
+#model <- lm(`Theft per 1000 Residents` ~ `Per Capita Income (Thousands of Dollars)`, data=theft_final)
+#summary(model)
+
+#model_table <- tidy(model, conf.int = TRUE)
+#model_table
+```
+
+Our analysis found significant relationships between both burglary per 1000 residents and per capita income of the 77 community areas and theft per 1000 residents and per capita income. However, burglary showed a negative relationship with income while theft showed a positive one. {*The 95% confidence interval for the slope of burglary was [0.4329, 3.0754], which does not include 0, suggesting statistical significance. The 95% confidence interval for the slope of theft was [-0.7947, -0.2886], which also does not include 0, suggesting statistical significance*}. Although both of these crimes are related to stealing and use of another's property, the relationships are very different. On average, with every $10,000 increase in income, there were an associated 5.4 fewer burglaries but 17.5 more thefts. This difference in relationship between the two crimes seems to suggest that there are other factors involved in the decision to commit these crimes than simply the amount of money available within an area, such as better security systems in the higher income community areas to prevent burglary. 
+
+In addition, it appears that theft is more variable as a crime than burglary. None of the community areas had more than 100 burglaries per 1000 residents, with very little variation in the number of burglaries within community areas of similar incomes. However, each of the community areas experiened very different numbers of thefts with one high income community area experiencing more than 700 thefts per 1000 residents. Therefore, while it may be easy to claim that there are fewer burglaries in high income neighborhoods, high numbers of theft could occur in any of the community areas, with more thefts occuring more often in high income neighborhoods. 
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+burglary <- crimes_core %>%
+  filter(`Primary Type`=="BURGLARY") %>%
+  filter(`Community Area`>=1 & `Community Area`<=77) %>% #gets rid of 2 NA values and 1 likely data-entry error
+  group_by(`Community Area`, `Primary Type`) %>%
+  summarise(crime_count = n())
+
+
+burglary_econ <- left_join(burglary, census, by=c("Community Area" = "Community Area Number")) %>%
+  mutate(income_range=floor(`PER CAPITA INCOME`/10000)*10000)
+
+burglary_final <- left_join(burglary_econ, pop_simple, by=c("COMMUNITY AREA NAME" = "Geog")) 
+
+burglary_final <- burglary_final %>%
+  mutate(total_pop=as.numeric(`Total Population`)) %>%
+  mutate(`Burglary per 1000 Residents`=1000*crime_count/total_pop) %>%
+  mutate(`Per Capita Income (Thousands of Dollars)`=`PER CAPITA INCOME`/1000)
+
+#ggplot(data=burglary_final, aes(x=`Per Capita Income (Thousands of Dollars)`, y=`Burglary per 1000 Residents`)) + geom_point() + geom_smooth(method="lm", se=FALSE)
+
+#model <- lm(`Burglary per 1000 Residents` ~ `Per Capita Income (Thousands of Dollars)`, data=burglary_final)
+#summary(model)
+
+#model_table <- tidy(model, conf.int = TRUE)
+#model_table
+```
+
+###Theft Value and Per Capita Income
+
+Given that theft is one of the most common crimes in Chicago, with over 75,000 recorded cases in 2012, we want to better understand the distribution of theft cases across poorer and wealther neighborhoods. To analyze this, we compared the amount of money stolen with the per capita income of the neighborhood in which the theft occured (the Chicago crime data classifies most thefts by whether the amount stolen was over or under $500).
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+over_500 <- crimes_core %>%
+  filter(Year==2012) %>%
+  filter(`Primary Type`=="THEFT" & `Description`=="OVER $500") %>%
+  filter(`Community Area`>=1 & `Community Area`<=77) %>% #gets rid of 2 NA values and 1 likely data-entry error
+  group_by(`Community Area`) %>%
+  summarise(thefts_over_500 = n())
+
+under_500 <- crimes_core %>%
+  filter(Year==2012) %>%
+  filter(`Primary Type`=="THEFT" & `Description`=="$500 AND UNDER") %>%
+  filter(`Community Area`>=1 & `Community Area`<=77) %>% #gets rid of 2 NA values and 1 likely data-entry error
+  group_by(`Community Area`) %>%
+  summarise(thefts_under_500 = n())
+
+thefts_500 <- left_join(over_500, under_500, by="Community Area") %>%
+  mutate(`Percent of Thefts in Community Area Over $500` = 100*thefts_over_500/(thefts_under_500+thefts_over_500))
+
+thefts_500_econ <- left_join(thefts_500, census, by=c("Community Area" = "Community Area Number")) %>%
+  mutate(`Per Capita Income (Thousands of Dollars)`=`PER CAPITA INCOME`/1000)
+
+ggplot(data=thefts_500_econ, aes(x=`Per Capita Income (Thousands of Dollars)`, y=`Percent of Thefts in Community Area Over $500`)) + geom_point() + geom_smooth(method="lm", se=FALSE)
+# Output
+model <- lm(`Percent of Thefts in Community Area Over $500` ~ `Per Capita Income (Thousands of Dollars)`, data=thefts_500_econ)
+
+# Cleaner output
+library(broom)
+model_output <- tidy(model, conf.int = TRUE)
+#model_output
+
+```
+
+There is a statistically significant relationship between theft value and per capita income in Chicago's 77 community areas, with higher-income areas generally exhibiting a slightly higher proportion of high-value (over $500) thefts than lower-income areas. Only about 30% of thefts in Chicago's lowest-income neighborhoods tend to be over $500, with that proportion rising on average 1.3 percentage points for every additional $10,000 in neighborhood per capita income. {*The 95% confidence interval is [0.0601, 0.2040], which does not include 0 and thus indicates a statistically significant positive relationship*}.
+
+In short, thefts are more likely to be of a higher value in higher-income neighborhoods. However, there is a noticeably small spread of high-value theft proportions, with almost all community areas having between 25% to 45% of recorded thefts as over $500, meaning there is not a huge difference between high-value theft proportions between neighborhoods. Yet the exact value of these thefts remains unknown - there could be an even more clear relationship when the exact value of thefts is considered.
+
+##Conclusion
+
+Is there a relationship between economic indicators and crime? Our analysis suggests that crimes are not evenly distributed across Chicago, but seem to follow patterns associated with the economic conditions of the community areas. First, our analysis shows that the number of drug arrests decreases as community area income increases. Second, the amount of burglary decreases with increasing income but the number of thefts increases with increasing income. Third, the amount of money taken in the theft increases with increases in income. However, each of these analyses should be viewed as associations instead of causes. Although income seems to be related to each of these crimes, that does not mean that income is the direct cause of any of them. In addition, more work should be completed to truly understand the relationship between crime and per capita income of a community area. The variability, or lack of variability, of these relationships suggests that these associations are more complicated than what we have uncovered. However, there are clear ties between economic indicators and crime, a fact that should be considered when developing perceptions about the amount of crime within Chicago. 
+
+## Supplementary Materials
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# Copy this blank code block as many times as you need. Note, if you want to
+# code to show in your HTML files, set echo=TRUE above.
+
+```
+
+###When is Tom peeping these days?
+
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=4.5, echo=FALSE}
+# When is Tom peeping these days?
+peeping_tom <- crimes_joined %>%
+  filter(Description=="PEEPING TOM") %>%
+  mutate(Month=factor(month))
+ggplot(data=peeping_tom, aes(x=Month)) + geom_bar()
+
+```
+
+According to crime data from 2012 to 2016, Peeping Tom incidents appear to spike in the warmer months of the year.
+
+## Works Cited
+
+A. O. L. Staff. “Trump Makes Bold Threat in Response to High Crime Rate in  Chicago.” AOL.com. N.p., n.d. Web. 18 May 2017.
+
+Arthur, Rob. “Chicago’s Murder Rate Is Rising, But It Isn’t Unprecedented.” FiveThirtyEight. N.p., 25 Jan. 2017. Web. 18 May 2017.
+
+Berman, Mark. “Chicago Death Toll Driving up Overall Murder Rate for Country’s Biggest Cities.” chicagotribune.com. N.p., n.d. Web. 18 May 2017.
+
+Chicago Tribune Editorial Board. “What’s behind Chicago’s Surge in Violence?” chicagotribune.com. N.p., n.d. Web. 18 May 2017.
+
+

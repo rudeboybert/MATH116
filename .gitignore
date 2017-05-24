@@ -8,3 +8,6 @@
 _site/*
 *_cache/
 *_files/
+Moma_Data.csv
+MetObjects.csv
+Chicago_Crimes_2012_to_2017.*

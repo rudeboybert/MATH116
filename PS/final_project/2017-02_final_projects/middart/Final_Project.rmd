@@ -1,0 +1,191 @@
+---
+title: "What makes an art museum?"
+author: "Thea Bean, Griffin Hall, & Jay Silverstein"
+date: "May 23, 2017"
+output: html_document
+---
+###Or, how to fix the issue of boredom###
+```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(mosaic)
+library(broom)
+library(data.table)
+library(readr)
+library(stringr)
+library(readxl)
+library(tidyr)
+
+
+# Bring the Moma Dataset into existence
+
+Moma_Data <- read_csv("Moma_Data.csv") %>% 
+  setnames(old = c("Artist", "Height (cm)", "Width (cm)", "Date", "BeginDate"), new = c("Artist_Fullname", "Height", "Width", "Date_Useless", "Date")) %>% 
+  select(Artist_Fullname, Gender, Nationality, Date, Medium, Height, Width) %>% 
+  mutate(Museum = "Moma") %>% 
+  mutate(Gender = ifelse(Gender == "Male", "M", Gender)) %>% 
+  mutate(Gender = ifelse(Gender == "Female", "F", Gender))
+
+
+# Bring the Tate Dataset into existence
+
+Tate_Data <- read_csv("Tate_Data.csv") %>% 
+  separate(artist, c("last_name", "first_name"), sep=", ") %>% 
+  mutate(Artist_Fullname = paste(first_name, last_name, sep=" ")) %>% 
+  setnames(old = c("title", "medium", "year", "width", "height"), new = c("Title", "Medium", "Date", "Width", "Height")) %>% 
+  mutate(Nationality = NA) %>% 
+  mutate(Gender = NA) %>% 
+  mutate(Height = Height/10) %>% 
+  mutate(Width = Width/10) %>% 
+  select(Artist_Fullname, Nationality, Date, Medium, Height, Width) %>% 
+  mutate(Museum = "Tate")
+
+
+# MIDDLEBURY COLLEGE MUSEUM OF ART
+# Bring the Middlebury Dataset into fruition
+
+Midd_Data <- read_excel("MCMACollection_data_set.xlsx") %>% 
+  setnames(old = c("MCMA Artist Files::Artist Fullname", "MCMA Artist Files::Gender", "MCMA Artist Files::Nationality", "Earliest Date (ARTstor)", "height_cm", "width_cm", "Medium", "subcat 2"), new = c("Artist_Fullname", "Gender", "Nationality", "Date", "Height", "Width", "Medium_specific", "Medium")) %>% 
+  select(Artist_Fullname, Gender, Nationality, Date, Medium, Height, Width) %>% 
+  mutate(Medium = ifelse(Medium == "Paintings", "Painting", Medium)) %>% 
+  mutate(Medium = ifelse(Medium == "Prints", "Print", Medium)) %>% 
+  mutate(Medium = ifelse(Medium == "Silhouettes", "Print", Medium)) %>% 
+  mutate(Medium = ifelse(Medium == "Photographs", "Print", Medium)) %>% 
+  mutate(Medium = ifelse(Medium == "Decorative Art", "Sculpture", Medium)) %>% 
+  mutate(Medium = ifelse(Medium == "Constructions", "Sculpture", Medium)) %>% 
+  mutate(Medium = ifelse(Medium == "Jewelry", "Sculpture", Medium)) %>% 
+  mutate(Medium = ifelse(Medium == "Drawings", "Drawing", Medium)) %>% 
+  mutate(Gender = ifelse(Gender == "m", "M", Gender)) %>% 
+  mutate(Gender = ifelse(Gender == "f", "F", Gender)) %>% 
+  mutate(Museum = "Middlebury") %>% 
+  mutate(Date=as.numeric(Date))
+
+
+
+# METROPOLITAN MUSEUM
+
+# Bring the MET Dataset into fruition
+
+# Met_Data <- read_csv("MetObjects.csv") %>% 
+#   setnames(old = c("Title", "Artist Display Name", "Artist Nationality", "Medium", "Object End Date", "Height", "Length"), new = c("Title", "Artist_Fullname", "Nationality", "Medium", "Date", "Height", "Width")) %>% 
+#   select(Title, Artist_Fullname, Nationality, Date, Medium, Height, Width) %>% 
+#   mutate(Height = as.numeric(Height)) %>% 
+#   mutate(Width = as.numeric(Width)) %>% 
+#   mutate(Museum = "Metropolitan")
+load("met_data.RData")
+
+
+
+Museum_Data <- Tate_Data %>% 
+  bind_rows(Moma_Data) %>%
+  bind_rows(Met_Data) %>% 
+  bind_rows(Midd_Data) %>% 
+  
+  # create classification columns 
+  
+  mutate(Drawing = str_detect(Medium, ignore.case("graphite")) | str_detect(Medium, ignore.case("ink")) | str_detect(Medium, ignore.case("chalk")) | str_detect(Medium, ignore.case("crayon")) | str_detect(Medium, ignore.case("pastel")) | str_detect(Medium, ignore.case("charcoal")) | str_detect(Medium, ignore.case("pencil")) | str_detect(Medium, ignore.case("pen")) | str_detect(Medium, ignore.case("drawing"))) %>% 
+  
+  mutate(Painting = str_detect(Medium, ignore.case("oil")) | str_detect(Medium,ignore.case( "watercolor"))| str_detect(Medium, ignore.case("paint")) | str_detect(Medium, ignore.case(
+    "watercolour")) | str_detect(Medium, ignore.case("tempera")) | str_detect(Medium, ignore.case("gouache")) | str_detect(Medium, ignore.case("acrylic")) | str_detect(Medium, ignore.case("painting"))) %>% 
+  
+  mutate(Sculpture = str_detect(Medium, ignore.case("Bronze")) | str_detect(Medium, ignore.case("Stone")) | str_detect(Medium, ignore.case("marble")) | str_detect(Medium, ignore.case("Ivory")) | str_detect(Medium, ignore.case("glass")) | str_detect(Medium, ignore.case("steel")) | str_detect(Medium, ignore.case("aluminum")) | str_detect(Medium, ignore.case("aluminium")) | str_detect(Medium, ignore.case("plastic")) | str_detect(Medium, ignore.case("iron")) | str_detect(Medium, ignore.case("ceramic")) | str_detect(Medium, ignore.case("copper")) | str_detect(Medium, ignore.case("lead")) | str_detect(Medium, ignore.case("metal")) |str_detect(Medium, ignore.case("plaster")) | str_detect(Medium, ignore.case("terracotta")) | str_detect(Medium, ignore.case("sculpture")) | str_detect(Medium, ignore.case("Gold")) |str_detect(Medium, ignore.case("Silver")) | str_detect(Medium, ignore.case("Flint"))) %>% 
+  
+  mutate(Print = str_detect(Medium, ignore.case("photo"))| str_detect(Medium, ignore.case("engraving")) | str_detect(Medium, ignore.case("etching")) | str_detect(Medium, ignore.case("aquatint")) | str_detect(Medium, ignore.case("plate")) | str_detect(Medium, ignore.case("print")) | str_detect(Medium, ignore.case("lithograph")) | str_detect(Medium, ignore.case("woodcut")) | str_detect(Medium, ignore.case("linocut")) | str_detect(Medium, ignore.case("drypoint")) | str_detect(Medium, ignore.case("mezzotint")) | str_detect(Medium, ignore.case("monotype")) | str_detect(Medium, ignore.case("silkscreen")) | str_detect(Medium, ignore.case("letterpress")) | str_detect(Medium, ignore.case("print")) | str_detect(Medium, ignore.case("collotype")) | str_detect(Medium, ignore.case("Xerox"))) %>% 
+  
+  mutate(all_false = !Drawing & !Painting & !Sculpture & !Print) %>% 
+  mutate(Medium_END = ifelse(Drawing==TRUE, "Drawing", NA)) %>% 
+  mutate(Medium_END = ifelse(Painting==TRUE, "Painting", Medium_END)) %>% 
+  mutate(Medium_END = ifelse(Print==TRUE, "Print", Medium_END)) %>% 
+  mutate(Medium_END = ifelse(Sculpture==TRUE, "Sculpture", Medium_END)) %>% 
+  mutate(Area = Height * Width)
+
+
+Middlebury_Final <- Museum_Data %>% 
+  filter(Museum == "Middlebury")
+Metropolitan_Final <- Museum_Data %>% 
+  filter(Museum == "Metropolitan")
+Moma_Final <- Museum_Data %>% 
+  filter(Museum == "Moma")
+Tate_Final <- Museum_Data %>% 
+  filter(Museum == "Tate")
+```
+Art museums, as of late, have had a marked decrease in overall attendance . Although this trend is known and has been quantified, it remains difficult to isolate exactly why people aren't interested in art. Anecdotally, art museums are often described as "boring" or "stuffy". These categorizations are not only unfair, they undermine the quantitative and qualitative benefits of art museums - especially those on college campuses . Not only are they places where significant works of art and archaeological artifacts are stored and available for firsthand study, these museums generate a significant amount of revenue through two distinct channels. The first and most valued comes from donation. The second is through grant funding. In order to secure enough capital, museums must not only attract visitors, they must also engage those visitors enough to have them either donate or establish museum membership . With all this in mind, the focus shifted on improving the impact our own art museum has. 
+Located leagues away from the main campus, the Middlebury College Museum of Art is further tucked away in the bowls of the CFA. Although it houses some incredible pieces of work - from monumental sculpture to rare originals by contemporary art visionaries - it is oftentimes overlooked. After prompting some students with the question 'how often do you get down to the art museum', a few responded with 'what', others said 'oh I've been meaning to'. Hearing that is not necessarily exciting. It did, however, give us direction. How can museums attract actionable attention? After working with four separate collections: the Met, MoMA, Tate, and the Middlebury College Art Museum (MCAM), we have isolated areas with potential for growth and expansion. 
+
+###Art Through the Ages###
+```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+ggplot(data=Museum_Data, aes(x=Date, fill=Medium_END))+
+  geom_histogram(bins=28)+
+  xlim(1450,2000)+
+  facet_wrap(~Museum, scales="free_y")+
+  ggtitle("Concentration of Artwork by Date")
+```
+
+The first factor we explored was age of the collections as a whole. Museums with a breadth of works spanning all time periods appeared to be the most successful. With that being said, it appears as though Middlebury's holdings cover a similar swathe of time as the Met. The Met, a museum whose mission includes representing art from the entirety of human history, could be seen as the benchmark in this category. Compared to the Tate and MoMA, Middlebury's holdings span a larger stretch of time. The Tate appears to be the specialist of the group with a large portion of its pieces centered on the year 1800. As far as the relative proportions of mediums displayed, prints dominate the MCAM, Met, and MoMA collections. The Tate has a much larger proportion of drawings. Sculptures represent the smallest fractions of each museum. From this exploratory analysis, we concluded that MCAM, although much smaller in terms of overall size, stacks up to the Met most closely in focus. Having such a representative assortment of pieces across history; a potential marketing angle?
+
+###Size Matters###
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+ggplot(data=Museum_Data, aes(x=Height, y=Width, color=Medium_END))+
+  geom_point(alpha=.2)+
+  xlim(0,200)+
+  ylim(0,200)+
+  facet_wrap(~Museum)+
+  ggtitle("Aspect Ratios")
+```
+
+It may seem like a given that extranormal pieces garner the most attention. Enormous works that can only be housed in certain museums come with a built-in mystique. In this visualization, we plotted height and width (in centimeters) in an effort to illuminate any trends in the selection of pieces based on size. The Met, a clear outlier, has pieces clustered all across the spectrum. Squares and rectangles of every conceivable shape and size. Each of the other museums tend to stick with the smaller pieces, but as the height increases, multiple linear relationships with width arise. It appears as though many works are square. Diverging from the Met, the MCAM more closely aligns with the MoMA and Tate in this regard. We recommend using this to have the best of both worlds. A similar breadth to the Met combined with the size-based selection of museums that focus on modern art, Middlebury gear its piece acquisition to make the most out of these relationships. 
+
+###Equal Representation###
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+Museum_Gender_Summary <- Museum_Data %>% 
+  group_by(Museum, Gender) %>% 
+  summarise(count = n()) %>% 
+  filter(Museum == "Middlebury" | Museum == "Moma") %>% 
+  filter(Gender == "M" | Gender == "F") %>% 
+  mutate(prop = NA)
+Museum_Gender_Summary [1,4] = .0978
+Museum_Gender_Summary [2,4] = .9022
+Museum_Gender_Summary [3,4] = .1421
+Museum_Gender_Summary [4,4] = .8579
+ggplot(data=Museum_Gender_Summary, aes(x=Museum, y=prop, fill=Gender))+
+  geom_bar(stat="identity")+
+  ggtitle("Artist Gender by Museum")
+```
+
+Male artists dominate the collections of each museum. How can any museum expect to gather a wide audience if the work of half the human population is not presented? We wanted to understand to what extent women were being left out of the equation and the results were shocking. We expected there to be more male artists across each of the four museums. Only two - MCAM and the MoMA - reported gender. Despite continued  pressure to reform this aspect of the art world, it seems as though the public's plea has fallen on deaf ears. To our minds, there is no excuse. On the monetary side, female-produced artwork is good for business . People are not only interested in seeing these pieces, they are interested in buying them. From an egalitarian viewpoint, it's time to give all artists a fair shake. 
+
+###Footprint###
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+ggplot(data=Museum_Data, aes(x=Area, y=Medium_END, color=Medium_END))+
+  geom_point(size=.001, alpha=.1)+
+  geom_jitter(width = 0, height=.4)+
+  xlim(0, 200000)+
+  facet_grid(Museum ~ .)+
+  ggtitle("Artwork Size")
+```
+Another critical element to consider is the amount of space individual pieces take up. Having many, many works of art is great - in theory- but if there isn't any space to display them, what good is that going to do the museum? To that end we plotted the area (in square centimeters) of each piece in all of the collections and then further divided them into their mediums. This accomplishes two goals. First, it shows that piece size stays fairly consistent across mediums. Although it may seem like a given that, say, sculptures tend to be larger than drawings, this does not appear to be the case. There are exceptionally large pieces in every medium. On average, they tend to be smaller. This can work to the MCAM advantage in two distinct ways. The first would be to invest in a choice few massive works. By collecting works on a scale previously unseen on this campus, buzz would immediately follow it. Large pieces are expensive however. Another approach could be modeling the Met's approach, buy small. Smaller works are easier to house and display. Either way, it seems as though the MCAM again falls in line with the philosophy of the Met. The MoMA and Tate appear to value larger works overall. 
+
+###Where in the World###
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+Museum_Nationality_Summary <- Museum_Data %>% 
+  filter(Nationality %in% c("Russian","American", "British", "Italian", "Dutch", "German", "Roman", "Japanese", "Greek", "Chinese"))
+ggplot(data=Museum_Nationality_Summary, aes(x=Date, y=Nationality, fill=Nationality))+
+  geom_tile(alpha=.2)+
+  facet_grid(Museum ~ .)+
+  xlim(1250,2000)+
+  ggtitle("Artwork Nationality")
+```
+When parsing for nationality, we decided to focus on the top ten identifiers. The overwhelming majority of pieces are sourced from American and European artists. Here is another realm in which to grow the collection. One of the most evolutionary events to occur in the art world has been the way in which the thematics of visual representation have been fundamentally rewritten  from the margins. Tradition tells us that profitable art is art made by famous personalities that is easily understandable by the widest possible audience. Pieces that have fit this description typically hail from Europe and the US. I cannot speak for all communities, but I believe that the community around the MCMA would appreciate a more varied selection. In this case, we posit that our museum should again follow the Met's lead and start collecting art from all over the globe. Compared to the MoMA, our smaller collection is just as if not more representative of the world's art-making people. 
+
+###Supplementary Materials###
+For continued study, we would like to explore statistical methods of fomenting the recommendations presented in the article. As it turned out, cleaning the data was an incredibly involved task. Not only were the record keeping techniques not consistent across each museum, significant manipulation of column names and values was required to generate the master data frame that was used the create the visualizations. Additionally, we would like to gather more data from other prominent museums across the US and abroad with hopes to generate a proposal that the MCAM could follow to increase interest and membership. At the end of the day, our main goal was to promote art and art education. On that note, an immediate step that we believe should be taken is the incorporation of student works into the collection. By displaying student work more often, the museum could capitalize on students' desire to support their peers' work. 
+Thank you for taking a tour of these museums with us. You may exit through the gift shop.
+
+
+
+

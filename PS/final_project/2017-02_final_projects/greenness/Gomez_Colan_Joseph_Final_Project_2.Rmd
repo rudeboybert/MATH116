@@ -1,0 +1,145 @@
+
+---
+title: "Testing GREEN: Comparing the Enviromental Impact of New York City and Vermont"
+author: "Maya Gomez, Caroline Colan, & Julian Joseph"
+date: "May 23, 2017"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+    df_print: kable
+---
+
+
+```{r, message=FALSE, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+library(mosaic)
+library(broom)
+library(tidyr)
+library(knitr)
+```
+
+Vermont is generally thought to be an extremely "green" state for its plethora of trees, environmentally conscious citizens, and a lack of polluted cities. In fact, Vermont was ranked the "greenest" state by Forbes in 2007 for these reasons. However, the environmental impact of Vermonters may not be as slim as previously thought. This is because the spread out style of living exhibited in Vermont is not very efficient as it increases travel time and decreases the use of public transportation. The question arises then, do more condensed cities that emphasize public transportation have a smaller environmental impact? Specifically, is New York City "greener" than Vermont?
+
+To compare the relative "greeness" of people in Vermont versus people in New York City, we used data from the U.S. Census American Community Survey (ACS) 2015 5-year estimate, and data collected from the Environmental Protection Agency's (EPA) state and local agency monitoring stations.
+
+ACS data is collected by randomly sampling addresses in every data, Washington, D.C., and Puerto Rico throughout the year. Interviews are conducted by internet, mail, telephone, or personal visit in order to increase accessibility and coverage rates. The 2015 data had a country-wide coverage rate of 98.6% of total households, and 92.4% of the total population. The state of Vermont had a coverage rate of 99.1% of total households, and 95.9% of the total population. New York state had a coverage rate of 98.6% of total households, and 92.2% of the population. The sample size nationwide included 3,540,307 initial households selected and 2,305,707 final interviews. Vermont had 15,115 initial households selected with 8,924 final interviews while New York state had 218,433 initial households selected with 137,665 final interviews. Final ACS population estimates are adjusted for coverage error by controlling specific survey estimates to independent population controls by sex, age, race, and Hispanic origin.
+  
+
+## Transportation Use
+
+
+
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+Selected_Census<- R11402795_SL050_2 %>% 
+  select(X1, X2, X3, X5, X56, X58, X60, X61, X62, X63, X64, X65, X66, 
+         X67, X68, X69, X70, X71, X72, X73, X74, X75, X76, X78, X80,
+         X81, X82, X83, X84,X85, X86, X87) %>% 
+  slice(-c(1:2))
+
+Transportation<- Selected_Census %>% 
+  rename(
+    FIPS = X1,
+    GEOID = X2,
+    Name = X3,
+    State = X5,
+    Total_pop = X56,
+    Car_Truck_van = X69,
+    Drove_alone = X70,
+    Carpool = X71,
+    Public_Transit = X72,
+    Motorcycle = X73,
+    bicycle = X74,
+    Walked = X75,
+    Other = X76) %>% 
+  mutate(Total_pop = as.numeric(Total_pop),
+    Car_Truck_van = as.numeric(Car_Truck_van),
+    Drove_alone = as.numeric(Drove_alone),
+    Carpool = as.numeric(Carpool),
+    Public_Transit = as.numeric(Public_Transit),
+    Motorcycle = as.numeric(Motorcycle),
+    bicycle = as.numeric(bicycle),
+    Walked = as.numeric(Walked),
+    Other = as.numeric(Other))%>% 
+  select(State, Total_pop,Car_Truck_van, Drove_alone, Carpool, Public_Transit, Motorcycle,
+         bicycle, Walked, Other) %>% 
+  group_by(State) %>% 
+  summarise(Car_Truck_van=sum(Car_Truck_van), Drove_alone=sum(Drove_alone), 
+            Carpool=sum(Carpool), Public_Transit=sum(Public_Transit),
+            Motorcycle=sum(Motorcycle), bicycle=sum(bicycle), Walked=sum(Walked),
+            Other=sum(Other), Total_pop=sum(Total_pop)) %>% 
+  gather(type, count, 2:9) %>% 
+  mutate(Percent_ofPop= (count/Total_pop)*100)
+
+
+ggplot(Transportation, aes(x=type, y=Percent_ofPop, fill=State))+
+  geom_bar(stat="identity", position="dodge")+
+  scale_fill_manual("State", values = c("ny" = "orange", "vt" = "blue"))+
+  labs(x="", y= "Percent of Population", title="Type of Transportation Taken to Work")
+
+
+```
+
+## Air Quality Index
+
+
+Air Quality Index, or AQI, indicates the overall air quality of a location. This is computed by taking all air pollutants into account, assuming that the area has the necessary monitoring stations for each. A day is recorded as having a "good" AQI if the value falls between 0 and 50. The AQI is considered "moderate" if it is recorded between 51 and 100, and then "unheathy for sensitive groups" if the AQI is between 101 and 150. The figure below illustrates the percentage of days per year that were recorded having AQI levels of "good", "moderate", and "unhealthy for sensitive groups" in 2015. No days were recorded having "unhealthy" (AQI: 151-200) or "very unhealthy" (AQI: 201 or higher) levels of air quality in either New York or Vermont. Unfortunately, stations that measure air quality in Vermont are only located in three of the fourteen counties which makes the data slightly less representative of the entire state.
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.width=16/2, fig.height=9/2}
+aqi_nyc <- read_csv("~/Desktop/Dropbox/STATS Final Project/aqireport2015-2.csv") %>%
+  slice(c(2, 11, 14, 21, 22))
+
+aqi_vt <- read_csv("~/Desktop/Dropbox/STATS Final Project/aqireport2015.csv") %>%
+  slice(-c(4))
+
+aqi_both <- bind_rows(aqi_nyc, aqi_vt) %>% 
+  rename(FIPS = `County Code`)
+
+green_aqi <- green %>%
+  inner_join(aqi_both2, by = "FIPS")
+
+aqi_both2 <- bind_rows(aqi_nyc, aqi_vt) %>% 
+  rename(FIPS = `County Code`) %>%
+  select(-c(`AQI Maximum`:`# Days PM10`)) %>%
+  gather(AQI, count, 4:8) %>%
+  mutate(count= as.numeric(count)) %>%
+  mutate(Percentage = (`count`/365)*100)
+
+ggplot(data=aqi_both2, aes(x=County, y=Percentage, fill=AQI)) +
+  geom_bar(stat="identity", position="fill") +
+  facet_wrap(~`State`) +
+  scale_fill_manual("AQI", values=c("Good"="chartreuse3", "Moderate"="gold", "Unhealthy for Sensitive Groups"="tomato")) +
+  labs(x="County", y="Percentage of Days per Year", title="2015 Air Quality Index") +
+  coord_flip()
+
+
+```
+
+  This figure shows that the air quality of the counties in NYC and Vermont do differ, but not as signficantly as one might expect. In 2015, both Chittenden and Bennington did not record any days that were "unhealthy for sensitive groups" and the days recorded as "moderate" are minimal. The air quality index of Kings County in NYC is comparable to Chittenden and Bennington, however it has a slightly larger percentage of days labeled as "moderate". The third county recorded in Vermont, Rutland, appears to have worse air quality than Chittenden, Bennington, and Kings. A possible explanation for the worse air quality in Rutland is a high level of heroin use. This increase in heroin use could be correlated with a decrease in living "green" and therefore effects the overall air quality. The other four NYC counties, Richmond, Queens, New York, and Bronx do exhibit worse air quality levels than Chittenden and Bennington because they have more days labeled as "moderate" and "unhealthy for sensitive groups". With that said, the difference in air quality between NYC and the three Vermont counties examined is not as drastic as one might think.
+    A more representative comparison could be made if the AQI was measured for every county in Vermont. This is because Chittenden and Rutland are the two largest counties in Vermont which makes them most similar to the counties in NYC. It is likely that the other counties of Vermont have even better air quality than the larger counties measured.  
+    
+
+
+  
+  
+!!!!!Should I include the part about heroin use??? Its kinda a stretch and I'm not sure if we need to provide an explanation.
+
+
+## Conclusion
+
+!!!!! relate the air quality and transportation here
+!!!!! This is just a start...
+On way that Midd kids can reduce their enviromental impact is by taking advantage of the small amount of public transportation that is available in Middlebury. A good way to do this is by taking the the bus to Burlington and the Snow Bowl rather than driving their personal vehicles.
+
+
+
+!!!!! We could maybe look to see how to embed these links into a summary word??
+
+# Sources
+https://www.epa.gov/outdoor-air-quality-data/air-quality-statistics-report
+https://www.epa.gov/outdoor-air-quality-data/air-quality-index-report
+https://www.epa.gov/outdoor-air-quality-data/about-air-data-reports
+http://e360.yale.edu/features/greenest_place_in_the_us_its_not_where_you_think
+

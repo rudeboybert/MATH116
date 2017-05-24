@@ -1,0 +1,9 @@
+Geo_FIPS,Geo_GEOID,Name of Area,Qualifying Name,Geo_STUSAB,Median Gross Rent 2008
+6037,05000US06037,"Los Angeles County, California","Los Angeles County, California",ca,1103
+6075,05000US06075,"San Francisco County, California","San Francisco County, California",ca,1262
+17031,05000US17031,"Cook County, Illinois","Cook County, Illinois",il,880
+25025,05000US25025,"Suffolk County, Massachusetts","Suffolk County, Massachusetts",ma,1132
+36061,05000US36061,"New York County, New York","New York County, New York",ny,1198
+42101,05000US42101,"Philadelphia County, Pennsylvania","Philadelphia County, Pennsylvania",pa,796
+48201,05000US48201,"Harris County, Texas","Harris County, Texas",tx,795
+53033,05000US53033,"King County, Washington","King County, Washington",wa,999

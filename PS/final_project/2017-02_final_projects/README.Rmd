@@ -1,0 +1,29 @@
+---
+title: "2017 Spring Final Projects"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(knitr)
+```
+
+
+## Final Project List
+
+```{r, echo=FALSE}
+title <- c("An Analysis of Crime in Chicago")
+folder <- c("`chicago_crime`")
+group <- c("Ry Storey-Fisher, Elana Feldman, and Lisa Schroer")
+URL <- c("http://rpubs.com/ry_lisa_elana/chicago")
+
+final_projects <- data_frame(
+  Title = title,
+  Folder = folder,
+  `Team Members` = group
+  ) %>% 
+  mutate(Title = paste("<a target=\"_blank\" class=\"page-link\" href=\"",  URL, "\">", Title, "</a>", sep=""))
+
+kable(final_projects)
+```

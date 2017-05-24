@@ -1,0 +1,9 @@
+Geo_FIPS,Name of Area,Qualifying Name,Geo_STUSAB,Less than 10 Minutes,20 to 29 minutes,60 to 89 Minutes,90 or more minutes
+6037,"Los Angeles County, California",Los Angeles,ca,308118,853416,437687,160573
+6075,"San Francisco County, California",San Francisco,ca,15913,96933,54173,18511
+17031,"Cook County, Illinois",Chicago,il,148802,429621,285721,81466
+25025,"Suffolk County, Massachusetts",Boston,ma,29381,74710,45917,12035
+36061,"New York County, New York",New York City,ny,52913,190740,73382,22814
+42101,"Philadelphia County, Pennsylvania",Philadelphia,pa,39102,124663,66077,26583
+48201,"Harris County, Texas",Houston,tx,157666,405928,181034,46009
+53033,"King County, Washington",Seattle,wa,74602,232571,77006,23868
