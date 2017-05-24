@@ -1,5 +1,5 @@
 ---
-title: "2016 Fall Final Projects"
+title: "2016-09 Fall Final Projects"
 output: github_document
 ---
 
@@ -9,8 +9,7 @@ library(tidyverse)
 library(knitr)
 ```
 
-
-## GitHub Documents
+For Middlebury College MATH 116: Introduction to Statistical & Data Sciences.
 
 ```{r, echo=FALSE}
 titles <- c(

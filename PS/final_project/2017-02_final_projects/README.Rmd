@@ -1,5 +1,5 @@
 ---
-title: "2017 Spring Final Projects"
+title: "2017-02 Spring Final Projects"
 output: github_document
 ---
 
@@ -9,21 +9,17 @@ library(tidyverse)
 library(knitr)
 ```
 
-
-## Final Project List
+For Middlebury College MATH 116: Introduction to Statistical & Data Sciences.
 
 ```{r, echo=FALSE}
-title <- c("An Analysis of Crime in Chicago")
-folder <- c("`chicago_crime`")
-group <- c("Ry Storey-Fisher, Elana Feldman, and Lisa Schroer")
-URL <- c("http://rpubs.com/ry_lisa_elana/chicago")
-
-final_projects <- data_frame(
-  Title = title,
-  Folder = folder,
-  `Team Members` = group
-  ) %>% 
-  mutate(Title = paste("<a target=\"_blank\" class=\"page-link\" href=\"",  URL, "\">", Title, "</a>", sep=""))
+final_projects <- read_csv("Projects.csv") %>%
+  mutate(
+    Folder = paste("`", Folder, "`", sep=""),
+    Title = paste("<a target=\"_blank\" class=\"page-link\" href=\"",  RPubs_Link, "\">", Title, "</a>", sep="")
+    ) %>% 
+  rename(`Group Members`=Group) %>% 
+  select(`Group Members`, Title, Folder)
 
 kable(final_projects)
+# write_csv(final_projects, "2017-02_final_projects.csv")
 ```
