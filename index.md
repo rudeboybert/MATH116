@@ -8,7 +8,7 @@ layout: default
 
 # Topics
 
-* <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">Slides</a>. Also in <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>.
+* <a target="_blank" class="page-link" href="{{ site.baseurl }}/slides.html">Slides</a>, also in <a target="_blank" class="page-link" href="{{ site.baseurl }}/notes.html">HTML format</a>.
 * <a target="_blank" class="page-link" href="{{ site.baseurl }}/LC.html">Learning checks</a>.
 * <a target="_blank" class="page-link" href="https://rudeboybert.github.io/ModernDive/">ModernDive</a> textbook. Feedback form <a target="_blank" class="page-link" href="https://docs.google.com/forms/d/e/1FAIpQLSd28dfQ6r9DwIBPEErWE4PIxrDOSerhPYSoXmONiUHfrbo2ww/viewform">here</a>.
 
