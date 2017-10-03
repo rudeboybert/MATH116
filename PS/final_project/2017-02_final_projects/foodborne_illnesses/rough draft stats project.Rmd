@@ -1,7 +1,9 @@
 ---
 title: "Foodborne Illnesses"
-author: "Joe O'Brien, Conor Himstead, Rebecca Lightman""
+author: "Joe O'Brien, Conor Himstead, Rebecca Lightman"
 output: html_notebook
+editor_options: 
+  chunk_output_type: inline
 ---
 
 
